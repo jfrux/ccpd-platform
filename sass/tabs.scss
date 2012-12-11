@@ -1,0 +1,74 @@
+@import "compass/css3";
+body.tabs {
+	a.HeaderTabOn { 
+		padding:7px 15px; 
+		float:left; 
+		text-decoration:none;
+		color:#FFF; 
+	}
+	a.HeaderTabOn { 
+		background-color: rgba(255, 255, 255, 0.09);
+	}
+	
+	.ContentSubTitle { 
+		 
+		font-size:13px; 
+		font-weight:bold; 
+		padding-top:4px; 
+		margin-bottom:4px; 
+		border-bottom:1px solid #CCCCCC;  
+	}
+	
+	.ContentBody { 
+		padding-top:4px;
+		font-size:12px; 
+		font-weight:normal; 
+		color:#000000; 
+	}
+	.TabControl {
+		border-width:0 0 1px 0;
+		border-style:solid;
+	}
+	.TabControl #current a {
+		padding-bottom: 5px; 
+		color: #FFF;
+	}
+	
+	
+	.TabControl {  border-bottom:3px solid #31678D; }
+	.TabControl #current {
+		background-color:#31678D;
+	}
+	.TabControl #current A {
+		background-color:#31678D; PADDING-BOTTOM: 5px; COLOR: #FFF;
+	}
+	
+	
+	.TabControl ul li.current a {
+		background-color:#31678D;
+		background:-moz-linear-gradient(center top , #31678D, #31678D) repeat scroll 0 0 #31678D;
+		border-color:#31678D;
+		border-style:solid;
+		border-width:1px 1px 0;
+		font-weight:bold;
+		text-shadow:0 -1px rgba(0, 0, 0, 0.45);
+	}
+
+	
+	h2.ContentSectTitle { 
+		color:#FFF; 
+	}
+	
+	div.ViewSection h3 { 
+		color:#FFF;
+	}
+	
+	
+	div.ViewSection h3 { color:#FFF; background-color:#31678D; }
+	
+	.history-filter ul li.current a { 
+		background-color:#31678D;
+		background:-moz-linear-gradient(center top , #31678D, #31678D) repeat scroll 0 0 #31678D;
+		border-color:#1b4590; color:#FFF; 
+	}
+}

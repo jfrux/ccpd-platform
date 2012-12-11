@@ -1,0 +1,53 @@
+/* ui.dropslide */
+/* line 3, I:/ccpd_test/sass/jquery.timepickr.scss */
+.ui-dropslide {
+  position: absolute;
+}
+
+/* line 4, I:/ccpd_test/sass/jquery.timepickr.scss */
+.ui-dropslide ol {
+  margin-top: 2px;
+  list-style: none;
+}
+
+/* line 5, I:/ccpd_test/sass/jquery.timepickr.scss */
+.ui-dropslide li {
+  float: left;
+}
+
+/* line 6, I:/ccpd_test/sass/jquery.timepickr.scss */
+.ui-dropslide span {
+  font-size: .7em;
+  padding: 4px 6px 4px 6px;
+  margin-left: 2px;
+  text-align: center;
+  cursor: pointer;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  display: block;
+  text-align: center;
+}
+
+/* line 19, I:/ccpd_test/sass/jquery.timepickr.scss */
+.ui-timepickr ol li.hour,
+.ui-timepickr ol li.minute,
+.ui-timepickr ol li.second {
+  width: 30px;
+}
+
+/* dark theme */
+/* line 23, I:/ccpd_test/sass/jquery.timepickr.scss */
+.ui-timepickr.dark span {
+  border: 0;
+  color: #ccc;
+  background: #333;
+  font-weight: bold;
+  border: 1px solid #555;
+}
+
+/* line 30, I:/ccpd_test/sass/jquery.timepickr.scss */
+.ui-timepickr.dark span:hover {
+  color: #eee;
+  background: #333;
+  border: 1px solid #777;
+}

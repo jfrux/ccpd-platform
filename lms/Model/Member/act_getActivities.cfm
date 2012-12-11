@@ -1,0 +1,1 @@
+<cfset qActivities = Application.Com.AttendeeGateway.getByViewAttributesLMS(PersonID=Session.PersonID,DeletedFlag="N",OrderBy="att.StatusID,act.ReleaseDate")>

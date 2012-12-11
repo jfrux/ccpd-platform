@@ -1,0 +1,63 @@
+/* FULL SIZE */
+/* line 2, I:/ccpd_test/sass/stepstatus.scss */
+.StepStatus1, .StepStatus2, .StepStatus3, .StepStatus4 {
+  padding: 4px;
+  color: #FFF;
+  border: 1px solid #555;
+}
+
+/* line 7, I:/ccpd_test/sass/stepstatus.scss */
+.StepStatus1 {
+  background-color: #CC6600;
+}
+
+/* Waiting */
+/* line 8, I:/ccpd_test/sass/stepstatus.scss */
+.StepStatus2 {
+  background-color: #CC0000;
+}
+
+/* Not Started */
+/* line 9, I:/ccpd_test/sass/stepstatus.scss */
+.StepStatus3 {
+  background-color: #666666;
+}
+
+/* Done */
+/* line 10, I:/ccpd_test/sass/stepstatus.scss */
+.StepStatus4 {
+  background-color: #009900;
+}
+
+/* In Process */
+/* POD SIZE */
+/* line 13, I:/ccpd_test/sass/stepstatus.scss */
+.StepStatusPod1, .StepStatusPod2, .StepStatusPod3, .StepStatusPod4 {
+  padding: 2px;
+  font-size: 12px;
+}
+
+/* line 17, I:/ccpd_test/sass/stepstatus.scss */
+.StepStatusPod1 {
+  color: #CC6600;
+}
+
+/* Waiting */
+/* line 18, I:/ccpd_test/sass/stepstatus.scss */
+.StepStatusPod2 {
+  color: #CC0000;
+}
+
+/* Not Started */
+/* line 19, I:/ccpd_test/sass/stepstatus.scss */
+.StepStatusPod3 {
+  color: #666666;
+}
+
+/* Done */
+/* line 20, I:/ccpd_test/sass/stepstatus.scss */
+.StepStatusPod4 {
+  color: #009900;
+}
+
+/* In Process */

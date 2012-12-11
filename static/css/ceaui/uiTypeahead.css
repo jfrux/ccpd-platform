@@ -1,0 +1,32 @@
+.uiTypeahead{background:#fff;border:solid #bdc7d8;border-width:1px 0;cursor:default;position:relative}
+.uiTypeahead .wrap{border:solid #bdc7d8;border-width:0 1px;overflow:hidden;zoom:1}
+.uiTypeahead .textInput{border:0;outline:0;width:100%}
+.uiTypeahead .selected .textInput{background-color:#e2e8f6}
+.uiTypeaheadDisabled,.uiTypeaheadDisabled div.wrap{border-color:#ccc}
+.uiTypeaheadDisabled div.wrap .textInput{background:#e2e2e2;color:#333}
+.uiTypeaheadFocused,.uiTypeaheadFocused .uiTypeahead{z-index:1}
+.uiTypeaheadView{display:block;left:0;position:absolute;top:100%;width:100%}
+.uiTypeaheadView ul{background:#fff;border:solid;border-width:1px 1px 2px;border-color:#333 #333 #293e6a;overflow:hidden;padding:2px 0}
+.uiTypeaheadView li{border:solid #fff;border-width:1px 0;color:#333;cursor:pointer;display:block;min-height:1px;padding:0 6px;position:relative}
+.uiTypeaheadView strong{background-color:#d8dfea;color:#3b5998}
+.uiTypeaheadView .selected{background-color:#6d84b4;border-color:#3b5998}
+.uiTypeaheadView .selected,.uiTypeaheadView .selected a,.uiTypeaheadView .selected div,.uiTypeaheadView .selected span{color:#fff !important}
+.uiTypeaheadView .selected strong{background-color:#5670a6}
+.uiTypeaheadView .text,.uiTypeaheadView .subtext,.uiTypeaheadView .category{display:block;padding-bottom:2px}
+.uiTypeaheadView .category{color:#666}
+.uiTypeaheadView .subtext{color:#999}
+.uiTypeaheadView .arrow{background:transparent url(http://static.ak.fbcdn.net/rsrc.php/zV/r/IJYgcESal33.png) 0 -413px;display:inline-block;height:7px;margin-left:4px;width:4px}
+.uiTypeaheadView .selected .arrow{background-position:0 -420px}
+.uiTypeahead .uiTypeaheadView .calltoaction{background:#f7f7f7;border-bottom:none;border-color:#ddd;display:block;min-height:1px;margin:2px 0 -2px;padding:8px;text-align:center}
+.uiTypeahead .uiTypeaheadView .calltoaction.selected{background:#6d84b4;border-color:#3b5998}
+.typeaheadLoading .uiTypeaheadView .calltoaction span.text{visibility:hidden}
+.typeaheadLoading .uiTypeaheadView .calltoaction{background:#f7f7f7 url(http://static.ak.fbcdn.net/rsrc.php/zb/r/GsNJNwuI-UM.gif) no-repeat 50% 50%}
+.typeaheadLoading .uiTypeaheadView .calltoaction.selected{background:#6d84b4 url(http://static.ak.fbcdn.net/rsrc.php/z-/r/AGUNXgX_Wx3.gif) no-repeat 50% 50%}
+.uiTypeaheadView .compact li{min-height:32px;padding:2px 10px 2px 45px}
+.uiTypeaheadView .compact .splitpics,.uiTypeaheadView .compact img{display:block;height:32px;left:6px;position:absolute;width:32px}
+.uiTypeaheadView .compact .text{font-weight:bold}
+.uiTypeaheadView .compact .details{color:#999;padding-top:0}
+.uiTypeaheadView .compact .detailsContents{position:relative}
+.uiTypeaheadView .compact .splitpic{float:left;overflow:hidden;width:15px}
+.uiTypeaheadView .compact .splitpics img{left:0;margin-left:-8px;position:static}
+.uiTypeaheadView .compact .splitpics .leftpic{margin-right:1px;width:16px}

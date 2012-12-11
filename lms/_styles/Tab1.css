@@ -1,0 +1,20 @@
+#HeaderSubNav { background-color:#1b4590; }
+
+a.HeaderTabOn { padding:7px 15px; float:left; text-decoration:none;background-image:url(/lms/_images/Header_Tab1BG.gif); color:#FFF; }
+
+/* CONTENT */
+.ContentSubTitle { font-size:13px; font-weight:bold; color:#438cc9; padding-top:4px; margin-bottom:4px; border-bottom:1px solid #CCCCCC;  }
+.ContentBody { padding-top:4px;font-size:12px; font-weight:normal; color:#000000; }
+
+
+.TabControl {  border-bottom:3px solid #1b4590; }
+.TabControl #current {
+	background-color:#1b4590;
+}
+.TabControl #current A {
+	background-color:#1b4590; PADDING-BOTTOM: 5px; COLOR: #FFF;
+}
+
+h2.ContentSectTitle { color:#FFF; background-color:#1b4590; }
+
+div.ViewSection h3 { color:#FFF; background-color:#1b4590; }

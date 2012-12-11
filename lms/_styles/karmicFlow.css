@@ -1,0 +1,103 @@
+.karmic_flow_container {
+	overflow: hidden; 
+	position: relative;
+	left:15px;
+	width: 949px; 
+	height: 152px;
+}
+
+.karmic_flow_slider, .karmic_flow_slider li {
+	list-style:none;
+	margin: 0;
+	padding: 0;
+}
+
+.karmic_flow_slider {
+	overflow: hidden; 
+	position: relative;
+	
+	/* optional */
+	margin-left: 0;
+}
+
+.karmic_flow_slider li {
+	float: left;
+	position: relative;
+	overflow:hidden;
+}
+
+.karmic_flow_slide_overflow {
+	/* optional */
+	/*overflow:auto;*/
+}
+
+.karmic_flow_sliding .karmic_flow_slide_overflow {
+	overflow:hidden;
+}
+
+.karmic_flow_sliding object, .karmic_flow_sliding embed {
+	display: none;
+}
+
+.karmic_flow_controller_selected {
+	/* optional */
+	background: #b91c31 !important;
+	color: #FFF !important;
+	padding: 12px 35px !important;
+}
+
+.karmic_flow_controller {
+	font-size:20px;
+	color: #FFF;
+	padding: 12px 35px;
+	line-height: 52px;
+	text-decoration: none;
+}
+
+a.karmic_flow_controller { color:#FFF; }
+a:hover.karmic_flow_controller { color:#FFF; background: #b91c31 !important; }
+
+.karmic_flow_prev_controller,
+.karmic_flow_next_controller,
+.karmic_flow_play_controller, 
+.karmic_flow_pause_controller {
+	display: block;
+	float: left;
+	line-height: 10em;
+	background: url(../i/layout/Knob%20Fast%20Rewind.png);
+	width: 32px;
+	height: 32px;
+	overflow:hidden;
+	color:#000;
+}
+
+.karmic_flow_next_controller {
+	background: url(../i/layout/Knob%20Fast%20Forward.png);
+}
+
+.karmic_flow_play_controller {
+	background: url(../i/layout/Knob%20Play.png);
+}
+
+.karmic_flow_pause_controller {
+	background:url(../i/layout/Knob%20Pause.png) !important;
+}
+
+.karmic_slideLeft { float:left; width:492px; font-family:Arial, Helvetica, sans-serif;margin:15px 0 0 15px; color:#ffebee; }
+.karmic_slideLeft h3 { padding:0; margin:8px 0 5px 0; color:#fee3e3; font-size:1.95em; letter-spacing:-.03em; }
+.karmic_slideLeft p { color:#ffebee; margin:6px 0 7px 1px; font-size:1.3em; line-height:.95em; }
+.karmic_slideLeft a.LearnMore { color:#ffd27a; }
+.karmic_slideLeft a:hover.LearnMore { color:#ffb930; }
+
+.karmic_slideRight a { color:#FFF; text-decoration:none; font-size:1.1em; }
+.karmic_slideRight a:hover { color:#CCC; }
+.karmic_slideRight { float:left; width:440px; margin-top:5px; }
+.karmic_slideRight ul { margin:17px 0 8px 0; padding:0; }
+.karmic_slideRight ul li {
+list-style-type: none;
+list-style-image: none;
+margin-bottom: 0;
+padding-bottom:8px;
+font:normal 1.1em sans-serif;color:#202225;
+}
+#HomepageSlider-Control { position:relative; margin-left:30px; }

@@ -1,0 +1,1 @@
+<cfset qQuestions = Application.Com.AssessQuestionGateway.getByAttributes(AssessmentID=URL.AssessmentID,DeletedFlag='N',OrderBy="Sort")>

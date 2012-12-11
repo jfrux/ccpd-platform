@@ -1,0 +1,120 @@
+.groupedList { 
+	
+}
+
+.groupedList-title {
+    border-top: 1px solid #EBEBEB;
+    margin: 4px 2px 3px;
+    padding: 4px 4px 0;
+}
+
+.groupedList-title h2 {
+
+}
+.groupedList-title h3 {
+    font-size: 11px;
+    line-height: 17px;
+    margin: 0;
+    padding: 0;
+}
+
+.groupedList-title .iconWrap {
+    float: left;
+}
+.groupedList-title .textWrap {
+    float: left;
+}
+.groupedList-title .linkWrap {
+    float: right;
+    font-size: 11px;
+    text-transform: lowercase;
+}
+.groupedList-title .linkWrap a {
+	line-height:17px;
+	text-decoration:none;
+}
+
+.groupedList-items {
+
+}
+
+.groupedList-items ul {
+	list-style-type:none;
+	margin:0;
+	padding:0;
+}
+
+.groupedList-items ul li {
+    margin: 0 21px 0 26px;
+    padding: 0;
+}
+
+.groupedList-item {
+	padding-bottom:4px;
+}
+
+.actionText {
+    background-color: #F7F7F7;
+    border: 1px solid #DDDDDD;
+    padding: 0 5px;
+	font-weight:normal;
+}
+
+
+.linkList { 
+	
+}
+
+.linkList ul {
+	list-style-type:none;
+	margin:0;
+	padding:0;
+}
+
+.linkList ul li {
+    margin: 0 9px;
+    padding: 0;
+}
+
+.linkList-title {
+    background-color: #F7F7F7;
+    border-top: 1px solid #DDDDDD;
+    margin: 6px 2px 3px;
+    padding: 3px 4px;
+}
+
+.linkList-title h2 {
+
+}
+.linkList-title h3 {
+    font-size: 11px;
+    line-height: 17px;
+    margin: 0;
+    padding: 0;
+}
+
+.linkList-title .iconWrap {
+    float: left;
+}
+.linkList-title .textWrap {
+    float: left;
+}
+.linkList-title .linkWrap {
+    float: right;
+    font-size: 11px;
+    text-transform: lowercase;
+}
+.linkList-title .linkWrap a {
+	line-height:17px;
+	text-decoration:none;
+}
+
+.linkList-items {
+
+}
+
+
+
+.linkList-item {
+	padding-bottom:4px;
+}

@@ -1,0 +1,9 @@
+div.ModalWindow h2 { text-align:left; font-size:14px; font-weight:bold; margin:0px; color:#FFF; padding:5px 8px; border-bottom:1px solid #555; }
+div.ModalWindow h3 { text-align:left; font-size:12px; font-weight:bold; margin:0px; color:#FFF; padding:5px 8px; background-color:#000; }
+div.ModalWindow p { margin:0px; padding:5px; }
+
+table.ModalGrid { width:97%;}
+table.ModalGrid thead tr th { padding:3px; text-align:left; font-size:12px; background-color:#555; color:#FFF; border-right:1px solid #666; }
+table.ModalGrid tbody tr td { padding:3px; text-align:left; font-size:12px; border-bottom:1px solid #CCC; }
+
+div.ModalWindow div.ModalOptions { padding:5px 8px; background-color:#EEE; border-top:1px solid #CCC; margin-top:8px; }

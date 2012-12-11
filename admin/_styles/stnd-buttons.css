@@ -1,0 +1,183 @@
+.btn, input.btn[type="submit"], input.btn[type="button"] {
+-moz-border-radius:4px 4px 4px 4px;
+background:url("/admin/_images/buttons/bg-btn.gif") repeat-x scroll 0 0 #DDDDDD;
+border-color:#DDDDDD #DDDDDD #CCCCCC;
+border-style:solid;
+border-width:1px;
+color:#333333;
+cursor:pointer;
+font:11px/14px "Lucida Grande",sans-serif;
+margin:0;
+overflow:visible;
+padding:4px 8px 5px;
+text-shadow:1px 1px 0 #FFFFFF;
+width:auto;
+}
+.btn::-moz-focus-inner {
+border:0 none;
+padding:0;
+}
+.btn-m, input.btn-m[type="submit"], input.btn-m[type="button"] {
+-moz-border-radius:5px 5px 5px 5px;
+background-position:0 -200px;
+font-size:15px;
+line-height:20px !important;
+padding:5px 15px 6px;
+}
+.btn-l, input.btn-l[type="submit"], input.btn-l[type="button"] {
+-moz-border-radius:6px 6px 6px 6px;
+background-position:0 -400px;
+font-size:20px;
+line-height:26px;
+padding:7px 20px 9px;
+}
+.btn-light {
+background-color:#AADDDD !important;
+background-image:url("/admin/_images/buttons/bg-btn-light.gif") !important;
+border-color:#AADDDD #AADDDD #99CCCC !important;
+text-shadow:1px 1px 0 #DDFFFF !important;
+}
+.btn-dark {
+background-color:#5599AA !important;
+background-image:url("/admin/_images/buttons/bg-btn-dark.gif") !important;
+border-color:#5599AA #5599AA #448899 !important;
+color:#FFFFFF !important;
+text-shadow:-1px -1px 0 #5599AA !important;
+}
+.btn-blue {
+background-color:#3399DD !important;
+background-image:url("/admin/_images/buttons/bg-btn-blue.gif") !important;
+border-color:#3399DD #3399DD #2288CC !important;
+color:#FFFFFF !important;
+font-weight:bold;
+text-shadow:-1px -1px 0 #3399DD !important;
+}
+.btn-chart {
+background-color:#99CC22 !important;
+background-image:url("/admin/_images/buttons/bg-btn-chart.gif") !important;
+border-color:#99CC22 #99CC22 #88BB11 !important;
+text-shadow:1px 1px 0 #DDFF66 !important;
+}
+.btn-mint {
+background-color:#BBDDBB !important;
+background-image:url("/admin/_images/buttons/bg-btn-mint.gif") !important;
+border-color:#BBDDBB #BBDDBB #AACCAA !important;
+text-shadow:1px 1px 0 #EEFFEE !important;
+}
+.btn-green {
+background-color:#227722 !important;
+background-image:url("/admin/_images/buttons/bg-btn-green.gif") !important;
+border-color:#227722 #227722 #116611 !important;
+color:#FFFFFF !important;
+text-shadow:-1px -1px 0 #227722 !important;
+}
+.btn-pink {
+background-color:#DDAAAA !important;
+background-image:url("/admin/_images/buttons/bg-btn-pink.gif") !important;
+border-color:#DDAAAA #DDAAAA #CC9999 !important;
+text-shadow:1px 1px 0 #FFDDDD !important;
+}
+.btn-red {
+background-color:#AA2222 !important;
+background-image:url("/admin/_images/buttons/bg-btn-red.gif") !important;
+background-position:0 0;
+border-color:#AA2222 #AA2222 #991111 !important;
+color:#FFFFFF !important;
+text-shadow:-1px -1px 0 #AA2222 !important;
+}
+.btn:hover, .btn:focus, input.btn[type="submit"]:hover, input.btn[type="submit"]:focus, button.btn:hover, button.btn:focus {
+background-position:0 -6px;
+border-color:#999999 #999999 #888888;
+color:#000000;
+text-decoration:none;
+}
+.btn-light:hover, .btn-light:focus {
+border-color:#77AAAA #77AAAA #669999;
+}
+.btn-dark:hover, .btn-dark:focus {
+border-color:#226677 #226677 #115566;
+color:#FFFFFF;
+}
+.btn-blue:hover, .btn-blue:focus {
+border-color:#1177BB #1177BB #0066AA;
+color:#FFFFFF;
+}
+.btn-chart:hover, .btn-chart:focus {
+border-color:#77AA11 #77AA11 #669900;
+}
+.btn-mint:hover, .btn-mint:focus, input.btn-mint[type="submit"]:hover, input.btn-mint[type="submit"]:focus, button.btn-mint:hover, button.btn-mint:focus {
+border-color:#88AA88 #88AA88 #779977 !important;
+}
+.btn-green:hover, .btn-green:focus, input.btn-green[type="submit"]:hover, input.btn-green[type="submit"]:focus, button.btn-green:hover, button.btn-green:focus {
+background-color:#227722 !important;
+border-color:#005500 #005500 #004400 !important;
+color:#FFFFFF;
+}
+.btn-pink:hover, .btn-pink:focus, input.btn-pink[type="submit"]:hover, input.btn-pink[type="submit"]:focus, button.btn-pink:hover, button.btn-pink:focus {
+border-color:#AA8888 #AA8888 #997777 !important;
+}
+.btn-red:hover, .btn-red:focus, input.btn-red[type="submit"]:hover, input.btn-red[type="submit"]:focus, button.btn-red:hover, button.btn-red:focus {
+background-color:#AA2222 !important;
+border-color:#661111 #661111 #550000 !important;
+color:#FFFFFF;
+}
+.btn-m:hover, .btn-m:focus, input.btn-m[type="submit"]:hover, input.btn-m[type="submit"]:focus, button.btn-m:hover, button.btn-m:focus {
+background-position:0 -206px;
+}
+.btn-l:hover, .btn-l:focus, input.btn-l[type="submit"]:hover, input.btn-l[type="submit"]:focus, button.btn-l:hover, button.btn-l:focus {
+background-position:0 -406px;
+}
+button:active, button.btn:active, input[type="submit"]:active, button.btn-dark:active, button.btn-light:active, .btn:active, .btn-red:active, .btn-green:active {
+background-image:none !important;
+outline:medium none !important;
+text-shadow:none !important;
+}
+.dbtn, .dbtn:hover, .dbtn:focus, .dbtn:active, button.dbtn:hover, button.dbtn:focus {
+background:none repeat scroll 0 0 #EEEEEE;
+border-color:#DDDDDD;
+color:#AAAAAA;
+text-shadow:none;
+}
+.btn-light.dbtn, .btn-light.dbtn:hover, .btn-light.dbtn:focus, .btn-light.dbtn:active {
+background:none repeat scroll 0 0 #DDEEEE;
+border-color:#CCDDDD;
+color:#99AAAA;
+}
+.btn-dark.dbtn, .btn-dark.dbtn:hover, .btn-dark.dbtn:focus, .btn-dark.dbtn:active {
+background:none repeat scroll 0 0 #AAD5DD;
+border-color:#99C5CC;
+color:#DDF6F6;
+}
+.btn-blue.dbtn, .btn-blue.dbtn:hover, .btn-blue.dbtn:focus, .btn-blue.dbtn:active {
+background:none repeat scroll 0 0 #BBDDEE;
+border-color:#AACCDD;
+color:#DDEEFF;
+}
+.btn-chart.dbtn, .btn-chart.dbtn:hover, .btn-chart.dbtn:focus, .btn-chart.dbtn:active {
+background:none repeat scroll 0 0 #DDEEBB;
+border-color:#CCDDAA;
+color:#AABB99;
+}
+.btn-mint.dbtn, .btn-mint.dbtn:hover, .btn-mint.dbtn:focus, .btn-mint.dbtn:active {
+background:none repeat scroll 0 0 #DDEEDD;
+border-color:#CCDDCC;
+color:#99AA99;
+}
+.btn-green.dbtn, .btn-green.dbtn:hover, .btn-green.dbtn:focus, .btn-green.dbtn:active {
+background:none repeat scroll 0 0 #AACCAA;
+border-color:#99BB99;
+color:#DDEEDD;
+}
+.btn-pink.dbtn, .btn-pink.dbtn:hover, .btn-pink.dbtn:focus, .btn-pink.dbtn:active {
+background:none repeat scroll 0 0 #EEDDDD;
+border-color:#DDCCCC;
+color:#AA9999;
+}
+.btn-red.dbtn, .btn-red.dbtn:hover, .btn-red.dbtn:focus, .btn-red.dbtn:active {
+background:none repeat scroll 0 0 #CCAAAA;
+border-color:#BB9999;
+color:#EEDDDD;
+}
+.btn.right {
+float:right;
+}

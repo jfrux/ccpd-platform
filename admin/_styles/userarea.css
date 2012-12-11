@@ -1,0 +1,70 @@
+#userarea { margin-left:4px; position:relative; }
+#userarea h2 {  clear:both;
+margin-bottom:5px; }
+#userarea h2 span { font-size:70%; color:#888; }
+
+#userarea-left { float:left;
+margin-right:10px;
+width:665px; }
+#userarea-right { float:left;
+width:300px; }
+
+#userarea-right h2 { font-size:16px;
+margin-bottom:5px; }
+
+#userarea-right ul { margin:0; padding:0; }
+#userarea-right ul li { list-style-type:none; margin:0; padding:3px 0; cursor:pointer; }
+#userarea-right ul li:hover { color:#000; background-color:#EEE; cursor:pointer; }
+#userarea-right ul li:hover a { color:#000; background-color:#EEE; }
+#userarea-right ul li a { font-size:100%; text-decoration:none; color:#666666; }
+#userarea-right ul li a:hover { text-decoration:underline; color:#000; background-color:#EEE; }
+
+#userarea-feed { margin-left:5px;
+margin-top:7px; }
+#userarea-feedcontent { clear:both; }
+#userarea-feedloading { clear:both; padding:20px; display:none; }
+
+#userarea-search { margin-left:5px;
+margin-top:7px; }
+#userarea-searchcontent { clear:both; }
+#userarea-searchloading { clear:both; padding:20px; display:none; }
+
+#userarea .searchbox input[type="text"] { 
+background-color:#F6FFEB;
+border:1px solid #67991B;
+color:#6D9F1F;
+font-size:120%;
+padding:4px;
+width:110px;
+}
+
+#userarea .searchbox { margin-bottom:10px; 
+margin-left:3px; }
+#userarea .searchbox #searchbox-main { width:300px; font-weight:bold; }
+#userarea .searchbox .button { padding:4px; }
+
+#userarea .friend-item { background-color:#EEEEEE;
+float:left;
+font-size:80%;
+height:110px;
+overflow:hidden;
+padding:10px;
+width:95px; }
+
+#userarea .friend-item a { color:#555; }
+
+#RequestLink { -moz-background-clip:border;
+-moz-background-inline-policy:continuous;
+-moz-background-origin:padding;
+background:transparent url(/_images/icons/group_add.png) no-repeat scroll 0 0;
+position:absolute; width: 100%; }
+#RequestLink a { margin: 15px 0px 0px 20px; color: #79B627; text-decoration: none; font-weight: bold; }
+#RequestLink a:hover { text-decoration: underline; background-color:#FFFFFF; }
+
+#userarea .friend-item img { max-height:90px; }
+
+#garagebox { min-height:100px; min-width:150px; clear:both; margin-bottom:6px;}
+#garagebox-left { float:left;
+min-width:100px; }
+#garagebox-right { float:left;
+width:185px; }

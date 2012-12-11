@@ -1,0 +1,1 @@
+<cfset qCredits = Application.Com.CreditGateway.getByAttributes(DeletedFlag="N",OrderBy="Name")>

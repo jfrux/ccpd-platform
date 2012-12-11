@@ -1,0 +1,77 @@
+body { 
+	font-size:11px; 
+	font-family:Arial, Helvetica, sans-serif;
+}
+.ticket { 
+	float: left;
+	display:block;
+	position:relative;
+}
+.header { 
+	font-family:Arial, Helvetica, sans-serif; 
+	border-bottom:3px solid #CCC;
+	margin:6px 6px 4px 6px;
+}
+.headerText {         
+	color: #555555;
+	font-size: 14px;
+	font-weight: bold;
+	text-transform: uppercase; 
+}
+.headerTextSmall { 
+	font-size: 10px;
+	text-transform: lowercase;
+	text-align:center;
+}
+.titleBox {     
+	background-color: #F1F1F2;
+	border: 1px solid #888888!important;
+	font-family: Arial,Helvetica,sans-serif;
+	font-weight: bold;
+	padding: 5px 10px;
+	text-align: center; 
+	margin-top:5px;
+	margin-left:6px;
+	margin-right:6px;
+	margin-bottom:5px;
+	clear:both;
+	display:block;
+}
+.tokenBox {  
+		clear:both;
+	display:block;
+	text-align:center;
+	margin-right:4px;
+}
+.tokenPart1 {      
+	font-size: 12px;
+}
+.tokenPart2 {    
+	font-size: 12px;
+}
+.tokenPart3 {
+}
+
+.tokenPart3 span {     
+	background-image: url('../images/ticket_circle.png');
+	background-repeat:no-repeat;
+	margin-right: 1px;
+	background-position:-4px -2px;
+	text-align: center;
+	height:20px;
+	width:20px;
+}
+
+.claimBox {     
+	float: left;
+	font-size: 9px;
+	width: 93px;
+	background-color:#333;
+	color:#FFF;
+}
+.easyWays { clear:both; display:block; padding:8px 0; margin-left:6px;margin-top:20px; }
+.easyList { clear:both; display:block; margin-left:6px;}
+.way { background-color:#555; color:#FFF; padding:4px 6px; }
+.seeBack { color:#888; margin-top:8px; text-align:center; }
+.claimBox .boxTitle { text-transform:uppercase; font-weight:bold; }
+.claimBox .boxBody { }

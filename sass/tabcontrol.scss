@@ -1,0 +1,40 @@
+.TabControl {
+float:left;
+font-size:93%;
+line-height:normal;
+width:960px;
+}
+.TabControl UL {
+	PADDING-RIGHT: 10px!important; PADDING-LEFT: 5px!important; PADDING-BOTTOM: 0px!important; MARGIN: 0px!important; PADDING-TOP: 4px!important; LIST-STYLE-TYPE: none!important;
+}
+.TabControl LI {
+	PADDING-RIGHT: 0px;  
+	FLOAT: left; 
+	font-size:16px;
+	font-weight:normal;
+	background-color:#000;
+	PADDING-BOTTOM: 0px; 
+	MARGIN: 0px 0px 0px 1px; 
+	PADDING-TOP: 0px;
+	
+}
+
+.TabControl a {
+background:-moz-linear-gradient(center top , #555555, #000000) repeat scroll 0 0 #000000;
+border-color:#000000;
+border-style:solid;
+border-width:1px 1px 0;
+color:#FFFFFF!important;
+display:block;
+float:left;
+font-size:12px;
+padding:5px 13px;
+text-decoration:none!important;
+text-shadow:0 -1px #000000;
+}
+.TabControl a {
+	FLOAT: none
+}
+.TabControl A:hover {
+background:-moz-linear-gradient(center top , #666, #111) repeat scroll 0 0 rgba(255,255,255,0.25);
+}

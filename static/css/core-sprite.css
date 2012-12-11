@@ -1,0 +1,13 @@
+.core {height:16px;padding:0 0 0 20px;background-color:transparent;background-repeat:no-repeat;}
+.core-cross-blue {
+    background-image: url("/static/images/sprites/core.png");
+    background-position: 0 -38px;
+}
+.core-cross-white {
+    background-image: url("/static/images/sprites/core.png");
+    background-position: 0 -75px;
+}
+.core-cross-gray {
+    background-image: url("/static/images/sprites/core.png");
+    background-position: 0 -57px;
+}

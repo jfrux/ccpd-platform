@@ -1,0 +1,1280 @@
+/* line 3, I:/ccpd_test/sass/default.scss */
+html {
+  height: 100%;
+  overflow-y: scroll;
+}
+
+/* line 5, I:/ccpd_test/sass/default.scss */
+body {
+  margin: 0px 0px 0px 0px;
+  padding: 0px;
+  background-repeat: repeat-y;
+  font-size: 11px!important;
+}
+
+/* line 12, I:/ccpd_test/sass/default.scss */
+a {
+  color: #555;
+}
+
+/* line 13, I:/ccpd_test/sass/default.scss */
+a:hover {
+  color: #000;
+}
+
+/* line 15, I:/ccpd_test/sass/default.scss */
+blockquote {
+  margin: 6px 10px;
+  background-color: #EEE;
+  padding: 5px;
+  color: #555;
+  border: 1px solid #CCC;
+}
+
+/* line 17, I:/ccpd_test/sass/default.scss */
+form {
+  margin: 0px;
+}
+
+/* line 19, I:/ccpd_test/sass/default.scss */
+#Header {
+  height: 1px;
+  color: #FFF;
+  background-color: #000;
+}
+
+/* line 25, I:/ccpd_test/sass/default.scss */
+#Header a:link {
+  color: #FFF;
+  text-decoration: none;
+}
+
+/* line 26, I:/ccpd_test/sass/default.scss */
+#Header a:visited {
+  color: #FFF;
+  text-decoration: none;
+}
+
+/* line 27, I:/ccpd_test/sass/default.scss */
+#Header a:active {
+  color: #FFF;
+  text-decoration: none;
+}
+
+/* line 28, I:/ccpd_test/sass/default.scss */
+#Header a:hover {
+  color: #CCC;
+  text-decoration: underline;
+}
+
+/* line 29, I:/ccpd_test/sass/default.scss */
+td.FieldLabel {
+  vertical-align: top;
+}
+
+/* line 32, I:/ccpd_test/sass/default.scss */
+td.FieldInput {
+  vertical-align: top;
+}
+
+/* line 35, I:/ccpd_test/sass/default.scss */
+#HeaderNav {
+  background-image: url('/static/images/Header_NavBG.gif?1294327899');
+  clear: both;
+  font-family: Arial,Helvetica,sans-serif;
+  font-size: 12px;
+  height: 29px;
+  margin: 0 auto;
+  width: 960px;
+}
+
+/* line 44, I:/ccpd_test/sass/default.scss */
+#HeaderNav a {
+  color: #FFFFFF !important;
+  font-size: 12px;
+  text-decoration: none;
+}
+
+/* line 49, I:/ccpd_test/sass/default.scss */
+#HeaderNav a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* line 51, I:/ccpd_test/sass/default.scss */
+a.HeaderTabOn:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* line 52, I:/ccpd_test/sass/default.scss */
+#HeaderNav img {
+  float: left;
+}
+
+/* line 53, I:/ccpd_test/sass/default.scss */
+.HeaderSubNav {
+  clear: both;
+  margin: 0 auto;
+  width: 960px;
+}
+
+/* line 58, I:/ccpd_test/sass/default.scss */
+.HeaderSubNav a {
+  color: #FFFFFF;
+  float: left;
+  line-height: 28px;
+  padding: 0 15px;
+  text-decoration: none;
+}
+
+/* line 63, I:/ccpd_test/sass/default.scss */
+.HeaderSubNav a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+/* line 67, I:/ccpd_test/sass/default.scss */
+a.HeaderTab {
+  color: #FFF;
+  padding: 7px 15px;
+  float: left;
+  text-decoration: none;
+}
+
+/* line 70, I:/ccpd_test/sass/default.scss */
+#HeaderLoggedIn {
+  text-align: right;
+  padding-right: 8px;
+}
+
+/* line 72, I:/ccpd_test/sass/default.scss */
+p, h1, pre {
+  margin: 0px 10px 10px 10px;
+}
+
+/* line 76, I:/ccpd_test/sass/default.scss */
+div#ajax-issue {
+  background-color: #F7F7F7;
+  border: 4px solid #000000;
+  height: 100px;
+  left: 50%;
+  margin-left: -320px;
+  margin-top: -140px;
+  padding: 10px;
+  position: absolute;
+  top: 50%;
+  width: 500px;
+  display: none;
+}
+
+/* line 90, I:/ccpd_test/sass/default.scss */
+div#ajax-issue-title {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+/* line 92, I:/ccpd_test/sass/default.scss */
+div#ajax-issue-details {
+  font-size: 12px;
+  margin: 5px 0;
+}
+
+/* line 94, I:/ccpd_test/sass/default.scss */
+div#ajax-issue-buttons {
+  padding: 5px 0;
+}
+
+/* line 96, I:/ccpd_test/sass/default.scss */
+#Content {
+  clear: both;
+  display: block;
+  margin-top: 9px;
+  padding: 0;
+  position: relative;
+}
+
+/* line 101, I:/ccpd_test/sass/default.scss */
+.ContentTitle {
+  font-size: 22px;
+  color: #000;
+  padding-bottom: 0px;
+  clear: both;
+}
+
+/* line 103, I:/ccpd_test/sass/default.scss */
+#MainContainer {
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #f7f7f7), color-stop(100%, #ffffff));
+  background: -webkit-linear-gradient(center top, #f7f7f7, #ffffff);
+  background: -moz-linear-gradient(center top, #f7f7f7, #ffffff);
+  background: -o-linear-gradient(center top, #f7f7f7, #ffffff);
+  background: -ms-linear-gradient(center top, #f7f7f7, #ffffff);
+  background: linear-gradient(center top, #f7f7f7, #ffffff);
+  padding-bottom: 30px;
+}
+
+/* line 108, I:/ccpd_test/sass/default.scss */
+#Footer {
+  clear: both;
+}
+
+/* line 109, I:/ccpd_test/sass/default.scss */
+#FooterContent {
+  font-size: 10px;
+  padding: 10px 10px 10px 10px;
+}
+
+/* line 111, I:/ccpd_test/sass/default.scss */
+#FuseboxDebugging {
+  background-color: #333333;
+  color: #FFFFFF;
+  margin-left: 146px;
+  padding: 6px 10px;
+}
+
+/* line 112, I:/ccpd_test/sass/default.scss */
+#FuseboxDebugging td {
+  background-color: #555555;
+}
+
+/* line 115, I:/ccpd_test/sass/default.scss */
+.clear {
+  /* generic container (i.e. div) for floating buttons */
+  overflow: hidden;
+  width: 100%;
+  padding: 4px 0px;
+}
+
+/* line 121, I:/ccpd_test/sass/default.scss */
+.clear-fix {
+  /* generic container (i.e. div) for floating buttons */
+  overflow: hidden;
+  width: 100%;
+  padding: 0px 0px;
+}
+
+/* line 127, I:/ccpd_test/sass/default.scss */
+div.DataGridTitle {
+  height: 15px;
+  width: 100%;
+  padding: 3px 0px;
+  font-weight: bold;
+  font-size: 12px;
+  color: #15428b;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* line 128, I:/ccpd_test/sass/default.scss */
+span.DataGridDesc {
+  font-size: 10px;
+  font-weight: normal;
+  color: #000;
+}
+
+/* line 130, I:/ccpd_test/sass/default.scss */
+div.DataGridPager {
+  padding: 5px 0px;
+  font-size: 11px;
+}
+
+/* line 131, I:/ccpd_test/sass/default.scss */
+div.DataGridPager a:link {
+  color: #000;
+  text-decoration: none;
+}
+
+/* line 132, I:/ccpd_test/sass/default.scss */
+div.DataGridPager a:active {
+  color: #000;
+  text-decoration: none;
+}
+
+/* line 133, I:/ccpd_test/sass/default.scss */
+div.DataGridPager a:visited {
+  color: #000;
+  text-decoration: none;
+}
+
+/* line 134, I:/ccpd_test/sass/default.scss */
+div.DataGridPager a:hover {
+  color: #000;
+  text-decoration: none;
+}
+
+/* line 136, I:/ccpd_test/sass/default.scss */
+table.DataGrid {
+  border: 1px solid #CCC;
+}
+
+/* line 138, I:/ccpd_test/sass/default.scss */
+table.DataGrid thead tr {
+  background-image: url(../_images/DataGrid_HeaderOff.gif);
+  height: 14px;
+}
+
+/* line 143, I:/ccpd_test/sass/default.scss */
+table.DataGrid thead tr th {
+  font-weight: normal;
+  text-align: left;
+  font-size: 12px;
+  font-family: Arial, Helvetica, sans-serif;
+  border-right: 1px solid #CCC;
+  border-bottom: 1px solid #CCC;
+  border-top: 1px solid #FFF;
+  border-left: 1px solid #FFF;
+}
+
+/* line 155, I:/ccpd_test/sass/default.scss */
+table.DataGrid thead tr th a:link {
+  color: #000;
+  text-decoration: none;
+  padding: 4px;
+  display: block;
+}
+
+/* line 156, I:/ccpd_test/sass/default.scss */
+table.DataGrid thead tr th a:active {
+  color: #000;
+  text-decoration: none;
+  padding: 4px;
+  display: block;
+}
+
+/* line 157, I:/ccpd_test/sass/default.scss */
+table.DataGrid thead tr th a:visited {
+  color: #000;
+  text-decoration: none;
+  padding: 4px;
+  display: block;
+}
+
+/* line 158, I:/ccpd_test/sass/default.scss */
+table.DataGrid thead tr th a:hover {
+  color: #000;
+  text-decoration: none;
+  padding: 4px;
+  display: block;
+  background-image: url(../_images/DataGrid_HeaderOn.gif);
+}
+
+/* line 160, I:/ccpd_test/sass/default.scss */
+table.DataGrid tbody tr {
+  height: 14px;
+}
+
+/* line 164, I:/ccpd_test/sass/default.scss */
+table.DataGrid tbody tr td {
+  font-weight: normal;
+  text-align: left;
+  font-size: 12px;
+  padding: 4px;
+  font-family: Arial, Helvetica, sans-serif;
+  border-right: 1px solid #FFF;
+  border-bottom: 1px solid #EEE;
+  border-top: 1px solid #FFF;
+  border-left: 1px solid #FFF;
+}
+
+/* line 177, I:/ccpd_test/sass/default.scss */
+table.DataGrid tbody tr.RowDeleted td {
+  cursor: default;
+  color: #999 !important;
+  font-style: italic;
+}
+
+/* line 178, I:/ccpd_test/sass/default.scss */
+table.DataGrid tbody tr.RowDeleted td a {
+  cursor: default;
+  color: #999 !important;
+  font-style: italic;
+}
+
+/* line 180, I:/ccpd_test/sass/default.scss */
+table.DataGrid tbody tr td a:link {
+  color: #555;
+  text-decoration: underline;
+}
+
+/* line 181, I:/ccpd_test/sass/default.scss */
+table.DataGrid tbody tr td a:active {
+  color: #555;
+  text-decoration: underline;
+}
+
+/* line 182, I:/ccpd_test/sass/default.scss */
+table.DataGrid tbody tr td a:visited {
+  color: #555;
+  text-decoration: underline;
+}
+
+/* line 183, I:/ccpd_test/sass/default.scss */
+table.DataGrid tbody tr td a:hover {
+  color: #000;
+  text-decoration: underline;
+}
+
+/* line 185, I:/ccpd_test/sass/default.scss */
+div.DataGridButton {
+  float: left;
+  font-size: 12px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* line 186, I:/ccpd_test/sass/default.scss */
+div.DataGridButton a:link {
+  padding: 4px 2px;
+  color: #000;
+  text-decoration: none;
+  font-weight: normal;
+}
+
+/* line 187, I:/ccpd_test/sass/default.scss */
+div.DataGridButton a:active {
+  padding: 4px 2px;
+  color: #000;
+  text-decoration: none;
+  font-weight: normal;
+}
+
+/* line 188, I:/ccpd_test/sass/default.scss */
+div.DataGridButton a:visited {
+  padding: 4px 2px;
+  color: #000;
+  text-decoration: none;
+  font-weight: normal;
+}
+
+/* line 189, I:/ccpd_test/sass/default.scss */
+div.DataGridButton a:hover {
+  padding: 4px 2px;
+  color: #003366;
+  text-decoration: none;
+  font-weight: normal;
+}
+
+/* line 191, I:/ccpd_test/sass/default.scss */
+div.DataGridButtonDisabled {
+  float: left;
+  font-size: 12px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* line 192, I:/ccpd_test/sass/default.scss */
+div.DataGridButtonDisabled a:link {
+  padding: 4px 2px;
+  color: #CCC;
+  text-decoration: none;
+}
+
+/* line 193, I:/ccpd_test/sass/default.scss */
+div.DataGridButtonDisabled a:active {
+  padding: 4px 2px;
+  color: #CCC;
+  text-decoration: none;
+}
+
+/* line 194, I:/ccpd_test/sass/default.scss */
+div.DataGridButtonDisabled a:visited {
+  padding: 4px 2px;
+  color: #CCC;
+  text-decoration: none;
+}
+
+/* line 195, I:/ccpd_test/sass/default.scss */
+div.DataGridButtonDisabled a:hover {
+  padding: 4px 2px;
+  color: #CCC;
+  text-decoration: none;
+}
+
+/* line 197, I:/ccpd_test/sass/default.scss */
+select.fieldinput {
+  padding: 3px 3px 3px 3px;
+  background-color: #F1FCE2;
+  height: 27px;
+  border: 1px solid #507F0A !important;
+}
+
+/* line 198, I:/ccpd_test/sass/default.scss */
+input.fieldinput {
+  padding: 3px 3px 3px 3px;
+  background-color: #F1FCE2;
+  border: 1px solid #507F0A !important;
+}
+
+/* line 199, I:/ccpd_test/sass/default.scss */
+textarea.fieldinput {
+  padding: 3px 3px 3px 3px;
+  background-color: #F1FCE2;
+  border: 1px solid #507F0A !important;
+}
+
+/*.button { 
+font-family:Arial, Helvetica, sans-serif;
+background-image:url(/admin/_images/Button_BG.gif);
+background-repeat:repeat-x;
+border:1px solid #507F0A !important;
+color:#FFFFFF !important;
+font-size:100% !important;
+font-weight:bold;
+padding: 4px 10px !important;
+width:auto !important;
+  }
+
+.button:hover { border:1px solid #abe654 !important; cursor:pointer; }*/
+/* CONTENT */
+/* line 216, I:/ccpd_test/sass/default.scss */
+.ContentBody {
+  padding-top: 4px;
+  font-size: 12px;
+  font-weight: normal;
+  color: #000000;
+}
+
+/* TABBING */
+/* line 219, I:/ccpd_test/sass/default.scss */
+.TabContainer {
+  height: 23px;
+  background-image: url(/View/System/2/Images/TabContainerBG.gif);
+  width: 95%;
+  border: 1px solid #276788;
+  padding: 1px;
+}
+
+/* line 220, I:/ccpd_test/sass/default.scss */
+.TabItem {
+  margin-right: 1px;
+  background-image: url(/View/System/2/Images/TabItemBG.gif);
+  width: 90px;
+  float: left;
+  text-align: center;
+}
+
+/* line 221, I:/ccpd_test/sass/default.scss */
+.TabItem a:link {
+  color: #FFF;
+  padding: 5px 5px;
+  display: block;
+  text-decoration: none;
+}
+
+/* line 222, I:/ccpd_test/sass/default.scss */
+.TabItem a:active {
+  color: #FFF;
+  padding: 5px 5px;
+  display: block;
+  text-decoration: none;
+}
+
+/* line 223, I:/ccpd_test/sass/default.scss */
+.TabItem a:visited {
+  color: #FFF;
+  padding: 5px 5px;
+  display: block;
+  text-decoration: none;
+}
+
+/* line 224, I:/ccpd_test/sass/default.scss */
+.TabItem a:hover {
+  color: #FFF;
+  background-image: url(/View/System/2/Images/TabItemOnBG.gif);
+  padding: 5px 5px;
+  display: block;
+  text-decoration: none;
+  background-image: url(/View/System/2/Images/TabItemOnBG.gif);
+}
+
+/* line 226, I:/ccpd_test/sass/default.scss */
+.TabItemSelected {
+  margin-right: 1px;
+  background-image: url(/View/System/2/Images/TabSelectedBG.gif);
+  width: 90px;
+  float: left;
+  text-align: center;
+}
+
+/* line 227, I:/ccpd_test/sass/default.scss */
+.TabItemSelected a:link {
+  color: #FFF;
+  padding: 5px 5px;
+  display: block;
+  text-decoration: none;
+}
+
+/* line 228, I:/ccpd_test/sass/default.scss */
+.TabItemSelected a:active {
+  color: #FFF;
+  padding: 5px 5px;
+  display: block;
+  text-decoration: none;
+}
+
+/* line 229, I:/ccpd_test/sass/default.scss */
+.TabItemSelected a:visited {
+  color: #FFF;
+  padding: 5px 5px;
+  display: block;
+  text-decoration: none;
+}
+
+/* line 230, I:/ccpd_test/sass/default.scss */
+.TabItemSelected a:hover {
+  color: #FFF;
+  background-image: url(/View/System/2/Images/TabSelectedOnBG.gif);
+  padding: 5px 5px;
+  display: block;
+  text-decoration: none;
+}
+
+/* line 232, I:/ccpd_test/sass/default.scss */
+.TabItemDisabled {
+  margin-right: 1px;
+  background-image: url(/View/System/2/Images/TabItemBG.gif);
+  width: 90px;
+  float: left;
+  text-align: center;
+}
+
+/* line 233, I:/ccpd_test/sass/default.scss */
+.TabItemDisabled a:link {
+  cursor: default;
+  color: #CCC;
+  font-style: italic;
+  padding: 5px 5px;
+  display: block;
+  text-decoration: none;
+}
+
+/* line 234, I:/ccpd_test/sass/default.scss */
+.TabItemDisabled a:active {
+  cursor: default;
+  color: #CCC;
+  font-style: italic;
+  padding: 5px 5px;
+  display: block;
+  text-decoration: none;
+}
+
+/* line 235, I:/ccpd_test/sass/default.scss */
+.TabItemDisabled a:visited {
+  cursor: default;
+  color: #CCC;
+  font-style: italic;
+  padding: 5px 5px;
+  display: block;
+  text-decoration: none;
+}
+
+/* line 236, I:/ccpd_test/sass/default.scss */
+.TabItemDisabled a:hover {
+  cursor: default;
+  color: #CCC;
+  font-style: italic;
+  padding: 5px 5px;
+  display: block;
+  text-decoration: none;
+}
+
+/* line 238, I:/ccpd_test/sass/default.scss */
+.TabContent {
+  padding: 1px;
+  width: 95%;
+  background-image: url(/View/System/2/Images/TabContentBG.gif);
+  background-repeat: repeat-x;
+  border-left: 1px solid #276788;
+  border-right: 1px solid #276788;
+  border-bottom: 1px solid #276788;
+}
+
+/* line 239, I:/ccpd_test/sass/default.scss */
+.TabContent table {
+  margin: 5px 8px;
+}
+
+/* line 241, I:/ccpd_test/sass/default.scss */
+table.TableBasic thead tr th {
+  font-weight: bold;
+  border-bottom: 1px dashed #000000;
+  text-align: left;
+}
+
+/* line 247, I:/ccpd_test/sass/default.scss */
+table.TableBasic tbody tr td a:link {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #000;
+  text-decoration: none;
+}
+
+/* line 248, I:/ccpd_test/sass/default.scss */
+table.TableBasic tbody tr td a:active {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #000;
+  text-decoration: none;
+}
+
+/* line 249, I:/ccpd_test/sass/default.scss */
+table.TableBasic tbody tr td a:visited {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #000;
+  text-decoration: none;
+}
+
+/* line 250, I:/ccpd_test/sass/default.scss */
+table.TableBasic tbody tr td a:hover {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #555;
+  text-decoration: none;
+}
+
+/* line 252, I:/ccpd_test/sass/default.scss */
+div.Pod {
+  border: 1px solid #CCC;
+  width: 100%;
+  margin: 0px 0px 5px 0px;
+}
+
+/* line 253, I:/ccpd_test/sass/default.scss */
+div.PodTitle {
+  cursor: default;
+  background-image: url(../_images/DataGrid_HeaderOff.gif);
+  background-color: #EEE;
+  font-weight: bold;
+  height: 20px;
+  padding: 3px 7px;
+  font-size: 13px;
+}
+
+/* line 254, I:/ccpd_test/sass/default.scss */
+div.PodTitleOn {
+  background-image: url(../_images/DataGrid_HeaderOn.gif);
+  background-color: #EFEFEF;
+  font-weight: bold;
+  padding: 5px;
+}
+
+/* line 255, I:/ccpd_test/sass/default.scss */
+div.PodContent {
+  background-color: #F7F7F7;
+  padding: 5px;
+}
+
+/* line 256, I:/ccpd_test/sass/default.scss */
+div.PodContent a:link {
+  color: #000;
+  text-decoration: none;
+}
+
+/* line 257, I:/ccpd_test/sass/default.scss */
+div.PodContent a:active {
+  color: #000;
+  text-decoration: none;
+}
+
+/* line 258, I:/ccpd_test/sass/default.scss */
+div.PodContent a:visited {
+  color: #000;
+  text-decoration: none;
+}
+
+/* line 259, I:/ccpd_test/sass/default.scss */
+div.PodContent a:hover {
+  color: #000;
+  text-decoration: none;
+}
+
+/* line 262, I:/ccpd_test/sass/default.scss */
+div.PodListItem {
+  padding: 3px 0px 3px 12px;
+}
+
+/* line 263, I:/ccpd_test/sass/default.scss */
+.placeholder {
+  background-color: #f2efd4;
+  filter: alpha(opacity=45);
+  -moz-opacity: .45;
+  opacity: .45;
+}
+
+/* line 267, I:/ccpd_test/sass/default.scss */
+div.clear-tables {
+  display: block;
+  overflow: hidden;
+  height: 100%;
+  margin-bottom: 20px;
+}
+
+/* line 275, I:/ccpd_test/sass/default.scss */
+#Breadcrumbs {
+  display: none;
+  font-size: 12px;
+  margin: 3px auto;
+  padding-bottom: 7px;
+  width: 960px;
+}
+
+/* line 282, I:/ccpd_test/sass/default.scss */
+#Breadcrumbs a:link {
+  background-image: url("../_images/DataGrid_HeaderOff.gif");
+  border-color: #FFFFFF #CCCCCC #CCCCCC;
+  border-right: 1px solid #CCCCCC;
+  border-style: solid;
+  border-width: 1px;
+  color: #000000;
+  display: block;
+  float: left;
+  padding: 1px 7px;
+  text-decoration: none;
+}
+
+/* line 292, I:/ccpd_test/sass/default.scss */
+#Breadcrumbs a:active {
+  float: left;
+  display: block;
+  color: #000;
+  padding: 1px 7px;
+  border-right: 1px solid #CCC;
+  border-bottom: 1px solid #CCC;
+  border-top: 1px solid #FFF;
+  border-left: 1px solid #FFF;
+  text-decoration: none;
+  background-image: url(../_images/DataGrid_HeaderOff.gif);
+}
+
+/* line 296, I:/ccpd_test/sass/default.scss */
+#Breadcrumbs a:visited {
+  float: left;
+  display: block;
+  color: #000;
+  padding: 1px 7px;
+  border-right: 1px solid #CCC;
+  border-bottom: 1px solid #CCC;
+  border-top: 1px solid #FFF;
+  border-left: 1px solid #FFF;
+  text-decoration: none;
+  background-image: url(../_images/DataGrid_HeaderOff.gif);
+}
+
+/* line 300, I:/ccpd_test/sass/default.scss */
+#Breadcrumbs a:hover {
+  float: left;
+  display: block;
+  color: #000;
+  padding: 1px 7px;
+  border-right: 1px solid #CCC;
+  border-bottom: 1px solid #CCC;
+  border-top: 1px solid #FFF;
+  border-left: 1px solid #FFF;
+  text-decoration: none;
+  background-image: url(../_images/DataGrid_HeaderOn.gif);
+}
+
+/* line 305, I:/ccpd_test/sass/default.scss */
+div.Errors {
+  color: #FF0000;
+  background-color: #FFE8E9;
+  border: 1px solid #FF0000;
+  padding: 6px;
+  font-weight: bold;
+}
+
+/* line 307, I:/ccpd_test/sass/default.scss */
+div.PhotoItem {
+  width: 150px;
+  height: 195px;
+  float: left;
+  text-align: center;
+  padding: 6px;
+  margin: 5px;
+}
+
+/* line 308, I:/ccpd_test/sass/default.scss */
+div.Photo {
+  height: 150px;
+  width: 150px;
+}
+
+/* line 309, I:/ccpd_test/sass/default.scss */
+div.PhotoOptions {
+  padding: 0px 4px;
+  width: 150px;
+}
+
+/* line 310, I:/ccpd_test/sass/default.scss */
+div.PhotoOptions a:link {
+  color: #555;
+  text-decoration: none;
+  font-size: 12px;
+  padding: 0px 3px;
+}
+
+/* line 311, I:/ccpd_test/sass/default.scss */
+div.PhotoOptions a:active {
+  color: #555;
+  text-decoration: none;
+  font-size: 12px;
+  padding: 0px 3px;
+}
+
+/* line 312, I:/ccpd_test/sass/default.scss */
+div.PhotoOptions a:hover {
+  color: #006600;
+  text-decoration: none;
+  font-size: 12px;
+  padding: 0px 3px;
+}
+
+/* line 313, I:/ccpd_test/sass/default.scss */
+div.PhotoOptions a:visited {
+  color: #555;
+  text-decoration: none;
+  font-size: 12px;
+  padding: 0px 3px;
+}
+
+/* line 314, I:/ccpd_test/sass/default.scss */
+div.PhotoOptions img {
+  margin: 0px;
+  padding: 0px;
+}
+
+/* line 316, I:/ccpd_test/sass/default.scss */
+table.FileContainer {
+  border: 1px solid #CCCCCC;
+}
+
+/* line 317, I:/ccpd_test/sass/default.scss */
+tr.FileItem {
+  background-color: #EEE;
+  border: 1px solid #CCC;
+  spacing: 6px;
+  margin: 2px;
+}
+
+/* line 318, I:/ccpd_test/sass/default.scss */
+div.File {
+  border: 1px dashed #CCC;
+}
+
+/* line 319, I:/ccpd_test/sass/default.scss */
+td.FileOptions {
+  padding: 4px;
+  text-align: right;
+}
+
+/* line 320, I:/ccpd_test/sass/default.scss */
+td.FileOptions a:link {
+  color: #555;
+  text-decoration: none;
+  font-size: 12px;
+}
+
+/* line 321, I:/ccpd_test/sass/default.scss */
+td.FileOptions a:active {
+  color: #555;
+  text-decoration: none;
+  font-size: 12px;
+}
+
+/* line 322, I:/ccpd_test/sass/default.scss */
+td.FileOptions a:hover {
+  color: #006600;
+  text-decoration: none;
+  font-size: 12px;
+}
+
+/* line 323, I:/ccpd_test/sass/default.scss */
+td.FileOptions a:visited {
+  color: #555;
+  text-decoration: none;
+  font-size: 12px;
+}
+
+/* line 324, I:/ccpd_test/sass/default.scss */
+td.FileTitle {
+  padding: 4px;
+  float: left;
+}
+
+/* line 326, I:/ccpd_test/sass/default.scss */
+div.ListBoxLinks a:link {
+  color: #000;
+  text-decoration: none;
+}
+
+/* line 327, I:/ccpd_test/sass/default.scss */
+div.ListBoxLinks a:active {
+  color: #000;
+  text-decoration: none;
+}
+
+/* line 328, I:/ccpd_test/sass/default.scss */
+div.ListBoxLinks a:visited {
+  color: #000;
+  text-decoration: none;
+}
+
+/* line 329, I:/ccpd_test/sass/default.scss */
+div.ListBoxLinks a:hover {
+  color: #000;
+  text-decoration: none;
+}
+
+/* line 331, I:/ccpd_test/sass/default.scss */
+#UserBar {
+  display: none;
+}
+
+/* line 335, I:/ccpd_test/sass/default.scss */
+.header-bg {
+  background-color: #31678D;
+  height: 40px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 0;
+  -moz-box-shadow: 0 3px 0 #8bb7d5;
+  -webkit-box-shadow: 0 3px 0 #8bb7d5;
+  -o-box-shadow: 0 3px 0 #8bb7d5;
+  box-shadow: 0 3px 0 #8bb7d5;
+}
+
+/* line 345, I:/ccpd_test/sass/default.scss */
+html > body #UserBar {
+  display: block;
+  position: fixed;
+  text-align: center;
+  bottom: 0;
+  height: 150px;
+  width: 100%;
+  border-bottom: #ddd;
+  display: none;
+  color: #999999;
+  background-color: #EEE;
+  clear: both;
+  padding: 15px 1px 1px 0;
+}
+
+/* line 360, I:/ccpd_test/sass/default.scss */
+#BottomBar {
+  display: none;
+}
+
+/* line 364, I:/ccpd_test/sass/default.scss */
+html > body #BottomBar {
+  clear: both;
+  color: #FFFFFF !important;
+  cursor: default;
+  display: block;
+  margin: 0 auto;
+  position: relative;
+  text-align: center;
+  width: 960px;
+  height: 43px;
+}
+
+/* line 377, I:/ccpd_test/sass/default.scss */
+#BottomBar a {
+  color: #FFF;
+}
+
+/* line 378, I:/ccpd_test/sass/default.scss */
+#BottomBarTitle {
+  float: left;
+  text-align: left;
+  width: 130px;
+}
+
+/* line 383, I:/ccpd_test/sass/default.scss */
+#BottomBarTitle a {
+  color: white;
+  display: block;
+  font-family: tahoma,verdana,arial,sans-serif;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: bold;
+  height: 40px;
+  letter-spacing: -0.05em;
+  line-height: 40px;
+  padding: 1px 3px 0 8px;
+  text-decoration: none;
+}
+
+/* line 396, I:/ccpd_test/sass/default.scss */
+#BottomBarTitle a:hover {
+  background-color: rgba(255, 255, 255, 0.04);
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+/* line 403, I:/ccpd_test/sass/default.scss */
+#BottomBarLinks {
+  height: 24px;
+  float: right;
+  text-align: left;
+  padding-right: 4px;
+}
+
+/* line 404, I:/ccpd_test/sass/default.scss */
+#BottomBarLinks a.BottomLink {
+  float: left;
+  padding: 7px 8px;
+  text-decoration: none;
+}
+
+/* line 409, I:/ccpd_test/sass/default.scss */
+#BottomBarLinks a.BottomLink:hover {
+  text-decoration: none;
+  background-color: #333;
+}
+
+/* line 410, I:/ccpd_test/sass/default.scss */
+#BottomBarLinks a.SuppLink {
+  float: left;
+  border-left: 1px solid #333;
+}
+
+/* line 411, I:/ccpd_test/sass/default.scss */
+#BottomBarLinks a.SuppLink:hover {
+  float: left;
+  border-left: 1px solid #333;
+  background-color: #000;
+}
+
+/* line 414, I:/ccpd_test/sass/default.scss */
+#BodyWrapper {
+  margin: auto;
+  padding-bottom: 160px;
+  width: 960px;
+}
+
+/* line 420, I:/ccpd_test/sass/default.scss */
+div.pagination {
+  padding: 3px;
+  margin: 3px;
+  text-align: left;
+}
+
+/* line 426, I:/ccpd_test/sass/default.scss */
+div.pagination a {
+  padding: 2px 5px 2px 5px;
+  margin-right: 2px;
+  border: 1px solid #ddd;
+  text-decoration: none;
+  color: #88AF3F;
+}
+
+/* line 434, I:/ccpd_test/sass/default.scss */
+div.pagination a:hover, div.pagination a:active {
+  border: 1px solid #85BD1E;
+  color: #638425;
+  background-color: #F1FFD6;
+}
+
+/* line 439, I:/ccpd_test/sass/default.scss */
+div.pagination span.current {
+  padding: 2px 5px 2px 5px;
+  margin-right: 2px;
+  border: 1px solid #B2E05D;
+  font-weight: bold;
+  background-color: #B2E05D;
+  color: #FFF;
+}
+
+/* line 447, I:/ccpd_test/sass/default.scss */
+div.pagination span.disabled {
+  padding: 2px 5px 2px 5px;
+  margin-right: 2px;
+  border: 1px solid #f3f3f3;
+  color: #ccc;
+}
+
+/* line 454, I:/ccpd_test/sass/default.scss */
+div.pagination span.next {
+  padding: 2px 5px 2px 5px;
+  margin-right: 2px;
+  border: 1px solid #f3f3f3;
+  color: #ccc;
+}
+
+/* line 461, I:/ccpd_test/sass/default.scss */
+div.pagination span.previous {
+  padding: 2px 5px 2px 5px;
+  margin-right: 2px;
+  border: 1px solid #f3f3f3;
+  color: #ccc;
+}
+
+/* line 468, I:/ccpd_test/sass/default.scss */
+#CP_hourcont {
+  padding: 0px;
+  z-index: 5000;
+  position: absolute;
+  border: 1px dashed #666666;
+  background-color: #eeeeee;
+  display: none;
+}
+
+/* line 477, I:/ccpd_test/sass/default.scss */
+#CP_minutecont {
+  background-color: #dddddd;
+  padding: 1px;
+  z-index: 5000;
+  position: absolute;
+  width: 45px;
+  display: none;
+}
+
+/* line 486, I:/ccpd_test/sass/default.scss */
+.floatleft {
+  float: left;
+}
+
+/* line 490, I:/ccpd_test/sass/default.scss */
+.CP_hour {
+  padding: 1px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 9px;
+  white-space: nowrap;
+  cursor: pointer;
+  width: 35px;
+}
+
+/* line 499, I:/ccpd_test/sass/default.scss */
+.CP_minute {
+  padding: 1px;
+  /*background-color:#dddddd;*/
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 9px;
+  white-space: nowrap;
+  cursor: pointer;
+  width: auto;
+}
+
+/* line 509, I:/ccpd_test/sass/default.scss */
+.CP_over {
+  background-color: #ffffff;
+}
+
+/* line 512, I:/ccpd_test/sass/default.scss */
+.Loading {
+  text-align: center;
+  padding: 50px;
+  height: 100px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10px;
+  color: #555;
+}
+
+/* line 513, I:/ccpd_test/sass/default.scss */
+.Loading div {
+  padding: 3px;
+  color: #999999;
+}
+
+/* line 515, I:/ccpd_test/sass/default.scss */
+.jclock {
+  color: #FFFFFF;
+  left: 900px;
+  position: absolute;
+  top: 39px;
+}

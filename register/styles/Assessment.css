@@ -1,0 +1,34 @@
+div#QuestionsContainer { position:absolute; }
+
+div.Section1 { background-color:#F0CD8C; border:1px solid #E7AC34; padding:4px; min-height:65px; width:98%; }
+div.Section2 { background-color:#F9F0C1; border:1px solid #E7AC34; padding:4px; min-height:65px; width:98%; }
+
+div.Question { background-color:#F7F7F7; border:1px solid #EEE; margin:3px; padding:4px; width: 500px;  }
+div.QuestionNo { font-size:14px; font-weight:bold; float:left;margin:5px 0px 5px 0px; padding:2px; }
+div.QuestionText { margin:5px 0px 5px 0px; padding:0px; font-size:14px; }
+div.QuestionText span { position:relative; top:3px; }
+div.Question p { padding:0px; margin:0px; }
+div.Question div.Answers { font-family:"Courier New", Courier, monospace; margin-left:15px; }
+
+div.Caption1Text {  margin:5px 0px 5px 0px; padding:0px; font-size:16px; text-transform:uppercase; font-weight:bold; }
+div.Caption1Text span { position:relative; top:3px; }
+
+div.Caption2Text { margin:5px 0px 5px 0px; padding:0px; font-size:14px; text-transform:uppercase; font-weight:bold; }
+div.Caption2Text span { position:relative; top:3px; }
+
+div.Caption3Text { margin:5px 0px 5px 2px; padding:0px; font-size:14px; text-transform:uppercase; font-weight:normal; font-style:italic; }
+div.Caption3Text span { position:relative; top:3px; }
+.ui-selected { height:30px; border:1px solid #EEE; margin:3px; padding:4px; width:90%; background-color:#FCEACF; }
+
+div.Answers { }
+
+div.Answer textarea { width: 400px; height:100px; }
+
+#AnswersList { background-color:#FFF; overflow-y: auto; }
+#AnswersList a { padding:4px; text-decoration: none; }
+#AnswersList img { border: none; }
+
+.AnswersListTable { border:0px solid #000; top: 112px; }
+.AnswersListTable tr td { height:25px; }
+
+.Required { background-color: #FFDDDD; }

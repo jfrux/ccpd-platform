@@ -1,0 +1,57 @@
+
+.uiListArea { }
+
+.uiList li { 
+	border-color:#E5E5E5;
+	border-width: 1px 0 0 0;
+	border-style:solid;
+	padding-bottom:8px;
+}
+
+.uiList.editable li { 
+	
+}
+
+.uiList.editable li.editing {
+	background-color:#EEE;
+	border-top:1px solid #DDD;
+}
+
+.uiList.editable li:hover {
+	background-color:#EEE;
+	cursor:pointer;
+}
+.uiListItem-fixed .uiListItem-content {
+	height:50px;
+	vertical-align:middle;
+}
+
+.uiListItem-content {
+	display: table-cell;
+	vertical-align: top;
+}
+
+.uiList li a { line-height: 13px; }
+.uiList li:first-child {
+	border-width:0!important;
+}
+
+.uiImage-i { padding-right:6px; }
+
+.uiListStoryLine { color: #808080!important;
+font-size: 11px!important;
+font-weight: normal!important;
+margin: 0 0 5px 0;}
+
+.uiListStoryLine a:first-child  {
+font-weight:bold;
+}
+
+.uiListAttachmentNoMedia {
+border-left: 2px solid #CCC;
+}
+
+.uiListItem-date a {
+color: #999!important;
+line-height: 16px!important;
+}

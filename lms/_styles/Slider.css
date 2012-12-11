@@ -1,0 +1,24 @@
+div#SlideMain { background-image:url(/Images/SliderBG.gif); background-color:#433f3f; width:900px; height:153px; }
+div.SlideList { padding:20px; }
+div.Slide { padding:15px; }
+div.SlideLeft { padding-left:8px; padding-right:10px; width:47%; float:left;   }
+div.SlideLeft a { color:#bfff00; text-decoration:none; font-weight:bold; }
+div.SlideLeft a:hover { color:#FFF; text-decoration:none; font-weight:bold; }
+div.SlideRight {  margin-top:-13px; text-align:center;width:50%; float:left; }
+div.SlideLeft h2 {
+	font-size: 2em !important;
+	margin: 0em 0 0em 0 !important;
+	width: 350px;
+	color:#FFF;
+	line-height:1.233em;
+}
+div.SlideDesc { padding-top:3px;font-size: 0.8em; color:#e3edf4; }
+
+#myController { position:absolute;top:273px; height:37px; width:900px; text-align:center; background-color:#5e5e5e; }
+#myController a { font-family:Arial, Helvetica, sans-serif; color:#FFF; padding:8px; float:left; text-decoration:none; }
+#myController a:link {  }
+#myController a:active { }
+#myController a:visited { }
+#myController a:hover { color:#FFF; float:left; }
+.jFlowControl { font-size:17px; font-weight:bold;color:#97cc97; margin:0px 7px;width:150px;  }
+.jFlowSelected { font-size:17px; font-weight:bold; color:#FFF; background-color:#00a651; margin:0px 7px; wi

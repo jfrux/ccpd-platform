@@ -1,0 +1,207 @@
+.uiButton, .uiButtonSuppressed:active, .uiButtonSuppressed:focus, .uiButtonSuppressed:hover {
+-moz-box-shadow:0 1px 0 rgba(0, 0, 0, 0.1);
+background:url("/images/fb/button-sprite.png") repeat scroll 0 0 #EEEEEE;
+border-color:#999999 #999999 #888888;
+border-style:solid;
+border-width:1px;
+color:#333333;
+cursor:pointer;
+display:inline-block;
+font-size:11px;
+font-weight:bold;
+line-height:normal !important;
+padding:2px 6px;
+text-align:center;
+text-decoration:none;
+vertical-align:top;
+white-space:nowrap;
+}
+.uiButton + .uiButton {
+margin-left:4px;
+}
+a.uiButtonMedium {
+}
+.uiButton:hover {
+text-decoration:none;
+}
+.uiButton:active, .uiButtonDepressed {
+-moz-box-shadow:0 1px 0 rgba(0, 0, 0, 0.05);
+background:none repeat scroll 0 0 #DDDDDD;
+border-bottom-color:#999999;
+}
+.uiButton .img {
+vertical-align:top;
+}
+.uiButtonMedium .img {
+margin-top:2px;
+}
+.uiButtonLarge .img {
+margin-top:4px;
+}
+.uiButton .customimg {
+margin-top:0;
+}
+.uiButton .uiButtonText, .uiButton input {
+background:none repeat scroll 0 0 transparent;
+border:0 none;
+color:#333333;
+cursor:pointer;
+display:inline-block;
+font-family:'Lucida Grande',Tahoma,Verdana,Arial,sans-serif;
+font-size:11px;
+font-weight:bold;
+margin:0;
+outline:medium none;
+padding:1px 0 2px;
+white-space:nowrap;
+}
+.ff3.mac .uiButtonMedium .uiButtonText, .ff3.mac .uiButtonMedium input {
+margin-bottom:-1px;
+}
+
+.uiButton input::-moz-focus-inner {
+border:0 none;
+padding:0;
+}
+.uiButtonDepressed, .uiButtonDepressed input {
+cursor:default;
+}
+.uiButtonSpecial {
+background-color:#69A74E;
+background-position:0 -96px;
+border-color:#3B6E22 #3B6E22 #2C5115;
+color:#FFFFFF;
+}
+.uiButtonSpecial:active {
+background:none repeat scroll 0 0 #609946;
+border-bottom-color:#3B6E22;
+}
+.uiButtonSpecial.uiButtonDisabled, .uiButtonSpecial.uiButtonDisabled:active {
+background:none repeat scroll 0 0 #69A74E;
+border-bottom-color:#3B6E22;
+}
+.uiButtonConfirm {
+background-color:#5B74A8;
+background-position:0 -48px;
+border-color:#29447E #29447E #1A356E;
+color:#FFFFFF;
+}
+.uiButtonConfirm:active {
+background:none repeat scroll 0 0 #4F6AA3;
+border-bottom-color:#29447E;
+}
+.uiButtonConfirm.uiButtonDisabled, .uiButtonConfirm.uiButtonDisabled:active {
+background:none repeat scroll 0 0 #5B74A8;
+border-bottom-color:#29447E;
+}
+.uiButtonSpecial .uiButtonText, .uiButtonConfirm .uiButtonText, .uiButtonSpecial input, .uiButtonConfirm input {
+color:#FFFFFF;
+}
+.uiButtonDisabled, .uiButtonDisabled:active, .uiButtonDisabled .img {
+-moz-box-shadow:none;
+cursor:default;
+opacity:0.5;
+}
+.uiButtonDisabled, .uiButtonDisabled:active {
+background:none repeat scroll 0 0 #F2F2F2;
+}
+.uiButtonDisabled input {
+cursor:default;
+}
+.uiButtonDefault.uiButtonDisabled, .uiButtonDefault.uiButtonDisabled:active {
+border-color:#C8C8C8;
+opacity:1;
+}
+.uiButtonDefault.uiButtonDisabled input, a.uiButtonDisabled .uiButtonText {
+color:#B8B8B8;
+}
+.uiButtonLarge, .uiButtonLarge .uiButtonText, .uiButtonLarge input {
+font-size:13px;
+}
+.uiButtonLarge {
+padding:2px 6px;
+}
+a.uiButtonLarge {
+}
+.uiButtonSuppressed {
+-moz-box-shadow:none;
+background:none repeat scroll 0 0 transparent;
+border-color:transparent;
+}
+.uiButtonSuppressed:active, .uiButtonSuppressed:focus, .uiButtonSuppressed:hover {
+}
+.uiButtonNoText .img {
+margin-left:-1px;
+margin-right:-1px;
+}
+.uiCloseButton {
+cursor:pointer;
+display:inline-block;
+margin:0;
+padding:0;
+}
+label.uiCloseButton {
+overflow:hidden;
+}
+.uiCloseButton input {
+cursor:pointer;
+opacity:0;
+outline:medium none;
+padding:18px;
+}
+.uiCloseButton {
+background-image:url("http://static.ak.fbcdn.net/rsrc.php/z5/r/Yz_2RL5XOEG.png");
+height:15px;
+width:15px;
+}
+.uiCloseButtonSmall {
+background-image:url("http://static.ak.fbcdn.net/rsrc.php/za/r/1Be-brvKO2y.png");
+height:11px;
+width:11px;
+}
+.uiCloseButtonSmallDeprecated {
+background-image:url("http://static.ak.fbcdn.net/rsrc.php/zb/r/fvbRNcqGJoq.gif");
+}
+.uiCloseButtonDark {
+background-position:left -15px;
+}
+.uiCloseButton:hover, .uiCloseButton:focus {
+background-position:left -30px;
+}
+.uiCloseButton:active {
+background-position:left -45px;
+}
+.uiCloseButtonSmallDark {
+background-position:left -11px;
+}
+.uiCloseButtonSmall:hover, .uiCloseButtonSmall:focus {
+background-position:left -22px;
+}
+.uiCloseButtonSmall:active {
+background-position:left -33px;
+}
+.uiCloseButton.UIImageBlock_Ext, .uiCloseButton.rfloat, .uiCloseButton.lfloat {
+margin-top:1px;
+}
+.uiLinkButton input {
+background:none repeat scroll 0 0 transparent;
+border:medium none;
+color:#3B5998;
+cursor:pointer;
+font-family:'Lucida Grande',Tahoma,Verdana,Arial,sans-serif;
+font-size:11px;
+margin:0;
+padding:0;
+vertical-align:top;
+}
+.uiLinkButton input::-moz-focus-inner {
+border:0 none;
+padding:0;
+}
+.uiLinkButton:hover, .uiLinkButton input:hover, .uiLinkButton input:focus, .uiLinkButton input:active {
+color:#3B5998;
+text-decoration:underline;
+}
+.uiLinkButton input.async_saving {
+text-decoration:none;
+}

@@ -1,0 +1,1 @@
+<cfset qFileTypeList = Application.Com.FileTypeGateway.getByAttributes(OrderBy='Name')>

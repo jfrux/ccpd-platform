@@ -1,0 +1,1 @@
+<cfset ActivityTypeList = Application.Com.ActivityTypeGateway.getByAttributes(DeletedFlag='N')>

@@ -1,0 +1,30 @@
+.TabControl {
+	FONT-SIZE: 93%;  FLOAT: left; WIDTH: 979px; LINE-HEIGHT: normal;
+}
+.TabControl UL {
+	PADDING-RIGHT: 10px; PADDING-LEFT: 5px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 4px; LIST-STYLE-TYPE: none;
+}
+.TabControl LI {
+	PADDING-RIGHT: 0px;  
+	FLOAT: left; 
+	font-size:16px;
+	font-weight:normal;
+	background-color:#000;
+	PADDING-BOTTOM: 0px; 
+	MARGIN: 0px 0px 0px 1px; 
+	PADDING-TOP: 0px;
+	
+}
+.TabControl A {
+	PADDING-RIGHT: 15px; DISPLAY: block; PADDING-LEFT: 15px; background-color:#333; FLOAT: left; PADDING-BOTTOM: 4px; COLOR: #CCC; PADDING-TOP: 5px; TEXT-DECORATION: none;
+	background-image:url(/lms/_images/MultiForm_TabBG.png);	
+	 
+}
+.TabControl A {
+	FLOAT: none
+}
+.TabControl A:hover {
+	COLOR: #FFF;
+	background-color:#555;
+	
+}

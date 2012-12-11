@@ -1,0 +1,147 @@
+/* INFO BAR */
+.infobar { 
+	-moz-box-shadow: -1px 0 0 #D6D6D6;
+	-webkit-box-shadow: -1px 0 0 #D6D6D6;
+	box-shadow: -1px 0 0 #D6D6D6;
+	
+	
+	background-image:url("/static/images/infobar-gradient.gif");
+	background-repeat:no-repeat;
+    background-color: #FFFFFF;
+    border-color: #EBEBEB;
+    border-style: solid;
+    border-width: 0 1px 0 4px;
+    padding: 0 0 4px;
+	
+	word-wrap: break-word;
+	
+}
+
+.infobar-topbuttons {
+
+}
+
+.infobar-topbuttons ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 10px 0 10px 21px;
+}
+
+.infobar-topbuttons ul li {
+    float: left;
+    margin-right: 2px;
+}
+
+.infobar-topbuttons ul li a {
+
+}
+
+.infobar-divider {
+	height:10px;
+	border-bottom:1px solid #EBEBEB;
+}
+
+.infobar-box {
+    margin: 0 7px 0 6px;
+    padding: 4px 0;
+}
+
+.infobar-box-titleLine { 
+    margin-bottom: 5px;
+    padding: 2px 0 0 20px;
+    position: relative;
+}
+.infobar-box-titleLine .textWrap {
+	float:left;
+}
+.infobar-box-titleLine .textWrap h3 {
+    color: #454545;
+    font-size: 12px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.infobar-box-titleLine .textWrap h2 span {
+    font-weight: normal;
+    margin-left: 3px;
+}
+
+.infobar-box-titleLine .linkWrap {
+    float: right;
+}
+
+.infobar-box-titleLine .linkWrap a { 
+    font-size: 11px;
+    text-decoration: none;
+    text-transform: lowercase;
+}
+
+.infobar-box-titleLine .iconWrap { 
+    left: 0;
+    position: absolute;
+    text-align: center;
+    top: 0;
+	 }
+.infobar-box-titleLine .iconWrap i { 
+    height:16px;
+    width: 16px;
+	 }
+
+.infobar-box-content {
+
+}
+
+.infobar-box-content-divider {
+    border-bottom: 1px solid #EBEBEB;
+    height: 5px;
+    margin: 0 7px 4px;
+}
+
+.folder-item { 
+    background-color: #E2E8F6;
+    border: 1px solid #BDC7D8;
+    cursor: default;
+    margin-bottom: 2px;
+}
+
+.folder-item .textWrap {     color: #333333;
+    float: left;
+    font-size: 11px;
+    padding: 3px 8px;
+}
+
+.folder-item .iconWrap {     float: right;
+    padding: 3px; }
+.folder-item .iconWrap i {    cursor: pointer;
+    padding: 0;
+    width: 16px; }
+
+.folder-adder { }
+.folder-adder input {    color: #888888;
+    margin: 0 !important;
+    padding: 3px 0;
+    width: 170px; }
+
+.stat-group {
+ margin-bottom: 0 !important;						
+}
+.stat-group td {
+	padding:0;
+	margin:0;
+	background:none!important;
+}
+.stat-item { 
+	
+}
+.stat-label { 
+	font-size: 11px;
+	padding-right: 8px !important;
+	text-align: right;
+	width: 56px;
+}
+.stat-value { 
+	background-color: #EEEEEE;
+	float: left;
+	font-size: 10px;
+	width: 41px;
+}

@@ -1,0 +1,1 @@
+<cfset qStatuses = Application.Com.AssessResultStatusGateway.getByAttributes(OrderBy="Code")>

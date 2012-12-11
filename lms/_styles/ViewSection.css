@@ -1,0 +1,16 @@
+div.ViewContainer { width:100%; }
+div.ViewColumn { width:295px; margin:1px 1px 1px 1px; float:left; }
+div.ViewSection { font-size:12px; margin-bottom:4px; }
+div.ViewSection h3 { font-weight:bold; font-size:16px; padding:6px 6px 5px 6px; margin:1px 0px 1px 0px; }
+div.ViewSection p { margin:4px 0px; }
+
+table.ViewSectionDetail tr {  }
+table.ViewSectionDetail tr td { padding:3px 5px; }
+td.ViewSectionDetailLabel { width:120px;font-size:12px; color:#555; font-weight:bold;border-bottom:1px solid #DDD; }
+td.ViewSectionDetailData { font-size:12px; color:#555; border-bottom:1px solid #DDD;}
+
+table.ViewSectionGrid thead tr th { text-align:left;padding: 3px 5px; font-size:13px; background-color:#888; color:#FFF; }
+table.ViewSectionGrid thead tr th a { color:#FFF; text-decoration:none; }
+table.ViewSectionGrid tbody tr td { padding: 3px 5px; font-size:12px; border-bottom:1px solid #DDD; }
+table.ViewSectionGrid tbody tr td a { font-size: 14px; font-weight:bold; color:#555; text-decoration:underline; }
+table.ViewSectionGrid tbody tr td a:hover { font-size: 14px; font-weight:bold; color:#000; text-decoration:underline; }

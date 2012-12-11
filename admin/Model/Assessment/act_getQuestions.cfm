@@ -1,0 +1,1 @@
+<cfset qQuestions = Application.Com.AssessQuestionGateway.getByViewAttributes(DeletedFlag='N',AssessmentID=Attributes.AssessmentID,OrderBy="Sort")>

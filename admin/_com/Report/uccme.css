@@ -1,0 +1,14 @@
+body {
+	background-image: url( "certificate.jpg" );
+	background-repeat: no-repeat;
+	font-family:Georgia, "Times New Roman", Times, serif;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+}
+div.cert_wrapper {
+	position:relative;
+	background-color:#3399FF;
+	width:930px;
+	height:700px;
+	margin:45px;
+}

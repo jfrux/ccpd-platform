@@ -1,0 +1,73 @@
+/* SIDEBAR (left main bar) */
+.sidebar { 
+	-moz-box-shadow: 4px 0 0px #dde1e7;
+	-webkit-box-shadow: 4px 0 0px #dde1e7;
+	box-shadow: 4px 0 0px #dde1e7;
+
+    background-color: #EAEDF0;
+    border: 1px solid #C7CFD5;
+    min-height: 500px;
+    padding: 0 0 4px;
+    word-wrap: break-word;
+}
+
+.sidebar-divider {
+    height: 4px;
+}
+
+.sidebar-box { 
+	/* DO NOT CHANGE 
+	-webkit-border-radius: 7px;
+	-moz-border-radius: 7px;
+	border-radius: 7px;
+	*/
+	-moz-box-shadow: 1px 2px 0px #dde1e7;
+	-webkit-box-shadow: 1px 2px 0px #dde1e7;
+	box-shadow: 1px 2px 0px #dde1e7;
+	
+	/* SAFE TO CHANGE */
+    background-color: #FFFFFF;
+    border: 1px solid #CFCFCF;
+    margin: 6px 5px 0;
+    padding: 4px 0;
+}
+
+.sidebar-box-titleLine { 
+    border-bottom: 1px solid #EBEBEB;
+    margin: 0 7px 5px;
+}
+.sidebar-box-titleLine .textWrap {
+	float:left;
+}
+.sidebar-box-titleLine .textWrap h2 {
+    color: #888888;
+    font-size: 10px;
+    font-weight: bold;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.sidebar-box-titleLine .textWrap h2 span {
+    font-weight: normal;
+    margin-left: 3px;
+}
+
+.sidebar-box-titleLine .linkWrap {
+    float: right;
+}
+
+.sidebar-box-titleLine .linkWrap a { 
+    font-size: 11px;
+    text-decoration: none;
+    text-transform: lowercase;
+}
+
+.sidebar .loadingIndicator {
+background: url(../images/loader-16.gif) no-repeat 0 0;
+display: none;
+height: 16px;
+position: absolute;
+right: 5px;
+top: 3px;
+width: 16px;
+}

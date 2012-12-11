@@ -1,0 +1,74 @@
+.MainForm { }
+.MainForm table tr td.FormSectionTitle { font-family:Arial, Helvetica, sans-serif;color:#333333;font-weight:bold;padding:3px 3px;border:1px solid #EEE;  background-color:#F7F7F7; padding-bottom:2px; font-size:13px; }
+.MainForm table tr td.FormGroupTitle { font-family:Arial, Helvetica, sans-serif;color:#555;  font-size:12px; padding:3px; border:1px solid #FFF; font-weight:bold; }
+
+.FieldFloater { padding:4px 0px 6px 4px; width:100%; }
+.FieldFloater span { float:left; margin-right:3px; }
+.FieldFloater span label { 
+	margin:0;
+	padding-top:3px;
+	clear:both;
+	font-size:9px;
+	line-height:9px;
+	color:#444;
+	display:block;}
+
+.FieldFloater input.text input.text, .MainForm table tr td.FieldFloater input.text input.file, .MainForm table tr td.FieldFloater input.text textarea.textarea, select.select{
+	margin:0;
+	font-size:100%;
+}
+.FieldFloater input.text, .MainForm table tr td.FieldFloater textarea.textarea, .MainForm table tr td.FieldFloater select.select{
+
+}
+
+div.riaComboBoxContainer {  }
+input.riaComboBoxOff { border-top:1px solid #abadb3; border-left:1px solid #e2e3ea; border-bottom:1px solid #e3e9ef; border-right:1px solid #dbdfe6; padding-right:20px; padding-left:2px; background-image:url(/lms/_images/ComboBoxRightOff.gif); background-position:right; background-repeat:no-repeat; }
+input.riaComboBoxOn { border-top:1px solid #5794bf; border-left:1px solid #c5daed; border-bottom:1px solid #c7e2f1; border-right:1px solid #3c7fb1; padding-right:20px; padding-left:2px; background-image:url(/lms/_images/ComboBoxRightOn.gif); background-position:right; background-repeat:no-repeat; }
+div.riaComboBoxMenu { cursor:default; border-left:1px solid #828790; border-top:1px solid #828790; border-right:1px solid #828790; border-bottom:1px solid #828790;}
+div.riaComboBoxItem { background-color:#FFF; color:#000; padding:3px; white-space:nowrap;}
+div.riaComboBoxItemOn { background-color:#3399ff; color:#FFF; padding:3px; white-space:nowrap;}
+
+div.FormTabs { height:18px; padding-top:5px; font-size:12px; }
+div.FormTabs a:link { padding:4px 13px 4px 13px; text-decoration:none; }
+div.FormTabs a:active { padding:4px 13px 4px 13px; text-decoration:none; }
+div.FormTabs a:visited {padding:4px 13px 4px 13px; text-decoration:none; }
+div.FormTabs a:hover { padding:4px 13px 4px 13px; text-decoration:underline; }
+
+.FormTab { color:#FFF;}
+.FormTabOn { font-weight:bold; color:#000; background-color:#FFF; }
+
+div.FormSection h3 { font-size:13px; margin:4px 0px; padding:4px; background-color:#EEE; border-top:1px solid #CCC; }
+
+td.FieldLabel { width:125px; text-align:right; padding:5px 8px 5px 5px; font-size:14px; font-weight:normal; }
+td.FieldInput { font-size:14px; }
+td.FieldInput input { font-size:18px; }
+td.FieldInput select { font-size:18px; }
+td.FieldInput textarea { font-size:18px; font-family:Verdana, Arial, Helvetica, sans-serif; }
+div.RadioEnable { border:1px solid #CCC; background-color:#FFF; margin-top:1px; }
+div.RadioDisable { border:1px solid #CCC; background-color:#EEE; color:#CCC; margin-top:1px; }
+div.RadioDisable input { background-color:#F7F7F7; border:1px solid #CCC; }
+
+td.FieldLabel2 { font-size:14px; width:150px; font-weight:bold; }
+td.FieldInput2 { font-size:14px; }
+td.FieldInput2 input { font-size:15px; }
+td.FieldInput2 select { font-size:15px; }
+td.FieldInput2 textarea { font-size:15px; font-family:Verdana, Arial, Helvetica, sans-serif; }
+
+.FieldInputErr {
+	color: #DD3333;
+	font-weight: bold; }
+	
+.message_list {
+	color: Green;
+	font-weight: bold; }
+	
+.error_list {
+	color: #DD3333;
+	font-weight: bold; }
+
+.error_list ul li {
+	list-style-type:decimal; }
+	
+.message_list {
+	color: Green;
+	font-weight: bold; }

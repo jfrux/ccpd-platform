@@ -1,0 +1,60 @@
+/* line 1, I:/ccpd_test/sass/tab6.scss */
+#HeaderSubNav {
+  background-color: #555555;
+}
+
+/* line 3, I:/ccpd_test/sass/tab6.scss */
+a.HeaderTabOn {
+  padding: 7px 15px;
+  float: left;
+  text-decoration: none;
+  background-image: url(../_images/Header_Tab6BG.gif);
+  background-color: #8d8d8d;
+  color: #FFF;
+}
+
+/* CONTENT */
+/* line 7, I:/ccpd_test/sass/tab6.scss */
+.ContentSubTitle {
+  font-size: 13px;
+  font-weight: bold;
+  color: #747474;
+  padding-top: 4px;
+  margin-bottom: 4px;
+  border-bottom: 1px solid #CCCCCC;
+}
+
+/* line 9, I:/ccpd_test/sass/tab6.scss */
+.TabControl {
+  border-bottom: 3px solid #555555;
+}
+
+/* line 10, I:/ccpd_test/sass/tab6.scss */
+.TabControl #current {
+  background-color: #555555;
+}
+
+/* line 13, I:/ccpd_test/sass/tab6.scss */
+.TabControl #current A {
+  background-color: #555555;
+  PADDING-BOTTOM: 5px;
+  COLOR: #FFF;
+}
+
+/* line 17, I:/ccpd_test/sass/tab6.scss */
+h2.ContentSectTitle {
+  color: #FFF;
+  background-color: #555555;
+}
+
+/* line 18, I:/ccpd_test/sass/tab6.scss */
+div.ViewSection h3 {
+  color: #FFF;
+  background-color: #555555;
+}
+
+/* line 20, I:/ccpd_test/sass/tab6.scss */
+table.ViewSectionGrid thead tr th {
+  background-color: #555555;
+  color: #FFF;
+}

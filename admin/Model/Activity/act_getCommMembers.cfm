@@ -1,0 +1,1 @@
+<cfset qCommittee = Application.Com.ActivityCommitteeGateway.getByAttributes(ActivityID=Attributes.ActivityID)>

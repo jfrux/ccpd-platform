@@ -1,0 +1,61 @@
+/* line 1, I:/ccpd_test/sass/tab3.scss */
+#HeaderSubNav {
+  background-color: #ae6a2d;
+}
+
+/* line 2, I:/ccpd_test/sass/tab3.scss */
+a.HeaderTabOn {
+  padding: 7px 15px;
+  float: left;
+  text-decoration: none;
+  background-color: #ae6a2d;
+  background: -moz-linear-gradient(center top, #ef903b, #ae6a2d) repeat scroll 0 0 #ae6a2d;
+  color: #FFF;
+}
+
+/* CONTENT */
+/* line 8, I:/ccpd_test/sass/tab3.scss */
+.ContentSubTitle {
+  font-size: 13px;
+  font-weight: bold;
+  color: #b8b31e;
+  padding-top: 4px;
+  margin-bottom: 4px;
+  border-bottom: 1px solid #CCCCCC;
+}
+
+/* line 10, I:/ccpd_test/sass/tab3.scss */
+.TabControl {
+  border-bottom: 3px solid #ae6a2d;
+}
+
+/* line 11, I:/ccpd_test/sass/tab3.scss */
+.TabControl ul li.current a {
+  background-color: #ae6a2d;
+  background: -moz-linear-gradient(center top, #ef903b, #ae6a2d) repeat scroll 0 0 #ae6a2d;
+  border-color: #ae6a2d;
+  border-style: solid;
+  border-width: 1px 1px 0;
+  font-weight: bold;
+  text-shadow: 0 -1px rgba(0, 0, 0, 0.45);
+}
+
+/* line 21, I:/ccpd_test/sass/tab3.scss */
+h2.ContentSectTitle {
+  color: #FFF;
+  background-color: #ae6a2d;
+}
+
+/* line 23, I:/ccpd_test/sass/tab3.scss */
+div.ViewSection h3 {
+  color: #FFF;
+  background-color: #ae6a2d;
+}
+
+/* line 25, I:/ccpd_test/sass/tab3.scss */
+.history-filter ul li.current a {
+  background-color: #ae6a2d;
+  background: -moz-linear-gradient(center top, #ef903b, #ae6a2d) repeat scroll 0 0 #ae6a2d;
+  border-color: #ae6a2d;
+  color: #FFF;
+}

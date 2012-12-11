@@ -1,0 +1,1 @@
+<cfset qSubActivities = Application.Com.ActivityGateway.getByAttributes(ParentActivityID=Attributes.ParentActivityID,deletedFlag='N',OrderBy="StartDate")>

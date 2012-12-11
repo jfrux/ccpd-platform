@@ -1,0 +1,80 @@
+/* line 3, I:/ccpd_test/sass/tabs.scss */
+body.tabs a.HeaderTabOn {
+  padding: 7px 15px;
+  float: left;
+  text-decoration: none;
+  color: #FFF;
+}
+/* line 9, I:/ccpd_test/sass/tabs.scss */
+body.tabs a.HeaderTabOn {
+  background-color: rgba(255, 255, 255, 0.09);
+}
+/* line 13, I:/ccpd_test/sass/tabs.scss */
+body.tabs .ContentSubTitle {
+  font-size: 13px;
+  font-weight: bold;
+  padding-top: 4px;
+  margin-bottom: 4px;
+  border-bottom: 1px solid #CCCCCC;
+}
+/* line 22, I:/ccpd_test/sass/tabs.scss */
+body.tabs .ContentBody {
+  padding-top: 4px;
+  font-size: 12px;
+  font-weight: normal;
+  color: #000000;
+}
+/* line 28, I:/ccpd_test/sass/tabs.scss */
+body.tabs .TabControl {
+  border-width: 0 0 1px 0;
+  border-style: solid;
+}
+/* line 32, I:/ccpd_test/sass/tabs.scss */
+body.tabs .TabControl #current a {
+  padding-bottom: 5px;
+  color: #FFF;
+}
+/* line 38, I:/ccpd_test/sass/tabs.scss */
+body.tabs .TabControl {
+  border-bottom: 3px solid #31678D;
+}
+/* line 39, I:/ccpd_test/sass/tabs.scss */
+body.tabs .TabControl #current {
+  background-color: #31678D;
+}
+/* line 42, I:/ccpd_test/sass/tabs.scss */
+body.tabs .TabControl #current A {
+  background-color: #31678D;
+  PADDING-BOTTOM: 5px;
+  COLOR: #FFF;
+}
+/* line 47, I:/ccpd_test/sass/tabs.scss */
+body.tabs .TabControl ul li.current a {
+  background-color: #31678D;
+  background: -moz-linear-gradient(center top, #31678d, #31678d) repeat scroll 0 0 #31678d;
+  border-color: #31678D;
+  border-style: solid;
+  border-width: 1px 1px 0;
+  font-weight: bold;
+  text-shadow: 0 -1px rgba(0, 0, 0, 0.45);
+}
+/* line 58, I:/ccpd_test/sass/tabs.scss */
+body.tabs h2.ContentSectTitle {
+  color: #FFF;
+}
+/* line 62, I:/ccpd_test/sass/tabs.scss */
+body.tabs div.ViewSection h3 {
+  color: #FFF;
+}
+/* line 67, I:/ccpd_test/sass/tabs.scss */
+body.tabs div.ViewSection h3 {
+  color: #FFF;
+  background-color: #31678D;
+}
+/* line 69, I:/ccpd_test/sass/tabs.scss */
+body.tabs .history-filter ul li.current a {
+  background-color: #31678D;
+  background: -moz-linear-gradient(center top, #31678d, #31678d) repeat scroll 0 0 #31678d;
+  border-color: #1b4590;
+  color: #FFF;
+}

@@ -1,0 +1,251 @@
+<html>
+<head>
+<title>DHTML Lab Popup Calendar Example Page</title>
+</head>
+<body style="font-family:sans-serif;font-size:12px;">
+<dlcalendar click_element_id="img_flightdeparture"></dlcalendar>
+
+<dlcalendar click_element_id="img_flightdeparture1"
+            input_element_id="input_flightdeparture1"
+            tool_tip="Click to choose flight departure date"></dlcalendar>
+
+<dlcalendar click_element_id="text_flightdeparture2"
+            input_element_id="input_flightdeparture2"
+            tool_tip="Click to choose flight departure date"></dlcalendar>
+
+<dlcalendar click_element_id="img_flightdeparture3"
+            input_element_id="input_flightdeparture3"
+            tool_tip="Click to choose flight departure date"
+            start_date="2004,7,30"
+            end_date="2004,11,5"></dlcalendar>
+
+<dlcalendar click_element_id="img_flightdeparture_en"
+            input_element_id="input_flightdeparture4"
+            tool_tip="English Calendar"
+            firstday="Su"></dlcalendar>
+
+<dlcalendar click_element_id="img_flightdeparture_es"
+            input_element_id="input_flightdeparture4"
+            tool_tip="Calendario Español"
+            months="ene,feb,mar,abr,may,jun,jul,ago,sep,oct,nov,dic"
+            days="do,lu,ma,mi,ju,vi,sa"
+            firstday="lu"></dlcalendar>
+
+<dlcalendar click_element_id="img_flightdeparture5"
+            input_element_id="input_flightdeparture5"
+            tool_tip="Click to choose flight departure date"
+            start_date="2003,7,30"
+            end_date="2005-11-5"
+            months="01,02,03,04,05,06,07,08,09,10,11,12"
+            days="S,M,T,W,T,F,S"
+            firstday="M"
+            date_format="mm~dd~yy"
+            root_date="2004-04-1"
+            navbar_style="background-color: yellow; color:black;"
+            daybar_style="background-color: black; font-family: Courier; color:white;"
+            selecteddate_style="background-color: yellow; font-family: serif; font-style:italics; color:black; border-width:0px;"
+            weekenddate_style="background-color: blue; font-family: serif; color:red; border-width:0px;"
+            regulardate_style="background-color: red; font-family: serif; color:blue; border-width:0px;"
+            othermonthdate_style="background-color: lightgrey; border-width:0px;"
+            use_webdings="false"
+            nav_images="dlcalendar_prevyear_black.gif,dlcalendar_prevmonth_black.gif,dlcalendar_nextmonth_black.gif,dlcalendar_nextyear_black.gif"
+            hide_selects="true"
+            hide_onselection="false"
+            emptydate_option="true"
+            emptydate_style="background-color: pink; color:black; font-style:italic;"
+            emptydate_text="Reset Date"
+
+            callfunction_onselection="myCustomFunction"></dlcalendar>
+
+<dlcalendar click_element_id="img_flightdeparture6"
+            emptydate_option="true"                      hide_onselection="false"
+
+            input_element_id="input_flightdeparture6"
+            tool_tip="Click to choose flight departure date"></dlcalendar>
+
+<dlcalendar click_element_id="img_flightdeparture7"
+            emptydate_option="true"                        hide_onselection="false"
+																	    qemptydate_text="Reset Date"
+
+            emptydate_style="background-color: yellow; color:black; font-style:italic;"
+            input_element_id="input_flightdeparture7"
+            tool_tip="Click to choose flight departure date"></dlcalendar>
+
+
+<p>This page contains the stripped-down, necessary HTML to include several examples of the DHTML Lab Popup Calendar in a web page.</p>
+<p>You can use it as a cut-and-paste source to build on for your own implementations.</p>
+<p>The source of this page is reproduced below for reference.</p>
+
+<hr size=1 width=200 noshade color=black align=left>
+
+<ol>
+<li><p>A  DHTML Lab Popup Calendar without an associated input text element and generated from an image element click:</p>
+        <p><img align="middle" id="img_flightdeparture" src="dlcalendar_1.gif" height="15" width="20" alt="calendar"></p></li>
+
+<li><p>A  DHTML Lab Popup Calendar with an associated input text element, a mouseover tooltip and generated from an image element click:</p>
+        <p>
+        <input type="text" id='input_flightdeparture1' size=12>
+        <img align="middle" id="img_flightdeparture1" src="dlcalendar_2.gif" height="13" width="13" alt="calendar"></p></li>
+
+<li><p>A  DHTML Lab Popup Calendar with an associated input text element, a mouseover tooltip, generated from an image element click,
+        and with <i>Clear Date</i> facility:&nbsp;&nbsp;&nbsp;( <font color="blue"><tt>dlcalendar1.1</tt></font> )</p>
+        <p>
+        <input type="text" id='input_flightdeparture6' size=12>
+        <img align="middle" id="img_flightdeparture6" src="dlcalendar_2.gif" height="13" width="13" alt="calendar"></p></li>
+
+<li><p>A  DHTML Lab Popup Calendar with an associated <i>readonly</i> input text element, a mouseover tooltip, generated from an image element click,
+        and with <i>Clear Date</i> facility:&nbsp;&nbsp;&nbsp;( <font color="blue"><tt>dlcalendar1.1</tt></font> )</p>
+        <p>
+        <input type="text" id='input_flightdeparture7' size=12 readonly>
+        <img align="middle" id="img_flightdeparture7" src="dlcalendar_2.gif" height="13" width="13" alt="calendar"></p></li>
+
+<li><p>A  DHTML Lab Popup Calendar with an associated input text element, a mouseover tooltip and generated from a text element click:</p>
+        <p><input type="text" id='input_flightdeparture2' size=12>
+        <span id="text_flightdeparture2">Choose Date</span></p></li>
+
+<li><p>A  DHTML Lab Popup Calendar with an associated input text element, a mouseover tooltip, limit dates, and generated from an image element click:</p>
+        <p><input type="text" id='input_flightdeparture3' size=12>
+        <img align="middle" id="img_flightdeparture3" src="dlcalendar_3.gif" height="15" width="20" alt="calendar"></p></li>
+
+<li><p>Two DHTML Lab Popup Calendars, in two different languages, sharing an associated input text element, with mouseover tooltips and generated from an image element click:</p>
+        <p><input type="text" id='input_flightdeparture4' size=12>
+        <img align="middle" id="img_flightdeparture_en" src="dlcalendar_en.gif" height="14" width="15" alt="calendar">
+        <img align="middle" id="img_flightdeparture_es" src="dlcalendar_es.gif" height="14" width="15" alt="calendar"></p></li>
+
+<li><p>A  DHTML Lab Popup Calendar with an associated input text element, generated from an image element click, and <i>all</i> possible attributes given custom values:</p>
+        <p><input type="text" id='input_flightdeparture5' size=12>
+        <img align="middle" id="img_flightdeparture5" src="dlcalendar_4.gif" height="15" width="20" alt="calendar"></p></li>
+</ol>
+
+<hr size=1 width=200 noshade color=black align=left>
+
+<p>Source:</p>
+<textarea style="width:100%;height:400px;white-spave:nowrap;" wrap="off" id=lutz>
+
+<html>
+<head>
+<title>DHTML Lab Popup Calendar Example Page</title>
+</head>
+<body style="font-family:sans-serif;font-size:12px;">
+<dlcalendar click_element_id="img_flightdeparture"></dlcalendar>
+
+<dlcalendar click_element_id="img_flightdeparture1"
+            input_element_id="input_flightdeparture1"
+            tool_tip="Click to choose flight departure date"></dlcalendar>
+
+<dlcalendar click_element_id="text_flightdeparture2"
+            input_element_id="input_flightdeparture2"
+            tool_tip="Click to choose flight departure date"></dlcalendar>
+
+<dlcalendar click_element_id="img_flightdeparture3"
+            input_element_id="input_flightdeparture3"
+            tool_tip="Click to choose flight departure date"
+            start_date="2004,7,30"
+            end_date="2004,11,5"></dlcalendar>
+
+<dlcalendar click_element_id="img_flightdeparture_en"
+            input_element_id="input_flightdeparture4"
+            tool_tip="English Calendar"
+            firstday="Su"></dlcalendar>
+
+<dlcalendar click_element_id="img_flightdeparture_es"
+            input_element_id="input_flightdeparture4"
+            tool_tip="Calendario Español"
+            months="ene,feb,mar,abr,may,jun,jul,ago,sep,oct,nov,dic"
+            days="do,lu,ma,mi,ju,vi,sa"
+            firstday="lu"></dlcalendar>
+
+<dlcalendar click_element_id="img_flightdeparture5"
+            input_element_id="input_flightdeparture5"
+            tool_tip="Click to choose flight departure date"
+            start_date="2003,7,30"
+            end_date="2005-11-5"
+            months="01,02,03,04,05,06,07,08,09,10,11,12"
+            days="S,M,T,W,T,F,S"
+            firstday="M"
+            date_format="mm~dd~yy"
+            root_date="2004-04-1"
+            navbar_style="background-color: yellow; color:black;"
+            daybar_style="background-color: black; font-family: Courier; color:white;"
+            selecteddate_style="background-color: yellow; font-family: serif; font-style:italics; color:black; border-width:0px;"
+            weekenddate_style="background-color: blue; font-family: serif; color:red; border-width:0px;"
+            regulardate_style="background-color: red; font-family: serif; color:blue; border-width:0px;"
+            othermonthdate_style="background-color: lightgrey; border-width:0px;"
+            use_webdings="false"
+            nav_images="dlcalendar_prevyear_black.gif,dlcalendar_prevmonth_black.gif,dlcalendar_nextmonth_black.gif,dlcalendar_nextyear_black.gif"
+            hide_selects="true"
+            hide_onselection="false"
+            emptydate_option="true"
+            emptydate_style="background-color: pink; color:black; font-style:italic;"
+            emptydate_text="Reset Date"
+
+            callfunction_onselection="myCustomFunction"></dlcalendar>
+
+<dlcalendar click_element_id="img_flightdeparture6"
+            emptydate_option="true"
+            input_element_id="input_flightdeparture6"
+            tool_tip="Click to choose flight departure date"></dlcalendar>
+
+<dlcalendar click_element_id="img_flightdeparture7"
+            emptydate_option="true"
+            emptydate_style="background-color: yellow; color:black; font-style:italic;"
+            input_element_id="input_flightdeparture7"
+            tool_tip="Click to choose flight departure date"></dlcalendar>
+
+
+<p>This page contains the stripped-down, necessary HTML to include several examples of the DHTML Lab Popup Calendar in a web page.</p>
+<p>You can use it as a cut-and-paste source to build on for your own implementations.</p>
+<p>The source of this page is reproduced below for reference.</p>
+
+<hr size=1 width=200 noshade color=black align=left>
+
+<ol>
+<li><p>A  DHTML Lab Popup Calendar without an associated input text element and generated from an image element click:</p>
+        <p><img align="middle" id="img_flightdeparture" src="dlcalendar_1.gif" height="15" width="20" alt="calendar"></p></li>
+
+<li><p>A  DHTML Lab Popup Calendar with an associated input text element, a mouseover tooltip and generated from an image element click:</p>
+        <p>
+        <input type="text" id='input_flightdeparture1' size=12>
+        <img align="middle" id="img_flightdeparture1" src="dlcalendar_2.gif" height="13" width="13" alt="calendar"></p></li>
+
+<li><p>A  DHTML Lab Popup Calendar with an associated input text element, a mouseover tooltip, generated from an image element click,
+        and with <i>Clear Date</i> facility:&nbsp;&nbsp;&nbsp;( <font color="blue"><tt>dlcalendar1.1</tt></font> )</p>
+        <p>
+        <input type="text" id='input_flightdeparture6' size=12>
+        <img align="middle" id="img_flightdeparture6" src="dlcalendar_2.gif" height="13" width="13" alt="calendar"></p></li>
+
+<li><p>A  DHTML Lab Popup Calendar with an associated <i>readonly</i> input text element, a mouseover tooltip, generated from an image element click,
+        and with <i>Clear Date</i> facility:&nbsp;&nbsp;&nbsp;( <font color="blue"><tt>dlcalendar1.1</tt></font> )</p>
+        <p>
+        <input type="text" id='input_flightdeparture7' size=12 readonly>
+        <img align="middle" id="img_flightdeparture7" src="dlcalendar_2.gif" height="13" width="13" alt="calendar"></p></li>
+
+<li><p>A  DHTML Lab Popup Calendar with an associated input text element, a mouseover tooltip and generated from a text element click:</p>
+        <p><input type="text" id='input_flightdeparture2' size=12>
+        <span id="text_flightdeparture2">Choose Date</span></p></li>
+
+<li><p>A  DHTML Lab Popup Calendar with an associated input text element, a mouseover tooltip, limit dates, and generated from an image element click:</p>
+        <p><input type="text" id='input_flightdeparture3' size=12>
+        <img align="middle" id="img_flightdeparture3" src="dlcalendar_3.gif" height="15" width="20" alt="calendar"></p></li>
+
+<li><p>Two DHTML Lab Popup Calendars, in two different languages, sharing an associated input text element, with mouseover tooltips and generated from an image element click:</p>
+        <p><input type="text" id='input_flightdeparture4' size=12>
+        <img align="middle" id="img_flightdeparture_en" src="dlcalendar_en.gif" height="14" width="15" alt="calendar">
+        <img align="middle" id="img_flightdeparture_es" src="dlcalendar_es.gif" height="14" width="15" alt="calendar"></p></li>
+
+<li><p>A  DHTML Lab Popup Calendar with an associated input text element, generated from an image element click, and <i>all</i> possible attributes given custom values:</p>
+        <p><input type="text" id='input_flightdeparture5' size=12>
+        <img align="middle" id="img_flightdeparture5" src="dlcalendar_4.gif" height="15" width="20" alt="calendar"></p></li>
+</ol>
+
+<hr size=1 width=200 noshade color=black align=left>
+
+<script type="text/javascript" language="javascript"  src="dlcalendar.js"></script>
+</body>
+</html>
+
+</textarea>
+<script type="text/javascript" language="javascript"  src="dlcalendar.js"></script>
+</body>
+</html>
+

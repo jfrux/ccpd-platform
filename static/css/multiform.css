@@ -1,0 +1,186 @@
+/* line 1, I:/ccpd_test/sass/multiform.scss */
+table.MultiForm {
+  width: 960px;
+}
+
+/* line 5, I:/ccpd_test/sass/multiform.scss */
+td.MultiFormList {
+  padding: 4px;
+  vertical-align: top;
+}
+
+/* line 10, I:/ccpd_test/sass/multiform.scss */
+td.MultiFormRight {
+  vertical-align: top !important;
+  width: 180px;
+  padding-right: 1px;
+}
+
+/* line 12, I:/ccpd_test/sass/multiform.scss */
+div.MultiFormRight_SectTitle {
+  background-image: url("");
+  border-bottom: 1px solid #000000;
+  font-size: 13px;
+  color: #FFF;
+  font-weight: bold;
+  background-color: #555;
+  margin: 1px 0;
+  padding: 4px 6px;
+}
+
+/* line 20, I:/ccpd_test/sass/multiform.scss */
+div.MultiFormRight_SectSubTitle {
+  font-size: 13px;
+  font-weight: bold;
+  color: #555;
+  margin: 1px 0px 1px 0px;
+  padding: 5px;
+  background-color: #EEE;
+  border-top: 1px solid #AAA;
+  border-bottom: 1px solid #EEE;
+}
+
+/* line 21, I:/ccpd_test/sass/multiform.scss */
+div.MultiFormRight_SectBody {
+  padding: 0px 5px;
+}
+
+/* line 23, I:/ccpd_test/sass/multiform.scss */
+div.MultiFormRight_LinkList a {
+  display: block;
+  font-size: 12px!important;
+  text-decoration: none;
+  color: #216CB8;
+  padding: 5px;
+}
+
+/* line 24, I:/ccpd_test/sass/multiform.scss */
+div.MultiFormRight_LinkList a:hover {
+  display: block;
+  text-decoration: none;
+  font-size: 12px!important;
+  padding: 5px;
+  color: #555;
+}
+
+/* line 25, I:/ccpd_test/sass/multiform.scss */
+a#MultiFormRight_CurrentLink {
+  background-color: #EEE;
+  color: #000;
+  text-decoration: none;
+}
+
+/* line 27, I:/ccpd_test/sass/multiform.scss */
+td.MultiFormList a:link {
+  padding: 2px 5px;
+  display: block;
+  text-decoration: none;
+  color: #000;
+  border: 1px solid #FFF;
+}
+
+/* line 28, I:/ccpd_test/sass/multiform.scss */
+td.MultiFormList a:active {
+  padding: 2px 5px;
+  display: block;
+  text-decoration: none;
+  color: #000;
+  border: 1px solid #FFF;
+}
+
+/* line 29, I:/ccpd_test/sass/multiform.scss */
+td.MultiFormList a:visited {
+  padding: 2px 5px;
+  display: block;
+  text-decoration: none;
+  color: #000;
+  border: 1px solid #FFF;
+}
+
+/* line 30, I:/ccpd_test/sass/multiform.scss */
+td.MultiFormList a:hover {
+  padding: 2px 5px;
+  display: block;
+  text-decoration: none;
+  color: #000;
+  border: 1px solid #bad0eb;
+  background-color: #EEE;
+  background-image: url(../_images/DataGrid_HeaderOn.gif);
+}
+
+/* line 32, I:/ccpd_test/sass/multiform.scss */
+td.MultiFormContent {
+  padding: 0 1px 4px 0 !important;
+  vertical-align: top !important;
+  width: 620px;
+}
+
+/* line 39, I:/ccpd_test/sass/multiform.scss */
+td.InfoBar {
+  vertical-align: top !important;
+  padding-top: 1px;
+  border-left: 3px solid #CCC;
+  border-bottom: 3px solid #CCC;
+  border-right: 3px solid #CCC;
+  padding-left: 1px;
+  padding-right: 1px;
+  background-color: #F7F7F7;
+  width: 150px;
+}
+
+/* line 41, I:/ccpd_test/sass/multiform.scss */
+td.InfoBar h3 {
+  background-color: #999999;
+  color: #FFFFFF;
+  font-size: 12px;
+  margin: 0;
+  padding: 4px 6px;
+}
+
+/* line 46, I:/ccpd_test/sass/multiform.scss */
+td.InfoBar p {
+  padding: 5px 1px;
+  color: #888;
+}
+
+/* line 47, I:/ccpd_test/sass/multiform.scss */
+td.InfoBar table {
+  margin: 4px;
+  color: #888;
+}
+
+/* line 48, I:/ccpd_test/sass/multiform.scss */
+td.InfoBar select {
+  background-color: #FFF;
+  color: #777;
+  border: 1px solid #CCC;
+}
+
+/* line 50, I:/ccpd_test/sass/multiform.scss */
+div.ActionList {
+  padding: 7px 5px 5px 7px;
+}
+
+/* line 51, I:/ccpd_test/sass/multiform.scss */
+div.ActionShort {
+  font-size: 11px;
+  color: #888;
+  letter-spacing: 0em;
+  line-height: 1em;
+}
+
+/* line 52, I:/ccpd_test/sass/multiform.scss */
+div.ActionAuthor {
+  font-size: 9px;
+  color: #999;
+  letter-spacing: -0.02em;
+  text-align: right;
+  line-height: 1em;
+  padding-bottom: 8px;
+}
+
+/* line 54, I:/ccpd_test/sass/multiform.scss */
+div.ViewSection h3 {
+  font-weight: normal;
+  background-image: url(../_images/MultiForm_TitleBG.png);
+}

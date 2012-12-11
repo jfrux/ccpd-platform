@@ -1,0 +1,74 @@
+/* line 1, I:/ccpd_test/sass/tab5.scss */
+#HeaderSubNav {
+  background-color: #901b26;
+}
+
+/* line 3, I:/ccpd_test/sass/tab5.scss */
+a.HeaderTabOn {
+  padding: 7px 15px;
+  float: left;
+  text-decoration: none;
+  background-image: url(../_images/Header_Tab5BG.gif);
+  background-color: #a22323;
+  color: #FFF;
+}
+
+/* CONTENT */
+/* line 8, I:/ccpd_test/sass/tab5.scss */
+.ContentSubTitle {
+  font-size: 13px;
+  font-weight: bold;
+  color: #a22323;
+  padding-top: 4px;
+  margin-bottom: 4px;
+  border-bottom: 1px solid #CCCCCC;
+}
+
+/* line 10, I:/ccpd_test/sass/tab5.scss */
+.TabControl {
+  border-bottom: 3px solid #901b26;
+}
+
+/* line 11, I:/ccpd_test/sass/tab5.scss */
+.TabControl #current {
+  background-color: #901b26;
+}
+
+/* line 14, I:/ccpd_test/sass/tab5.scss */
+.TabControl #current A {
+  background-color: #901b26;
+  PADDING-BOTTOM: 5px;
+  COLOR: #FFF;
+}
+
+/* line 17, I:/ccpd_test/sass/tab5.scss */
+h2.ContentSectTitle {
+  color: #FFF;
+  background-color: #901b26;
+}
+
+/* line 19, I:/ccpd_test/sass/tab5.scss */
+div.ViewSection h3 {
+  color: #FFF;
+  background-color: #901b26;
+}
+
+/* line 21, I:/ccpd_test/sass/tab5.scss */
+table.ViewSectionGrid thead tr th {
+  background-color: #901b26;
+  color: #FFF;
+}
+
+/* line 23, I:/ccpd_test/sass/tab5.scss */
+table.MultiForm a {
+  text-decoration: none;
+  color: #901b26;
+}
+
+/* line 24, I:/ccpd_test/sass/tab5.scss */
+div.MultiFormRight_LinkList a {
+  display: block;
+  text-decoration: none;
+  padding: 5px;
+  color: #901b26;
+}

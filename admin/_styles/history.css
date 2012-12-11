@@ -1,0 +1,86 @@
+.history-item {  border-bottom:1px solid #EEEEEE;
+clear:both;
+min-height:45px;
+padding:0 0 5px; }
+.history-userphoto { float:left;
+height:45px;
+overflow:hidden;
+width:56px; }
+.history-userphoto img { width:50px; }
+.history-line { margin-top:3px;
+padding:4px 4px 4px 0; }
+.history-line p { padding:0; margin:0; }
+.history-item.userphoto .history-line { margin-left:55px; color:#888; }
+.history-line img {    float: left;
+    margin-left: 2px;
+    margin-right: 5px;
+    margin-top: 2px; }
+.history-line a { color:#333; text-decoration:none; font-weight:bold; }
+.history-line a:hover { text-decoration:underline; color:#0066CC }
+.history-subbox { -moz-border-radius:6px 6px 6px 6px;
+background-color:#EEEEEE;
+border:1px solid #CCCCCC;
+color:#555555;
+margin:0 2px 3px 20px;
+padding:3px; }
+.history-subbox-title { -moz-border-radius:3px 3px 3px 3px;
+background-color:#F7F7F7;
+border:1px solid #CCCCCC;
+font-weight:bold;
+margin-bottom:1px;
+padding:1px 9px;
+text-transform:uppercase; }
+.history-subbox-item-meta { float:left; line-height:16px; }
+.history-subbox-item-detail { float:left;
+line-height:16px;
+width:486px;
+word-wrap:break-word;}
+.history-subbox-item { clear:both;
+font-size:10px;
+font-weight:normal;
+padding:1px 9px 2px; }
+.history-subbox-item strong,.history-subbox-item b { font-weight:normal; }
+.history-subbox-item span { display:block;
+float:left;
+font-size:11px;
+font-weight:bold;
+margin-right:5px;
+text-align:right;
+white-space:nowrap;
+width:87px; }
+.history-item.userphoto .history-subbox { margin-left:58px; }
+.history-meta { color:#777777;
+font-size:95%;
+padding:1px 2px 0 0;
+text-align:right; }
+.history-item.userphoto .history-meta { margin-top:3px;margin-left:55px; }
+
+.history-filter { 
+-moz-border-radius:3px 3px 3px 3px;
+background-color:#F7F7F7;
+border:1px solid #CCCCCC;
+margin-bottom:8px;
+padding:3px;
+}
+.history-filter ul { }
+.history-filter ul li { float:left; margin:0 1px; }
+.history-filter ul li a {-moz-border-radius:4px 4px 4px 4px;
+background-color:#DDDDDD;
+display:block;
+line-height:25px;
+padding:0 5px;
+text-decoration:none;
+border-style:solid;
+border-width:1px;
+border-color:#888; }
+.history-filter ul li a:hover {background-color:#EEE; }
+
+.history-filter ul li.current { }
+
+.history-subbox-item-detail table {    background-color: #CCCCCC;
+    border: 1px solid #EEEEEE;
+    width: 560px;
+	font-family:Verdana, Arial, Helvetica, sans-serif; }
+.history-subbox-item-detail table tr th {      border: 1px solid #AAA;   background-color: #666666;
+    color: #FFFFFF;}
+.history-subbox-item-detail table tr td {     border: 1px solid #AAA;}

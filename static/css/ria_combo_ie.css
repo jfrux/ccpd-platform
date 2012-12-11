@@ -1,0 +1,10 @@
+/* line 2, I:/ccpd_test/sass/ria_combo_ie.scss */
+select.ComboBox {
+  height: 20px;
+}
+
+/* line 3, I:/ccpd_test/sass/ria_combo_ie.scss */
+img.ComboAdd {
+  position: relative;
+  top: 4px;
+}

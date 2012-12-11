@@ -1,0 +1,1 @@
+<cfset qActivitySupportersList = Application.Com.ActivitySupportGateway.getByViewAttributes(ActivityID=Attributes.ActivityID,DeletedFlag='N')>

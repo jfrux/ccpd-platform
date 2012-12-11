@@ -1,0 +1,25 @@
+/* RIA CSS */
+/* line 2, I:/ccpd_test/sass/ria.scss */
+div.PersonWindow {
+  display: none;
+  height: 220px;
+  width: 400px;
+  background-image: url(../_images/PersonFinder_BG.gif);
+  background-position: top left;
+  background-repeat: no-repeat;
+  background-color: #FFFFFF;
+  font-size: 10px;
+}
+
+/* line 3, I:/ccpd_test/sass/ria.scss */
+div.PersonWindowContent {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+}
+
+/* line 5, I:/ccpd_test/sass/ria.scss */
+div.PersonWindowPager a {
+  color: #000;
+  text-decoration: none;
+}

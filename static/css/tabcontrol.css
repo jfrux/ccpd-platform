@@ -1,0 +1,54 @@
+/* line 1, I:/ccpd_test/sass/tabcontrol.scss */
+.TabControl {
+  float: left;
+  font-size: 93%;
+  line-height: normal;
+  width: 960px;
+}
+
+/* line 7, I:/ccpd_test/sass/tabcontrol.scss */
+.TabControl UL {
+  PADDING-RIGHT: 10px!important;
+  PADDING-LEFT: 5px!important;
+  PADDING-BOTTOM: 0px!important;
+  MARGIN: 0px!important;
+  PADDING-TOP: 4px!important;
+  LIST-STYLE-TYPE: none!important;
+}
+
+/* line 10, I:/ccpd_test/sass/tabcontrol.scss */
+.TabControl LI {
+  PADDING-RIGHT: 0px;
+  FLOAT: left;
+  font-size: 16px;
+  font-weight: normal;
+  background-color: #000;
+  PADDING-BOTTOM: 0px;
+  MARGIN: 0px 0px 0px 1px;
+  PADDING-TOP: 0px;
+}
+
+/* line 22, I:/ccpd_test/sass/tabcontrol.scss */
+.TabControl a {
+  background: -moz-linear-gradient(center top, #555555, black) repeat scroll 0 0 black;
+  border-color: #000000;
+  border-style: solid;
+  border-width: 1px 1px 0;
+  color: #FFFFFF!important;
+  display: block;
+  float: left;
+  font-size: 12px;
+  padding: 5px 13px;
+  text-decoration: none!important;
+  text-shadow: 0 -1px black;
+}
+
+/* line 35, I:/ccpd_test/sass/tabcontrol.scss */
+.TabControl a {
+  FLOAT: none;
+}
+
+/* line 38, I:/ccpd_test/sass/tabcontrol.scss */
+.TabControl A:hover {
+  background: -moz-linear-gradient(center top, #666666, #111111) repeat scroll 0 0 rgba(255, 255, 255, 0.25);
+}

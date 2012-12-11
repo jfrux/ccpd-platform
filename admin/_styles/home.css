@@ -1,0 +1,101 @@
+/* NEW CLASSES (homes need switched to this */
+.home-container {
+	width:100%;
+	min-height:370px;
+	position:relative;
+}
+
+.home-left {
+float:left;
+margin-right:8px;
+width:753px;
+}
+
+.home-left h2 {
+color:#464646;
+font-size:140%;
+margin-top:5px;
+}
+
+.home-left h2 span a { font-size: 75%; color:#555; font-weight:normal; text-decoration:none; }
+
+.home-left.home-noads { margin-right:3px !important;
+width:970px; }
+
+.home-optionbar {background-color:#F7F7F7;
+border:1px solid #CCCCCC;
+height:25px;
+padding:5px;
+width:100%;
+
+-webkit-border-radius: 7px;
+-moz-border-radius-bottomleft:7px;
+-moz-border-radius-bottomright:7px;
+-moz-border-radius-topleft:7px;
+-moz-border-radius-topright:7px;}
+.home-optionbar * { float:left; }
+
+.home-optionbar-search { margin-left:25px; }
+.home-optionbar-search .fieldinput { font-size:0.95em;
+padding:5px; }
+
+.home-optionbar-buttons { float:right;
+margin-top:-1px; }
+
+.home-right {
+float:right;
+margin-left:8px;
+min-height:400px;
+width:191px;
+}
+
+.home-right .section { 
+background-color:#EEE;
+padding:5px;
+border:1px solid #CCC;
+margin-bottom:8px;
+
+-webkit-border-radius: 7px;
+-moz-border-radius-bottomleft:7px;
+-moz-border-radius-bottomright:7px;
+-moz-border-radius-topleft:7px;
+-moz-border-radius-topright:7px;
+
+}
+
+.home-right .section h3 { padding:0px 4px; }
+.home-right .section form { padding:6px 4px; }
+
+.home-right-criteria {
+clear:both;
+height:30px;
+width:100%;
+margin-top:3px; }
+.home-right-criteria label { 
+float:left;
+font-size:0.95em;
+font-weight:normal;
+line-height:25px;
+margin-right:6px;
+text-align:right;
+width:30px; 
+}
+.home-right-criteria .criteria-item { float:left;
+margin-right:5px;
+margin-bottom:2px; }
+.home-right-criteria .criteria-item select { 
+background-color:#F7F7F7;
+border:1px solid #CCC;
+color:#555;
+font-size:0.95em;
+padding:2px;
+}
+
+.home-right-criteria .criteria-item input { background-color:#F7F7F7;
+border:1px solid #CCC;
+color:#555;
+font-size:0.95em;
+padding:3px;}
+
+.home-right-criteria .criteria-item .button { font-size:95% !important;
+padding:4px !important; }

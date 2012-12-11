@@ -1,0 +1,104 @@
+
+.rightBar { 
+
+}
+
+.rightBar-divider {
+    height: 4px;
+}
+
+.rightBar-box { 
+	-moz-box-shadow: 4px 1px 0px #dde1e7;
+	-webkit-box-shadow: 4px 1px 0px #dde1e7;
+	box-shadow: 4px 1px 0px #dde1e7;
+    background-color: #FFFFFF;
+    border: 1px solid #C7CFD5;
+    margin-left: 4px;
+	margin-bottom:5px;
+    padding: 0;
+    word-wrap: break-word;
+}
+
+.rightBar-box-titleLine { 
+    background-color: #EAEDF0;
+    color: #3C5160;
+    margin: 0 0;
+    padding: 4px 7px;
+}
+.rightBar-box-titleLine .textWrap {
+	float:left;
+}
+.rightBar-box-titleLine .textWrap h2 {
+    color: #3c5160;
+    font-size: 11px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.rightBar-box-titleLine .textWrap h2 span {
+    font-weight: normal;
+    margin-left: 3px;
+}
+
+.rightBar-box-titleLine .linkWrap {
+    float: right;
+}
+
+.rightBar-box-titleLine .linkWrap a { 
+    font-size: 11px;
+    text-decoration: none;
+    text-transform: lowercase;
+}
+
+.rightBar-box-content {
+    padding: 7px 9px;
+}
+
+
+/* RIGHTBAR INFOTABLE */
+/* INFO TABLE / FORMS */
+.rightBar-infoTable { margin:0; padding:0; }
+.rightBar-infoTable th { padding:0; margin:0; }
+.rightBar-infoTable hr { margin:0!important; padding:0!important; }
+.rightBar-infoTable tr td { background:none!important;padding:0; margin:0; } /* reset background from framework */
+.rightBar-infoTable .dataRow { }
+.rightBar-infoTable .data,.rightBar-infoTable .label {     
+padding: 3px 0 1px;
+    text-align: left;
+    vertical-align: top; }
+.rightBar-infoTable .data {      font-size:11px;padding-top: 3px; position:relative;  }
+.rightBar-infoTable .data input.disabled,
+.rightBar-infoTable .data textarea.disabled,
+.rightBar-infoTable .data select.disabled {
+	font-color:#CCC;
+	background-color:#EEE;
+}
+.rightBar-infoTable .data input.error,
+.rightBar-infoTable .data textarea.error,
+.rightBar-infoTable .data select.error	{
+	background-color:#fbe3e4!important;
+	color:#8a1f11!important;
+	border-color:#fbc2c4!important;
+}
+.rightBar-infoTable .label {
+    color: #666666;
+    font-size: 11px;
+    font-weight: normal;
+    padding-right: 10px !important;
+    padding-top: 3px;
+    text-align: right;
+    width: 68px;
+}
+.rightBar-infoTable .label label { }
+
+.rightBar-infoTable .dataRow input {   }
+
+.rightBar-infoTable .spacer td {
+
+    padding: 5px 0!important;
+
+}
+.rightBar-infoTableGrid {
+
+}
+.rightBar-infoTableGrid tr th { font-size:10px; background-color:#CCC!important; }

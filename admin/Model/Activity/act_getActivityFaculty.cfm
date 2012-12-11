@@ -1,0 +1,1 @@
+<cfset qActivityFacultyList = Application.Com.ActivityFacultyGateway.getByViewAttributes(ActivityID=#Attributes.ActivityID#,DeletedFlag='N',OrderBy="sr.RoleID DESC, p1.LastName,p1.FirstName")>

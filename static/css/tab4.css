@@ -1,0 +1,54 @@
+/* line 1, I:/ccpd_test/sass/tab4.scss */
+#HeaderSubNav {
+  background-color: #904b1b;
+}
+
+/* line 3, I:/ccpd_test/sass/tab4.scss */
+a.HeaderTabOn {
+  padding: 7px 15px;
+  float: left;
+  text-decoration: none;
+  background-image: url(../_images/Header_Tab4BG.gif);
+  background-color: #bc800c;
+  color: #FFF;
+}
+
+/* CONTENT */
+/* line 7, I:/ccpd_test/sass/tab4.scss */
+.ContentSubTitle {
+  font-size: 13px;
+  font-weight: bold;
+  color: #bc800c;
+  padding-top: 4px;
+  margin-bottom: 4px;
+  border-bottom: 1px solid #CCCCCC;
+}
+
+/* line 9, I:/ccpd_test/sass/tab4.scss */
+.TabControl {
+  border-bottom: 3px solid #904b1b;
+}
+
+/* line 10, I:/ccpd_test/sass/tab4.scss */
+.TabControl #current {
+  background-color: #904b1b;
+}
+
+/* line 13, I:/ccpd_test/sass/tab4.scss */
+.TabControl #current A {
+  background-color: #904b1b;
+  PADDING-BOTTOM: 5px;
+  COLOR: #FFF;
+}
+
+/* line 16, I:/ccpd_test/sass/tab4.scss */
+h2.ContentSectTitle {
+  color: #FFF;
+  background-color: #904b1b;
+}
+
+/* line 18, I:/ccpd_test/sass/tab4.scss */
+div.ViewSection h3 {
+  color: #FFF;
+  background-color: #904b1b;
+}

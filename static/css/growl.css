@@ -1,0 +1,10 @@
+.jGrowl-notification.success {
+    background-color: #009D14 !important;
+    border: 1px solid #004F06 !important;
+    color: #FFFFFF;
+    font-size:11px!important;
+}
+
+.jGrowl-notification.success .jGrowl-header {
+    font-size:12px!important;
+}

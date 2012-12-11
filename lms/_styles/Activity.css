@@ -1,0 +1,43 @@
+div.ActivitySession { height:24px; color:#555; width:850px; }
+div.ActivitySession h2 { font-size:19px; font-weight:bold; color:#555; margin:0px; padding:0px; }
+div.ActivitySession img { margin-right:6px; }
+
+div.ActivityNav { background-image:url(/lms/_images/ActivityNav_BG.gif); height:26px; border:1px solid #0e0e0e; }
+div.ActivityNav a { float:left; font-size:14px; color:#FFF; padding:5px 20px; text-decoration:none; }
+div.ActivityNav a:hover { float:left; color:#FFF; background-image:url(/lms/_images/ActivityNav_CurrBG.gif); padding:5px 20px; text-decoration:none; }
+div.ActivityNav img { float:left; }
+
+div#ActivityList { overflow:auto; }
+div.ActivityLinks a { font-size:10px; display:block;  text-decoration:none; color:#555; }
+div.ActivityLinks a:hover { font-size:10px; text-decoration:none; }
+div.ActivityLinks table tr td { border-bottom:1px solid #CCC; }
+
+a.MainActivityLink { padding:3px 3px 3px 3px; border:1px solid #FFF; }
+a:hover.MainActivityLink { background-color:#F7F7F7; border:1px dashed #CCC; }
+a.SubActivityLink { padding:3px 3px 3px 5px; border:1px solid #FFF; }
+a:hover.SubActivityLink { background-color:#F7F7F7; border:1px dashed #CCC; }
+a#ActivityCurrent { color:#555; background-color:#EEE; border:1px solid #CCC; }
+a:hover#ActivityCurrent { background-color:#F7F7F7; }
+
+#ActivityLinkItem { position:absolute; top:109px; left: 660px; }
+#ActivityLinkItem a { color:#555; }
+#ActivityLinkItem a:hover { color:#006600; }
+
+#ActivityStatus { position:absolute; top:75px; left:634px; background-color:#EEE; border:1px solid #CCC; padding:2px; }
+
+.CurrentActivityRow { background-color:#EEE; font-size:10px; cursor:pointer; }
+.ActivityRow { background-color:#FFF; font-size:10px; cursor:pointer; }
+.ActivityRow td { padding:3px 2px; }
+.CurrentActivityRow td { padding:3px 2px; }
+
+div.OverviewSectionLeft { margin-right: 4px; margin-bottom: 4px; }
+div.OverviewSectionRight { margin-left: 4px; margin-bottom: 4px; }
+
+div#DisableActivity { position:absolute; height:1000px; width:610px;left:0px; top:140px; background-color:#FFF; display:none; }
+
+div#ActivityDialogs { position:absolute; left:680px; top:106px; width:325px; background-color:#FFF; }
+div#ActivityDialogs a { float:left; padding:4px; }
+
+div#ActivityLeft { border:1px solid #000; }
+
+

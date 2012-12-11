@@ -1,0 +1,139 @@
+/* line 1, I:/ccpd_test/sass/menus.scss */
+.menu ul {
+  list-style: none outside none;
+  margin: 0;
+  padding: 0;
+}
+
+/* line 6, I:/ccpd_test/sass/menus.scss */
+.menu ul li {
+  float: left;
+  margin: 0;
+  padding: 0;
+}
+
+/* line 11, I:/ccpd_test/sass/menus.scss */
+.menu ul li a {
+  display: block;
+  padding: 3px;
+}
+
+/* line 15, I:/ccpd_test/sass/menus.scss */
+.menu-top {
+  float: right;
+}
+
+/* line 18, I:/ccpd_test/sass/menus.scss */
+.menu-top a {
+  color: #E3F3FE;
+  font-size: 12px !important;
+  font-weight: normal;
+  line-height: 40px;
+  padding: 0 10px !important;
+  text-decoration: none;
+}
+
+/* line 26, I:/ccpd_test/sass/menus.scss */
+.menu-top a:hover {
+  background-color: rgba(255, 255, 255, 0.09);
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+/* line 31, I:/ccpd_test/sass/menus.scss */
+.menu-top a:active {
+  background-color: rgba(255, 255, 255, 0.09);
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+/* line 36, I:/ccpd_test/sass/menus.scss */
+.menu-top ul li.selected a {
+  background-color: #FFFFFF;
+  color: #333333;
+}
+
+/* line 40, I:/ccpd_test/sass/menus.scss */
+.menu-top .menu-item.has-icon a {
+  padding: 0 10px 0 32px !important;
+}
+
+/* line 43, I:/ccpd_test/sass/menus.scss */
+.menu-top .menu-item {
+  position: relative;
+}
+
+/* line 46, I:/ccpd_test/sass/menus.scss */
+.menu-top .menu-item .statWrap {
+  background-color: #D8DFEA;
+  border-radius: 2px 2px 2px 2px;
+  color: #3B5998;
+  float: right;
+  font-weight: bold;
+  left: 3px;
+  padding: 0 4px;
+  position: relative;
+}
+
+/* line 56, I:/ccpd_test/sass/menus.scss */
+.menu-top .menu-item .statValue {
+  font-size: 9px;
+}
+
+/* line 59, I:/ccpd_test/sass/menus.scss */
+.menu-top .menu-item .iconWrap {
+  left: 7px;
+  position: absolute;
+  text-align: center;
+  top: 10px;
+  width: 20px;
+}
+
+/* line 66, I:/ccpd_test/sass/menus.scss */
+.menu-top .menu-item .iconWrap i {
+  height: 20px;
+  width: 20px;
+}
+
+/* line 70, I:/ccpd_test/sass/menus.scss */
+.menu-top .menu-item .linkWrap {
+  float: left;
+  font-size: 12px;
+}
+
+/* line 76, I:/ccpd_test/sass/menus.scss */
+.menu-top .menuArrow {
+  display: block;
+  float: left;
+  height: 40px;
+  position: relative;
+  right: 0;
+  top: 0;
+  width: 14px;
+}
+
+/* line 85, I:/ccpd_test/sass/menus.scss */
+.menu-top .menuArrow img {
+  left: auto !important;
+  position: absolute !important;
+  right: -1px;
+  top: 18px !important;
+}
+
+/* line 91, I:/ccpd_test/sass/menus.scss */
+.menu-top .has-menu img {
+  background-image: url("/static/images/sprites/core.png");
+  background-position: -4px -4px;
+  background-repeat: no-repeat;
+  height: 4px;
+  left: 5px;
+  position: relative;
+  top: -2px;
+  width: 7px;
+}
+
+/* line 101, I:/ccpd_test/sass/menus.scss */
+.menu-top .has-menu a:hover img {
+  background-image: url("/static/images/sprites/core.png");
+  background-position: -4px -23px;
+}

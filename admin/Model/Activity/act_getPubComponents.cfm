@@ -1,0 +1,3 @@
+<cfset qCompSortableMATERIALS = Application.Com.ActivityPubComponentGateway.getByViewAttributes(ActivityID=Attributes.ActivityID,ComponentIDin="3,4,9,13,14,10",SortFlag="Y",DeletedFlag="N",OrderBy="PC.Sort")>
+<cfset qCompSortableASSESS = Application.Com.ActivityPubComponentGateway.getByViewAttributes(ActivityID=Attributes.ActivityID,ComponentIDin="11,12,5",SortFlag="Y",DeletedFlag="N",OrderBy="PC.Sort")>
+<cfset qCompNonSort = Application.Com.ActivityPubComponentGateway.getByViewAttributes(ActivityID=Attributes.ActivityID,SortFlag="N",DeletedFlag="N",OrderBy="PC.DisplayName")>

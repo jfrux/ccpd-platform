@@ -1,0 +1,1 @@
+<cfset qActivityNotes = Application.Com.ActivityNoteGateway.getByViewAttributes(ActivityID=#Attributes.ActivityID#,DeletedFlag='N',OrderBy='an.Created DESC')>
