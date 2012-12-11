@@ -1,5 +1,8 @@
 <cfif cgi.script_name DOES NOT CONTAIN "/lms">
 	<cfswitch expression="#cgi.server_name#">
+		<cfcase value="v2.ccpd.uc.edu">
+			<cflocation url="http://v2.ccpd.uc.edu/lms/" addtoken="no" />
+		</cfcase>
 		<cfcase value="ccpd.uc.edu">
 			<cflocation url="http://ccpd.uc.edu/lms/" addtoken="no" />
 		</cfcase>
