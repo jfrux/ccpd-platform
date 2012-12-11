@@ -307,7 +307,9 @@ limitations under the License.
 				</cfif>
 				<cfoutput>#variables.myFusebox.renderTrace()#</cfoutput>
 			</cfif>
-			<cfthrow object="#caughtException#" />
+			<cfscript>
+				throw exception;
+			</cfscript>
 		</cfif>
 		
 		<!--- if we hit an error before starting the request, prevent the request from running --->

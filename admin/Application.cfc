@@ -17,6 +17,16 @@
 			<cferror template="/admin/error.cfm" type="request" mailto="rountrjf@ucmail.uc.edu">--->
 		</cfcase>
 
+
+		<!--- PRODUCTION --->
+		<cfcase value="localhost">
+			<cfset this.name = "ADMIN-LIVE-#namekey#" />
+			<cfset FUSEBOX_PARAMETERS.mode = "production" />
+			
+			<!---<cferror template="/admin/error.cfm" type="exception" mailto="rountrjf@ucmail.uc.edu">
+			<cferror template="/admin/error.cfm" type="request" mailto="rountrjf@ucmail.uc.edu">--->
+		</cfcase>
+
 		<!--- TEST --->
 		<cfcase value="test.ccpd.uc.edu">
 			<cfset this.name = "ADMIN-TEST-#namekey#" />
