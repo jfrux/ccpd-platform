@@ -1,6 +1,5 @@
 <cfsilent>
 <cfset REQUEST.RequestCommitted = false />
- 
 	<cftry>
 		<!--- Set the status code to internal server error. --->
 		<cfheader
@@ -15,8 +14,7 @@
 			/>
  
 		<!--- Catch any errors. --->
-		<cfcatch>
- 
+		<cfcatch>			
 			<!---
 				There was an error so flag the request as
 				already being committed.

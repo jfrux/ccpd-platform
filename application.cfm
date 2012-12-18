@@ -3,6 +3,9 @@
 		<cfcase value="v2.ccpd.uc.edu">
 			<cflocation url="http://v2.ccpd.uc.edu/lms/" addtoken="no" />
 		</cfcase>
+		<cfcase value="localhost">
+			<cflocation url="http://localhost:8888/lms/" addtoken="no" />
+		</cfcase>
 		<cfcase value="ccpd.uc.edu">
 			<cflocation url="http://ccpd.uc.edu/lms/" addtoken="no" />
 		</cfcase>

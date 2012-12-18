@@ -13,6 +13,10 @@
 			<cferror template="/lms/error.cfm" type="request" mailto="rountrjf@ucmail.uc.edu">--->
 		</cfcase>
 		
+		<cfcase value="v2.ccpd.uc.edu">
+			<cfset this.name = "LMS-LIVE-DFSDF" />
+		</cfcase>
+		
 		<cfcase value="www.ccpd.uc.edu">
 			<cflocation url="http://ccpd.uc.edu/lms/" addtoken="no" />
 		</cfcase>
