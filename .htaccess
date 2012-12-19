@@ -3,9 +3,6 @@ RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 
-#ADMIN
-RewriteRule ^admin/event/([^/]*)$ /admin/index.cfm?event=$1 [NC,QSA,L]
-
 #LMS
 RewriteRule ^lms/event/([^/]*)$ /lms/index.cfm?event=$1  [NC,QSA,L]
 
