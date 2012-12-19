@@ -181,9 +181,9 @@ bugSenderEmail="bugs@ccpd.uc.edu")>
 expandPath("/_java/Supa.jar"),
 expandPath("/_java/EncodingUtil.class")
 ]> --->
- 
+ <!--- 
 <cfset application.javaloader = createObject("component", "_com.javaloader.JavaLoader").init(javaPaths)>
-
+ --->
 <cfset Application.Email = CreateObject("component","#Application.Settings.Com#email").Init()>
 <cfset application.search = createObject("component","_com.typeahead.search").init(application.settings.dsn) />
 
