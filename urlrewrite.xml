@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+ <!DOCTYPE urlrewrite
+     PUBLIC "-//tuckey.org//DTD UrlRewrite 3.0//EN"
+     "http://tuckey.org/res/dtds/urlrewrite3.0.dtd">
+
+<urlrewrite use-query-string="true">
+  <rule match-type="wildcard">
+    <name>ADMIN Fusebox Events</name>
+    <note>
+    Pretty SEO Urls for Admin
+    </note>
+    <from>/admin/index.cfm/event/*</from>
+    <to last="true">/admin/index.cfm?event=$1</to>
+  </rule>
+  <rule match-type="wildcard">
+      <name>LMS Fusebox Events</name>
+      <note>
+      Pretty SEO Urls for Admin
+      </note>
+      <from>/lms/index.cfm/event/*</from>
+      <to last="true">/lms/index.cfm?event=$1</to>
+  </rule>
+</urlrewrite>

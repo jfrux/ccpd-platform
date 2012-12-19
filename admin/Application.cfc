@@ -6,7 +6,7 @@
 		
 	<!--- set application name based on the directory path --->
 	
-	<cfset namekey = "kdsjfk" />
+	<cfset namekey = "f32f23f23f" />
 	<cfswitch expression="#CGI.SERVER_NAME#">
 		<!--- PRODUCTION --->
 		<cfcase value="ccpd.uc.edu">

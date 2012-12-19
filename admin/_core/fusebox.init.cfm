@@ -20,7 +20,7 @@
 	<cfset myFusebox.setSelf("/myapp/start.cfm") />
 --->
 <cfset self = myFusebox.getSelf() />
-<cfset myself = "/admin/event/" />
+<cfset myself = "/admin/index.cfm/event/" />
 
 <cfset request.self = myFusebox.getSelf() />
 <cfset request.myself = myself />
