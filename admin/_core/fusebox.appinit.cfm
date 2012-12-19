@@ -177,10 +177,10 @@ bugSenderEmail="bugs@ccpd.uc.edu")>
 							password="05125586") />--->
 
 <!--- JAVA PATHS / LOADER --->
-<cfset javaPaths = [
+<!--- <cfset javaPaths = [
 expandPath("/_java/Supa.jar"),
 expandPath("/_java/EncodingUtil.class")
-]>
+]> --->
  
 <cfset application.javaloader = createObject("component", "_com.javaloader.JavaLoader").init(javaPaths)>
 
