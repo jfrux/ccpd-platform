@@ -15,8 +15,9 @@ background-position:bottom;
 clear: both;
 padding:15px 1px 1px 0;
 font-size:13px;
+z-index:10000;
 }
 
 .PageErrors { float:left; margin-right:4px; color:#CC0000; background-color:#FFDDDD; border:1px solid #C60000; padding:6px 9px;-moz-opacity:.90; filter:alpha(opacity=90); opacity:.90; }
 .PageMessages {  float:left; margin-right:4px; color:#009900; background-color:#DCFEDA; border:1px solid #028805; padding:6px 9px;-moz-opacity:.90; filter:alpha(opacity=90); opacity:.90; }
-.PageStandard {  width:100%;color:#FFF; background-image:url(../_images/StatusBar_Gray.gif); background-color:#CCC; padding:6px 9px; }
+.PageStandard {  width:100%;color:#FFF; background-image:url(/lms/_images/StatusBar_Gray.gif); background-color:#CCC; padding:6px 9px; }

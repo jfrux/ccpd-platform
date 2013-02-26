@@ -59,7 +59,7 @@
 		<cfcontent type="text/javascript" />
 		
         <cfset status.setStatus(false)>
-		<cfset status.setStatusMsg("Cannot access validate function for authentication information.")>
+		<cfset status.setStatusMsg("")>
         
         <cfset Status = Application.Auth.Validate(
 							FirstName=Arguments.FirstName,

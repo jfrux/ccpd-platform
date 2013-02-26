@@ -1,28 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE circuit>
-<!-- mAssessment -->
+<!-- Assessment Model -->
 <circuit access="internal">
-	<fuseaction name="getAssessTmpl">
-    	<include template="act_getAssessTmpl" />
+    <fuseaction name="getAssessment">
+    	<include template="act_getAssessment" />
     </fuseaction>
-
-	<fuseaction name="getDetail">
-		<include template="act_getDetail" />
-	</fuseaction>
-	
-	<fuseaction name="getQuestions">
-		<include template="act_getQuestions" />
-	</fuseaction>
-	
-	<fuseaction name="getQuestion">
-		<include template="act_getQuestion" />
-	</fuseaction>
-	
-	<fuseaction name="saveDetail">
-		<include template="act_saveDetail" />
-	</fuseaction>
-	
-	<fuseaction name="saveQuestion">
-		<include template="act_saveQuestion" />
-	</fuseaction>
+    
+    <fuseaction name="getAssessResult">
+    	<include template="act_getAssessResult" />
+    </fuseaction>
+    
+    <fuseaction name="getQuestions">
+    	<include template="act_getQuestions" />
+    </fuseaction>
+    
+    <fuseaction name="saveAssessment">
+    	<include template="act_saveAssessment" />
+    </fuseaction>
 </circuit>

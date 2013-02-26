@@ -1,101 +1,43 @@
-
 <cfoutput>
-<link href="/static/css/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
-<link href="/static/css/print.css" media="print" rel="stylesheet" type="text/css" />
-<!--[if lt IE 8]>
-  <link href="/stylesheets/ie.css" media="screen, projection" rel="stylesheet" type="text/css" />
-<![endif]-->
-<link rel="SHORTCUT ICON" href="/favicon.ico" type="image/x-icon" />
-<!---
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.js"></script>--->
+<link href="#Application.Settings.RootPath#/_styles/Main.css" rel="stylesheet" type="text/css" />
 
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.js"></script>
-<script type="text/javascript" src="/static/js/jquery-plugins/jquery-ui-1.8.9.min.js"></script>
-<script type="text/javascript" src="#Application.Settings.RootPath#/_scripts/jquery.maskedinput-1.1.3.pack.js"></script>
-<script type="text/javascript" src="#Application.Settings.RootPath#/_scripts/jquery.tmpl.js"></script>
-<script type="text/javascript" src="/static/js/jquery-plugins/jquery.hotkeys.js"></script>
-<script type="text/javascript" src="#Application.Settings.RootPath#/_scripts/jquery.dimensions.pack.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="/lms/_scripts/jquery.tokeninput.js"></script>
+
+<script type="text/javascript" src="#Application.Settings.RootPath#/_scripts/jquery.scrollTo-min.js"></script>
+<script type="text/javascript" src="#Application.Settings.RootPath#/_scripts/firebugx.js"></script>
+<script type="text/javascript" src="#Application.Settings.RootPath#/_scripts/flowplayer-3.0.6.min.js"></script>
 <script type="text/javascript" src="#Application.Settings.RootPath#/_scripts/Global.js"></script>
+<script type="text/javascript" src="#Application.Settings.RootPath#/_scripts/jquery.autocomplete.pack.js"></script>
 <script type="text/javascript" src="#Application.Settings.RootPath#/_scripts/jquery.blockUI.js"></script>
-<script type="text/javascript" src="#Application.Settings.RootPath#/_scripts/jquery.selectboxes.pack.js"></script><!---
-<script type="text/javascript" src="#Application.Settings.RootPath#/_scripts/jquery-ui-1.7.custom.min.js"></script>--->
-<script type="text/javascript" src="#Application.Settings.RootPath#/_scripts/jquery.tools.min.js"></script>
-<!---<script type="text/javascript" src="#Application.Settings.RootPath#/_scripts/jquery.timepickr.min.js"></script>
+<script type="text/javascript" src="#Application.Settings.RootPath#/_scripts/jquery.cfjs.packed.js"></script>
+<script type="text/javascript" src="#Application.Settings.RootPath#/_scripts/jquery.dimensions.pack.js"></script>
+<script type="text/javascript" src="#Application.Settings.RootPath#/_scripts/jquery.dropshadow.js"></script>
+<script type="text/javascript" src="#Application.Settings.RootPath#/_scripts/jquery.expose-1.0.0.js"></script>
+<script type="text/javascript" src="#Application.Settings.RootPath#/_scripts/jquery.form.js"></script>
+<script type="text/javascript" src="#Application.Settings.RootPath#/_scripts/jquery.maskedinput-1.1.3.pack.js"></script>
+<script type="text/javascript" src="#Application.Settings.RootPath#/_scripts/jquery.overlay-1.0.1.js"></script>
+<script type="text/javascript" src="#Application.Settings.RootPath#/_scripts/jquery.selectboxes.pack.js"></script>
+<script type="text/javascript" src="#Application.Settings.RootPath#/_scripts/jquery.timepicker.js"></script>
 <script type="text/javascript" src="#Application.Settings.RootPath#/_scripts/jquery.timers.js"></script>
-<script type="text/javascript" src="#Application.Settings.RootPath#/_scripts/jquery.tooltip.js"></script>--->
-<script type="text/javascript" src="/static/js/jquery-plugins/jquery.cfjs.packed.js"></script>
-<script type="text/javascript" src="/static/js/jquery-plugins/jquery.event.drag.js"></script>
-<script type="text/javascript" src="/static/js/jquery-plugins/jquery.event.drop.js"></script>
-<script type="text/javascript" src="/static/js/jquery-plugins/jquery.form.js"></script>
-<script type="text/javascript" src="/static/js/jquery-plugins/jquery.jgrowl.js"></script>
-<script type="text/javascript" src="/static/js/jquery-plugins/jquery.jLog.min.js"></script>
-<script type="text/javascript" src="/static/js/jquery-plugins/jquery.maskedinput-1.1.3.pack.js"></script>
-<script type="text/javascript" src="/static/js/jquery-plugins/jquery.scrollTo.js"></script>
-<script type="text/javascript" src="/static/js/jquery-plugins/jquery.tipsy.js"></script>
-<script type="text/javascript" src="/static/js/jquery-plugins/jquery.tmpl.min.js"></script>
-<script type="text/javascript" src="/static/js/jquery-plugins/jquery.translate.js"></script>
-<script type="text/javascript" src="/static/js/jquery-plugins/jquery.watermark.js"></script>
-<script type="text/javascript" src="/static/js/lib/uiTypeahead.js"></script>
-<script type="text/javascript" src="/static/js/lib/uiTokenizer.js"></script>
-<script type="text/javascript" src="/static/js/json2.js"></script>
-<script type="text/javascript" src="/static/js/global.js"></script>
-<script type="text/javascript" src="#Application.Settings.RootPath#/_scripts/tiny_mce/tiny_mce.js"></script>
-<script type="text/javascript" src="#Application.Settings.RootPath#/_scripts/jquery.periodicalupdater.js"></script>
-<script type="text/javascript" src="#Application.Settings.RootPath#/_scripts/encoder.js"></script>
-<script type="text/javascript" src="#Application.Settings.RootPath#/_scripts/history.js"></script>
+<script type="text/javascript" src="#Application.Settings.RootPath#/_scripts/jquery.tooltip.js"></script>
+<script type="text/javascript" src="#Application.Settings.RootPath#/_scripts/jquery.tmpl.js"></script>
+<script type="text/javascript" src="#Application.Settings.RootPath#/_scripts/jquery-ui-1.6rc6.min.js"></script>
+<script type="text/javascript" src="#Application.Settings.RootPath#/_scripts/Masks.js"></script>
+
+<script type="text/javascript" src="#Application.Settings.RootPath#/_scripts/jquery.rating.js"></script>
+<script type="text/javascript" src="#Application.Settings.RootPath#/_scripts/jquery.MetaData.js"></script>
 <script type="text/javascript" src="/static/js/bugLogClient.js"></script>
-<link href="#Application.Settings.RootPath#/_styles/StatusBar<cfif Request.Browser CONTAINS "MSIE">IE</cfif>.css?v=1" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" href="/static/css/jquery-css/ui-lightness/jquery-ui-1.8.9.custom.css" media="screen" />
-<link rel="stylesheet" href="/static/css/ceaui/tokenizer.css" media="screen" />
+<link href="#Application.Settings.RootPath#/_styles/StatusBar<cfif Request.Browser CONTAINS "MSIE">IE</cfif>.css" rel="stylesheet" type="text/css" />
+<link href="#Application.Settings.RootPath#/_styles/Assessment.css" rel="stylesheet" type="text/css" />
+<link href="#Application.Settings.RootPath#/_styles/flowplayer.css" rel="stylesheet" type="text/css" />
+<link href="#Application.Settings.RootPath#/_styles/Overlay.css" rel="stylesheet" type="text/css" />
+<link href="#Application.Settings.RootPath#/_styles/jquery.rating.css" rel="stylesheet" type="text/css" />
 
-<link href="#Application.Settings.RootPath#/_styles/overlay.css?v=2" rel="stylesheet" type="text/css" />
-<!---<script type="text/javascript" src="#Application.Settings.RootPath#/_scripts/Masks.js"></script>--->
-
-		
-<script>
-	<cfif session.loggedIn>
-	var user = {
-		firstName: '#session.person.getFirstName()#',
-		lastName: '#session.person.getLastName()#',
-		email: '#session.person.getEmail()#'
-	};
-	</cfif>
-	var popSupport = '';
-	function popupSupport() {
-		var w = 500;
-		var h = 600;
-		var left = (screen.width/2)-(w/2);
-		var top = (screen.height/2)-(h/2);
-		var extraData = '&firstname=' + user.firstName + '&lastname=' + user.lastName + '&email1=' + user.email + '&email2=' + user.email + '&supporttype=ADMIN';
-		popSupport = window.open('http://ccpd.uc.edu/lms/support?Display=popup' + extraData, 'support', 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
-	}
-	$(document).ready(function() {
-		$(document).bind('keydown', 'space', function (evt){
-			$('.header-search .ui-autocomplete-input').focus();
-
-
-			return false; 
-		});
-			
-		$(".supportLink").click(function() {
-			popupSupport();
-			return false;
-		});
-	});
-	</script>
 <script type="text/javascript">
 	BugLog.listener = "#Application.settings.bugLogServer#/listeners/bugLogListenerREST.cfm";
-	BugLog.appName = "#Application.settings.appname#";
+	BugLog.appName = "CCPD_LMS_PROD";
 
-	
-// Method 1: Within your own error handler (full stacktrace)
-	// try {
-	// 	.... code that throws an error ...			
-	// } catch(e) {
-		
-	// }
-	
-// Method 2:  Within a global error handler (no stacktrace)
 	window.onerror = function(message, file, line) {
 	  	BugLog.notifyService({
 				  message: message,
@@ -103,14 +45,8 @@
 				  severity:"ERROR"
 		  });
 		  return true;
-	};		
-
-var loggedIn = false;
+	};	
 var StatusCount = 0;
-var currPersonId = 0;
-<cfif structKeyExists(session,'personid')>
-currPersonId = <cfif isDefined("session.personId") AND len(trim(session.personId)) GT 0>#session.personid#<cfelse>0</cfif>;
-</cfif>
 
 function addMessage(sStatus,nFadeIn,nFadeTo,nFadeOut) {
 	$("##StatusBar").show();
@@ -127,10 +63,7 @@ function addError(sStatus,nFadeIn,nFadeTo,nFadeOut) {
 	$("##StatusBox" + StatusCount).show("slide",{direction: "down"},500).fadeTo(nFadeTo,.9).hide("slide",{direction: "down"},nFadeOut);
 }
 
-sMyself = "#Myself#";
-sRootPath = "#Application.Settings.RootPath#";
-
-jQuery().ready(function(){
+$(document).ready(function() {
 	$("##ajax-issue-button").click(function() {
 		$("##ajax-issue").hide();
 	});
@@ -164,9 +97,9 @@ jQuery().ready(function(){
 
 			$("##ajax-issue").show();
 		}
-	});  
-	  
-	$(".BreadcrumbIcon").attr("src","#Application.Settings.RootPath#/admin/_images/icons/bullet_go#Request.NavItem#.png");
+	}); 
+
+	$(".BreadcrumbIcon").attr("src","/lms/_images/bullet_go#Request.NavItem#.gif");
 	$("##PageStandard").hide();
 	/* SESSION TIMEOUT ALERT BOX */
 	var divObject = $('##SessionTimeout')[0]; 
@@ -176,48 +109,24 @@ jQuery().ready(function(){
 		window.location='#myself#Main.Login';
 	}); 
 	
-	function sessionTimeout() {
+	<!---function sessionTimeout() {
 		$.extend($.blockUI.defaults.overlayCSS, { backgroundColor: '##000' });
 		$.blockUI({message: divObject, width: '275px' });
 	}
 	<cfif NOT isDefined("Client.Login") OR Client.Login EQ "">
 	window.setTimeout(sessionTimeout, 3600000);
-	</cfif>
+	</cfif>--->
 	
 	 LoadDocWidth = $(document).width();
-	
-<cfswitch expression="#Request.NavItem#">
-	<cfcase value="1">
-		$("##HeaderTab1").removeClass("HeaderTab");
-		$("##HeaderTab1").addClass("HeaderTabOn");
-		
-	</cfcase>
-	<cfcase value="2">
-		$("##HeaderTab2").removeClass("HeaderTab");
-		$("##HeaderTab2").addClass("HeaderTabOn");
-	</cfcase>
-	<cfcase value="3">
-		$("##HeaderTab3").removeClass("HeaderTab");
-		$("##HeaderTab3").addClass("HeaderTabOn");
-	</cfcase>
-	<cfcase value="4">
-		$("##HeaderTab4").removeClass("HeaderTab");
-		$("##HeaderTab4").addClass("HeaderTabOn");
-	</cfcase>
-	<cfcase value="5">
-		$("##HeaderTab5").removeClass("HeaderTab");
-		$("##HeaderTab5").addClass("HeaderTabOn");
-	</cfcase>
-	<cfcase value="6">
-		$("##HeaderTab6").removeClass("HeaderTab");
-		$("##HeaderTab6").addClass("HeaderTabOn");
-	</cfcase>
-</cfswitch>
 
 	<cfparam name="Attributes.Message" default="">
 	<cfif Attributes.Message NEQ "">
 		<cfset Request.Status.Messages = Attributes.Message>
 	</cfif>
+
+	sMyself = "#Myself#";
+	sRootPath = "#Application.Settings.RootPath#";
+	sWebURL = "#Application.Settings.WebURL#";
 	
 	
 	<cfif Request.Status.Errors NEQ "">
@@ -242,54 +151,27 @@ jQuery().ready(function(){
 	
 	
 	$(".PageStandard").hide();
+	
+	$('input.StarRating').rating({
+		callback: function(value, link){
+			var nActivity = $.ListGetAt($(this).attr('name'),3,'-');
+			if(value != '') {
+				$.post("/lms/_com/VoteAjax.cfc",{
+					method: 'VoteSave',
+					returnFormat: 'plain',
+					ActivityID: nActivity,
+					VoteValue: value
+				},function(data) {
+					
+				});
+			}
+		}
+	}); 
+	<cfif NOT Session.LoggedIn>
+	$('input.StarRating').rating('disable'); 
+	
+	
+	</cfif>
 });
 </script>
 </cfoutput>
-<script>
-$(document).ready(function() {
-	$("#q").uiTypeahead({
-		watermarkText:'Type to search...',
-		queryParam:'q',
-		size:'full',
-		bucketed:'true',
-		allowViewMore:true,
-		useExistingInput:true,
-		ajaxSearchURL:"/admin/_com/ajax/typeahead.cfc",
-		ajaxSearchType:"GET",
-		ajaxSearchParams:{
-			method:'search',
-			max:4
-		},
-		allowAdd:false,
-		clearOnSelect:true,
-		onSelect:function(item) {
-			if(item.link) {
-			window.location=item.link;
-			}
-		}
-	});
-	
-	$("#navSearch .calltoaction").live("click",function() {
-		$(".gblSearchBtn").click();
-	});
-	
-	$("#navSearch").submit(function() {
-		var $gblInput = $("#navSearch").find('.ui-autocomplete-input');
-		var gblQuery = $gblInput.val();
-		
-		if(gblQuery.length) {
-			return true;
-		} else {
-			return false;
-		}
-	});
-	
-	$(".gblSearchBtn").click(function() {
-		var qVal = $("#navSearch").find('.ui-autocomplete-input').val();
-		var $qField = $("#navSearch").find("#q");
-		
-		$qField.val(qVal);
-		
-	});
-});
-</script>

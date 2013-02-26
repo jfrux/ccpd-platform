@@ -17,7 +17,7 @@ div.MultiFormRight_LinkList a:hover { display:block; text-decoration:underline; 
 td.MultiFormList a:link { padding:2px 5px; display:block; text-decoration:none; color:#000; border:1px solid #FFF; }
 td.MultiFormList a:active { padding:2px 5px; display:block; text-decoration:none; color:#000; border:1px solid #FFF; }
 td.MultiFormList a:visited { padding:2px 5px; display:block; text-decoration:none; color:#000; border:1px solid #FFF; }
-td.MultiFormList a:hover { padding:2px 5px; display:block; text-decoration:none; color:#000; border:1px solid #bad0eb; background-color:#EEE; background-image:url(../_images/DataGrid_HeaderOn.gif); }
+td.MultiFormList a:hover { padding:2px 5px; display:block; text-decoration:none; color:#000; border:1px solid #bad0eb; background-color:#EEE; background-image:url(/lms/_images/DataGrid_HeaderOn.gif); }
 
 td.MultiFormContent { 
 padding:0px 0px 4px 0px;

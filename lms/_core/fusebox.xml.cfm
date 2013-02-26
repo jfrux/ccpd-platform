@@ -17,48 +17,27 @@
 	-->
 	<circuits>
 		<!-- Model -->
-		<circuit alias="mFile" path="../Model/File/" parent="" />
-		<circuit alias="mImage" path="../Model/Image/" parent="" />
-		<circuit alias="mMain" path="../Model/" parent="" />
-		<circuit alias="mAjax" path="../Model/Ajax/" parent="" />
-		<circuit alias="mAssessment" path="../Model/Assessment/" parent="" />
-		<circuit alias="mAdmin" path="../Model/Admin/" parent="" />
 		<circuit alias="mActivity" path="../Model/Activity/" parent="" />
-        <circuit alias="mPage" path="../Model/Page/" parent="" />
-        <circuit alias="mPerson" path="../Model/Person/" parent="" />
-		<circuit alias="mProcess" path="../Model/Process/" parent="" />
-		<circuit alias="mPublic" path="../Model/Public/" parent="" />
-		<circuit alias="mReport" path="../Model/Report/" parent="" />
-        <circuit alias="mSupport" path="../Model/Support/" parent="" />
+		<circuit alias="mAssessment" path="../Model/Assessment/" parent="" />
+		<circuit alias="mFile" path="../Model/File/" parent="" />
+		<circuit alias="mPage" path="../Model/Page/" parent="" />
+		<circuit alias="mMain" path="../Model/" parent="" />
+		<circuit alias="mMember" path="../Model/Member/" parent="" />
 		
 		<!-- View -->
-		<circuit alias="vFile" path="../View/File/" parent="" />
-		<circuit alias="vImage" path="../View/Image/" parent="" />
-		<circuit alias="vMain" path="../View/" parent="" />
+		<circuit alias="vActivity" path="../View/Activity/" parent="" />
 		<circuit alias="vAssessment" path="../View/Assessment/" parent="" />
-		<circuit alias="vAjax" path="../View/Ajax/" parent="" />
-        <circuit alias="vAdmin" path="../View/Admin/" parent="" />
-        <circuit alias="vActivity" path="../View/Activity/" parent="" />
+		<circuit alias="vFile" path="../View/File/" parent="" />
 		<circuit alias="vLayout" path="../View/Layout/" parent="" />
-        <circuit alias="vPerson" path="../View/Person/" parent="" />
-		<circuit alias="vProcess" path="../View/Process/" parent="" />
-		<circuit alias="vPublic" path="../View/Public/" parent="" />
-		<circuit alias="vReport" path="../View/Report/" parent="" />
-        <circuit alias="vSupport" path="../View/Support/" parent="" />
+		<circuit alias="vMain" path="../View/" parent="" />
+		<circuit alias="vMember" path="../View/Member/" parent="" />
 		
 		<!-- Controller -->
-		<circuit alias="File" path="../Controller/File/" relative="true" />
-		<circuit alias="Image" path="../Controller/Image/" relative="true" />
-		<circuit alias="Main" path="../Controller/" relative="true" />
-		<circuit alias="Assessment" path="../Controller/Assessment/" relative="true" />
-		<circuit alias="Ajax" path="../Controller/Ajax/" relative="true" />
-		<circuit alias="Admin" path="../Controller/Admin/" relative="true" />
 		<circuit alias="Activity" path="../Controller/Activity/" relative="true" />
-		<circuit alias="Person" path="../Controller/Person/" relative="true" />
-		<circuit alias="Process" path="../Controller/Process/" relative="true" />
-		<circuit alias="Public" path="../Controller/Public/" relative="true" />
-		<circuit alias="Report" path="../Controller/Report/" relative="true" />
-		<circuit alias="Support" path="../Controller/Support/" relative="true" />
+		<circuit alias="Assessment" path="../Controller/Assessment/" relative="true" />
+		<circuit alias="File" path="../Controller/File/" relative="true" />
+		<circuit alias="Main" path="../Controller/" relative="true" />
+		<circuit alias="Member" path="../Controller/Member/" relative="true" />
 	</circuits>
 
 	<!--
@@ -70,6 +49,7 @@
 	<parameters>
 		<parameter name="defaultFuseaction" value="Main.Welcome" />
 		<!-- you may want to change this to development-full-load mode: -->
+		<parameter name="mode" value="development-circuit-load" />
 		<parameter name="conditionalParse" value="true" />
 		<!-- change this to something more secure: -->
 		<parameter name="password" value="05125586" />

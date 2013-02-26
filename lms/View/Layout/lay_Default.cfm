@@ -1,168 +1,244 @@
-<cfparam name="Request.Page.Title" default="Untitled Page">
+<cfparam name="Request.Page.Title" default="">
 <cfparam name="Request.Page.Body" default="No Body Found">
+<cfparam name="Request.Page.Desc" default="">
 <cfparam name="Request.Page.Breadcrumbs" default="">
-<cfoutput>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>#Request.Page.Title# - #Application.Settings.AppName#</title>
+	<cfoutput>
+	<meta name="keywords" content="" />
+	<meta name="description" content="#stripHTML(Request.Page.Desc)#" />
+	<title><cfif Request.Page.Title NEQ "">#Request.Page.Title# - </cfif>#Application.Settings.AppName#</title>
+	</cfoutput>
 	<cfinclude template="dsp_HeadGlobal.cfm" />
+	<script>
+	$(document).ready(function() {
+		var CompatibilityMsg = '';
+		
+		$('.TopLoginField').keydown(function(e){
+			console.log(e.keyCode);
+			if (e.keyCode == 13) {
+				document.frmTopLogin.submit();
+				return false;
+			}
+		});
+		$("#LoginLink").click(function() {
+			$("#myController").hide().css('top','470px').fadeTo(0,1).fadeIn(100);
+			$("#LoginForm").slideDown(500);
+			$("#LoginLinkText").hide();
+			$("#LoginCancelText").show();
+			$("#LoginLine").css("color","#434343");
+			$("#LoginLine").fadeTo("slow", 1, function() {
+				$('#username')[0].focus();
+			});
+			return false;
+			
+		});
+		$("#LoginCancel").click(function() {
+			$("#myController").hide().css('top','320px').fadeTo(0,1).fadeIn(100);
+			$("#LoginForm").slideUp(500);
+			$("#LoginCancelText").hide();
+			$("#LoginLinkText").show();
+			$("#LoginLine").css("color","#FFF");
+			return false;
+		});
+		
+		if ((screen.width<1024) && (screen.height<768))
+		{
+			CompatibilityMsg = CompatibilityMsg + '<li>Your monitor screen resolution needs to be at least 1024x768. <a href=\"/support/kb/9\" target=\"_blank\">Learn How</a></li>';
+		}
+		
+		if (CompatibilityMsg) {
+			$("#CompatibilityAny").show();
+			$("#CompatibilityAny ul").html(CompatibilityMsg);
+		}
+	});
+	</script>
+	
+	<script type="text/javascript">
+	
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-10861484-1']);
+	  _gaq.push(['_trackPageview']);
+	
+	  (function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+	
+	</script>
 </head>
 
-<body class="tabs tab#Request.NavItem#">
-	<div id="container">
-		<div id="MainContainer">
-			<style>
-			##header { position:relative; }
-			.getHelpLink {     
-			-moz-border-radius: 5px 5px 5px 5px;
-			background-color: ##EEEEEE;
-			border: 1px solid ##FFFFFF;
-			color: ##555555 !important;
-			display: block;
-			line-height: 22px;
-			padding: 0 5px;
-			position: absolute;
-			right: 1px;
-			text-decoration: none;
-			top: 33px;
-			z-index: 100;
-			}
-			.getHelpLink:hover { background-color:##FFF;
-			border: 1px solid ##FFF;
-			color: ##000 !important; }
-			.getHelpLink i {
-				background-image: url("/admin/_images/icons/support.png");
-				display: block;
-				float: left;
-				height: 16px;
-				margin-right: 4px;
-				margin-top: 4px;
-				width: 16px;
-			}
-			<cfif Session.Person.getPersonID() NEQ 169841>
-			.joshonly {
-			 display:none;
-			}
-			</cfif>
-			</style>
-			<div class="header-bg"></div>
-			<div id="header" class="clearfix">
-				
-				<div class="header-search">
-					<form id="navSearch" name="navSearch" method="get" action="#myself#main.search">
-					<span class="uiSearchInput ">
-						<span class="fieldWrapper">
-							<input id="q" name="q" class="inputtext hide" type="text"><div style="width: 309px;" class="uiTypeahead imageTypeahead uiClearableTypeahead"><div class="wrap"><label class="clear uiCloseButton"><input title="Remove" type="button"></label><img class="photo img"></div><div class="uiTypeaheadView clearfix"><ul style="z-index: 1; top: 0px; left: 0px; display: none;" aria-activedescendant="ui-active-menuitem" role="listbox" class="ui-autocomplete ui-menu ui-widget ui-widget-content ui-corner-all"></ul></div></div>
-						<button title="Search" type="submit" class="gblSearchBtn"><span class="hide">Search</span></button>
-						</span>
-					</span>
-					</form>
-				</div>
+<body>
+<cfoutput>
+<div id="MainContainer">
+	<noscript>
+	<div class="Compatibility" id="CompatibilityJS">
+		<div class="CompatibilityIcon"><img src="/lms/_images/Compatibility_Icon.gif" /></div>
+		<div class="CompatibilityInfo"><h4>One or more possible compatibility issues with our website were detected...</h4>
+		<ul class="CompatibilityList">
+			<li>Your browser has Javascript DISABLED. Please enable it to continue utilizing our site. <a href="/support/kb/12" target="_blank">Learn How</a></li>
+		</ul>
+		</div>
+	</div>
+	</noscript>
+	<div class="Compatibility" id="CompatibilityAny" style="display:none;">
+		<div class="CompatibilityIcon"><img src="/lms/_images/Compatibility_Icon.gif" /></div>
+		<div class="CompatibilityInfo"><h4>One or more possible compatibility issues with our website were detected...</h4>
+		<ul class="CompatibilityList">
 			
-				<div id="BottomBar">
-					<!---<a href="http://ccpd.uc.edu/lms/support" class="BottomLink supportLink getHelpLink hide"><i></i>GET HELP!</a>--->
-					<div id="BottomBarTitle"><a href="#myself#Main.Welcome">CCPD</a><cfif Session.Account.getAuthorityID() EQ 3></cfif></div>
-					<!---<div><div class="header-search joshonly">
-							<form action="/search/" method="get" name="navSearch" id="navSearch">
-							<span class="uiSearchInput ">
-								<span class="fieldWrapper">
-									<input type="text" class="inputtext hide" id="q" style=""><div class="uiTypeahead imageTypeahead uiClearableTypeahead" style="width: 309px;"><div class="wrap"><label class="clear uiCloseButton"><input type="button" title="Remove"></label><img class="photo img"><input type="text" autocomplete="off" spellcheck="false" class="inputtext textInput ui-autocomplete-input ui-autocomplete-loading" style="width: 309px;" role="textbox" aria-autocomplete="list" aria-haspopup="true" placeholder="Type to search..."></div><div class="uiTypeaheadView clearfix"><ul class="ui-autocomplete ui-menu ui-widget ui-widget-content ui-corner-all" role="listbox" aria-activedescendant="ui-active-menuitem" style="z-index: 1; top: 0px; left: 0px; display: none;"></ul></div></div>
-									<button type="submit" title="Search"><span class="hide">Search</span></button>
-								</span>
-							</span>
-							</form>
-						</div>
-					</div>--->
-					<div id="BottomBarLinks" class="menu menu-top">
-						<ul>
-							<li class="menu-item"><a id="HeaderTab1" href="#myself#main.welcome">Home</a></li>
-							<li class="menu-item"><a id="HeaderTab2" href="#myself#activity.home">Activities</a></li>
-							<li class="menu-item"><a id="HeaderTab3" href="#myself#person.home">People</a></li>
-							<li class="menu-item"><a id="HeaderTab4" href="#myself#report.home">Reports</a></li>
-							<li class="menu-item">
-								<span class="vr"></span>							</li>
-							<li class="menu-item"><a href="#myself#admin.home">Setup</a></li>
-							<li class="menu-item"><a href="#myself#support.home">Help</a></li>
-							<li class="menu-item">
-								<span class="vr"></span>							</li>
-							<li class="menu-item"><a href="#myself#Main.doLogout" class="BottomLink">Logout</a></li>
-							<!---<cfif Session.Account.getAuthorityID() EQ 3>
-							<li class="menu-item"><a href="#myself##Attributes.Fuseaction#?#CGI.QUERY_STRING#<cfif NOT isDefined("Attributes.Fusebox.Load")>&fusebox.load=1&fusebox.password=05125586</cfif>" class="BottomLink">RELOAD</a></li>
-							</cfif>--->
-						</ul>
-					</div>
-					
-					
-				</div>
-				<div id="HeaderNav" class="clearfix hide">
-					<a href="#myself#main.welcome" id="HeaderTab1" class="HeaderTab">Dashboard</a><img src="#Application.Settings.RootPath#/_images/Header_Separator.gif" />
-					<a href="#myself#activity.home" id="HeaderTab2" class="HeaderTab">Activities</a><img src="#Application.Settings.RootPath#/_images/Header_Separator.gif" />
-					<a href="#myself#person.home" id="HeaderTab3" class="HeaderTab">People</a><img src="#Application.Settings.RootPath#/_images/Header_Separator.gif" />
-					<a href="#myself#report.home" id="HeaderTab4" class="HeaderTab">Reporting</a><img src="#Application.Settings.RootPath#/_images/Header_Separator.gif" />	
-					<a href="#myself#admin.home" id="HeaderTab5" class="HeaderTab">Administration</a><img src="#Application.Settings.RootPath#/_images/Header_Separator.gif" />
-					<a href="#myself#support.home" id="HeaderTab6" class="HeaderTab">Support</a><img src="#Application.Settings.RootPath#/_images/Header_Separator.gif" />
-					</div>
-					<cfif Request.NavItem GT 0>
-					<div id="HeaderSubNav" class="HeaderSubNav hide">
-					<cfswitch expression="#Request.NavItem#">
-						<cfcase value="1">
-								<a href="javascript:void(0);">&nbsp;</a>
-						</cfcase>
-						<cfcase value="2">
-								<a href="#myself#activity.create">Create Activity</a><a href="#myself#activity.home">Search</a>
-						</cfcase>
-						<cfcase value="3">
-								<a href="#myself#person.create">Create Person</a><a href="#myself#person.home">Search</a>
-						</cfcase>
-						<cfcase value="4">
-								<a href="javascript:void(0);">&nbsp;</a>
-						</cfcase>
-						<cfcase value="5">
-								<a href="javascript:void(0);">&nbsp;</a><!---<a href="#myself#process.home">Processes &amp; Queues</a><a href="#myself#admin.comments">Comments</a>--->
-						</cfcase>
-						<cfcase value="6">
-								<a href="javascript:void(0);" class="supportLink">New Ticket</a><!---<a href="#myself#process.home">Processes &amp; Queues</a><a href="#myself#admin.comments">Comments</a>--->
-						</cfcase>
-					</cfswitch>
-						<div style="clear:both;"></div>
-					</div>
-				</cfif>
-				<cfif Request.Page.Breadcrumbs NEQ ""><div id="Breadcrumbs">#Request.Page.Breadcrumbs#<div style="clear:both;"></div></div></cfif>
-			</div>
-			<div id="BodyWrapper">
-				<div id="Content">
-					#Request.Page.Body#
-				</div>
-			</div>
-			<div id="SessionTimeout" style="display:none; padding:5px; cursor: default;text-align:center;"> 
-			   <p style="font-size:14px;"><strong>SESSION ENDED</strong></p>
-				<p>Your session has expired, you will now be redirected to Login.</p>
-				<input type="button" id="SessionOkay" value="Okay" style="width:50px;" /> 
-			</div>
-			<div id="question232" style="display:none; padding:5px; cursor: default;text-align:center;"> 
-			   <p style="font-size:14px;"><strong>You have unsaved changes...</strong></p>
-				<p>Are you sure you wish to navigate away from this page?</p>
-				<input type="button" id="yes" value="Yes" style="width:50px;" /> 
-				<input type="button" id="no" value="No" style="width:50px;" /> 
-			</div>
+		</ul>
 		</div>
-		<div id="StatusBar">
-			<div style="display:none;" class="PageStandard" id="StatusBox0">
-				
-			</div>
+	</div>
+	<cfif Session.LoggedIn>
+	<div id="LoginLine"><div class="widthlimiter">Welcome, #Session.Person.getFirstName()#<!--(#Session.PersonID#)-->!  <a href="#myself#Main.doLogout">Sign-out</a></div></div>
+	<cfelse>
+	<script>
+	
+	</script>
+	<div id="LoginLine">
+	<div class="widthlimiter">Already have an account? <span id="LoginLinkText"><a href="#Application.Settings.RootPath#/login" id="LoginLink">Sign-in</a> to get started.</span><span id="LoginCancelText" style="display:none;"><a href="javascript:void(0);" id="LoginCancel">Cancel</a> to get started.</span></div></div>
+	<div id="LoginForm" style="display:none;">
+		<form action="#myself#Main.doLogin" method="post" name="frmTopLogin">
+		<table width="700" cellspacing="1" cellpadding="3" border="0" align="center">
+			<tr>
+				<td width="350">
+				<h3 style="margin:0px; font-size:18px;">Sign-in</h3>
+				<p>
+				<strong>Simply enter your Account ID and Password to begin taking courses.</strong><br />
+
+				<br />
+				Don't have an account?<br />
+				<a href="#myself#Main.Register">Sign up now &raquo;</a>
+				</p>
+				</td>
+				<td width="489">
+					<label for="username" style="display:block; font-weight:bold; padding:4px 0px;">Email</label>
+
+					<input type="text" name="Email" id="Email" class="TopLoginField" />
+					
+					<label for="password" style="display:block; font-weight:bold; padding:4px 0px;">Password</label>
+					<input type="password" name="password" id="password" class="TopLoginField" />
+					<a href="#myself#Main.ForgotPW" style="font-size:10px;">Forgot your password?</a><br />
+					<!---<input name="RememberMe" type="checkbox" value="1" checked /> Remember me--->
+					<input type="hidden" name="Submitted" value="1" />
+					<div style="padding:3px 0px;"><input type="submit" value="SIGN-IN" name="Submit" /></div>
+				</td>
+			</tr>
+
+		</table>
+		</form>
+	</div>
+	</cfif>
+	
+	<div id="Header">
+		<div class="widthlimiter">
+			<div id="HeaderLogo"><a href="/"><img src="/lms/_images/Header_CCPD.gif" border="0" alt="University of Cincinnati UC Center for Continuous Professional Development CCPD CE" /></a></div>
+			<div id="HeaderMiddle"><img src="/lms/_images/Header_Middle.gif" alt="Continuing Education for Medicine, Nursing, Pharmacy, and more. Cincinnati, Ohio" /></div>
+			<div id="HeaderRight"><a href="http://www.uc.edu/" target="_blank"><img src="/lms/_images/Header_UC.gif" alt="University of Cincinnati" border="0" /></a></div>
 		</div>
-		
-		
-		<div class="jclock"></div>
+	</div>
+	<div id="HeaderNav">
+		<div class="widthlimiter">
+		<cfif Session.LoggedIn><a href="#Application.Settings.RootPath#/home">My CCPD</a><a href="#Application.Settings.RootPath#/browse">Browse Activities</a><a href="#Application.Settings.RootPath#/transcript">My Transcript</a><a href="#Application.Settings.RootPath#/preferences">My Preferences</a>
+		<cfelse>
+		<a href="/">Welcome</a><a href="#Application.Settings.RootPath#/about">What is this?</a><a href="#Application.Settings.RootPath#/browse">Browse Activities</a><cfif NOT isDefined("Session.PersonID") OR isDefined("Session.PersonID") AND Session.PersonID EQ ""><a href="#Application.Settings.RootPath#/signup">Sign-up</a></cfif>
+		</cfif>
+		<a href="http://ccpd.uc.edu/support">Support</a>
+		</div>
+	</div>
+	<cfif Request.Page.Breadcrumbs NEQ ""><div id="Breadcrumbs"></div>
+	</cfif>
+	
+	<div id="Content">
+		<div class="widthlimiter">
+		#Request.Page.Body#		</div>
 	</div>
 	
-	<div id="ajax-issue">
-		<div id="ajax-issue-title"></div>
-		<div id="ajax-issue-details"></div>
-		<div id="ajax-issue-buttons"><input type="button" name="ajax-issue-button" id="ajax-issue-button" value="Okay" class="button" /></div>
+	<div id="Footer">
+		<div class="widthlimiter">
+		<div id="FooterCopy">Copyright &copy;#Year(now())# CCPD. All Rights Reserved.</div>
+		<div id="FooterLinks"><a href="#myself#Main.Welcome">Welcome</a><a href="#Application.Settings.RootPath#/about">What is this?</a><a href="#Application.Settings.RootPath#/browse">Browse Activities</a><a href="#Application.Settings.RootPath#/signup">Sign-up</a><a href="#Application.Settings.RootPath#/support">Support</a></div>
+		</div>
 	</div>
+	<div id="SessionTimeout" style="display:none; padding:5px; cursor: default;text-align:center;"> 
+	   <p style="font-size:14px;"><strong>SESSION ENDED</strong></p>
+		<p>Your session has expired, you will now be redirected to Login.</p>
+		<input type="button" id="SessionOkay" value="Okay" style="width:50px;" /> 
+	</div>
+	<div id="question232" style="display:none; padding:5px; cursor: default;text-align:center;"> 
+       <p style="font-size:14px;"><strong>You have unsaved changes...</strong></p>
+		<p>Are you sure you wish to navigate away from this page?</p>
+        <input type="button" id="yes" value="Yes" style="width:50px;" /> 
+        <input type="button" id="no" value="No" style="width:50px;" /> 
+	</div>
+</div>
+<div id="StatusBar" style="display:none; height:0px;">
+	<div style="display:none;" class="PageStandard" id="StatusBox0">
+		
+	</div>
+</div>
+</cfoutput>
+
+
+<script type="text/javascript" charset="utf-8">
+  var is_ssl = ("https:" == document.location.protocol);
+  var asset_host = is_ssl ? "https://s3.amazonaws.com/getsatisfaction.com/" : "http://s3.amazonaws.com/getsatisfaction.com/";
+  document.write(unescape("%3Cscript src='" + asset_host + "javascripts/feedback-v2.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<script type="text/javascript" charset="utf-8">
+  var feedback_widget_options = {};
+
+  feedback_widget_options.display = "overlay";  
+  feedback_widget_options.company = "uc_ccpd";
+  feedback_widget_options.placement = "left";
+  feedback_widget_options.color = "#222";
+  feedback_widget_options.style = "idea";
+  
+  
+  
+  
+  
+  
+
+  var feedback_widget = new GSFN.feedback_widget(feedback_widget_options);
+</script>
+<div class="ce-dialog" id="AssessmentDiv" style="height:527px;
+left:50%;
+margin-left:-350px;
+position:absolute;
+top:0;
+width:705px;
+z-index:9999;display:none;">
+<div class="ce-dialog-titlebar">Assessment</div>
+<div class="ce-dialog-close"></div>
+<div class="ce-dialog-content" id="AssessContent">
+
+</div>
+<div class="ce-dialog-buttons" id="AssessButtons">
+	<button id="CompleteAssessment" class="button-gray">Complete</button><!---&nbsp;
+	<a href="javascript://" id="CloseAssessment">Save and Close</button>--->
+</div>
+</div>
+<!---
+<strong>DEBUG INFO! PLEASE IGNORE.</strong><br />
+COOKIES:<br />
+<cfdump var="#cookie#">
+SESSION:<br />
+<cfdump var="#Session#">--->
+<div id="link-container" class="linkviewer">
+	<div id="link-container-close" class="linkviewer-close">
+		<a href="javascript://" class="link-container-close"><img src="/lms/_images/overlay_close.png" border="0" /></a>
+	</div>
+	<iframe src="" id="link-container-frame"></iframe>
+	<div id="link-container-buttons" class="linkviewer-buttons">
+		<input type="button" name="btnClose" class="link-container-close MainButton" value="Finished" />
+	</div>
+</div>
+
 </body>
 </html>
-</cfoutput>

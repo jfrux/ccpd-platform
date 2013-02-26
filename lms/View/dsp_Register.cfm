@@ -57,9 +57,17 @@ function validate() {
 		type: 'post',
 		data: { method: "Validate", Birthdate: $("#date1").val(), FirstName: $("#firstname").val(), MiddleName: $("#middlename").val(), LastName: $("#lastname").val(), Suffix: $("#suffix").val(), DisplayName: $('[name="DisplayName"]').val(), Email1: $("#email1").val(), Email2: $("#email2").val(), SSN: $("#ssn").val(), Gender: $("#Gender").val(), Password1: $("#password1").val(), Password2: $("#password2").val(), geonameId: $("#geonameid").val(), returnFormat: "plain"},
 		dataType: 'json',
+		beforeSend: function() {
+			$('.error_list').html('');
+			$('.message_list').text('Please wait for validation...');
+		},
 		success: function(data) {
 			if(data.STATUS) {
-				$("#frmRegister").submit();
+				if(data.STATUSMSG == "") {
+					$("#frmRegister").submit();
+				} else {
+					$(".message_list").text(data.STATUSMSG);
+				}
 			} else {
 				var sErrorList = "<ul>";
 				
@@ -79,6 +87,7 @@ function validate() {
 				});
 				
 				sErrorList = sErrorList + "</ul>";
+				$('.message_list').text('');
 				$(".error_list").html(sErrorList);
 				
 				return false;
@@ -158,9 +167,12 @@ $(document).ready(function() {
 	<h1>Sign-up</h1>
 	<div id="ContentLeft" class="Wide">
 		<h2>Registration</h2>
-		<table width="500" cellspacing="1" cellpadding="3" border="0">
+		<table width="400" cellspacing="1" cellpadding="3" border="0">
             <tr>
                 <td class="error_list"></td>
+            </tr>
+            <tr>
+                <td class="message_list" style="width: 300px;"></td>
             </tr>
             <tr>
                 <form name="frmRegister" id="frmRegister" method="post" action="<cfoutput>#Application.Settings.RootPath#</cfoutput>/_com/AJAX_Auth.cfc">

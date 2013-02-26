@@ -1,9 +1,3 @@
-#Content h1 { margin:0; padding:0; font-size:22px; font-weight:normal; }
-#Content h1 span { color:#888888;
-font-size:0.65em;
-font-weight:normal;
-margin-left:5px; }
-
 div.ContentSection { margin:3px 0px 10px 0px; }
 h2.ContentSectTitle {  padding:5px 5px 3px 5px; margin:0px; font-size:16px; }
 h3.ContentSectTitle2 { padding:4px 5px 3px 5px; margin:0px; background-color:#EEE; font-size:13px; }
@@ -24,8 +18,8 @@ div.Photo {  cursor:pointer; float:left; height:130px; width:130px; text-align:c
 .PhotoCaption { font-size:9px; text-align:center; color:#555; width:160px; }
 .img-shadow {
   float:left;
-  background: url(/admin/_images/shadowAlpha.png) no-repeat bottom right !important;
-  background: url(/admin/_images/shadow.gif) no-repeat bottom right;
+  background: url(/lms/_images/shadowAlpha.png) no-repeat bottom right !important;
+  background: url(/lms/_images/shadow.gif) no-repeat bottom right;
   margin: 10px 0 0 10px !important;
   margin: 10px 0 0 5px;
   }

@@ -6,7 +6,7 @@
 		<cfcase value="localhost">
 			<cflocation url="http://localhost:8888/lms/" addtoken="no" />
 		</cfcase>
-<cfcase value="test.ccpd.uc.edu">
+		<cfcase value="test.ccpd.uc.edu">
 			<cflocation url="http://test.ccpd.uc.edu/lms/" addtoken="no" />
 		</cfcase>
 		<cfcase value="ccpd.uc.edu">

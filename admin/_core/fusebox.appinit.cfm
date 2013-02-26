@@ -152,11 +152,11 @@ bugSenderEmail="rountrjf@ucmail.uc.edu")>
 							password="05125586") />--->
 
 <!--- JAVA PATHS / LOADER --->
-<cfset javaPaths = ["#expandPath("/_java/lingpipe-4.0.1.jar")#",
+<!--- <cfset javaPaths = ["#expandPath("/_java/lingpipe-4.0.1.jar")#",
 "#expandPath("/_java/Supa.jar")#",
-"#expandPath("/_java/EncodingUtil.class")#"]>
+"#expandPath("/_java/EncodingUtil.class")#"]> --->
  
-<cfset application.javaloader = createObject("component", "_com.javaloader.JavaLoader").init(javaPaths)>
+<!--- <cfset application.javaloader = createObject("component", "_com.javaloader.JavaLoader").init(javaPaths)> --->
 
 <cfset Application.Email = CreateObject("component","#Application.Settings.Com#email").Init()>
 <cfset application.search = createObject("component","_com.typeahead.search").init(application.settings.dsn) />

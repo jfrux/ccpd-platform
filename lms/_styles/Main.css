@@ -1,25 +1,60 @@
 /* MAIN CSS */
-@import url("dialog.css");
-@import url("coolness.css");
-@import url("Content.css");
-@import url("Interface.css");
-@import url("Navigation.css");
-@import url("Button.css");
-@import url("Forms.css");
-@import url("MultiForm.css");
-@import url("RIA.css");
-@import url("ViewSection.css");
-@import url("TabControl.css");
-@import url("themes/base/ui.all.css");
-@import url("StepStatus.css");
-@import url("mbTooltip.css");
-@import url("thickbox.css");
-@import url("jquery.autocomplete.css");
-@import url("jquery.timepickr.css");
-@import url("history.css?v=2");
-@import url("home.css");
-@import url("general.css");
-@import url("search.css");
-@import url("userarea.css");
-@import url("stnd-buttons.css");
-@import url("reset.css");
+@import url("/lms/_styles/Default.css");
+@import url("/lms/_styles/themes/base/ui.all.css");
+@import url("/lms/_styles/jquery.autocomplete.css");
+@import url("/lms/_styles/dialog.css");
+@import url("/lms/_styles/stnd-buttons.css");
+
+
+.button-gray:hover, .button-gray:focus, input.button-gray[type="submit"]:hover, input.button-gray[type="submit"]:focus, button.button-gray:hover, button.button-gray:focus {
+background-position:0 -6px;
+border-color:#999999 #999999 #888888;
+color:#000000;
+}
+
+input.submit:hover, button:hover, input[type="submit"]:hover, input[type="file"] > input[type="button"]:hover {
+background-color:#D5D5D5;
+}
+
+.button-gray, input.button-gray[type="submit"], input.button-gray[type="button"] {
+-moz-background-clip:border;
+-moz-background-inline-policy:continuous;
+-moz-background-origin:padding;
+-moz-border-radius-bottomleft:4px;
+-moz-border-radius-bottomright:4px;
+-moz-border-radius-topleft:4px;
+-moz-border-radius-topright:4px;
+-x-system-font:none;
+background:#DDDDDD url(/lms/_images/btn-gray-bg.gif) repeat-x scroll 0 0;
+border-color:#DDDDDD #DDDDDD #CCCCCC;
+border-style:solid;
+border-width:1px;
+color:#333333;
+font-family:"Lucida Grande",Sans-serif;
+font-size:11px;
+font-size-adjust:none;
+font-stretch:normal;
+font-style:normal;
+font-variant:normal;
+font-weight:normal;
+line-height:14px;
+margin:0;
+overflow:visible;
+padding:4px 8px 5px;
+text-shadow:1px 1px 0 #FFFFFF;
+width:auto;
+}
+
+input.submit, button, input[type="submit"], input[type="button"], input[type="file"] > input[type="button"] {
+-moz-border-radius-bottomleft:5px;
+-moz-border-radius-bottomright:5px;
+-moz-border-radius-topleft:5px;
+-moz-border-radius-topright:5px;
+background-color:#E6E6E6;
+border:1px solid #CCCCCC;
+color:#000000;
+cursor:pointer;
+font-size:x-small;
+padding:4px 8px;
+vertical-align:top;
+}

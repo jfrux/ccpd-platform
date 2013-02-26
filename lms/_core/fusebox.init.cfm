@@ -20,28 +20,11 @@
 	<cfset myFusebox.setSelf("/myapp/start.cfm") />
 --->
 <cfset self = myFusebox.getSelf() />
-<cfset myself = "/admin/index.cfm/event/" />
+<cfset myself = "/lms/event/" />
 
-<cfset request.self = myFusebox.getSelf() />
+<cfset request.self = self />
 <cfset request.myself = myself />
-<cfset request.isException = false />
-
-<cfset scriptExceptions = [
-	"statFixer.cfc",
-	"dailyStatusUpdater.cfc",
-	"upload.cfc"
-]>
-<cfsetting showdebugoutput="no" />
-<cfloop from="1" to="#arrayLen(scriptExceptions)#" index="i">
-	<cfset script = scriptExceptions[i]>
-	
-	<cfif CGI.SCRIPT_NAME CONTAINS script>
-		<cfset request.isException  = true />
-	</cfif>
-</cfloop>
-<!---
+<cfsetting showdebugoutput="false" />
 <cfparam name="Request.Status.Errors" default="" />
-WE ARE PREPARING FOR A MIGRATION.<br />
-The service should be back up shortly.<br />
-<cfabort>--->
-<cfinclude template="/admin/Model/Page/act_Access.cfm" />
+
+<cfinclude template="/Model/Page/act_Access.cfm" />

@@ -1,5 +1,5 @@
 /* RIA CSS */
-div.PersonWindow { display:none;height:220px; width:400px; background-image:url(../_images/PersonFinder_BG.gif); background-position: top left; background-repeat:no-repeat; background-color:#FFFFFF;font-size:10px; }
+div.PersonWindow { display:none;height:220px; width:400px; background-image:url(/lms/_images/PersonFinder_BG.gif); background-position: top left; background-repeat:no-repeat; background-color:#FFFFFF;font-size:10px; }
 div.PersonWindowContent { position:absolute; top:5px; left:5px; }
 div.PersonWindowPager {  }
 div.PersonWindowPager a { color:#000; text-decoration:none; }

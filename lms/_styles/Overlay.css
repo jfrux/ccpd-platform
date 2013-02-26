@@ -1,19 +1,26 @@
 /* the overlayed element */ 
-.simple_overlay {
-background-color:#FFFFFF;
-border:1px solid #666666;
-display:none;
-min-height:200px;
-width:620px;
-z-index:10000;
-}
+div.overlay { 
+     
+    /* growing background image */ 
+    background-image:url(/lms/_images/overlay_bg.png); 
+     
+    /* dimensions after the growing animation finishes  */ 
+    width:600px; 
+    height:470px; 
+     
+    /* initially overlay is hidden */ 
+    display:none; 
+     
+    /* some padding to layout nested elements nicely  */ 
+    padding:55px; 
+} 
  
-/* close button positioned on upper right corner */ 
-.simple_overlay .close { 
-    background-image:url(/admin/_images/icons/overlay_close.png); 
+/* default close button positioned on upper right corner */ 
+div.overlay div.close { 
+    background-image:url(/lms/_images/overlay_close.png); 
     position:absolute; 
-    right:-15px; 
-    top:-15px; 
+    right:5px; 
+    top:5px; 
     cursor:pointer; 
     height:35px; 
     width:35px; 

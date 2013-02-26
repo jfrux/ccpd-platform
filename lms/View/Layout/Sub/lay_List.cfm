@@ -3,8 +3,8 @@
 <cfparam name="Request.ListResults" default="">
 <cfparam name="Request.ListFields" default="">
 <cfparam name="Request.ListMethod" default="">
-<script type="text/javascript" src="/_scripts/Spry/Includes/SpryData.js"></script>
-<script type="text/javascript" src="/_scripts/Spry/Includes/SpryJSONDataSet.js"></script>
+<script type="text/javascript" src="/lms/_scripts/Spry/Includes/SpryData.js"></script>
+<script type="text/javascript" src="/lms/_scripts/Spry/Includes/SpryJSONDataSet.js"></script>
 <cfoutput>
 <script type="text/javascript">
 var Filtered = '';
@@ -21,7 +21,7 @@ jQuery().ready(function(){
 	});
 });
 
-var baseurl = "#Application.Settings.RootPath#/_com/Listing.cfc?returnFormat=json&queryFormat=column&method=#Request.ListMethod#";
+var baseurl = "/lms/_com/Listing.cfc?returnFormat=json&queryFormat=column&method=#Request.ListMethod#";
 
 function getURL() {
    var s = baseurl;
@@ -65,11 +65,11 @@ function filterData(FieldNames) {
 <form action="" method="POST" name="frmLookup" id="frmLookup" class="MainForm">
 #Request.ListForm#
 </form>
-<div class="DataGridPager"><a href="javaScript:goBack()"><img src="#Application.Settings.RootPath#/_images/control_rewind_blue.gif" border="0" align="absmiddle" /> Previous</a>&nbsp;&nbsp;&nbsp;
-	<a href="javaScript:goForward()">Next <img src="#Application.Settings.RootPath#/_images/control_fastforward_blue.gif" border="0" align="absmiddle" /></a></div>
+<div class="DataGridPager"><a href="javaScript:goBack()"><img src="/lms/_images/control_rewind_blue.gif" border="0" align="absmiddle" /> Previous</a>&nbsp;&nbsp;&nbsp;
+	<a href="javaScript:goForward()">Next <img src="/lms/_images/control_fastforward_blue.gif" border="0" align="absmiddle" /></a></div>
 <div id="mydata" spry:region="mydata">
 		<table spry:state="loading" id="LoadingTable" class="RSSItemListFeedback">
-			<tr><td class="RSSItemListLoading" valign="middle" align="center"><img src="#Application.Settings.RootPath#/_images/loading.gif" border="0" align="absmiddle" /> Please Wait ...</td></tr></table>
+			<tr><td class="RSSItemListLoading" valign="middle" align="center"><img src="/lms/_images/loading.gif" border="0" align="absmiddle" /> Please Wait ...</td></tr></table>
 #Request.ListResults#
 </div>
 </cfoutput>

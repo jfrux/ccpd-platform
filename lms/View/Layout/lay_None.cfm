@@ -10,12 +10,7 @@
 </head>
 
 <body style="margin:0px;">
-	#Request.Page.Body#
-	<div id="StatusBar">
-		<div style="display:none;" class="PageStandard" id="StatusBox0">
-			
-		</div>
-	</div>
+#Request.Page.Body#
 </body>
 </html>
 </cfoutput>

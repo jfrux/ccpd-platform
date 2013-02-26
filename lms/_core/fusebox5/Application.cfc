@@ -41,7 +41,7 @@ limitations under the License.
 		<!--- if we're not already executing the scaffolder, branch to it --->
 		<cfif findNoCase("/scaffolder/",CGI.SCRIPT_NAME) eq 0>
 			<cftry>
-				<cfinclude template="ccpdadmin/scaffolder/manager.cfm" />
+				<cfinclude template="/scaffolder/manager.cfm" />
 				<cfcatch type="missinginclude">
 					<cfif structKeyExists(attributes,"scaffolding.debug")>
 						<cfrethrow />

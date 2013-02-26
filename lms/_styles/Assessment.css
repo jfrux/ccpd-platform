@@ -1,33 +1,31 @@
-div#QuestionsContainer {     bottom: 0;
-    overflow: visible;
-    padding-top: 5px;
-    position: relative;
-    width: 661px; }
+div#QuestionsContainer { width:475px; top:70px; bottom:0px; position:absolute; }
 
-img.DragHandle {     cursor: n-resize;
-    left: 0;
-    margin: 0;
-    padding: 3px;
-    position: absolute;
-    top: 0; }
+img.DragHandle { float:left;margin:5px 0px 5px 0px; padding:0px 3px; cursor:n-resize; }
 
 div.Section1 { background-color:#F0CD8C; border:1px solid #E7AC34; padding:4px; min-height:65px; width:98%; }
 div.Section2 { background-color:#F9F0C1; border:1px solid #E7AC34; padding:4px; min-height:65px; width:98%; }
 
-.Question { 
-    -moz-border-radius: 7px 7px 7px 7px;
-    background-color: #EEEEEE;
-    border: 1px solid #CCCCCC;
-    cursor: default;
-    display: block;
-    float: left;
-    margin: 3px 0;
-    position: relative;
-    width: 657px;
+.question { 
+background-image:url(/lms/_images/assess_questionbg.gif);
+background-repeat:repeat-y;
+background-position:left;
+background-color:#F7F7F7;
+border:1px solid #CCCCCC;
+display:block;
+float:left;
+margin:3px;
+width:465px;
+cursor:default;
+
+-webkit-border-radius: 7px;
+-moz-border-radius-bottomleft:7px;
+-moz-border-radius-bottomright:7px;
+-moz-border-radius-topleft:7px;
+-moz-border-radius-topright:7px; 
 }
 
 .questionHover { 
-background-image:url(/admin/_images/assess_questionbg_hover.gif);
+background-image:url(/lms/_images/assess_questionbg_hover.gif);
 background-repeat:repeat-y;
 background-position:left;
 
@@ -38,39 +36,11 @@ border:1px solid #699B1B; }
 	color:#FFF;
 }
 
-div.QuestionText {
-    display: block;
-    font-size: 11px;
-    line-height: 13px;
-    margin: 0 0 1px 23px;
-    padding: 5px 0 4px 27px;
-    text-shadow: 1px 1px #FFFFFF;
-    width: 418px;
-    word-wrap: break-word;
-}
-div.QuestionText span {     -moz-border-radius: 3px 3px 3px 3px;
-    background-color: #DDDDDD;
-    border: 1px solid #AAAAAA;
-    color: #555555;
-    display: block;
-    font-family: arial;
-    font-size: 11px;
-    height: 16px;
-    left: 25px;
-    line-height: 16px;
-    padding-left: 1px;
-    padding-top: 0;
-    position: absolute;
-    text-align: center;
-    text-shadow: 1px 1px #FFFFFF;
-    top: 3px;
-    width: 16px; }
-	
-	
-div.QuestionText.Caption1 { font-weight:bold; font-size:13px; }
-div.QuestionText.Caption2 { font-weight:bold; font-size:12px; }
-div.QuestionText.Caption3 { font-weight:bold; font-size:11px; }	
-
+div.QuestionText { font-size:1em;
+margin:0;
+padding:0;
+width:435px; }
+div.QuestionText span { position:relative; top:3px; }
 div.Question p { padding:0px; margin:0px; }
 div.Question div.Answers { font-family:"Courier New", Courier, monospace; margin-left:15px; }
 
@@ -83,31 +53,8 @@ div.Caption2Text span { position:relative; top:3px; }
 div.Caption3Text { margin:5px 0px 5px 2px; padding:0px; font-size:14px; text-transform:uppercase; font-weight:normal; font-style:italic; }
 div.Caption3Text span { position:relative; top:3px; }
 
-.ui-selected { height:20px; border:1px dashed #CCC; margin:0; padding:4px; background-color:#FFF; clear:both; }
-.QuestionOptions {     position: absolute;
-    right: -1px;
-    top: 1px; }
-.QuestionOptions ul { list-style-type:none; }
-.QuestionOptions ul li { float:left; }
-.QuestionOptions ul li a {     -moz-border-radius: 6px 6px 6px 6px;
-    background-color: #F7F7F7;
-    border: 1px solid #CCCCCC;
-    color: #222222;
-    display: block;
-    font-size: 10px;
-    line-height: 20px;
-    margin: 0 2px 0 0;
-    padding: 0 5px;
-    text-decoration: none;
-    text-shadow: 1px 1px #FFFFFF; }
-.link-disabled { 
-	color: #999999 !important;
-	cursor:default;
-}
-.QuestionOptions ul li a img {     float: left;
-    height: 14px;
-    margin-right: 3px;
-    margin-top: 3px; }
+.ui-selected { height:30px; border:1px solid #EEE; margin:3px; padding:4px; width:90%; background-color:#FCEACF; }
+
 .answersline {margin-left:22px;
 margin-top:3px;
 padding:4px;
@@ -146,6 +93,8 @@ padding:3px;
 width:421px; 
 cursor:text;
 }
+
+.date-pick { width: 60px !important; }
 
 .question.textmulti .answersline .answer textarea { 
 border:1px solid #CCCCCC;
