@@ -157,9 +157,11 @@
 					'/admin/index.cfm/event/' As WebPath,
 					ToContent = (CASE VH.HistoryTypeID
 					WHEN 1 THEN
-						mergeToContent('A',VH.ToActivityID,VH.HistoryStyleID,LeastRecentID,MostRecentID)
+						VH.ToContent
+						<!---mergeToContent('A',VH.ToActivityID,VH.HistoryStyleID,LeastRecentID,MostRecentID)--->
 					WHEN 2 THEN
-						mergeToContent('P',VH.ToPersonID,VH.HistoryStyleID,LeastRecentID,MostRecentID)
+						VH.ToContent
+						<!---mergeToContent('P',VH.ToPersonID,VH.HistoryStyleID,LeastRecentID,MostRecentID)--->
 					ELSE
 						VH.ToContent
 					END), 
