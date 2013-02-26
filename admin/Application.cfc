@@ -6,11 +6,11 @@
 		
 	<!--- set application name based on the directory path --->
 	
-	<cfset namekey = "vJkazM" />
+	<cfset namekey = "vJkazM2" />
 	<cfswitch expression="#CGI.SERVER_NAME#">
 		<!--- PRODUCTION --->
 		<cfcase value="ccpd.uc.edu">
-			<cfset this.name = "CCPD_ADMIN_PRODUCTION" />
+			<cfset this.name = "CCPD_ADMIN_PRODUCTION_#namekey#" />
 			<cfset FUSEBOX_PARAMETERS.mode = "production" />
 			
 			<cferror template="/admin/error.cfm" type="exception" mailto="rountrjf@ucmail.uc.edu">
@@ -19,14 +19,14 @@
 
 		<!--- TEST --->
 		<cfcase value="test.ccpd.uc.edu">
-			<cfset this.name = "CCPD_ADMIN_TEST" />
+			<cfset this.name = "CCPD_ADMIN_TEST_#namekey#" />
 			<cfset FUSEBOX_PARAMETERS.mode = "development-circuit-load" />
 			
 			
 		</cfcase>
 
 		<cfcase value="dev1.ccpd.uc.edu">
-			<cfset this.name = "CCPD_ADMIN_DEV1" />
+			<cfset this.name = "CCPD_ADMIN_DEV1_#namekey#" />
 			<cfset FUSEBOX_PARAMETERS.mode = "development-circuit-load" />
 			
 			<!---<cferror template="/error.cfm" type="exception" mailto="rountrjf@ucmail.uc.edu">
@@ -34,7 +34,7 @@
 		</cfcase>
 		
 		<cfcase value="dev2.ccpd.uc.edu">
-			<cfset this.name = "CCPD_ADMIN_DEV2" />
+			<cfset this.name = "CCPD_ADMIN_DEV2_#namekey#" />
 			<cfset FUSEBOX_PARAMETERS.mode = "development-circuit-load" />
 			
 			<!---<cferror template="/error.cfm" type="exception" mailto="rountrjf@ucmail.uc.edu">
@@ -42,7 +42,7 @@
 		</cfcase>
 
 		<cfcase value="10.97.106.160">
-			<cfset this.name = "CCPD_ADMIN_OTHER" />
+			<cfset this.name = "CCPD_ADMIN_OTHER_#namekey#" />
 			<cfset FUSEBOX_PARAMETERS.mode = "development-circuit-load" />
 			
 			<!---<cferror template="/error.cfm" type="exception" mailto="rountrjf@ucmail.uc.edu">

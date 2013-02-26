@@ -246,19 +246,19 @@ function midLimit(sString,nLimit) {
 				
 				/* ACTIVITY COUNT */
 				(SELECT     COUNT(ActS.activityid) AS ActivityCount
-				FROM          ceschema.ce_activity_tag_relates AS ActS INNER JOIN
-								   ceschema.ce_Activity AS A ON ActS.ActivityID = A.ActivityID INNER JOIN
-								   ceschema.ce_Activity_PubGeneral AS APG ON A.ActivityID = APG.ActivityID
+				FROM          ce_activity_tag_relates AS ActS INNER JOIN
+								   ce_Activity AS A ON ActS.ActivityID = A.ActivityID INNER JOIN
+								   ce_Activity_PubGeneral AS APG ON A.ActivityID = APG.ActivityID
 				WHERE      (ActS.tagid = S.id) AND S.hideflag=0 AND S.tagcount > 20 AND (A.DeletedFlag = 'N') AND (APG.PublishDate <= GETDATE()) AND (APG.RemoveDate > GETDATE())
 									AND (A.StatusID = 1) OR
 								   (ActS.tagid = S.id) AND S.hideflag=0 AND S.tagcount > 20 AND (A.DeletedFlag = 'N') AND (APG.PublishDate <= GETDATE()) AND 
 								   (APG.RemoveDate IS NULL) AND (A.StatusID = 1)) AS ActivityCount
-			FROM         ceschema.ce_activity_tags AS S
+			FROM         ce_activity_tags AS S
 			WHERE     
 				((SELECT     COUNT(ActS.activityid) AS ActivityCount
-				FROM         ceschema.ce_activity_tag_relates AS ActS INNER JOIN
-				   ceschema.ce_Activity AS A ON ActS.ActivityID = A.ActivityID INNER JOIN
-				   ceschema.ce_Activity_PubGeneral AS APG ON A.ActivityID = APG.ActivityID
+				FROM         ce_activity_tag_relates AS ActS INNER JOIN
+				   ce_Activity AS A ON ActS.ActivityID = A.ActivityID INNER JOIN
+				   ce_Activity_PubGeneral AS APG ON A.ActivityID = APG.ActivityID
 				WHERE     (ActS.tagid = S.id) AND S.hideflag=0 AND S.tagcount > 20 AND (A.DeletedFlag = 'N') AND (APG.PublishDate <= GETDATE()) AND (APG.RemoveDate > GETDATE()) 
 				   AND (A.StatusID = 1) OR
 				   (ActS.tagid = S.id) AND S.hideflag=0 AND S.tagcount > 20  AND (A.DeletedFlag = 'N') AND (APG.PublishDate <= GETDATE()) AND 
