@@ -3,3 +3,6 @@ WEB-INF/flex
 WEB-INF/.htaccess
 parsed
 _uploads
+*.xlsx
+*.csv
+*.xls
