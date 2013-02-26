@@ -20,10 +20,9 @@
 		<!--- TEST --->
 		<cfcase value="test.ccpd.uc.edu">
 			<cfset this.name = "CCPD_ADMIN_TEST" />
-			<cfset FUSEBOX_PARAMETERS.mode = "production" />
+			<cfset FUSEBOX_PARAMETERS.mode = "development-circuit-load" />
 			
-			<cferror template="/admin/error.cfm" type="exception" mailto="rountrjf@ucmail.uc.edu">
-			<cferror template="/admin/error.cfm" type="request" mailto="rountrjf@ucmail.uc.edu">
+			
 		</cfcase>
 
 		<cfcase value="dev1.ccpd.uc.edu">

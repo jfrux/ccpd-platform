@@ -24,18 +24,18 @@
 				p.CertName AS AttendeeName
 				,ac.Amount AS ActivityCredit,
 				(SELECT TOP 1 attc.Amount
-				FROM ceschema.ce_AttendeeCredit attc
+				FROM ce_AttendeeCredit attc
 				WHERE (attc.AttendeeID = a.AttendeeID) AND (attc.CreditID = 1)) AS AttendeeCredit,
 				(SELECT TOP 1 attc.ReferenceNo
-				FROM ceschema.ce_AttendeeCredit attc
+				FROM ce_AttendeeCredit attc
 				WHERE (attc.AttendeeID = a.AttendeeID) AND (attc.CreditID = 1)) AS ReferenceNumber,
 				sc.Name AS CreditType
-			FROM ceschema.ce_Attendee a
-			INNER JOIN ceschema.ce_Person p ON p.PersonID = a.PersonID
-			INNER JOIN ceschema.ce_Activity_Credit ac ON ac.ActivityID = a.ActivityID
-			INNER JOIN ceschema.ce_Sys_Credit sc ON sc.CreditID = ac.CreditID
-			INNER JOIN ceschema.ce_Activity act ON act.ActivityID = a.ActivityID
-			LEFT JOIN ceschema.ce_Sys_state s ON s.StateId = act.State
+			FROM ce_Attendee a
+			INNER JOIN ce_Person p ON p.PersonID = a.PersonID
+			INNER JOIN ce_Activity_Credit ac ON ac.ActivityID = a.ActivityID
+			INNER JOIN ce_Sys_Credit sc ON sc.CreditID = ac.CreditID
+			INNER JOIN ce_Activity act ON act.ActivityID = a.ActivityID
+			LEFT JOIN ce_Sys_state s ON s.StateId = act.State
 			WHERE 
 			a.ActivityID = <cfqueryparam value="#arguments.activityid#" cfsqltype="cf_sql_integer" />
 		</cfquery>

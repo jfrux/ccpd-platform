@@ -896,8 +896,8 @@
                     <cfelse>
                     0 As MyStatus
                     </cfif>
-                FROM ceschema.ce_Attendee AS att 
-                INNER JOIN ceschema.ce_Activity AS C ON C.ActivityID = att.ActivityID
+                FROM ce_Attendee AS att 
+                INNER JOIN ce_Activity AS C ON C.ActivityID = att.ActivityID
                 LEFT OUTER JOIN ce_Sys_ActivityType AS CT ON C.ActivityTypeID = CT.ActivityTypeID 
                 LEFT OUTER JOIN ce_Sys_Grouping AS G ON G.GroupingId = C.GroupingId
                 LEFT OUTER JOIN ce_Sys_Status AS S ON S.statusId = C.statusId 

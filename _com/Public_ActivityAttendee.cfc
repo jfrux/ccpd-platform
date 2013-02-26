@@ -353,8 +353,8 @@
             
             <!--- DELETE ATTENDEECREDIT RECORDS --->
             <cfquery name="qDeleteAttendeeCredits" datasource="#Application.Settings.DSN#">
-            	DELETE FROM ceschema.ce_AttendeeCredit
-				WHERE attendeeId IN (SELECT attendeeId FROM ceschema.ce_attendee WHERE ActivityId = <cfqueryparam value="#Arguments.ActivityID#" cfsqltype="cf_sql_integer" />)
+            	DELETE FROM ce_AttendeeCredit
+				WHERE attendeeId IN (SELECT attendeeId FROM ce_attendee WHERE ActivityId = <cfqueryparam value="#Arguments.ActivityID#" cfsqltype="cf_sql_integer" />)
             </cfquery>
             
             <!--- UPDATE ATTENDEE RECORDS --->

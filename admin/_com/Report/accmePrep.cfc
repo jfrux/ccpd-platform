@@ -182,7 +182,7 @@
 					INNER JOIN 
 						ce_Sys_Grouping AS AT ON A.GroupingID=AT.GroupingID
 					LEFT OUTER JOIN
-						ceschema.ce_Activity_Other As Oth ON Oth.activityId = A.activityid
+						ce_Activity_Other As Oth ON Oth.activityId = A.activityid
 					WHERE 
 							A.ActivityTypeID <> 2 AND
 							A.StartDate BETWEEN @StartDate AND @EndDate AND

@@ -51,11 +51,11 @@
 					WHEN AA.VC1=AQ.VC10 THEN AQ.VC10
 				END))
 			FROM         
-				ceschema.ce_AssessQuestion AS AQ 
+				ce_AssessQuestion AS AQ 
 			INNER JOIN
-				ceschema.ce_AssessAnswer AS AA ON AQ.QuestionID = AA.QuestionID 
+				ce_AssessAnswer AS AA ON AQ.QuestionID = AA.QuestionID 
 			INNER JOIN
-				ceschema.ce_Assessment AS Ass ON AQ.AssessmentID = Ass.AssessmentID
+				ce_Assessment AS Ass ON AQ.AssessmentID = Ass.AssessmentID
 			WHERE 
 				AQ.DeletedFlag='N' AND 
 				AA.DeletedFlag='N' AND 
@@ -145,9 +145,9 @@
 					
 					END
 			FROM CTE_Totals As T 
-			INNER JOIN ceschema.ce_AssessQuestion As Q ON Q.QuestionID=T.QuestionID
-			INNER JOIN ceschema.ce_Assessment As A ON Q.AssessmentID = A.AssessmentID
-			INNER JOIN ceschema.ce_Sys_AssessType As AT ON A.AssessTypeID = AT.AssessTypeID
+			INNER JOIN ce_AssessQuestion As Q ON Q.QuestionID=T.QuestionID
+			INNER JOIN ce_Assessment As A ON Q.AssessmentID = A.AssessmentID
+			INNER JOIN ce_Sys_AssessType As AT ON A.AssessTypeID = AT.AssessTypeID
 			ORDER BY Q.Sort
 		</cfquery>
 		

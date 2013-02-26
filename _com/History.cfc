@@ -157,9 +157,9 @@
 					'/admin/index.cfm/event/' As WebPath,
 					ToContent = (CASE VH.HistoryTypeID
 					WHEN 1 THEN
-						ceschema.mergeToContent('A',VH.ToActivityID,VH.HistoryStyleID,LeastRecentID,MostRecentID)
+						mergeToContent('A',VH.ToActivityID,VH.HistoryStyleID,LeastRecentID,MostRecentID)
 					WHEN 2 THEN
-						ceschema.mergeToContent('P',VH.ToPersonID,VH.HistoryStyleID,LeastRecentID,MostRecentID)
+						mergeToContent('P',VH.ToPersonID,VH.HistoryStyleID,LeastRecentID,MostRecentID)
 					ELSE
 						VH.ToContent
 					END), 

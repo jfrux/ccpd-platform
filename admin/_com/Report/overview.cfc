@@ -94,21 +94,21 @@
                     zips.postalCode,
                     zips.placeName
                 FROM     
-                    ceschema.ce_Attendee AS att 
+                    ce_Attendee AS att 
                 INNER JOIN 
-                    ceschema.ce_Activity AS A ON att.ActivityID = A.ActivityID 
+                    ce_Activity AS A ON att.ActivityID = A.ActivityID 
                 LEFT OUTER JOIN 
-                    ceschema.ce_person AS p1 ON p1.personid = att.PersonID
+                    ce_person AS p1 ON p1.personid = att.PersonID
                 LEFT OUTER JOIN 
-                    ceschema.ce_Person_Address AS Address ON p1.PrimaryAddressID=Address.addressid
+                    ce_Person_Address AS Address ON p1.PrimaryAddressID=Address.addressid
                 LEFT OUTER JOIN 
-                    ceschema.ce_Sys_AttendeeStatus AS ats ON ats.AttendeeStatusID = att.StatusID
+                    ce_Sys_AttendeeStatus AS ats ON ats.AttendeeStatusID = att.StatusID
                 LEFT OUTER JOIN
-                    ceschema.ce_person_degree AS pd ON pd.personId = att.personId
+                    ce_person_degree AS pd ON pd.personId = att.personId
                 LEFT OUTER JOIN
-                    ceschema.ce_sys_degree AS sd ON sd.degreeId = pd.degreeId
+                    ce_sys_degree AS sd ON sd.degreeId = pd.degreeId
                 LEFT OUTER JOIN
-                    ceschema.geonames_zip As zips ON (zips.postalcode = CASE 
+                    geonames_zip As zips ON (zips.postalcode = CASE 
                                                                         WHEN isNull(att.PersonId,0) = 0 THEN
                                                                             RIGHT('00000' + RTRIM(isNull(att.postalCode,'')), 5)
                                                                         ELSE

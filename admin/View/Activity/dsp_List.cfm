@@ -151,10 +151,10 @@
 			/* MOST RECENTLY MODIFIED ACTIVITIES */
 			WITH CTE_MostRecent AS (
 			SELECT H.ToActivityID,MAX(H.Created) As MaxCreated
-			FROM ceschema.ce_History H
+			FROM ce_History H
 			WHERE H.FromPersonID=<cfqueryparam value="#session.personid#" cfsqltype="cf_sql_integer" /> AND isNull(H.ToActivityID,0) <> 0
 			GROUP BY H.ToActivityID
-			) SELECT * FROM CTE_MostRecent M INNER JOIN ceschema.ce_Activity A  ON A.ActivityID=M.ToActivityID
+			) SELECT * FROM CTE_MostRecent M INNER JOIN ce_Activity A  ON A.ActivityID=M.ToActivityID
 			WHERE A.DeletedFlag='N'
 			ORDER BY M.MaxCreated DESC
 		</cfquery>

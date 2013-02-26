@@ -88,8 +88,8 @@
 			SELECT     Attendee.AttendeeID, Credit.CreditID, Credit.Amount, Credit.ReferenceNo, Credit.ExpirationDate, Attendee.ActivityID, Attendee.PersonID, Attendee.StatusID, 
 				  Attendee.CheckedInFlag, Attendee.CheckIn, Attendee.CheckedOutFlag, Attendee.CheckOut, Attendee.MDflag, Attendee.TermsFlag, Attendee.PaymentFlag, 
 				  Attendee.PayAmount, Attendee.PayOrderNo, Attendee.PaymentDate, Attendee.RegisterDate, CONVERT(nvarchar,Attendee.CompleteDate,101) As CompleteDate, Attendee.TermDate
-			FROM         ceschema.ce_Attendee AS Attendee LEFT OUTER JOIN
-				  ceschema.ce_AttendeeCredit AS Credit ON Attendee.AttendeeID = Credit.AttendeeID
+			FROM         ce_Attendee AS Attendee LEFT OUTER JOIN
+				  ce_AttendeeCredit AS Credit ON Attendee.AttendeeID = Credit.AttendeeID
 			WHERE     (Attendee.ActivityID = <cfqueryparam value="#arguments.ToActivityID#" cfsqltype="cf_sql_integer" />) AND (Attendee.PersonID = <cfqueryparam value="#arguments.ToPersonID#" cfsqltype="cf_sql_integer" />) AND (Credit.CreditID = <cfqueryparam value="#arguments.ToCreditID#" cfsqltype="cf_sql_integer" />) AND (Credit.DeletedFlag = 'N')
 			</cfquery>
 			

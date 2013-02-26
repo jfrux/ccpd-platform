@@ -456,7 +456,7 @@
         	SELECT p.personId, p.password
             FROM ce_person_email AS pe
             INNER JOIN ce_person AS p ON p.personId = pe.person_id
-            WHERE ceschema.cleanEmailDomain(pe.email_address) = @Email AND pe.allow_login = 1
+            WHERE cleanEmailDomain(pe.email_address) = @Email AND pe.allow_login = 1
         </cfquery>
         
         <cfif PersonInfo.RecordCount GT 0>

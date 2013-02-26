@@ -24,9 +24,9 @@
 				dbo.HTMLDecode(Q.VC10) AS VC10,
 				Q.DeletedFlag
 			FROM        
-				ceschema.ce_AssessQuestion AS Q 
+				ce_AssessQuestion AS Q 
 			INNER JOIN
-				ceschema.ce_Sys_AssessQuestionType AS QT ON Q.QuestionTypeID = QT.QuestionTypeID
+				ce_Sys_AssessQuestionType AS QT ON Q.QuestionTypeID = QT.QuestionTypeID
 			WHERE
 				/* CAPTIONS */
 				(
@@ -39,12 +39,12 @@
 				(
 					(Q.AssessmentID = @assessId) AND 
 					(Q.DeletedFlag='N') AND 
-					(SELECT Count(AnswerID) FROM ceschema.ce_AssessAnswer As AA WHERE AA.QuestionID=Q.QuestionID) > 0
+					(SELECT Count(AnswerID) FROM ce_AssessAnswer As AA WHERE AA.QuestionID=Q.QuestionID) > 0
 					OR
 					(Q.questiontypeId NOT IN (5,6,7)) AND 
 					(Q.AssessmentID = @assessId) AND 
 					(Q.DeletedFlag='Y') AND 
-					(SELECT Count(AnswerID) FROM ceschema.ce_AssessAnswer As AA WHERE AA.QuestionID=Q.QuestionID) > 0
+					(SELECT Count(AnswerID) FROM ce_AssessAnswer As AA WHERE AA.QuestionID=Q.QuestionID) > 0
 				)
 			ORDER BY Q.Sort
 		</cfquery>
@@ -115,17 +115,17 @@
 					MAX(Result.Score) maxScore,
 					MAX(Result.resultId) As resultId
 					FROM         
-						ceschema.ce_AssessResult AS Result 
+						ce_AssessResult AS Result 
 						INNER JOIN
-						ceschema.ce_Sys_AssessResultStatus AS ResultStatus ON Result.ResultStatusID = ResultStatus.ResultStatusID 
+						ce_Sys_AssessResultStatus AS ResultStatus ON Result.ResultStatusID = ResultStatus.ResultStatusID 
 						INNER JOIN
-						ceschema.ce_Person AS Person ON Result.PersonID = Person.PersonID 
+						ce_Person AS Person ON Result.PersonID = Person.PersonID 
 						INNER JOIN
-						ceschema.ce_Assessment ON Result.AssessmentID = ceschema.ce_Assessment.AssessmentID 
+						ce_Assessment ON Result.AssessmentID = ce_Assessment.AssessmentID 
 						INNER JOIN
-						ceschema.ce_Attendee AS Attendee ON ceschema.ce_Assessment.ActivityID = Attendee.ActivityID AND Result.PersonID = Attendee.PersonID
+						ce_Attendee AS Attendee ON ce_Assessment.ActivityID = Attendee.ActivityID AND Result.PersonID = Attendee.PersonID
 						INNER JOIN 
-						ceschema.ce_Sys_AttendeeStatus AS AttStatus ON AttStatus.attendeeStatusId = attendee.statusid
+						ce_Sys_AttendeeStatus AS AttStatus ON AttStatus.attendeeStatusId = attendee.statusid
 					WHERE 
 						0 = 0 
 						AND (Result.AssessmentID = @assessId) 
@@ -160,30 +160,30 @@
 			FROM
 				CTE_Totals As CTETotal
 				INNER JOIN
-					ceschema.ce_AssessResult AS Result ON CTETotal.resultId=result.resultid
+					ce_AssessResult AS Result ON CTETotal.resultId=result.resultid
 				INNER JOIN
-					  ceschema.ce_Sys_AssessResultStatus AS ResultStatus ON Result.ResultStatusID = ResultStatus.ResultStatusID 
+					  ce_Sys_AssessResultStatus AS ResultStatus ON Result.ResultStatusID = ResultStatus.ResultStatusID 
 				INNER JOIN
-					  ceschema.ce_Person AS Person ON Result.PersonID = Person.PersonID 
+					  ce_Person AS Person ON Result.PersonID = Person.PersonID 
 				INNER JOIN
-					  ceschema.ce_Assessment ON Result.AssessmentID = ceschema.ce_Assessment.AssessmentID 
+					  ce_Assessment ON Result.AssessmentID = ce_Assessment.AssessmentID 
 				INNER JOIN
-					  ceschema.ce_Attendee AS Attendee ON ceschema.ce_Assessment.ActivityID = Attendee.ActivityID AND Result.PersonID = Attendee.PersonID
+					  ce_Attendee AS Attendee ON ce_Assessment.ActivityID = Attendee.ActivityID AND Result.PersonID = Attendee.PersonID
 				INNER JOIN 
-					ceschema.ce_Sys_AttendeeStatus AS AttStatus ON AttStatus.attendeeStatusId = attendee.statusid
+					ce_Sys_AttendeeStatus AS AttStatus ON AttStatus.attendeeStatusId = attendee.statusid
 			ORDER BY AttStatus.Name,Attendee.CompleteDate,Attendee.Created
 		</cfquery>
 		
 		<cfquery name="qTally" datasource="#application.settings.dsn#">
 			<!---/****** Script for SelectTopNRows command from SSMS  ******/
-			UPDATE ceschema.ce_AssessAnswer
+			UPDATE ce_AssessAnswer
 			SET VC1=dbo.ReplaceInvChar(LTrim(Rtrim(dbo.HTMLDecode(VC1))))
 			WHERE updated > '2/15/2012 9:20:00'
 			
 			GO
 			
 			/****** Script for SelectTopNRows command from SSMS  ******/
-			UPDATE ceschema.ce_AssessQuestion
+			UPDATE ce_AssessQuestion
 			SET
 			
 				  [vc1] = dbo.ReplaceInvChar(LTrim(Rtrim(dbo.HTMLDecode(VC1))))
@@ -273,34 +273,34 @@
 								'^') > 0 THEN AQ.VC10
 					END))
 				FROM         
-					ceschema.ce_AssessQuestion AS AQ 
+					ce_AssessQuestion AS AQ 
 				INNER JOIN
-					ceschema.ce_AssessAnswer AS AA ON AQ.QuestionID = AA.QuestionID 
+					ce_AssessAnswer AS AA ON AQ.QuestionID = AA.QuestionID 
 				INNER JOIN
-					ceschema.ce_Assessment AS Ass ON AQ.AssessmentID = Ass.AssessmentID
+					ce_Assessment AS Ass ON AQ.AssessmentID = Ass.AssessmentID
 				INNER JOIN 
-					ceschema.ce_AssessResult AS AR ON AR.ResultId = AA.ResultId
+					ce_AssessResult AS AR ON AR.ResultId = AA.ResultId
 				INNER JOIN
-					  ceschema.ce_Person AS Person ON AR.PersonID = Person.PersonID
+					  ce_Person AS Person ON AR.PersonID = Person.PersonID
 				INNER JOIN
-					ceschema.ce_Attendee AS Att ON Ass.ActivityID = Att.ActivityID AND AR.PersonID = Att.PersonID
+					ce_Attendee AS Att ON Ass.ActivityID = Att.ActivityID AND AR.PersonID = Att.PersonID
 				INNER JOIN
 					(SELECT 
 						Attendee.AttendeeID,
 						MAX(Result.Score) maxScore,
 						MAX(Result.resultId) As resultId
 						FROM         
-							ceschema.ce_AssessResult AS Result 
+							ce_AssessResult AS Result 
 							INNER JOIN
-							ceschema.ce_Sys_AssessResultStatus AS ResultStatus ON Result.ResultStatusID = ResultStatus.ResultStatusID 
+							ce_Sys_AssessResultStatus AS ResultStatus ON Result.ResultStatusID = ResultStatus.ResultStatusID 
 							INNER JOIN
-							ceschema.ce_Person AS Person ON Result.PersonID = Person.PersonID 
+							ce_Person AS Person ON Result.PersonID = Person.PersonID 
 							INNER JOIN
-							ceschema.ce_Assessment ON Result.AssessmentID = ceschema.ce_Assessment.AssessmentID 
+							ce_Assessment ON Result.AssessmentID = ce_Assessment.AssessmentID 
 							INNER JOIN
-							ceschema.ce_Attendee AS Attendee ON ceschema.ce_Assessment.ActivityID = Attendee.ActivityID AND Result.PersonID = Attendee.PersonID
+							ce_Attendee AS Attendee ON ce_Assessment.ActivityID = Attendee.ActivityID AND Result.PersonID = Attendee.PersonID
 							INNER JOIN 
-							ceschema.ce_Sys_AttendeeStatus AS AttStatus ON AttStatus.attendeeStatusId = attendee.statusid
+							ce_Sys_AttendeeStatus AS AttStatus ON AttStatus.attendeeStatusId = attendee.statusid
 						WHERE 
 							0 = 0 
 							AND (Result.AssessmentID = @assessId) 
@@ -397,9 +397,9 @@
 						ELSE (convert(numeric(5,2),vc10Count) / convert(numeric(5,2),(vc1Count+vc2Count+vc3Count+vc4Count+vc5Count+vc6Count+vc7Count+vc8Count+vc9Count+vc10Count))*100) 
 						END
 				FROM CTE_Totals As T 
-				INNER JOIN ceschema.ce_AssessQuestion As Q ON Q.QuestionID=T.QuestionID
-				INNER JOIN ceschema.ce_Assessment As A ON Q.AssessmentID = A.AssessmentID
-				INNER JOIN ceschema.ce_Sys_AssessType As AT ON A.AssessTypeID = AT.AssessTypeID
+				INNER JOIN ce_AssessQuestion As Q ON Q.QuestionID=T.QuestionID
+				INNER JOIN ce_Assessment As A ON Q.AssessmentID = A.AssessmentID
+				INNER JOIN ce_Sys_AssessType As AT ON A.AssessTypeID = AT.AssessTypeID
 				ORDER BY Q.Sort
 		</cfquery>
         

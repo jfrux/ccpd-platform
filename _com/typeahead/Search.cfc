@@ -75,10 +75,10 @@
 					link = '/admin/index.cfm?event=activity.detail&activityId=' + CAST(obj.activityId As nvarchar(12)),
 					type = 'activity'
 				FROM 
-				ceschema.view_Activities AS obj
-				LEFT JOIN ceschema.ce_activity_profile As actProf ON actProf.activity_Id = obj.activityid
+				view_Activities AS obj
+				LEFT JOIN ce_activity_profile As actProf ON actProf.activity_Id = obj.activityid
 				INNER JOIN
-				CONTAINSTABLE(ceschema.view_Activities, (searchAll), @search) AS fts ON obj.activityId = fts.[KEY] 
+				CONTAINSTABLE(view_Activities, (searchAll), @search) AS fts ON obj.activityId = fts.[KEY] 
 				ORDER BY fts.[RANK] DESC,obj.startDate DESC,obj.activityId DESC
 			</cfquery>
 		<cfelse>
@@ -135,11 +135,11 @@
 					link = '/admin/index.cfm?event=person.detail&personId=' + CAST(obj.personId As nvarchar(12)),
 					type = 'person'
 				FROM 
-				ceschema.view_people AS obj
+				view_people AS obj
 				LEFT JOIN 
-				ceschema.ce_Person_User As usr ON usr.person_id=obj.personid
+				ce_Person_User As usr ON usr.person_id=obj.personid
 				INNER JOIN
-				CONTAINSTABLE(ceschema.view_people, (searchAll), @search) AS fts ON obj.personId = fts.[KEY] 
+				CONTAINSTABLE(view_people, (searchAll), @search) AS fts ON obj.personId = fts.[KEY] 
 				ORDER BY fts.[RANK] DESC,obj.personId DESC
 			</cfquery>
         <cfelse>
@@ -183,9 +183,9 @@
 				link = '',
 				type = 'city'
 			FROM 
-			ceschema.View_geonameCities AS obj
+			View_geonameCities AS obj
 			INNER JOIN
-			CONTAINSTABLE(ceschema.View_geonameCities, (searchText), @search) AS fts ON obj.geonameid = fts.[KEY] 
+			CONTAINSTABLE(View_geonameCities, (searchText), @search) AS fts ON obj.geonameid = fts.[KEY] 
 			ORDER BY fts.[RANK] DESC
 		</cfquery>
 		
@@ -230,9 +230,9 @@
 				link = '',
 				type = 'country'
 			FROM 
-			ceschema.ce_Sys_Country AS obj
+			ce_Sys_Country AS obj
 			INNER JOIN
-			CONTAINSTABLE(ceschema.ce_Sys_Country, (name), @search) AS fts ON obj.id = fts.[KEY] 
+			CONTAINSTABLE(ce_Sys_Country, (name), @search) AS fts ON obj.id = fts.[KEY] 
 			ORDER BY fts.[RANK] DESC
 		</cfquery>
 
@@ -281,11 +281,11 @@
 				type = 'credit',
 				payload = '{ providerId:' + CAST(provider.id As nvarchar(15)) + ', bodyId:' + CAST(obj.body_entity_id As nvarchar(15)) + ',creditId:' + CAST(obj.credit_Id As nvarchar(15)) + ' }'
 			FROM 
-			ceschema.View_accreditedProviders AS obj
+			View_accreditedProviders AS obj
 			INNER JOIN
-				ceschema.ce_entity As provider ON provider.id = obj.entity_id
+				ce_entity As provider ON provider.id = obj.entity_id
 			INNER JOIN
-			CONTAINSTABLE(ceschema.View_accreditedProviders, (searchable), @search) AS fts ON obj.id = fts.[KEY] 
+			CONTAINSTABLE(View_accreditedProviders, (searchable), @search) AS fts ON obj.id = fts.[KEY] 
 			ORDER BY fts.[RANK] DESC
 		</cfquery>
 		
@@ -330,9 +330,9 @@
 				type = 'degree'
 				
 			FROM 
-			ceschema.ce_degree AS obj
+			ce_degree AS obj
 			INNER JOIN
-			CONTAINSTABLE(ceschema.ce_degree, (name,abbrv), @search) AS fts ON obj.id = fts.[KEY] 
+			CONTAINSTABLE(ce_degree, (name,abbrv), @search) AS fts ON obj.id = fts.[KEY] 
 		</cfquery>
 
 		<cfreturn query />
@@ -384,9 +384,9 @@
 				link = '/admin/index.cfm?event=entity.general&entityId=' + CAST(obj.id As nvarchar(12)),
 				type = 'entity'
 			FROM 
-			ceschema.ce_entity AS obj
+			ce_entity AS obj
 			INNER JOIN
-			CONTAINSTABLE(ceschema.ce_entity, (name), @search) AS fts ON obj.id = fts.[KEY]
+			CONTAINSTABLE(ce_entity, (name), @search) AS fts ON obj.id = fts.[KEY]
 			ORDER BY fts.[rank]
 		</cfquery>
 		
@@ -434,9 +434,9 @@
 				link = '/admin/index.cfm?event=main.search&type=activity&folder=' + CAST(obj.categoryid As nvarchar(12)),
 				type = 'folder'
 			FROM 
-			ceschema.ce_category AS obj
+			ce_category AS obj
 			INNER JOIN
-			CONTAINSTABLE(ceschema.ce_category, (name), @search) AS fts ON obj.categoryid = fts.[KEY] 
+			CONTAINSTABLE(ce_category, (name), @search) AS fts ON obj.categoryid = fts.[KEY] 
 			ORDER BY fts.[RANK] DESC
 		</cfquery>
 		
@@ -482,9 +482,9 @@
 				link = '',
 				type = 'occupation'
 			FROM 
-			ceschema.ce_occupation AS obj
+			ce_occupation AS obj
 			INNER JOIN
-			CONTAINSTABLE(ceschema.ce_occupation, (name), @search) AS fts ON obj.id = fts.[KEY] 
+			CONTAINSTABLE(ce_occupation, (name), @search) AS fts ON obj.id = fts.[KEY] 
 			ORDER BY fts.[RANK] DESC
 		</cfquery>
 		
@@ -532,9 +532,9 @@
 				link = '',
 				type = 'specialty'
 			FROM
-			ceschema.ce_sys_specialtyLMS AS obj
+			ce_sys_specialtyLMS AS obj
 			INNER JOIN
-			CONTAINSTABLE(ceschema.ce_sys_specialtyLMS, name, @search) AS fts ON obj.specialtyid = fts.[KEY] 
+			CONTAINSTABLE(ce_sys_specialtyLMS, name, @search) AS fts ON obj.specialtyid = fts.[KEY] 
 		</cfquery>
 
 		<cfreturn query />
@@ -578,9 +578,9 @@
 				link = '',
 				type = 'state'
 			FROM 
-			ceschema.ce_Sys_State AS obj
+			ce_Sys_State AS obj
 			INNER JOIN
-			CONTAINSTABLE(ceschema.ce_Sys_State, (name), @search) AS fts ON obj.stateId = fts.[KEY] 
+			CONTAINSTABLE(ce_Sys_State, (name), @search) AS fts ON obj.stateId = fts.[KEY] 
 			ORDER BY fts.[RANK] DESC
 		</cfquery>
 
@@ -625,11 +625,11 @@
 					role_id,
 					max(history.created) As last_touch
 				FROM 
-					ceschema.ce_activity_user act_user
+					ce_activity_user act_user
 				LEFT JOIN
-					ceschema.ce_History As history ON history.ToActivityID=act_user.activity_id AND history.FromPersonID=act_user.user_id
+					ce_History As history ON history.ToActivityID=act_user.activity_id AND history.FromPersonID=act_user.user_id
 				INNER JOIN 
-					CONTAINSTABLE(ceschema.view_activities, (searchAll), @search) AS fts ON act_user.activity_id = fts.[KEY]
+					CONTAINSTABLE(view_activities, (searchAll), @search) AS fts ON act_user.activity_id = fts.[KEY]
 				WHERE
 					(user_id = @user_id)
 				GROUP BY activity_id,user_id,role_id,fts.[rank]
@@ -651,9 +651,9 @@
 			FROM 
 				CTE_Grouped As CTE
 			INNER JOIN 
-				ceschema.View_Activities As activity ON activity.activityid = CTE.activity_id
+				View_Activities As activity ON activity.activityid = CTE.activity_id
 			LEFT JOIN 
-				ceschema.ce_activity_profile As act_prof ON act_prof.activity_id = activity.activityid
+				ce_activity_profile As act_prof ON act_prof.activity_id = activity.activityid
 			ORDER BY last_touch DESC;
 		</cfquery>
 		

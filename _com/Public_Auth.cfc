@@ -230,10 +230,10 @@
             FROM  ce_person AS p
             LEFT JOIN ce_person_email AS pe ON pe.person_id = p.personId
             WHERE
-            	ceschema.cleanEmailDomain(p.email) = @Email
+            	cleanEmailDomain(p.email) = @Email
 				AND p.deletedFlag='N'
                 OR
-            	ceschema.cleanEmailDomain(pe.email_address) = @Email
+            	cleanEmailDomain(pe.email_address) = @Email
 				AND p.deletedFlag='N'
         </cfquery>
         

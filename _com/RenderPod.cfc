@@ -45,9 +45,9 @@
 			  SELECT VH.HistoryID, VH.HistoryStyleID, VH.FromPersonID, VH.FromPersonDisplayName, VH.ToPersonID, VH.ToPersonDisplayName, VH.ToPossessive, VH.FromPossessive,
 			   VH.FromReflexive, VH.ToActivityID, VH.FromActivityID, VH.ToActivityTitle, VH.ToHistoryID, VH.ToCreditID, ToContent = (CASE VH.HistoryTypeID
 				WHEN 1 THEN
-					ceschema.mergeToContent('A',VH.ToActivityID,LeastRecentID,MostRecentID)
+					mergeToContent('A',VH.ToActivityID,LeastRecentID,MostRecentID)
 				WHEN 2 THEN
-					ceschema.mergeToContent('P',VH.ToPersonID,LeastRecentID,MostRecentID)
+					mergeToContent('P',VH.ToPersonID,LeastRecentID,MostRecentID)
 				ELSE
 					VH.ToContent
 				END), VH.Created, VH.HiddenFlag, 

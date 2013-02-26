@@ -101,8 +101,8 @@ AuthID,Name,Description
 			  countryDetail.capital, countryDetail.area, countryDetail.population, countryDetail.continent, countryDetail.tld, countryDetail.currencyCode, 
 			  countryDetail.currencyName, countryDetail.phone, countryDetail.postalCodeFormat, countryDetail.postalCodeRegex, countryDetail.languages, 
 			  countryDetail.geonameid, countryDetail.neighbors, countryDetail.equivFipsCode
-			FROM         ceschema.ce_Sys_Country AS country INNER JOIN
-			  ceschema.geonameCountryInfo AS countryDetail ON country.code = countryDetail.ISO
+			FROM         ce_Sys_Country AS country INNER JOIN
+			  geonameCountryInfo AS countryDetail ON country.code = countryDetail.ISO
 			 ORDER BY country.name
 		</cfquery>
 		<!---<cfsavecontent variable="CSV">
@@ -399,7 +399,7 @@ AuthID,Name,Description
 	<cffunction name="getActivityTypes" access="public" output="no" returntype="query">
 		<cfquery name="qActivityTypes" datasource="#Application.Settings.DSN#">
 			SELECT     ActivityTypeID, Name, Description, Code, Created, Updated, Deleted, DeletedFlag
-			FROM         ceschema.ce_Sys_ActivityType
+			FROM         ce_Sys_ActivityType
 			ORDER BY Code
 		</cfquery>
 		
@@ -409,7 +409,7 @@ AuthID,Name,Description
 	<cffunction name="getGroupings" access="public" output="no" returntype="query">
 		<cfquery name="qGroupings" datasource="#Application.Settings.DSN#">
 			SELECT     GroupingID, ActivityTypeID, Name, Created
-			FROM         ceschema.ce_Sys_Grouping
+			FROM         ce_Sys_Grouping
 			ORDER BY GroupingID
 		</cfquery>
 		

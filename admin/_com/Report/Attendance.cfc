@@ -93,21 +93,21 @@
 	END,
 	a.entryMethod
 FROM
-	ceschema.ce_attendee AS a
+	ce_attendee AS a
 LEFT OUTER JOIN
-	ceschema.ce_person AS p ON p.personId = a.personId AND a.personId > 0
+	ce_person AS p ON p.personId = a.personId AND a.personId > 0
 INNER JOIN
-	ceschema.ce_sys_status AS ss ON ss.statusId = a.statusId
+	ce_sys_status AS ss ON ss.statusId = a.statusId
 LEFT OUTER JOIN
-	ceschema.ce_person_degree AS pd ON pd.personId = p.personId AND pd.deletedFlag='N'
+	ce_person_degree AS pd ON pd.personId = p.personId AND pd.deletedFlag='N'
 LEFT OUTER JOIN
-	ceschema.ce_sys_degree AS sd ON sd.degreeId = pd.degreeId
+	ce_sys_degree AS sd ON sd.degreeId = pd.degreeId
 LEFT OUTER JOIN
-	ceschema.ce_person_address AS pa ON pa.addressId = p.primaryAddressId
+	ce_person_address AS pa ON pa.addressId = p.primaryAddressId
 LEFT OUTER JOIN
-	ceschema.ce_sys_state AS state ON state.stateId = a.stateId
+	ce_sys_state AS state ON state.stateId = a.stateId
 LEFT OUTER JOIN
-	ceschema.ce_sys_country AS country ON country.id = a.countryId
+	ce_sys_country AS country ON country.id = a.countryId
 WHERE	
 	a.activityId = @activity AND
 	a.deletedFlag = 'N'

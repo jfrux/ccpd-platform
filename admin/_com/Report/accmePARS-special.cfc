@@ -55,10 +55,10 @@
 						ActivityTitle = upper(A.Title),
 						A.ActivityTypeID,
 						ActivityTypeName = AT.Name,
-						ActivityLocation = isNull(A.City,'') + ', ' + isNull((SELECT Code FROM ceschema.ce_Sys_State WHERE StateID = A.State),''),
+						ActivityLocation = isNull(A.City,'') + ', ' + isNull((SELECT Code FROM ce_Sys_State WHERE StateID = A.State),''),
 						A.City,
-						State = isNull((SELECT Code FROM ceschema.ce_Sys_State WHERE StateID = A.State),''),
-						Country = isNull((SELECT   geonameCountry.ISO3 FROM ceschema.ce_Sys_Country AS country INNER JOIN ceschema.geonameCountryInfo AS geonameCountry ON country.code = geonameCountry.ISO WHERE country.id = A.Country),''),
+						State = isNull((SELECT Code FROM ce_Sys_State WHERE StateID = A.State),''),
+						Country = isNull((SELECT   geonameCountry.ISO3 FROM ce_Sys_Country AS country INNER JOIN geonameCountryInfo AS geonameCountry ON country.code = geonameCountry.ISO WHERE country.id = A.Country),''),
 						Sponsorship = (CASE A.Sponsorship
 											WHEN 'J' THEN 'Joint'
 											WHEN 'D' THEN 'Direct'
@@ -67,14 +67,14 @@
 						CMEHrs = (CASE isNull(A.SessionType,'S')
 									WHEN 'M' THEN 
 										isNull((SELECT SUM(AC.Amount) AS TotalHours
-												FROM ceschema.ce_Activity_Credit AS AC 
-												INNER JOIN ceschema.ce_Activity AS A4 ON AC.ActivityID = A4.ActivityID
+												FROM ce_Activity_Credit AS AC 
+												INNER JOIN ce_Activity AS A4 ON AC.ActivityID = A4.ActivityID
 												WHERE (A4.DeletedFlag='N') AND (AC.CreditID = 1) AND (A4.ParentActivityID = a.ActivityID) AND (A4.StatusID IN (1,2,3)) AND (AC.DeletedFlag='N') AND (A4.StartDate BETWEEN @StartDate AND @EndDate)
 												OR
 												(A4.DeletedFlag='N') AND (AC.CreditID = 1) AND (A4.ParentActivityID = a.ActivityID) AND (A4.StatusID IN (1,2,3)) AND (AC.DeletedFlag='N') AND (A4.EndDate BETWEEN @StartDate AND @EndDate)),0)
 									WHEN 'S' THEN 
 										isNull((SELECT SUM(AC.Amount) AS TotalHours
-												FROM ceschema.ce_Activity_Credit AS AC 
+												FROM ce_Activity_Credit AS AC 
 												WHERE (AC.CreditID = 1) AND (AC.ActivityID = A.ActivityID) AND (AC.DeletedFlag='N')),0)
 								END),
 						StatMD = 
@@ -82,8 +82,8 @@
 								/* ENDURING MATERIALS */
 								WHEN A.ActivityTypeID = 2 THEN 
 									(SELECT Count(Att.AttendeeID)
-									 FROM ceschema.ce_Attendee AS Att 
-									 INNER JOIN ceschema.ce_Activity AS A2 ON Att.ActivityID = A2.ActivityID
+									 FROM ce_Attendee AS Att 
+									 INNER JOIN ce_Activity AS A2 ON Att.ActivityID = A2.ActivityID
 									 WHERE 
 										(A2.DeletedFlag='N') AND 
 										(Att.ActivityID = a.ActivityID) AND
@@ -104,7 +104,7 @@
 										WHEN 'M' THEN 
 											(SELECT Sum(A2.StatMD)
 											FROM
-											 ceschema.ce_Activity AS A2
+											 ce_Activity AS A2
 											 WHERE 
 												(A2.DeletedFlag='N') AND (A2.ParentActivityID = A.ActivityID) AND (A2.StatusID IN (1,2,3)) AND (A2.StartDate BETWEEN @StartDate AND @EndDate)
 												OR
@@ -113,7 +113,7 @@
 										WHEN 'S' THEN
 											(SELECT Sum(A2.StatMD)
 											FROM
-											 ceschema.ce_Activity AS A2
+											 ce_Activity AS A2
 											 WHERE 
 												(A2.DeletedFlag='N') AND (A2.ActivityID = A.ActivityID) AND (A2.StatusID IN (1,2,3)) AND (A2.StartDate BETWEEN @StartDate AND @EndDate)
 												OR
@@ -133,9 +133,9 @@
 										SELECT 
 											count(Att2.AttendeeID)
 										FROM 
-											ceschema.ce_Attendee AS Att2 
+											ce_Attendee AS Att2 
 										INNER JOIN 
-											ceschema.ce_Activity AS A3 ON Att2.ActivityID = A3.ActivityID
+											ce_Activity AS A3 ON Att2.ActivityID = A3.ActivityID
 										WHERE 
 											(A3.DeletedFlag='N') AND 
 											(Att2.ActivityID = a.ActivityID) AND
@@ -162,7 +162,7 @@
 													SELECT 
 														isNull(Sum(A3.StatNonMD),0)+isNull(Sum(A3.StatAddlAttendees),0)
 													FROM
-														ceschema.ce_Activity AS A3
+														ce_Activity AS A3
 													WHERE 
 														(A3.DeletedFlag='N') AND 
 														(A3.ParentActivityID = A.ActivityID) AND 
@@ -200,9 +200,9 @@
 											SELECT     
 												COUNT(FS.Amount)
 											FROM         
-												ceschema.ce_Activity_FinSupport AS FS 
+												ce_Activity_FinSupport AS FS 
 											INNER JOIN
-												ceschema.ce_Activity AS A5 ON FS.ActivityID = A5.ActivityID
+												ce_Activity AS A5 ON FS.ActivityID = A5.ActivityID
 											WHERE    
 													(A5.ParentActivityID = A.ActivityID) AND 
 													(A5.DeletedFlag='N') AND 
@@ -225,9 +225,9 @@
 											SELECT     
 												COUNT(FS.Amount)
 											FROM         
-												ceschema.ce_Activity_FinSupport AS FS 
+												ce_Activity_FinSupport AS FS 
 											INNER JOIN
-												ceschema.ce_Activity AS A5 ON FS.ActivityID = A5.ActivityID
+												ce_Activity AS A5 ON FS.ActivityID = A5.ActivityID
 											WHERE    
 													(A5.ParentActivityID = A.ActivityID) AND 
 													(A5.DeletedFlag='N') AND 
@@ -254,7 +254,7 @@
 										SELECT     
 											COUNT(FS.Amount)
 										FROM         
-											ceschema.ce_Activity_FinSupport As FS
+											ce_Activity_FinSupport As FS
 										WHERE     
 											(FS.SupportTypeID = 1) AND 
 											(FS.DeletedFlag = 'N') AND 
@@ -266,7 +266,7 @@
 										SELECT     
 											COUNT(FS.Amount)
 										FROM         
-											ceschema.ce_Activity_FinSupport As FS
+											ce_Activity_FinSupport As FS
 										WHERE     
 											(FS.SupportTypeID = 1) AND 
 											(FS.DeletedFlag = 'N') AND 
@@ -293,9 +293,9 @@
 													SELECT     
 														COUNT(FS.Amount)
 													FROM         
-														ceschema.ce_Activity_FinSupport AS FS 
+														ce_Activity_FinSupport AS FS 
 													INNER JOIN
-														ceschema.ce_Activity AS A5 ON FS.ActivityID = A5.ActivityID
+														ce_Activity AS A5 ON FS.ActivityID = A5.ActivityID
 													WHERE    
 															(A5.ParentActivityID = A.ActivityID) AND 
 															(A5.DeletedFlag='N') AND 
@@ -318,9 +318,9 @@
 													SELECT     
 														COUNT(FS.Amount)
 													FROM         
-														ceschema.ce_Activity_FinSupport AS FS 
+														ce_Activity_FinSupport AS FS 
 													INNER JOIN
-														ceschema.ce_Activity AS A5 ON FS.ActivityID = A5.ActivityID
+														ce_Activity AS A5 ON FS.ActivityID = A5.ActivityID
 													WHERE    
 															(A5.ParentActivityID = A.ActivityID) AND 
 															(A5.DeletedFlag='N') AND 
@@ -346,7 +346,7 @@
 												SELECT     
 													COUNT(FS.Amount)
 												FROM         
-													ceschema.ce_Activity_FinSupport As FS
+													ce_Activity_FinSupport As FS
 												WHERE     
 													(FS.SupportTypeID = 1) AND 
 													(FS.DeletedFlag = 'N') AND 
@@ -358,7 +358,7 @@
 												SELECT     
 													COUNT(FS.Amount)
 												FROM         
-													ceschema.ce_Activity_FinSupport As FS
+													ce_Activity_FinSupport As FS
 												WHERE     
 													(FS.SupportTypeID = 1) AND 
 													(FS.DeletedFlag = 'N') AND 
@@ -389,9 +389,9 @@
 													SELECT     
 														SUM(FS.Amount)
 													FROM         
-														ceschema.ce_Activity_FinSupport AS FS 
+														ce_Activity_FinSupport AS FS 
 													INNER JOIN
-														ceschema.ce_Activity AS A5 ON FS.ActivityID = A5.ActivityID
+														ce_Activity AS A5 ON FS.ActivityID = A5.ActivityID
 													WHERE    
 															(A5.ParentActivityID = A.ActivityID) AND 
 															(A5.DeletedFlag='N') AND 
@@ -414,9 +414,9 @@
 													SELECT     
 														SUM(FS.Amount)
 													FROM         
-														ceschema.ce_Activity_FinSupport AS FS 
+														ce_Activity_FinSupport AS FS 
 													INNER JOIN
-														ceschema.ce_Activity AS A5 ON FS.ActivityID = A5.ActivityID
+														ce_Activity AS A5 ON FS.ActivityID = A5.ActivityID
 													WHERE    
 															(A5.ParentActivityID = A.ActivityID) AND 
 															(A5.DeletedFlag='N') AND 
@@ -442,7 +442,7 @@
 												SELECT     
 													SUM(FS.Amount)
 												FROM         
-													ceschema.ce_Activity_FinSupport As FS
+													ce_Activity_FinSupport As FS
 												WHERE     
 													(FS.SupportTypeID = 1) AND 
 													(FS.DeletedFlag = 'N') AND 
@@ -454,7 +454,7 @@
 												SELECT     
 													SUM(FS.Amount)
 												FROM         
-													ceschema.ce_Activity_FinSupport As FS
+													ce_Activity_FinSupport As FS
 												WHERE     
 													(FS.SupportTypeID = 1) AND 
 													(FS.DeletedFlag = 'N') AND 
@@ -479,9 +479,9 @@
 													SELECT     
 														SUM(FS.Amount)
 													FROM         
-														ceschema.ce_Activity_FinSupport AS FS 
+														ce_Activity_FinSupport AS FS 
 													INNER JOIN
-														ceschema.ce_Activity AS A5 ON FS.ActivityID = A5.ActivityID
+														ce_Activity AS A5 ON FS.ActivityID = A5.ActivityID
 													WHERE    
 															(A5.ParentActivityID = A.ActivityID) AND 
 															(A5.DeletedFlag='N') AND 
@@ -504,9 +504,9 @@
 													SELECT     
 														SUM(FS.Amount)
 													FROM         
-														ceschema.ce_Activity_FinSupport AS FS 
+														ce_Activity_FinSupport AS FS 
 													INNER JOIN
-														ceschema.ce_Activity AS A5 ON FS.ActivityID = A5.ActivityID
+														ce_Activity AS A5 ON FS.ActivityID = A5.ActivityID
 													WHERE    
 															(A5.ParentActivityID = A.ActivityID) AND 
 															(A5.DeletedFlag='N') AND 
@@ -532,7 +532,7 @@
 												SELECT     
 													SUM(FS.Amount)
 												FROM         
-													ceschema.ce_Activity_FinSupport As FS
+													ce_Activity_FinSupport As FS
 												WHERE     
 													(FS.SupportTypeID = 2) AND 
 													(FS.DeletedFlag = 'N') AND 
@@ -544,7 +544,7 @@
 												SELECT     
 													SUM(FS.Amount)
 												FROM         
-													ceschema.ce_Activity_FinSupport As FS
+													ce_Activity_FinSupport As FS
 												WHERE     
 													(FS.SupportTypeID = 2) AND 
 													(FS.DeletedFlag = 'N') AND 
@@ -569,9 +569,9 @@
 													SELECT     
 														SUM(FS.Amount)
 													FROM         
-														ceschema.ce_Activity_FinSupport AS FS 
+														ce_Activity_FinSupport AS FS 
 													INNER JOIN
-														ceschema.ce_Activity AS A5 ON FS.ActivityID = A5.ActivityID
+														ce_Activity AS A5 ON FS.ActivityID = A5.ActivityID
 													WHERE    
 															(A5.ParentActivityID = A.ActivityID) AND 
 															(A5.DeletedFlag='N') AND 
@@ -594,9 +594,9 @@
 													SELECT     
 														SUM(FS.Amount)
 													FROM         
-														ceschema.ce_Activity_FinSupport AS FS 
+														ce_Activity_FinSupport AS FS 
 													INNER JOIN
-														ceschema.ce_Activity AS A5 ON FS.ActivityID = A5.ActivityID
+														ce_Activity AS A5 ON FS.ActivityID = A5.ActivityID
 													WHERE    
 															(A5.ParentActivityID = A.ActivityID) AND 
 															(A5.DeletedFlag='N') AND 
@@ -622,7 +622,7 @@
 												SELECT     
 													SUM(FS.Amount)
 												FROM         
-													ceschema.ce_Activity_FinSupport As FS
+													ce_Activity_FinSupport As FS
 												WHERE     
 													(FS.SupportTypeID = 3) AND 
 													(FS.DeletedFlag = 'N') AND 
@@ -634,7 +634,7 @@
 												SELECT     
 													SUM(FS.Amount)
 												FROM         
-													ceschema.ce_Activity_FinSupport As FS
+													ce_Activity_FinSupport As FS
 												WHERE     
 													(FS.SupportTypeID = 3) AND 
 													(FS.DeletedFlag = 'N') AND 
@@ -645,15 +645,15 @@
 									END),0),
 
 						A.groupingid
-					FROM ceschema.ce_Activity AS A
-					INNER JOIN ceschema.ce_Sys_Grouping AS AT ON A.GroupingID=AT.GroupingID
+					FROM ce_Activity AS A
+					INNER JOIN ce_Sys_Grouping AS AT ON A.GroupingID=AT.GroupingID
 					WHERE 
 						(
 							A.ActivityTypeID <> 2 AND
 							A.StartDate BETWEEN @StartDate AND @EndDate AND
 							A.DeletedFlag='N' AND
 							A.StatusID IN (1,2,3) AND
-							(SELECT Count(Activity_CreditID) FROM ceschema.ce_Activity_Credit AS ACr WHERE ACr.ActivityID=A.ActivityID AND ACr.CreditID=1 AND ACr.DeletedFlag='N') > 0		
+							(SELECT Count(Activity_CreditID) FROM ce_Activity_Credit AS ACr WHERE ACr.ActivityID=A.ActivityID AND ACr.CreditID=1 AND ACr.DeletedFlag='N') > 0		
 						)			
 						OR
 						(
@@ -661,14 +661,14 @@
 							A.DeletedFlag='N' AND
 							A.StartDate BETWEEN @StartDate AND @EndDate AND
 							A.StatusID IN (1,2,3) AND
-							(SELECT Count(Activity_CreditID) FROM ceschema.ce_Activity_Credit AS ACr WHERE ACr.ActivityID=A.ActivityID AND ACr.CreditID=1 AND ACr.DeletedFlag='N') > 0
+							(SELECT Count(Activity_CreditID) FROM ce_Activity_Credit AS ACr WHERE ACr.ActivityID=A.ActivityID AND ACr.CreditID=1 AND ACr.DeletedFlag='N') > 0
 						)
 				
 						OR
 						(
 							A.activityId IN (SELECT     actcat.ActivityID
-											FROM         ceschema.ce_Activity_Category AS actcat INNER JOIN
-																  ceschema.ce_Category AS cat ON actcat.CategoryID = cat.CategoryID
+											FROM         ce_Activity_Category AS actcat INNER JOIN
+																  ce_Category AS cat ON actcat.CategoryID = cat.CategoryID
 											WHERE     (cat.Name = 'ACCME ' + @ReportYear) AND actcat.deletedFlag='N')
 						)
 						
@@ -683,7 +683,7 @@
 				Oth.outcomesEval 
 				FROM CTE_Activities
 				LEFT OUTER JOIN
-				ceschema.ce_Activity_Other As Oth ON Oth.activityId = CTE_Activities.activityid
+				ce_Activity_Other As Oth ON Oth.activityId = CTE_Activities.activityid
 				WHERE isNull(ParentActivityID,0) = 0 ORDER BY ActivityDate,ActivityTitle;
 			</cfquery>
 			
@@ -1055,13 +1055,13 @@
 											inKindHuman = 'No',
 											inKindOther = 'No'
 										FROM
-											ceschema.ce_Activity_FinSupport AS support 
+											ce_Activity_FinSupport AS support 
 										INNER JOIN 
-											ceschema.ce_activity AS activity ON activity.activityid = support.activityid
+											ce_activity AS activity ON activity.activityid = support.activityid
 										LEFT OUTER JOIN
-											ceschema.ce_Sys_SupportType AS suppType ON support.SupportTypeID = suppType.ContribTypeID 
+											ce_Sys_SupportType AS suppType ON support.SupportTypeID = suppType.ContribTypeID 
 										LEFT OUTER JOIN
-											ceschema.ce_Sys_Supporter AS supporter ON support.SupporterID = supporter.ContributorID
+											ce_Sys_Supporter AS supporter ON support.SupporterID = supporter.ContributorID
 										WHERE
 											(
 												/* ENDURING */
@@ -1321,13 +1321,13 @@
 									inKindHuman = 'No',
 									inKindOther = 'No'
 								FROM
-									ceschema.ce_Activity_FinSupport AS support 
+									ce_Activity_FinSupport AS support 
 								INNER JOIN 
-									ceschema.ce_activity AS activity ON activity.activityid = support.activityid
+									ce_activity AS activity ON activity.activityid = support.activityid
 								LEFT OUTER JOIN
-									ceschema.ce_Sys_SupportType AS suppType ON support.SupportTypeID = suppType.ContribTypeID 
+									ce_Sys_SupportType AS suppType ON support.SupportTypeID = suppType.ContribTypeID 
 								LEFT OUTER JOIN
-									ceschema.ce_Sys_Supporter AS supporter ON support.SupporterID = supporter.ContributorID
+									ce_Sys_Supporter AS supporter ON support.SupporterID = supporter.ContributorID
 								WHERE
 									/* MULTI SESSION */
 									/* START DATE */

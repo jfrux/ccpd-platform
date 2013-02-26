@@ -17,13 +17,13 @@
        		SELECT
                 COUNT(ACDC.attendeeCDCId) AS AttendeeCount
             FROM
-                ceschema.ce_attendeeCDC AS ACDC
+                ce_attendeeCDC AS ACDC
             INNER JOIN
-                ceschema.ce_attendee AS ATT ON ATT.attendeeId = ACDC.attendeeId
+                ce_attendee AS ATT ON ATT.attendeeId = ACDC.attendeeId
             INNER JOIN
-                ceschema.ce_activity AS ACT ON ACT.activityId = ATT.activityId
+                ce_activity AS ACT ON ACT.activityId = ATT.activityId
             INNER JOIN
-                ceschema.ce_Person AS PER ON PER.personId = ATT.personId
+                ce_Person AS PER ON PER.personId = ATT.personId
             WHERE
                 ATT.completeDate BETWEEN @startDate AND @endDate AND
                 ACT.statusId IN (1,2,3) AND
@@ -193,7 +193,7 @@
                     funcName = name,
                     funcType = 'funcC'
                 FROM
-                    ceschema.ce_sys_funRC
+                    ce_sys_funRC
                 
                 UNION
                 
@@ -202,7 +202,7 @@
                     funcName = name,
                     funcType = 'funcN'
                 FROM
-                    ceschema.ce_sys_funRN
+                    ce_sys_funRN
             ),           
             CTE_Attendees (attendeeCDCId, funcId, occClassId)
             AS
@@ -212,13 +212,13 @@
                     CASE WHEN ACDC.occClassId = 1 THEN ACDC.funRCId ELSE ACDC.funRNId END AS funcID,
                     ACDC.occClassId
                 FROM
-                    ceschema.ce_attendeeCDC AS ACDC
+                    ce_attendeeCDC AS ACDC
                 INNER JOIN
-                    ceschema.ce_attendee AS ATT ON ATT.attendeeId = ACDC.attendeeId
+                    ce_attendee AS ATT ON ATT.attendeeId = ACDC.attendeeId
                 INNER JOIN
-                    ceschema.ce_activity AS ACT ON ACT.activityId = ATT.activityId
+                    ce_activity AS ACT ON ACT.activityId = ATT.activityId
                 INNER JOIN
-                    ceschema.ce_Person AS PER ON PER.personId = ATT.personId
+                    ce_Person AS PER ON PER.personId = ATT.personId
                 WHERE
                     ATT.completeDate BETWEEN @startDate AND @endDate AND
                     ACT.statusId IN (1,2,3) AND
@@ -261,7 +261,7 @@
                     funcName = name,
                     funcType = 'funcC'
                 FROM
-                    ceschema.ce_sys_funRC
+                    ce_sys_funRC
                 
                 UNION
                 
@@ -270,7 +270,7 @@
                     funcName = name,
                     funcType = 'funcN'
                 FROM
-                    ceschema.ce_sys_funRN
+                    ce_sys_funRN
             ),           
             CTE_Attendees (attendeeCDCId, funcId, occClassId)
             AS
@@ -280,13 +280,13 @@
                     CASE WHEN ACDC.occClassId = 1 THEN ACDC.funRCId ELSE ACDC.funRNId END AS funcID,
                     ACDC.occClassId
                 FROM
-                    ceschema.ce_attendeeCDC AS ACDC
+                    ce_attendeeCDC AS ACDC
                 INNER JOIN
-                    ceschema.ce_attendee AS ATT ON ATT.attendeeId = ACDC.attendeeId
+                    ce_attendee AS ATT ON ATT.attendeeId = ACDC.attendeeId
                 INNER JOIN
-                    ceschema.ce_activity AS ACT ON ACT.activityId = ATT.activityId
+                    ce_activity AS ACT ON ACT.activityId = ATT.activityId
                 INNER JOIN
-                    ceschema.ce_Person AS PER ON PER.personId = ATT.personId
+                    ce_Person AS PER ON PER.personId = ATT.personId
                 WHERE
                     ATT.completeDate BETWEEN @startDate AND @endDate AND
                     ACT.statusId IN (1,2,3) AND

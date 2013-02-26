@@ -35,7 +35,7 @@
 	</cfcase>
 	
 	<cfcase value="test.ccpd.uc.edu">
-		<cfset Application.Settings.DSN = "CCPD_PROD">
+		<cfset Application.Settings.DSN = "CCPD_RAILS">
 		<cfset Application.Settings.AppName = "CCPD Admin 2.0" /> <!--- appears on Window Titles, etc. --->
 		<cfset Application.Settings.RootPath = "/admin" /> <!--- HTTP path for images, and links --->
 		<cfset Application.Settings.ComPath = "/_com" /> <!--- Master CFC ColdFusion Mapping --->
