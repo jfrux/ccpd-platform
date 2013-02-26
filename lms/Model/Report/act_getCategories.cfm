@@ -1,0 +1,1 @@
+<cfset qCategories = Application.Com.CategoryGateway.getByViewAttributes(DeletedFlag="N",OrderBy="Name")>

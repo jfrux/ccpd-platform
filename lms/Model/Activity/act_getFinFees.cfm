@@ -1,0 +1,1 @@
+<cfset qFinFeeList = Application.Com.ActivityFeeGateway.getByViewAttributes(ActivityID=Attributes.ActivityID,DeletedFlag='N')>

@@ -1,0 +1,51 @@
+div.Component { border:1px dashed #CCC; padding:5px; margin:1px;width:615px; height:20px; background-color:#FFF; }
+div.Component.Selected { background-color:#EEE; }
+div.Component.PlaceHolder { background-color:#FDFEDE; }
+div.Component.HD1 { background-color:#FFF; }
+div.Component.HD1 div.ComponentDisplayName { background-color:#FFF; font-weight:bold; padding-left:24px; font-size:15px; }
+
+div.Component.HD2 { background-color:#FFF; }
+div.Component.HD2 div.ComponentDisplayName { background-color:#FFF; font-weight:bold; padding-left:24px; font-size:13px; }
+
+div.Component.ASEV div.ComponentDisplayName { background-image:url(../_images/Icons/user_comment.png); }
+div.Component.ASPR div.ComponentDisplayName { background-image:url(../_images/Icons/application_side_contract.png); }
+div.Component.ASPO div.ComponentDisplayName { background-image:url(../_images/Icons/application_side_expand.png); }
+div.Component.TX div.ComponentDisplayName { background-image:url(../_images/Icons/font.png); }
+div.Component.FD div.ComponentDisplayName { background-image:url(../_images/Icons/disk.png); }
+div.Component.FV div.ComponentDisplayName { background-image:url(../_images/Icons/page.png); }
+div.Component.ST div.ComponentDisplayName { background-image:url(../_images/Icons/shield.png); }
+div.Component.EC div.ComponentDisplayName { background-image:url(../_images/Icons/world_link.png); }
+div.Component.VID div.ComponentDisplayName { background-image:url(../_images/Icons/television.png); }
+div.Component.AUD div.ComponentDisplayName { background-image:url(../_images/Icons/sound.png); }
+div.Component.TA div.ComponentDisplayName { background-image:url(../_images/Icons/key.png); }
+div.Component.PAY div.ComponentDisplayName { background-image:url(../_images/Icons/creditcards.png);  }
+div.Component.HD1 div.ComponentDisplayName { background-image:url(../_images/Icons/text_heading_1.png);  }
+div.Component.HD2 div.ComponentDisplayName { background-image:url(../_images/Icons/text_heading_2.png);  }
+div.Component.HD3 div.ComponentDisplayName { background-image:url(../_images/Icons/text_heading_3.png);  }
+
+
+div.ComponentHandle { width:18px; margin-right:3px; margin-top:2px;float:left; }
+div.ComponentDisplayName { float:left; margin-top:3px; background-repeat:no-repeat; background-position:3px; padding-left:24px; width:350px; }
+div.ComponentOptions { float:left; margin-top:3px; margin-left:4px; }
+div.ComponentInfo { width:400px; float:left; font-size:10px; }
+
+
+div.ComponentItem { margin:3px;float:left; width:130px; padding:0px 0px 0px 30px; background-position:8px; background-repeat:no-repeat; }
+div.ComponentItem a { text-decoration:none; display:block; }
+div.ComponentItem a:hover { text-decoration:underline; }
+div.ComponentDesc { font-size:10px; color:#555; padding-left:24px; display:none; }
+div.ComponentItem.ASEV { background-image:url(../_images/Icons/user_comment.png); }
+div.ComponentItem.ASPR { background-image:url(../_images/Icons/application_side_contract.png); }
+div.ComponentItem.ASPO { background-image:url(../_images/Icons/application_side_expand.png); }
+div.ComponentItem.TX { background-image:url(../_images/Icons/font.png); }
+div.ComponentItem.FD { background-image:url(../_images/Icons/disk.png); }
+div.ComponentItem.FV { background-image:url(../_images/Icons/page.png); }
+div.ComponentItem.ST { background-image:url(../_images/Icons/shield.png); }
+div.ComponentItem.EC { background-image:url(../_images/Icons/world_link.png); }
+div.ComponentItem.VID { background-image:url(../_images/Icons/television.png); }
+div.ComponentItem.AUD { background-image:url(../_images/Icons/sound.png); }
+div.ComponentItem.TA { background-image:url(../_images/Icons/key.png); }
+div.ComponentItem.PAY { background-image:url(../_images/Icons/creditcards.png);  }
+div.ComponentItem.HD1 { background-image:url(../_images/Icons/text_heading_1.png);  }
+div.ComponentItem.HD2 { background-image:url(../_images/Icons/text_heading_2.png);  }
+div.ComponentItem.HD3 { background-image:url(../_images/Icons/text_heading_3.png);  }

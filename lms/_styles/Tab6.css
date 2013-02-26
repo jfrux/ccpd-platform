@@ -1,6 +1,6 @@
 #HeaderSubNav { background-color:#555555; }
 
-a.HeaderTabOn { padding:7px 15px; float:left; text-decoration:none;background-image:url(/lms/_images/Header_Tab6BG.gif); background-color:#8d8d8d; color:#FFF; }
+a.HeaderTabOn { padding:7px 15px; float:left; text-decoration:none;background-image:url(../_images/Header_Tab6BG.gif); background-color:#8d8d8d; color:#FFF; }
 
 
 /* CONTENT */

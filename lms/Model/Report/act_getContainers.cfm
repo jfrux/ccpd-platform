@@ -1,0 +1,1 @@
+<cfset qCats = Application.Com.CategoryGateway.getByAttributes(OrderBy="Name")>

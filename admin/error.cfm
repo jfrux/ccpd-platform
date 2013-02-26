@@ -58,7 +58,7 @@
 		<td style="font-size:13px;">
 		<p style="font-size:15px;">
 		<strong>The technical team has been notified of this problem.  </strong><br />
-		If this does not get resolved shortly - please feel free to contact us at <a href="mailto:#error.mailto#">#error.mailto#</a></p>
+		If this does not get resolved shortly - please feel free to contact support <a href="http://ccpd.uc.edu/support/">ccpd.uc.edu/support</a></p>
 		<p style="font-size:15px;">Click <a href="javascript:history.back(-1);">here</a> to go back.</p>
 		<ul style="color:##444;">
 		<li><b>Your Location:</b> #error.remoteAddress#</li>

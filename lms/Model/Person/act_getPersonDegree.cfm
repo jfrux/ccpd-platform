@@ -1,0 +1,1 @@
+<cfset PersonDegreeInfo = Application.Com.PersonDegreeGateway.getByViewAttributes(PersonID=Attributes.PersonID,DeletedFlag='N')>

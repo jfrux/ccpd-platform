@@ -7,10 +7,6 @@
 		<include template="act_Welcome" />
 	</fuseaction>
 	
-	<fuseaction name="doSignup">
-		<include template="act_doSignup" />
-	</fuseaction>
-	
     <fuseaction name="doLogin">
 		<include template="act_doLogin" />
 	</fuseaction>
@@ -19,8 +15,8 @@
 		<include template="act_doLogout" />
 	</fuseaction>
 	
-	<fuseaction name="Support">
-		<include template="act_Support" />
+	<fuseaction name="doSearch">
+		<include template="act_doSearch" />
 	</fuseaction>
 	
 </circuit>

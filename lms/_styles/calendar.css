@@ -194,7 +194,7 @@ ul#primarynav li {
 	}
 	
 ul#primarynav li a {
-	background-image: url( "/lms/_images/nav_background.gif" ) ;
+	background-image: url( "/admin/_images/nav_background.gif" ) ;
 	background-position: top left ;
 	background-repeat: no-repeat ;
 	color: #555555 ;
@@ -210,5 +210,5 @@ ul#primarynav li a {
 	
 ul#primarynav li a.on {
 	background-color: #FEF3B9 ;
-	background-image: url( "/lms/_images/nav_background_on.gif" ) ;
+	background-image: url( "/admin/_images/nav_background_on.gif" ) ;
 	}

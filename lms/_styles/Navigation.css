@@ -5,7 +5,7 @@
 	width:144px;
 }
 #navigation a.head {
-	background:#333333 url(/lms/_images/collapsed.gif) no-repeat scroll 3px 4px;
+	background:#333333 url(/admin/_images/collapsed.gif) no-repeat scroll 3px 4px;
 	background-position:left;
 	cursor:default;
 	color:#FFFFFF;
@@ -20,7 +20,7 @@
 	color:#EEEEEE;
 }
 #navigation a.selected {
-	background-image: url(/lms/_images/expanded.gif);
+	background-image: url(/admin/_images/expanded.gif);
 }
 #navigation a.current {
 	background-color:#555555;

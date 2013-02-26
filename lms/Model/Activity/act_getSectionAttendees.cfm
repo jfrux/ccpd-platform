@@ -1,0 +1,1 @@
+<cfset qSectionAttendees = Application.Com.ActivitiesectionPersonGateway.getByAttributesForDisplay(ActivitiesectionID=Attributes.ActivitiesectionID,OrderBy='p.LastName,p.FirstName')>

@@ -16,6 +16,7 @@
 
 <!--- APP SETTINGS --->
 <cfset Application.Settings = StructNew() />
+<cfset Application.settings.bugLogServer = "http://bugs.swodev.com" />
 <cfswitch expression="#CGI.SERVER_NAME#">
 	<!--- PRODUCTION --->
 	<cfcase value="ccpd.uc.edu">
@@ -30,35 +31,9 @@
 		<cfset Application.Settings.WebURL = "https://ccpd.uc.edu/admin/" />
 		<cfset Application.Settings.LMSURL = "https://ccpd.uc.edu/" />
 		<cfset Application.Settings.CDCURL = "http://cme.uc.edu/stdptc" />
-	</cfcase>
-	<cfcase value="localhost">
-		<cfset Application.Settings.DSN = "CCPD_PROD">
-		<cfset Application.Settings.AppName = "CCPD Admin 2.0" /> <!--- appears on Window Titles, etc. --->
-		<cfset Application.Settings.RootPath = "/admin" /> <!--- HTTP path for images, and links --->
-		<cfset Application.Settings.ComPath = "/_com" /> <!--- Master CFC ColdFusion Mapping --->
-		<cfset Application.Settings.AppPath = "/admin" /> <!--- ColdFusion Mapping --->
-		<cfset Application.Settings.Com = "_com." />
-		<cfset Application.Settings.Com2 = "admin._com." />
-		<cfset Application.Settings.AdminEmails = "rountrjf@ucmail.uc.edu,slamkajs@ucmail.uc.edu" />
-		<cfset Application.Settings.WebURL = "https://ccpd.uc.edu/admin/" />
-		<cfset Application.Settings.LMSURL = "https://ccpd.uc.edu/" />
-		<cfset Application.Settings.CDCURL = "http://cme.uc.edu/stdptc" />
 		<cfset application.settings.javaloaderKey = "JAVALOADER-CCPD-PROD-15313">
 	</cfcase>
-	<cfcase value="v2.ccpd.uc.edu">
-		<cfset Application.Settings.DSN = "CCPD_PROD">
-		<cfset Application.Settings.AppName = "CCPD Admin 2.0" /> <!--- appears on Window Titles, etc. --->
-		<cfset Application.Settings.RootPath = "/admin" /> <!--- HTTP path for images, and links --->
-		<cfset Application.Settings.ComPath = "/_com" /> <!--- Master CFC ColdFusion Mapping --->
-		<cfset Application.Settings.AppPath = "/admin" /> <!--- ColdFusion Mapping --->
-		<cfset Application.Settings.Com = "_com." />
-		<cfset Application.Settings.Com2 = "admin._com." />
-		<cfset Application.Settings.AdminEmails = "rountrjf@ucmail.uc.edu,slamkajs@ucmail.uc.edu" />
-		<cfset Application.Settings.WebURL = "https://ccpd.uc.edu/admin/" />
-		<cfset Application.Settings.LMSURL = "https://ccpd.uc.edu/" />
-		<cfset Application.Settings.CDCURL = "http://cme.uc.edu/stdptc" />
-		<cfset application.settings.javaloaderKey = "JAVALOADER-CCPD-PROD-15313">
-	</cfcase>
+	
 	<cfcase value="test.ccpd.uc.edu">
 		<cfset Application.Settings.DSN = "CCPD_PROD">
 		<cfset Application.Settings.AppName = "CCPD Open Test" /> <!--- appears on Window Titles, etc. --->
@@ -167,9 +142,9 @@
 </cfswitch>
 
 <cfset Application.BugLog = CreateObject("component","#Application.Settings.Com#bugLogService").init(
-bugLogListener="http://bugs.ccpd.uc.edu/buglog/listeners/bugLogListenerREST.cfm",
-bugEmailRecipients="rountrjf@ucmail.uc.edu,slamkajs@ucmail.uc.edu,speerba@ucmail.uc.edu",
-bugSenderEmail="bugs@ccpd.uc.edu")>
+bugLogListener="http://bugs.swodev.com/listeners/bugLogListenerREST.cfm",
+bugEmailRecipients="rountrjf@ucmail.uc.edu,slamkajs@ucmail.uc.edu",
+bugSenderEmail="rountrjf@ucmail.uc.edu")>
 <!---
 <cfset Application.unfuddle = CreateObject("component","#application.settings.com#unfuddle").init(
 							unfuddleUrl="http://ucccpd.unfuddle.com",
@@ -177,13 +152,12 @@ bugSenderEmail="bugs@ccpd.uc.edu")>
 							password="05125586") />--->
 
 <!--- JAVA PATHS / LOADER --->
-<!--- <cfset javaPaths = [
-expandPath("/_java/Supa.jar"),
-expandPath("/_java/EncodingUtil.class")
-]> --->
- <!--- 
+<cfset javaPaths = ["#expandPath("/_java/lingpipe-4.0.1.jar")#",
+"#expandPath("/_java/Supa.jar")#",
+"#expandPath("/_java/EncodingUtil.class")#"]>
+ 
 <cfset application.javaloader = createObject("component", "_com.javaloader.JavaLoader").init(javaPaths)>
- --->
+
 <cfset Application.Email = CreateObject("component","#Application.Settings.Com#email").Init()>
 <cfset application.search = createObject("component","_com.typeahead.search").init(application.settings.dsn) />
 

@@ -4,24 +4,25 @@
 }
 
 html>body #StatusBar {
-display: block;
-position: fixed;
-text-align: left;
-bottom: 0px;
-width: 100%;
-border-bottom: #ddd;
-color: #999999;
-background-position:bottom;
-clear: both;
-padding:0px 1px 1px 0;
-height:25px;
+background-position:center bottom;
+border-bottom:medium none #DDDDDD;
+bottom:0;
+clear:both;
+color:#999999;
+display:block;
 font-size:13px;
-z-index:10000;
+left:0;
+margin:0 auto;
+padding:15px 1px 1px 0;
+position:fixed;
+right:0;
+text-align:left;
+width:960px;
 }
 
-.PageErrors {  background-image:url(/lms/_images/icons/error.png); background-repeat:no-repeat; background-position:5px 6px; margin:10px 5px; float:left; color:#CC0000; background-color:#FFDDDD; border:1px solid #C60000; padding:7px 8px 6px 25px; -moz-opacity:.90; filter:alpha(opacity=90); opacity:.90; }
+.PageErrors {  background-image:url(../_images/icons/error.png); background-repeat:no-repeat; background-position:5px 6px; margin:10px 5px; float:left; color:#CC0000; background-color:#FFDDDD; border:1px solid #C60000; padding:7px 8px 6px 25px; -moz-opacity:.90; filter:alpha(opacity=90); opacity:.90; }
 .PageErrors span { position:absolute; right:10px; cursor:default; }
-.PageMessages {  background-image:url(/lms/_images/icons/tick.png); background-repeat:no-repeat; background-position:5px 6px; margin:10px 5px; float:left; color:#003300; background-color:#DCFEDA; border:1px solid #028805; padding:6px 8px 6px 25px; -moz-opacity:.90; filter:alpha(opacity=90); opacity:.90; }
+.PageMessages {  background-image:url(../_images/icons/tick.png); background-repeat:no-repeat; background-position:5px 6px; margin:10px 5px; float:left; color:#003300; background-color:#DCFEDA; border:1px solid #028805; padding:6px 8px 6px 25px; -moz-opacity:.90; filter:alpha(opacity=90); opacity:.90; }
 .PageMessages span { position:absolute; right:10px; cursor:default; }
-.PageStandard {  width:100%;color:#FFF; background-image:url(/lms/_images/StatusBar_Gray.gif); background-color:#CCC; padding:6px 9px; }
+.PageStandard {  width:100%;color:#FFF; background-image:url(../_images/StatusBar_Gray.gif); background-color:#CCC; padding:6px 9px; }
 .PageStandard span { position:absolute; right:10px; cursor:default; }

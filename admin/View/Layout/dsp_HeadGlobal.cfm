@@ -43,7 +43,7 @@
 <script type="text/javascript" src="#Application.Settings.RootPath#/_scripts/jquery.periodicalupdater.js"></script>
 <script type="text/javascript" src="#Application.Settings.RootPath#/_scripts/encoder.js"></script>
 <script type="text/javascript" src="#Application.Settings.RootPath#/_scripts/history.js"></script>
-
+<script type="text/javascript" src="/static/js/bugLogClient.js"></script>
 <link href="#Application.Settings.RootPath#/_styles/StatusBar<cfif Request.Browser CONTAINS "MSIE">IE</cfif>.css?v=1" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="/static/css/jquery-css/ui-lightness/jquery-ui-1.8.9.custom.css" media="screen" />
 <link rel="stylesheet" href="/static/css/ceaui/tokenizer.css" media="screen" />
@@ -84,6 +84,27 @@
 	});
 	</script>
 <script type="text/javascript">
+	BugLog.listener = "#Application.settings.bugLogServer#/listeners/bugLogListenerREST.cfm";
+	BugLog.appName = "#Application.settings.appname#";
+
+	
+// Method 1: Within your own error handler (full stacktrace)
+	// try {
+	// 	.... code that throws an error ...			
+	// } catch(e) {
+		
+	// }
+	
+// Method 2:  Within a global error handler (no stacktrace)
+	window.onerror = function(message, file, line) {
+	  	BugLog.notifyService({
+				  message: message,
+				  extraInfo: 'Error occurred in: ' + file + ':' + line,
+				  severity:"ERROR"
+		  });
+		  return true;
+	};		
+
 var loggedIn = false;
 var StatusCount = 0;
 var currPersonId = 0;
@@ -122,6 +143,7 @@ jQuery().ready(function(){
 			}else if(x.status==404){
 				sMessage = "OOPS! An error occurred during your last request. Page not found!";
 			}else if(x.status==500){
+				errMsg = "500 Internal Server Error"
 				sMessage = "OOPS! An error occurred during your last request.  We are sorry for the inconvenience.";
 			}else if(e=="parsererror"){
 				sMessage = "OOPS! An error occurred during your last request.  JSON parsing error.";
@@ -133,6 +155,13 @@ jQuery().ready(function(){
 			
 			$("##ajax-issue-title").html(sTitle);
 			$("##ajax-issue-details").html(sMessage);
+
+			BugLog.notifyService({
+				message: "XHR: " + sMessage,
+				error: x,
+				severity: "ERROR"
+			});
+
 			$("##ajax-issue").show();
 		}
 	});  

@@ -1,0 +1,1 @@
+<cfset qEntryTypeList = Application.Com.EntryTypeGateway.getByAttributes(OrderBy='Name')>

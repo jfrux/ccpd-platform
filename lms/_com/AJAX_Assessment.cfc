@@ -1,19 +1,20 @@
 <cfcomponent>
-	<cffunction name="getResult" access="Remote" output="true" returntype="string">
+    <cffunction name="isAssessFailed" hint="Determine if the user passed or failed the assessment" access="Remote" output="true" returntype="string">
 		<cfargument name="AssessmentID" type="string" required="yes">
 		<cfargument name="PersonID" type="string" required="yes">
-		<cfargument name="EvalType" type="string" required="yes">
         
-        <cfset var Status = Application.Assessment.getResult(Arguments.AssessmentID,Arguments.PersonID,Arguments.EvalType)>
+        <cfset var Status = "0|100">
+        
+        <cfset Status = Application.Assessment.isAssessFailed(Arguments.AssessmentID,Arguments.PersonID)>
         
         <cfreturn Status />
     </cffunction>
-    
-    <cffunction name="markComplete" access="Remote" output="no" returntype="string">
+        
+    <cffunction name="markComplete" access="Remote" output="true" returntype="string">
 		<cfargument name="AssessmentID" type="string" required="yes">
 		<cfargument name="PersonID" type="string" required="yes">
         <cfargument name="ActivityID" type="string" required="yes">
-		<cfargument name="ResultID" type="string" required="yes">
+        <cfargument name="ResultID" type="string" required="yes">
         
         <cfset var status = createObject("component", "#Application.Settings.Com#returnData.buildStruct").init()>
         
@@ -26,7 +27,7 @@
         
         <cfreturn status.getJSON() />
     </cffunction>
-                 
+        
 	<cffunction name="saveAnswer" access="Remote" output="true" returntype="string">
 		<cfargument name="QuestionID" type="string" required="yes">
 		<cfargument name="AssessmentID" type="string" required="yes">
@@ -34,14 +35,14 @@
 		<cfargument name="Answer" type="string" required="yes">
 		<cfargument name="FieldType" type="string" required="yes">
         
-        <cfset var Status = "false">
+        <cfset var Status = False>
         
         <cfset Status = Application.Assessment.saveAnswer(
-														QuestionID=Arguments.QuestionID,
-														AssessmentID=Arguments.AssessmentID,
-														ResultID=Arguments.ResultID,
-														Answer=Arguments.Answer,
-														FieldType=Arguments.FieldType)>
+													QuestionID=Arguments.QuestionID,
+													AssessmentID=Arguments.AssessmentID,
+													ResultID=Arguments.ResultID,
+													Answer=Arguments.Answer,
+													FieldType=arguments.fieldType)>
         
         <cfreturn Status />
     </cffunction>

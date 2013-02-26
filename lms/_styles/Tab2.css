@@ -1,7 +1,7 @@
 #HeaderSubNav { background-color:#3d901b; }
 
 
-a.HeaderTabOn { padding:7px 15px; float:left; text-decoration:none;background-image:url(/lms/_images/Header_Tab2BG.gif); background-color:#23a226; color:#FFF; }
+a.HeaderTabOn { padding:7px 15px; float:left; text-decoration:none;background-image:url(../_images/Header_Tab2BG.gif); background-color:#23a226; color:#FFF; }
 
 
 /* CONTENT */
@@ -9,12 +9,20 @@ a.HeaderTabOn { padding:7px 15px; float:left; text-decoration:none;background-im
 
 
 .TabControl {  border-bottom:3px solid #3d901b; }
-.TabControl #current {
-	background-color:#3d901b;
+
+.TabControl ul li.current a {
+background-color:#3D901B;
+background:-moz-linear-gradient(center top , #62C639, #3D901B) repeat scroll 0 0 #3D901B;
+border-color:#3D901B;
+border-style:solid;
+border-width:1px 1px 0;
+font-weight:bold;
+text-shadow:0 -1px rgba(0, 0, 0, 0.45);
 }
-.TabControl #current A {
-	background-color:#3d901b; PADDING-BOTTOM: 5px; COLOR: #FFF;
-}
+
+.history-filter ul li.current a { background-color:#3D901B;
+background:-moz-linear-gradient(center top , #62C639, #3D901B) repeat scroll 0 0 #3D901B;
+border-color:#3D901B; color:#FFF; }
 
 
 h2.ContentSectTitle { color:#FFF; background-color:#3d901b; }

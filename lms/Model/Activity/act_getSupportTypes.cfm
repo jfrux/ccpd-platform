@@ -1,0 +1,1 @@
+<cfset qSupportTypeList = Application.Com.SupportTypeGateway.getByAttributes(DeletedFlag='N')>

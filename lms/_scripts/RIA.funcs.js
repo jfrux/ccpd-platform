@@ -30,13 +30,13 @@ function setValue(sInstance,sItemID,nCheckType) {
 	}
 	
 	if(sValueName != '') {
-	$.post("/_com/Listing.cfc?method=checkExists&returnFormat=plain&CheckType=" + nCheckType + "&CheckValue=" + sValueName, 
+	$.post("#Application.Settings.RootPath#/_com/Listing.cfc?method=checkExists&returnFormat=plain&CheckType=" + nCheckType + "&CheckValue=" + sValueName, 
 		 function(data){
 			 data = $.trim(data);
 			 if (data == "false") {
 				 /* IF THEY WANT TO ADD, THEN ADD IT */
 				 if (confirm("'" + sValueName + "' is not currently in the system. Do you wish to add it?")) {
-					$.post("/_com/Listing.cfc?method=addItem&returnFormat=plain&CheckType=" + nCheckType + "&CheckValue=" + sValueName, 
+					$.post("#Application.Settings.RootPath#/_com/Listing.cfc?method=addItem&returnFormat=plain&CheckType=" + nCheckType + "&CheckValue=" + sValueName, 
 						 function(data){
 							 data = $.trim(data);
 							 nValueID = data;

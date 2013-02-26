@@ -41,7 +41,7 @@ limitations under the License.
 		<!--- if we're not already executing the scaffolder, branch to it --->
 		<cfif findNoCase("/scaffolder/",CGI.SCRIPT_NAME) eq 0>
 			<cftry>
-				<cfinclude template="/scaffolder/manager.cfm" />
+				<cfinclude template="ccpdadmin/scaffolder/manager.cfm" />
 				<cfcatch type="missinginclude">
 					<cfif structKeyExists(attributes,"scaffolding.debug")>
 						<cfrethrow />
@@ -266,7 +266,6 @@ limitations under the License.
 		<cfset var stack = 0 />
 		<cfset var prefix = "Raised at " />
 		
-		<cfthrow object=#arguments.exception# />
 		<!--- top-level exception is always event name / expression for Application.cfc (but not fusebox5.cfm) --->
 		<cfset var caughtException = arguments.exception />
 		
@@ -308,6 +307,7 @@ limitations under the License.
 				</cfif>
 				<cfoutput>#variables.myFusebox.renderTrace()#</cfoutput>
 			</cfif>
+			<cfthrow object="#caughtException#" />
 		</cfif>
 		
 		<!--- if we hit an error before starting the request, prevent the request from running --->

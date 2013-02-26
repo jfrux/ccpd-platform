@@ -7,8 +7,8 @@
 <title>#Request.Page.Title#</title>
 <meta name="viewport" content="width=320"/>
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
-<link rel="stylesheet" type="text/css" href="/_styles/iPhone/CiUI.css" />
-<script src="/lms/_scripts/iPhone/CiUI.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="#Application.Settings.RootPath#/_styles/iPhone/CiUI.css" />
+<script src="/_scripts/iPhone/CiUI.js" type="text/javascript"></script>
 </head>
 <body>
 <div id="iphone_header">
@@ -20,7 +20,7 @@
 </div>
 <div id="iphone_footer">Powered by Remote-App.com</div>
 <div id="iphone_loading_page">
-	<div id='loading' class="info_msg"> <img src="/lms/_images/iPhone/loading.gif" /><br />
+	<div id='loading' class="info_msg"> <img src="#Application.Settings.RootPath#/_images/iPhone/loading.gif" /><br />
 		loading... </div>
 </div>
 </body>

@@ -1,0 +1,1 @@
+<cfset qPersonNotes = Application.Com.PersonNoteGateway.getByViewAttributes(PersonID=#Attributes.PersonID#,DeletedFlag='N',OrderBy='pn.Created DESC')>

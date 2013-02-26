@@ -1,0 +1,1 @@
+<cfset qSupporterList = Application.Com.SupporterGateway.getByAttributes(DeletedFlag='N',OrderBy='Name')>

@@ -1,0 +1,1 @@
+<cfset AddressList = Application.Com.PersonAddressGateway.getByAttributesForDisplay(PersonID=Attributes.PersonID)>

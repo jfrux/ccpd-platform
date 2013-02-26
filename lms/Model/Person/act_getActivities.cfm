@@ -1,0 +1,1 @@
+<cfset qActivities = Application.activityAttendee.getAttendees(PersonID=Attributes.PersonID,DeletedFlag='N',OrderBy="att.Checkin,a.Title DESC")>

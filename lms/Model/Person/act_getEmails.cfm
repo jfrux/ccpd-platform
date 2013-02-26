@@ -1,0 +1,1 @@
+<cfset EmailList = Application.Com.PersonEmailGateway.getByAttributesQueryFull(Person_ID=Attributes.PersonID)>

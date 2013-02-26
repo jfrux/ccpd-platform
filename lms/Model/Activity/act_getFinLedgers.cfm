@@ -1,0 +1,1 @@
+<cfset qFinLedgerList = Application.Com.ActivityLedgerGateway.getByViewAttributes(ActivityID=Attributes.ActivityID,DeletedFlag='N',OrderBy='EntryDate DESC')>

@@ -18,6 +18,10 @@
 	<fuseaction name="Blank">
 		<include template="lay_Blank" />
 	</fuseaction>
+    
+    <fuseaction name="Register">
+		<include template="lay_Register" />
+	</fuseaction>
 	
 	<fuseaction name="iPhone">
 		<include template="lay_iPhone" />
@@ -29,6 +33,10 @@
 	
 	<fuseaction name="Sub_Person">
 		<include template="Sub\lay_Person" />
+	</fuseaction>
+	
+	<fuseaction name="Sub_PersonMini">
+		<include template="Sub\lay_PersonMini" />
 	</fuseaction>
 	
 	<fuseaction name="Sub_MultiForm">

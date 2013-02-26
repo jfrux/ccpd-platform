@@ -1,24 +1,24 @@
 <cfsetting enablecfoutputonly="true" />
 <cfprocessingdirective pageencoding="utf-8" />
-<!--- circuit: Main --->
-<!--- fuseaction: Welcome --->
+<!--- circuit: main --->
+<!--- fuseaction: welcome --->
 <cftry>
 <cfset myFusebox.thisPhase = "preProcess">
-<cfset myFusebox.thisCircuit = "Main">
-<cfset myFusebox.thisFuseaction = "Welcome">
+<cfset myFusebox.thisCircuit = "main">
+<cfset myFusebox.thisFuseaction = "welcome">
 <cfset myFusebox.thisPlugin = "prePP"/>
 <cfoutput><cfinclude template="../plugins/Globals.cfm"/></cfoutput>
-<!--- do action="mMain.Welcome" --->
 <cfset myFusebox.thisPhase = "requestedFuseaction">
+<cfset Request.NavItem = "1" />
+<!--- do action="mMain.Welcome" --->
 <cfset myFusebox.thisCircuit = "mMain">
 <cftry>
 <cfoutput><cfinclude template="../../Model/act_Welcome.cfm"></cfoutput>
 <cfcatch type="missingInclude"><cfif len(cfcatch.MissingFileName) gte 15 and right(cfcatch.MissingFileName,15) is "act_Welcome.cfm">
 <cfthrow type="fusebox.missingFuse" message="missing Fuse" detail="You tried to include a fuse act_Welcome.cfm in circuit mMain which does not exist (from fuseaction mMain.Welcome).">
 <cfelse><cfrethrow></cfif></cfcatch></cftry>
-<cfset myFusebox.thisCircuit = "Main">
-<cfset Request.Page.Title = "Welcome!" />
-<cfset Request.Page.Desc = "Welcome to University of Cincinnati Ohio CCPD - Continuous Professional Development for Physicians, Nurses, Pharmacists.  AMA Category 1 Credit, ACPE Credit, ANCC Credit, CME Credit, CNE Credit, CPE Credit, and more." />
+<cfset myFusebox.thisCircuit = "main">
+<cfset Request.Page.Title = "CE Dashboard" />
 <!--- do action="vMain.Welcome" --->
 <cfset myFusebox.thisCircuit = "vMain">
 <cfsavecontent variable="Request.Page.Body">
@@ -28,7 +28,7 @@
 <cfthrow type="fusebox.missingFuse" message="missing Fuse" detail="You tried to include a fuse dsp_Welcome.cfm in circuit vMain which does not exist (from fuseaction vMain.Welcome).">
 <cfelse><cfrethrow></cfif></cfcatch></cftry>
 </cfsavecontent>
-<cfset myFusebox.thisCircuit = "Main">
+<cfset myFusebox.thisCircuit = "main">
 <cfset Request.Page.Breadcrumbs = "" />
 <!--- do action="mPage.ParseCrumbs" --->
 <cfset myFusebox.thisCircuit = "mPage">

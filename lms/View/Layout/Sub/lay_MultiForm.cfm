@@ -11,7 +11,7 @@
 <cfoutput>
 <script>
 $(document).ready(function() {
-	/* UNSAVED CHANGES SCRIPTS */
+	<!---/* UNSAVED CHANGES SCRIPTS */
 	var Unsaved = false;
 	var question232 = $("##question232");
 	var TheLink = '';
@@ -50,7 +50,7 @@ $(document).ready(function() {
 	
 	$('##no').click($.unblockUI);
 	
-	$('a.button').unbind("click");
+	$('a.button').unbind("click");--->
 	
 	<cfif Request.MultiSubTabFlag EQ "Y">
 	$(".FormSection").hide();
@@ -77,7 +77,7 @@ $(document).ready(function() {
 </script>
 <div class="ContentTitle">#Request.Page.Title#</div>
 <cfif Request.MultiFormFuseactions NEQ ""><div class="clear-fix"><cf_ceTabControl Instance="MultiForm" Labels="#Request.MultiFormLabels#" Fuseactions="#Request.MultiFormFuseactions#" QueryString="#Request.MultiFormQS#" Current="#Attributes.Fuseaction#"></div></cfif>
-<table width="979" cellspacing="0" border="0" cellpadding="0" class="MultiForm">
+<table cellspacing="0" border="0" cellpadding="0" class="MultiForm">
 	<tbody>
 		<tr>
 			<td class="MultiFormContent">#Request.MultiFormContent#</td>
@@ -86,6 +86,6 @@ $(document).ready(function() {
 	</tbody>
 </table>
 <cfif Request.MultiFormEditLabel NEQ "" AND Request.MultiFormEditLink NEQ "" AND Request.MultiFormEditLink DOES NOT CONTAIN Attributes.FuseAction>
-<div class="EditLink"><a href="#Request.MultiFormEditLink#"><img src="/lms/_images/pencil.gif" border="0" align="left" /> #Request.MultiFormEditLabel#</a></div>
+<div class="EditLink"><a href="#Request.MultiFormEditLink#"><img src="#Application.Settings.RootPath#/_images/pencil.gif" border="0" align="left" /> #Request.MultiFormEditLabel#</a></div>
 </cfif>
 </cfoutput>

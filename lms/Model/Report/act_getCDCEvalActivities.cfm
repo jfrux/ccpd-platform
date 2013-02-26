@@ -1,0 +1,1 @@
+<cfset qCDCActivities = Application.Com.ActivityGateway.getByCDCAttributes(StartDate=DateFormat(DateAdd("yyyy",-1,Now()),"MM/DD/YYYY")& "00:00:00",EndDate=DateFormat(DateAdd("m",4,Now()),"MM/DD/YYYY") & "23:59:59",OrderBy="a.StartDate,a.Title DESC")>
