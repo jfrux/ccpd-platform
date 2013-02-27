@@ -24,3 +24,6 @@
 <cfelseif cgi.script_name DOES NOT CONTAIN ".cfc">
 	<cflocation url="http://ccpd.uc.edu/lms" addtoken="no" />
 </cfif>
+
+<cferror template="/error.cfm" type="exception" mailto="rountrjf@ucmail.uc.edu">
+<cferror template="/error.cfm" type="request" mailto="rountrjf@ucmail.uc.edu">

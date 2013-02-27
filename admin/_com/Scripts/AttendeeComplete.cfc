@@ -31,8 +31,8 @@
         
     	<cfquery name="ComponentList" datasource="#Application.Settings.DSN#">
         	SELECT     APC.AssessmentID, AR.ResultStatusID, AR.Created, APC.ActivityID
-FROM         ceschema.ce_Activity_PubComponent AS APC INNER JOIN
-                      ceschema.ce_AssessResult AS AR ON AR.AssessmentID = APC.AssessmentID
+FROM         ce_Activity_PubComponent AS APC INNER JOIN
+                      ce_AssessResult AS AR ON AR.AssessmentID = APC.AssessmentID
 WHERE     (APC.DeletedFlag = 'N') AND (AR.DeletedFlag = 'N') AND (APC.ActivityID = <cfqueryparam value="#arguments.activityid#" cfsqltype="cf_sql_integer" />) AND (AR.PersonID = <cfqueryparam value="#arguments.personid#" cfsqltype="cf_sql_integer" />)
         </cfquery>
         

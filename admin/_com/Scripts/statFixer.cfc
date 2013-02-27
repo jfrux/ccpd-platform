@@ -37,13 +37,13 @@
 				isNull((CASE isNull(A.SessionType,'S')
 					WHEN 'M' THEN 
 						isNull((SELECT SUM(AC.Amount) AS TotalHours
-								FROM ceschema.ce_Activity_Credit AS AC 
-								INNER JOIN ceschema.ce_Activity AS A4 ON AC.ActivityID = A4.ActivityID
+								FROM ce_Activity_Credit AS AC 
+								INNER JOIN ce_Activity AS A4 ON AC.ActivityID = A4.ActivityID
 								WHERE (AC.CreditID = 1) AND (A4.ParentActivityID = A.ActivityID) AND AC.DeletedFlag='N' AND (A4.StatusID IN (1,2,3))),0)
 					WHEN 'S' THEN 
 						isNull((SELECT SUM(AC.Amount) AS TotalHours
-								FROM ceschema.ce_Activity_Credit AS AC 
-								INNER JOIN ceschema.ce_Activity AS A4 ON AC.ActivityID = A4.ActivityID
+								FROM ce_Activity_Credit AS AC 
+								INNER JOIN ce_Activity AS A4 ON AC.ActivityID = A4.ActivityID
 								WHERE (AC.CreditID = 1) AND (A4.ActivityID = A.ActivityID) AND AC.DeletedFlag='N' AND (A4.StatusID IN (1,2,3))),0)
 				END),0),
 				StatAttendees = 
@@ -52,21 +52,21 @@
 							CASE
 								WHEN isNull(A.ParentActivityID,0) = 0 THEN
 									(SELECT Count(Att.AttendeeID)
-									 FROM ceschema.ce_Attendee AS Att 
-									 INNER JOIN ceschema.ce_Activity AS A2 ON Att.ActivityID = A2.ActivityID
+									 FROM ce_Attendee AS Att 
+									 INNER JOIN ce_Activity AS A2 ON Att.ActivityID = A2.ActivityID
 									 WHERE 
 										(Att.StatusID = 1) AND (A2.ParentActivityID = A.ActivityID) AND (A2.StatusID IN (1,2,3)) AND (Att.CompleteDate BETWEEN A2.StartDate AND DATEADD(n, 1439, A2.EndDate)) AND (Att.DeletedFlag='N'))
 								ELSE
 									(SELECT Count(Att.AttendeeID)
-									 FROM ceschema.ce_Attendee AS Att 
-									 INNER JOIN ceschema.ce_Activity AS A2 ON Att.ActivityID = A2.ActivityID
+									 FROM ce_Attendee AS Att 
+									 INNER JOIN ce_Activity AS A2 ON Att.ActivityID = A2.ActivityID
 									 WHERE 
 										(Att.StatusID = 1) AND (A2.ActivityID = A.ActivityID) AND (A2.StatusID IN (1,2,3)) AND (Att.CompleteDate BETWEEN A2.StartDate AND DATEADD(n, 1439, A2.EndDate)) AND (Att.DeletedFlag='N'))
 							END
 						WHEN 'S' THEN
 							(SELECT Count(Att.AttendeeID)
-							 FROM ceschema.ce_Attendee AS Att 
-							 INNER JOIN ceschema.ce_Activity AS A2 ON Att.ActivityID = A2.ActivityID
+							 FROM ce_Attendee AS Att 
+							 INNER JOIN ce_Activity AS A2 ON Att.ActivityID = A2.ActivityID
 							 WHERE 
 								(Att.StatusID = 1) AND (Att.ActivityID = a.ActivityID) AND (A2.StatusID IN (1,2,3)) AND (Att.CompleteDate BETWEEN A2.StartDate AND DATEADD(n, 1439, A2.EndDate)) AND (Att.DeletedFlag='N'))
 					END),0),
@@ -76,21 +76,21 @@
 							CASE
 								WHEN isNull(A.ParentActivityID,0) = 0 THEN
 									(SELECT Count(Att.AttendeeID)
-									 FROM ceschema.ce_Attendee AS Att 
-									 INNER JOIN ceschema.ce_Activity AS A2 ON Att.ActivityID = A2.ActivityID
+									 FROM ce_Attendee AS Att 
+									 INNER JOIN ce_Activity AS A2 ON Att.ActivityID = A2.ActivityID
 									 WHERE 
 										(Att.StatusID = 1) AND (A2.ParentActivityID = A.ActivityID) AND (Att.MDflag = 'Y') AND (A2.StatusID IN (1,2,3)) AND (Att.CompleteDate BETWEEN A2.StartDate AND DATEADD(n, 1439, A2.EndDate)) AND (Att.DeletedFlag='N'))
 								ELSE
 									(SELECT Count(Att.AttendeeID)
-									 FROM ceschema.ce_Attendee AS Att 
-									 INNER JOIN ceschema.ce_Activity AS A2 ON Att.ActivityID = A2.ActivityID
+									 FROM ce_Attendee AS Att 
+									 INNER JOIN ce_Activity AS A2 ON Att.ActivityID = A2.ActivityID
 									 WHERE 
 										(Att.StatusID = 1) AND (A2.ActivityID = A.ActivityID) AND (Att.MDflag = 'Y') AND (A2.StatusID IN (1,2,3)) AND (Att.CompleteDate BETWEEN A2.StartDate AND DATEADD(n, 1439, A2.EndDate)) AND (Att.DeletedFlag='N'))
 							END
 						WHEN 'S' THEN
 							(SELECT Count(Att.AttendeeID)
-							 FROM ceschema.ce_Attendee AS Att 
-							 INNER JOIN ceschema.ce_Activity AS A2 ON Att.ActivityID = A2.ActivityID
+							 FROM ce_Attendee AS Att 
+							 INNER JOIN ce_Activity AS A2 ON Att.ActivityID = A2.ActivityID
 							 WHERE 
 								(Att.StatusID = 1) AND (Att.ActivityID = a.ActivityID) AND (Att.MDflag = 'Y') AND (A2.StatusID IN (1,2,3)) AND (Att.CompleteDate BETWEEN A2.StartDate AND DATEADD(n, 1439, A2.EndDate)) AND (Att.DeletedFlag='N'))
 					END),0),
@@ -100,8 +100,8 @@
 							CASE
 								WHEN isNull(A.ParentActivityID,0) = 0 THEN
 									(SELECT Count(Att.AttendeeID)
-									 FROM ceschema.ce_Attendee AS Att 
-									 INNER JOIN ceschema.ce_Activity AS A2 ON Att.ActivityID = A2.ActivityID
+									 FROM ce_Attendee AS Att 
+									 INNER JOIN ce_Activity AS A2 ON Att.ActivityID = A2.ActivityID
 									 WHERE 
 										(Att.StatusID = 1) AND 
 										(A2.ParentActivityID = A.ActivityID) AND 
@@ -110,8 +110,8 @@
 										(Att.CompleteDate BETWEEN A2.StartDate AND DATEADD(n, 1439, A2.EndDate)) AND (Att.DeletedFlag='N'))
 								ELSE
 									(SELECT Count(Att.AttendeeID)
-									 FROM ceschema.ce_Attendee AS Att 
-									 INNER JOIN ceschema.ce_Activity AS A2 ON Att.ActivityID = A2.ActivityID
+									 FROM ce_Attendee AS Att 
+									 INNER JOIN ce_Activity AS A2 ON Att.ActivityID = A2.ActivityID
 									 WHERE 
 										(Att.StatusID = 1) AND 
 										(A2.ActivityID = A.ActivityID) AND 
@@ -121,8 +121,8 @@
 							END
 						WHEN 'S' THEN
 							(SELECT Count(Att.AttendeeID)
-							 FROM ceschema.ce_Attendee AS Att 
-							 INNER JOIN ceschema.ce_Activity AS A2 ON Att.ActivityID = A2.ActivityID
+							 FROM ce_Attendee AS Att 
+							 INNER JOIN ce_Activity AS A2 ON Att.ActivityID = A2.ActivityID
 							 WHERE 
 								(Att.StatusID = 1) AND (Att.ActivityID = a.ActivityID) AND (Att.MDflag = 'N') AND (A2.StatusID IN (1,2,3)) AND (Att.CompleteDate BETWEEN A2.StartDate AND DATEADD(n, 1439, A2.EndDate)) AND (Att.DeletedFlag='N'))
 					END),0)+
@@ -132,7 +132,7 @@
 								WHEN isNull(A.ParentActivityID,0) = 0 THEN
 									(
 									SELECT isNull(SUM(A2.statAddlAttendees),0)
-									 FROM ceschema.ce_Activity AS A2
+									 FROM ce_Activity AS A2
 									 WHERE 
 										(A2.ParentActivityID = A.ActivityID) AND
 										(A2.StatusID IN (1,2,3))
@@ -140,7 +140,7 @@
 								ELSE
 									(SELECT isNull(A2.statAddlAttendees,0)
 									 FROM
-									 ceschema.ce_Activity AS A2
+									 ce_Activity AS A2
 									 WHERE  
 										(A2.ActivityID = A.ActivityID) AND 
 										(A2.StatusID IN (1,2,3)))
@@ -153,8 +153,8 @@
 					isNull((CASE isNull(A.SessionType,'S')
 						WHEN 'M' THEN 
 							(SELECT     COUNT(FS.Amount)
-							FROM         ceschema.ce_Activity_FinSupport AS FS INNER JOIN
-												  ceschema.ce_Activity AS A5 ON FS.ActivityID = A5.ActivityID
+							FROM         ce_Activity_FinSupport AS FS INNER JOIN
+												  ce_Activity AS A5 ON FS.ActivityID = A5.ActivityID
 							WHERE    
 									(A5.ParentActivityID = A.ActivityID) AND 
 									(A5.DeletedFlag='N') AND 
@@ -176,15 +176,15 @@
 							)
 						WHEN 'S' THEN
 							(SELECT     COUNT(Amount) AS Expr1
-							FROM         ceschema.ce_Activity_FinSupport
+							FROM         ce_Activity_FinSupport
 							WHERE     (SupportTypeID = 1) AND (DeletedFlag = 'N') AND (ActivityID=a.ActivityID))
 					END),0)
 					,
 					(CASE isNull((CASE isNull(A.SessionType,'S')
 						WHEN 'M' THEN 
 							(SELECT     COUNT(FS.Amount)
-							FROM         ceschema.ce_Activity_FinSupport AS FS INNER JOIN
-												  ceschema.ce_Activity AS A5 ON FS.ActivityID = A5.ActivityID
+							FROM         ce_Activity_FinSupport AS FS INNER JOIN
+												  ce_Activity AS A5 ON FS.ActivityID = A5.ActivityID
 							WHERE 
 									(A5.ParentActivityID = A.ActivityID) AND 
 									(A5.DeletedFlag='N') AND 
@@ -206,7 +206,7 @@
 							)
 						WHEN 'S' THEN
 							(SELECT     COUNT(Amount) AS Expr1
-							FROM         ceschema.ce_Activity_FinSupport
+							FROM         ce_Activity_FinSupport
 							WHERE     (SupportTypeID = 1) AND (DeletedFlag = 'N') AND (ActivityID=a.ActivityID))
 					END),0)
 						WHEN '0' THEN 'No'
@@ -216,8 +216,8 @@
 					isNull((CASE isNull(A.SessionType,'S')
 						WHEN 'M' THEN 
 							(SELECT     SUM(FS.Amount)
-							FROM         ceschema.ce_Activity_FinSupport AS FS INNER JOIN
-										 ceschema.ce_Activity AS A5 ON FS.ActivityID = A5.ActivityID
+							FROM         ce_Activity_FinSupport AS FS INNER JOIN
+										 ce_Activity AS A5 ON FS.ActivityID = A5.ActivityID
 							WHERE     
 								(A5.ParentActivityID = A.ActivityID) AND 
 								(A5.DeletedFlag='N') AND 
@@ -239,11 +239,11 @@
 							)
 						WHEN 'S' THEN
 							(SELECT     SUM(A6.Amount) AS Expr1
-							FROM         ceschema.ce_Activity_FinSupport As A6
+							FROM         ce_Activity_FinSupport As A6
 							WHERE     (A6.SupportTypeID = 1) AND (A6.DeletedFlag = 'N') AND (A6.ActivityID=A.ActivityID))
 					END),0)
 			FROM 
-				ceschema.ce_Activity A
+				ce_Activity A
 			WHERE
 				0 = 0
 				AND (A.DeletedFlag = 'N')

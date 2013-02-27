@@ -110,7 +110,7 @@
 		
 		<cfquery name="qTags" datasource="#application.settings.dsn#">
 			SELECT     tags.id, tags.name, tags.tagcount
-			FROM         ceschema.ce_activity_tags AS tags
+			FROM         ce_activity_tags AS tags
 			ORDER BY tags.name DESC
 		</cfquery>
 		
@@ -121,7 +121,7 @@
 						ActivityID, 
 						Title
 					FROM 
-						ceschema.ce_Activity AS A
+						ce_Activity AS A
 					WHERE 
 						(Title LIKE '%#qtags.name#%')
 					ORDER BY title
@@ -155,8 +155,8 @@
 	<cffunction name="setSpecialtiesByTags" access="remote" output="yes">
 		<cfquery name="qTags" datasource="#application.settings.dsn#">
 			SELECT     tags.id, tags.name, tags.tagcount, spec.SpecialtyID, spec.Name AS specialtyname
-			FROM         ceschema.ce_activity_tags AS tags INNER JOIN
-				  ceschema.ce_Sys_SpecialtyLMS AS spec ON tags.name = spec.Name
+			FROM         ce_activity_tags AS tags INNER JOIN
+				  ce_Sys_SpecialtyLMS AS spec ON tags.name = spec.Name
 		</cfquery>
 		
 		<cfloop query="qTags">
@@ -165,12 +165,12 @@
 				ActivityID, 
 				Title
 			FROM 
-				ceschema.ce_Activity AS A
+				ce_Activity AS A
 			WHERE 
 				(Title LIKE '%#qtags.name#%')
 					AND
 				(SELECT     COUNT(AC.ActivityID) AS Expr1
-				FROM          ceschema.ce_Activity_SpecialtyLMS AS AC
+				FROM          ce_Activity_SpecialtyLMS AS AC
 				WHERE AC.ActivityID = A.ActivityID AND AC.SpecialtyID = #qTags.specialtyid#) = 0
 			</cfquery>
 			

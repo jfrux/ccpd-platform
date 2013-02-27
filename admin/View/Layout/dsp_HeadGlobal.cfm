@@ -136,10 +136,12 @@ jQuery().ready(function(){
 	});
 	$.ajaxSetup({
 		error:function(x,e){
+			console.log(x);
+			console.log(e);
 			var sTitle = "Unexpected Error";
 			var sMessage = "";
 			if(x.status==0){
-				sMessage = "Connection to CCPD failed... please check your internet connection.";
+				//sMessage = "Connection to CCPD failed... please check your internet connection.";
 			}else if(x.status==404){
 				sMessage = "OOPS! An error occurred during your last request. Page not found!";
 			}else if(x.status==500){

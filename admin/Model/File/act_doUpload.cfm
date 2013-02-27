@@ -17,18 +17,18 @@
 	
 	<cfif ListLen(Request.Status.Errors) LTE 0>
 		<!--- Main Upload Path --->
-		<cfset FilePath = "#ExpandPath(".\_uploads")#">
+		<cfset FilePath = "#ExpandPath("/_uploads")#">
 		
 		<!--- Set Mode Specifics --->
 		<cfswitch expression="#Attributes.Mode#">
 			<cfcase value="Person">
-				<cfset ExtendedPath = "#FilePath#\PersonFiles\#Attributes.ModeID#" />
+				<cfset ExtendedPath = "#FilePath#/PersonFiles/#Attributes.ModeID#" />
 			</cfcase>
 			<cfcase value="Activity">
-				<cfset ExtendedPath = "#FilePath#\ActivityFiles\#Attributes.ModeID#" />
+				<cfset ExtendedPath = "#FilePath#/ActivityFiles/#Attributes.ModeID#" />
 			</cfcase>
 			<cfcase value="PublishActivity">
-				<cfset ExtendedPath = "#FilePath#\ActivityFiles\#Attributes.ModeID#" />
+				<cfset ExtendedPath = "#FilePath#/ActivityFiles/#Attributes.ModeID#" />
 			</cfcase>
 		</cfswitch>
 		
@@ -47,7 +47,7 @@
 			
             <cfif cffile.serverFileExt EQ "avi" OR cffile.serverFileExt EQ "asx" OR cffile.serverFileExt EQ "mjpg" OR cffile.serverFileExt EQ "mov" OR cffile.serverFileExt EQ "mpeg" OR cffile.serverFileExt EQ "qt" OR cffile.serverFileExt EQ "rv" OR cffile.serverFileExt EQ "wmv">
 				
-				<cfset FFPath = "#ExpandPath("./_ffmpeg")#">
+				<cfset FFPath = "#ExpandPath("/_ffmpeg")#">
                 
                 <cfset newfile = "#REPLACELIST(cffile.ServerFile, ' ', '')#">
                 <cfset cffile.ServerFile = "#REPLACELIST(cffile.ServerFile, ' ', '')#">

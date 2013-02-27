@@ -2,8 +2,8 @@
 	<cffunction name="run" access="remote">
 		<cfquery name="q" datasource="#application.settings.dsn#">
 		SELECT     budget.BudgetID, budget.ActivityID, budget.Description, budget.Amount, type.Name, budget.EntryTypeID,budget.created,budget.createdBy
-		FROM         ceschema.ce_Activity_FinBudget AS budget INNER JOIN
-			  ceschema.ce_Sys_EntryType AS type ON budget.EntryTypeID = type.EntryTypeID
+		FROM         ce_Activity_FinBudget AS budget INNER JOIN
+			  ce_Sys_EntryType AS type ON budget.EntryTypeID = type.EntryTypeID
 		WHERE     (budget.DeletedFlag = 'N') AND (budget.Amount < 0)
 		</cfquery>
 		
@@ -41,7 +41,7 @@
 		  SUM(S.Amount) As amount
 		FROM [CCPD_PROD].[ceschema].[ce_Activity_FinSupport] As S
 		INNER JOIN 
-		ceschema.ce_activity As A ON A.activityId=S.activityId
+		ce_activity As A ON A.activityId=S.activityId
 		WHERE [SupportTypeID] = 1 AND A.activityTypeId = 2 AND startDate BETWEEN '1/1/2011' and '12/31/2011 23:59:59' AND S.deletedFlag='N'
 		GROUP BY S.ActivityID,A.EndDate
 		) SELECT 

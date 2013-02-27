@@ -10,7 +10,7 @@
 				personid=right(querystrings,6),
 				activityid=Replace(left(querystrings,16),'ActivityID=','') 
 			FROM
-				ceschema.ce_iislog
+				ce_iislog
 			WHERE scriptpath LIKE '%Public.Cert%'
 			GROUP BY right(querystrings,6),Replace(left(querystrings,16),'ActivityID=','')
 		</cfquery>

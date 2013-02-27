@@ -68,7 +68,7 @@
 		<cfset Person.setCreatedBy(1)>
 		
 		<cfquery name="qCheckExists" datasource="#application.settings.dsn#">
-			SELECT Count(PersonID) PersonCount FROM ceschema.ce_Person
+			SELECT Count(PersonID) PersonCount FROM ce_Person
 			WHERE personid=<cfqueryparam value="#qQuery.personid#" cfsqltype="cf_sql_integer" />
 		</cfquery>
 		<!---<cfif qCheckExists.PersonCount GT 0>

@@ -4,17 +4,17 @@
 		<cfquery name="qUpdater" datasource="#Application.Settings.DSN#">
 			SELECT Attendee.*,
 				activity.startdate,activity.enddate+'23:59:59' As EndDate,Person.Email 
-			FROM ceschema.ce_Attendee As Attendee
-			LEFT JOIN ceschema.ce_person AS Person ON Person.personid = Attendee.personid
-			LEFT JOIN ceschema.ce_activity AS Activity ON Activity.activityID = attendee.activityid
+			FROM ce_Attendee As Attendee
+			LEFT JOIN ce_person AS Person ON Person.personid = Attendee.personid
+			LEFT JOIN ce_activity AS Activity ON Activity.activityID = attendee.activityid
 			WHERE     
 			( Attendee.AttendeeID IN
 				(SELECT
 					Att.AttendeeID
 				FROM          
-					ceschema.ce_Attendee AS Att 
+					ce_Attendee AS Att 
 				INNER JOIN
-					ceschema.ce_Activity AS A ON Att.ActivityID = A.ActivityID
+					ce_Activity AS A ON Att.ActivityID = A.ActivityID
 				WHERE      
 					(A.StatusID IN (1, 2, 3)) AND 
 					(A.ActivityTypeID <> 2) AND 
@@ -32,9 +32,9 @@
 				(SELECT
 					Att.AttendeeID
 				FROM          
-					ceschema.ce_Attendee AS Att 
+					ce_Attendee AS Att 
 				INNER JOIN
-					ceschema.ce_Activity AS A ON Att.ActivityID = A.ActivityID
+					ce_Activity AS A ON Att.ActivityID = A.ActivityID
 				WHERE      
 					(A.StatusID IN (1, 2, 3)) AND 
 					(A.ActivityTypeID <> 2) AND

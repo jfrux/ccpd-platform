@@ -230,10 +230,10 @@
             FROM  ce_person AS p
             LEFT JOIN ce_person_email AS pe ON pe.person_id = p.personId
             WHERE
-            	cleanEmailDomain(p.email) = @Email
+            	dbo.cleanEmailDomain(p.email) = @Email
 				AND p.deletedFlag='N'
                 OR
-            	cleanEmailDomain(pe.email_address) = @Email
+            	dbo.cleanEmailDomain(pe.email_address) = @Email
 				AND p.deletedFlag='N'
         </cfquery>
         

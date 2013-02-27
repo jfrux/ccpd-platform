@@ -6,7 +6,7 @@
 
 <cfif ListLen(Request.Status.Errors) LTE 0>
 	<!--- Main Upload Path --->
-	<cfset FilePath = "#ExpandPath(".\_uploads")#">
+	<cfset FilePath = "#ExpandPath("/_uploads")#">
 	
 	<!--- Set Mode Specifics --->
 	<cfswitch expression="#Attributes.Mode#">

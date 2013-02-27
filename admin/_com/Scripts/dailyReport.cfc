@@ -2,8 +2,8 @@
 	<cffunction name="sendAll" access="remote" output="no" returntype="any" returnformat="plain">
 		<cfquery name="qAccounts" datasource="#application.settings.dsn#">
 			SELECT    P.PersonID, P.DisplayName, P.Email
-			FROM         ceschema.ce_Account AS A INNER JOIN
-				  ceschema.ce_Person AS P ON A.PersonID = P.PersonID
+			FROM         ce_Account AS A INNER JOIN
+				  ce_Person AS P ON A.PersonID = P.PersonID
 			WHERE     (A.AuthorityID >= 2)
 		</cfquery>
 		
@@ -45,12 +45,12 @@
 									MIN(H.Created) AS LeastRecentDate,
 									MAX(H.HistoryID) AS MostRecentID, 
 									MAX(H.Created) AS MostRecentDate 
-			FROM ceschema.ce_History AS H 
-			INNER JOIN ceschema.ce_Sys_HistoryStyle AS HS ON H.HistoryStyleID = HS.HistoryStyleID
+			FROM ce_History AS H 
+			INNER JOIN ce_Sys_HistoryStyle AS HS ON H.HistoryStyleID = HS.HistoryStyleID
 			INNER JOIN (SELECT  DISTINCT A.ActivityID
-						FROM         ceschema.ce_Activity AS A FULL OUTER JOIN
-											  ceschema.ce_Activity_Faculty AS AF ON A.ActivityID = AF.ActivityID FULL OUTER JOIN
-											  ceschema.ce_Activity_Committee AS AC ON A.ActivityID = AC.ActivityID
+						FROM         ce_Activity AS A FULL OUTER JOIN
+											  ce_Activity_Faculty AS AF ON A.ActivityID = AF.ActivityID FULL OUTER JOIN
+											  ce_Activity_Committee AS AC ON A.ActivityID = AC.ActivityID
 						WHERE     (A.CreatedBy = @Person) OR
 											  (A.UpdatedBy = @Person) OR
 								  (AC.PersonID = @Person) OR
@@ -60,7 +60,7 @@
 			GROUP BY H.HistoryStyleID,H.ToActivityID
 			)
 			SELECT H.* FROM CTE_ActivityHistoryByOwner CTE
-			INNER JOIN ceschema.view_history H ON H.HistoryID=CTE.MostRecentID
+			INNER JOIN view_history H ON H.HistoryID=CTE.MostRecentID
 			ORDER BY MostRecentDate DESC
 		</cfquery>
 		
@@ -90,30 +90,30 @@
 				SET @DateEnd = <cfqueryparam value="#arguments.date# 23:59:59" cfsqltype="cf_sql_timestamp" />;
 				
 				SELECT     'Attendees Added' AS StatName, COUNT(AttendeeID) AS StatCount
-				FROM         ceschema.ce_Attendee
+				FROM         ce_Attendee
 				WHERE     (CreatedBy = @PersonID) AND (Created BETWEEN @DateStart AND @DateEnd)
 				
 				UNION
 				
 				SELECT     'People Created' AS StatName, COUNT(PersonID) AS StatCount
-				FROM         ceschema.ce_Person
+				FROM         ce_Person
 				WHERE     (CreatedBy = @PersonID) AND (Created BETWEEN @DateStart AND @DateEnd)
 				
 				UNION
 				
 				SELECT     'Activities Created' AS StatName, COUNT(ActivityID) AS StatCount
-				FROM         ceschema.ce_Activity
+				FROM         ce_Activity
 				WHERE     (CreatedBy = @PersonID) AND (Created BETWEEN @DateStart AND @DateEnd)
 				
 				UNION
 				
 				SELECT     'Faculty Added' AS StatName, COUNT(ActivityID) AS StatCount
-				FROM         ceschema.ce_Activity_Faculty
+				FROM         ce_Activity_Faculty
 				WHERE     (CreatedBy = @PersonID) AND (Created BETWEEN @DateStart AND @DateEnd)
 				
 				/*UNION
 				SELECT     'Committee Members Added' AS StatName, COUNT(ActivityID) AS StatCount
-				FROM         ceschema.ce_Activity_Committee
+				FROM         ce_Activity_Committee
 				WHERE     (CreatedBy = @PersonID) AND (Created BETWEEN @DateStart AND @DateEnd)*/
 			</cfquery>
 			
