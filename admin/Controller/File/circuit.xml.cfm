@@ -17,7 +17,6 @@
 	
 	<fuseaction name="Download">
 		<do action="mFile.getFileInfo" />
-		<do action="vFile.downloadFile" />
 	</fuseaction>
 	
 	<fuseaction name="DownloadReport">

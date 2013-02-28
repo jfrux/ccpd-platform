@@ -1,6 +1,7 @@
 <cfparam name="Attributes.ID" default="0" />
 <cfparam name="Attributes.FileID" default="#Attributes.ID#" />
 <cfset FileBean = CreateObject("component","#Application.Settings.Com#File.File").Init()>
+
 <cfif isNumeric(Attributes.FileID)>
 	<cfset FileBean.setFileID(Attributes.FileID)>
 	<cfif Application.Com.FileDAO.Exists(FileBean)>

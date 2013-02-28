@@ -184,7 +184,7 @@
 </cfoutput>
 
 
-<script type="text/javascript" charset="utf-8">
+<!---<script type="text/javascript" charset="utf-8">
   var is_ssl = ("https:" == document.location.protocol);
   var asset_host = is_ssl ? "https://s3.amazonaws.com/getsatisfaction.com/" : "http://s3.amazonaws.com/getsatisfaction.com/";
   document.write(unescape("%3Cscript src='" + asset_host + "javascripts/feedback-v2.js' type='text/javascript'%3E%3C/script%3E"));
@@ -206,7 +206,7 @@
   
 
   var feedback_widget = new GSFN.feedback_widget(feedback_widget_options);
-</script>
+</script>--->
 <div class="ce-dialog" id="AssessmentDiv" style="height:527px;
 left:50%;
 margin-left:-350px;

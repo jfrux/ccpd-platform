@@ -2,7 +2,7 @@
 	<cffunction name="process" access="remote">
 		<cfargument name="filename" type="string" required="yes" default="0" />
 		
-		<cfset baseDir = expandPath("/admin/_uploads/imports/activity/") />
+		<cfset baseDir = expandPath("/_uploads/imports/activity/") />
 		<cfset processDir = baseDir & "processed" />
 		<cfset readFile = baseDir & arguments.filename />
 		

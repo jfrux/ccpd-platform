@@ -97,7 +97,7 @@ $(document).ready(function() {
 		<cfloop query="qActivityCommitteeList">
 			<tr id="PersonRow#PersonID#" class="AllCommittee">
 				<td valign="top"><input type="checkbox" name="Checked" class="MemberCheckbox" id="Checked#PersonID#" value="#PersonID#" /></td>
-				<td valign="top" width="70" style="text-align:center;"><cfif FileExists(ExpandPath(".\_uploads\PersonPhotos\#PersonID#.jpg"))><img src="/admin/_uploads/PersonPhotos/#PersonID#.jpg" id="Photo#PersonID#" class="PersonPhoto" /><cfelse><img src="#Application.Settings.RootPath#/_images/icon_<cfif Gender EQ "F">female<cfelse>male</cfif>.gif" id="Photo#PersonID#" class="PersonPhoto" /></cfif></td>
+				<td valign="top" width="70" style="text-align:center;"><cfif FileExists(ExpandPath("\_uploads\PersonPhotos\#PersonID#.jpg"))><img src="/_uploads/PersonPhotos/#PersonID#.jpg" id="Photo#PersonID#" class="PersonPhoto" /><cfelse><img src="#Application.Settings.RootPath#/_images/icon_<cfif Gender EQ "F">female<cfelse>male</cfif>.gif" id="Photo#PersonID#" class="PersonPhoto" /></cfif></td>
 				<td valign="top"><a href="#myself#Person.Detail?PersonID=#PersonID#" class="PersonLink" id="PERSON|#PersonID#|#LastName#, #FirstName#">#FirstName# #LastName#</a></td>
                 <td valign="top">#qActivityCommitteeList.RoleName#</td>
 			</tr>

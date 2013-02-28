@@ -8,7 +8,7 @@
 		<cfset returnVar.setStatus(false) />
 		<cfset returnVar.setStatusMsg('Failed to import data') />
 		
-		<cfset baseDir = expandPath("/admin/_uploads/imports/") />
+		<cfset baseDir = expandPath("/_uploads/imports/") />
 		<cfset uploadDir = baseDir & "#arguments.activityId#" />
 		<cfset fileName = "#dateFormat(now(),'yymmdd')##timeFormat(now(),'hhmmss')#_attendees.csv" />
 		<cfset mdList = "MD,DO" />
