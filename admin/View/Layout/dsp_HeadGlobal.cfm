@@ -6,6 +6,21 @@
   <link href="/stylesheets/ie.css" media="screen, projection" rel="stylesheet" type="text/css" />
 <![endif]-->
 <link rel="SHORTCUT ICON" href="/favicon.ico" type="image/x-icon" />
+<cfif application.settings.dsn NEQ "CCPD_PROD">
+	<style>
+	.header-bg {
+	  background-color: LIME;
+	  box-shadow: 0 3px 0 ##000;
+	}
+
+	.data-source {
+		position:absolute;
+		color:##FFF;
+		background-color:##FF0000;
+
+	}
+	</style>
+</cfif>
 <!---
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.js"></script>--->
 

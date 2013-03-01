@@ -63,7 +63,13 @@
 			
 				<div id="BottomBar">
 					<!---<a href="http://ccpd.uc.edu/lms/support" class="BottomLink supportLink getHelpLink hide"><i></i>GET HELP!</a>--->
-					<div id="BottomBarTitle"><a href="#myself#Main.Welcome">CCPD</a><cfif Session.Account.getAuthorityID() EQ 3></cfif></div>
+					<div id="BottomBarTitle">
+					<cfif application.settings.dsn NEQ "CCPD_PROD">
+					<a href="#myself#Main.Welcome">CCPD-DEV</a> <div class="data-source">DATA SOURCE: #application.settings.dsn#</div>
+					<cfelse>
+					<a href="#myself#Main.Welcome">CCPD</a>
+					</cfif>
+					<cfif Session.Account.getAuthorityID() EQ 3></cfif></div>
 					<!---<div><div class="header-search joshonly">
 							<form action="/search/" method="get" name="navSearch" id="navSearch">
 							<span class="uiSearchInput ">
