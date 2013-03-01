@@ -268,7 +268,7 @@
 			</cfloop>
 		</cfif>
 		
-		<cfif qFiles.RecordCount GT 0>
+		<!--- <cfif qFiles.RecordCount GT 0>
 			<cfloop query="qFiles">
 				<cfset OldDirectory = ExpandPath("/_uploads/ActivityFiles/#qFiles.ActivityID#/")>
 				<cfset NewDirectory = ExpandPath("/_uploads/ActivityFiles/#Arguments.ActivityID#/")>
@@ -293,7 +293,7 @@
 				</cfif>
 			</cfloop>
 		</cfif>
-		
+		 --->
 		<cfif qCats.RecordCount GT 0>
 			<cfloop query="qCats">
 				<cfset CatBean = CreateObject("component","#Application.Settings.Com#ActivityCategory.ActivityCategory").init(Activity_CategoryID=qCats.Activity_CategoryID)>
