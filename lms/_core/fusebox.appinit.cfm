@@ -87,149 +87,21 @@
 		<cfset Application.Settings.Com = "_com." />
 		<cfset Application.Settings.MDlist = "383,376,307,250,249,248,169,168,163,161,160,21,14,6,5,4">
 	</cfcase>
-	
-	<cfcase value="10.97.106.160">
-		<cfset Application.Settings.DSN = "CCPD_TEST">
-		<cfset Application.Settings.AppName = "CCPD LMS DEV1" /> <!--- appears on Window Titles, etc. --->
-		<cfset Application.Settings.RootPath = "/lms" /> <!--- HTTP path for images, and links --->
-		<cfset Application.Settings.AppPath = "/lms" /> <!--- ColdFusion Mapping --->
-		<cfset Application.Settings.ComPath = "/_com" /> <!--- Master CFC ColdFusion Mapping --->
-		
-		<cfset Application.Settings.AdminEmails = "rountrjf@ucmail.uc.edu,slamkajs@ucmail.uc.edu" />
-		
-		<cfset Application.Settings.WebURL = "http://10.97.106.160/" />
-		<cfset Application.Settings.HostName = "10.97.106.160" />
-		<cfset Application.Settings.DownloadURL = "http://10.97.106.160/index.cfm/event/Public.Download?" />
-		
-		<cfset Application.Settings.Com = "_com." />
-		<cfset Application.Settings.MDlist = "383,376,307,250,249,248,169,168,163,161,160,21,14,6,5,4">
-	</cfcase>
-	
-	<cfcase value="dev1.ccpd.uc.edu">
-		<cfset Application.Settings.DSN = "CCPD_TEST">
-		<cfset Application.Settings.AppName = "CCPD LMS DEV1" /> <!--- appears on Window Titles, etc. --->
-		<cfset Application.Settings.RootPath = "/lms" /> <!--- HTTP path for images, and links --->
-		<cfset Application.Settings.AppPath = "/lms" /> <!--- ColdFusion Mapping --->
-		<cfset Application.Settings.ComPath = "/_com" /> <!--- Master CFC ColdFusion Mapping --->
-		
-		<cfset Application.Settings.AdminEmails = "rountrjf@ucmail.uc.edu,slamkajs@ucmail.uc.edu" />
-		
-		<cfset Application.Settings.WebURL = "http://dev1.ccpd.uc.edu/" />
-		<cfset Application.Settings.HostName = "dev1.ccpd.uc.edu" />
-		<cfset Application.Settings.DownloadURL = "http://dev1.ccpd.uc.edu/index.cfm/event/Public.Download?" />
-		
-		<cfset Application.Settings.Com = "_com." />
-		<cfset Application.Settings.MDlist = "383,376,307,250,249,248,169,168,163,161,160,21,14,6,5,4">
-	</cfcase>
-	
-	<cfcase value="dev2.ccpd.uc.edu">
-		<cfset Application.Settings.DSN = "CCPD_TEST">
-		<cfset Application.Settings.AppName = "CCPD LMS DEV2" /> <!--- appears on Window Titles, etc. --->
-		<cfset Application.Settings.RootPath = "/lms" /> <!--- HTTP path for images, and links --->
-		<cfset Application.Settings.AppPath = "/lms" /> <!--- ColdFusion Mapping --->
-		<cfset Application.Settings.ComPath = "/_com" /> <!--- Master CFC ColdFusion Mapping --->
-		
-		<cfset Application.Settings.AdminEmails = "rountrjf@ucmail.uc.edu,slamkajs@ucmail.uc.edu" />
-		
-		<cfset Application.Settings.WebURL = "http://dev2.ccpd.uc.edu/" />
-		<cfset Application.Settings.HostName = "dev2.ccpd.uc.edu" />
-		<cfset Application.Settings.DownloadURL = "http://dev2.ccpd.uc.edu/index.cfm/event/Public.Download?" />
-		
-		<cfset Application.Settings.Com = "_com." />
-		<cfset Application.Settings.MDlist = "383,376,307,250,249,248,169,168,163,161,160,21,14,6,5,4">
-	</cfcase>
-	
-	<cfcase value="dev3.ccpd.uc.edu">
-		<cfset Application.Settings.DSN = "CCPD_TEST">
-		<cfset Application.Settings.AppName = "CCPD LMS DEV3" /> <!--- appears on Window Titles, etc. --->
-		<cfset Application.Settings.RootPath = "/lms" /> <!--- HTTP path for images, and links --->
-		<cfset Application.Settings.AppPath = "/lms" /> <!--- ColdFusion Mapping --->
-		<cfset Application.Settings.ComPath = "/_com" /> <!--- Master CFC ColdFusion Mapping --->
-		
-		<cfset Application.Settings.AdminEmails = "rountrjf@ucmail.uc.edu,slamkajs@ucmail.uc.edu" />
-		
-		<cfset Application.Settings.WebURL = "http://dev3.ccpd.uc.edu/" />
-		<cfset Application.Settings.HostName = "dev3.ccpd.uc.edu" />
-		<cfset Application.Settings.DownloadURL = "http://dev3.ccpd.uc.edu/index.cfm/event/Public.Download?" />
-		
-		<cfset Application.Settings.Com = "_com." />
-		<cfset Application.Settings.MDlist = "383,376,307,250,249,248,169,168,163,161,160,21,14,6,5,4">
-	</cfcase>
-	
-	<cfcase value="dev4.ccpd.uc.edu">
-		<cfset Application.Settings.DSN = "CCPD_TEST">
-		<cfset Application.Settings.AppName = "CCPD LMS DEV4" /> <!--- appears on Window Titles, etc. --->
-		<cfset Application.Settings.RootPath = "/lms" /> <!--- HTTP path for images, and links --->
-		<cfset Application.Settings.AppPath = "/lms" /> <!--- ColdFusion Mapping --->
-		<cfset Application.Settings.ComPath = "/_com" /> <!--- Master CFC ColdFusion Mapping --->
-		
-		<cfset Application.Settings.AdminEmails = "rountrjf@ucmail.uc.edu,slamkajs@ucmail.uc.edu" />
-		
-		<cfset Application.Settings.WebURL = "http://dev4.ccpd.uc.edu/" />
-		<cfset Application.Settings.HostName = "dev4.ccpd.uc.edu" />
-		<cfset Application.Settings.DownloadURL = "http://dev4.ccpd.uc.edu/index.cfm/event/Public.Download?" />
-		
-		<cfset Application.Settings.Com = "_com." />
-		<cfset Application.Settings.MDlist = "383,376,307,250,249,248,169,168,163,161,160,21,14,6,5,4">
-	</cfcase>
-	
-	<cfcase value="ccpd-web1.msbb.uc.edu">
-		<cfset Application.Settings.DSN = "CCPD_TEST">
-		<cfset Application.Settings.AppName = "CCPD LMS DEV4" /> <!--- appears on Window Titles, etc. --->
-		<cfset Application.Settings.RootPath = "/lms" /> <!--- HTTP path for images, and links --->
-		<cfset Application.Settings.AppPath = "/lms" /> <!--- ColdFusion Mapping --->
-		<cfset Application.Settings.ComPath = "/_com" /> <!--- Master CFC ColdFusion Mapping --->
-		
-		<cfset Application.Settings.AdminEmails = "rountrjf@ucmail.uc.edu,slamkajs@ucmail.uc.edu" />
-		
-		<cfset Application.Settings.WebURL = "http://dev4.ccpd.uc.edu/" />
-		<cfset Application.Settings.HostName = "dev4.ccpd.uc.edu" />
-		<cfset Application.Settings.DownloadURL = "http://dev4.ccpd.uc.edu/index.cfm/event/Public.Download?" />
-		
-		<cfset Application.Settings.Com = "_com." />
-		<cfset Application.Settings.MDlist = "383,376,307,250,249,248,169,168,163,161,160,21,14,6,5,4">
-	</cfcase>
-	
-	<!--- DEVELOPMENT --->
-	<cfcase value="ccpdlms">
-		<cfset Application.Settings.DSN = "CCPD_PROD">
-		<cfset Application.Settings.LoginService = "http://systest.ahctest.uc.edu/admin/service/dev/LoginServices/wsAuthentication2.cfc?wsdl">
-		<cfset Application.Settings.LookupService = "http://systest.ahctest.uc.edu/login/dev/UserLookup/wsUserLookup.cfc?wsdl">
-		<cfset Application.Settings.RegisterService = "http://systest.ahctest.uc.edu/admin/service/dev/UserRegistration/UserReg.cfc?wsdl">
-		<cfset Application.Settings.AppName = "CCPD[dev]" /> <!--- appears on Window Titles, etc. --->
-		<cfset Application.Settings.RootPath = "" /> <!--- HTTP path for images, and links --->
-		<cfset Application.Settings.AppPath = "" /> <!--- ColdFusion Mapping --->
-		<cfset Application.Settings.ComPath = "/cfc_home" /> <!--- Master CFC ColdFusion Mapping --->
-		
-		<cfset Application.Settings.AdminEmails = "rountrjf@ucmail.uc.edu,slamkajs@ucmail.uc.edu" />
-		
-		<cfset Application.Settings.WebURL = "http://ccpdadmin-trunk/" />
-		<cfset Application.Settings.HostName = "ccpdadmin-trunk" />
-		<cfset Application.Settings.DownloadURL = "http://ccpdadmin-trunk/index.cfm/event/Public.Download?" />
-		
-		<cfset Application.Settings.Com = "_com." />
-		<cfset Application.Settings.MDlist = "383,376,307,250,249,248,169,168,163,161,160,21,14,6,5,4">
-	</cfcase>
 
-	<!--- TEST --->
-	<cfcase value="ccpd-web1">
-		<cfset Application.Settings.DSN = "AITL-TESTSQL1">
-		<cfset Application.Settings.LoginService = "http://systest.ahctest.uc.edu/admin/service/dev/LoginServices/wsAuthentication2.cfc?wsdl">
-		<cfset Application.Settings.LookupService = "http://systest.ahctest.uc.edu/login/dev/UserLookup/wsUserLookup.cfc?wsdl">
-		<cfset Application.Settings.RegisterService = "http://systest.ahctest.uc.edu/admin/service/dev/UserRegistration/UserReg.cfc?wsdl">
-		<cfset Application.Settings.AppName = "CCPD[dev]" /> <!--- appears on Window Titles, etc. --->
-		<cfset Application.Settings.RootPath = "" /> <!--- HTTP path for images, and links --->
-		<cfset Application.Settings.AppPath = "" /> <!--- ColdFusion Mapping --->
-		<cfset Application.Settings.ComPath = "/cfc_home" /> <!--- Master CFC ColdFusion Mapping --->
+	<cfcase value="v2.ccpd.uc.edu">
+		<cfset Application.Settings.DSN = "CCPD_CLONE">
+		<cfset Application.Settings.AppName = "CCPD" /> <!--- appears on Window Titles, etc. --->
+		<cfset Application.Settings.RootPath = "/lms" /> <!--- HTTP path for images, and links --->
+		<cfset Application.Settings.AppPath = "/lms" /> <!--- ColdFusion Mapping --->
+		<cfset Application.Settings.ComPath = "/_com" /> <!--- Master CFC ColdFusion Mapping --->
 		
 		<cfset Application.Settings.AdminEmails = "rountrjf@ucmail.uc.edu,slamkajs@ucmail.uc.edu" />
 		
-		<cfset Application.Settings.WebURL = "http://ccpdadmin-branch/" />
-		<cfset Application.Settings.HostName = "ccpdadmin-branch" />
-		<cfset Application.Settings.DownloadURL = "http://ccpdadmin-branch/index.cfm/event/Public.Download?" />
+		<cfset Application.Settings.WebURL = "http://test.ccpd.uc.edu/lms/" />
+		<cfset Application.Settings.HostName = "test.ccpd.uc.edu" />
+		<cfset Application.Settings.DownloadURL = "http://test.ccpd.uc.edu/index.cfm/event/Public.Download?" />
 		
 		<cfset Application.Settings.Com = "_com." />
-		<cfset Application.Settings.Com2 = "_com." />
 		<cfset Application.Settings.MDlist = "383,376,307,250,249,248,169,168,163,161,160,21,14,6,5,4">
 	</cfcase>
 </cfswitch>

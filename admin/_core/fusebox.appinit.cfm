@@ -64,80 +64,19 @@
 		<cfset application.settings.javaloaderKey = "JAVALOADER-CCPD-PROD-15313">
 	</cfcase>
 
-	<cfcase value="dev2.ccpd.uc.edu">
-		<cfset Application.Settings.DSN = "CCPD_DEV2">
-		<cfset Application.Settings.AppName = "DEV2 / CCPD Admin 2.0" /> <!--- appears on Window Titles, etc. --->
+	<cfcase value="v2.ccpd.uc.edu">
+		<cfset Application.Settings.DSN = "CCPD_CLONE">
+		<cfset Application.Settings.AppName = "CCPD Admin 2.0" /> <!--- appears on Window Titles, etc. --->
 		<cfset Application.Settings.RootPath = "/admin" /> <!--- HTTP path for images, and links --->
 		<cfset Application.Settings.ComPath = "/_com" /> <!--- Master CFC ColdFusion Mapping --->
 		<cfset Application.Settings.AppPath = "/admin" /> <!--- ColdFusion Mapping --->
 		<cfset Application.Settings.Com = "_com." />
 		<cfset Application.Settings.Com2 = "admin._com." />
 		<cfset Application.Settings.AdminEmails = "rountrjf@ucmail.uc.edu,slamkajs@ucmail.uc.edu" />
-		<cfset Application.Settings.WebURL = "http://DEV2.ccpd.uc.edu/admin/" />
-		<cfset Application.Settings.LMSURL = "http://DEV2.ccpd.uc.edu/" />
-		<cfset Application.Settings.CDCURL = "http://test.cme.uc.edu/stdptc" />
-		<cfset application.settings.javaloaderKey = "JAVALOADER-CCPD-DEV2-4984984">
-	</cfcase>
-	
-	<cfcase value="dev3.ccpd.uc.edu">
-		<cfset Application.Settings.DSN = "CCPD_TEST">
-		<cfset Application.Settings.AppName = "DEV2 / CCPD Admin 2.0" /> <!--- appears on Window Titles, etc. --->
-		<cfset Application.Settings.RootPath = "/admin" /> <!--- HTTP path for images, and links --->
-		<cfset Application.Settings.ComPath = "/_com" /> <!--- Master CFC ColdFusion Mapping --->
-		<cfset Application.Settings.AppPath = "/admin" /> <!--- ColdFusion Mapping --->
-		<cfset Application.Settings.Com = "_com." />
-		<cfset Application.Settings.Com2 = "admin._com." />
-		<cfset Application.Settings.AdminEmails = "rountrjf@ucmail.uc.edu,slamkajs@ucmail.uc.edu" />
-		<cfset Application.Settings.WebURL = "http://DEV2.ccpd.uc.edu/admin/" />
-		<cfset Application.Settings.LMSURL = "http://DEV2.ccpd.uc.edu/" />
-		<cfset Application.Settings.CDCURL = "http://test.cme.uc.edu/stdptc" />
-		<cfset application.settings.javaloaderKey = "JAVALOADER-CCPD-DEV2-4984984">
-	</cfcase>
-	
-	<cfcase value="dev4.ccpd.uc.edu">
-		<cfset Application.Settings.DSN = "CCPD_TEST">
-		<cfset Application.Settings.AppName = "DEV4 / CCPD Admin 2.0" /> <!--- appears on Window Titles, etc. --->
-		<cfset Application.Settings.RootPath = "/admin" /> <!--- HTTP path for images, and links --->
-		<cfset Application.Settings.ComPath = "/_com" /> <!--- Master CFC ColdFusion Mapping --->
-		<cfset Application.Settings.AppPath = "/admin" /> <!--- ColdFusion Mapping --->
-		<cfset Application.Settings.Com = "_com." />
-		<cfset Application.Settings.Com2 = "admin._com." />
-		<cfset Application.Settings.AdminEmails = "rountrjf@ucmail.uc.edu,slamkajs@ucmail.uc.edu" />
-		<cfset Application.Settings.WebURL = "http://DEV4.ccpd.uc.edu/admin/" />
-		<cfset Application.Settings.LMSURL = "http://DEV4.ccpd.uc.edu/" />
-		<cfset Application.Settings.CDCURL = "http://test.cme.uc.edu/stdptc" />
-		<cfset application.settings.javaloaderKey = "JAVALOADER-CCPD-DEV4-4984984">
-	</cfcase>
-	
-	<cfcase value="ccpd-web1.msbb.uc.edu">
-		<cfset Application.Settings.DSN = "CCPD_TEST">
-		<cfset Application.Settings.AppName = "DEV4 / CCPD Admin 2.0" /> <!--- appears on Window Titles, etc. --->
-		<cfset Application.Settings.RootPath = "/admin" /> <!--- HTTP path for images, and links --->
-		<cfset Application.Settings.ComPath = "/_com" /> <!--- Master CFC ColdFusion Mapping --->
-		<cfset Application.Settings.AppPath = "/admin" /> <!--- ColdFusion Mapping --->
-		<cfset Application.Settings.Com = "_com." />
-		<cfset Application.Settings.Com2 = "admin._com." />
-		<cfset Application.Settings.AdminEmails = "rountrjf@ucmail.uc.edu,slamkajs@ucmail.uc.edu" />
-		<cfset Application.Settings.WebURL = "http://DEV4.ccpd.uc.edu/admin/" />
-		<cfset Application.Settings.LMSURL = "http://DEV4.ccpd.uc.edu/" />
-		<cfset Application.Settings.CDCURL = "http://test.cme.uc.edu/stdptc" />
-		<cfset application.settings.javaloaderKey = "JAVALOADER-CCPD-DEV4-4984984">
-	</cfcase>
-
-
-	<cfcase value="10.97.106.160">
-		<cfset Application.Settings.DSN = "CCPD_TEST">
-		<cfset Application.Settings.AppName = ".160 / CCPD Admin 2.0" /> <!--- appears on Window Titles, etc. --->
-		<cfset Application.Settings.RootPath = "/admin" /> <!--- HTTP path for images, and links --->
-		<cfset Application.Settings.ComPath = "/_com" /> <!--- Master CFC ColdFusion Mapping --->
-		<cfset Application.Settings.AppPath = "/admin" /> <!--- ColdFusion Mapping --->
-		<cfset Application.Settings.Com = "_com." />
-		<cfset Application.Settings.Com2 = "admin._com." />
-		<cfset Application.Settings.AdminEmails = "rountrjf@ucmail.uc.edu,slamkajs@ucmail.uc.edu" />
-		<cfset Application.Settings.WebURL = "http://10.97.106.160/admin/" />
-		<cfset Application.Settings.LMSURL = "http://10.97.106.160/" />
-		<cfset Application.Settings.CDCURL = "http://test.cme.uc.edu/stdptc" />
-		<cfset application.settings.javaloaderKey = "JAVALOADER-CCPD-MOVE-9849498">
+		<cfset Application.Settings.WebURL = "https://test.uc.edu/admin/" />
+		<cfset Application.Settings.LMSURL = "https://test.uc.edu/" />
+		<cfset Application.Settings.CDCURL = "http://cme.uc.edu/stdptc" />
+		<cfset application.settings.javaloaderKey = "JAVALOADER-CCPD-PROD-15313">
 	</cfcase>
 </cfswitch>
 

@@ -35,33 +35,12 @@
 			<cferror template="/lms/error.cfm" type="exception" mailto="rountrjf@ucmail.uc.edu">
 			<cferror template="/lms/error.cfm" type="request" mailto="rountrjf@ucmail.uc.edu">
 		</cfcase>
-		
-		<cfcase value="dev1.ccpd.uc.edu">
-			<cfset this.name = "CCPD_LMS_DEV1" />
-			<cfset THIS.CustomTagPaths = "/lms/_tags" />
-			<cfset FUSEBOX_PARAMETERS.mode = "development-circuit-load" />
-			<!---
-			<cferror template="/lms/error.cfm" type="exception" mailto="rountrjf@ucmail.uc.edu">
-			<cferror template="/lms/error.cfm" type="request" mailto="rountrjf@ucmail.uc.edu">
-			</cfif>--->
-		</cfcase>
-		
-		<cfcase value="dev2.ccpd.uc.edu">
-			<cfset this.name = "CCPD_LMS_DEV2" />
-			<cfset FUSEBOX_PARAMETERS.mode = "development-circuit-load" />
-			<!---
-			<cferror template="/lms/error.cfm" type="exception" mailto="rountrjf@ucmail.uc.edu">
-			<cferror template="/lms/error.cfm" type="request" mailto="rountrjf@ucmail.uc.edu">
-			</cfif>--->
-		</cfcase>
 
-		<cfcase value="10.97.106.160">
-			<cfset this.name = "CCPD_LMS_OTHER" />
-			<cfset FUSEBOX_PARAMETERS.mode = "development-circuit-load" />
-			<!---
-			<cferror template="/lms/error.cfm" type="exception" mailto="rountrjf@ucmail.uc.edu">
-			<cferror template="/lms/error.cfm" type="request" mailto="rountrjf@ucmail.uc.edu">
-			</cfif>--->
+		<cfcase value="v2.ccpd.uc.edu">
+			<cfset this.name = "CCPD_LMS_TEST" />
+			<cfset FUSEBOX_PARAMETERS.mode = "production" />
+			
+			<cfset THIS.CustomTagPaths = "/lms/_tags" />
 		</cfcase>
 	</cfswitch>
     
