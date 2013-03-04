@@ -70,6 +70,23 @@
 		<cfset Application.Settings.Com = "_com." />
 		<cfset Application.Settings.MDlist = "383,376,307,250,249,248,169,168,163,161,160,21,14,6,5,4">
 	</cfcase>
+
+	<cfcase value="localhost">
+		<cfset Application.Settings.DSN = "CCPD_CLONE">
+		<cfset Application.Settings.AppName = "CCPD" /> <!--- appears on Window Titles, etc. --->
+		<cfset Application.Settings.RootPath = "/lms" /> <!--- HTTP path for images, and links --->
+		<cfset Application.Settings.AppPath = "/lms" /> <!--- ColdFusion Mapping --->
+		<cfset Application.Settings.ComPath = "/_com" /> <!--- Master CFC ColdFusion Mapping --->
+		
+		<cfset Application.Settings.AdminEmails = "rountrjf@ucmail.uc.edu,slamkajs@ucmail.uc.edu" />
+		
+		<cfset Application.Settings.WebURL = "http://test.ccpd.uc.edu/lms/" />
+		<cfset Application.Settings.HostName = "test.ccpd.uc.edu" />
+		<cfset Application.Settings.DownloadURL = "http://test.ccpd.uc.edu/index.cfm/event/Public.Download?" />
+		
+		<cfset Application.Settings.Com = "_com." />
+		<cfset Application.Settings.MDlist = "383,376,307,250,249,248,169,168,163,161,160,21,14,6,5,4">
+	</cfcase>
 	
 	<cfcase value="10.97.106.160">
 		<cfset Application.Settings.DSN = "CCPD_TEST">

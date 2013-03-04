@@ -6,13 +6,15 @@
 		
 	<!--- set application name based on the directory path --->
 	
-	<cfset namekey = "vJkazM2" />
+	<cfset namekey = "f32f23f" />
 	<cfswitch expression="#CGI.SERVER_NAME#">
 		<!--- PRODUCTION --->
 		<cfcase value="ccpd.uc.edu">
 			<cfset this.name = "CCPD_ADMIN_PRODUCTION_#namekey#" />
 			<cfset FUSEBOX_PARAMETERS.mode = "production" />
 			
+			<cfset THIS.CustomTagPaths = "/admin/_tags" />
+
 			<cferror template="/admin/error.cfm" type="exception" mailto="rountrjf@ucmail.uc.edu">
 			<cferror template="/admin/error.cfm" type="request" mailto="rountrjf@ucmail.uc.edu">
 		</cfcase>
@@ -22,7 +24,15 @@
 			<cfset this.name = "CCPD_ADMIN_TEST_#namekey#" />
 			<cfset FUSEBOX_PARAMETERS.mode = "development-circuit-load" />
 			
+			<cfset THIS.CustomTagPaths = "/admin/_tags" />
+		</cfcase>
+
+		<!--- TEST --->
+		<cfcase value="localhost">
+			<cfset this.name = "CCPD_ADMIN_TEST_#namekey#" />
+			<cfset FUSEBOX_PARAMETERS.mode = "development-circuit-load" />
 			
+			<cfset THIS.CustomTagPaths = "/admin/_tags" />
 		</cfcase>
 
 		<cfcase value="dev1.ccpd.uc.edu">
