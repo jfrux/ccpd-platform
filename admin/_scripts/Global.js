@@ -24,7 +24,7 @@ function historyList(properties) {
 		maxrows:25
 	};
 	
-	//console.log(settings);
+	console.log(settings);
 	
 	$this.setMode = function(mode) {
 		settings.mode = mode;
@@ -42,6 +42,7 @@ function historyList(properties) {
 		if(!inject) {
 			inject = 'append';	
 		}
+		
 		dataToSend = {
 			personfrom:0,
 			personto:0,
@@ -121,6 +122,7 @@ if ( typeof jQuery != "undefined" )
 
 function listHistory(appendTo,params,inject) {
 	var output = '';
+	console.log("in");
 	$.ajax({
 		url:"/admin/_com/ajax_history.cfc?method=list",
 		dataType:'json',
@@ -155,6 +157,7 @@ function listHistory(appendTo,params,inject) {
 
 function renderHistoryItem(row) {
 	var re = /%[A-Za-z]+%/g;
+	console.log(row);
 	var ReturnContent = row.TEMPLATEFROM;
 	
 	var aFoundFields = ReturnContent.match(re);
@@ -169,9 +172,8 @@ function renderHistoryItem(row) {
 		//console.log(VarName);
 		ReturnContent = $.Replace(ReturnContent,VarName,eval("row." + VarName.toUpperCase()),"ALL");
 	});
-	
+	console.log(ReturnContent);
 	//console.log(ReturnContent);
-	
 	ToContent = $.Replace(row.TOCONTENT,"/index.cfm/event/",sMyself,"ALL");
 	sOutput = "<div class=\"history-item\" id=\"history-item-" + row.HISTORYID + "\" style=\"display:none;\">" +
 				"<div class=\"history-line\"><img src=\"/admin/_images/icons/" + row.ICONIMG + "\" border=\"0\" />" + ReturnContent + "</div>";

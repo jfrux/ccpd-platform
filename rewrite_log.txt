@@ -1,0 +1,82 @@
+10.168.1.79 - - [04/Mar/2013:17:23:14 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647bae15e0/initial] (2) init rewrite engine with requested uri /admin/
+10.168.1.79 - - [04/Mar/2013:17:23:14 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647bae15e0/initial] (1) pass through /admin/
+10.168.1.79 - - [04/Mar/2013:17:23:14 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647bae15e0/initial] (3) [perdir /home/ccpdv2/public_html/admin/] strip per-dir prefix: /home/ccpdv2/public_html/admin/ -> 
+10.168.1.79 - - [04/Mar/2013:17:23:14 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647bae15e0/initial] (3) [perdir /home/ccpdv2/public_html/admin/] applying pattern '^event/([a-zA-Z0-9._-]+)$' to uri ''
+10.168.1.79 - - [04/Mar/2013:17:23:14 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647bae15e0/initial] (1) [perdir /home/ccpdv2/public_html/admin/] pass through /home/ccpdv2/public_html/admin/
+10.168.1.79 - - [04/Mar/2013:17:23:14 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647baf3660/subreq] (2) init rewrite engine with requested uri /admin/index.html
+10.168.1.79 - - [04/Mar/2013:17:23:14 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647baf3660/subreq] (1) pass through /admin/index.html
+10.168.1.79 - - [04/Mar/2013:17:23:14 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647baf3660/subreq] (3) [perdir /home/ccpdv2/public_html/admin/] strip per-dir prefix: /home/ccpdv2/public_html/admin/index.html -> index.html
+10.168.1.79 - - [04/Mar/2013:17:23:14 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647baf3660/subreq] (3) [perdir /home/ccpdv2/public_html/admin/] applying pattern '^event/([a-zA-Z0-9._-]+)$' to uri 'index.html'
+10.168.1.79 - - [04/Mar/2013:17:23:14 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647baf3660/subreq] (1) [perdir /home/ccpdv2/public_html/admin/] pass through /home/ccpdv2/public_html/admin/index.html
+10.168.1.79 - - [04/Mar/2013:17:23:14 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647baf5670/subreq] (2) init rewrite engine with requested uri /admin/index.htm
+10.168.1.79 - - [04/Mar/2013:17:23:14 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647baf5670/subreq] (1) pass through /admin/index.htm
+10.168.1.79 - - [04/Mar/2013:17:23:14 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647baf5670/subreq] (3) [perdir /home/ccpdv2/public_html/admin/] strip per-dir prefix: /home/ccpdv2/public_html/admin/index.htm -> index.htm
+10.168.1.79 - - [04/Mar/2013:17:23:14 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647baf5670/subreq] (3) [perdir /home/ccpdv2/public_html/admin/] applying pattern '^event/([a-zA-Z0-9._-]+)$' to uri 'index.htm'
+10.168.1.79 - - [04/Mar/2013:17:23:14 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647baf5670/subreq] (1) [perdir /home/ccpdv2/public_html/admin/] pass through /home/ccpdv2/public_html/admin/index.htm
+10.168.1.79 - - [04/Mar/2013:17:23:14 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647baf3660/subreq] (2) init rewrite engine with requested uri /admin/index.php
+10.168.1.79 - - [04/Mar/2013:17:23:14 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647baf3660/subreq] (1) pass through /admin/index.php
+10.168.1.79 - - [04/Mar/2013:17:23:14 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647baf3660/subreq] (3) [perdir /home/ccpdv2/public_html/admin/] strip per-dir prefix: /home/ccpdv2/public_html/admin/index.php -> index.php
+10.168.1.79 - - [04/Mar/2013:17:23:14 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647baf3660/subreq] (3) [perdir /home/ccpdv2/public_html/admin/] applying pattern '^event/([a-zA-Z0-9._-]+)$' to uri 'index.php'
+10.168.1.79 - - [04/Mar/2013:17:23:14 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647baf3660/subreq] (1) [perdir /home/ccpdv2/public_html/admin/] pass through /home/ccpdv2/public_html/admin/index.php
+10.168.1.79 - - [04/Mar/2013:17:23:14 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647baf5670/subreq] (2) init rewrite engine with requested uri /admin/index.php4
+10.168.1.79 - - [04/Mar/2013:17:23:14 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647baf5670/subreq] (1) pass through /admin/index.php4
+10.168.1.79 - - [04/Mar/2013:17:23:14 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647baf5670/subreq] (3) [perdir /home/ccpdv2/public_html/admin/] strip per-dir prefix: /home/ccpdv2/public_html/admin/index.php4 -> index.php4
+10.168.1.79 - - [04/Mar/2013:17:23:14 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647baf5670/subreq] (3) [perdir /home/ccpdv2/public_html/admin/] applying pattern '^event/([a-zA-Z0-9._-]+)$' to uri 'index.php4'
+10.168.1.79 - - [04/Mar/2013:17:23:14 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647baf5670/subreq] (1) [perdir /home/ccpdv2/public_html/admin/] pass through /home/ccpdv2/public_html/admin/index.php4
+10.168.1.79 - - [04/Mar/2013:17:23:14 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647baf3660/subreq] (2) init rewrite engine with requested uri /admin/index.php5
+10.168.1.79 - - [04/Mar/2013:17:23:14 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647baf3660/subreq] (1) pass through /admin/index.php5
+10.168.1.79 - - [04/Mar/2013:17:23:14 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647baf3660/subreq] (3) [perdir /home/ccpdv2/public_html/admin/] strip per-dir prefix: /home/ccpdv2/public_html/admin/index.php5 -> index.php5
+10.168.1.79 - - [04/Mar/2013:17:23:14 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647baf3660/subreq] (3) [perdir /home/ccpdv2/public_html/admin/] applying pattern '^event/([a-zA-Z0-9._-]+)$' to uri 'index.php5'
+10.168.1.79 - - [04/Mar/2013:17:23:14 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647baf3660/subreq] (1) [perdir /home/ccpdv2/public_html/admin/] pass through /home/ccpdv2/public_html/admin/index.php5
+10.168.1.79 - - [04/Mar/2013:17:23:14 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647baf5670/subreq] (2) init rewrite engine with requested uri /admin/index.cfm
+10.168.1.79 - - [04/Mar/2013:17:23:14 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647baf5670/subreq] (1) pass through /admin/index.cfm
+10.168.1.79 - - [04/Mar/2013:17:23:14 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647badd5c0/initial] (2) init rewrite engine with requested uri /admin/index.cfm/event/Main.Login&FailMessage=Permission Denied.
+10.168.1.79 - - [04/Mar/2013:17:23:14 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647badd5c0/initial] (1) pass through /admin/index.cfm/event/Main.Login&FailMessage=Permission Denied.
+10.168.1.79 - - [04/Mar/2013:17:23:25 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647badd5c0/initial] (2) init rewrite engine with requested uri /admin/index.cfm/event/Main.Login&FailMessage=Permission Denied.&fusebox.load=1&fusebox.password=05125586
+10.168.1.79 - - [04/Mar/2013:17:23:25 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647badd5c0/initial] (1) pass through /admin/index.cfm/event/Main.Login&FailMessage=Permission Denied.&fusebox.load=1&fusebox.password=05125586
+10.168.1.79 - - [04/Mar/2013:17:23:30 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647badd5c0/initial] (2) init rewrite engine with requested uri /admin
+10.168.1.79 - - [04/Mar/2013:17:23:30 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647badd5c0/initial] (1) pass through /admin
+10.168.1.79 - - [04/Mar/2013:17:23:30 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647badd5c0/initial] (2) init rewrite engine with requested uri /admin/
+10.168.1.79 - - [04/Mar/2013:17:23:30 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647badd5c0/initial] (1) pass through /admin/
+10.168.1.79 - - [04/Mar/2013:17:23:30 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647badd5c0/initial] (3) [perdir /home/ccpdv2/public_html/admin/] strip per-dir prefix: /home/ccpdv2/public_html/admin/ -> 
+10.168.1.79 - - [04/Mar/2013:17:23:30 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647badd5c0/initial] (3) [perdir /home/ccpdv2/public_html/admin/] applying pattern '^event/([a-zA-Z0-9._-]+)$' to uri ''
+10.168.1.79 - - [04/Mar/2013:17:23:30 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647badd5c0/initial] (1) [perdir /home/ccpdv2/public_html/admin/] pass through /home/ccpdv2/public_html/admin/
+10.168.1.79 - - [04/Mar/2013:17:23:30 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647baf3660/subreq] (2) init rewrite engine with requested uri /admin/index.html
+10.168.1.79 - - [04/Mar/2013:17:23:30 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647baf3660/subreq] (1) pass through /admin/index.html
+10.168.1.79 - - [04/Mar/2013:17:23:30 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647baf3660/subreq] (3) [perdir /home/ccpdv2/public_html/admin/] strip per-dir prefix: /home/ccpdv2/public_html/admin/index.html -> index.html
+10.168.1.79 - - [04/Mar/2013:17:23:30 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647baf3660/subreq] (3) [perdir /home/ccpdv2/public_html/admin/] applying pattern '^event/([a-zA-Z0-9._-]+)$' to uri 'index.html'
+10.168.1.79 - - [04/Mar/2013:17:23:30 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647baf3660/subreq] (1) [perdir /home/ccpdv2/public_html/admin/] pass through /home/ccpdv2/public_html/admin/index.html
+10.168.1.79 - - [04/Mar/2013:17:23:30 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647baf5670/subreq] (2) init rewrite engine with requested uri /admin/index.htm
+10.168.1.79 - - [04/Mar/2013:17:23:30 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647baf5670/subreq] (1) pass through /admin/index.htm
+10.168.1.79 - - [04/Mar/2013:17:23:30 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647baf5670/subreq] (3) [perdir /home/ccpdv2/public_html/admin/] strip per-dir prefix: /home/ccpdv2/public_html/admin/index.htm -> index.htm
+10.168.1.79 - - [04/Mar/2013:17:23:30 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647baf5670/subreq] (3) [perdir /home/ccpdv2/public_html/admin/] applying pattern '^event/([a-zA-Z0-9._-]+)$' to uri 'index.htm'
+10.168.1.79 - - [04/Mar/2013:17:23:30 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647baf5670/subreq] (1) [perdir /home/ccpdv2/public_html/admin/] pass through /home/ccpdv2/public_html/admin/index.htm
+10.168.1.79 - - [04/Mar/2013:17:23:30 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647baf3660/subreq] (2) init rewrite engine with requested uri /admin/index.php
+10.168.1.79 - - [04/Mar/2013:17:23:30 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647baf3660/subreq] (1) pass through /admin/index.php
+10.168.1.79 - - [04/Mar/2013:17:23:30 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647baf3660/subreq] (3) [perdir /home/ccpdv2/public_html/admin/] strip per-dir prefix: /home/ccpdv2/public_html/admin/index.php -> index.php
+10.168.1.79 - - [04/Mar/2013:17:23:30 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647baf3660/subreq] (3) [perdir /home/ccpdv2/public_html/admin/] applying pattern '^event/([a-zA-Z0-9._-]+)$' to uri 'index.php'
+10.168.1.79 - - [04/Mar/2013:17:23:30 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647baf3660/subreq] (1) [perdir /home/ccpdv2/public_html/admin/] pass through /home/ccpdv2/public_html/admin/index.php
+10.168.1.79 - - [04/Mar/2013:17:23:30 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647baf5670/subreq] (2) init rewrite engine with requested uri /admin/index.php4
+10.168.1.79 - - [04/Mar/2013:17:23:30 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647baf5670/subreq] (1) pass through /admin/index.php4
+10.168.1.79 - - [04/Mar/2013:17:23:30 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647baf5670/subreq] (3) [perdir /home/ccpdv2/public_html/admin/] strip per-dir prefix: /home/ccpdv2/public_html/admin/index.php4 -> index.php4
+10.168.1.79 - - [04/Mar/2013:17:23:30 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647baf5670/subreq] (3) [perdir /home/ccpdv2/public_html/admin/] applying pattern '^event/([a-zA-Z0-9._-]+)$' to uri 'index.php4'
+10.168.1.79 - - [04/Mar/2013:17:23:30 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647baf5670/subreq] (1) [perdir /home/ccpdv2/public_html/admin/] pass through /home/ccpdv2/public_html/admin/index.php4
+10.168.1.79 - - [04/Mar/2013:17:23:30 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647baf3660/subreq] (2) init rewrite engine with requested uri /admin/index.php5
+10.168.1.79 - - [04/Mar/2013:17:23:30 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647baf3660/subreq] (1) pass through /admin/index.php5
+10.168.1.79 - - [04/Mar/2013:17:23:30 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647baf3660/subreq] (3) [perdir /home/ccpdv2/public_html/admin/] strip per-dir prefix: /home/ccpdv2/public_html/admin/index.php5 -> index.php5
+10.168.1.79 - - [04/Mar/2013:17:23:30 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647baf3660/subreq] (3) [perdir /home/ccpdv2/public_html/admin/] applying pattern '^event/([a-zA-Z0-9._-]+)$' to uri 'index.php5'
+10.168.1.79 - - [04/Mar/2013:17:23:30 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647baf3660/subreq] (1) [perdir /home/ccpdv2/public_html/admin/] pass through /home/ccpdv2/public_html/admin/index.php5
+10.168.1.79 - - [04/Mar/2013:17:23:30 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647baf5670/subreq] (2) init rewrite engine with requested uri /admin/index.cfm
+10.168.1.79 - - [04/Mar/2013:17:23:30 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647baf5670/subreq] (1) pass through /admin/index.cfm
+10.168.1.79 - - [04/Mar/2013:17:23:30 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647badd5c0/initial] (2) init rewrite engine with requested uri /admin/index.cfm/event/Main.Login&FailMessage=Permission Denied.
+10.168.1.79 - - [04/Mar/2013:17:23:30 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647badd5c0/initial] (1) pass through /admin/index.cfm/event/Main.Login&FailMessage=Permission Denied.
+10.168.1.79 - - [04/Mar/2013:17:25:54 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647badd5c0/initial] (2) init rewrite engine with requested uri /admin/index.cfm/event/Main.Login&FailMessage=Permission Denied.
+10.168.1.79 - - [04/Mar/2013:17:25:54 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647badd5c0/initial] (1) pass through /admin/index.cfm/event/Main.Login&FailMessage=Permission Denied.
+10.168.1.79 - - [04/Mar/2013:17:25:55 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647badf5d0/initial] (2) init rewrite engine with requested uri /admin/index.cfm/event/Main.Login&FailMessage=Permission Denied.
+10.168.1.79 - - [04/Mar/2013:17:25:55 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647badf5d0/initial] (1) pass through /admin/index.cfm/event/Main.Login&FailMessage=Permission Denied.
+10.168.1.79 - - [04/Mar/2013:17:25:58 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647badf5d0/initial] (2) init rewrite engine with requested uri /admin/index.cfm
+10.168.1.79 - - [04/Mar/2013:17:25:58 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647badf5d0/initial] (1) pass through /admin/index.cfm
+10.168.1.79 - - [04/Mar/2013:17:25:58 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647badf5d0/initial] (2) init rewrite engine with requested uri /admin/index.cfm/event/Main.Login&FailMessage=Permission Denied.
+10.168.1.79 - - [04/Mar/2013:17:25:58 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647badf5d0/initial] (1) pass through /admin/index.cfm/event/Main.Login&FailMessage=Permission Denied.
+10.168.1.79 - - [04/Mar/2013:17:26:04 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647badf5d0/initial] (2) init rewrite engine with requested uri /admin/index.cfm/event/Main.Login
+10.168.1.79 - - [04/Mar/2013:17:26:04 --0500] [v2.ccpd.uc.edu/sid#2b6474020b70][rid#2b647badf5d0/initial] (1) pass through /admin/index.cfm/event/Main.Login

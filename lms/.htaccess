@@ -1,31 +1,31 @@
-Options +FollowSymLinks
-ErrorDocument 404 /index.cfm/event/Main.FourOhFour
+# Options +FollowSymLinks
+# ErrorDocument 404 /index.cfm/event/Main.FourOhFour
 
-RewriteEngine On
-RewriteBase /
+# RewriteEngine On
+# RewriteBase /
 
-#MAIN RULE
-RewriteRule ^lms/event/([a-zA-Z0-9._-]+)$ /lms/index.cfm/event/$1 [NC]
+# #MAIN RULE
+# RewriteRule ^lms/event/([a-zA-Z0-9._-]+)$ /lms/index.cfm/event/$1 [NC]
 
-#STANDARD INFO PAGES
-RewriteRule ^lms/activity/([a-zA-Z0-9._-]+)$ /lms/index.cfm/event/Activity.Detail?activityid=$1 [NC]
-RewriteRule ^lms/about$ /lms/index.cfm/event/Main.About	[NC]
-RewriteRule ^lms/browse$ /lms/index.cfm/event/Activity.Browse	[NC]
-RewriteRule ^lms/home$ /lms/index.cfm/event/Member.Home	[NC]
-RewriteRule ^lms/signup$ /lms/index.cfm/event/Main.Register	[NC]
-RewriteRule ^lms/support$ /lms/index.cfm/event/Main.Support	[NC]
-RewriteRule ^lms/transcript$ /lms/index.cfm/event/Member.Transcripts	[NC]
-RewriteRule ^lms/preferences$ /lms/index.cfm/event/Member.Account	[NC]
-RewriteRule ^lms/login$ /lms/index.cfm/event/Main.Login  [NC]
-RewriteRule ^lms/verifyemail$ /lms/index.cfm/event/Main.VerifyEmail  [NC]
+# #STANDARD INFO PAGES
+# RewriteRule ^lms/activity/([a-zA-Z0-9._-]+)$ /lms/index.cfm/event/Activity.Detail?activityid=$1 [NC]
+# RewriteRule ^lms/about$ /lms/index.cfm/event/Main.About	[NC]
+# RewriteRule ^lms/browse$ /lms/index.cfm/event/Activity.Browse	[NC]
+# RewriteRule ^lms/home$ /lms/index.cfm/event/Member.Home	[NC]
+# RewriteRule ^lms/signup$ /lms/index.cfm/event/Main.Register	[NC]
+# RewriteRule ^lms/support$ /lms/index.cfm/event/Main.Support	[NC]
+# RewriteRule ^lms/transcript$ /lms/index.cfm/event/Member.Transcripts	[NC]
+# RewriteRule ^lms/preferences$ /lms/index.cfm/event/Member.Account	[NC]
+# RewriteRule ^lms/login$ /lms/index.cfm/event/Main.Login  [NC]
+# RewriteRule ^lms/verifyemail$ /lms/index.cfm/event/Main.VerifyEmail  [NC]
 
-RewriteRule ^lms/category/([^/.]+)$ /lms/index.cfm/event/Activity.Browse?Category=$1&Submitted=1	[NC]
-RewriteRule ^lms/specialty/([^/.]+)/([^/.]+)$ /lms/index.cfm/event/Activity.Browse?Specialty=$1&Page=$2&Submitted=1	[NC]
-RewriteRule ^lms/specialty/([^/.]+)$ /lms/index.cfm/event/Activity.Browse?Specialty=$1&Submitted=1	[NC]
+# RewriteRule ^lms/category/([^/.]+)$ /lms/index.cfm/event/Activity.Browse?Category=$1&Submitted=1	[NC]
+# RewriteRule ^lms/specialty/([^/.]+)/([^/.]+)$ /lms/index.cfm/event/Activity.Browse?Specialty=$1&Page=$2&Submitted=1	[NC]
+# RewriteRule ^lms/specialty/([^/.]+)$ /lms/index.cfm/event/Activity.Browse?Specialty=$1&Submitted=1	[NC]
 
-RewriteRule ^lms/feeds/([^/.]+)/([^/.]+)/([^/.]+)$ /lms/_com/Feeds.cfc?method=$1&Mode=$2&&ModeID=$3&returnformat=plain	[NC]
-RewriteRule ^lms/feeds/([^/.]+)/([^/.]+)$ /lms/_com/Feeds.cfc?method=$1&Mode=$2&returnformat=plain	[NC]
-RewriteRule ^lms/sitemaps/([^/.]+).xml$ /lms/_com/sitemap.cfc?method=$1&returnformat=plain	[NC]
+# RewriteRule ^lms/feeds/([^/.]+)/([^/.]+)/([^/.]+)$ /lms/_com/Feeds.cfc?method=$1&Mode=$2&&ModeID=$3&returnformat=plain	[NC]
+# RewriteRule ^lms/feeds/([^/.]+)/([^/.]+)$ /lms/_com/Feeds.cfc?method=$1&Mode=$2&returnformat=plain	[NC]
+# RewriteRule ^lms/sitemaps/([^/.]+).xml$ /lms/_com/sitemap.cfc?method=$1&returnformat=plain	[NC]
 
-RewriteRule ^lms/support/kb/([^/.]+)$ /lms/support/index.php/kb/$1  [NC]
-RewriteRule ^lms/support/([^/.]+)$ /lms/support/index.php/$1  [NC]
+# RewriteRule ^lms/support/kb/([^/.]+)$ /lms/support/index.php/kb/$1  [NC]
+# RewriteRule ^lms/support/([^/.]+)$ /lms/support/index.php/$1  [NC]

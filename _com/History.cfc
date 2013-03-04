@@ -214,7 +214,7 @@
 				<div class="history-line">#ReturnContent#</div>
 			<cfif Len(QueryRow.ToContent) GT 0>
 				<div class="history-subbox">
-					#ReplaceNoCase(QueryRow.ToContent,"""/index.cfm/event/","""" & request.myself,"ALL")#
+					#ReplaceNoCase(QueryRow.ToContent,"""/event/","""" & request.myself,"ALL")#
 					<div style="clear:both;"></div>
 				</div>
 			</cfif>
