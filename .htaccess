@@ -4,36 +4,36 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 
 #ADMIN
-#RewriteRule ^admin/index.cfm/event/([^/]+)$ /admin/index.cfm?event=$1 [NC,QSA,L]
+RewriteRule ^admin/index.cfm/event/([^/]+)$ /admin/index.cfm?event=$1 [NC,QSA,L]
 
 #LMS
-#RewriteRule ^lms/event/([^/]*)$ /lms/index.cfm?event=$1  [NC,QSA,L]
+RewriteRule ^lms/event/([^/]*)$ /lms/index.cfm?event=$1  [NC,QSA,L]
 
-#RewriteRule ^activity/([^/]*)$ /lms/index.cfm?event=Activity.Detail?ActivityID=$1  [NC,QSA]
+RewriteRule ^activity/([^/]*)$ /lms/index.cfm?event=Activity.Detail?ActivityID=$1  [NC,QSA]
 
-#RewriteRule ^lms/category/([^/]*)$ /lms/index.cfm?event=Activity.Browse?Category=$1&Submitted=1 [NC,QSA]
-#RewriteRule ^lms/specialty/([^/]*)/([^/]*)$ /lms/index.cfm?event=Activity.Browse?Specialty=$1&Page=$2&Submitted=1  [NC,QSA]
-#RewriteRule ^lms/specialty/([^/]*)$ /index.cfm?event=Activity.Browse?Specialty=$1&Submitted=1 [NC,QSA]
-#RewriteRule ^lms/browse$ /lms/index.cfm?event=Activity.Browse  [NC,QSA,L]
-#RewriteRule ^lms/signup$ /lms/index.cfm?event=Main.Register  [NC,QSA]
-#RewriteRule ^lms/about$ /lms/index.cfm?event=Main.About  [NC,QSA]
-#RewriteRule ^lms/support$ /lms/index.cfm?event=Main.Support  [NC,QSA]
-#RewriteRule ^lms/login$ /lms/index.cfm?event=Main.Login  [NC,QSA]
-#RewriteRule ^lms/feeds/([^/]*)/([^/]*)/([^/]*)$ /lms/_com/Feeds.cfc?method=$1&Mode=$2&&ModeID=$3&returnformat=plain [NC,QSA]
-#RewriteRule ^lms/feeds/([^/]*)/([^/]*)$ /lms/_com/Feeds.cfc?method=$1&Mode=$2&returnformat=plain [NC,QSA]
-#RewriteRule ^feeds/([^/]*)/([^/]*)/([^/]*)$ /lms/_com/Feeds.cfc?method=$1&Mode=$2&&ModeID=$3&returnformat=plain [NC,QSA]
-#RewriteRule ^feeds/([^/]*)/([^/]*)$ /lms/_com/Feeds.cfc?method=$1&Mode=$2&returnformat=plain [NC,QSA]
-#RewriteRule ^lms/sitemaps/([^/]*).xml$ /lms/_com/sitemap.cfc?method=$1&returnformat=plain [NC,QSA]
-#RewriteRule ^lms/home$ /lms/index.cfm?event=Member.Home  [NC,QSA]
-#RewriteRule ^lms/transcript$ /lms/index.cfm?event=Member.Transcripts  [NC,QSA]
-#RewriteRule ^lms/preferences$ /lms/index.cfm?event=Member.Account  [NC,QSA]
+RewriteRule ^lms/category/([^/]*)$ /lms/index.cfm?event=Activity.Browse?Category=$1&Submitted=1 [NC,QSA]
+RewriteRule ^lms/specialty/([^/]*)/([^/]*)$ /lms/index.cfm?event=Activity.Browse?Specialty=$1&Page=$2&Submitted=1  [NC,QSA]
+RewriteRule ^lms/specialty/([^/]*)$ /index.cfm?event=Activity.Browse?Specialty=$1&Submitted=1 [NC,QSA]
+RewriteRule ^lms/browse$ /lms/index.cfm?event=Activity.Browse  [NC,QSA,L]
+RewriteRule ^lms/signup$ /lms/index.cfm?event=Main.Register  [NC,QSA]
+RewriteRule ^lms/about$ /lms/index.cfm?event=Main.About  [NC,QSA]
+RewriteRule ^lms/support$ /lms/index.cfm?event=Main.Support  [NC,QSA]
+RewriteRule ^lms/login$ /lms/index.cfm?event=Main.Login  [NC,QSA]
+RewriteRule ^lms/feeds/([^/]*)/([^/]*)/([^/]*)$ /lms/_com/Feeds.cfc?method=$1&Mode=$2&&ModeID=$3&returnformat=plain [NC,QSA]
+RewriteRule ^lms/feeds/([^/]*)/([^/]*)$ /lms/_com/Feeds.cfc?method=$1&Mode=$2&returnformat=plain [NC,QSA]
+RewriteRule ^feeds/([^/]*)/([^/]*)/([^/]*)$ /lms/_com/Feeds.cfc?method=$1&Mode=$2&&ModeID=$3&returnformat=plain [NC,QSA]
+RewriteRule ^feeds/([^/]*)/([^/]*)$ /lms/_com/Feeds.cfc?method=$1&Mode=$2&returnformat=plain [NC,QSA]
+RewriteRule ^lms/sitemaps/([^/]*).xml$ /lms/_com/sitemap.cfc?method=$1&returnformat=plain [NC,QSA]
+RewriteRule ^lms/home$ /lms/index.cfm?event=Member.Home  [NC,QSA]
+RewriteRule ^lms/transcript$ /lms/index.cfm?event=Member.Transcripts  [NC,QSA]
+RewriteRule ^lms/preferences$ /lms/index.cfm?event=Member.Account  [NC,QSA]
 
 
 #LMS SUPPORT
-#RewriteRule ^support/kb/([^/]*) /support/index.php/kb/$1  [NC,QSA]
-#RewriteRule ^support/([^/]*) /support/index.php/$1  [NC,QSA]
+RewriteRule ^support/kb/([^/]*) /support/index.php/kb/$1  [NC,QSA]
+RewriteRule ^support/([^/]*) /support/index.php/$1  [NC,QSA]
 
 #ADMIN
-#RewriteRule ^register/([^/]*)/([^/]*) /admin/index.cfm?event=Public.Register?ActivityID=$1&Step=$2  [NC,QSA]
-#RewriteRule ^register/([^/]*) /admin/index.cfm?event=Public.Register?ActivityID=$1  [NC,QSA]
-#RewriteRule ^download/([^/]*)/([^/]*)/([^/]*) /admin/index.cfm?event=Public.Download?mode=$1&ModeID=$2&fid=$3  [NC,QSA]
+RewriteRule ^register/([^/]*)/([^/]*) /admin/index.cfm?event=Public.Register?ActivityID=$1&Step=$2  [NC,QSA]
+RewriteRule ^register/([^/]*) /admin/index.cfm?event=Public.Register?ActivityID=$1  [NC,QSA]
+RewriteRule ^download/([^/]*)/([^/]*)/([^/]*) /admin/index.cfm?event=Public.Download?mode=$1&ModeID=$2&fid=$3  [NC,QSA]

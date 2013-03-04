@@ -14,8 +14,88 @@
     <from>^/(admin|lms)/event/([^/]*)$</from>
     <to last="true">/$1/index.cfm?event=$2</to>
   </rule>
-  <outbound-rule>
-     <from>^/(admin|lms)/index.cfm?event=([^/]*)$</from>
-     <to>/$1/event/$2</to>
-  </outbound-rule>
+  <rule>
+    <from>^/activity/([^/]*)$</from>
+    <to>/lms/index.cfm?event=Activity.Detail&amp;ActivityID=$1</to>
+  </rule>
+  <rule>
+    <from>^/lms/category/([^/]*)$</from>
+    <to>/lms/index.cfm?event=Activity.Browse&amp;Category=$1&amp;Submitted=1</to>
+  </rule>
+  <rule>
+    <from>^/lms/specialty/([^/]*)/([^/]*)$</from>
+    <to>/lms/index.cfm?event=Activity.Browse&amp;Specialty=$1&amp;Page=$2&amp;Submitted=1</to>
+  </rule>
+
+  <!--^lms/specialty/([^/]*)$  [NC,QSA]-->
+  <rule>
+    <from>^/lms/specialty/([^/]*)$</from>
+    <to>/index.cfm?event=Activity.Browse&amp;Specialty=$1&amp;Submitted=1</to>
+  </rule>
+
+  <!--^lms/browse$   [NC,QSA,L]-->
+  <rule>
+    <from>^/lms/browse$</from>
+    <to>/lms/index.cfm/event/Activity.Browse</to>
+  </rule>
+  <!--^lms/signup$   [NC,QSA]-->
+  <rule>
+    <from>^/lms/signup$</from>
+    <to>/lms/index.cfm?event=Main.Register</to>
+  </rule>
+  <!--^lms/about$   [NC,QSA]-->
+  <rule>
+    <from>^/lms/about</from>
+    <to>/lms/index.cfm?event=Main.About</to>
+  </rule>
+  <!--^lms/support$ /lms/index.cfm?event=Main.Support  [NC,QSA]-->
+  <rule>
+    <from>^/lms/support$</from>
+    <to>/lms/index.cfm?event=Main.Support</to>
+  </rule>
+  <!--^lms/login$ /lms/index.cfm?event=Main.Login  [NC,QSA]-->
+  <rule>
+    <from>^/lms/login$</from>
+    <to>/lms/index.cfm?event=Main.Login</to>
+  </rule>
+  <!--^lms/feeds/([^/]*)/([^/]*)/([^/]*)$ /lms/_com/Feeds.cfc?method=$1&amp;Mode=$2&amp;&amp;ModeID=$3&amp;returnformat=plain [NC,QSA]-->
+  <rule>
+    <from>^/lms/feeds/([^/]*)/([^/]*)/([^/]*)$</from>
+    <to>/lms/_com/Feeds.cfc?method=$1&amp;Mode=$2&amp;&amp;ModeID=$3&amp;returnformat=plain</to>
+  </rule>
+  <!--^lms/feeds/([^/]*)/([^/]*)$ /lms/_com/Feeds.cfc?method=$1&amp;Mode=$2&amp;returnformat=plain [NC,QSA]-->
+  <rule>
+    <from>^/lms/feeds/([^/]*)/([^/]*)$</from>
+    <to>/lms/_com/Feeds.cfc?method=$1&amp;Mode=$2&amp;returnformat=plain</to>
+  </rule>
+  <!--^feeds/([^/]*)/([^/]*)/([^/]*)$ /lms/_com/Feeds.cfc?method=$1&amp;Mode=$2&amp;&amp;ModeID=$3&amp;returnformat=plain [NC,QSA]-->
+  <rule>
+    <from>^/feeds/([^/]*)/([^/]*)$</from>
+    <to>/lms/_com/Feeds.cfc?method=$1&amp;Mode=$2&amp;returnformat=plain</to>
+  </rule>
+  <rule>
+    <from>^/feeds/([^/]*)/([^/]*)/([^/]*)$</from>
+    <to>/lms/_com/Feeds.cfc?method=$1&amp;Mode=$2&amp;&amp;ModeID=$3&amp;returnformat=plain</to>
+  </rule>
+  <!--^lms/sitemaps/([^/]*).xml$ /lms/_com/sitemap.cfc?method=$1&amp;returnformat=plain [NC,QSA]-->
+  <rule>
+    <from>^/lms/sitemaps/([^/]*).xml$</from>
+    <to>/lms/_com/sitemap.cfc?method=$1&amp;returnformat=plain</to>
+  </rule>
+  <!--^lms/home$ /lms/index.cfm?event=Member.Home  [NC,QSA]-->
+  <rule>
+    <from>^/lms/home$</from>
+    <to>/lms/index.cfm?event=Member.Home</to>
+  </rule>
+  <!--^lms/transcript$ /lms/index.cfm?event=Member.Transcripts  [NC,QSA]-->
+  <rule>
+    <from>^/lms/transcript$</from>
+    <to>/lms/index.cfm?event=Member.Transcripts</to>
+  </rule>
+  <!--^lms/preferences$ /lms/index.cfm?event=Member.Account  [NC,QSA]-->
+ <rule>
+    <from>^/lms/preferences$</from>
+    <to>/lms/index.cfm?event=Member.Account</to>
+  </rule>
+
 </urlrewrite>
