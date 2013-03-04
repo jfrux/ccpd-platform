@@ -5,6 +5,10 @@
 	<fuseaction name="Cert">
 		<include template="dsp_Cert" />
 	</fuseaction>
+
+	<fuseaction name="CertRails">
+		<include template="dsp_CertRails" />
+	</fuseaction>
     
 	<fuseaction name="Certificate">
 		<include template="dsp_Cert" />

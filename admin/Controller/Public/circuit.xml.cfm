@@ -6,7 +6,15 @@
     	<do action="mPublic.getCertType" />
 		<do action="mPublic.getCertData" />
 		<do action="mPublic.getDetail" />
-		<do action="vPublic.Cert" />
+		<do action="vPublic.CertRails" />
+        <do action="vLayout.None" />
+	</fuseaction>
+
+	<fuseaction name="CertRails">
+    	<do action="mPublic.getCertType" />
+		<do action="mPublic.getCertData" />
+		<do action="mPublic.getDetail" />
+		<do action="vPublic.CertRails" />
         <do action="vLayout.None" />
 	</fuseaction>
     
