@@ -10,8 +10,7 @@
 		<cfargument name="ProcessStepActivity" type="_com.ProcessStepActivity.ProcessStepActivity" required="true" />
 
 		<cfset var qCreate = "" />
-		<cftry>
-			<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
+		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
 				INSERT INTO ce_ProcessStep_Activity
 					(
 					StepID,
@@ -31,10 +30,7 @@
 					<cfqueryparam value="#arguments.ProcessStepActivity.getCreatedBy()#" CFSQLType="cf_sql_integer" />
 					)
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn CreateResult.IDENTITYCOL />
 	</cffunction>
 
@@ -43,8 +39,7 @@
 
 		<cfset var qRead = "" />
 		<cfset var strReturn = structNew() />
-		<cftry>
-			<cfquery name="qRead" datasource="#variables.dsn#">
+		<cfquery name="qRead" datasource="#variables.dsn#">
 				SELECT
 					Step_ActivityID,
 					StepID,
@@ -61,10 +56,7 @@
 				FROM	ce_ProcessStep_Activity
 				WHERE	Step_ActivityID = <cfqueryparam value="#arguments.ProcessStepActivity.getStep_ActivityID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<!--- leave the bean as is --->
-			</cfcatch>
-		</cftry>
+			
 		<cfif qRead.recordCount>
 			<cfset strReturn = queryRowToStruct(qRead)>
 			<cfset ProcessStepActivityBean = arguments.ProcessStepActivity.init(argumentCollection=strReturn)>
@@ -76,8 +68,7 @@
 		<cfargument name="ProcessStepActivity" type="_com.ProcessStepActivity.ProcessStepActivity" required="true" />
 
 		<cfset var qUpdate = "" />
-		<cftry>
-			<cfquery name="qUpdate" datasource="#variables.dsn#">
+		<cfquery name="qUpdate" datasource="#variables.dsn#">
 				UPDATE	ce_ProcessStep_Activity
 				SET
 					StepID = <cfqueryparam value="#arguments.ProcessStepActivity.getStepID()#" CFSQLType="cf_sql_integer" />,
@@ -93,10 +84,7 @@
 					DeletedFlag = <cfqueryparam value="#arguments.ProcessStepActivity.getDeletedFlag()#" CFSQLType="cf_sql_char" null="#not len(arguments.ProcessStepActivity.getDeletedFlag())#" />
 				WHERE	Step_ActivityID = <cfqueryparam value="#arguments.ProcessStepActivity.getStep_ActivityID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 
@@ -104,15 +92,11 @@
 		<cfargument name="ProcessStepActivity" type="_com.ProcessStepActivity.ProcessStepActivity" required="true" />
 
 		<cfset var qDelete = "">
-		<cftry>
-			<cfquery name="qDelete" datasource="#variables.dsn#">
+		<cfquery name="qDelete" datasource="#variables.dsn#">
 				DELETE FROM	ce_ProcessStep_Activity 
 				WHERE	Step_ActivityID = <cfqueryparam value="#arguments.ProcessStepActivity.getStep_ActivityID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 

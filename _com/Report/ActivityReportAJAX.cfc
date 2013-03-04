@@ -253,7 +253,7 @@
             <cfset QuestionTypeExclusions = "Caption 1,Caption 2,Caption 3">
             
             <!--- Excel Section --->            
-            <cftry> 
+             
                 <!--- Import POI Library --->
                 <cfimport taglib="/_poi/" prefix="poi" />
                 
@@ -609,10 +609,7 @@
                 </poi:document>
                        
                 <cfset Status = "Success|Your report has been generated!">
-                <cfcatch type="any">
-                    <cfset Status = "Fail|Error: " & cfcatch.Message>
-                </cfcatch>
-            </cftry>
+                
         <cfelse>
         	<cfset Status="Fail|Cannot do this.">
         </cfif>

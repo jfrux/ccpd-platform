@@ -10,8 +10,7 @@
 		<cfargument name="EmailStyle" type="_com.EmailStyle.EmailStyle" required="true" />
 
 		<cfset var qCreate = "" />
-		<cftry>
-			<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
+		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
 				INSERT INTO ce_Sys_EmailStyle
 					(
 					Subject,
@@ -25,10 +24,7 @@
 					<cfqueryparam value="#arguments.EmailStyle.getTemplatePlain()#" CFSQLType="cf_sql_varchar" />
 					)
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn CreateResult.IDENTITYCOL />
 	</cffunction>
 
@@ -37,8 +33,7 @@
 
 		<cfset var qRead = "" />
 		<cfset var strReturn = structNew() />
-		<cftry>
-			<cfquery name="qRead" datasource="#variables.dsn#">
+		<cfquery name="qRead" datasource="#variables.dsn#">
 				SELECT
 					EmailStyleID,
 					Subject,
@@ -47,10 +42,7 @@
 				FROM	ce_Sys_EmailStyle
 				WHERE	EmailStyleID = <cfqueryparam value="#arguments.EmailStyle.getEmailStyleID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<!--- leave the bean as is --->
-			</cfcatch>
-		</cftry>
+			
 		<cfif qRead.recordCount>
 			<cfset strReturn = queryRowToStruct(qRead)>
 			<cfset EmailStyleBean = arguments.EmailStyle.init(argumentCollection=strReturn)>
@@ -62,8 +54,7 @@
 		<cfargument name="EmailStyle" type="_com.EmailStyle.EmailStyle" required="true" />
 
 		<cfset var qUpdate = "" />
-		<cftry>
-			<cfquery name="qUpdate" datasource="#variables.dsn#">
+		<cfquery name="qUpdate" datasource="#variables.dsn#">
 				UPDATE	ce_Sys_EmailStyle
 				SET
 					Subject = <cfqueryparam value="#arguments.EmailStyle.getSubject()#" CFSQLType="cf_sql_varchar" />,
@@ -71,10 +62,7 @@
 					TemplatePlain = <cfqueryparam value="#arguments.EmailStyle.getTemplatePlain()#" CFSQLType="cf_sql_varchar" />
 				WHERE	EmailStyleID = <cfqueryparam value="#arguments.EmailStyle.getEmailStyleID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 
@@ -82,15 +70,11 @@
 		<cfargument name="EmailStyle" type="_com.EmailStyle.EmailStyle" required="true" />
 
 		<cfset var qDelete = "">
-		<cftry>
-			<cfquery name="qDelete" datasource="#variables.dsn#">
+		<cfquery name="qDelete" datasource="#variables.dsn#">
 				DELETE FROM	ce_Sys_EmailStyle 
 				WHERE	EmailStyleID = <cfqueryparam value="#arguments.EmailStyle.getEmailStyleID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 

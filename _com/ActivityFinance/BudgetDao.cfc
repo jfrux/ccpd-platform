@@ -11,8 +11,7 @@
 		<cfargument name="Budget" type="_com.ActivityFinance.Budget" required="true" />
 
 		<cfset var qCreate = "" />
-		<cftry>
-			<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
+		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
 				INSERT INTO ce_Activity_FinBudget
 					(
 					ActivityID,
@@ -30,10 +29,7 @@
 					<cfqueryparam value="#arguments.Budget.getCreatedBy()#" CFSQLType="cf_sql_integer" null="#not len(arguments.Budget.getCreatedBy())#" />
 					)
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn CreateResult.IDENTITYCOL />
 	</cffunction>
 
@@ -42,8 +38,7 @@
 
 		<cfset var qRead = "" />
 		<cfset var strReturn = structNew() />
-		<cftry>
-			<cfquery name="qRead" datasource="#variables.dsn#">
+		<cfquery name="qRead" datasource="#variables.dsn#">
 				SELECT
 					BudgetID,
 					ActivityID,
@@ -59,10 +54,7 @@
 				FROM	ce_Activity_FinBudget
 				WHERE	BudgetID = <cfqueryparam value="#arguments.Budget.getBudgetID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<!--- leave the bean as is --->
-			</cfcatch>
-		</cftry>
+			
 		<cfif qRead.recordCount>
 			<cfset strReturn = queryRowToStruct(qRead)>
 			<cfset BudgetBean = arguments.Budget.init(argumentCollection=strReturn)>
@@ -74,8 +66,7 @@
 		<cfargument name="Budget" type="_com.ActivityFinance.Budget" required="true" />
 
 		<cfset var qUpdate = "" />
-		<cftry>
-			<cfquery name="qUpdate" datasource="#variables.dsn#">
+		<cfquery name="qUpdate" datasource="#variables.dsn#">
 				UPDATE	ce_Activity_FinBudget
 				SET
 					ActivityID = <cfqueryparam value="#arguments.Budget.getActivityID()#" CFSQLType="cf_sql_integer" />,
@@ -90,10 +81,7 @@
 					DeletedFlag = <cfqueryparam value="#arguments.Budget.getDeletedFlag()#" CFSQLType="cf_sql_char" null="#not len(arguments.Budget.getDeletedFlag())#" />
 				WHERE	BudgetID = <cfqueryparam value="#arguments.Budget.getBudgetID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 
@@ -101,15 +89,11 @@
 		<cfargument name="Budget" type="_com.ActivityFinance.Budget" required="true" />
 
 		<cfset var qDelete = "">
-		<cftry>
-			<cfquery name="qDelete" datasource="#variables.dsn#">
+		<cfquery name="qDelete" datasource="#variables.dsn#">
 				DELETE FROM	ce_Activity_FinBudget 
 				WHERE	BudgetID = <cfqueryparam value="#arguments.Budget.getBudgetID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 

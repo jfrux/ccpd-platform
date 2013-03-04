@@ -11,8 +11,7 @@
 		<cfargument name="PersonAddress" type="_com.PersonAddress.PersonAddress" required="true" />
 
 		<cfset var qCreate = "" />
-		<cftry>
-			<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
+		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
 				INSERT INTO ce_Person_Address
 					(
 					PersonID,
@@ -54,10 +53,7 @@
 					<cfqueryparam value="#arguments.PersonAddress.getCreatedBy()#" CFSQLType="cf_sql_integer" null="#not len(arguments.PersonAddress.getCreatedBy())#" />
 					)
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn CreateResult.IDENTITYCOL />
 	</cffunction>
 
@@ -66,8 +62,7 @@
 
 		<cfset var qRead = "" />
 		<cfset var strReturn = structNew() />
-		<cftry>
-			<cfquery name="qRead" datasource="#variables.dsn#">
+		<cfquery name="qRead" datasource="#variables.dsn#">
 				SELECT
 					AddressID,
 					PersonID,
@@ -93,10 +88,7 @@
 				FROM	ce_Person_Address
 				WHERE	AddressID = <cfqueryparam value="#arguments.PersonAddress.getAddressID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<!--- leave the bean as is --->
-			</cfcatch>
-		</cftry>
+			
 		<cfif qRead.recordCount>
 			<cfset strReturn = queryRowToStruct(qRead)>
 			<cfset PersonAddressBean = arguments.PersonAddress.init(argumentCollection=strReturn)>
@@ -108,8 +100,7 @@
 		<cfargument name="PersonAddress" type="_com.PersonAddress.PersonAddress" required="true" />
 
 		<cfset var qUpdate = "" />
-		<cftry>
-			<cfquery name="qUpdate" datasource="#variables.dsn#">
+		<cfquery name="qUpdate" datasource="#variables.dsn#">
 				UPDATE	ce_Person_Address
 				SET
 					PersonID = <cfqueryparam value="#arguments.PersonAddress.getPersonID()#" CFSQLType="cf_sql_integer" />,
@@ -134,10 +125,7 @@
 					UpdatedBy = <cfqueryparam value="#arguments.PersonAddress.getUpdatedBy()#" CFSQLType="cf_sql_integer" null="#not len(arguments.PersonAddress.getUpdatedBy())#" />
 				WHERE	AddressID = <cfqueryparam value="#arguments.PersonAddress.getAddressID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 
@@ -145,15 +133,11 @@
 		<cfargument name="PersonAddress" type="_com.PersonAddress.PersonAddress" required="true" />
 
 		<cfset var qDelete = "">
-		<cftry>
-			<cfquery name="qDelete" datasource="#variables.dsn#">
+		<cfquery name="qDelete" datasource="#variables.dsn#">
 				DELETE FROM	ce_Person_Address 
 				WHERE	AddressID = <cfqueryparam value="#arguments.PersonAddress.getAddressID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 

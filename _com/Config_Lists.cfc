@@ -95,13 +95,13 @@ AuthID,Name,Description
 	<cffunction name="getCountries" access="public" output="no" returntype="query">
 		<cfset var qQuery = "">
 		<cfset var CSV = "">
-		
+
 		<cfquery name="qQuery" datasource="#application.settings.dsn#">
 			SELECT     country.id As CountryId, country.name, country.code, countryDetail.ISO, countryDetail.ISO3, countryDetail.ISOnumeric, countryDetail.fips, countryDetail.country, 
 			  countryDetail.capital, countryDetail.area, countryDetail.population, countryDetail.continent, countryDetail.tld, countryDetail.currencyCode, 
 			  countryDetail.currencyName, countryDetail.phone, countryDetail.postalCodeFormat, countryDetail.postalCodeRegex, countryDetail.languages, 
 			  countryDetail.geonameid, countryDetail.neighbors, countryDetail.equivFipsCode
-			FROM         ce_Sys_Country AS country INNER JOIN
+			FROM         Sys_Countries AS country INNER JOIN
 			  geonameCountryInfo AS countryDetail ON country.code = countryDetail.ISO
 			 ORDER BY country.name
 		</cfquery>

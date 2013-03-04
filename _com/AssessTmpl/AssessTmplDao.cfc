@@ -11,8 +11,7 @@
 		<cfargument name="AssessTmpl" type="_com.AssessTmpl.AssessTmpl" required="true" />
 
 		<cfset var qCreate = "" />
-		<cftry>
-			<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
+		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
 				INSERT INTO ce_AssessTmpl
 					(
 					Name,
@@ -28,10 +27,7 @@
 					<cfqueryparam value="#arguments.AssessTmpl.getCreatedBy()#" CFSQLType="cf_sql_integer" null="#not len(arguments.AssessTmpl.getCreatedBy())#" />
 					)
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn CreateResult.IDENTITYCOL />
 	</cffunction>
 
@@ -40,8 +36,7 @@
 
 		<cfset var qRead = "" />
 		<cfset var strReturn = structNew() />
-		<cftry>
-			<cfquery name="qRead" datasource="#variables.dsn#">
+		<cfquery name="qRead" datasource="#variables.dsn#">
 				SELECT
 					AssessTmplID,
 					Name,
@@ -56,10 +51,7 @@
 				FROM	ce_AssessTmpl
 				WHERE	AssessTmplID = <cfqueryparam value="#arguments.AssessTmpl.getAssessTmplID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<!--- leave the bean as is --->
-			</cfcatch>
-		</cftry>
+			
 		<cfif qRead.recordCount>
 			<cfset strReturn = queryRowToStruct(qRead)>
 			<cfset AssessTmplBean = arguments.AssessTmpl.init(argumentCollection=strReturn)>
@@ -71,8 +63,7 @@
 		<cfargument name="AssessTmpl" type="_com.AssessTmpl.AssessTmpl" required="true" />
 
 		<cfset var qUpdate = "" />
-		<cftry>
-			<cfquery name="qUpdate" datasource="#variables.dsn#">
+		<cfquery name="qUpdate" datasource="#variables.dsn#">
 				UPDATE	ce_AssessTmpl
 				SET
 					Name = <cfqueryparam value="#arguments.AssessTmpl.getName()#" CFSQLType="cf_sql_varchar" null="#not len(arguments.AssessTmpl.getName())#" />,
@@ -86,10 +77,7 @@
 					DeletedFlag = <cfqueryparam value="#arguments.AssessTmpl.getDeletedFlag()#" CFSQLType="cf_sql_char" null="#not len(arguments.AssessTmpl.getDeletedFlag())#" />
 				WHERE	AssessTmplID = <cfqueryparam value="#arguments.AssessTmpl.getAssessTmplID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 
@@ -97,15 +85,11 @@
 		<cfargument name="AssessTmpl" type="_com.AssessTmpl.AssessTmpl" required="true" />
 
 		<cfset var qDelete = "">
-		<cftry>
-			<cfquery name="qDelete" datasource="#variables.dsn#">
+		<cfquery name="qDelete" datasource="#variables.dsn#">
 				DELETE FROM	ce_AssessTmpl 
 				WHERE	AssessTmplID = <cfqueryparam value="#arguments.AssessTmpl.getAssessTmplID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 

@@ -10,8 +10,7 @@
 		<cfargument name="AssessType" type="_com.System.AssessType" required="true" />
 
 		<cfset var qCreate = "" />
-		<cftry>
-			<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
+		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
 				INSERT INTO ce_Sys_AssessType
 					(
 					Name,
@@ -23,10 +22,7 @@
 					<cfqueryparam value="#arguments.AssessType.getDescription()#" CFSQLType="cf_sql_varchar" null="#not len(arguments.AssessType.getDescription())#" />
 					)
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn CreateResult.IDENTITYCOL />
 	</cffunction>
 
@@ -35,8 +31,7 @@
 
 		<cfset var qRead = "" />
 		<cfset var strReturn = structNew() />
-		<cftry>
-			<cfquery name="qRead" datasource="#variables.dsn#">
+		<cfquery name="qRead" datasource="#variables.dsn#">
 				SELECT
 					AssessTypeID,
 					Name,
@@ -44,10 +39,7 @@
 				FROM	ce_Sys_AssessType
 				WHERE	AssessTypeID = <cfqueryparam value="#arguments.AssessType.getAssessTypeID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<!--- leave the bean as is --->
-			</cfcatch>
-		</cftry>
+			
 		<cfif qRead.recordCount>
 			<cfset strReturn = queryRowToStruct(qRead)>
 			<cfset AssessTypeBean = arguments.AssessType.init(argumentCollection=strReturn)>
@@ -59,18 +51,14 @@
 		<cfargument name="AssessType" type="_com.System.AssessType" required="true" />
 
 		<cfset var qUpdate = "" />
-		<cftry>
-			<cfquery name="qUpdate" datasource="#variables.dsn#">
+		<cfquery name="qUpdate" datasource="#variables.dsn#">
 				UPDATE	ce_Sys_AssessType
 				SET
 					Name = <cfqueryparam value="#arguments.AssessType.getName()#" CFSQLType="cf_sql_varchar" null="#not len(arguments.AssessType.getName())#" />,
 					Description = <cfqueryparam value="#arguments.AssessType.getDescription()#" CFSQLType="cf_sql_varchar" null="#not len(arguments.AssessType.getDescription())#" />
 				WHERE	AssessTypeID = <cfqueryparam value="#arguments.AssessType.getAssessTypeID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 
@@ -78,15 +66,11 @@
 		<cfargument name="AssessType" type="_com.System.AssessType" required="true" />
 
 		<cfset var qDelete = "">
-		<cftry>
-			<cfquery name="qDelete" datasource="#variables.dsn#">
+		<cfquery name="qDelete" datasource="#variables.dsn#">
 				DELETE FROM	ce_Sys_AssessType 
 				WHERE	AssessTypeID = <cfqueryparam value="#arguments.AssessType.getAssessTypeID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 

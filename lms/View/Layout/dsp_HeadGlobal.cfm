@@ -1,5 +1,20 @@
 <cfoutput>
 <link href="#Application.Settings.RootPath#/_styles/Main.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/static/js/bugLogClient.js"></script>
+<script>
+BugLog.listener = "#Application.settings.bugLogServer#/listeners/bugLogListenerREST.cfm";
+BugLog.appName = "CCPD_LMS_PROD";
+
+window.onerror = function(message, file, line) {
+	BugLog.notifyService({
+		message: message,
+		extraInfo: 'Error occurred in: ' + file + ':' + line,
+		severity:"ERROR"
+	});
+	return true;
+};
+
+</script>
 
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
 <script type="text/javascript" src="/lms/_scripts/jquery.tokeninput.js"></script>
@@ -27,7 +42,7 @@
 
 <script type="text/javascript" src="#Application.Settings.RootPath#/_scripts/jquery.rating.js"></script>
 <script type="text/javascript" src="#Application.Settings.RootPath#/_scripts/jquery.MetaData.js"></script>
-<script type="text/javascript" src="/static/js/bugLogClient.js"></script>
+
 <link href="#Application.Settings.RootPath#/_styles/StatusBar<cfif Request.Browser CONTAINS "MSIE">IE</cfif>.css" rel="stylesheet" type="text/css" />
 <link href="#Application.Settings.RootPath#/_styles/Assessment.css" rel="stylesheet" type="text/css" />
 <link href="#Application.Settings.RootPath#/_styles/flowplayer.css" rel="stylesheet" type="text/css" />
@@ -35,17 +50,7 @@
 <link href="#Application.Settings.RootPath#/_styles/jquery.rating.css" rel="stylesheet" type="text/css" />
 
 <script type="text/javascript">
-	BugLog.listener = "#Application.settings.bugLogServer#/listeners/bugLogListenerREST.cfm";
-	BugLog.appName = "CCPD_LMS_PROD";
-
-	window.onerror = function(message, file, line) {
-	  	BugLog.notifyService({
-				  message: message,
-				  extraInfo: 'Error occurred in: ' + file + ':' + line,
-				  severity:"ERROR"
-		  });
-		  return true;
-	};	
+	
 var StatusCount = 0;
 
 function addMessage(sStatus,nFadeIn,nFadeTo,nFadeOut) {

@@ -129,7 +129,7 @@
             </cfloop>
             
             <!--- Excel Section --->
-            <cftry>
+            
                 <!--- Import POI Library --->
                 <cfimport taglib="/_poi/" prefix="poi" />
                 
@@ -321,10 +321,7 @@
                 </poi:document>
                                     
                 <cfset Status = "Success|Your report has been generated!">
-                <cfcatch type="any">
-                    <cfset Status = "Fail|Error: " & cfcatch.Message>
-                </cfcatch>
-            </cftry>
+                
         </cfif>
         <cfreturn Status />
     </cffunction>
@@ -337,7 +334,7 @@
 		<cfset qAttendees = Application.Com.AttendeeGateway.getByPIFAttributes(ActivityID=Arguments.ActivityID,OrderBy="p.LastName,p.FirstName DESC")>
 
 		<!--- Excel Section --->
-        <cftry>
+        
             <!--- Import POI Library --->
             <cfimport taglib="/_poi/" prefix="poi" />
             
@@ -536,10 +533,7 @@
             </poi:document>
                                 
             <cfset Status = "Success|Your report has been generated!">
-            <cfcatch type="any">
-                <cfset Status = "Fail|Error: " & cfcatch.Message>
-            </cfcatch>
-        </cftry>
+            
         
         <cfreturn Status />
     </cffunction>
@@ -1401,11 +1395,8 @@
                 </poi:document>
                                     
                 <cfset Status = "Success|Your report has been generated!">
-            <cftry>
-                <cfcatch type="any">
-                    <cfset Status = "Fail|Error: " & cfcatch.Message>
-                </cfcatch>
-            </cftry>
+            
+                
             
             <cfreturn Status />
         <cfelse>

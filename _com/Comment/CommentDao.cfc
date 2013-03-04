@@ -11,8 +11,7 @@
 		<cfargument name="Comment" type="_com.Comment.Comment" required="true" />
 
 		<cfset var qCreate = "" />
-		<cftry>
-			<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
+		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
 				INSERT INTO ce_Comment
 					(
 					ActivityID,
@@ -30,10 +29,7 @@
 					<cfqueryparam value="#arguments.Comment.getCreatedBy()#" CFSQLType="cf_sql_integer" null="#not len(arguments.Comment.getCreatedBy())#" />
 					)
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn CreateResult.IDENTITYCOL />
 	</cffunction>
 
@@ -42,8 +38,7 @@
 
 		<cfset var qRead = "" />
 		<cfset var strReturn = structNew() />
-		<cftry>
-			<cfquery name="qRead" datasource="#variables.dsn#">
+		<cfquery name="qRead" datasource="#variables.dsn#">
 				SELECT
 					CommentID,
 					ActivityID,
@@ -64,10 +59,7 @@
 	                CommentID = <cfqueryparam value="#arguments.Comment.getCommentID()#" CFSQLType="cf_sql_int" />
                 </cfif>
 			</cfquery>
-			<cfcatch type="database">
-				<!--- leave the bean as is --->
-			</cfcatch>
-		</cftry>
+			
 		<cfif qRead.recordCount>
 			<cfset strReturn = queryRowToStruct(qRead)>
 			<cfset CommentBean = arguments.Comment.init(argumentCollection=strReturn)>
@@ -100,11 +92,8 @@
 	                CommentID = <cfqueryparam value="#arguments.Comment.getCommentID()#" CFSQLType="cf_sql_int" />
                 </cfif>
 			</cfquery>
-		<cftry>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+		
+			
 		<cfreturn true />
 	</cffunction>
 
@@ -112,8 +101,7 @@
 		<cfargument name="Comment" type="_com.Comment.Comment" required="true" />
 
 		<cfset var qDelete = "">
-		<cftry>
-			<cfquery name="qDelete" datasource="#variables.dsn#">
+		<cfquery name="qDelete" datasource="#variables.dsn#">
 				DELETE FROM	ce_Comment
 				WHERE		
                 <cfif Arguments.Comment.getActivityID() NEQ "" AND Arguments.Credit.getCreatedBy() NEQ "">
@@ -122,10 +110,7 @@
 	                CommentID = <cfqueryparam value="#arguments.Comment.getCommentID()#" CFSQLType="cf_sql_int" />
                 </cfif>
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 

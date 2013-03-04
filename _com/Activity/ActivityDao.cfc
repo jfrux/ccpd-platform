@@ -79,12 +79,9 @@
 					<cfqueryparam value="#arguments.Activity.getCreatedBy()#" CFSQLType="cf_sql_integer" null="#not len(arguments.Activity.getCreatedBy())#" />
 					)
 			</cfquery>
-		<cftry>
+		
 			
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn CreateResult.IDENTITYCOL />
 	</cffunction>
 
@@ -134,11 +131,8 @@
 				FROM	ce_Activity
 				WHERE	ActivityID = <cfqueryparam value="#arguments.Activity.getActivityID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-		<cftry>
-			<cfcatch type="database">
-				<!--- leave the bean as is --->
-			</cfcatch>
-		</cftry>
+		
+			
 		<cfif qRead.recordCount>
 			<cfset strReturn = queryRowToStruct(qRead)>
 			<cfset ActivityBean = arguments.Activity.init(argumentCollection=strReturn)>
@@ -190,12 +184,9 @@
 					DeletedFlag = <cfqueryparam value="#arguments.Activity.getDeletedFlag()#" CFSQLType="cf_sql_char" null="#not len(arguments.Activity.getDeletedFlag())#" />
 				WHERE	ActivityID = <cfqueryparam value="#arguments.Activity.getActivityID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-		<cftry>
+		
 			
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 
@@ -203,15 +194,11 @@
 		<cfargument name="Activity" type="_com.Activity.Activity" required="true" />
 
 		<cfset var qDelete = "">
-		<cftry>
-			<cfquery name="qDelete" datasource="#variables.dsn#">
+		<cfquery name="qDelete" datasource="#variables.dsn#">
 				DELETE FROM	ce_Activity 
 				WHERE	ActivityID = <cfqueryparam value="#arguments.Activity.getActivityID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 

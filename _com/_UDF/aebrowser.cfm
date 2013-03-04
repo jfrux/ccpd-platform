@@ -175,7 +175,7 @@
 		StructInsert(browser, "USER_AGENT", HTTP_USER_AGENT);
 	</cfscript>
 
-	<!--- <cftry> --->
+	<!---  --->
 
 		<!--- ********************************************************************************* --->
 	    <!--- Find Browser Type 																--->
@@ -408,8 +408,5 @@
 		</cfif>
 		
 		<cfset temp = SetVariable("caller.browser",browser)>
-		<!--- <cfcatch>
-			<cfset temp = SetVariable("caller.browser",browser)>
-		</cfcatch>
-	</cftry> --->
+		<!---  --->
 </cfprocessingdirective>

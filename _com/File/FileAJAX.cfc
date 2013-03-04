@@ -16,7 +16,7 @@
             <cfset ActivityBean = Application.Com.ActivityDAO.read(ActivityBean)>
             
             <cfif Status EQ "">
-                <cftry>
+                
                     <cfset AddCount = 0>
                     
                     <cfloop list="#Arguments.DocList#" index="FileID">
@@ -50,10 +50,7 @@
                         <cfset Status = "Success|#AddCount# files have been removed.">
                     </cfif>
                     
-                    <cfcatch type="any">
-                        <cfset Status = "Fail|Error: #cfcatch.message#">
-                    </cfcatch>
-                </cftry>
+                    
             </cfif>
             
         <cfelseif IsDefined("Arguments.PersonID")>
@@ -66,7 +63,7 @@
             <cfset PersonBean = Application.Com.PersonDAO.read(PersonBean)>
             
             <cfif Status EQ "">
-                <cftry>
+                
                     <cfset AddCount = 0>
                     
                     <cfloop list="#Arguments.DocList#" index="FileID">
@@ -100,10 +97,7 @@
                         <cfset Status = "Success|#AddCount# files have been removed.">
                     </cfif>
                     
-                    <cfcatch type="any">
-                        <cfset Status = "Fail|Error: #cfcatch.message#">
-                    </cfcatch>
-                </cftry>
+                    
             </cfif>
         </cfif>
 		
@@ -126,7 +120,7 @@
             <cfset ActivityBean = Application.Com.ActivityDAO.read(ActivityBean)>
             
             <cfif Status EQ "">
-                <cftry>				
+                				
                     <!--- Delete each record --->
                     <cfquery name="qRemoveAll" datasource="#Application.Settings.DSN#">
                         UPDATE ce_File
@@ -144,10 +138,7 @@
                     <cfset Application.Com.ActionDAO.Create(ActionBean)>
                     
                     <cfset Status = "Success|All files have been removed.">
-                    <cfcatch type="any">
-                        <cfset Status = "Fail|Error: #cfcatch.message#">
-                    </cfcatch>
-                </cftry>
+                    
             </cfif>
         <cfelseif IsDefined("Arguments.PersonID")>
         	<!--- Check to make sure the Argument var is not blank --->
@@ -159,7 +150,7 @@
             <cfset PersonBean = Application.Com.PersonDAO.read(PersonBean)>
             
             <cfif Status EQ "">
-                <cftry>				
+                				
                     <!--- Delete each record --->
                     <cfquery name="qRemoveAll" datasource="#Application.Settings.DSN#">
                         UPDATE ce_File
@@ -177,10 +168,7 @@
                     <cfset Application.Com.ActionDAO.Create(ActionBean)>
                     
                     <cfset Status = "Success|All files have been removed.">
-                    <cfcatch type="any">
-                        <cfset Status = "Fail|Error: #cfcatch.message#">
-                    </cfcatch>
-                </cftry>
+                    
             </cfif>
 
         </cfif>

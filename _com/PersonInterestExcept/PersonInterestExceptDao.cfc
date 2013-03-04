@@ -10,8 +10,7 @@
 		<cfargument name="PersonInterestExcept" type="_com.PersonInterestExcept.PersonInterestExcept" required="true" />
 
 		<cfset var qCreate = "" />
-		<cftry>
-			<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
+		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
 				INSERT INTO ce_Person_Interest_Except
 					(
 					PersonID,
@@ -23,10 +22,7 @@
 					<cfqueryparam value="#arguments.PersonInterestExcept.getActivityID()#" CFSQLType="cf_sql_integer" />
 					)
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn CreateResult.IDENTITYCOL />
 	</cffunction>
 
@@ -35,8 +31,7 @@
 
 		<cfset var qRead = "" />
 		<cfset var strReturn = structNew() />
-		<cftry>
-			<cfquery name="qRead" datasource="#variables.dsn#">
+		<cfquery name="qRead" datasource="#variables.dsn#">
 				SELECT
 					PersonIntExceptID,
 					PersonID,
@@ -45,10 +40,7 @@
 				FROM	ce_Person_Interest_Except
 				WHERE	PersonID = <cfqueryparam value="#arguments.PersonInterestExcept.getPersonID()#" CFSQLType="cf_sql_integer" /> AND ActivityID = <cfqueryparam value="#arguments.PersonInterestExcept.getActivityID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<!--- leave the bean as is --->
-			</cfcatch>
-		</cftry>
+			
 		<cfif qRead.recordCount>
 			<cfset strReturn = queryRowToStruct(qRead)>
 			<cfset PersonInterestExceptBean = arguments.PersonInterestExcept.init(argumentCollection=strReturn)>
@@ -60,8 +52,7 @@
 		<cfargument name="PersonInterestExcept" type="_com.PersonInterestExcept.PersonInterestExcept" required="true" />
 
 		<cfset var qUpdate = "" />
-		<cftry>
-			<cfquery name="qUpdate" datasource="#variables.dsn#">
+		<cfquery name="qUpdate" datasource="#variables.dsn#">
 				UPDATE	ce_Person_Interest_Except
 				SET
 					PersonID = <cfqueryparam value="#arguments.PersonInterestExcept.getPersonID()#" CFSQLType="cf_sql_integer" />,
@@ -69,10 +60,7 @@
 					Created = <cfqueryparam value="#arguments.PersonInterestExcept.getCreated()#" CFSQLType="cf_sql_timestamp" null="#not len(arguments.PersonInterestExcept.getCreated())#" />
 				WHERE	PersonID = <cfqueryparam value="#arguments.PersonInterestExcept.getPersonID()#" CFSQLType="cf_sql_integer" /> AND ActivityID = <cfqueryparam value="#arguments.PersonInterestExcept.getActivityID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 
@@ -80,15 +68,11 @@
 		<cfargument name="PersonInterestExcept" type="_com.PersonInterestExcept.PersonInterestExcept" required="true" />
 
 		<cfset var qDelete = "">
-		<cftry>
-			<cfquery name="qDelete" datasource="#variables.dsn#">
+		<cfquery name="qDelete" datasource="#variables.dsn#">
 				DELETE FROM	ce_Person_Interest_Except 
 				WHERE	PersonID = <cfqueryparam value="#arguments.PersonInterestExcept.getPersonID()#" CFSQLType="cf_sql_integer" /> AND ActivityID = <cfqueryparam value="#arguments.PersonInterestExcept.getActivityID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 

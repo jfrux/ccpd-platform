@@ -10,8 +10,7 @@
 		<cfargument name="Site" type="_com.Site.Site" required="true" />
 
 		<cfset var qCreate = "" />
-		<cftry>
-			<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
+		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
 				INSERT INTO ce_Sys_SiteLMS
 					(
 					Name,
@@ -33,10 +32,7 @@
 					<cfqueryparam value="#arguments.Site.getCreatedBy()#" CFSQLType="cf_sql_integer" />
 					)
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn CreateResult.IDENTITYCOL />
 	</cffunction>
 
@@ -45,8 +41,7 @@
 
 		<cfset var qRead = "" />
 		<cfset var strReturn = structNew() />
-		<cftry>
-			<cfquery name="qRead" datasource="#variables.dsn#">
+		<cfquery name="qRead" datasource="#variables.dsn#">
 				SELECT
 					SiteID,
 					Name,
@@ -64,10 +59,7 @@
 				FROM	ce_Sys_SiteLMS
 				WHERE	SiteID = <cfqueryparam value="#arguments.Site.getSiteID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<!--- leave the bean as is --->
-			</cfcatch>
-		</cftry>
+			
 		<cfif qRead.recordCount>
 			<cfset strReturn = queryRowToStruct(qRead)>
 			<cfset SiteBean = arguments.Site.init(argumentCollection=strReturn)>
@@ -79,8 +71,7 @@
 		<cfargument name="Site" type="_com.Site.Site" required="true" />
 
 		<cfset var qUpdate = "" />
-		<cftry>
-			<cfquery name="qUpdate" datasource="#variables.dsn#">
+		<cfquery name="qUpdate" datasource="#variables.dsn#">
 				UPDATE	ce_Sys_SiteLMS
 				SET
 					Name = <cfqueryparam value="#arguments.Site.getName()#" CFSQLType="cf_sql_varchar" />,
@@ -97,10 +88,7 @@
 					DeletedFlag = <cfqueryparam value="#arguments.Site.getDeletedFlag()#" CFSQLType="cf_sql_char" null="#not len(arguments.Site.getDeletedFlag())#" />
 				WHERE	SiteID = <cfqueryparam value="#arguments.Site.getSiteID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 
@@ -108,15 +96,11 @@
 		<cfargument name="Site" type="_com.Site.Site" required="true" />
 
 		<cfset var qDelete = "">
-		<cftry>
-			<cfquery name="qDelete" datasource="#variables.dsn#">
+		<cfquery name="qDelete" datasource="#variables.dsn#">
 				DELETE FROM	ce_Sys_SiteLMS 
 				WHERE	SiteID = <cfqueryparam value="#arguments.Site.getSiteID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 

@@ -10,8 +10,7 @@
 		<cfargument name="Event" type="_com.Event.Event" required="true" />
 
 		<cfset var qCreate = "" />
-		<cftry>
-			<cfquery name="qCreate" datasource="#variables.dsn#">
+		<cfquery name="qCreate" datasource="#variables.dsn#">
 				INSERT INTO ce_Event
 					(
 					ActivityID,
@@ -43,10 +42,7 @@
 					<cfqueryparam value="#arguments.Event.getdate_created()#" CFSQLType="cf_sql_date" null="#not len(arguments.Event.getdate_created())#" />
 					)
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 
@@ -55,8 +51,7 @@
 
 		<cfset var qRead = "" />
 		<cfset var strReturn = structNew() />
-		<cftry>
-			<cfquery name="qRead" datasource="#variables.dsn#">
+		<cfquery name="qRead" datasource="#variables.dsn#">
 				SELECT
 					id,
 					ActivityID,
@@ -74,10 +69,7 @@
 				FROM	ce_Event
 				WHERE	id = <cfqueryparam value="#arguments.Event.getid()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<!--- leave the bean as is --->
-			</cfcatch>
-		</cftry>
+			
 		<cfif qRead.recordCount>
 			<cfset strReturn = queryRowToStruct(qRead)>
 			<cfset EventBean = arguments.Event.init(argumentCollection=strReturn)>
@@ -89,8 +81,7 @@
 		<cfargument name="Event" type="_com.Event.Event" required="true" />
 
 		<cfset var qUpdate = "" />
-		<cftry>
-			<cfquery name="qUpdate" datasource="#variables.dsn#">
+		<cfquery name="qUpdate" datasource="#variables.dsn#">
 				UPDATE	ce_Event
 				SET
 					ActivityID = <cfqueryparam value="#arguments.Event.getActivityID()#" CFSQLType="cf_sql_integer" null="#not len(arguments.Event.getActivityID())#" />,
@@ -107,10 +98,7 @@
 					date_created = <cfqueryparam value="#arguments.Event.getdate_created()#" CFSQLType="cf_sql_date" null="#not len(arguments.Event.getdate_created())#" />
 				WHERE	id = <cfqueryparam value="#arguments.Event.getid()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 
@@ -118,15 +106,11 @@
 		<cfargument name="Event" type="_com.Event.Event" required="true" />
 
 		<cfset var qDelete = "">
-		<cftry>
-			<cfquery name="qDelete" datasource="#variables.dsn#">
+		<cfquery name="qDelete" datasource="#variables.dsn#">
 				DELETE FROM	ce_Event 
 				WHERE	id = <cfqueryparam value="#arguments.Event.getid()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 

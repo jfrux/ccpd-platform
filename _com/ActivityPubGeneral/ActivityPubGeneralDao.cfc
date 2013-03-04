@@ -10,8 +10,7 @@
 		<cfargument name="ActivityPubGeneral" type="_com.ActivityPubGeneral.ActivityPubGeneral" required="true" />
 
 		<cfset var qCreate = "" />
-		<cftry>
-			<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
+		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
 				INSERT INTO ce_Activity_PubGeneral
 					(
 					ActivityID,
@@ -65,10 +64,7 @@
 					<cfqueryparam value="#arguments.ActivityPubGeneral.getRestrictedFlag()#" CFSQLType="cf_sql_char" null="#not len(arguments.ActivityPubGeneral.getRestrictedFlag())#" />
 					)
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn CreateResult.IDENTITYCOL />
 	</cffunction>
 
@@ -77,8 +73,7 @@
 
 		<cfset var qRead = "" />
 		<cfset var strReturn = structNew() />
-		<cftry>
-			<cfquery name="qRead" datasource="#variables.dsn#">
+		<cfquery name="qRead" datasource="#variables.dsn#">
 				SELECT
 					PubGeneralID,
 					ActivityID,
@@ -108,10 +103,7 @@
 				FROM	ce_Activity_PubGeneral
 				WHERE	ActivityID = <cfqueryparam value="#arguments.ActivityPubGeneral.getActivityID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<!--- leave the bean as is --->
-			</cfcatch>
-		</cftry>
+			
 		<cfif qRead.recordCount>
 			<cfset strReturn = queryRowToStruct(qRead)>
 			<cfset ActivityPubGeneralBean = arguments.ActivityPubGeneral.init(argumentCollection=strReturn)>
@@ -123,8 +115,7 @@
 		<cfargument name="ActivityPubGeneral" type="_com.ActivityPubGeneral.ActivityPubGeneral" required="true" />
 
 		<cfset var qUpdate = "" />
-		<cftry>
-			<cfquery name="qUpdate" datasource="#variables.dsn#">
+		<cfquery name="qUpdate" datasource="#variables.dsn#">
 				UPDATE	ce_Activity_PubGeneral
 				SET
 					ActivityID = <cfqueryparam value="#arguments.ActivityPubGeneral.getActivityID()#" CFSQLType="cf_sql_integer" />,
@@ -153,10 +144,7 @@
 					Updated = <cfqueryparam value="#arguments.ActivityPubGeneral.getUpdated()#" CFSQLType="cf_sql_timestamp" null="#not len(arguments.ActivityPubGeneral.getUpdated())#" />
 				WHERE	ActivityID = <cfqueryparam value="#arguments.ActivityPubGeneral.getActivityID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 
@@ -164,15 +152,11 @@
 		<cfargument name="ActivityPubGeneral" type="_com.ActivityPubGeneral.ActivityPubGeneral" required="true" />
 
 		<cfset var qDelete = "">
-		<cftry>
-			<cfquery name="qDelete" datasource="#variables.dsn#">
+		<cfquery name="qDelete" datasource="#variables.dsn#">
 				DELETE FROM	ce_Activity_PubGeneral 
 				WHERE	ActivityID = <cfqueryparam value="#arguments.ActivityPubGeneral.getActivityID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 

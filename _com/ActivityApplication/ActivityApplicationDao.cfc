@@ -10,8 +10,7 @@
 		<cfargument name="ActivityApplication" type="_com.ActivityApplication.ActivityApplication" required="true" />
 
 		<cfset var qCreate = "" />
-		<cftry>
-			<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
+		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
 				INSERT INTO ce_Activity_Application
 					(
 					ActivityID,
@@ -69,10 +68,7 @@
 					<cfqueryparam value="#arguments.ActivityApplication.getEvalDate()#" CFSQLType="cf_sql_timestamp" null="#not len(arguments.ActivityApplication.getEvalDate())#" />
 					)
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn CreateResult.IDENTITYCOL />
 	</cffunction>
 
@@ -81,8 +77,7 @@
 
 		<cfset var qRead = "" />
 		<cfset var strReturn = structNew() />
-		<cftry>
-			<cfquery name="qRead" datasource="#variables.dsn#">
+		<cfquery name="qRead" datasource="#variables.dsn#">
 				SELECT
 					ApplicationID,
 					ActivityID,
@@ -113,10 +108,7 @@
 				FROM	ce_Activity_Application
 				WHERE	ActivityID = <cfqueryparam value="#arguments.ActivityApplication.getActivityID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<!--- leave the bean as is --->
-			</cfcatch>
-		</cftry>
+			
 		<cfif qRead.recordCount>
 			<cfset strReturn = queryRowToStruct(qRead)>
 			<cfset ActivityApplicationBean = arguments.ActivityApplication.init(argumentCollection=strReturn)>
@@ -128,8 +120,7 @@
 		<cfargument name="ActivityApplication" type="_com.ActivityApplication.ActivityApplication" required="true" />
 
 		<cfset var qUpdate = "" />
-		<cftry>
-			<cfquery name="qUpdate" datasource="#variables.dsn#">
+		<cfquery name="qUpdate" datasource="#variables.dsn#">
 				UPDATE	ce_Activity_Application
 				SET
 					ActivityID = <cfqueryparam value="#arguments.ActivityApplication.getActivityID()#" CFSQLType="cf_sql_integer" />,
@@ -159,10 +150,7 @@
 					EvalDate = <cfqueryparam value="#arguments.ActivityApplication.getEvalDate()#" CFSQLType="cf_sql_timestamp" null="#not len(arguments.ActivityApplication.getEvalDate())#" />
 				WHERE	ActivityID = <cfqueryparam value="#arguments.ActivityApplication.getActivityID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 
@@ -170,15 +158,11 @@
 		<cfargument name="ActivityApplication" type="_com.ActivityApplication.ActivityApplication" required="true" />
 
 		<cfset var qDelete = "">
-		<cftry>
-			<cfquery name="qDelete" datasource="#variables.dsn#">
+		<cfquery name="qDelete" datasource="#variables.dsn#">
 				DELETE FROM	ce_Activity_Application 
 				WHERE	ActivityID = <cfqueryparam value="#arguments.ActivityApplication.getActivityID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 

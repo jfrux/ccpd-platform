@@ -11,8 +11,7 @@
 		<cfargument name="ContribType" type="_com.ContribType" required="true" />
 
 		<cfset var qCreate = "" />
-		<cftry>
-			<cfquery name="qCreate" datasource="#variables.dsn#">
+		<cfquery name="qCreate" datasource="#variables.dsn#">
 				INSERT INTO ce_Sys_ContribType
 					(
 					Name,
@@ -32,10 +31,7 @@
 					<cfqueryparam value="#arguments.ContribType.getDeletedFlag()#" CFSQLType="cf_sql_char" null="#not len(arguments.ContribType.getDeletedFlag())#" />
 					)
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 
@@ -44,8 +40,7 @@
 
 		<cfset var qRead = "" />
 		<cfset var strReturn = structNew() />
-		<cftry>
-			<cfquery name="qRead" datasource="#variables.dsn#">
+		<cfquery name="qRead" datasource="#variables.dsn#">
 				SELECT
 					ContribTypeID,
 					Name,
@@ -57,10 +52,7 @@
 				FROM	ce_Sys_ContribType
 				WHERE	ContribTypeID = <cfqueryparam value="#arguments.ContribType.getContribTypeID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<!--- leave the bean as is --->
-			</cfcatch>
-		</cftry>
+			
 		<cfif qRead.recordCount>
 			<cfset strReturn = queryRowToStruct(qRead)>
 			<cfset ContribTypeBean = arguments.ContribType.init(argumentCollection=strReturn)>
@@ -72,8 +64,7 @@
 		<cfargument name="ContribType" type="_com.system.ContribType" required="true" />
 
 		<cfset var qUpdate = "" />
-		<cftry>
-			<cfquery name="qUpdate" datasource="#variables.dsn#">
+		<cfquery name="qUpdate" datasource="#variables.dsn#">
 				UPDATE	ce_Sys_ContribType
 				SET
 					Name = <cfqueryparam value="#arguments.ContribType.getName()#" CFSQLType="cf_sql_varchar" null="#not len(arguments.ContribType.getName())#" />,
@@ -84,10 +75,7 @@
 					DeletedFlag = <cfqueryparam value="#arguments.ContribType.getDeletedFlag()#" CFSQLType="cf_sql_char" null="#not len(arguments.ContribType.getDeletedFlag())#" />
 				WHERE	ContribTypeID = <cfqueryparam value="#arguments.ContribType.getContribTypeID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 
@@ -95,15 +83,11 @@
 		<cfargument name="ContribType" type="_com.system.ContribType" required="true" />
 
 		<cfset var qDelete = "">
-		<cftry>
-			<cfquery name="qDelete" datasource="#variables.dsn#">
+		<cfquery name="qDelete" datasource="#variables.dsn#">
 				DELETE FROM	ce_Sys_ContribType 
 				WHERE	ContribTypeID = <cfqueryparam value="#arguments.ContribType.getContribTypeID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 

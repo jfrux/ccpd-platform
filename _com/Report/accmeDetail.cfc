@@ -294,7 +294,7 @@
 			</cfloop>
 			
 			<!--- Excel Section --->
-			<cftry>
+			
 				
 				<!--- Start Building Excel file --->
 				<poi:document name="Request.ExcelData" file="#ReportPath##ReportFileName#">
@@ -371,10 +371,7 @@
 				</poi:document>
 									
 				<cfset Status = "Success|Your report has been generated!">
-				<cfcatch type="any">
-					<cfset Status = "Fail|Error: " & cfcatch.Message>
-				</cfcatch>
-			</cftry>
+				
 		</cfif>
 		
 		<cfheader name="Content-Type" value="application/msexcel">

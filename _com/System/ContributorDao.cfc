@@ -11,8 +11,7 @@
 		<cfargument name="Contributor" type="_com.system.Contributor" required="true" />
 
 		<cfset var qCreate = "" />
-		<cftry>
-			<cfquery name="qCreate" datasource="#variables.dsn#">
+		<cfquery name="qCreate" datasource="#variables.dsn#">
 				INSERT INTO ce_Sys_Contributor
 					(
 					Name,
@@ -24,10 +23,7 @@
 					<cfqueryparam value="#arguments.Contributor.getDescription()#" CFSQLType="cf_sql_varchar" null="#not len(arguments.Contributor.getDescription())#" />
 					); SELECT SCOPE_IDENTITY() AS NewContributorID;
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn qCreate.NewContributorID />
 	</cffunction>
 
@@ -36,8 +32,7 @@
 
 		<cfset var qRead = "" />
 		<cfset var strReturn = structNew() />
-		<cftry>
-			<cfquery name="qRead" datasource="#variables.dsn#">
+		<cfquery name="qRead" datasource="#variables.dsn#">
 				SELECT
 					ContributorID,
 					Name,
@@ -49,10 +44,7 @@
 				FROM	ce_Sys_Contributor
 				WHERE	ContributorID = <cfqueryparam value="#arguments.Contributor.getContributorID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<!--- leave the bean as is --->
-			</cfcatch>
-		</cftry>
+			
 		<cfif qRead.recordCount>
 			<cfset strReturn = queryRowToStruct(qRead)>
 			<cfset ContributorBean = arguments.Contributor.init(argumentCollection=strReturn)>
@@ -64,8 +56,7 @@
 		<cfargument name="Contributor" type="_com.system.Contributor" required="true" />
 
 		<cfset var qUpdate = "" />
-		<cftry>
-			<cfquery name="qUpdate" datasource="#variables.dsn#">
+		<cfquery name="qUpdate" datasource="#variables.dsn#">
 				UPDATE	ce_Sys_Contributor
 				SET
 					Name = <cfqueryparam value="#arguments.Contributor.getName()#" CFSQLType="cf_sql_varchar" null="#not len(arguments.Contributor.getName())#" />,
@@ -76,10 +67,7 @@
 					DeletedFlag = <cfqueryparam value="#arguments.Contributor.getDeletedFlag()#" CFSQLType="cf_sql_char" null="#not len(arguments.Contributor.getDeletedFlag())#" />
 				WHERE	ContributorID = <cfqueryparam value="#arguments.Contributor.getContributorID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 
@@ -87,15 +75,11 @@
 		<cfargument name="Contributor" type="_com.system.Contributor" required="true" />
 
 		<cfset var qDelete = "">
-		<cftry>
-			<cfquery name="qDelete" datasource="#variables.dsn#">
+		<cfquery name="qDelete" datasource="#variables.dsn#">
 				DELETE FROM	ce_Sys_Contributor 
 				WHERE	ContributorID = <cfqueryparam value="#arguments.Contributor.getContributorID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 

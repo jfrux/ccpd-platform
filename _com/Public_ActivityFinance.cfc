@@ -20,7 +20,7 @@
             <cfabort>
 		</cfif>
 		
-        <cftry>				
+        				
             <!--- Delete ledger record --->
             <cfquery name="qRemoveBudget" datasource="#Application.Settings.DSN#">
                 UPDATE ce_Activity_FinBudget
@@ -40,10 +40,7 @@
                         FromPersonID=Session.PersonID,
                         ToActivityID=Arguments.ActivityID)>
             
-            <cfcatch type="any">
-                <cfset status.addError("General","Error: " & cfcatch.message)>
-            </cfcatch>
-        </cftry>
+            
 		
 		<cfreturn status />
 	</cffunction>
@@ -64,7 +61,7 @@
             <cfabort>
 		</cfif>
 		
-        <cftry>				
+        				
             <!--- Delete ledger record --->
             <cfquery name="qRemoveFee" datasource="#Application.Settings.DSN#">
                 UPDATE ce_Activity_FinFee
@@ -92,10 +89,7 @@
             <cfset status.setStatus(true)>
             <cfset status.setStatusMsg("The fee has been removed.")>
 			
-            <cfcatch type="any">
-                <cfset status.addError("General","Error: " & cfcatch.message)>
-            </cfcatch>
-        </cftry>
+            
 		
 		<cfreturn status />
 	</cffunction>
@@ -118,7 +112,7 @@
             <cfabort>
 		</cfif>
 		
-        <cftry>
+        
             <!--- Acquire Ledger Entry Info --->
             
             <!--- Delete ledger record --->
@@ -153,10 +147,7 @@
                         FromPersonID=Session.PersonID,
                         ToActivityID=Arguments.ActivityID)>
             
-            <cfcatch type="any">
-                <cfset status.addError("General","Error: " & cfcatch.message)>
-            </cfcatch>
-        </cftry>
+            
             		
 		<cfreturn status />
 	</cffunction>
@@ -177,7 +168,7 @@
             <cfabort>
 		</cfif>
 		
-        <cftry>
+        
             <!--- GET SUPPORTER INFORMATION --->
             <cfset SupporterBean = CreateObject("component","#Application.Settings.Com#ActivityFinance.Support").Init(SupportID=Arguments.SupportID)>
             <cfset SupporterBean = Application.Com.ActivitySupportDAO.Read(SupporterBean)>
@@ -233,10 +224,7 @@
 			<cfset status.setStatus(true)>
             <cfset status.setStatusMsg("The support entry has been removed.")>
             
-            <cfcatch type="any">
-                <cfset status.addError("General", "Error: " & cfcatch.message)>
-            </cfcatch>
-        </cftry>
+            
 		
 		<cfreturn status />
 	</cffunction>
@@ -306,7 +294,7 @@
         </cfloop>
         
         <cfif arrayLen(status.getErrors()) EQ 0>
-            <cftry>
+            
                 <!--- Save Ledger Entry to the DB --->
                 <cfset ActivityBudgetBean = Application.Com.ActivityBudgetDAO.Save(ActivityBudgetBean)>
                     
@@ -326,10 +314,7 @@
 				<cfset status.setStatus(true)>
                 <cfset status.setStatusMsg("Budget entry has been saved.")>
                 
-                <cfcatch type="any">
-                    <cfset status.addError("General", "Error: " & cfcatch.Message)>
-                </cfcatch>
-            </cftry>
+                
         </cfif>
         
         <cfreturn status />
@@ -422,7 +407,7 @@
             </cfloop>
             
             <cfif Status EQ "">
-                <cftry>
+                
                     <cfset ActivityFeeBean = Application.Com.ActivityFeeDAO.Save(ActivityFeeBean)>
                         
                     <!--- Acquire Activity Info --->
@@ -440,10 +425,7 @@
                     
                     <cfset Status = "Success|Fee has been added.">
                     
-                    <cfcatch type="any">
-                        <cfset Status = "Error: " & cfcatch.Message>
-                    </cfcatch>
-                </cftry>
+                    
             </cfif>
         </cfif>
         
@@ -521,7 +503,7 @@
         </cfloop>
         
         <cfif arrayLen(status.getErrors()) EQ 0>
-            <cftry>
+            
                 <!--- Save Ledger Entry to the DB --->
                 <cfset ActivityLedgerBean = Application.Com.ActivityLedgerDAO.Save(ActivityLedgerBean)>
                     
@@ -548,11 +530,7 @@
                 
 				<cfset status.setStatus(true)>
                 <cfset status.setStatusMsg("Ledger entry has been saved.")>
-                
-                <cfcatch type="any">
-                    <cfset status.addError("General","Error: " & cfcatch.Message)>
-                </cfcatch>
-            </cftry>
+       
         </cfif>
         
         <cfreturn status />
@@ -612,7 +590,7 @@
         </cfloop>
         
         <cfif arrayLen(status.getErrors()) EQ 0>
-            <cftry>
+            
                 <cfset ActivitySupportBean = Application.Com.ActivitySupportDAO.Save(ActivitySupportBean)>
                     
                 <!--- Read in the ActivitySupport information --->
@@ -655,10 +633,7 @@
 				<cfset status.setStatus(true)>
                 <cfset status.setStatusMsg("The support has been saved.")>
                 
-                <cfcatch type="any">
-            		<cfset status.addError("General","Error: " & cfcatch.Message)>
-                </cfcatch>
-            </cftry>
+                
         </cfif>
 		
 		<cfreturn Status />

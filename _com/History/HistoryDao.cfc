@@ -10,8 +10,7 @@
 		<cfargument name="History" type="_com.History.History" required="true" />
 
 		<cfset var qCreate = "" />
-		<cftry>
-			<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
+		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
 				INSERT INTO ce_History
 					(
 					HistoryStyleID,
@@ -35,10 +34,7 @@
 					<cfqueryparam value="#arguments.History.getHiddenFlag()#" CFSQLType="cf_sql_char" null="#not len(arguments.History.getHiddenFlag())#" />
 					)
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn CreateResult.IDENTITYCOL />
 	</cffunction>
 
@@ -47,8 +43,7 @@
 
 		<cfset var qRead = "" />
 		<cfset var strReturn = structNew() />
-		<cftry>
-			<cfquery name="qRead" datasource="#variables.dsn#">
+		<cfquery name="qRead" datasource="#variables.dsn#">
 				SELECT
 					HistoryID,
 					HistoryStyleID,
@@ -63,10 +58,7 @@
 				FROM	ce_History
 				WHERE	HistoryID = <cfqueryparam value="#arguments.History.getHistoryID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<!--- leave the bean as is --->
-			</cfcatch>
-		</cftry>
+			
 		<cfif qRead.recordCount>
 			<cfset strReturn = queryRowToStruct(qRead)>
 			<cfset HistoryBean = arguments.History.init(argumentCollection=strReturn)>
@@ -78,8 +70,7 @@
 		<cfargument name="History" type="_com.History.History" required="true" />
 
 		<cfset var qUpdate = "" />
-		<cftry>
-			<cfquery name="qUpdate" datasource="#variables.dsn#">
+		<cfquery name="qUpdate" datasource="#variables.dsn#">
 				UPDATE	ce_History
 				SET
 					HistoryStyleID = <cfqueryparam value="#arguments.History.getHistoryStyleID()#" CFSQLType="cf_sql_integer" />,
@@ -93,10 +84,7 @@
 					HiddenFlag = <cfqueryparam value="#arguments.History.getHiddenFlag()#" CFSQLType="cf_sql_char" null="#not len(arguments.History.getHiddenFlag())#" />
 				WHERE	HistoryID = <cfqueryparam value="#arguments.History.getHistoryID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 
@@ -104,15 +92,11 @@
 		<cfargument name="History" type="_com.History.History" required="true" />
 
 		<cfset var qDelete = "">
-		<cftry>
-			<cfquery name="qDelete" datasource="#variables.dsn#">
+		<cfquery name="qDelete" datasource="#variables.dsn#">
 				DELETE FROM	ce_History 
 				WHERE	HistoryID = <cfqueryparam value="#arguments.History.getHistoryID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 

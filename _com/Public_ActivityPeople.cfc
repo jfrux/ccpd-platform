@@ -26,7 +26,7 @@
             <cfset ApproveFlag = "N">
         </cfif>
         
-        <cftry>
+        
             <cfif Arguments.FileType EQ "CV">
                 <!--- UPDATE CVAPPROVEFLAG --->
                 <cfquery name="qUpdateCVFlag" datasource="#Application.Settings.DSN#">
@@ -58,10 +58,7 @@
                 <cfset status.setStatusMsg("#qGetPersonName.FirstName# #qGetPersonName.LastName#'s #Arguments.FileType# has been unapproved.")>
             </cfif>
             
-            <cfcatch type="any">
-                <cfset status.addError("General","Error: " & cfcatch.Message)>
-            </cfcatch>
-        </cftry>
+            
         
         <cfreturn Status />
     </cffunction>
@@ -83,7 +80,7 @@
             <cfabort>
 		</cfif>
 		
-        <cftry>
+        
             <cfset ChangeCount = 0>
             
             <!--- ACTIVITY DETAIL --->
@@ -160,10 +157,7 @@
                             ToContent=OutputVar)>
             </cfif>
             
-            <cfcatch type="any">
-            	<cfset status.addError("General","Fail: " & cfcatch.message)>
-            </cfcatch>
-        </cftry>
+            
 		
 		<cfreturn status />
 	</cffunction>
@@ -193,7 +187,7 @@
             <cfabort>
 		</cfif>
 		
-        <cftry>
+        
             <cfset ChangeCount = 0>
             
             <!--- ACTIVITY DETAIL --->
@@ -269,10 +263,7 @@
                             ToContent=OutputVar)>
             </cfif>
             
-            <cfcatch type="any">
-                <cfset status.addError("General","Error: " & cfcatch.Message)>
-            </cfcatch>
-        </cftry>
+            
 		
 		<cfreturn status />
 	</cffunction>
@@ -368,7 +359,7 @@
             <cfabort>
 		</cfif>
 		
-        <cftry>				
+        				
             <!--- Delete each record --->
             <cfquery name="qRemoveAll" datasource="#Application.Settings.DSN#">
                 UPDATE ce_Activity_Committee
@@ -389,10 +380,7 @@
 			<cfset status.setStatus(true)>
             <cfset status.setStatusMsg("All committee members have been removed.")>
             
-            <cfcatch type="any">
-       			<cfset status.setStatusMsg("Error: " & cfcatch.message)>
-            </cfcatch>
-        </cftry>
+            
 		
 		<cfreturn Status />
 	</cffunction>
@@ -410,7 +398,7 @@
         <cfset status.setStatusMsg("More information is required to remove all faculty members from this activity.")>
 		</cfif>
 		
-        <cftry>				
+        				
             <!--- Delete each record --->
             <cfquery name="qRemoveAll" datasource="#Application.Settings.DSN#">
                 UPDATE ce_Activity_Faculty
@@ -432,10 +420,7 @@
                         FromPersonID=Session.PersonID,
                         ToActivityID=Arguments.ActivityID)>
             
-            <cfcatch type="any">
-                <cfset status.setStatusMsg("Error: " & cfcatch.message)>
-            </cfcatch>
-        </cftry>
+            
 		
 		<cfreturn status />
 	</cffunction>
@@ -456,7 +441,7 @@
             <cfabort>
 		</cfif>
 		
-        <cftry>
+        
             <cfset AddCount = 0>
             
             <!--- ACTIVITY DETAIL --->
@@ -513,10 +498,7 @@
                             ToContent=OutputVar)>
             </cfif>
             
-            <cfcatch type="any">
-                <cfset status.setStatusMsg("Error: " &cfcatch.message)>
-            </cfcatch>
-        </cftry>
+            
 		
 		<cfreturn status />
 	</cffunction>
@@ -541,7 +523,7 @@
 		<cfset ActivityBean = CreateObject("component","#Application.Settings.Com#Activity.Activity").init(ActivityID=Arguments.ActivityID)>
 		<cfset ActivityBean = Application.Com.ActivityDAO.read(ActivityBean)>
 		
-        <cftry>
+        
             <cfset AddCount = 0>
             
             <cfloop list="#Arguments.PersonList#" index="PersonID">
@@ -596,10 +578,7 @@
                             ToContent=OutputVar)>
             </cfif>
             
-            <cfcatch type="any">
-                <cfset status.setStatusMsg("Error: " & cfcatch.message)>
-            </cfcatch>
-        </cftry>
+            
 		
 		<cfreturn status />
 	</cffunction>
@@ -619,7 +598,7 @@
 		<cfset ActivityBean = Application.Com.ActivityDAO.read(ActivityBean)>
 		
 		<cfif Status EQ "">
-			<cftry>
+			
 				<cfquery name="qFindCommitteeMember" datasource="#Application.Settings.DSN#">
 					SELECT DeletedFlag
 					FROM ce_Activity_Committee
@@ -672,10 +651,7 @@
 						<cfset Status = "Fail|Committee member has already been added.">
 					</cfif>
 				</cfif>
-				<cfcatch type="any">
-					<cfset Status = "Fail|Error: #cfcatch.message#">
-				</cfcatch>
-			</cftry>
+				
 		</cfif>
 		
 		<cfreturn Status />
@@ -696,7 +672,7 @@
 		<cfset ActivityBean = Application.Com.ActivityDAO.read(ActivityBean)>
 		
 		<cfif Status EQ "">
-			<cftry>
+			
 				<cfquery name="qFindFacultyMember" datasource="#Application.Settings.DSN#">
 					SELECT DeletedFlag
 					FROM ce_Activity_Faculty
@@ -850,10 +826,7 @@
 						<cfset Status = "Fail|Faculty member has already been added.">
 					</cfif>
 				</cfif>
-				<cfcatch type="any">
-					<cfset Status = "Fail|Error: #cfcatch.message#">
-				</cfcatch>
-			</cftry>
+				
 		</cfif>
 		
 		<cfreturn Status />

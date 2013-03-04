@@ -163,7 +163,7 @@
             <cfabort>
 		</cfif>
         
-        <cftry>
+        
             <cfset Attributes.Deleted = CreateODBCDateTime(Now())>
             
             <cfquery name="qDeleteNote" datasource="#Application.Settings.DSN#">
@@ -186,10 +186,7 @@
         	<cfset status.setStatus(true)>
             <cfset Status.setStatusMsg("Note has been deleted!")>
             
-            <cfcatch type="any">
-                <cfset status.addError("General","Error: #cfcatch.Message#")>
-            </cfcatch>
-        </cftry>
+            
 		
 		<cfreturn status />
 	</cffunction>
@@ -643,9 +640,9 @@
         
         <cfset var Status = createObject("component", "#Application.settings.com#returnData.buildStruct").init()>
         
-        <cfset status.setStatus(false)>
+        <!--- <cfset status.setStatus(false)>
         <cfset status.setStatusMsg("Cannot save credential information due to unknown reasons.")>
-        
+         --->
         <cfif Arguments.Pass NEQ "">
 			<cfif Arguments.ConPass EQ "">
                 <cfset Status.addError("ConfirmPassword","More information is needed to update credentials.")>
@@ -857,7 +854,7 @@
         </cfloop>
         
         <cfif NOT arrayLen(status.getErrors())>
-            <cftry>
+            
                 <cfset PersonNoteBean = Application.Com.PersonNoteDAO.Save(PersonNoteBean)>
                 
                 <cfset Application.History.Add(
@@ -869,10 +866,7 @@
 				<cfset status.setStatus(true)>
                 <cfset status.setStatusMsg("The note has been added properly.")>
                 
-                <cfcatch type="any">
-                    <cfset status.addError("General","Error: #cfcatch.Message#")>
-                </cfcatch>
-            </cftry>
+                
         </cfif>
         
 		<cfreturn Status />
@@ -1101,7 +1095,7 @@
         <cfset status.setStatus(false)>
         <cfset status.setStatusMsg("Cannot save person specialties for unknown reasons.")>
         
-        <cftry>
+        
             <cfquery name="DeleteSpecialties" datasource="#Application.Settings.DSN#">
                 DELETE FROM ce_Person_SpecialtyLMS
                 WHERE PersonID = <cfqueryparam value="#Arguments.PersonID#" cfsqltype="cf_sql_integer" />
@@ -1126,10 +1120,7 @@
             <cfset status.setStatus(true)>
             <cfset status.setStatusMsg("Specialties have been updated.")>
           	
-            <cfcatch type="any">
-            	<cfset status.addError("General", CFCatch.Message)>
-            </cfcatch>
-        </cftry>
+            
         
         <cfreturn Status />
     </cffunction>

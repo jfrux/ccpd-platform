@@ -11,8 +11,7 @@
 		<cfargument name="AttendeeCredit" type="_com.AttendeeCredit.AttendeeCredit" required="true" />
 
 		<cfset var qCreate = "" />
-		<cftry>
-			<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
+		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
 				INSERT INTO ce_AttendeeCredit
 					(
 					AttendeeID,
@@ -30,10 +29,7 @@
 					<cfqueryparam value="#arguments.AttendeeCredit.getCreatedBy()#" CFSQLType="cf_sql_integer" />
 					)
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn CreateResult.IDENTITYCOL />
 	</cffunction>
 
@@ -42,8 +38,7 @@
 
 		<cfset var qRead = "" />
 		<cfset var strReturn = structNew() />
-		<cftry>
-			<cfquery name="qRead" datasource="#variables.dsn#">
+		<cfquery name="qRead" datasource="#variables.dsn#">
 				SELECT
 					AttendeeCreditID,
 					AttendeeID,
@@ -62,10 +57,7 @@
                 	AND CreditID = <cfqueryparam value="#arguments.AttendeeCredit.getCreditID()#" cfsqltype="cf_sql_integer" />
                 </cfif>
 			</cfquery>
-			<cfcatch type="database">
-				<!--- leave the bean as is --->
-			</cfcatch>
-		</cftry>
+			
 		<cfif qRead.recordCount>
 			<cfset strReturn = queryRowToStruct(qRead)>
 			<cfset AttendeeCreditBean = arguments.AttendeeCredit.init(argumentCollection=strReturn)>
@@ -78,8 +70,7 @@
 
 		<cfset var qRead = "" />
 		<cfset var strReturn = structNew() />
-		<cftry>
-			<cfquery name="qRead" datasource="#variables.dsn#">
+		<cfquery name="qRead" datasource="#variables.dsn#">
 				SELECT
 					AttendeeCreditID,
 					AttendeeID,
@@ -98,10 +89,7 @@
                 	AND CreditID = <cfqueryparam value="#arguments.AttendeeCredit.getCreditID()#" cfsqltype="cf_sql_integer" />
                 </cfif>
 			</cfquery>
-			<cfcatch type="database">
-				<!--- leave the bean as is --->
-			</cfcatch>
-		</cftry>
+			
 		<cfif qRead.recordCount>
 			<cfset strReturn = queryRowToStruct(qRead)>
 			<cfset AttendeeCreditBean = arguments.AttendeeCredit.init(argumentCollection=strReturn)>
@@ -113,8 +101,7 @@
 		<cfargument name="AttendeeCredit" type="_com.AttendeeCredit.AttendeeCredit" required="true" />
 
 		<cfset var qUpdate = "" />
-		<cftry>
-			<cfquery name="qUpdate" datasource="#variables.dsn#">
+		<cfquery name="qUpdate" datasource="#variables.dsn#">
 				UPDATE	ce_AttendeeCredit
 				SET
 					AttendeeID = <cfqueryparam value="#arguments.AttendeeCredit.getAttendeeID()#" CFSQLType="cf_sql_integer" />,
@@ -132,10 +119,7 @@
                 	AND CreditID = <cfqueryparam value="#arguments.AttendeeCredit.getCreditID()#" cfsqltype="cf_sql_integer" />
                 </cfif>
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 
@@ -143,8 +127,7 @@
 		<cfargument name="AttendeeCredit" type="_com.AttendeeCredit.AttendeeCredit" required="true" />
 
 		<cfset var qUpdate = "" />
-		<cftry>
-			<cfquery name="qUpdate" datasource="#variables.dsn#">
+		<cfquery name="qUpdate" datasource="#variables.dsn#">
 				UPDATE	ce_AttendeeCredit
 				SET
 					AttendeeID = <cfqueryparam value="#arguments.AttendeeCredit.getAttendeeID()#" CFSQLType="cf_sql_integer" />,
@@ -164,10 +147,7 @@
                 	AttendeeCreditID = <cfqueryparam value="#arguments.AttendeeCredit.getAttendeeCreditID()#" CFSQLType="cf_sql_integer" />
                 </cfif>
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 
@@ -175,18 +155,14 @@
 		<cfargument name="AttendeeCredit" type="_com.AttendeeCredit.AttendeeCredit" required="true" />
 
 		<cfset var qDelete = "">
-		<cftry>
-			<cfquery name="qDelete" datasource="#variables.dsn#">
+		<cfquery name="qDelete" datasource="#variables.dsn#">
 				DELETE FROM	ce_AttendeeCredit 
 				WHERE	AttendeeID = <cfqueryparam value="#arguments.AttendeeCredit.getAttendeeID()#" CFSQLType="cf_sql_integer" />
                 <cfif Arguments.AttendeeCredit.getCreditID() NEQ "">
                 	AND CreditID = <cfqueryparam value="#arguments.AttendeeCredit.getCreditID()#" cfsqltype="cf_sql_integer" />
                 </cfif>
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 

@@ -11,8 +11,7 @@
 		<cfargument name="Account" type="_com.Account.Account" required="true" />
 
 		<cfset var qCreate = "" />
-		<cftry>
-			<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
+		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
 				INSERT INTO ce_Account
 					(
 					PersonID,
@@ -26,10 +25,7 @@
 					<cfqueryparam value="#arguments.Account.getAuthorityID()#" CFSQLType="cf_sql_integer" null="#not len(arguments.Account.getAuthorityID())#" />
 					)
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn CreateResult.IDENTITYCOL />
 	</cffunction>
 
@@ -51,11 +47,8 @@
 				FROM	ce_Account
 				WHERE	AccountID = <cfqueryparam value="#arguments.Account.getAccountID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-		<cftry>
-			<cfcatch type="database">
-				<!--- leave the bean as is --->
-			</cfcatch>
-		</cftry>
+		
+			
 		<cfif qRead.recordCount>
 			<cfset strReturn = queryRowToStruct(qRead)>
 			<cfset AccountBean = arguments.Account.init(argumentCollection=strReturn)>
@@ -67,8 +60,7 @@
 		<cfargument name="Account" type="_com.Account.Account" required="true" />
 
 		<cfset var qUpdate = "" />
-		<cftry>
-			<cfquery name="qUpdate" datasource="#variables.dsn#">
+		<cfquery name="qUpdate" datasource="#variables.dsn#">
 				UPDATE	ce_Account
 				SET
 					PersonID = <cfqueryparam value="#arguments.Account.getPersonID()#" CFSQLType="cf_sql_integer" null="#not len(arguments.Account.getPersonID())#" />,
@@ -80,10 +72,7 @@
 					DeletedFlag = <cfqueryparam value="#arguments.Account.getDeletedFlag()#" CFSQLType="cf_sql_char" null="#not len(arguments.Account.getDeletedFlag())#" />
 				WHERE	AccountID = <cfqueryparam value="#arguments.Account.getAccountID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 
@@ -91,15 +80,11 @@
 		<cfargument name="Account" type="_com.Account.Account" required="true" />
 
 		<cfset var qDelete = "">
-		<cftry>
-			<cfquery name="qDelete" datasource="#variables.dsn#">
+		<cfquery name="qDelete" datasource="#variables.dsn#">
 				DELETE FROM	ce_Account 
 				WHERE	AccountID = <cfqueryparam value="#arguments.Account.getAccountID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 

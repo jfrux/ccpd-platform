@@ -10,8 +10,7 @@
 		<cfargument name="Report" type="_com.System.Report" required="true" />
 
 		<cfset var qCreate = "" />
-		<cftry>
-			<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
+		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
 				INSERT INTO ce_Sys_Report
 					(
 					Title,
@@ -25,10 +24,7 @@
 					<cfqueryparam value="#arguments.Report.getFileName()#" CFSQLType="cf_sql_varchar" null="#not len(arguments.Report.getFileName())#" />
 					)
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn CreateResult.IDENTITYCOL />
 	</cffunction>
 
@@ -37,8 +33,7 @@
 
 		<cfset var qRead = "" />
 		<cfset var strReturn = structNew() />
-		<cftry>
-			<cfquery name="qRead" datasource="#variables.dsn#">
+		<cfquery name="qRead" datasource="#variables.dsn#">
 				SELECT
 					ReportID,
 					Title,
@@ -49,10 +44,7 @@
 				FROM	ce_Sys_Report
 				WHERE	ReportID = <cfqueryparam value="#arguments.Report.getReportID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<!--- leave the bean as is --->
-			</cfcatch>
-		</cftry>
+			
 		<cfif qRead.recordCount>
 			<cfset strReturn = queryRowToStruct(qRead)>
 			<cfset ReportBean = arguments.Report.init(argumentCollection=strReturn)>
@@ -64,8 +56,7 @@
 		<cfargument name="Report" type="_com.System.Report" required="true" />
 
 		<cfset var qUpdate = "" />
-		<cftry>
-			<cfquery name="qUpdate" datasource="#variables.dsn#">
+		<cfquery name="qUpdate" datasource="#variables.dsn#">
 				UPDATE	ce_Sys_Report
 				SET
 					Title = <cfqueryparam value="#arguments.Report.getTitle()#" CFSQLType="cf_sql_varchar" null="#not len(arguments.Report.getTitle())#" />,
@@ -75,10 +66,7 @@
 					Updated = <cfqueryparam value="#arguments.Report.getUpdated()#" CFSQLType="cf_sql_timestamp" null="#not len(arguments.Report.getUpdated())#" />
 				WHERE	ReportID = <cfqueryparam value="#arguments.Report.getReportID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 
@@ -86,15 +74,11 @@
 		<cfargument name="Report" type="_com.System.Report" required="true" />
 
 		<cfset var qDelete = "">
-		<cftry>
-			<cfquery name="qDelete" datasource="#variables.dsn#">
+		<cfquery name="qDelete" datasource="#variables.dsn#">
 				DELETE FROM	ce_Sys_Report 
 				WHERE	ReportID = <cfqueryparam value="#arguments.Report.getReportID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 

@@ -10,8 +10,7 @@
 		<cfargument name="AssessQuestion" type="_com.AssessQuestion.AssessQuestion" required="true" />
 
 		<cfset var qCreate = "" />
-		<cftry>
-			<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
+		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
 				INSERT INTO ce_AssessQuestion
 					(
 					QuestionTypeID,
@@ -97,10 +96,7 @@
 					<cfqueryparam value="#arguments.AssessQuestion.getExternalID()#" CFSQLType="cf_sql_varchar" null="#not len(arguments.AssessQuestion.getExternalID())#" />
 					)
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn CreateResult.IDENTITYCOL />
 	</cffunction>
 
@@ -109,8 +105,7 @@
 
 		<cfset var qRead = "" />
 		<cfset var strReturn = structNew() />
-		<cftry>
-			<cfquery name="qRead" datasource="#variables.dsn#">
+		<cfquery name="qRead" datasource="#variables.dsn#">
 				SELECT
 					QuestionID,
 					QuestionTypeID,
@@ -159,10 +154,7 @@
 				FROM	ce_AssessQuestion
 				WHERE	QuestionID = <cfqueryparam value="#arguments.AssessQuestion.getQuestionID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<!--- leave the bean as is --->
-			</cfcatch>
-		</cftry>
+			
 		<cfif qRead.recordCount>
 			<cfset strReturn = queryRowToStruct(qRead)>
 			<cfset AssessQuestionBean = arguments.AssessQuestion.init(argumentCollection=strReturn)>
@@ -174,8 +166,7 @@
 		<cfargument name="AssessQuestion" type="_com.AssessQuestion.AssessQuestion" required="true" />
 
 		<cfset var qUpdate = "" />
-		<cftry>
-			<cfquery name="qUpdate" datasource="#variables.dsn#">
+		<cfquery name="qUpdate" datasource="#variables.dsn#">
 				UPDATE	ce_AssessQuestion
 				SET
 					QuestionTypeID = <cfqueryparam value="#arguments.AssessQuestion.getQuestionTypeID()#" CFSQLType="cf_sql_integer" />,
@@ -223,10 +214,7 @@
 					DeletedFlag = <cfqueryparam value="#arguments.AssessQuestion.getDeletedFlag()#" CFSQLType="cf_sql_char" null="#not len(arguments.AssessQuestion.getDeletedFlag())#" />
 				WHERE	QuestionID = <cfqueryparam value="#arguments.AssessQuestion.getQuestionID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 
@@ -234,15 +222,11 @@
 		<cfargument name="AssessQuestion" type="_com.AssessQuestion.AssessQuestion" required="true" />
 
 		<cfset var qDelete = "">
-		<cftry>
-			<cfquery name="qDelete" datasource="#variables.dsn#">
+		<cfquery name="qDelete" datasource="#variables.dsn#">
 				DELETE FROM	ce_AssessQuestion 
 				WHERE	QuestionID = <cfqueryparam value="#arguments.AssessQuestion.getQuestionID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 

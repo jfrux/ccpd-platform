@@ -10,8 +10,7 @@
 		<cfargument name="Component" type="_com.System.Component" required="true" />
 
 		<cfset var qCreate = "" />
-		<cftry>
-			<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
+		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
 				INSERT INTO ce_Sys_Component
 					(
 					Name,
@@ -29,10 +28,7 @@
 					<cfqueryparam value="#arguments.Component.getMaxUsage()#" CFSQLType="cf_sql_integer" null="#not len(arguments.Component.getMaxUsage())#" />
 					)
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn CreateResult.IDENTITYCOL />
 	</cffunction>
 
@@ -41,8 +37,7 @@
 
 		<cfset var qRead = "" />
 		<cfset var strReturn = structNew() />
-		<cftry>
-			<cfquery name="qRead" datasource="#variables.dsn#">
+		<cfquery name="qRead" datasource="#variables.dsn#">
 				SELECT
 					ComponentID,
 					Name,
@@ -53,10 +48,7 @@
 				FROM	ce_Sys_Component
 				WHERE	ComponentID = <cfqueryparam value="#arguments.Component.getComponentID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<!--- leave the bean as is --->
-			</cfcatch>
-		</cftry>
+			
 		<cfif qRead.recordCount>
 			<cfset strReturn = queryRowToStruct(qRead)>
 			<cfset ComponentBean = arguments.Component.init(argumentCollection=strReturn)>
@@ -68,8 +60,7 @@
 		<cfargument name="Component" type="_com.System.Component" required="true" />
 
 		<cfset var qUpdate = "" />
-		<cftry>
-			<cfquery name="qUpdate" datasource="#variables.dsn#">
+		<cfquery name="qUpdate" datasource="#variables.dsn#">
 				UPDATE	ce_Sys_Component
 				SET
 					Name = <cfqueryparam value="#arguments.Component.getName()#" CFSQLType="cf_sql_varchar" />,
@@ -79,10 +70,7 @@
 					MaxUsage = <cfqueryparam value="#arguments.Component.getMaxUsage()#" CFSQLType="cf_sql_integer" null="#not len(arguments.Component.getMaxUsage())#" />
 				WHERE	ComponentID = <cfqueryparam value="#arguments.Component.getComponentID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 
@@ -90,15 +78,11 @@
 		<cfargument name="Component" type="_com.System.Component" required="true" />
 
 		<cfset var qDelete = "">
-		<cftry>
-			<cfquery name="qDelete" datasource="#variables.dsn#">
+		<cfquery name="qDelete" datasource="#variables.dsn#">
 				DELETE FROM	ce_Sys_Component 
 				WHERE	ComponentID = <cfqueryparam value="#arguments.Component.getComponentID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 

@@ -10,8 +10,7 @@
 		<cfargument name="HistoryStyle" type="_com.HistoryStyle.HistoryStyle" required="true" />
 
 		<cfset var qCreate = "" />
-		<cftry>
-			<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
+		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
 				INSERT INTO ce_Sys_HistoryStyle
 					(
 					HistoryTypeID,
@@ -31,10 +30,7 @@
 					<cfqueryparam value="#arguments.HistoryStyle.getIconImg()#" CFSQLType="cf_sql_varchar" null="#not len(arguments.HistoryStyle.getIconImg())#" />
 					)
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn CreateResult.IDENTITYCOL />
 	</cffunction>
 
@@ -43,8 +39,7 @@
 
 		<cfset var qRead = "" />
 		<cfset var strReturn = structNew() />
-		<cftry>
-			<cfquery name="qRead" datasource="#variables.dsn#">
+		<cfquery name="qRead" datasource="#variables.dsn#">
 				SELECT
 					HistoryStyleID,
 					HistoryTypeID,
@@ -56,10 +51,7 @@
 				FROM	ce_Sys_HistoryStyle
 				WHERE	HistoryStyleID = <cfqueryparam value="#arguments.HistoryStyle.getHistoryStyleID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<!--- leave the bean as is --->
-			</cfcatch>
-		</cftry>
+			
 		<cfif qRead.recordCount>
 			<cfset strReturn = queryRowToStruct(qRead)>
 			<cfset HistoryStyleBean = arguments.HistoryStyle.init(argumentCollection=strReturn)>
@@ -71,8 +63,7 @@
 		<cfargument name="HistoryStyle" type="_com.HistoryStyle.HistoryStyle" required="true" />
 
 		<cfset var qUpdate = "" />
-		<cftry>
-			<cfquery name="qUpdate" datasource="#variables.dsn#">
+		<cfquery name="qUpdate" datasource="#variables.dsn#">
 				UPDATE	ce_Sys_HistoryStyle
 				SET
 					HistoryTypeID = <cfqueryparam value="#arguments.HistoryStyle.getHistoryTypeID()#" CFSQLType="cf_sql_integer" null="#not len(arguments.HistoryStyle.getHistoryTypeID())#" />,
@@ -83,10 +74,7 @@
 					IconImg = <cfqueryparam value="#arguments.HistoryStyle.getIconImg()#" CFSQLType="cf_sql_varchar" null="#not len(arguments.HistoryStyle.getIconImg())#" />
 				WHERE	HistoryStyleID = <cfqueryparam value="#arguments.HistoryStyle.getHistoryStyleID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 
@@ -94,15 +82,11 @@
 		<cfargument name="HistoryStyle" type="_com.HistoryStyle.HistoryStyle" required="true" />
 
 		<cfset var qDelete = "">
-		<cftry>
-			<cfquery name="qDelete" datasource="#variables.dsn#">
+		<cfquery name="qDelete" datasource="#variables.dsn#">
 				DELETE FROM	ce_Sys_HistoryStyle 
 				WHERE	HistoryStyleID = <cfqueryparam value="#arguments.HistoryStyle.getHistoryStyleID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 

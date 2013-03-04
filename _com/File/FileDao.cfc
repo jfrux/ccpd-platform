@@ -11,8 +11,7 @@
 		<cfargument name="File" type="_com.File.File" required="true" />
 
 		<cfset var qCreate = "" />
-		<cftry>
-			<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
+		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
 				INSERT INTO ce_File
 					(
 					FileName,
@@ -34,10 +33,7 @@
 					<cfqueryparam value="#arguments.File.getCreatedBy()#" CFSQLType="cf_sql_integer" null="#not len(arguments.File.getCreatedBy())#" />
 					)
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn CreateResult.IDENTITYCOL />
 	</cffunction>
 
@@ -46,8 +42,7 @@
 
 		<cfset var qRead = "" />
 		<cfset var strReturn = structNew() />
-		<cftry>
-			<cfquery name="qRead" datasource="#variables.dsn#">
+		<cfquery name="qRead" datasource="#variables.dsn#">
 				SELECT
 					FileID,
 					FileName,
@@ -65,10 +60,7 @@
 				FROM	ce_File
 				WHERE	FileID = <cfqueryparam value="#arguments.File.getFileID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<!--- leave the bean as is --->
-			</cfcatch>
-		</cftry>
+			
 		<cfif qRead.recordCount>
 			<cfset strReturn = queryRowToStruct(qRead)>
 			<cfset FileBean = arguments.File.init(argumentCollection=strReturn)>
@@ -80,8 +72,7 @@
 		<cfargument name="File" type="_com.File.File" required="true" />
 
 		<cfset var qUpdate = "" />
-		<cftry>
-			<cfquery name="qUpdate" datasource="#variables.dsn#">
+		<cfquery name="qUpdate" datasource="#variables.dsn#">
 				UPDATE	ce_File
 				SET
 					FileCaption = <cfqueryparam value="#arguments.File.getFileCaption()#" CFSQLType="cf_sql_varchar" null="#not len(arguments.File.getFileCaption())#" />,
@@ -90,10 +81,7 @@
 					UpdatedBy = <cfqueryparam value="#arguments.File.getUpdatedBy()#" CFSQLType="cf_sql_integer" null="#not len(arguments.File.getUpdatedBy())#" />
 				WHERE	FileID = <cfqueryparam value="#arguments.File.getFileID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 
@@ -101,15 +89,11 @@
 		<cfargument name="File" type="_com.File.File" required="true" />
 
 		<cfset var qDelete = "">
-		<cftry>
-			<cfquery name="qDelete" datasource="#variables.dsn#">
+		<cfquery name="qDelete" datasource="#variables.dsn#">
 				DELETE FROM	ce_File 
 				WHERE	FileID = <cfqueryparam value="#arguments.File.getFileID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 

@@ -11,8 +11,7 @@
 		<cfargument name="ActivityCommittee" type="_com.ActivityCommittee.ActivityCommittee" required="true" />
 
 		<cfset var qCreate = "" />
-		<cftry>
-			<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
+		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
 				INSERT INTO ce_Activity_Committee
 					(
 					ActivityID,
@@ -26,10 +25,7 @@
 					<cfqueryparam value="#arguments.ActivityCommittee.getRoleID()#" CFSQLType="cf_sql_integer" null="#not len(arguments.ActivityCommittee.getRoleID())#" />
 					)
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn CreateResult.IDENTITYCOL />
 	</cffunction>
 
@@ -38,8 +34,7 @@
 
 		<cfset var qRead = "" />
 		<cfset var strReturn = structNew() />
-		<cftry>
-			<cfquery name="qRead" datasource="#variables.dsn#">
+		<cfquery name="qRead" datasource="#variables.dsn#">
 				SELECT
 					CommitteeID,
 					ActivityID,
@@ -52,10 +47,7 @@
 				FROM	ce_Activity_Committee
 				WHERE	CommitteeID = <cfqueryparam value="#arguments.ActivityCommittee.getCommitteeID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<!--- leave the bean as is --->
-			</cfcatch>
-		</cftry>
+			
 		<cfif qRead.recordCount>
 			<cfset strReturn = queryRowToStruct(qRead)>
 			<cfset ActivityCommitteeBean = arguments.ActivityCommittee.init(argumentCollection=strReturn)>
@@ -67,8 +59,7 @@
 		<cfargument name="ActivityCommittee" type="_com.ActivityCommittee.ActivityCommittee" required="true" />
 
 		<cfset var qUpdate = "" />
-		<cftry>
-			<cfquery name="qUpdate" datasource="#variables.dsn#">
+		<cfquery name="qUpdate" datasource="#variables.dsn#">
 				UPDATE	ce_Activity_Committee
 				SET
 					ActivityID = <cfqueryparam value="#arguments.ActivityCommittee.getActivityID()#" CFSQLType="cf_sql_integer" null="#not len(arguments.ActivityCommittee.getActivityID())#" />,
@@ -80,10 +71,7 @@
 					DeletedFlag = <cfqueryparam value="#arguments.ActivityCommittee.getDeletedFlag()#" CFSQLType="cf_sql_char" null="#not len(arguments.ActivityCommittee.getDeletedFlag())#" />
 				WHERE	CommitteeID = <cfqueryparam value="#arguments.ActivityCommittee.getCommitteeID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 
@@ -91,15 +79,11 @@
 		<cfargument name="ActivityCommittee" type="_com.ActivityCommittee.ActivityCommittee" required="true" />
 
 		<cfset var qDelete = "">
-		<cftry>
-			<cfquery name="qDelete" datasource="#variables.dsn#">
+		<cfquery name="qDelete" datasource="#variables.dsn#">
 				DELETE FROM	ce_Activity_Committee 
 				WHERE	CommitteeID = <cfqueryparam value="#arguments.ActivityCommittee.getCommitteeID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 

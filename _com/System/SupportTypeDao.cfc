@@ -10,8 +10,7 @@
 		<cfargument name="SupportType" type="_com.System.SupportType" required="true" />
 
 		<cfset var qCreate = "" />
-		<cftry>
-			<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
+		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
 				INSERT INTO ce_Sys_SupportType
 					(
 					Name,
@@ -23,10 +22,7 @@
 					<cfqueryparam value="#arguments.SupportType.getDescription()#" CFSQLType="cf_sql_varchar" null="#not len(arguments.SupportType.getDescription())#" />
 					)
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn CreateResult.IDENTITYCOL />
 	</cffunction>
 
@@ -35,8 +31,7 @@
 
 		<cfset var qRead = "" />
 		<cfset var strReturn = structNew() />
-		<cftry>
-			<cfquery name="qRead" datasource="#variables.dsn#">
+		<cfquery name="qRead" datasource="#variables.dsn#">
 				SELECT
 					ContribTypeID,
 					Name,
@@ -48,10 +43,7 @@
 				FROM	ce_Sys_SupportType
 				WHERE	ContribTypeID = <cfqueryparam value="#arguments.SupportType.getContribTypeID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<!--- leave the bean as is --->
-			</cfcatch>
-		</cftry>
+			
 		<cfif qRead.recordCount>
 			<cfset strReturn = queryRowToStruct(qRead)>
 			<cfset SupportTypeBean = arguments.SupportType.init(argumentCollection=strReturn)>
@@ -63,8 +55,7 @@
 		<cfargument name="SupportType" type="_com.System.SupportType" required="true" />
 
 		<cfset var qUpdate = "" />
-		<cftry>
-			<cfquery name="qUpdate" datasource="#variables.dsn#">
+		<cfquery name="qUpdate" datasource="#variables.dsn#">
 				UPDATE	ce_Sys_SupportType
 				SET
 					Name = <cfqueryparam value="#arguments.SupportType.getName()#" CFSQLType="cf_sql_varchar" null="#not len(arguments.SupportType.getName())#" />,
@@ -75,10 +66,7 @@
 					DeletedFlag = <cfqueryparam value="#arguments.SupportType.getDeletedFlag()#" CFSQLType="cf_sql_char" null="#not len(arguments.SupportType.getDeletedFlag())#" />
 				WHERE	ContribTypeID = <cfqueryparam value="#arguments.SupportType.getContribTypeID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 
@@ -86,15 +74,11 @@
 		<cfargument name="SupportType" type="_com.System.SupportType" required="true" />
 
 		<cfset var qDelete = "">
-		<cftry>
-			<cfquery name="qDelete" datasource="#variables.dsn#">
+		<cfquery name="qDelete" datasource="#variables.dsn#">
 				DELETE FROM	ce_Sys_SupportType 
 				WHERE	ContribTypeID = <cfqueryparam value="#arguments.SupportType.getContribTypeID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 

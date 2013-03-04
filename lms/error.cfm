@@ -71,7 +71,7 @@
   </td>
 </tr>
 </table>
-
+<cfdump var="#error#" />
 <!---<cfmail to="rountrjf@ucmail.uc.edu,slamkajs@ucmail.uc.edu" from="do-not-reply@uc.edu" replyto="do-not-reply@uc.edu" subject="CCPD Admin Error - #error.diagnostics#" type="html">
   <cfdump var="#ErrorInfo#">
 </cfmail>--->

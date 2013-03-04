@@ -31,7 +31,7 @@
 			$("#LoginCancelText").show();
 			$("#LoginLine").css("color","#434343");
 			$("#LoginLine").fadeTo("slow", 1, function() {
-				$('#username')[0].focus();
+				$('#Email:first').focus();
 			});
 			return false;
 			

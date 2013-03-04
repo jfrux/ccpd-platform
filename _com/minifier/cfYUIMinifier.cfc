@@ -18,18 +18,15 @@
 		<cfset var processingStarted = false />
 		<cfset var processingComplete = false />
 	
-		<cftry>
+		
 			<cffile action="write" file="#ExpandPath('#variables.path#/tmp/')#minifier_#UniqueId#.js" output="#Result#"   />
 			<cfexecute name="java" arguments="-jar #ExpandPath('#variables.path#/lib/yuicompressor.jar')# #ExpandPath('#variables.path#/tmp/')#minifier_#UniqueId#.js -o #ExpandPath('#variables.path#/tmp/')#minifier_#UniqueId#_min.js" />
 			
 			<cfloop condition="NOT processingStarted">
-				<cftry>
+				
 					<cfset fileObj.init("#ExpandPath('#variables.path#/tmp/')#minifier_#UniqueId#_min.js") />
 					<cfset processingStarted = true />
-				<cfcatch>
-					<cfset processingStarted = false />
-				</cfcatch>	
-				</cftry>
+				
 			</cfloop>
 			
 			<cfloop condition="NOT processingComplete">
@@ -43,10 +40,7 @@
 			<cffile action="read" variable="Result" file="#ExpandPath('#variables.path#/tmp/')#minifier_#UniqueId#_min.js"/>
 			<cffile action="delete" file="#ExpandPath('#variables.path#/tmp/')#minifier_#UniqueId#.js" />
 			<cffile action="delete" file="#ExpandPath('#variables.path#/tmp/')#minifier_#UniqueId#_min.js" />
-		<cfcatch>
-			<cflog file="cfYUIMinifier" text="#cfcatch.message#--#cfcatch.detail#-#lastFileSize#" />
-		</cfcatch>
-		</cftry>
+		
 		
 		<cfreturn Result />
 	</cffunction>

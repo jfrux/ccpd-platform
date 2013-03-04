@@ -11,8 +11,7 @@
 		<cfargument name="AssessResult" type="_com.AssessResult.AssessResult" required="true" />
 
 		<cfset var qCreate = "" />
-		<cftry>
-			<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
+		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
 				INSERT INTO ce_AssessResult
 					(
 					PersonID,
@@ -28,10 +27,7 @@
 					<cfqueryparam value="#arguments.AssessResult.getScore()#" CFSQLType="cf_sql_float" null="#not len(arguments.AssessResult.getScore())#" />
 					)
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn CreateResult.IDENTITYCOL />
 	</cffunction>
 
@@ -40,8 +36,7 @@
 
 		<cfset var qRead = "" />
 		<cfset var strReturn = structNew() />
-		<cftry>
-			<cfquery name="qRead" datasource="#variables.dsn#">
+		<cfquery name="qRead" datasource="#variables.dsn#">
 				SELECT
 					ResultID,
 					PersonID,
@@ -58,10 +53,7 @@
 					AND ResultStatusID = <cfqueryparam value="#arguments.AssessResult.getResultStatusID()#" CFSQLType="cf_sql_integer" />
 				</cfif>--->
 			</cfquery>
-			<cfcatch type="database">
-				<!--- leave the bean as is --->
-			</cfcatch>
-		</cftry>
+			
 		<cfif qRead.recordCount>
 			<cfset strReturn = queryRowToStruct(qRead)>
 			<cfset AssessResultBean = arguments.AssessResult.init(argumentCollection=strReturn)>
@@ -74,8 +66,7 @@
 
 		<cfset var qRead = "" />
 		<cfset var strReturn = structNew() />
-		<cftry>
-			<cfquery name="qRead" datasource="#variables.dsn#">
+		<cfquery name="qRead" datasource="#variables.dsn#">
 				SELECT TOP 1
 					ResultID,
 					PersonID,
@@ -90,10 +81,7 @@
 				WHERE	AssessmentID = <cfqueryparam value="#arguments.AssessResult.getAssessmentID()#" CFSQLType="cf_sql_integer" /> AND PersonID = <cfqueryparam value="#arguments.AssessResult.getPersonID()#" CFSQLType="cf_sql_integer" /> AND DeletedFlag = <cfqueryparam value="N" CFSQLType="cf_sql_char" />
                 ORDER BY Score DESC
 			</cfquery>
-			<cfcatch type="database">
-				<!--- leave the bean as is --->
-			</cfcatch>
-		</cftry>
+			
 		<cfif qRead.recordCount>
 			<cfset strReturn = queryRowToStruct(qRead)>
 			<cfset AssessResultBean = arguments.AssessResult.init(argumentCollection=strReturn)>
@@ -106,8 +94,7 @@
 
 		<cfset var qRead = "" />
 		<cfset var strReturn = structNew() />
-		<cftry>
-			<cfquery name="qRead" datasource="#variables.dsn#">
+		<cfquery name="qRead" datasource="#variables.dsn#">
 				SELECT TOP 1
 					ResultID,
 					PersonID,
@@ -122,10 +109,7 @@
 				WHERE	AssessmentID = <cfqueryparam value="#arguments.AssessResult.getAssessmentID()#" CFSQLType="cf_sql_integer" /> AND PersonID = <cfqueryparam value="#arguments.AssessResult.getPersonID()#" CFSQLType="cf_sql_integer" /> AND DeletedFlag = <cfqueryparam value="N" CFSQLType="cf_sql_char" /> AND Score IS NULL
                 ORDER BY Score DESC
 			</cfquery>
-			<cfcatch type="database">
-				<!--- leave the bean as is --->
-			</cfcatch>
-		</cftry>
+			
 		<cfif qRead.recordCount>
 			<cfset strReturn = queryRowToStruct(qRead)>
 			<cfset AssessResultBean = arguments.AssessResult.init(argumentCollection=strReturn)>
@@ -138,8 +122,7 @@
 
 		<cfset var qRead = "" />
 		<cfset var strReturn = structNew() />
-		<cftry>
-			<cfquery name="qRead" datasource="#variables.dsn#">
+		<cfquery name="qRead" datasource="#variables.dsn#">
 				SELECT
 					ResultID,
 					PersonID,
@@ -153,10 +136,7 @@
 				FROM	ce_AssessResult
 				WHERE	ResultID = <cfqueryparam value="#arguments.AssessResult.getResultID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<!--- leave the bean as is --->
-			</cfcatch>
-		</cftry>
+			
 		<cfif qRead.recordCount>
 			<cfset strReturn = queryRowToStruct(qRead)>
 			<cfset AssessResultBean = arguments.AssessResult.init(argumentCollection=strReturn)>
@@ -168,8 +148,7 @@
 		<cfargument name="AssessResult" type="_com.AssessResult.AssessResult" required="true" />
 
 		<cfset var qUpdate = "" />
-		<cftry>
-			<cfquery name="qUpdate" datasource="#variables.dsn#">
+		<cfquery name="qUpdate" datasource="#variables.dsn#">
 				UPDATE	ce_AssessResult
 				SET
 					PersonID = <cfqueryparam value="#arguments.AssessResult.getPersonID()#" CFSQLType="cf_sql_integer" null="#not len(arguments.AssessResult.getPersonID())#" />,
@@ -187,10 +166,7 @@
 					AND ResultStatusID = <cfqueryparam value="#arguments.AssessResult.getResultStatusID()#" CFSQLType="cf_sql_integer" />
 				</cfif>--->
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 
@@ -198,8 +174,7 @@
 		<cfargument name="AssessResult" type="_com.AssessResult.AssessResult" required="true" />
 
 		<cfset var qUpdate = "" />
-		<cftry>
-			<cfquery name="qUpdate" datasource="#variables.dsn#">
+		<cfquery name="qUpdate" datasource="#variables.dsn#">
 				UPDATE	ce_AssessResult
 				SET
 					PersonID = <cfqueryparam value="#arguments.AssessResult.getPersonID()#" CFSQLType="cf_sql_integer" null="#not len(arguments.AssessResult.getPersonID())#" />,
@@ -212,10 +187,7 @@
 					DeletedFlag = <cfqueryparam value="#arguments.AssessResult.getDeletedFlag()#" CFSQLType="cf_sql_char" null="#not len(arguments.AssessResult.getDeletedFlag())#" />
 				WHERE	ResultID = <cfqueryparam value="#arguments.AssessResult.getResultID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 
@@ -223,18 +195,14 @@
 		<cfargument name="AssessResult" type="_com.AssessResult.AssessResult" required="true" />
 
 		<cfset var qDelete = "">
-		<cftry>
-			<cfquery name="qDelete" datasource="#variables.dsn#">
+		<cfquery name="qDelete" datasource="#variables.dsn#">
 				DELETE FROM	ce_AssessResult 
 				WHERE	AssessmentID = <cfqueryparam value="#arguments.AssessResult.getAssessmentID()#" CFSQLType="cf_sql_integer" /> AND PersonID = <cfqueryparam value="#arguments.AssessResult.getPersonID()#" CFSQLType="cf_sql_integer" />
 				<!---<cfif arguments.AssessResult.getResultStatusID() GT 0>
 					AND ResultStatusID = <cfqueryparam value="#arguments.AssessResult.getResultStatusID()#" CFSQLType="cf_sql_integer" />
 				</cfif>--->
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 

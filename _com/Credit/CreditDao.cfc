@@ -10,8 +10,7 @@
 		<cfargument name="Credit" type="_com.Credit.Credit" required="true" />
 
 		<cfset var qCreate = "" />
-		<cftry>
-			<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
+		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
 				INSERT INTO ce_Sys_Credit
 					(
 					Name,
@@ -27,10 +26,7 @@
 					<cfqueryparam value="#arguments.Credit.getReferenceFlag()#" CFSQLType="cf_sql_char" null="#not len(arguments.Credit.getReferenceFlag())#" />
 					)
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn CreateResult.IDENTITYCOL />
 	</cffunction>
 
@@ -39,8 +35,7 @@
 
 		<cfset var qRead = "" />
 		<cfset var strReturn = structNew() />
-		<cftry>
-			<cfquery name="qRead" datasource="#variables.dsn#">
+		<cfquery name="qRead" datasource="#variables.dsn#">
 				SELECT
 					CreditID,
 					Name,
@@ -54,10 +49,7 @@
 				FROM	ce_Sys_Credit
 				WHERE	CreditID = <cfqueryparam value="#arguments.Credit.getCreditID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<!--- leave the bean as is --->
-			</cfcatch>
-		</cftry>
+			
 		<cfif qRead.recordCount>
 			<cfset strReturn = queryRowToStruct(qRead)>
 			<cfset CreditBean = arguments.Credit.init(argumentCollection=strReturn)>
@@ -69,8 +61,7 @@
 		<cfargument name="Credit" type="_com.Credit.Credit" required="true" />
 
 		<cfset var qUpdate = "" />
-		<cftry>
-			<cfquery name="qUpdate" datasource="#variables.dsn#">
+		<cfquery name="qUpdate" datasource="#variables.dsn#">
 				UPDATE	ce_Sys_Credit
 				SET
 					Name = <cfqueryparam value="#arguments.Credit.getName()#" CFSQLType="cf_sql_varchar" null="#not len(arguments.Credit.getName())#" />,
@@ -83,10 +74,7 @@
 					DeletedFlag = <cfqueryparam value="#arguments.Credit.getDeletedFlag()#" CFSQLType="cf_sql_char" null="#not len(arguments.Credit.getDeletedFlag())#" />
 				WHERE	CreditID = <cfqueryparam value="#arguments.Credit.getCreditID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 
@@ -94,15 +82,11 @@
 		<cfargument name="Credit" type="_com.Credit.Credit" required="true" />
 
 		<cfset var qDelete = "">
-		<cftry>
-			<cfquery name="qDelete" datasource="#variables.dsn#">
+		<cfquery name="qDelete" datasource="#variables.dsn#">
 				DELETE FROM	ce_Sys_Credit 
 				WHERE	CreditID = <cfqueryparam value="#arguments.Credit.getCreditID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 

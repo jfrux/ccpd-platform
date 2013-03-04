@@ -11,8 +11,7 @@
 		<cfargument name="Ledger" type="_com.ActivityFinance.Ledger" required="true" />
 
 		<cfset var qCreate = "" />
-		<cftry>
-			<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
+		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
 				INSERT INTO ce_Activity_FinLedger
 					(
 					ActivityID,
@@ -34,10 +33,7 @@
 					<cfqueryparam value="#arguments.Ledger.getCreatedBy()#" CFSQLType="cf_sql_integer" null="#not len(arguments.Ledger.getCreatedBy())#" />
 					)
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn CreateResult.IDENTITYCOL />
 	</cffunction>
 
@@ -46,8 +42,7 @@
 
 		<cfset var qRead = "" />
 		<cfset var strReturn = structNew() />
-		<cftry>
-			<cfquery name="qRead" datasource="#variables.dsn#">
+		<cfquery name="qRead" datasource="#variables.dsn#">
 				SELECT
 					EntryID,
 					ActivityID,
@@ -65,10 +60,7 @@
 				FROM	ce_Activity_FinLedger
 				WHERE	EntryID = <cfqueryparam value="#arguments.Ledger.getEntryID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<!--- leave the bean as is --->
-			</cfcatch>
-		</cftry>
+			
 		<cfif qRead.recordCount>
 			<cfset strReturn = queryRowToStruct(qRead)>
 			<cfset LedgerBean = arguments.Ledger.init(argumentCollection=strReturn)>
@@ -80,8 +72,7 @@
 		<cfargument name="Ledger" type="_com.ActivityFinance.Ledger" required="true" />
 
 		<cfset var qUpdate = "" />
-		<cftry>
-			<cfquery name="qUpdate" datasource="#variables.dsn#">
+		<cfquery name="qUpdate" datasource="#variables.dsn#">
 				UPDATE	ce_Activity_FinLedger
 				SET
 					ActivityID = <cfqueryparam value="#arguments.Ledger.getActivityID()#" CFSQLType="cf_sql_integer" />,
@@ -93,10 +84,7 @@
 					UpdatedBy = <cfqueryparam value="#arguments.Ledger.getUpdatedBy()#" CFSQLType="cf_sql_integer" null="#not len(arguments.Ledger.getUpdatedBy())#" />
 				WHERE	EntryID = <cfqueryparam value="#arguments.Ledger.getEntryID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 
@@ -104,15 +92,11 @@
 		<cfargument name="Ledger" type="_com.ActivityFinance.Ledger" required="true" />
 
 		<cfset var qDelete = "">
-		<cftry>
-			<cfquery name="qDelete" datasource="#variables.dsn#">
+		<cfquery name="qDelete" datasource="#variables.dsn#">
 				DELETE FROM	ce_Activity_FinLedger 
 				WHERE	EntryID = <cfqueryparam value="#arguments.Ledger.getEntryID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 

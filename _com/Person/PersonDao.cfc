@@ -10,8 +10,7 @@
 		<cfargument name="Person" type="_com.Person.Person" required="true" />
 
 		<cfset var qCreate = "" />
-		<cftry>
-			<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
+		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
 				INSERT INTO ce_Person
 					(
 					Prefix,
@@ -55,10 +54,7 @@
 					<cfqueryparam value="#arguments.Person.getDeletedBy()#" CFSQLType="cf_sql_integer" null="#not len(arguments.Person.getDeletedBy())#" />
 					)
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn CreateResult.IDENTITYCOL />
 	</cffunction>
 
@@ -67,8 +63,7 @@
 
 		<cfset var qRead = "" />
 		<cfset var strReturn = structNew() />
-		<cftry>
-			<cfquery name="qRead" datasource="#variables.dsn#">
+		<cfquery name="qRead" datasource="#variables.dsn#">
 				SELECT
 					PersonID,
 					Prefix,
@@ -97,10 +92,7 @@
 				FROM	ce_Person
 				WHERE	PersonID = <cfqueryparam value="#arguments.Person.getPersonID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<!--- leave the bean as is --->
-			</cfcatch>
-		</cftry>
+			
 		<cfif qRead.recordCount>
 			<cfset strReturn = queryRowToStruct(qRead)>
 			<cfset PersonBean = arguments.Person.init(argumentCollection=strReturn)>
@@ -112,8 +104,7 @@
 		<cfargument name="Person" type="_com.Person.Person" required="true" />
 
 		<cfset var qUpdate = "" />
-		<cftry>
-			<cfquery name="qUpdate" datasource="#variables.dsn#">
+		<cfquery name="qUpdate" datasource="#variables.dsn#">
 				UPDATE	ce_Person
 				SET
 					Prefix = <cfqueryparam value="#arguments.Person.getPrefix()#" CFSQLType="cf_sql_varchar" null="#not len(arguments.Person.getPrefix())#" />,
@@ -141,10 +132,7 @@
 					DeletedBy = <cfqueryparam value="#arguments.Person.getDeletedBy()#" CFSQLType="cf_sql_integer" null="#not len(arguments.Person.getDeletedBy())#" />
 				WHERE	PersonID = <cfqueryparam value="#arguments.Person.getPersonID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 
@@ -152,15 +140,11 @@
 		<cfargument name="Person" type="_com.Person.Person" required="true" />
 
 		<cfset var qDelete = "">
-		<cftry>
-			<cfquery name="qDelete" datasource="#variables.dsn#">
+		<cfquery name="qDelete" datasource="#variables.dsn#">
 				DELETE FROM	ce_Person 
 				WHERE	PersonID = <cfqueryparam value="#arguments.Person.getPersonID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 

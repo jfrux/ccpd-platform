@@ -10,8 +10,7 @@
 		<cfargument name="AssessSection" type="_com.AssessSection.AssessSection" required="true" />
 
 		<cfset var qCreate = "" />
-		<cftry>
-			<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
+		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
 				INSERT INTO ce_AssessSection
 					(
 					Name,
@@ -29,10 +28,7 @@
 					<cfqueryparam value="#arguments.AssessSection.getSort()#" CFSQLType="cf_sql_integer" null="#not len(arguments.AssessSection.getSort())#" />
 					)
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn CreateResult.IDENTITYCOL />
 	</cffunction>
 
@@ -41,8 +37,7 @@
 
 		<cfset var qRead = "" />
 		<cfset var strReturn = structNew() />
-		<cftry>
-			<cfquery name="qRead" datasource="#variables.dsn#">
+		<cfquery name="qRead" datasource="#variables.dsn#">
 				SELECT
 					SectionID,
 					Name,
@@ -57,10 +52,7 @@
 				FROM	ce_AssessSection
 				WHERE	SectionID = <cfqueryparam value="#arguments.AssessSection.getSectionID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<!--- leave the bean as is --->
-			</cfcatch>
-		</cftry>
+			
 		<cfif qRead.recordCount>
 			<cfset strReturn = queryRowToStruct(qRead)>
 			<cfset AssessSectionBean = arguments.AssessSection.init(argumentCollection=strReturn)>
@@ -72,8 +64,7 @@
 		<cfargument name="AssessSection" type="_com.AssessSection.AssessSection" required="true" />
 
 		<cfset var qUpdate = "" />
-		<cftry>
-			<cfquery name="qUpdate" datasource="#variables.dsn#">
+		<cfquery name="qUpdate" datasource="#variables.dsn#">
 				UPDATE	ce_AssessSection
 				SET
 					Name = <cfqueryparam value="#arguments.AssessSection.getName()#" CFSQLType="cf_sql_varchar" null="#not len(arguments.AssessSection.getName())#" />,
@@ -87,10 +78,7 @@
 					DeletedFlag = <cfqueryparam value="#arguments.AssessSection.getDeletedFlag()#" CFSQLType="cf_sql_char" null="#not len(arguments.AssessSection.getDeletedFlag())#" />
 				WHERE	SectionID = <cfqueryparam value="#arguments.AssessSection.getSectionID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 
@@ -98,15 +86,11 @@
 		<cfargument name="AssessSection" type="_com.AssessSection.AssessSection" required="true" />
 
 		<cfset var qDelete = "">
-		<cftry>
-			<cfquery name="qDelete" datasource="#variables.dsn#">
+		<cfquery name="qDelete" datasource="#variables.dsn#">
 				DELETE FROM	ce_AssessSection 
 				WHERE	SectionID = <cfqueryparam value="#arguments.AssessSection.getSectionID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 

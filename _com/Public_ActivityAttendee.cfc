@@ -304,13 +304,10 @@
 					<!--- UPDATE ATTENDEE --->
 					<cfset Application.Com.AttendeeDAO.Save(AttendeeBean)>
 					
-					<cftry>
+					
 						<cfset application.email.send(EmailStyleID=5,ToAttendeeID=AttendeeBean.getAttendeeID(),ToActivityID=arguments.activityId,ToPersonID=arguments.PersonId,ToCreditID=1) />
 						
-						<cfcatch type="any">
-						
-						</cfcatch>
-					</cftry>
+					
 				<cfelse>
 					<!--- UPDATE ATTENDEE STATUSID --->
 					<cfset AttendeeBean.setStatusID(4)>
@@ -349,7 +346,7 @@
             <cfabort>
 		</cfif>
 		
-        <cftry>
+        
             
             <!--- DELETE ATTENDEECREDIT RECORDS --->
             <cfquery name="qDeleteAttendeeCredits" datasource="#Application.Settings.DSN#">
@@ -393,11 +390,7 @@
             
         	<cfset status.setStatus(true)>
         	<cfset status.setStatusMsg("All attendees have been removed.")>
-            
-            <cfcatch type="any">
-                <cfset Status.setStatusMsg("Fail|Error: " & cfcatch.message)>
-            </cfcatch>
-        </cftry>
+
 		
 		<cfreturn status />
 	</cffunction>
@@ -776,13 +769,7 @@
                             ToActivityID=Arguments.ActivityID)>
 							
                 <cfreturn Status />
-       <cftry>
-				<cfcatch type="any">
-					<cfset Status = "Fail|Error: #cfcatch.message#">
-					<cfreturn Status />
-                    <cfabort>
-				</cfcatch>
-			</cftry>
+
 		</cfif>
 		
 		<cfreturn Status />
@@ -1083,16 +1070,12 @@
         </cfif>
         
         <cfif arrayLen(status.getErrors()) EQ 0>
-        	<cftry>
+        	
 				<cfset application.email.send(EmailStyleID=5,ToActivityID=arguments.activityId,ToPersonID=arguments.personId,ToCreditID=arguments.creditId,fromEmail=session.person.getEmail()) />
                 
                 <cfset status.setStatus(true)>
                 <cfset status.setStatusMsg("Email has been sent.")>
-                
-                <cfcatch type="any">
-                	<cfset status.addError("General", "Error: " & cfcatch.Message)>
-                </cfcatch>
-            </cftry>
+
         </cfif>
         
         <cfreturn status />
@@ -1205,11 +1188,7 @@
 				<cfset Status = "Success|MD status for #PersonBean.getFirstName()# #PersonBean.getLastName()# has been updated..">
 				
 				<cfset application.activity.refresh(arguments.activityId) />
-			<cftry>
-                <cfcatch type="any">
-					<cfset Status = "Fail|Error: #cfcatch.message#">
-				</cfcatch>
-			</cftry>
+
 		</cfif>
 		
 		<cfreturn Status />
@@ -1282,14 +1261,11 @@
                     
 					<cfif arguments.statusId EQ 1>
 						<cfif arguments.StatusID EQ 1>
-							<cftry>
+							
 								<cfif arguments.sendEmail>
 								<cfset application.email.send(EmailStyleID=5,ToAttendeeID=AttendeeInfo.AttendeeID,ToActivityID=arguments.activityId,ToPersonID=PersonID,ToCreditID=1) />
 								</cfif>
-								<cfcatch type="any">
-								
-								</cfcatch>
-							</cftry>
+
 						</cfif>
 					</cfif>
 					
@@ -1361,11 +1337,7 @@
 				
 				<cfset application.activity.refresh(arguments.activityId) />
 				
-			<cftry>
-				<cfcatch type="any">
-                    <cfset status.setStatusMsg("Error: #cfcatch.message#")>
-				</cfcatch>
-			</cftry>
+	
 		</cfif>
 		
 		<cfreturn status />

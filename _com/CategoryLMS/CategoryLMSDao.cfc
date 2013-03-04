@@ -10,8 +10,7 @@
 		<cfargument name="CategoryLMS" type="_com.CategoryLMS.CategoryLMS" required="true" />
 
 		<cfset var qCreate = "" />
-		<cftry>
-			<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
+		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
 				INSERT INTO ce_Sys_CategoryLMS
 					(
 					Name,
@@ -23,10 +22,7 @@
 					<cfqueryparam value="#arguments.CategoryLMS.getDescription()#" CFSQLType="cf_sql_varchar" null="#not len(arguments.CategoryLMS.getDescription())#" />
 					)
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn CreateResult.IDENTITYCOL />
 	</cffunction>
 
@@ -35,8 +31,7 @@
 
 		<cfset var qRead = "" />
 		<cfset var strReturn = structNew() />
-		<cftry>
-			<cfquery name="qRead" datasource="#variables.dsn#">
+		<cfquery name="qRead" datasource="#variables.dsn#">
 				SELECT
 					CategoryID,
 					Name,
@@ -49,10 +44,7 @@
 						CategoryID = <cfqueryparam value="#arguments.CategoryLMS.getCategoryID()#" cfsqltype="cf_sql_integer" />
 					</cfif>
 			</cfquery>
-			<cfcatch type="database">
-				<!--- leave the bean as is --->
-			</cfcatch>
-		</cftry>
+			
 		<cfif qRead.recordCount>
 			<cfset strReturn = queryRowToStruct(qRead)>
 			<cfset CategoryLMSBean = arguments.CategoryLMS.init(argumentCollection=strReturn)>
@@ -64,8 +56,7 @@
 		<cfargument name="CategoryLMS" type="_com.CategoryLMS.CategoryLMS" required="true" />
 
 		<cfset var qUpdate = "" />
-		<cftry>
-			<cfquery name="qUpdate" datasource="#variables.dsn#">
+		<cfquery name="qUpdate" datasource="#variables.dsn#">
 				UPDATE	ce_Sys_CategoryLMS
 				SET
 					Name = <cfqueryparam value="#arguments.CategoryLMS.getName()#" CFSQLType="cf_sql_varchar" />,
@@ -77,10 +68,7 @@
 						CategoryID = <cfqueryparam value="#arguments.CategoryLMS.getCategoryID()#" cfsqltype="cf_sql_integer" />
 					</cfif>
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 
@@ -88,8 +76,7 @@
 		<cfargument name="CategoryLMS" type="_com.CategoryLMS.CategoryLMS" required="true" />
 
 		<cfset var qDelete = "">
-		<cftry>
-			<cfquery name="qDelete" datasource="#variables.dsn#">
+		<cfquery name="qDelete" datasource="#variables.dsn#">
 				DELETE FROM	ce_Sys_CategoryLMS 
 				WHERE
 					<cfif Len(arguments.CategoryLMS.getName()) GT 0>
@@ -98,10 +85,7 @@
 						CategoryID = <cfqueryparam value="#arguments.CategoryLMS.getCategoryID()#" cfsqltype="cf_sql_integer" />
 					</cfif>
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 

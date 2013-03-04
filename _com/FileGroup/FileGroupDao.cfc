@@ -10,8 +10,7 @@
 		<cfargument name="FileGroup" type="_com.FileGroup.FileGroup" required="true" />
 
 		<cfset var qCreate = "" />
-		<cftry>
-			<cfquery name="qCreate" datasource="#variables.dsn#">
+		<cfquery name="qCreate" datasource="#variables.dsn#">
 				INSERT INTO ce_FileGroup
 					(
 					Name,
@@ -27,10 +26,7 @@
 					<cfqueryparam value="#arguments.FileGroup.getFileGroupTypeID()#" CFSQLType="cf_sql_integer" null="#not len(arguments.FileGroup.getFileGroupTypeID())#" />
 					)
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 
@@ -39,8 +35,7 @@
 
 		<cfset var qRead = "" />
 		<cfset var strReturn = structNew() />
-		<cftry>
-			<cfquery name="qRead" datasource="#variables.dsn#">
+		<cfquery name="qRead" datasource="#variables.dsn#">
 				SELECT
 					FileGroupID,
 					Name,
@@ -54,10 +49,7 @@
 				FROM	ce_FileGroup
 				WHERE	FileGroupID = <cfqueryparam value="#arguments.FileGroup.getFileGroupID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<!--- leave the bean as is --->
-			</cfcatch>
-		</cftry>
+			
 		<cfif qRead.recordCount>
 			<cfset strReturn = queryRowToStruct(qRead)>
 			<cfset FileGroupBean = arguments.FileGroup.init(argumentCollection=strReturn)>
@@ -69,8 +61,7 @@
 		<cfargument name="FileGroup" type="_com.FileGroup.FileGroup" required="true" />
 
 		<cfset var qUpdate = "" />
-		<cftry>
-			<cfquery name="qUpdate" datasource="#variables.dsn#">
+		<cfquery name="qUpdate" datasource="#variables.dsn#">
 				UPDATE	ce_FileGroup
 				SET
 					Name = <cfqueryparam value="#arguments.FileGroup.getName()#" CFSQLType="cf_sql_varchar" null="#not len(arguments.FileGroup.getName())#" />,
@@ -83,10 +74,7 @@
 					DeletedFlag = <cfqueryparam value="#arguments.FileGroup.getDeletedFlag()#" CFSQLType="cf_sql_char" null="#not len(arguments.FileGroup.getDeletedFlag())#" />
 				WHERE	FileGroupID = <cfqueryparam value="#arguments.FileGroup.getFileGroupID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 
@@ -94,15 +82,11 @@
 		<cfargument name="FileGroup" type="_com.FileGroup.FileGroup" required="true" />
 
 		<cfset var qDelete = "">
-		<cftry>
-			<cfquery name="qDelete" datasource="#variables.dsn#">
+		<cfquery name="qDelete" datasource="#variables.dsn#">
 				DELETE FROM	ce_FileGroup 
 				WHERE	FileGroupID = <cfqueryparam value="#arguments.FileGroup.getFileGroupID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 

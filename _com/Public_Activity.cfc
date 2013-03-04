@@ -439,7 +439,7 @@
 		<cfset ActivityBean = CreateObject("component","#Application.Settings.Com#Activity.Activity").init(ActivityID=Arguments.ActivityID)>
 		<cfset ActivityBean = Application.Com.ActivityDAO.read(ActivityBean)>
 		
-		<cftry>
+		
 			<!--- Delete each record --->
 			<cfquery name="qRemove" datasource="#Application.Settings.DSN#">
 				UPDATE ce_Activity_Category
@@ -460,13 +460,8 @@
 			<cfset Application.Com.CategoryDAO.Update(CatBean)>
 
 			<cfset status.setStatus(true)>
-            <cfset status.setStatusMsg("Container removed successfully!")>
-			
-			<cfcatch type="any">
-				<cfset status.addError("General","Error: " & cfcatch.message)>
-			</cfcatch>
-		</cftry>
-		
+      <cfset status.setStatusMsg("Container removed successfully!")>
+
 		<cfreturn status />
 	</cffunction>
     
@@ -484,7 +479,7 @@
             <cfabort>
 		</cfif>
 		
-        <cftry>
+        
             <cfset Attributes.Deleted = CreateODBCDateTime(Now())>
             
             <cfquery name="qDeleteNote" datasource="#Application.Settings.DSN#">
@@ -507,11 +502,6 @@
             
 			<cfset status.setStatus(true)>
             <cfset status.setStatusMsg("Note has been deleted!")>
-            
-            <cfcatch type="any">
-                <cfset status.addError("General","Error: " & cfcatch.Message)>
-            </cfcatch>
-        </cftry>
 		
 		<cfreturn status />
 	</cffunction>
@@ -869,13 +859,9 @@
             <cfset AttendeeBean.setUpdatedBy(Session.PersonID)>
             <cfset Status = Application.Com.AttendeeDAO.Save(AttendeeBean)>
 			
-			<cftry>
+			
 				<cfset application.email.send(EmailStyleID=5,ToAttendeeID=AttendeeBean.getAttendeeID(),ToActivityID=arguments.activityId,ToPersonID=arguments.PersonId,ToCreditID=1) />
-				
-				<cfcatch type="any">
-				
-				</cfcatch>
-			</cftry>
+
 			
             <!--- SET STATUS --->
         	<cfset Status = "true|Activity has been marked completed!">
@@ -1130,7 +1116,7 @@
 		<cfset ActivityBean = Application.Com.ActivityDAO.read(ActivityBean)>
 		
 		<cfif Status EQ "">
-			<cftry>
+			
 				<cfquery name="qFindCategory" datasource="#Application.Settings.DSN#">
 					SELECT DeletedFlag
 					FROM ce_Activity_Category
@@ -1199,10 +1185,6 @@
 						<cfset Status = "Fail|Category has already been added.">
 					</cfif>
 				</cfif>
-				<cfcatch type="any">
-					<cfset Status = "Fail|Error: #cfcatch.message#">
-				</cfcatch>
-			</cftry>
 		</cfif>
 		
 		<cfreturn Status />
@@ -1236,7 +1218,7 @@
         </cfloop>
         
         <cfif arrayLen(status.getErrors()) EQ 0>
-            <cftry>
+            
                 <cfset ActivityNoteBean = Application.Com.ActivityNoteDAO.Save(ActivityNoteBean)>
             
                 <!--- ADD HISTORY ITEM --->
@@ -1248,11 +1230,6 @@
                 
 				<cfset status.setStatus(true)>
                 <cfset status.setStatusMsg("The note has been added.")>
-                
-                <cfcatch type="any">
-                    <cfset status.addError("General","Error: " & cfcatch.Message)>
-                </cfcatch>
-            </cftry>
         </cfif>
         
 		<cfreturn status />
@@ -1605,7 +1582,7 @@
 		</cfif>
 		
 		<cfif GetToken(Status,1,"|") NEQ "Failed">
-			<cftry>
+			
 				<cfset ActivityBean = CreateObject("component","#Application.Settings.Com#Activity.Activity").init(ActivityID=Arguments.ActivityID)>
 				<cfset ActivityBean = Application.Com.ActivityDAO.read(ActivityBean)>
 				
@@ -1635,10 +1612,6 @@
 								ToActivityID=Arguments.ActivityID)>
 				</cfif>
 				
-				<cfcatch>
-					<cfset Status = "Failed|Marking #Arguments.Field# failed due to critical error.">
-				</cfcatch>
-			</cftry>
 		</cfif>
 		
 		

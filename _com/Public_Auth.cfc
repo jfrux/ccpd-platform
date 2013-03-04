@@ -398,9 +398,9 @@
         
         <cfset var status = createObject("component","#Application.Settings.Com#returnData.buildStruct").init()>
         
-		<cfset status.setStatus(false)>
+		<!--- <cfset status.setStatus(false)>
         <cfset status.setStatusMsg("Cannot save credential information due to unknown reasons.")>
-        
+         --->
         <cfif Trim(Arguments.geonameId) EQ 0>
         	<cfset status.addError("geonameid", "You must select a City / State.")>
         </cfif>

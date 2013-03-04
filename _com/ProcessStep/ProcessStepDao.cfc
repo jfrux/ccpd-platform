@@ -10,8 +10,7 @@
 		<cfargument name="ProcessStep" type="_com.ProcessStep.ProcessStep" required="true" />
 
 		<cfset var qCreate = "" />
-		<cftry>
-			<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
+		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
 				INSERT INTO ce_ProcessStep
 					(
 					ProcessID,
@@ -43,10 +42,7 @@
 					<cfqueryparam value="#arguments.ProcessStep.getCreatedBy()#" CFSQLType="cf_sql_integer" />
 					)
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn CreateResult.IDENTITYCOL />
 	</cffunction>
 
@@ -55,8 +51,7 @@
 
 		<cfset var qRead = "" />
 		<cfset var strReturn = structNew() />
-		<cftry>
-			<cfquery name="qRead" datasource="#variables.dsn#">
+		<cfquery name="qRead" datasource="#variables.dsn#">
 				SELECT
 					StepID,
 					ProcessID,
@@ -79,10 +74,7 @@
 				FROM	ce_ProcessStep
 				WHERE	StepID = <cfqueryparam value="#arguments.ProcessStep.getStepID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<!--- leave the bean as is --->
-			</cfcatch>
-		</cftry>
+			
 		<cfif qRead.recordCount>
 			<cfset strReturn = queryRowToStruct(qRead)>
 			<cfset ProcessStepBean = arguments.ProcessStep.init(argumentCollection=strReturn)>
@@ -94,8 +86,7 @@
 		<cfargument name="ProcessStep" type="_com.ProcessStep.ProcessStep" required="true" />
 
 		<cfset var qUpdate = "" />
-		<cftry>
-			<cfquery name="qUpdate" datasource="#variables.dsn#">
+		<cfquery name="qUpdate" datasource="#variables.dsn#">
 				UPDATE	ce_ProcessStep
 				SET
 					ProcessID = <cfqueryparam value="#arguments.ProcessStep.getProcessID()#" CFSQLType="cf_sql_integer" />,
@@ -117,10 +108,7 @@
 					DeletedFlag = <cfqueryparam value="#arguments.ProcessStep.getDeletedFlag()#" CFSQLType="cf_sql_char" null="#not len(arguments.ProcessStep.getDeletedFlag())#" />
 				WHERE	StepID = <cfqueryparam value="#arguments.ProcessStep.getStepID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 
@@ -128,15 +116,11 @@
 		<cfargument name="ProcessStep" type="_com.ProcessStep.ProcessStep" required="true" />
 
 		<cfset var qDelete = "">
-		<cftry>
-			<cfquery name="qDelete" datasource="#variables.dsn#">
+		<cfquery name="qDelete" datasource="#variables.dsn#">
 				DELETE FROM	ce_ProcessStep 
 				WHERE	StepID = <cfqueryparam value="#arguments.ProcessStep.getStepID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 

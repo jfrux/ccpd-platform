@@ -10,8 +10,7 @@
 		<cfargument name="Status" type="_com.System.Status" required="true" />
 
 		<cfset var qCreate = "" />
-		<cftry>
-			<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
+		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
 				INSERT INTO ce_Sys_Status
 					(
 					Name
@@ -21,10 +20,7 @@
 					<cfqueryparam value="#arguments.Status.getName()#" CFSQLType="cf_sql_varchar" null="#not len(arguments.Status.getName())#" />
 					)
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn CreateResult.IDENTITYCOL />
 	</cffunction>
 
@@ -33,8 +29,7 @@
 
 		<cfset var qRead = "" />
 		<cfset var strReturn = structNew() />
-		<cftry>
-			<cfquery name="qRead" datasource="#variables.dsn#">
+		<cfquery name="qRead" datasource="#variables.dsn#">
 				SELECT
 					StatusID,
 					Name,
@@ -42,10 +37,7 @@
 				FROM	ce_Sys_Status
 				WHERE	StatusID = <cfqueryparam value="#arguments.Status.getStatusID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<!--- leave the bean as is --->
-			</cfcatch>
-		</cftry>
+			
 		<cfif qRead.recordCount>
 			<cfset strReturn = queryRowToStruct(qRead)>
 			<cfset StatusBean = arguments.Status.init(argumentCollection=strReturn)>
@@ -57,18 +49,14 @@
 		<cfargument name="Status" type="_com.System.Status" required="true" />
 
 		<cfset var qUpdate = "" />
-		<cftry>
-			<cfquery name="qUpdate" datasource="#variables.dsn#">
+		<cfquery name="qUpdate" datasource="#variables.dsn#">
 				UPDATE	ce_Sys_Status
 				SET
 					Name = <cfqueryparam value="#arguments.Status.getName()#" CFSQLType="cf_sql_varchar" null="#not len(arguments.Status.getName())#" />,
 					Created = <cfqueryparam value="#arguments.Status.getCreated()#" CFSQLType="cf_sql_timestamp" null="#not len(arguments.Status.getCreated())#" />
 				WHERE	StatusID = <cfqueryparam value="#arguments.Status.getStatusID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 
@@ -76,15 +64,11 @@
 		<cfargument name="Status" type="_com.System.Status" required="true" />
 
 		<cfset var qDelete = "">
-		<cftry>
-			<cfquery name="qDelete" datasource="#variables.dsn#">
+		<cfquery name="qDelete" datasource="#variables.dsn#">
 				DELETE FROM	ce_Sys_Status 
 				WHERE	StatusID = <cfqueryparam value="#arguments.Status.getStatusID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 

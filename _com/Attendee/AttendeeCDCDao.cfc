@@ -140,11 +140,8 @@
 					<cfqueryparam value="#arguments.AttendeeCDC.getCreatedBy()#" CFSQLType="cf_sql_integer" />
 					)
 			</cfquery>
-		<cftry>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+		
+			
 		<cfreturn CreateResult.IDENTITYCOL />
 	</cffunction>
 
@@ -153,8 +150,7 @@
 
 		<cfset var qRead = "" />
 		<cfset var strReturn = structNew() />
-		<cftry>
-			<cfquery name="qRead" datasource="#variables.dsn#">
+		<cfquery name="qRead" datasource="#variables.dsn#">
 				SELECT
 					AttendeeCDCID,
 					AttendeeID,
@@ -226,10 +222,7 @@
 				FROM	ce_AttendeeCDC
 				WHERE	AttendeeID = <cfqueryparam value="#arguments.AttendeeCDC.getAttendeeID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<!--- leave the bean as is --->
-			</cfcatch>
-		</cftry>
+			
 		<cfif qRead.recordCount>
 			<cfset strReturn = queryRowToStruct(qRead)>
 			<cfset AttendeeCDCBean = arguments.AttendeeCDC.init(argumentCollection=strReturn)>
@@ -241,8 +234,7 @@
 		<cfargument name="AttendeeCDC" type="_com.Attendee.AttendeeCDC" required="true" />
 
 		<cfset var qUpdate = "" />
-		<cftry>
-			<cfquery name="qUpdate" datasource="#variables.dsn#">
+		<cfquery name="qUpdate" datasource="#variables.dsn#">
 				UPDATE	ce_AttendeeCDC
 				SET
 					AttendeeID = <cfqueryparam value="#arguments.AttendeeCDC.getAttendeeID()#" CFSQLType="cf_sql_integer" />,
@@ -313,10 +305,7 @@
 					DeletedFlag = <cfqueryparam value="#arguments.AttendeeCDC.getDeletedFlag()#" CFSQLType="cf_sql_char" null="#not len(arguments.AttendeeCDC.getDeletedFlag())#" />
 				WHERE	AttendeeID = <cfqueryparam value="#arguments.AttendeeCDC.getAttendeeID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 
@@ -324,15 +313,11 @@
 		<cfargument name="AttendeeCDC" type="_com.Attendee.AttendeeCDC" required="true" />
 
 		<cfset var qDelete = "">
-		<cftry>
-			<cfquery name="qDelete" datasource="#variables.dsn#">
+		<cfquery name="qDelete" datasource="#variables.dsn#">
 				DELETE FROM	ce_AttendeeCDC 
 				WHERE	AttendeeID = <cfqueryparam value="#arguments.AttendeeCDC.getAttendeeID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 

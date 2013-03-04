@@ -189,7 +189,7 @@ Purpose:    Utlitity class for loading Java Classes
         </cfif>
     </cfif>
 
-	<cftry>
+	
 	    <cfset path = getCompileDirectory() & "/" & createUUID()/>
 
 		<cfdirectory action="create" directory="#path#">
@@ -226,15 +226,7 @@ Purpose:    Utlitity class for loading Java Classes
 			<cffile action="delete" file="#jar#" />
 		</cfif>
 
-		<cfcatch>
-			<!--- make sure the files are deleted --->
-			<cfif directoryExists(path)>
-				<cfdirectory action="delete" recurse="true" directory="#path#">
-			</cfif>
-
-			<cfrethrow>
-		</cfcatch>
-	</cftry>
+		
 </cffunction>
 
 <cffunction name="calculateJarName" hint="returns the jar file name for a directory array" access="private" returntype="string" output="false">

@@ -10,8 +10,7 @@
 		<cfargument name="ActivityPubComponent" type="_com.ActivityPubComponent.ActivityPubComponent" required="true" />
 
 		<cfset var qCreate = "" />
-		<cftry>
-			<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
+		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
 				INSERT INTO ce_Activity_PubComponent
 					(
 					ComponentID,
@@ -37,10 +36,7 @@
 					<cfqueryparam value="#arguments.ActivityPubComponent.getCreatedBy()#" CFSQLType="cf_sql_integer" />
 					)
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn CreateResult.IDENTITYCOL />
 	</cffunction>
 
@@ -49,8 +45,7 @@
 
 		<cfset var qRead = "" />
 		<cfset var strReturn = structNew() />
-		<cftry>
-			<cfquery name="qRead" datasource="#variables.dsn#">
+		<cfquery name="qRead" datasource="#variables.dsn#">
 				SELECT
 					PubComponentID,
 					ComponentID,
@@ -71,10 +66,7 @@
 				WHERE	
                 	PubComponentID = <cfqueryparam value="#arguments.ActivityPubComponent.getPubComponentID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<!--- leave the bean as is --->
-			</cfcatch>
-		</cftry>
+			
 		<cfif qRead.recordCount>
 			<cfset strReturn = queryRowToStruct(qRead)>
 			<cfset ActivityPubComponentBean = arguments.ActivityPubComponent.init(argumentCollection=strReturn)>
@@ -86,8 +78,7 @@
 		<cfargument name="ActivityPubComponent" type="_com.ActivityPubComponent.ActivityPubComponent" required="true" />
 
 		<cfset var qUpdate = "" />
-		<cftry>
-			<cfquery name="qUpdate" datasource="#variables.dsn#">
+		<cfquery name="qUpdate" datasource="#variables.dsn#">
 				UPDATE	ce_Activity_PubComponent
 				SET
 					ComponentID = <cfqueryparam value="#arguments.ActivityPubComponent.getComponentID()#" CFSQLType="cf_sql_integer" />,
@@ -107,10 +98,7 @@
 				WHERE	
                 	PubComponentID = <cfqueryparam value="#arguments.ActivityPubComponent.getPubComponentID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 
@@ -118,16 +106,12 @@
 		<cfargument name="ActivityPubComponent" type="_com.ActivityPubComponent.ActivityPubComponent" required="true" />
 
 		<cfset var qDelete = "">
-		<cftry>
-			<cfquery name="qDelete" datasource="#variables.dsn#">
+		<cfquery name="qDelete" datasource="#variables.dsn#">
 				DELETE FROM	ce_Activity_PubComponent 
 				WHERE	
                 	PubComponentID = <cfqueryparam value="#arguments.ActivityPubComponent.getPubComponentID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 

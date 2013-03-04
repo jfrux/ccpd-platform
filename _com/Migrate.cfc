@@ -404,7 +404,7 @@ WHERE     ((SELECT     COUNT(CourseSectionId) AS Expr1
             </cfquery>
             <cfif qPIF.RecordCount GT 0>
             #qGet.PersonID# #DateFormat(qGet.ReleaseDate,"mm/dd/yyyy")#...<cfflush>
-            <cftry>
+            
 				<cfset CDCBean = CreateObject("component","#Application.Settings.Com#Attendee.AttendeeCDC").init()>
                 <cfset CDCBean.setAttendeeID(qGet.AttendeeID)>
                 
@@ -475,10 +475,7 @@ WHERE     ((SELECT     COUNT(CourseSectionId) AS Expr1
                 <!--- Set who updated the info --->
                 <cfset CDCBean.setCreatedBy(qGet.AttendeeID)>
                 <cfset CDCBean = Application.Com.AttendeeCDCDAO.Create(CDCBean)>
-             <cfcatch>
-        	[failed]<cfflush>
-            </cfcatch>
-            </cftry>
+             
             <br />
             </cfif>
         </cfloop>

@@ -10,8 +10,7 @@
 		<cfargument name="FunRN" type="_com.System.FunRN" required="true" />
 
 		<cfset var qCreate = "" />
-		<cftry>
-			<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
+		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
 				INSERT INTO ce_Sys_FunRN
 					(
 					Name,
@@ -23,10 +22,7 @@
 					<cfqueryparam value="#arguments.FunRN.getDescription()#" CFSQLType="cf_sql_varchar" null="#not len(arguments.FunRN.getDescription())#" />
 					)
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn CreateResult.IDENTITYCOL />
 	</cffunction>
 
@@ -35,8 +31,7 @@
 
 		<cfset var qRead = "" />
 		<cfset var strReturn = structNew() />
-		<cftry>
-			<cfquery name="qRead" datasource="#variables.dsn#">
+		<cfquery name="qRead" datasource="#variables.dsn#">
 				SELECT
 					FunRNID,
 					Name,
@@ -45,10 +40,7 @@
 				FROM	ce_Sys_FunRN
 				WHERE	FunRNID = <cfqueryparam value="#arguments.FunRN.getFunRNID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<!--- leave the bean as is --->
-			</cfcatch>
-		</cftry>
+			
 		<cfif qRead.recordCount>
 			<cfset strReturn = queryRowToStruct(qRead)>
 			<cfset FunRNBean = arguments.FunRN.init(argumentCollection=strReturn)>
@@ -60,8 +52,7 @@
 		<cfargument name="FunRN" type="_com.System.FunRN" required="true" />
 
 		<cfset var qUpdate = "" />
-		<cftry>
-			<cfquery name="qUpdate" datasource="#variables.dsn#">
+		<cfquery name="qUpdate" datasource="#variables.dsn#">
 				UPDATE	ce_Sys_FunRN
 				SET
 					Name = <cfqueryparam value="#arguments.FunRN.getName()#" CFSQLType="cf_sql_varchar" null="#not len(arguments.FunRN.getName())#" />,
@@ -69,10 +60,7 @@
 					Created = <cfqueryparam value="#arguments.FunRN.getCreated()#" CFSQLType="cf_sql_timestamp" null="#not len(arguments.FunRN.getCreated())#" />
 				WHERE	FunRNID = <cfqueryparam value="#arguments.FunRN.getFunRNID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 
@@ -80,15 +68,11 @@
 		<cfargument name="FunRN" type="_com.System.FunRN" required="true" />
 
 		<cfset var qDelete = "">
-		<cftry>
-			<cfquery name="qDelete" datasource="#variables.dsn#">
+		<cfquery name="qDelete" datasource="#variables.dsn#">
 				DELETE FROM	ce_Sys_FunRN 
 				WHERE	FunRNID = <cfqueryparam value="#arguments.FunRN.getFunRNID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 

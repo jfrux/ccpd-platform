@@ -22,7 +22,7 @@
 			<cfreturn parseData />
 		</cfif>
 		
-		<cftry>
+		
 		
 			<cfscript>
 			/**
@@ -135,13 +135,7 @@
 			
 			<cfreturn returnPart />
 			
-			<cfcatch type="a">
-				<!--- display and log error message  --->
-				<cftrace type="warning" text="jtidy_cfc: #warning#" />
-				<!--- displays input data so the application still works --->
-				<cfreturn parseData />
-			</cfcatch>
-		</cftry>
+			
 	</cffunction>
 	
 	<cfscript>

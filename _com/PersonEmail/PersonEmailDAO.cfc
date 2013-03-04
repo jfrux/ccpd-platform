@@ -11,8 +11,7 @@
 		<cfargument name="PersonEmail" type="_com.PersonEmail.PersonEmail" required="true" />
 
 		<cfset var qCreate = "" />
-		<cftry>
-			<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
+		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
 				INSERT INTO ce_Person_Email
 					(
 					person_id,
@@ -30,10 +29,7 @@
 					<cfqueryparam value="#arguments.PersonEmail.getallow_login()#" CFSQLType="cf_sql_tinyint" null="#not len(arguments.PersonEmail.getallow_login())#" />
 					)
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn CreateResult.IDENTITYCOL />
 	</cffunction>
 
@@ -43,8 +39,7 @@
 		<cfset var qRead = "" />
 		<cfset var strReturn = structNew() />
         
-		<cftry>
-			<cfquery name="qRead" datasource="#variables.dsn#">
+		<cfquery name="qRead" datasource="#variables.dsn#">
 				SELECT
 					email_id,
 					person_id,
@@ -55,11 +50,6 @@
 				FROM	ce_Person_Email
 				WHERE	email_id = <cfqueryparam value="#arguments.PersonEmail.getemail_id()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<!--- leave the bean as is and set an empty query for the conditional logic below --->
-				<cfset qRead = queryNew("id") />
-			</cfcatch>
-		</cftry>
 		<cfif qRead.recordCount>
 			<cfset strReturn = queryRowToStruct(qRead)>
 			<cfset personEmailBean = arguments.PersonEmail.init(argumentCollection=strReturn)>
@@ -71,8 +61,7 @@
 		<cfargument name="PersonEmail" type="_com.PersonEmail.PersonEmail" required="true" />
 
 		<cfset var qUpdate = "" />
-		<cftry>
-			<cfquery name="qUpdate" datasource="#variables.dsn#">
+		<cfquery name="qUpdate" datasource="#variables.dsn#">
 				UPDATE	ce_Person_Email
 				SET
 					person_id = <cfqueryparam value="#arguments.PersonEmail.getperson_id()#" CFSQLType="cf_sql_integer" />,
@@ -82,10 +71,7 @@
 					allow_login = <cfqueryparam value="#arguments.PersonEmail.getallow_login()#" CFSQLType="cf_sql_tinyint" null="#not len(arguments.PersonEmail.getallow_login())#" />
 				WHERE	email_id = <cfqueryparam value="#arguments.PersonEmail.getemail_id()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 
@@ -93,15 +79,11 @@
 		<cfargument name="PersonEmail" type="_com.PersonEmail.PersonEmail" required="true" />
 
 		<cfset var qDelete = "">
-		<cftry>
-			<cfquery name="qDelete" datasource="#variables.dsn#">
+		<cfquery name="qDelete" datasource="#variables.dsn#">
 				DELETE FROM	ce_Person_Email 
 				WHERE	email_id = <cfqueryparam value="#arguments.PersonEmail.getemail_id()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
-			<cfcatch type="database">
-				<cfreturn false />
-			</cfcatch>
-		</cftry>
+			
 		<cfreturn true />
 	</cffunction>
 

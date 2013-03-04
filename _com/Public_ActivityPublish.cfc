@@ -11,7 +11,7 @@
         <cfset status.setStatus(false)>
         <cfset status.setStatusMsg("Cannot access comment approval functionality.")>
         
-        <cftry>
+        
             <cfquery name="qUpdateComment" datasource="#Application.Settings.DSN#">
                 UPDATE ce_Comment
                 SET	ApproveFlag = <cfqueryparam value="Y" cfsqltype="cf_sql_char" />,
@@ -35,10 +35,7 @@
             <cfset status.setStatus(true)>
         	<cfset status.setStatusMsg("Comment has been approved.")>
         	
-            <cfcatch type="any">
-        		<cfset status.addError("General","Error: " & cfcatch.Message)>
-            </cfcatch>
-        </cftry>
+            
         
 		<cfreturn status />
 	</cffunction>
@@ -66,7 +63,7 @@
         <cfset status.setStatus(false)>
         <cfset status.setStatusMsg("Cannot access comment denial functionality.")>
         
-        <cftry>
+        
             <cfquery name="qUpdateComment" datasource="#Application.Settings.DSN#">
                 UPDATE ce_Comment
                 SET	ApproveFlag = <cfqueryparam value="N" cfsqltype="cf_sql_char" />,
@@ -90,10 +87,7 @@
         <cfset status.setStatus(true)>
         <cfset status.setStatusMsg("Comment has been denied.")>
             
-            <cfcatch type="any">
-        		<cfset status.addError("General","Error: " & cfcatch.Message)>
-            </cfcatch>
-        </cftry>
+            
         
 		<cfreturn status />
 	</cffunction>
@@ -460,6 +454,8 @@
 		<cfif arrayLen(status.getErrors()) EQ 0>
 			<cfset Application.Com.ActivityPubGeneralDAO.Save(PubGeneral)>
             
+
+            
 			<cfset Application.History.Add(
                         HistoryStyleID=98,
                         FromPersonID=Session.PersonID,
@@ -481,7 +477,7 @@
         <cfset status.setStatus(false)>
         <cfset status.setStatusMsg("Cannot currently save activity specialties.")>
         
-        <cftry>
+        
 			<!--- CLEAR ALL PREVIOUS SPECIALTIES FOR CURRENT ACTIVITY --->
             <cfquery name="qDeleteSpecialties" datasource="#Application.Settings.DSN#">
                 DELETE 
@@ -520,10 +516,7 @@
             <cfset status.setStatus(true)>
             <cfset status.setStatusMsg("Specialties have been saved!")>
           	
-            <cfcatch type="any">
-            	<cfset status.addError("General", CFCatch.Message)>
-            </cfcatch>
-        </cftry>
+            
 		
 		<cfreturn status />
 	</cffunction>
