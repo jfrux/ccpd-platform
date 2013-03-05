@@ -181,7 +181,7 @@ function DownLoadTime56k(fileSize) {
 		flowplayer("div.player", "/lms/_images/_flowplayer/flowplayer-3.0.7.swf");
 	
 		$(".CertificateButton").live("click", function() {
-			$("#frmCert").attr('src','/admin/index.cfm/event/Public.Cert?ActivityID=' + nActivity + '&PersonID=' + nPerson);
+			$("#frmCert").attr('src','/admin/event/Public.Cert?ActivityID=' + nActivity + '&PersonID=' + nPerson);
 		});
 		
 		$(".AssessLink").live("click", function() {

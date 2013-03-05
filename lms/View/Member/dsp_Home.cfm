@@ -1,6 +1,4 @@
-<cfimport taglib="/lms/_tags/" prefix="lms">
 <cfoutput>
-
 <script>
 $(document).ready(function() {
 	$("##WelcomeHideLink").click(function() {
@@ -27,12 +25,12 @@ $(document).ready(function() {
 </cfquery>
 <div class="ContentBlock">
 	<h1>My CCPD</h1>
-	<div id="WelcomeBox" style="background-color:##DDECFF;border:1px solid ##00508A;<cfif Cookie.Pref.HideWelcome>display:none;</cfif> padding:7px;margin-top:5px;margin-bottom:4px;">
+	<div id="WelcomeBox" style="background-color:##DDECFF;border:1px solid ##00508A;padding:7px;margin-top:5px;margin-bottom:4px;">
 		<div style="font-size:18px;">Welcome to CCPD Online Continuing Education Portal!</div>
 		<p>This is the 'My CCPD' home page.  
 		It contains information about activities you're taking as well as 
-		activities you might be interested in.  As you rate and complete activities we will be able to provide you with other activities.</p>
-		
+		activities you might be interested in.  As you rate and complete activities we will be able to provide you with other activities.
+	</p>
 		<p>
 		It's time to get started...
 		<ul>
@@ -78,7 +76,7 @@ $(document).ready(function() {
 					</cfquery>
 					
 					<cfif qInterested.RecordCount GT 0>
-						<lms:ActivityItem 
+						<cf_ActivityItem 
 							ActivityID="#qInterested.ActivityID#" 
 							Title="#qInterested.ActivityTitle#" 
 							PaymentFlag="#qInterested.PaymentFlag#" 
@@ -110,7 +108,7 @@ $(document).ready(function() {
 					</cfquery>
 					
 					<cfif qInterested.RecordCount GT 0>
-						<lms:ActivityItem 
+						<cf_ActivityItem 
 							ActivityID="#qInterested.ActivityID#" 
 							Title="#qInterested.ActivityTitle#" 
 							PaymentFlag="#qInterested.PaymentFlag#" 
@@ -135,7 +133,7 @@ $(document).ready(function() {
 					
 					<cfif qActivityList.RecordCount GT 0>
 						<cfloop query="qActivityList">
-							<lms:ActivityItem 
+							<cf_ActivityItem 
 								ActivityID="#qActivityList.ActivityID#" 
 								Title="#qActivityList.Title#" 
 								PaymentFlag="#qActivityList.PaymentFlag#" 
@@ -159,7 +157,7 @@ $(document).ready(function() {
 					
 					<cfif qActivityList.RecordCount GT 0>
 						<cfloop query="qActivityList">
-							<lms:ActivityItem 
+							<cf_ActivityItem 
 								ActivityID="#qActivityList.ActivityID#" 
 								Title="#qActivityList.Title#" 
 								PaymentFlag="#qActivityList.PaymentFlag#" 
@@ -184,7 +182,7 @@ $(document).ready(function() {
 					<cfif qActivityList.RecordCount GT 0>
 						<cfloop query="qActivityList">
 						
-						<lms:ActivityItem 
+						<cf_ActivityItem 
 							ActivityID="#qActivityList.ActivityID#" 
 							Title="#qActivityList.Title#" 
 							PaymentFlag="#qActivityList.PaymentFlag#" 

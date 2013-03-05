@@ -1,11 +1,12 @@
 RewriteEngine On
 
-# RewriteCond %{REQUEST_FILENAME} !-f
-# RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
 RewriteBase /
 #ADMIN
+#RewriteRule ^admin/index.cfm/event/([^/]*)$ /admin/index.cfm?event=$1 [NC,QSA,L]
+
 RewriteRule ^admin/event/([^/]+)$ /admin/index.cfm?event=$1 [NC,QSA,L]
-RewriteRule ^admin/index.cfm/event/([^/]+)$ /admin/index.cfm?event=$1 [NC,QSA,L]
 
 #LMS
 RewriteRule ^lms/event/([^/]*)$ /lms/index.cfm?event=$1  [NC,QSA,L]
@@ -29,12 +30,17 @@ RewriteRule ^lms/home$ /lms/index.cfm?event=Member.Home  [NC,QSA]
 RewriteRule ^lms/transcript$ /lms/index.cfm?event=Member.Transcripts  [NC,QSA]
 RewriteRule ^lms/preferences$ /lms/index.cfm?event=Member.Account  [NC,QSA]
 
+RewriteRule ^(.+\.cf[cm])(/.*)?$ http://127.0.0.1:8888/$1$2 [L,P]
+RewriteRule ^(.+\.cfchart)(/.*)?$ http://127.0.0.1:8888/$1$2 [L,P]
+RewriteRule ^(.+\.cfres)(/.*)?$ http://127.0.0.1:8888/$1$2 [L,P]
+RewriteRule ^(.+\.cfml)(/.*)?$ http://127.0.0.1:8888/$1$2 [L,P]
 
 # #LMS SUPPORT
 # RewriteRule ^support/kb/([^/]*) /support/index.php/kb/$1  [NC,QSA]
 # RewriteRule ^support/([^/]*) /support/index.php/$1  [NC,QSA]
 
 # #ADMIN
-# RewriteRule ^register/([^/]*)/([^/]*) /admin/index.cfm?event=Public.Register?ActivityID=$1&Step=$2  [NC,QSA]
-# RewriteRule ^register/([^/]*) /admin/index.cfm?event=Public.Register?ActivityID=$1  [NC,QSA]
-# RewriteRule ^download/([^/]*)/([^/]*)/([^/]*) /admin/index.cfm?event=Public.Download?mode=$1&ModeID=$2&fid=$3  [NC,QSA]
+RewriteRule ^register/([^/]*)/([^/]*) /admin/index.cfm?event=Public.Register?ActivityID=$1&Step=$2  [NC,QSA]
+RewriteRule ^register/([^/]*) /admin/index.cfm?event=Public.Register?ActivityID=$1  [NC,QSA]
+RewriteRule ^download/([^/]*)/([^/]*)/([^/]*) /admin/index.cfm?event=Public.Download?mode=$1&ModeID=$2&fid=$3  [NC,QSA]
+

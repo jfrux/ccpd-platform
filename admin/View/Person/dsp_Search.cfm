@@ -96,7 +96,7 @@
 			<cfoutput query="qPeople" startrow="#PeoplePager.getStartRow()#" maxrows="#PeoplePager.getMaxRows()#">
 				<tr>
 					<cfif Attributes.Fuseaction EQ "Person.Finder">
-					<td width="16"><a href="javascript:void(0);" class="PersonAdder" id="#qPeople.PersonID#|#LastName#, #FirstName# #MiddleName#"><img src="#Application.Settings.RootPath#/_images/icons/Add.png" border="0" /></a></td>
+					<td width="16"><a href="javascript:void(0);" class="PersonAdder" id="#qPeople.PersonID#|#LastName#, #FirstName# #MiddleName#"><img src="#Application.Settings.RootPath#/_images/icons/add.png" border="0" /></a></td>
 					<td width="220">#LastName#, #FirstName# #MiddleName# <span style="font-size:12px;color:##888;">(#DisplayName#)</span></td>
 					<td><cfif Email NEQ "">#Email#<cfelse>&nbsp;</cfif></td>
 					<td><cfif Birthdate NEQ "">#DateFormat(Birthdate,"mm/dd/yyyy")#</cfif></td>
@@ -135,7 +135,7 @@
 			<cfloop query="qList">
 				<tr>
 					<cfif attributes.fuseaction eq "person.finder">
-					<td width="20"><a href="javascript:void(0);" class="PersonAdder" id="#qList.PersonID#|#LastName#, #FirstName# #MiddleName#"><img src="#Application.Settings.RootPath#/_images/icons/Add.png" border="0" /></a></td>
+					<td width="20"><a href="javascript:void(0);" class="PersonAdder" id="#qList.PersonID#|#LastName#, #FirstName# #MiddleName#"><img src="#Application.Settings.RootPath#/_images/icons/add.png" border="0" /></a></td>
 					
 					</cfif>
 					<td style="vertical-align:middle;">
