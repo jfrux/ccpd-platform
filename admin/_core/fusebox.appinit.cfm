@@ -20,6 +20,8 @@
 <cfswitch expression="#CGI.SERVER_NAME#">
 	<!--- PRODUCTION --->
 	<cfcase value="ccpd.uc.edu">
+		<cfset Application.Settings.assetsUrl = "http://www.getmycme.com/assets">
+		<cfset Application.Settings.apiUrl = "http://api.ccpd.uc.edu">
 		<cfset Application.Settings.DSN = "CCPD_PROD">
 		<cfset Application.Settings.AppName = "CCPD Admin 2.0" /> <!--- appears on Window Titles, etc. --->
 		<cfset Application.Settings.RootPath = "/admin" /> <!--- HTTP path for images, and links --->
@@ -35,6 +37,8 @@
 	</cfcase>
 	
 	<cfcase value="test.ccpd.uc.edu">
+		<cfset Application.Settings.assetsUrl = "http://localhost:3000/assets">
+		<cfset Application.Settings.apiUrl = "http://localhost:3000">
 		<cfset Application.Settings.DSN = "CCPD_RAILS">
 		<cfset Application.Settings.AppName = "CCPD Admin 2.0" /> <!--- appears on Window Titles, etc. --->
 		<cfset Application.Settings.RootPath = "/admin" /> <!--- HTTP path for images, and links --->
@@ -50,6 +54,8 @@
 	</cfcase>
 
 	<cfcase value="localhost">
+		<cfset Application.Settings.assetsUrl = "http://localhost:3000/assets">
+		<cfset Application.Settings.apiUrl = "http://localhost:3000">
 		<cfset Application.Settings.DSN = "CCPD_CLONE">
 		<cfset Application.Settings.AppName = "CCPD Admin 2.0" /> <!--- appears on Window Titles, etc. --->
 		<cfset Application.Settings.RootPath = "/admin" /> <!--- HTTP path for images, and links --->
@@ -65,6 +71,8 @@
 	</cfcase>
 
 	<cfcase value="v2.ccpd.uc.edu">
+		<cfset Application.Settings.assetsUrl = "http://localhost:3000/assets">
+		<cfset Application.Settings.apiUrl = "http://localhost:3000">
 		<cfset Application.Settings.DSN = "CCPD_CLONE">
 		<cfset Application.Settings.AppName = "CCPD Admin 2.0" /> <!--- appears on Window Titles, etc. --->
 		<cfset Application.Settings.RootPath = "/admin" /> <!--- HTTP path for images, and links --->

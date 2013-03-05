@@ -1,6 +1,7 @@
-
 function SubmitForm(oForm) {
-	oForm.submit();
+	if(oForm) {
+		oForm.submit();
+	}
 }
 
 $(function(){
@@ -170,8 +171,8 @@ function renderHistoryItem(row) {
 		ReturnContent = $.Replace(ReturnContent,VarName,eval("row." + VarName.toUpperCase()),"ALL");
 	});
 	
-	//console.log(ReturnContent);
 	
+	ReturnContent = $.Replace(ReturnContent,"/admin/index.cfm/event/",sMyself,"ALL");
 	ToContent = $.Replace(row.TOCONTENT,"/index.cfm/event/",sMyself,"ALL");
 	var $item = $("<div/>")
 					.addClass('uiStoryItem')
