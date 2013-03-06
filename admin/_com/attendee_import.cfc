@@ -95,9 +95,9 @@
 						SELECT     
 							country.id, country.name, country.code, countryDetail.ISO, countryDetail.ISO3
 						FROM         
-							ceschema.ce_Sys_Country AS country 
+							ce_Sys_Country AS country 
 						INNER JOIN
-							ceschema.geonameCountryInfo AS countryDetail ON country.code = countryDetail.ISO
+							geonameCountryInfo AS countryDetail ON country.code = countryDetail.ISO
 						WHERE     (countryDetail.ISO3 = <cfqueryparam value="#row['COUNTRY']#" cfsqltype="cf_sql_varchar" />)
 					</cfquery>
 					
