@@ -13,7 +13,7 @@
 			<cfset this.name = "CCPD_ADMIN_PRODUCTION_#namekey#" />
 			<cfset FUSEBOX_PARAMETERS.mode = "production" />
 			
-			<cfset THIS.CustomTagPaths = "/admin/_tags" />
+			<cfset THIS.CustomTagPaths = expandPath("/admin/_tags") />
 
 			<cferror template="/admin/error.cfm" type="exception" mailto="rountrjf@ucmail.uc.edu">
 			<cferror template="/admin/error.cfm" type="request" mailto="rountrjf@ucmail.uc.edu">
@@ -24,7 +24,7 @@
 			<cfset this.name = "CCPD_ADMIN_TEST_#namekey#" />
 			<cfset FUSEBOX_PARAMETERS.mode = "development-circuit-load" />
 			
-			<cfset THIS.CustomTagPaths = "/admin/_tags" />
+			<cfset THIS.CustomTagPaths = expandPath("/admin/_tags") />
 		</cfcase>
 
 		<!--- TEST --->
@@ -32,14 +32,14 @@
 			<cfset this.name = "CCPD_ADMIN_TEST_#namekey#" />
 			<cfset FUSEBOX_PARAMETERS.mode = "development-circuit-load" />
 			
-			<cfset THIS.CustomTagPaths = "/admin/_tags" />
+			<cfset THIS.CustomTagPaths = expandPath("/admin/_tags") />
 		</cfcase>
 
 		<cfcase value="v2.ccpd.uc.edu">
 			<cfset this.name = "CCPD_ADMIN_TEST_#namekey#" />
 			<cfset FUSEBOX_PARAMETERS.mode = "development-circuit-load" />
 			
-			<cfset THIS.CustomTagPaths = "/admin/_tags" />
+			<cfset THIS.CustomTagPaths = expandPath("/admin/_tags") />
 		</cfcase>
 	</cfswitch>
 	
