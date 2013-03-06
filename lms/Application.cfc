@@ -2,12 +2,12 @@
 	<!---
 		sample Application.cfc for ColdFusion MX 7 and later compatible systems
 	--->
-		
+		<cfset namekey = "f32f23f" />
 	<!--- set application name based on the directory path --->
 	<cfswitch expression="#CGI.SERVER_NAME#">
 		<!--- PRODUCTION --->
 		<cfcase value="ccpd.uc.edu">
-			<cfset this.name = "CCPD_LMS_PRODUCTION" />
+			<cfset this.name = "CCPD_LMS_PRODUCTION_#namekey#" />
 	
 			<cfset THIS.CustomTagPaths = "/lms/_tags" />
 			<cferror template="/lms/error.cfm" type="exception" mailto="rountrjf@ucmail.uc.edu">
@@ -19,7 +19,7 @@
 		</cfcase>
 		
 		<cfcase value="test.ccpd.uc.edu">
-			<cfset this.name = "CCPD_LMS_TEST" />
+			<cfset this.name = "CCPD_LMS_TEST_#namekey#" />
 			<cfset FUSEBOX_PARAMETERS.mode = "production" />
 			
 			<cfset THIS.CustomTagPaths = "/lms/_tags" />
@@ -28,7 +28,7 @@
 		</cfcase>
 
 		<cfcase value="localhost">
-			<cfset this.name = "CCPD_LMS_TEST" />
+			<cfset this.name = "CCPD_LMS_TEST_#namekey#" />
 			<cfset FUSEBOX_PARAMETERS.mode = "production" />
 			
 			<cfset THIS.CustomTagPaths = "/lms/_tags" />
@@ -37,7 +37,7 @@
 		</cfcase>
 
 		<cfcase value="v2.ccpd.uc.edu">
-			<cfset this.name = "CCPD_LMS_TEST" />
+			<cfset this.name = "CCPD_LMS_TEST_#namekey#" />
 			<cfset FUSEBOX_PARAMETERS.mode = "production" />
 			
 			<cfset THIS.CustomTagPaths = "/lms/_tags" />

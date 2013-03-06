@@ -88,7 +88,6 @@
 				</cfif>
 			</cfif>
 			
-			
 			<cfif len(trim(row['FIRSTNAME'])) GT 0>
 				<cfif len(row['COUNTRY']) GT 0>
 					<cfquery name="qCountry" datasource="#application.settings.dsn#">
