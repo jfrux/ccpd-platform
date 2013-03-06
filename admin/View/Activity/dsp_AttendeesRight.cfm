@@ -62,7 +62,7 @@ $(".importDialog").dialog({
 </div>
 <div class="MultiFormRight_SectSubTitle">Reports</div>
 <div class="MultiFormRight_LinkList">
-	<div style="padding:4px; font-size:13px;"><input type="checkbox" name="PrintSelected" id="PrintSelected" /><label for="PrintSelected" title="Print items for the selected members only."> Only use checked</label>&nbsp;<span id="CheckedCount" style="font-weight: bold;"></span></div>
+	<div style="padding:4px; font-size:13px;"><input type="checkbox" name="PrintSelected" id="PrintSelected" checked=checked /><label for="PrintSelected" title="Print items for the selected members only."> Only use checked</label>&nbsp;<span id="CheckedCount" style="font-weight: bold;"></span></div>
 	
 	<cfloop query="qActivityCredits">
     	<cfswitch expression="#qActivityCredits.CreditName#">
@@ -70,14 +70,14 @@ $(".importDialog").dialog({
                 <a href="javascript://" id="PrintCMECert" title="This link provides certificates for CME credit ONLY."><img src="#Application.Settings.RootPath#/_images/icons/award_star_bronze_2.png" border="0" align="absmiddle" /> CME Certificates</a>
             </cfcase>
             <cfcase value="CNE">
-				<a href="javascript://" id="PrintCNECert" title="This link provides certificates for CNE credit ONLY."><img src="#Application.Settings.RootPath#/_images/icons/award_star_bronze_2.png" border="0" align="absmiddle" /> CNE Certificates</a>
+				    <a href="javascript://" id="PrintCNECert" title="This link provides certificates for CNE credit ONLY."><img src="#Application.Settings.RootPath#/_images/icons/award_star_bronze_2.png" border="0" align="absmiddle" /> CNE Certificates</a>
             </cfcase>
         </cfswitch>
     </cfloop>
-	<a href="javascript://" id="PrintMailingLabels" title="This link provides mailing labels for all attendees for this activity."><img src="#Application.Settings.RootPath#/_images/icons/report_user.png" border="0" align="absmiddle" /> Mailing Labels</a>
+	<!--- <a href="javascript://" id="PrintMailingLabels" title="This link provides mailing labels for all attendees for this activity."><img src="#Application.Settings.RootPath#/_images/icons/report_user.png" border="0" align="absmiddle" /> Mailing Labels</a>
 	<a href="javascript://" id="PrintNameBadges" title="This link provides name badges for all attendees for this activity."><img src="#Application.Settings.RootPath#/_images/icons/report_user.png" border="0" align="absmiddle" /> Name Badges</a>
     <a href="javascript://" id="SigninSheet|Y" class="PrintSigninSheet" title="This link provides a sign-in sheet for all attendees for this activity including their SSN."><img src="#Application.Settings.RootPath#/_images/icons/report_user.png" border="0" align="absmiddle" /> Sign-in Sheet w/ SSN</a>
-    <a href="javascript://" id="SigninSheet|N" class="PrintSigninSheet" title="This link provides a sign-in sheet for all attendees for this activity excluding their SSN."><img src="#Application.Settings.RootPath#/_images/icons/report_user.png" border="0" align="absmiddle" /> Sign-in Sheet w/o SSN</a>
+    <a href="javascript://" id="SigninSheet|N" class="PrintSigninSheet" title="This link provides a sign-in sheet for all attendees for this activity excluding their SSN."><img src="#Application.Settings.RootPath#/_images/icons/report_user.png" border="0" align="absmiddle" /> Sign-in Sheet w/o SSN</a> --->
 </div>
 <div class="importDialog">
 	<iframe src="#myself#activity.import?activityid=#attributes.activityid#" frameborder="0" style="width: 400px; height: 100px;"></iframe>

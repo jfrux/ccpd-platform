@@ -305,7 +305,7 @@
 		/* PRINT SELECTED ONLY START */
 		$("#PrintCMECert").bind("click", this, function() {	//CME CERTS
 			if($("#PrintSelected").attr("checked") == 'checked') {				
-				window.open(sMyself + "Report.CMECert?ActivityID=" + nActivity + "&ReportID=5&selectedAttendees=" + SelectedAttendees);
+				window.open("http://www.getmycme.com/activities/" + nActivity + "/certificates?attendees=" + SelectedAttendees);
 			} else {
 				window.open(sMyself + "Report.CMECert?ActivityID=" + nActivity + "&ReportID=5");
 			};
