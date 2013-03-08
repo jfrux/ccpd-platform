@@ -139,6 +139,8 @@
 			
 			<cfswitch expression="#arguments.format#">
 				<cfcase value="excel">
+					<cfset ReportFileName = "accmePARS-review-#DateFormat(Now(),'MMDDYY')##TimeFormat(Now(),'hhmmss')#-#Session.AccountID#.xlsx">
+	
 				<poi:document name="Request.ExcelData" file="#ReportPath##ReportFileName#" type="XSSF">
 					<poi:classes>
 						<poi:class name="title" style="color:white; font-size:10pt; vertical-align:top; font-weight:bold; text-align:center; background-color:##4f81bd; border-right:3px solid ##000000; border-bottom:3px solid ##000000;" />
@@ -490,13 +492,14 @@
 								<poi:cell value="#qReport.CMEHrs#" type="numeric" numberformat="0.00" />
 				
 								
-								<!--- INCOME / EXPENSES --->
+								<!--- EXHIBIT --->
 								<cfif qReport.TotalExhibit>
 									<poi:cell value="#qReport.TotalExhibit#" type="numeric" numberformat="0.00" />
 								<cfelse>
 									<poi:cell value="" />
 								</cfif>
 								
+								<!--- OTHER INCOME --->
 								<cfif qReport.TotalRegistration>
 									<poi:cell value="#qReport.TotalRegistration#" type="numeric" numberformat="0.00" />
 								<cfelse>
@@ -514,6 +517,10 @@
 						</poi:sheet>
 					</poi:sheets>
 				</poi:document>
+
+				<cfheader name="Content-Type" value="application/msexcel">
+				<cfheader name="Content-Disposition" value="attachment; filename=#ReportFileName#">
+				<cfcontent type="application/msexcel" file="#ReportPath##ReportFileName#" deletefile="No">
 				</cfcase>
 				<cfcase value="tabbed">
 					<cfloop query="qReport">
@@ -1329,96 +1336,25 @@ AS (
 						END
 						)
 					END),0),
-		/* 
+		/*
 		######################################
-		TOTAL REGISTRATION FEE DOLLARS ($)
+		OTHER INCOME AMOUNT DOLLARS ($)
 		######################################
 		*/
-		TotalRegistration = 
+		TotalRegistration =
 		isNull(
-				(CASE isNull(A.SessionType,'S')
-					WHEN 'M' THEN 
-						CASE A.GroupingID
-							WHEN 2 THEN
-								/* WHEN: RSS */
-								(
-									SELECT     
-										SUM(FS.Amount)
-									FROM         
-										ce_Activity_FinSupport AS FS 
-									INNER JOIN
-										ce_Activity AS A5 ON FS.ActivityID = A5.ActivityID
-									WHERE    
-											(A5.ParentActivityID = A.ActivityID) AND 
-											(A5.DeletedFlag='N') AND 
-											(FS.SupportTypeID = 3) AND 
-											(FS.DeletedFlag = 'N') AND
-											(A5.StatusID IN (1,2,3)) AND
-											(A5.StartDate BETWEEN @StartDate AND @EndDate) AND
-											(Year(A5.StartDate) = @ReportYear)
-										OR
-											(A5.ActivityID = A.ActivityID) AND 
-											(FS.DeletedFlag = 'N') AND 
-											(A5.DeletedFlag = 'N') AND
-											(FS.SupportTypeID = 3) AND 
-											(A5.StatusID IN (1,2,3)) AND
-											(A5.StartDate BETWEEN @StartDate AND @EndDate) AND
-											(Year(A5.StartDate) = @ReportYear)
-								)
-							ELSE
-								(
-									SELECT     
-										SUM(FS.Amount)
-									FROM         
-										ce_Activity_FinSupport AS FS 
-									INNER JOIN
-										ce_Activity AS A5 ON FS.ActivityID = A5.ActivityID
-									WHERE    
-											(A5.ParentActivityID = A.ActivityID) AND 
-											(A5.DeletedFlag='N') AND 
-											(FS.SupportTypeID = 3) AND 
-											(FS.DeletedFlag = 'N') AND
-											(A5.StatusID IN (1,2,3)) AND
-											(A5.StartDate BETWEEN @StartDate AND @EndDate)
-										OR
-											(A5.ActivityID = A.ActivityID) AND 
-											(FS.DeletedFlag = 'N') AND 
-											(A5.DeletedFlag = 'N') AND
-											(FS.SupportTypeID = 3) AND 
-											(A5.StatusID IN (1,2,3)) AND
-											(A5.StartDate BETWEEN @StartDate AND @EndDate)
-								)
-						END
-					WHEN 'S' THEN
-						(
-						CASE A.ActivityTypeID
-							WHEN 2 THEN
-								/* WHEN: ENDURING MATERIAL */
-								(
-								SELECT     
-									SUM(FS.Amount)
-								FROM         
-									ce_Activity_FinSupport As FS
-								WHERE     
-									(FS.SupportTypeID = 3) AND 
-									(FS.DeletedFlag = 'N') AND 
-									(FS.ActivityID=A.ActivityID) AND
-									(Year(A.StartDate) = @ReportYear)
-								)
-							ELSE
-								(
-								SELECT     
-									SUM(FS.Amount)
-								FROM         
-									ce_Activity_FinSupport As FS
-								WHERE     
-									(FS.SupportTypeID = 3) AND 
-									(FS.DeletedFlag = 'N') AND 
-									(FS.ActivityID=A.ActivityID)
-								)
-						END
-						)
-					END),0),
+			(SELECT 
+				sum(ledger.amount)
+			FROM 
+				ce_Activity_FinLedger As ledger
+			INNER JOIN 
+				ce_sys_entrytype As type ON type.entrytypeid=ledger.entrytypeid
+			WHERE 
+				ledger.entrytypeid IN (1,11) AND 
+				activityId=A.activityId AND
+				ledger.deletedflag = 'N' AND
+				(Year(A.StartDate) = @ReportYear))
+		,0),
 
 		A.groupingid
 	FROM ce_Activity AS A

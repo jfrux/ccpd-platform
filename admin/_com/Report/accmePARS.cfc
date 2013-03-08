@@ -564,13 +564,14 @@
 								<poi:cell value="#qReport.CMEHrs#" type="numeric" numberformat="0.00" />
 								<poi:cell value="" />
 								
-								<!--- INCOME / EXPENSES --->
+								<!--- EXHIBIT --->
 								<cfif qReport.TotalExhibit>
 									<poi:cell value="#qReport.TotalExhibit#" type="numeric" numberformat="0.00" />
 								<cfelse>
 									<poi:cell value="" />
 								</cfif>
 								
+								<!--- OTHER INCOME --->
 								<cfif qReport.TotalRegistration>
 									<poi:cell value="#qReport.TotalRegistration#" type="numeric" numberformat="0.00" />
 								<cfelse>
@@ -898,152 +899,245 @@ function IntegerRankFormat(number){
 		SET @ReportYear = '#Year(arguments.startDate)#';
 		
 		WITH CTE_Activities ( ActivityID,ParentActivityID,ActivityTitle,ActivityTypeID,ActivityTypeName,ActivityLocation,City,State,Country,Sponsorship,Sponsor,CMEHrs,StatMD,StatNonMD,ReleaseDate,ActivityDate,EndDate,StatSupporters,SupportReceived,StatSuppAmount,TotalExpenses,TotalExhibit,TotalRegistration,groupingid)
-		AS (
-			SELECT 
-				A.ActivityID,
-				A.ParentActivityID,
-				ActivityTitle = upper(A.Title),
-				A.ActivityTypeID,
-				ActivityTypeName = AT.Name,
-				ActivityLocation = isNull(A.City,'') + ', ' + isNull((SELECT Code FROM ce_Sys_State WHERE StateID = A.State),''),
-				A.City,
-				State = isNull((SELECT Code FROM ce_Sys_State WHERE StateID = A.State),''),
-				Country = isNull((SELECT   geonameCountry.ISO3 FROM ce_Sys_Country AS country INNER JOIN geonameCountryInfo AS geonameCountry ON country.code = geonameCountry.ISO WHERE country.id = A.Country),''),
-				Sponsorship = (CASE A.Sponsorship
-									WHEN 'J' THEN 'Joint'
-									WHEN 'D' THEN 'Direct'
-								END),
-				Sponsor,
-				CMEHrs = (CASE isNull(A.SessionType,'S')
-							WHEN 'M' THEN 
-								isNull((SELECT SUM(AC.Amount) AS TotalHours
-										FROM ce_Activity_Credit AS AC 
-										INNER JOIN ce_Activity AS A4 ON AC.ActivityID = A4.ActivityID
-										WHERE (A4.DeletedFlag='N') AND (AC.CreditID = 1) AND (A4.ParentActivityID = a.ActivityID) AND (A4.StatusID IN (1,2,3)) AND (AC.DeletedFlag='N') AND (A4.StartDate BETWEEN @StartDate AND @EndDate)
-										OR
-										(A4.DeletedFlag='N') AND (AC.CreditID = 1) AND (A4.ParentActivityID = a.ActivityID) AND (A4.StatusID IN (1,2,3)) AND (AC.DeletedFlag='N') AND (A4.EndDate BETWEEN @StartDate AND @EndDate)),0)
-							WHEN 'S' THEN 
-								isNull((SELECT SUM(AC.Amount) AS TotalHours
-										FROM ce_Activity_Credit AS AC 
-										WHERE (AC.CreditID = 1) AND (AC.ActivityID = A.ActivityID) AND (AC.DeletedFlag='N')),0)
+AS (
+	SELECT 
+		A.ActivityID,
+		A.ParentActivityID,
+		ActivityTitle = upper(A.Title),
+		A.ActivityTypeID,
+		ActivityTypeName = AT.Name,
+		ActivityLocation = isNull(A.City,'') + ', ' + isNull((SELECT Code FROM ce_Sys_State WHERE StateID = A.State),''),
+		A.City,
+		State = isNull((SELECT Code FROM ce_Sys_State WHERE StateID = A.State),''),
+		Country = isNull((SELECT   geonameCountry.ISO3 FROM ce_Sys_Country AS country INNER JOIN geonameCountryInfo AS geonameCountry ON country.code = geonameCountry.ISO WHERE country.id = A.Country),''),
+		Sponsorship = (CASE A.Sponsorship
+							WHEN 'J' THEN 'Joint'
+							WHEN 'D' THEN 'Direct'
 						END),
-				StatMD = 
-					isNull((CASE
-						/* ENDURING MATERIALS */
-						WHEN A.ActivityTypeID = 2 THEN 
-							(SELECT Count(Att.AttendeeID)
-							 FROM ce_Attendee AS Att 
-							 INNER JOIN ce_Activity AS A2 ON Att.ActivityID = A2.ActivityID
+		Sponsor,
+		CMEHrs = (CASE isNull(A.SessionType,'S')
+					WHEN 'M' THEN 
+						isNull((SELECT SUM(AC.Amount) AS TotalHours
+								FROM ce_Activity_Credit AS AC 
+								INNER JOIN ce_Activity AS A4 ON AC.ActivityID = A4.ActivityID
+								WHERE (A4.DeletedFlag='N') AND (AC.CreditID = 1) AND (A4.ParentActivityID = a.ActivityID) AND (A4.StatusID IN (1,2,3)) AND (AC.DeletedFlag='N') AND (A4.StartDate BETWEEN @StartDate AND @EndDate)
+								OR
+								(A4.DeletedFlag='N') AND (AC.CreditID = 1) AND (A4.ParentActivityID = a.ActivityID) AND (A4.StatusID IN (1,2,3)) AND (AC.DeletedFlag='N') AND (A4.EndDate BETWEEN @StartDate AND @EndDate)),0)
+					WHEN 'S' THEN 
+						isNull((SELECT SUM(AC.Amount) AS TotalHours
+								FROM ce_Activity_Credit AS AC 
+								WHERE (AC.CreditID = 1) AND (AC.ActivityID = A.ActivityID) AND (AC.DeletedFlag='N')),0)
+				END),
+		StatMD = 
+			isNull((CASE
+				/* ENDURING MATERIALS */
+				WHEN A.ActivityTypeID = 2 THEN 
+					(SELECT Count(Att.AttendeeID)
+					 FROM ce_Attendee AS Att 
+					 INNER JOIN ce_Activity AS A2 ON Att.ActivityID = A2.ActivityID
+					 WHERE 
+						(A2.DeletedFlag='N') AND 
+						(Att.ActivityID = a.ActivityID) AND
+						(Att.MDflag = 'Y') AND 
+						(A2.StatusID IN (1,2,3)) AND 
+						(Att.CompleteDate BETWEEN @StartDate AND @EndDate) AND
+						(A2.StartDate BETWEEN @StartDate AND @EndDate) AND
+						(Att.DeletedFlag='N')
+							OR
+						(A2.DeletedFlag='N') AND 
+						(Att.ActivityID = a.ActivityID) AND
+						(Att.MDflag = 'Y') AND 
+						(A2.StatusID IN (1,2,3)) AND 
+						(Att.CompleteDate BETWEEN @StartDate AND @EndDate) AND
+						(A2.EndDate BETWEEN @StartDate AND @EndDate) AND
+						(Att.DeletedFlag='N')
+					)
+				WHEN A.ActivityTypeID <> 2 THEN 
+					(CASE isNull(A.SessionType,'S')
+						WHEN 'M' THEN 
+							(SELECT Sum(A2.StatMD)
+							FROM
+							 ce_Activity AS A2
 							 WHERE 
-								(A2.DeletedFlag='N') AND 
-								(Att.ActivityID = a.ActivityID) AND
-								(Att.MDflag = 'Y') AND 
-								(A2.StatusID IN (1,2,3)) AND 
-								(Att.CompleteDate BETWEEN @StartDate AND @EndDate) AND
-								(A2.StartDate BETWEEN @StartDate AND @EndDate) AND
-								(Att.DeletedFlag='N')
-									OR
-								(A2.DeletedFlag='N') AND 
-								(Att.ActivityID = a.ActivityID) AND
-								(Att.MDflag = 'Y') AND 
-								(A2.StatusID IN (1,2,3)) AND 
-								(Att.CompleteDate BETWEEN @StartDate AND @EndDate) AND
-								(A2.EndDate BETWEEN @StartDate AND @EndDate) AND
-								(Att.DeletedFlag='N')
+								(A2.DeletedFlag='N') AND (A2.ParentActivityID = A.ActivityID) AND (A2.StatusID IN (1,2,3)) AND (A2.StartDate BETWEEN @StartDate AND @EndDate)
+								OR
+								(A2.DeletedFlag='N') AND (A2.ParentActivityID = A.ActivityID) AND (A2.StatusID IN (1,2,3)) AND (A2.EndDate BETWEEN @StartDate AND @EndDate)
 							)
-						WHEN A.ActivityTypeID <> 2 THEN 
-							(CASE isNull(A.SessionType,'S')
+						WHEN 'S' THEN
+							(SELECT Sum(A2.StatMD)
+							FROM
+							 ce_Activity AS A2
+							 WHERE 
+								(A2.DeletedFlag='N') AND (A2.ActivityID = A.ActivityID) AND (A2.StatusID IN (1,2,3)) AND (A2.StartDate BETWEEN @StartDate AND @EndDate)
+								OR
+								(A2.DeletedFlag='N') AND (A2.ActivityID = A.ActivityID) AND (A2.StatusID IN (1,2,3)) AND (A2.EndDate BETWEEN @StartDate AND @EndDate)
+							)
+					END)
+							
+			END),0),
+			StatNonMD = 
+			isNull((
+				CASE A.ActivityTypeID
+					WHEN 2 THEN /* WHEN: ENDURING MATERIALS */
+
+						(
+						(
+						SELECT 
+							count(Att2.AttendeeID)
+						FROM 
+							ce_Attendee AS Att2 
+						INNER JOIN 
+							ce_Activity AS A3 ON Att2.ActivityID = A3.ActivityID
+						WHERE 
+							(A3.DeletedFlag='N') AND 
+							(Att2.ActivityID = a.ActivityID) AND
+							(Att2.MDflag = 'N') AND 
+							(A3.StatusID IN (1,2,3)) AND 
+							(Att2.CompleteDate BETWEEN @StartDate AND @EndDate) AND
+							(A3.StartDate BETWEEN @StartDate AND @EndDate) AND
+							(Att2.DeletedFlag='N')
+								OR
+							(A3.DeletedFlag='N') AND 
+							(Att2.ActivityID = a.ActivityID) AND
+							(Att2.MDflag = 'N') AND 
+							(A3.StatusID IN (1,2,3)) AND 
+							(Att2.CompleteDate BETWEEN @StartDate AND @EndDate) AND
+							(A3.EndDate BETWEEN @StartDate AND @EndDate) AND
+							(Att2.DeletedFlag='N')
+						)+
+						isNull(A.statAddlAttendees,0)
+						)
+					ELSE
+						(CASE isNull(A.SessionType,'S')
 								WHEN 'M' THEN 
-									(SELECT Sum(A2.StatMD)
+									(
+									SELECT 
+										isNull(Sum(A3.StatNonMD),0)
 									FROM
-									 ce_Activity AS A2
-									 WHERE 
-										(A2.DeletedFlag='N') AND (A2.ParentActivityID = A.ActivityID) AND (A2.StatusID IN (1,2,3)) AND (A2.StartDate BETWEEN @StartDate AND @EndDate)
+										ce_Activity AS A3
+									WHERE 
+										(A3.DeletedFlag='N') AND 
+										(A3.ParentActivityID = A.ActivityID) AND 
+										(A3.StatusID IN (1,2,3)) AND 
+										(A3.StartDate BETWEEN @StartDate AND @EndDate)
 										OR
-										(A2.DeletedFlag='N') AND (A2.ParentActivityID = A.ActivityID) AND (A2.StatusID IN (1,2,3)) AND (A2.EndDate BETWEEN @StartDate AND @EndDate)
+										(A3.DeletedFlag='N') AND 
+										(A3.ParentActivityID = A.ActivityID) AND 
+										(A3.StatusID IN (1,2,3)) AND 
+										(A3.EndDate BETWEEN @StartDate AND @EndDate)
 									)
-								WHEN 'S' THEN
-									(SELECT Sum(A2.StatMD)
-									FROM
-									 ce_Activity AS A2
-									 WHERE 
-										(A2.DeletedFlag='N') AND (A2.ActivityID = A.ActivityID) AND (A2.StatusID IN (1,2,3)) AND (A2.StartDate BETWEEN @StartDate AND @EndDate)
-										OR
-										(A2.DeletedFlag='N') AND (A2.ActivityID = A.ActivityID) AND (A2.StatusID IN (1,2,3)) AND (A2.EndDate BETWEEN @StartDate AND @EndDate)
+								WHEN 'S' THEN 
+									(
+										isNull(A.StatNonMD,0)
 									)
 							END)
-									
+							
 					END),0),
-					StatNonMD = 
-					isNull((
-						CASE A.ActivityTypeID
-							WHEN 2 THEN /* WHEN: ENDURING MATERIALS */
-
-								(
-								(
-								SELECT 
-									count(Att2.AttendeeID)
-								FROM 
-									ce_Attendee AS Att2 
-								INNER JOIN 
-									ce_Activity AS A3 ON Att2.ActivityID = A3.ActivityID
-								WHERE 
-									(A3.DeletedFlag='N') AND 
-									(Att2.ActivityID = a.ActivityID) AND
-									(Att2.MDflag = 'N') AND 
-									(A3.StatusID IN (1,2,3)) AND 
-									(Att2.CompleteDate BETWEEN @StartDate AND @EndDate) AND
-									(A3.StartDate BETWEEN @StartDate AND @EndDate) AND
-									(Att2.DeletedFlag='N')
-										OR
-									(A3.DeletedFlag='N') AND 
-									(Att2.ActivityID = a.ActivityID) AND
-									(Att2.MDflag = 'N') AND 
-									(A3.StatusID IN (1,2,3)) AND 
-									(Att2.CompleteDate BETWEEN @StartDate AND @EndDate) AND
-									(A3.EndDate BETWEEN @StartDate AND @EndDate) AND
-									(Att2.DeletedFlag='N')
-								)+
-								isNull(A.statAddlAttendees,0)
-								)
-							ELSE
-								(CASE isNull(A.SessionType,'S')
-										WHEN 'M' THEN 
-											(
-											SELECT 
-												isNull(Sum(A3.StatNonMD),0)
-											FROM
-												ce_Activity AS A3
-											WHERE 
-												(A3.DeletedFlag='N') AND 
-												(A3.ParentActivityID = A.ActivityID) AND 
-												(A3.StatusID IN (1,2,3)) AND 
-												(A3.StartDate BETWEEN @StartDate AND @EndDate)
-												OR
-												(A3.DeletedFlag='N') AND 
-												(A3.ParentActivityID = A.ActivityID) AND 
-												(A3.StatusID IN (1,2,3)) AND 
-												(A3.EndDate BETWEEN @StartDate AND @EndDate)
-											)
-										WHEN 'S' THEN 
-											(
-												isNull(A.StatNonMD,0)
-											)
-									END)
-									
-							END),0),
-				A.ReleaseDate,
-				ActivityDate = A.StartDate,
-				A.EndDate,
-				/* 
-				######################################
-				NUMBER OF COMMERCIAL SUPPORTERS
-				######################################
-				*/
-				StatSupporters = 
-				isNull((CASE isNull(A.SessionType,'S')
-					WHEN 'M' THEN
+		A.ReleaseDate,
+		ActivityDate = A.StartDate,
+		A.EndDate,
+		/* 
+		######################################
+		NUMBER OF COMMERCIAL SUPPORTERS
+		######################################
+		*/
+		StatSupporters = 
+		isNull((CASE isNull(A.SessionType,'S')
+			WHEN 'M' THEN
+				(
+				CASE A.GroupingID
+					WHEN 2 THEN
+						/* WHEN: RSS */
 						(
+							SELECT     
+								COUNT(FS.Amount)
+							FROM         
+								ce_Activity_FinSupport AS FS 
+							INNER JOIN
+								ce_Activity AS A5 ON FS.ActivityID = A5.ActivityID
+							WHERE    
+									(A5.ParentActivityID = A.ActivityID) AND 
+									(A5.DeletedFlag='N') AND 
+									(FS.SupportTypeID = 1) AND 
+									(FS.DeletedFlag = 'N') AND
+									(A5.StatusID IN (1,2,3)) AND
+									(A5.StartDate BETWEEN @StartDate AND @EndDate) AND
+									(Year(A5.StartDate) = @ReportYear)
+								OR
+									(A5.ActivityID = A.ActivityID) AND 
+									(FS.DeletedFlag = 'N') AND 
+									(A5.DeletedFlag = 'N') AND
+									(FS.SupportTypeID = 1) AND 
+									(A5.StatusID IN (1,2,3)) AND
+									(A5.StartDate BETWEEN @StartDate AND @EndDate) AND
+									(Year(A5.StartDate) = @ReportYear)
+						)
+					ELSE
+						(
+							SELECT     
+								COUNT(FS.Amount)
+							FROM         
+								ce_Activity_FinSupport AS FS 
+							INNER JOIN
+								ce_Activity AS A5 ON FS.ActivityID = A5.ActivityID
+							WHERE    
+									(A5.ParentActivityID = A.ActivityID) AND 
+									(A5.DeletedFlag='N') AND 
+									(FS.SupportTypeID = 1) AND 
+									(FS.DeletedFlag = 'N') AND
+									(A5.StatusID IN (1,2,3)) AND
+									(A5.StartDate BETWEEN @StartDate AND @EndDate)
+								OR
+									(A5.ActivityID = A.ActivityID) AND 
+									(FS.DeletedFlag = 'N') AND 
+									(A5.DeletedFlag = 'N') AND
+									(FS.SupportTypeID = 1) AND 
+									(A5.StatusID IN (1,2,3)) AND
+									(A5.StartDate BETWEEN @StartDate AND @EndDate)
+						)
+				END
+				)
+			WHEN 'S' THEN
+				(
+				CASE A.ActivityTypeID
+					WHEN 2 THEN 
+						/* WHEN: ENDURING MATERIAL */
+						(
+						SELECT     
+							COUNT(FS.Amount)
+						FROM         
+							ce_Activity_FinSupport As FS
+						WHERE     
+							(FS.SupportTypeID = 1) AND 
+							(FS.DeletedFlag = 'N') AND 
+							(FS.ActivityID=A.ActivityID) AND
+							(Year(A.StartDate) = @ReportYear)
+						)
+					ELSE
+						(
+						SELECT     
+							COUNT(FS.Amount)
+						FROM         
+							ce_Activity_FinSupport As FS
+						WHERE     
+							(FS.SupportTypeID = 1) AND 
+							(FS.DeletedFlag = 'N') AND 
+							(FS.ActivityID=A.ActivityID)
+						)
+				END
+				)
+		END),0)
+		,
+		/* 
+		######################################
+		COMMERCIAL SUPPORT RECEIVED (YES / NO)
+		######################################
+		*/
+		SupportReceived = 
+			(
+			CASE isNull(
+				(CASE isNull(A.SessionType,'S')
+					WHEN 'M' THEN 
 						CASE A.GroupingID
 							WHEN 2 THEN
 								/* WHEN: RSS */
@@ -1095,7 +1189,6 @@ function IntegerRankFormat(number){
 											(A5.StartDate BETWEEN @StartDate AND @EndDate)
 								)
 						END
-						)
 					WHEN 'S' THEN
 						(
 						CASE A.ActivityTypeID
@@ -1126,398 +1219,237 @@ function IntegerRankFormat(number){
 						END
 						)
 				END),0)
-				,
-				/* 
-				######################################
-				COMMERCIAL SUPPORT RECEIVED (YES / NO)
-				######################################
-				*/
-				SupportReceived = 
-					(
-					CASE isNull(
-						(CASE isNull(A.SessionType,'S')
-							WHEN 'M' THEN 
-								CASE A.GroupingID
-									WHEN 2 THEN
-										/* WHEN: RSS */
-										(
-											SELECT     
-												COUNT(FS.Amount)
-											FROM         
-												ce_Activity_FinSupport AS FS 
-											INNER JOIN
-												ce_Activity AS A5 ON FS.ActivityID = A5.ActivityID
-											WHERE    
-													(A5.ParentActivityID = A.ActivityID) AND 
-													(A5.DeletedFlag='N') AND 
-													(FS.SupportTypeID = 1) AND 
-													(FS.DeletedFlag = 'N') AND
-													(A5.StatusID IN (1,2,3)) AND
-													(A5.StartDate BETWEEN @StartDate AND @EndDate) AND
-													(Year(A5.StartDate) = @ReportYear)
-												OR
-													(A5.ActivityID = A.ActivityID) AND 
-													(FS.DeletedFlag = 'N') AND 
-													(A5.DeletedFlag = 'N') AND
-													(FS.SupportTypeID = 1) AND 
-													(A5.StatusID IN (1,2,3)) AND
-													(A5.StartDate BETWEEN @StartDate AND @EndDate) AND
-													(Year(A5.StartDate) = @ReportYear)
-										)
-									ELSE
-										(
-											SELECT     
-												COUNT(FS.Amount)
-											FROM         
-												ce_Activity_FinSupport AS FS 
-											INNER JOIN
-												ce_Activity AS A5 ON FS.ActivityID = A5.ActivityID
-											WHERE    
-													(A5.ParentActivityID = A.ActivityID) AND 
-													(A5.DeletedFlag='N') AND 
-													(FS.SupportTypeID = 1) AND 
-													(FS.DeletedFlag = 'N') AND
-													(A5.StatusID IN (1,2,3)) AND
-													(A5.StartDate BETWEEN @StartDate AND @EndDate)
-												OR
-													(A5.ActivityID = A.ActivityID) AND 
-													(FS.DeletedFlag = 'N') AND 
-													(A5.DeletedFlag = 'N') AND
-													(FS.SupportTypeID = 1) AND 
-													(A5.StatusID IN (1,2,3)) AND
-													(A5.StartDate BETWEEN @StartDate AND @EndDate)
-										)
-								END
-							WHEN 'S' THEN
+			WHEN '0' THEN 
+				'No'
+			ELSE 
+				'Yes'
+			END
+		),
+		/* 
+		######################################
+		SUPPORT AMOUNT DOLLARS ($)
+		######################################
+		*/
+		StatSuppAmount = 
+			isNull(
+				(CASE isNull(A.SessionType,'S')
+					WHEN 'M' THEN 
+						CASE A.GroupingID
+							WHEN 2 THEN
+								/* WHEN: RSS */
 								(
-								CASE A.ActivityTypeID
-									WHEN 2 THEN 
-										/* WHEN: ENDURING MATERIAL */
-										(
-										SELECT     
-											COUNT(FS.Amount)
-										FROM         
-											ce_Activity_FinSupport As FS
-										WHERE     
+									SELECT     
+										SUM(FS.Amount)
+									FROM         
+										ce_Activity_FinSupport AS FS 
+									INNER JOIN
+										ce_Activity AS A5 ON FS.ActivityID = A5.ActivityID
+									WHERE    
+											(A5.ParentActivityID = A.ActivityID) AND 
+											(A5.DeletedFlag='N') AND 
 											(FS.SupportTypeID = 1) AND 
+											(FS.DeletedFlag = 'N') AND
+											(A5.StatusID IN (1,2,3)) AND
+											(A5.StartDate BETWEEN @StartDate AND @EndDate) AND
+											(Year(A5.StartDate) = @ReportYear)
+										OR
+											(A5.ActivityID = A.ActivityID) AND 
 											(FS.DeletedFlag = 'N') AND 
-											(FS.ActivityID=A.ActivityID) AND
-											(Year(A.StartDate) = @ReportYear)
-										)
-									ELSE
-										(
-										SELECT     
-											COUNT(FS.Amount)
-										FROM         
-											ce_Activity_FinSupport As FS
-										WHERE     
+											(A5.DeletedFlag = 'N') AND
 											(FS.SupportTypeID = 1) AND 
-											(FS.DeletedFlag = 'N') AND 
-											(FS.ActivityID=A.ActivityID)
-										)
-								END
+											(A5.StatusID IN (1,2,3)) AND
+											(A5.StartDate BETWEEN @StartDate AND @EndDate) AND
+											(Year(A5.StartDate) = @ReportYear)
 								)
-						END),0)
-					WHEN '0' THEN 
-						'No'
-					ELSE 
-						'Yes'
-					END
-				),
-				/* 
-				######################################
-				SUPPORT AMOUNT DOLLARS ($)
-				######################################
-				*/
-				StatSuppAmount = 
-					isNull(
-						(CASE isNull(A.SessionType,'S')
-							WHEN 'M' THEN 
-								CASE A.GroupingID
-									WHEN 2 THEN
-										/* WHEN: RSS */
-										(
-											SELECT     
-												SUM(FS.Amount)
-											FROM         
-												ce_Activity_FinSupport AS FS 
-											INNER JOIN
-												ce_Activity AS A5 ON FS.ActivityID = A5.ActivityID
-											WHERE    
-													(A5.ParentActivityID = A.ActivityID) AND 
-													(A5.DeletedFlag='N') AND 
-													(FS.SupportTypeID = 1) AND 
-													(FS.DeletedFlag = 'N') AND
-													(A5.StatusID IN (1,2,3)) AND
-													(A5.StartDate BETWEEN @StartDate AND @EndDate) AND
-													(Year(A5.StartDate) = @ReportYear)
-												OR
-													(A5.ActivityID = A.ActivityID) AND 
-													(FS.DeletedFlag = 'N') AND 
-													(A5.DeletedFlag = 'N') AND
-													(FS.SupportTypeID = 1) AND 
-													(A5.StatusID IN (1,2,3)) AND
-													(A5.StartDate BETWEEN @StartDate AND @EndDate) AND
-													(Year(A5.StartDate) = @ReportYear)
-										)
-									ELSE
-										(
-											SELECT     
-												SUM(FS.Amount)
-											FROM         
-												ce_Activity_FinSupport AS FS 
-											INNER JOIN
-												ce_Activity AS A5 ON FS.ActivityID = A5.ActivityID
-											WHERE    
-													(A5.ParentActivityID = A.ActivityID) AND 
-													(A5.DeletedFlag='N') AND 
-													(FS.SupportTypeID = 1) AND 
-													(FS.DeletedFlag = 'N') AND
-													(A5.StatusID IN (1,2,3)) AND
-													(A5.StartDate BETWEEN @StartDate AND @EndDate)
-												OR
-													(A5.ActivityID = A.ActivityID) AND 
-													(FS.DeletedFlag = 'N') AND 
-													(A5.DeletedFlag = 'N') AND
-													(FS.SupportTypeID = 1) AND 
-													(A5.StatusID IN (1,2,3)) AND
-													(A5.StartDate BETWEEN @StartDate AND @EndDate)
-										)
-								END
-							WHEN 'S' THEN
+							ELSE
 								(
-								CASE A.ActivityTypeID
-									WHEN 2 THEN 
-										/* WHEN: ENDURING MATERIAL */
-										(
-										SELECT     
-											SUM(FS.Amount)
-										FROM         
-											ce_Activity_FinSupport As FS
-										WHERE     
+									SELECT     
+										SUM(FS.Amount)
+									FROM         
+										ce_Activity_FinSupport AS FS 
+									INNER JOIN
+										ce_Activity AS A5 ON FS.ActivityID = A5.ActivityID
+									WHERE    
+											(A5.ParentActivityID = A.ActivityID) AND 
+											(A5.DeletedFlag='N') AND 
 											(FS.SupportTypeID = 1) AND 
+											(FS.DeletedFlag = 'N') AND
+											(A5.StatusID IN (1,2,3)) AND
+											(A5.StartDate BETWEEN @StartDate AND @EndDate)
+										OR
+											(A5.ActivityID = A.ActivityID) AND 
 											(FS.DeletedFlag = 'N') AND 
-											(FS.ActivityID=A.ActivityID) AND
-											(Year(A.StartDate) = @ReportYear)
-										)
-									ELSE
-										(
-										SELECT     
-											SUM(FS.Amount)
-										FROM         
-											ce_Activity_FinSupport As FS
-										WHERE     
+											(A5.DeletedFlag = 'N') AND
 											(FS.SupportTypeID = 1) AND 
-											(FS.DeletedFlag = 'N') AND 
-											(FS.ActivityID=A.ActivityID)
-										)
-								END
+											(A5.StatusID IN (1,2,3)) AND
+											(A5.StartDate BETWEEN @StartDate AND @EndDate)
 								)
-							END),0),
-							
-				/*
-				######################################
-				EXPENSE AMOUNT DOLLARS ($)
-				######################################
-				*/
-				TotalExpenses =
-				isNull(
-					(SELECT 
-						sum(ledger.amount)*-1
-					FROM 
-						ce_Activity_FinLedger As ledger
-					INNER JOIN 
-						ce_sys_entrytype As type ON type.entrytypeid=ledger.entrytypeid
-					WHERE 
-						type.expenseFlag='Y' AND 
-						activityId=A.activityId)
-				,0),
-				
-				/* 
-				######################################
-				EXHIBIT AMOUNT DOLLARS ($)
-				######################################
-				*/
-				TotalExhibit = 
-				isNull(
-						(CASE isNull(A.SessionType,'S')
-							WHEN 'M' THEN 
-								CASE A.GroupingID
-									WHEN 2 THEN
-										/* WHEN: RSS */
-										(
-											SELECT     
-												SUM(FS.Amount)
-											FROM         
-												ce_Activity_FinSupport AS FS 
-											INNER JOIN
-												ce_Activity AS A5 ON FS.ActivityID = A5.ActivityID
-											WHERE    
-													(A5.ParentActivityID = A.ActivityID) AND 
-													(A5.DeletedFlag='N') AND 
-													(FS.SupportTypeID = 2) AND 
-													(FS.DeletedFlag = 'N') AND
-													(A5.StatusID IN (1,2,3)) AND
-													(A5.StartDate BETWEEN @StartDate AND @EndDate) AND
-													(Year(A5.StartDate) = @ReportYear)
-												OR
-													(A5.ActivityID = A.ActivityID) AND 
-													(FS.DeletedFlag = 'N') AND 
-													(A5.DeletedFlag = 'N') AND
-													(FS.SupportTypeID = 2) AND 
-													(A5.StatusID IN (1,2,3)) AND
-													(A5.StartDate BETWEEN @StartDate AND @EndDate) AND
-													(Year(A5.StartDate) = @ReportYear)
-										)
-									ELSE
-										(
-											SELECT     
-												SUM(FS.Amount)
-											FROM         
-												ce_Activity_FinSupport AS FS 
-											INNER JOIN
-												ce_Activity AS A5 ON FS.ActivityID = A5.ActivityID
-											WHERE    
-													(A5.ParentActivityID = A.ActivityID) AND 
-													(A5.DeletedFlag='N') AND 
-													(FS.SupportTypeID = 2) AND 
-													(FS.DeletedFlag = 'N') AND
-													(A5.StatusID IN (1,2,3)) AND
-													(A5.StartDate BETWEEN @StartDate AND @EndDate)
-												OR
-													(A5.ActivityID = A.ActivityID) AND 
-													(FS.DeletedFlag = 'N') AND 
-													(A5.DeletedFlag = 'N') AND
-													(FS.SupportTypeID = 2) AND 
-													(A5.StatusID IN (1,2,3)) AND
-													(A5.StartDate BETWEEN @StartDate AND @EndDate)
-										)
-								END
-							WHEN 'S' THEN
+						END
+					WHEN 'S' THEN
+						(
+						CASE A.ActivityTypeID
+							WHEN 2 THEN 
+								/* WHEN: ENDURING MATERIAL */
 								(
-								CASE A.ActivityTypeID
-									WHEN 2 THEN 
-										/* WHEN: ENDURING MATERIAL */
-										(
-										SELECT     
-											SUM(FS.Amount)
-										FROM         
-											ce_Activity_FinSupport As FS
-										WHERE     
-											(FS.SupportTypeID = 2) AND 
-											(FS.DeletedFlag = 'N') AND 
-											(FS.ActivityID=A.ActivityID) AND
-											(Year(A.StartDate) = @ReportYear)
-										)
-									ELSE
-										(
-										SELECT     
-											SUM(FS.Amount)
-										FROM         
-											ce_Activity_FinSupport As FS
-										WHERE     
-											(FS.SupportTypeID = 2) AND 
-											(FS.DeletedFlag = 'N') AND 
-											(FS.ActivityID=A.ActivityID)
-										)
-								END
+								SELECT     
+									SUM(FS.Amount)
+								FROM         
+									ce_Activity_FinSupport As FS
+								WHERE     
+									(FS.SupportTypeID = 1) AND 
+									(FS.DeletedFlag = 'N') AND 
+									(FS.ActivityID=A.ActivityID) AND
+									(Year(A.StartDate) = @ReportYear)
 								)
-							END),0),
-				/* 
-				######################################
-				TOTAL REGISTRATION FEE DOLLARS ($)
-				######################################
-				*/
-				TotalRegistration = 
-				isNull(
-						(CASE isNull(A.SessionType,'S')
-							WHEN 'M' THEN 
-								CASE A.GroupingID
-									WHEN 2 THEN
-										/* WHEN: RSS */
-										(
-											SELECT     
-												SUM(FS.Amount)
-											FROM         
-												ce_Activity_FinSupport AS FS 
-											INNER JOIN
-												ce_Activity AS A5 ON FS.ActivityID = A5.ActivityID
-											WHERE    
-													(A5.ParentActivityID = A.ActivityID) AND 
-													(A5.DeletedFlag='N') AND 
-													(FS.SupportTypeID = 3) AND 
-													(FS.DeletedFlag = 'N') AND
-													(A5.StatusID IN (1,2,3)) AND
-													(A5.StartDate BETWEEN @StartDate AND @EndDate) AND
-													(Year(A5.StartDate) = @ReportYear)
-												OR
-													(A5.ActivityID = A.ActivityID) AND 
-													(FS.DeletedFlag = 'N') AND 
-													(A5.DeletedFlag = 'N') AND
-													(FS.SupportTypeID = 3) AND 
-													(A5.StatusID IN (1,2,3)) AND
-													(A5.StartDate BETWEEN @StartDate AND @EndDate) AND
-													(Year(A5.StartDate) = @ReportYear)
-										)
-									ELSE
-										(
-											SELECT     
-												SUM(FS.Amount)
-											FROM         
-												ce_Activity_FinSupport AS FS 
-											INNER JOIN
-												ce_Activity AS A5 ON FS.ActivityID = A5.ActivityID
-											WHERE    
-													(A5.ParentActivityID = A.ActivityID) AND 
-													(A5.DeletedFlag='N') AND 
-													(FS.SupportTypeID = 3) AND 
-													(FS.DeletedFlag = 'N') AND
-													(A5.StatusID IN (1,2,3)) AND
-													(A5.StartDate BETWEEN @StartDate AND @EndDate)
-												OR
-													(A5.ActivityID = A.ActivityID) AND 
-													(FS.DeletedFlag = 'N') AND 
-													(A5.DeletedFlag = 'N') AND
-													(FS.SupportTypeID = 3) AND 
-													(A5.StatusID IN (1,2,3)) AND
-													(A5.StartDate BETWEEN @StartDate AND @EndDate)
-										)
-								END
-							WHEN 'S' THEN
+							ELSE
 								(
-								CASE A.ActivityTypeID
-									WHEN 2 THEN
-										/* WHEN: ENDURING MATERIAL */
-										(
-										SELECT     
-											SUM(FS.Amount)
-										FROM         
-											ce_Activity_FinSupport As FS
-										WHERE     
-											(FS.SupportTypeID = 3) AND 
-											(FS.DeletedFlag = 'N') AND 
-											(FS.ActivityID=A.ActivityID) AND
-											(Year(A.StartDate) = @ReportYear)
-										)
-									ELSE
-										(
-										SELECT     
-											SUM(FS.Amount)
-										FROM         
-											ce_Activity_FinSupport As FS
-										WHERE     
-											(FS.SupportTypeID = 3) AND 
-											(FS.DeletedFlag = 'N') AND 
-											(FS.ActivityID=A.ActivityID)
-										)
-								END
+								SELECT     
+									SUM(FS.Amount)
+								FROM         
+									ce_Activity_FinSupport As FS
+								WHERE     
+									(FS.SupportTypeID = 1) AND 
+									(FS.DeletedFlag = 'N') AND 
+									(FS.ActivityID=A.ActivityID)
 								)
-							END),0),
-
-				A.groupingid
-			FROM ce_Activity AS A
-			INNER JOIN ce_Sys_Grouping AS AT ON A.GroupingID=AT.GroupingID
+						END
+						)
+					END),0),
+					
+		/*
+		######################################
+		EXPENSE AMOUNT DOLLARS ($)
+		######################################
+		*/
+		TotalExpenses =
+		isNull(
+			(SELECT 
+				sum(ledger.amount)
+			FROM 
+				ce_Activity_FinLedger As ledger
+			INNER JOIN 
+				ce_sys_entrytype As type ON type.entrytypeid=ledger.entrytypeid
 			WHERE 
+				type.expenseFlag='Y' AND 
+				activityId=A.activityId AND
+				ledger.deletedflag = 'N' AND
+				(Year(A.StartDate) = @ReportYear))
+		,0),
+		
+		/* 
+		######################################
+		EXHIBIT AMOUNT DOLLARS ($)
+		######################################
+		*/
+		TotalExhibit = 
+		isNull(
+				(CASE isNull(A.SessionType,'S')
+					WHEN 'M' THEN 
+						CASE A.GroupingID
+							WHEN 2 THEN
+								/* WHEN: RSS */
+								(
+									SELECT     
+										SUM(FS.Amount)
+									FROM         
+										ce_Activity_FinSupport AS FS 
+									INNER JOIN
+										ce_Activity AS A5 ON FS.ActivityID = A5.ActivityID
+									WHERE    
+											(A5.ParentActivityID = A.ActivityID) AND 
+											(A5.DeletedFlag='N') AND 
+											(FS.SupportTypeID = 2) AND 
+											(FS.DeletedFlag = 'N') AND
+											(A5.StatusID IN (1,2,3)) AND
+											(A5.StartDate BETWEEN @StartDate AND @EndDate) AND
+											(Year(A5.StartDate) = @ReportYear)
+										OR
+											(A5.ActivityID = A.ActivityID) AND 
+											(FS.DeletedFlag = 'N') AND 
+											(A5.DeletedFlag = 'N') AND
+											(FS.SupportTypeID = 2) AND 
+											(A5.StatusID IN (1,2,3)) AND
+											(A5.StartDate BETWEEN @StartDate AND @EndDate) AND
+											(Year(A5.StartDate) = @ReportYear)
+								)
+							ELSE
+								(
+									SELECT     
+										SUM(FS.Amount)
+									FROM         
+										ce_Activity_FinSupport AS FS 
+									INNER JOIN
+										ce_Activity AS A5 ON FS.ActivityID = A5.ActivityID
+									WHERE    
+											(A5.ParentActivityID = A.ActivityID) AND 
+											(A5.DeletedFlag='N') AND 
+											(FS.SupportTypeID = 2) AND 
+											(FS.DeletedFlag = 'N') AND
+											(A5.StatusID IN (1,2,3)) AND
+											(A5.StartDate BETWEEN @StartDate AND @EndDate)
+										OR
+											(A5.ActivityID = A.ActivityID) AND 
+											(FS.DeletedFlag = 'N') AND 
+											(A5.DeletedFlag = 'N') AND
+											(FS.SupportTypeID = 2) AND 
+											(A5.StatusID IN (1,2,3)) AND
+											(A5.StartDate BETWEEN @StartDate AND @EndDate)
+								)
+						END
+					WHEN 'S' THEN
+						(
+						CASE A.ActivityTypeID
+							WHEN 2 THEN 
+								/* WHEN: ENDURING MATERIAL */
+								(
+								SELECT     
+									SUM(FS.Amount)
+								FROM         
+									ce_Activity_FinSupport As FS
+								WHERE     
+									(FS.SupportTypeID = 2) AND 
+									(FS.DeletedFlag = 'N') AND 
+									(FS.ActivityID=A.ActivityID) AND
+									(Year(A.StartDate) = @ReportYear)
+								)
+							ELSE
+								(
+								SELECT     
+									SUM(FS.Amount)
+								FROM         
+									ce_Activity_FinSupport As FS
+								WHERE     
+									(FS.SupportTypeID = 2) AND 
+									(FS.DeletedFlag = 'N') AND 
+									(FS.ActivityID=A.ActivityID)
+								)
+						END
+						)
+					END),0),
+		/*
+		######################################
+		OTHER INCOME AMOUNT DOLLARS ($)
+		######################################
+		*/
+		TotalRegistration =
+		isNull(
+			(SELECT 
+				sum(ledger.amount)
+			FROM 
+				ce_Activity_FinLedger As ledger
+			INNER JOIN 
+				ce_sys_entrytype As type ON type.entrytypeid=ledger.entrytypeid
+			WHERE 
+				ledger.entrytypeid IN (1,11) AND 
+				activityId=A.activityId AND
+				ledger.deletedflag = 'N' AND
+				(Year(A.StartDate) = @ReportYear))
+		,0),
+
+		A.groupingid
+	FROM ce_Activity AS A
+	INNER JOIN ce_Sys_Grouping AS AT ON A.GroupingID=AT.GroupingID
+	WHERE 
 				(
 				A.ActivityTypeID <> 2 AND
 				A.StartDate BETWEEN @StartDate AND @EndDate AND

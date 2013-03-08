@@ -50,7 +50,7 @@
 			<div class="header-bg"></div>
 			<div id="header" class="clearfix">
 				
-				<div class="header-search">
+				<!--- <div class="header-search">
 					<form id="navSearch" name="navSearch" method="get" action="#myself#main.search">
 					<span class="uiSearchInput ">
 						<span class="fieldWrapper">
@@ -59,7 +59,7 @@
 						</span>
 					</span>
 					</form>
-				</div>
+				</div> --->
 			
 				<div id="BottomBar">
 					<!---<a href="http://ccpd.uc.edu/lms/support" class="BottomLink supportLink getHelpLink hide"><i></i>GET HELP!</a>--->
@@ -70,33 +70,16 @@
 					<a href="#myself#Main.Welcome">CCPD</a>
 					</cfif>
 					<cfif Session.Account.getAuthorityID() EQ 3></cfif></div>
-					<!---<div><div class="header-search joshonly">
-							<form action="/search/" method="get" name="navSearch" id="navSearch">
-							<span class="uiSearchInput ">
-								<span class="fieldWrapper">
-									<input type="text" class="inputtext hide" id="q" style=""><div class="uiTypeahead imageTypeahead uiClearableTypeahead" style="width: 309px;"><div class="wrap"><label class="clear uiCloseButton"><input type="button" title="Remove"></label><img class="photo img"><input type="text" autocomplete="off" spellcheck="false" class="inputtext textInput ui-autocomplete-input ui-autocomplete-loading" style="width: 309px;" role="textbox" aria-autocomplete="list" aria-haspopup="true" placeholder="Type to search..."></div><div class="uiTypeaheadView clearfix"><ul class="ui-autocomplete ui-menu ui-widget ui-widget-content ui-corner-all" role="listbox" aria-activedescendant="ui-active-menuitem" style="z-index: 1; top: 0px; left: 0px; display: none;"></ul></div></div>
-									<button type="submit" title="Search"><span class="hide">Search</span></button>
-								</span>
-							</span>
-							</form>
-						</div>
-					</div>--->
+					
 					<div id="BottomBarLinks" class="menu menu-top">
 						<ul>
-							<li class="menu-item"><a id="HeaderTab1" href="#myself#main.welcome">Home</a></li>
+							<li class="menu-item"><a id="HeaderTab1" href="#myself#main.welcome">News Feed</a></li>
 							<li class="menu-item"><a id="HeaderTab2" href="#myself#activity.home">Activities</a></li>
 							<li class="menu-item"><a id="HeaderTab3" href="#myself#person.home">People</a></li>
 							<li class="menu-item"><a id="HeaderTab4" href="#myself#report.home">Reports</a></li>
-							<li class="menu-item">
-								<span class="vr"></span>							</li>
-							<li class="menu-item"><a href="#myself#admin.home">Setup</a></li>
-							<li class="menu-item"><a href="#myself#support.home">Help</a></li>
-							<li class="menu-item">
-								<span class="vr"></span>							</li>
-							<li class="menu-item"><a href="#myself#Main.doLogout" class="BottomLink">Logout</a></li>
-							<!---<cfif Session.Account.getAuthorityID() EQ 3>
-							<li class="menu-item"><a href="#myself##Attributes.Fuseaction#?#CGI.QUERY_STRING#<cfif NOT isDefined("Attributes.Fusebox.Load")>&fusebox.load=1&fusebox.password=05125586</cfif>" class="BottomLink">RELOAD</a></li>
-							</cfif>--->
+							<li class="menu-item"><span class="vr"></span></li>
+							<li class="menu-item"><a href="#myself#person.detail?personid=#session.person.getPersonId()#">#session.person.getdisplayname()#</a></li>
+							<li class="menu-item"><a href="#myself#Main.doLogout">Logout</a></li>
 						</ul>
 					</div>
 					
