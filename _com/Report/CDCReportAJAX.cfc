@@ -138,15 +138,15 @@
                 
                 <!--- Check if the report folder exists yet --->
 
-                <cfif NOT DirectoryExists("#ReportPath#\#Arguments.ReportID#")>
-                    <cfdirectory action="Create" directory="#ReportPath#\#Arguments.ReportID#">
+                <cfif NOT DirectoryExists("#ReportPath#/#Arguments.ReportID#")>
+                    <cfdirectory action="Create" directory="#ReportPath#/#Arguments.ReportID#">
                 </cfif>
                 
                 <!--- Define variables used in the CreateExcel object --->
                 <cfif Arguments.MarkSent EQ "Y">
-					<cfset ReportExtendedPath = ReportPath & "\" & Arguments.ReportID & "\CDC_Activity_Report_#DateFormat(Arguments.StartDate,'MDDYY')#-#DateFormat(Arguments.EndDate,'MDDYY')#_#DateFormat(Now(),'MMDDYY')##TimeFormat(Now(),'hhmmss')#_MarkedSent.xls">
+					<cfset ReportExtendedPath = ReportPath & "/" & Arguments.ReportID & "/CDC_Activity_Report_#DateFormat(Arguments.StartDate,'MDDYY')#-#DateFormat(Arguments.EndDate,'MDDYY')#_#DateFormat(Now(),'MMDDYY')##TimeFormat(Now(),'hhmmss')#_MarkedSent.xls">
                 <cfelse>
-                    <cfset ReportExtendedPath = ReportPath & "\" & Arguments.ReportID & "\CDC_Activity_Report_#DateFormat(Arguments.StartDate,'MDDYY')#-#DateFormat(Arguments.EndDate,'MDDYY')#_#DateFormat(Now(),'MMDDYY')##TimeFormat(Now(),'hhmmss')#.xls">
+                    <cfset ReportExtendedPath = ReportPath & "/" & Arguments.ReportID & "/CDC_Activity_Report_#DateFormat(Arguments.StartDate,'MDDYY')#-#DateFormat(Arguments.EndDate,'MDDYY')#_#DateFormat(Now(),'MMDDYY')##TimeFormat(Now(),'hhmmss')#.xls">
                 </cfif>
                 
                 <!--- Start Building Excel file --->
@@ -342,12 +342,12 @@
             <cfset ReportPath = ExpandPath("#Application.Settings.RootPath#/_reports")>
             
             <!--- Check if the report folder exists yet --->
-            <cfif NOT DirectoryExists("#ReportPath#\#Arguments.ReportID#")>
-                <cfdirectory action="Create" directory="#ReportPath#\#Arguments.ReportID#">
+            <cfif NOT DirectoryExists("#ReportPath#/#Arguments.ReportID#")>
+                <cfdirectory action="Create" directory="#ReportPath#/#Arguments.ReportID#">
             </cfif>
             
             <!--- Define variables used in the CreateExcel object --->
-            <cfset ReportExtendedPath = ReportPath & "\" & Arguments.ReportID & "\CDC_PIF_Report_#Arguments.ActivityID#_#DateFormat(Now(),'MMDDYY')##TimeFormat(Now(),'hhmmss')#.xls">
+            <cfset ReportExtendedPath = ReportPath & "/" & Arguments.ReportID & "/CDC_PIF_Report_#Arguments.ActivityID#_#DateFormat(Now(),'MMDDYY')##TimeFormat(Now(),'hhmmss')#.xls">
 
             <!--- Start Building Excel file --->
             <poi:document name="Request.ExcelData" file="#ReportExtendedPath#">
@@ -826,15 +826,15 @@
             
             <!--- Check if the report folder exists yet --->
 
-            <cfif NOT DirectoryExists("#ReportPath#\#Arguments.ReportID#")>
-                <cfdirectory action="Create" directory="#ReportPath#\#Arguments.ReportID#">
+            <cfif NOT DirectoryExists("#ReportPath#/#Arguments.ReportID#")>
+                <cfdirectory action="Create" directory="#ReportPath#/#Arguments.ReportID#">
             </cfif>
             
             <!--- Define variables used in the CreateExcel object --->
             <cfif Arguments.MarkSent EQ "Y">
-            	<cfset ReportExtendedPath = ReportPath & "\" & Arguments.ReportID & "\CDC_Student_Report_#DateFormat(Arguments.StartDate,'MDDYY')#-#DateFormat(Arguments.EndDate,'MDDYY')#_#DateFormat(Now(),'MMDDYY')##TimeFormat(Now(),'hhmmss')#_MarkedSent.csv">
+            	<cfset ReportExtendedPath = ReportPath & "/" & Arguments.ReportID & "/CDC_Student_Report_#DateFormat(Arguments.StartDate,'MDDYY')#-#DateFormat(Arguments.EndDate,'MDDYY')#_#DateFormat(Now(),'MMDDYY')##TimeFormat(Now(),'hhmmss')#_MarkedSent.csv">
             <cfelse>
-            	<cfset ReportExtendedPath = ReportPath & "\" & Arguments.ReportID & "\CDC_Student_Report_#DateFormat(Arguments.StartDate,'MDDYY')#-#DateFormat(Arguments.EndDate,'MDDYY')#_#DateFormat(Now(),'MMDDYY')##TimeFormat(Now(),'hhmmss')#.csv">
+            	<cfset ReportExtendedPath = ReportPath & "/" & Arguments.ReportID & "/CDC_Student_Report_#DateFormat(Arguments.StartDate,'MDDYY')#-#DateFormat(Arguments.EndDate,'MDDYY')#_#DateFormat(Now(),'MMDDYY')##TimeFormat(Now(),'hhmmss')#.csv">
             </cfif>
                 
             <cffile action="write" file="#ReportExtendedPath#" output="#strOutput#">
@@ -1217,12 +1217,12 @@
                 <cfset ReportPath = ExpandPath("#Application.Settings.RootPath#/_reports")>
                 
                 <!--- Check if the report folder exists yet --->
-                <cfif NOT DirectoryExists("#ReportPath#\#Arguments.ReportID#")>
-                    <cfdirectory action="Create" directory="#ReportPath#\#Arguments.ReportID#">
+                <cfif NOT DirectoryExists("#ReportPath#/#Arguments.ReportID#")>
+                    <cfdirectory action="Create" directory="#ReportPath#/#Arguments.ReportID#">
                 </cfif>
                 
                 <!--- Define variables used in the CreateExcel object --->
-                <cfset ReportExtendedPath = ReportPath & "\" & Arguments.ReportID & "\CDC_Overview_#DateFormat(Arguments.StartDate,'MDDYY')#-#DateFormat(Arguments.EndDate,'MDDYY')#_#DateFormat(Now(),'MMDDYY')##TimeFormat(Now(),'hhmmss')#.xls">
+                <cfset ReportExtendedPath = ReportPath & "/" & Arguments.ReportID & "/CDC_Overview_#DateFormat(Arguments.StartDate,'MDDYY')#-#DateFormat(Arguments.EndDate,'MDDYY')#_#DateFormat(Now(),'MMDDYY')##TimeFormat(Now(),'hhmmss')#.xls">
                 
                 <!--- Start Building Excel file --->
                 <poi:document name="Request.ExcelData" file="#ReportExtendedPath#">

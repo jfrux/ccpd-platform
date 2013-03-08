@@ -56,13 +56,13 @@
         <cfset ReportPath = ExpandPath("#Application.Settings.RootPath#/_reports")>
         
         <!--- Check if the report folder exists yet --->
-        <cfif NOT DirectoryExists("#ReportPath#\#Arguments.ReportID#")>
-            <cfdirectory action="Create" directory="#ReportPath#\#Arguments.ReportID#">
+        <cfif NOT DirectoryExists("#ReportPath#/#Arguments.ReportID#")>
+            <cfdirectory action="Create" directory="#ReportPath#/#Arguments.ReportID#">
         </cfif>
         
         <!--- Define variables used in the CreateExcel object --->
         <cfset CurrFileName = "Assess_Report_#PersonName#-#AssessType#_#Arguments.ActivityID#_#DateFormat(Now(),'MMDDYY')##TimeFormat(Now(),'hhmmss')#.xls">
-        <cfset ReportExtendedPath = ReportPath & "\" & Arguments.ReportID & "\" & CurrFileName>
+        <cfset ReportExtendedPath = ReportPath & "/" & Arguments.ReportID & "/" & CurrFileName>
         
         <!--- Start Building Excel file --->
         <poi:document name="Request.ExcelData" file="#ReportExtendedPath#">
@@ -261,12 +261,12 @@
                 <cfset ReportPath = ExpandPath("#Application.Settings.RootPath#/_reports")>
                 
                 <!--- Check if the report folder exists yet --->
-                <cfif NOT DirectoryExists("#ReportPath#\#Arguments.ReportID#")>
-                    <cfdirectory action="Create" directory="#ReportPath#\#Arguments.ReportID#">
+                <cfif NOT DirectoryExists("#ReportPath#/#Arguments.ReportID#")>
+                    <cfdirectory action="Create" directory="#ReportPath#/#Arguments.ReportID#">
                 </cfif>
                 
                 <!--- Define variables used in the CreateExcel object --->
-                <cfset ReportExtendedPath = ReportPath & "\" & Arguments.ReportID & "\Assessment_Report_#qGetAssess.ActivityID#_#DateFormat(Now(),'MMDDYY')##TimeFormat(Now(),'hhmmss')#.xls">
+                <cfset ReportExtendedPath = ReportPath & "/" & Arguments.ReportID & "\Assessment_Report_#qGetAssess.ActivityID#_#DateFormat(Now(),'MMDDYY')##TimeFormat(Now(),'hhmmss')#.xls">
                 
                 <!--- Start Building Excel file --->
                 <poi:document name="Request.ExcelData" file="#ReportExtendedPath#">

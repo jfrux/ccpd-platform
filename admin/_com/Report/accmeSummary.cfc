@@ -922,7 +922,7 @@
 	<cffunction name="createTheExcel" returntype="any" access="private">
 		<cfargument name="Activities" type="struct" required="yes" />
 		
-		<cfinclude template="accmeSummary-inc\poiTags.cfm" />
+		<cfinclude template="accmeSummary-inc/poiTags.cfm" />
 	</cffunction>
 	
 	<cffunction name="getDollars" access="private" returntype="numeric">

@@ -147,7 +147,7 @@
 		<cfelse>
 		<a href="/">Welcome</a><a href="#Application.Settings.RootPath#/about">What is this?</a><a href="#Application.Settings.RootPath#/browse">Browse Activities</a><cfif NOT isDefined("Session.PersonID") OR isDefined("Session.PersonID") AND Session.PersonID EQ ""><a href="#Application.Settings.RootPath#/signup">Sign-up</a></cfif>
 		</cfif>
-		<a href="http://ccpd.uc.edu/support">Support</a>
+		<a href="http://www.hipchat.com/ggNgWf8Pv">Get Help</a>
 		</div>
 	</div>
 	<cfif Request.Page.Breadcrumbs NEQ ""><div id="Breadcrumbs"></div>
@@ -161,7 +161,7 @@
 	<div id="Footer">
 		<div class="widthlimiter">
 		<div id="FooterCopy">Copyright &copy;#Year(now())# CCPD. All Rights Reserved.</div>
-		<div id="FooterLinks"><a href="#myself#Main.Welcome">Welcome</a><a href="#Application.Settings.RootPath#/about">What is this?</a><a href="#Application.Settings.RootPath#/browse">Browse Activities</a><a href="#Application.Settings.RootPath#/signup">Sign-up</a><a href="#Application.Settings.RootPath#/support">Support</a></div>
+		<div id="FooterLinks"><a href="#myself#Main.Welcome">Welcome</a><a href="#Application.Settings.RootPath#/about">What is this?</a><a href="#Application.Settings.RootPath#/browse">Browse Activities</a><a href="#Application.Settings.RootPath#/signup">Sign-up</a><a href="http://www.hipchat.com/gKwFPKLXl">Get Help</a></div>
 		</div>
 	</div>
 	<div id="SessionTimeout" style="display:none; padding:5px; cursor: default;text-align:center;"> 

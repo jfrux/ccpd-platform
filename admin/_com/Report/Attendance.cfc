@@ -119,16 +119,16 @@ ORDER BY
 		<cfimport taglib="/_poi/" prefix="poi" />
 		
 		<!--- Create Report Folder variable --->
-		<cfset ReportPath = ExpandPath("#Application.Settings.RootPath#/_reports")>
+		<cfset ReportPath = ExpandPath("/admin/_reports")>
 		
 		<!--- Check if the report folder exists yet --->
-		<cfif NOT DirectoryExists("#ReportPath#\#Arguments.ReportID#")>
-			<cfdirectory action="Create" directory="#ReportPath#\#Arguments.ReportID#">
+		<cfif NOT DirectoryExists("#ReportPath#/#Arguments.ReportID#")>
+			<cfdirectory action="Create" directory="#ReportPath#/#Arguments.ReportID#">
 		</cfif>
 		
 		<!--- Define variables used in the CreateExcel object --->
 		<cfset CurrFileName = "Attendance_Report_#Arguments.ActivityID#_#DateFormat(Now(),'MMDDYY')##TimeFormat(Now(),'hhmmss')#.xlsx">
-		<cfset ReportExtendedPath = ReportPath & "\" & Arguments.ReportID & "\" & CurrFileName>
+		<cfset ReportExtendedPath = ReportPath & "/" & Arguments.ReportID & "/" & CurrFileName>
         
 		<cfset ColumnCount = 16>
         
@@ -207,7 +207,7 @@ ORDER BY
 			</poi:sheets>
 		</poi:document>
 		
-        <cflog text="Attendance Report generated." file="ccpd_report_log">
+    <cflog text="Attendance Report generated." file="ccpd_report_log">
 		
 		<cfheader name="Content-Type" value="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
 		<cfheader name="Content-Disposition" value="attachment; filename=#CurrFileName#">

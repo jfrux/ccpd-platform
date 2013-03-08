@@ -17,13 +17,13 @@
 		<cfset ReportPath = ExpandPath("#Application.Settings.RootPath#/_reports")>
 		
 		<!--- Check if the report folder exists yet --->
-		<cfif NOT DirectoryExists("#ReportPath#\#Arguments.ReportID#")>
-			<cfdirectory action="Create" directory="#ReportPath#\#Arguments.ReportID#">
+		<cfif NOT DirectoryExists("#ReportPath#/#Arguments.ReportID#")>
+			<cfdirectory action="Create" directory="#ReportPath#/#Arguments.ReportID#">
 		</cfif>
 		
 		<!--- Define variables used in the CreateExcel object --->
 		<cfset CurrFileName = "Attendance_Report_#Arguments.ActivityID#_#DateFormat(Now(),'MMDDYY')##TimeFormat(Now(),'hhmmss')#.xls">
-		<cfset ReportExtendedPath = ReportPath & "\" & Arguments.ReportID & "\" & CurrFileName>
+		<cfset ReportExtendedPath = ReportPath & "/" & Arguments.ReportID & "/" & CurrFileName>
         
 		<cfset ColumnCount = 8>
         

@@ -125,21 +125,21 @@ WHERE     ((SELECT     COUNT(CourseSectionId) AS Expr1
 			<cfif qActivity.RecordCount GT 0>
 				<font color="GREEN">Activity found. (#qActivity.ActivityID#)</font><br>
 				
-				<cfif DirectoryExists("#ExpandPath('\_uploads\ActivityFiles\#qActivity.ActivityID#\#qFiles.FileName#')#")>
-					<cfdirectory action="delete" recurse="yes" directory="#ExpandPath('\_uploads\ActivityFiles\#qActivity.ActivityID#\#qFiles.FileName#')#">
+				<cfif DirectoryExists("#ExpandPath('/_uploads/ActivityFiles/#qActivity.ActivityID#/#qFiles.FileName#')#")>
+					<cfdirectory action="delete" recurse="yes" directory="#ExpandPath('/_uploads/ActivityFiles/#qActivity.ActivityID#/#qFiles.FileName#')#">
 				</cfif>
 				
-				<cfif NOT DirectoryExists("#ExpandPath('\_uploads\ActivityFiles\#qActivity.ActivityID#')#")>
-					<cfdirectory action="create" directory="#ExpandPath('\_uploads\ActivityFiles\#qActivity.ActivityID#')#">
+				<cfif NOT DirectoryExists("#ExpandPath('/_uploads/ActivityFiles/#qActivity.ActivityID#')#")>
+					<cfdirectory action="create" directory="#ExpandPath('/_uploads/ActivityFiles/#qActivity.ActivityID#')#">
 					<font color="GREEN">Created directory. (/_uploads/#qActivity.ActivityID#)<br></font>
 				<cfelse>
 					
 					<font color="BLACK">Directory already exists. (/_uploads/#qActivity.ActivityID#)</font><br>
 				</cfif>
 				
-				<cfif NOT FileExists("#ExpandPath('\_uploads\ActivityFiles\#qActivity.ActivityID#\#qFiles.FileName#')#")>
-					<cfif FileExists("#ExpandPath('\_uploads\ActivityFiles\_old\#qFiles.CourseSectionID#\#qFiles.FileName#')#")>
-						<cffile action="move" source="#ExpandPath('\_uploads\ActivityFiles\_old\#qFiles.CourseSectionID#\#qFiles.FileName#')#" destination="#ExpandPath('\_uploads\ActivityFiles\#qActivity.ActivityID#\#qFiles.FileName#')#">
+				<cfif NOT FileExists("#ExpandPath('/_uploads/ActivityFiles/#qActivity.ActivityID#/#qFiles.FileName#')#")>
+					<cfif FileExists("#ExpandPath('/_uploads/ActivityFiles/_old/#qFiles.CourseSectionID#/#qFiles.FileName#')#")>
+						<cffile action="move" source="#ExpandPath('/_uploads/ActivityFiles/_old/#qFiles.CourseSectionID#/#qFiles.FileName#')#" destination="#ExpandPath('/_uploads/ActivityFiles/#qActivity.ActivityID#/#qFiles.FileName#')#">
 						<font color="GREEN">File moved. (#qFiles.FileName#)</font><br>
 					<cfelse>
 						<font color="RED">File not found. (#qFiles.FileName#)</font><br>
@@ -167,7 +167,7 @@ WHERE     ((SELECT     COUNT(CourseSectionId) AS Expr1
 				<cfset ActionBean.setActivityID(qActivity.ActivityID)>
 				<cfset ActionBean.setCode("FIU")>
 				<cfset ActionBean.setShortName("Uploaded a file.")>
-				<cfset ActionBean.setLongName("Uploaded file '#qFiles.FileName#' to activity '<a href=""/index.cfm/event/Activity.Detail?ActivityID=#ActivityBean.getActivityID()#"">#ActivityBean.getTitle()#</a>'.")>\
+				<cfset ActionBean.setLongName("Uploaded file '#qFiles.FileName#' to activity '<a href=""/index.cfm/event/Activity.Detail?ActivityID=#ActivityBean.getActivityID()#"">#ActivityBean.getTitle()#</a>'.")>/
 				<cfset ActionBean.setCreatedBy(169841)>
 				<cfset Application.Com.ActionDAO.Create(ActionBean)>--->
 			<cfelse>

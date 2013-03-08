@@ -813,7 +813,7 @@
         
         <!--- Define variables used in the CreateExcel object --->
         <cfset CurrFileName = "PIF_Tally_Report_#DateFormat(arguments.startDate,'MMDDYY')#-#DateFormat(arguments.endDate,'MMDDYY')#_#TimeFormat(Now(),'hhmmss')#.xls">
-        <cfset ReportExtendedPath = ReportPath & "\" & CurrFileName>
+        <cfset ReportExtendedPath = ReportPath & "/" & CurrFileName>
         
         <!--- Start Building Excel file --->
         <poi:document name="Request.ExcelData" file="#ReportExtendedPath#">
@@ -1011,6 +1011,6 @@
 		
 		<cfheader name="Content-Type" value="application/msexcel">
 		<cfheader name="Content-Disposition" value="attachment; filename=#CurrFileName#">
-		<cfcontent type="application/msexcel" file="#ReportPath#\#CurrFileName#" deletefile="No">
+		<cfcontent type="application/msexcel" file="#ReportPath#/#CurrFileName#" deletefile="No">
 	</cffunction>
 </cfcomponent>

@@ -23,7 +23,7 @@
 		
 		<cffile action="upload" filefield="#arguments.filefield#" destination="#uploadDir#\#fileName#" nameConflict="overwrite" result="fileResult">
 		
-		<cfset data = csvToArray(file='#uploadDir#\#fileName#') />
+		<cfset data = csvToArray(file='#uploadDir#/#fileName#') />
 		
 		<cfset historyOutput = '<table cellspacing="1" border="0" cellpadding="0">' />
 		
