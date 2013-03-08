@@ -1235,6 +1235,7 @@ AS (
 			WHERE 
 				type.expenseFlag='Y' AND 
 				activityId=A.activityId AND
+				ledger.deletedflag = 'N' AND
 				(Year(A.StartDate) = @ReportYear))
 		,0),
 		
