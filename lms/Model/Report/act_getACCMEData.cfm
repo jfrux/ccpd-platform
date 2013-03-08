@@ -91,12 +91,12 @@
 			<cfset ReportPath = ExpandPath("/_reports")>
 			
 			<!--- Check if the report folder exists yet --->
-			<cfif NOT DirectoryExists("#ReportPath#\#Attributes.ReportID#")>
-				<cfdirectory action="Create" directory="#ReportPath#\#Attributes.ReportID#">
+			<cfif NOT DirectoryExists("#ReportPath#/#Attributes.ReportID#")>
+				<cfdirectory action="Create" directory="#ReportPath#/#Attributes.ReportID#">
 			</cfif>
 			
 			<!--- Define variables used in the CreateExcel object --->
-			<cfset ReportExtendedPath = ReportPath & "\" & Attributes.ReportID & "\ACCME_Report_#DateFormat(Attributes.StartDate,'MDDYY')#-#DateFormat(Attributes.EndDate,'MDDYY')#_#DateFormat(Now(),'MMDDYY')##TimeFormat(Now(),'hhmmss')#.xls">
+			<cfset ReportExtendedPath = ReportPath & "/" & Attributes.ReportID & "/ACCME_Report_#DateFormat(Attributes.StartDate,'MDDYY')#-#DateFormat(Attributes.EndDate,'MDDYY')#_#DateFormat(Now(),'MMDDYY')##TimeFormat(Now(),'hhmmss')#.xls">
 			
 			<!--- Start Building Excel file --->
 			<poi:document name="Request.ExcelData" file="#ReportExtendedPath#">

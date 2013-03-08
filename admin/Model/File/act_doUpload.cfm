@@ -39,7 +39,7 @@
 	
 			<cffile
 				action="upload"
-				destination="#ExtendedPath#\"
+				destination="#ExtendedPath#/"
 				filefield="FileField"
 				nameconflict="makeunique" />
                 
@@ -58,13 +58,13 @@
                 <cfset NewFileName = newflv>
                 
                 <!--- convert the video with FFMPEG ---> 
-                <cfexecute name = "#FFPath#\ffmpeg.exe" 
-                    arguments = "-i #ExtendedPath#\#cffile.ServerFile# -s 424x344 -r 15 -b 200k -ar 44100 -ab 64 -ac 2 #ExtendedPath#\#newflv#"  
+                <cfexecute name = "#FFPath#/ffmpeg.exe" 
+                    arguments = "-i #ExtendedPath#/#cffile.ServerFile# -s 424x344 -r 15 -b 200k -ar 44100 -ab 64 -ac 2 #ExtendedPath#/#newflv#"  
                     timeout = "90000000"> 
                 </cfexecute> 
                 
-                <cfexecute name = "#FFPath#\ffmpeg.exe" 
-                    arguments = "-i #ExtendedPath#\#cffile.ServerFile# -y -f image2 -ss 16 -sameq -t 0.001 -s 424x334 #ExtendedPath#\#newjpg#" 
+                <cfexecute name = "#FFPath#/ffmpeg.exe" 
+                    arguments = "-i #ExtendedPath#/#cffile.ServerFile# -y -f image2 -ss 16 -sameq -t 0.001 -s 424x334 #ExtendedPath#/#newjpg#" 
                     timeout = "90000000"> 
                 </cfexecute> 
                 

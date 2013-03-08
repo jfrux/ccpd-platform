@@ -30,10 +30,10 @@ RewriteRule ^lms/home$ /lms/index.cfm?event=Member.Home  [NC,QSA]
 RewriteRule ^lms/transcript$ /lms/index.cfm?event=Member.Transcripts  [NC,QSA]
 RewriteRule ^lms/preferences$ /lms/index.cfm?event=Member.Account  [NC,QSA]
 
-RewriteRule ^(.+\.cf[cm])(/.*)?$ http://127.0.0.1:8888/$1$2 [L,P]
-RewriteRule ^(.+\.cfchart)(/.*)?$ http://127.0.0.1:8888/$1$2 [L,P]
-RewriteRule ^(.+\.cfres)(/.*)?$ http://127.0.0.1:8888/$1$2 [L,P]
-RewriteRule ^(.+\.cfml)(/.*)?$ http://127.0.0.1:8888/$1$2 [L,P]
+# RewriteRule ^(.+\.cf[cm])(/.*)?$ http://127.0.0.1:8888/$1$2 [L,P]
+# RewriteRule ^(.+\.cfchart)(/.*)?$ http://127.0.0.1:8888/$1$2 [L,P]
+# RewriteRule ^(.+\.cfres)(/.*)?$ http://127.0.0.1:8888/$1$2 [L,P]
+# RewriteRule ^(.+\.cfml)(/.*)?$ http://127.0.0.1:8888/$1$2 [L,P]
 
 # #LMS SUPPORT
 # RewriteRule ^support/kb/([^/]*) /support/index.php/kb/$1  [NC,QSA]

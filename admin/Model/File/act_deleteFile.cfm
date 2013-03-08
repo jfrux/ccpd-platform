@@ -13,11 +13,11 @@
 				<cfset FileName = DeleteFileBean.getFileName()>
 				<cfset ActivityID = Attributes.ActivityID>
 				<cfset FileGroupID = DeleteActivityFileBean.getFileGroupID()>
-				<cfset FilePath = "#ExpandPath(".\_uploads\ActivityFiles\#ActivityID#\#FileGroupID#")#">
+				<cfset FilePath = "#ExpandPath("/_uploads/ActivityFiles/#ActivityID#/#FileGroupID#")#">
 	
 				<!--- Delete Physical File from server --->
-				<cfif FileExists(#FilePath# & "\" & #FileName#)>
-					<cffile action="Delete" file="#FilePath#\#FileName#">
+				<cfif FileExists(#FilePath# & "/" & #FileName#)>
+					<cffile action="Delete" file="#FilePath#/#FileName#">
 				</cfif>
 				
 				<!--- Remove ActivityFile Record --->
