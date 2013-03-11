@@ -7,7 +7,7 @@ function generateTranscript(dtDate1, dtDate2, nCredit) {
 	$.post(sRootPath + "/_com/AJAX_UDF.cfc", { Method: "getRandomString", returnFormat: "plain" }, 
 		function(data) {
 			var cleanData = $.Trim(data);
-			var tempURL = sMyself + "Member.GenerateTranscript?StartDate=" + encodeURIComponent(dtDate1) + "&EndDate=" + encodeURIComponent(dtDate2) + "&CreditID=" + nCredit + "&rand=" + encodeURIComponent(cleanData) + "&Submitted=1";
+			var tempURL = "<cfoutput>#application.settings.apiurl#/users/#session.person.getPersonID()#</cfoutput>/transcript?startdate=" + encodeURIComponent(dtDate1) + "&enddate=" + encodeURIComponent(dtDate2) + "&rand=" + encodeURIComponent(cleanData);
 			
 			$("#frmTranscript").attr("src",tempURL);
 	});

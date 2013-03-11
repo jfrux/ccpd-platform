@@ -21,6 +21,7 @@
 <cfswitch expression="#CGI.SERVER_NAME#">
 	<!--- PRODUCTION --->
 	<cfcase value="ccpd.uc.edu">
+		<cfset application.settings.apiurl = "http://www.getmycme.com" />
 		<cfset Application.Settings.DSN = "CCPD_PROD">
 		<cfset Application.Settings.AppName = "CCPD" /> <!--- appears on Window Titles, etc. --->
 		<cfset Application.Settings.RootPath = "/lms" /> <!--- HTTP path for images, and links --->
@@ -39,6 +40,7 @@
 	
 	<cfcase value="www.ccpd.uc.edu">
 		<cfset Application.Settings.DSN = "CCPD_PROD">
+		<cfset application.settings.apiurl = "http://www.getmycme.com" />
 		<cfset Application.Settings.AppName = "CCPD" /> <!--- appears on Window Titles, etc. --->
 		<cfset Application.Settings.RootPath = "/lms" /> <!--- HTTP path for images, and links --->
 		<cfset Application.Settings.AppPath = "/lms" /> <!--- ColdFusion Mapping --->
@@ -56,6 +58,8 @@
 	
 	<cfcase value="test.ccpd.uc.edu">
 		<cfset Application.Settings.DSN = "CCPD_PROD">
+
+		<cfset application.settings.apiurl = "http://localhost:3000" />
 		<cfset Application.Settings.AppName = "CCPD Open Test" /> <!--- appears on Window Titles, etc. --->
 		<cfset Application.Settings.RootPath = "/lms" /> <!--- HTTP path for images, and links --->
 		<cfset Application.Settings.AppPath = "/lms" /> <!--- ColdFusion Mapping --->
@@ -73,6 +77,7 @@
 
 	<cfcase value="localhost">
 		<cfset Application.Settings.DSN = "CCPD_CLONE">
+		<cfset application.settings.apiurl = "http://localhost:3000" />
 		<cfset Application.Settings.AppName = "CCPD" /> <!--- appears on Window Titles, etc. --->
 		<cfset Application.Settings.RootPath = "/lms" /> <!--- HTTP path for images, and links --->
 		<cfset Application.Settings.AppPath = "/lms" /> <!--- ColdFusion Mapping --->

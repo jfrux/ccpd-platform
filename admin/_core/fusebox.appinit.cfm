@@ -21,7 +21,7 @@
 	<!--- PRODUCTION --->
 	<cfcase value="ccpd.uc.edu">
 		<cfset Application.Settings.assetsUrl = "http://www.getmycme.com/assets">
-		<cfset Application.Settings.apiUrl = "http://api.ccpd.uc.edu">
+		<cfset Application.Settings.apiUrl = "http://www.getmycme.com">
 		<cfset Application.Settings.DSN = "CCPD_PROD">
 		<cfset Application.Settings.AppName = "CCPD Admin 2.0" /> <!--- appears on Window Titles, etc. --->
 		<cfset Application.Settings.RootPath = "/admin" /> <!--- HTTP path for images, and links --->

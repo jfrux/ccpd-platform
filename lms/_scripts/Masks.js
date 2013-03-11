@@ -80,7 +80,7 @@ $(document).ready(function() {
 	});
 	
 	// THESE TWO MASKS WERE CREATED FOR AND ARE USED IN THE TRANSCRIPT START/END DATE TEXT BOXES - THE '/' NO LONGER WORKED // JS 01/10/2011
-	$("#new-date1").mask("99-99-9999");
+	$("#new-date1").mask("99/99/9999");
 	$("#new-date1").datepicker({ 
 		showOn: "button", 
 		buttonImage: "/lms/_images/calendar.gif", 
@@ -88,7 +88,7 @@ $(document).ready(function() {
 		changeMonth: true,
 		changeYear: true
 	});
-	$("#new-date2").mask("99-99-9999");
+	$("#new-date2").mask("99/99/9999");
 	$("#new-date2").datepicker({ 
 		showOn: "button", 
 		buttonImage: "/lms/_images/calendar.gif", 

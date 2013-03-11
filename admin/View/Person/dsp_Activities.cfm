@@ -3,7 +3,7 @@
 $(document).ready(function() {
 	$("##GetTranscript").bind("click", function() {
 		if($("##date1").val() != "" && $("##date2").val() != "") {
-			window.open("#myself#Report.Transcript?PersonID=#Attributes.PersonID#&StartDate=" + $("##date1").val() + "&EndDate=" + $("##date2").val() + "&ReportID=8");
+			window.open("#application.settings.apiUrl#/users/#Attributes.PersonID#/transcript?startdate=" + $("##date1").val() + "&enddate=" + $("##date2").val());
 		} else if($("##date1").val() == "" && $("##date2").val() != "") {
 			addError("Please select a start date.",250,6000,4000);
 		} else if($("##date1").val() != "" && $("##date2").val() == "") {
