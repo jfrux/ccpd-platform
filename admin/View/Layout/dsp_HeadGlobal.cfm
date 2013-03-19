@@ -1,7 +1,6 @@
 
 <cfoutput>
-<link href="/static/css/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
-<link href="/static/css/print.css" media="print" rel="stylesheet" type="text/css" />
+<link href="/public/assets/stylesheets/application.css" media="screen, projection" rel="stylesheet" type="text/css" />
 <!--[if lt IE 8]>
   <link href="/stylesheets/ie.css" media="screen, projection" rel="stylesheet" type="text/css" />
 <![endif]-->
@@ -59,11 +58,8 @@
 <script type="text/javascript" src="#Application.Settings.RootPath#/_scripts/encoder.js"></script>
 <script type="text/javascript" src="#Application.Settings.RootPath#/_scripts/history.js"></script>
 <script type="text/javascript" src="/static/js/bugLogClient.js"></script>
-<link href="#Application.Settings.RootPath#/_styles/StatusBar<cfif Request.Browser CONTAINS "MSIE">IE</cfif>.css?v=1" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" href="/static/css/jquery-css/ui-lightness/jquery-ui-1.8.9.custom.css" media="screen" />
-<link rel="stylesheet" href="/static/css/ceaui/tokenizer.css" media="screen" />
 
-<link href="#Application.Settings.RootPath#/_styles/overlay.css?v=2" rel="stylesheet" type="text/css" />
+
 <!---<script type="text/javascript" src="#Application.Settings.RootPath#/_scripts/Masks.js"></script>--->
 
 		

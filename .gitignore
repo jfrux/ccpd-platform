@@ -6,3 +6,4 @@ _uploads
 *.xlsx
 *.csv
 *.xls
+node_modules
