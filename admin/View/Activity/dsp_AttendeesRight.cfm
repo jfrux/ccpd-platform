@@ -15,8 +15,23 @@ $(".importDialog").dialog({
 		}
 });
 
+$(".newImportDialog").dialog({
+  title:"Batch Attendee Import",
+  modal: false, 
+  autoOpen: false,
+  height:550,
+  width:670,
+  buttons: { 
+      Done:function() {
+        updateRegistrants();
+        $(".newImportDialog").find('iframe').attr('src','<cfoutput>#Application.Settings.apiUrl#</cfoutput>/imports?importable_id=' + nActivity);
+        $(".newImportDialog").dialog("close");
+      }
+    }
+});
+
 	$(".batchLink").click(function() {
-		$(".importDialog").dialog("open");
+		$(".newImportDialog").dialog("open");
 	});
 });
 </script>
@@ -29,6 +44,9 @@ $(".importDialog").dialog({
 	<div>
 	<a href="javascript:;" class="batchLink">Batch Import</a>
 	</div>
+  <div>
+  <a href="javascript:;" class="batchLink">NEW! Batch Import</a>
+  </div>
 </div>
 <div class="MultiFormRight_SectSubTitle">Other Details</div>
 <div class="MultiFormRight_SectBody">
@@ -81,5 +99,9 @@ $(".importDialog").dialog({
 </div>
 <div class="importDialog">
 	<iframe src="#myself#activity.import?activityid=#attributes.activityid#" frameborder="0" style="width: 400px; height: 100px;"></iframe>
+</div>
+
+<div class="newImportDialog">
+  <iframe src="#Application.Settings.apiUrl#/imports?importable_id=#attributes.activityid#" frameborder="0" style="width: 640px; height: 545px;"></iframe>
 </div>
 </cfoutput>

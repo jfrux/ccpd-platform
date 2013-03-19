@@ -212,7 +212,7 @@
 				<cfset NewActivityID = Application.Com.ActivityDAO.Create(NewActivity)>
 				
 				<!--- ADD HISTORY ITEM --->
-                <cfset OutputVar = "Activity of origin: <a href=""%WebPath%Activity.Detail?ActivityID=" & ActivityBean.getActivityID() & ">" & ActivityBean.getTitle & "</a>">
+                <cfset OutputVar = "Activity of origin: <a href=""%WebPath%Activity.Detail?ActivityID=" & ActivityBean.getActivityID() & ">" & ActivityBean.getTitle() & "</a>">
                 <cfset Application.History.Add(
                             HistoryStyleID=22,
                             FromPersonID=Session.PersonID,

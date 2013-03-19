@@ -5,15 +5,7 @@
      "http://tuckey.org/res/dtds/urlrewrite3.0.dtd">
 
 <urlrewrite use-query-string="true">
-  <rule>
-    <name>Fusebox Events2</name>
-    <note>
-    Pretty SEO Urls2
-    </note>
-    <condition type="request-uri" operator="notequal">^/(static|admin\/_styles|admin\/_scripts|flex2gateway|jrunscripts|cfide|cfformgateway|cffileservlet|railo-context|scripts|files|images|javascripts|miscellaneous|stylesheets|robots.txt|favicon.ico|sitemap.xml|rewrite.cfm|index.cfm|robots.txt|osd.xml|flex2gateway|cfide|cfformgateway|railo-context|admin-context|files|images|jrunscripts|javascripts|miscellaneous|stylesheets)</condition>
-    <from>^/(admin|lms)/index.cfm/event/([^/]*)$</from>
-    <to last="true">/$1/index.cfm?event=$2</to>
-  </rule>
+ 
   <rule>
     <name>Fusebox Events</name>
     <note>
@@ -21,7 +13,7 @@
     </note>
     <condition type="request-uri" operator="notequal">^/(static|admin\/_styles|admin\/_scripts|flex2gateway|jrunscripts|cfide|cfformgateway|cffileservlet|railo-context|scripts|files|images|javascripts|miscellaneous|stylesheets|robots.txt|favicon.ico|sitemap.xml|rewrite.cfm|index.cfm|robots.txt|osd.xml|flex2gateway|cfide|cfformgateway|railo-context|admin-context|files|images|jrunscripts|javascripts|miscellaneous|stylesheets)</condition>
     <from>^/(admin|lms)/event/([^/]*)$</from>
-    <to last="true">/$1/index.cfm?event=$2</to>
+    <to last="true">/$1/index.cfm/event/$2</to>
   </rule>
   <rule>
     <from>^/activity/([^/]*)$</from>

@@ -168,7 +168,7 @@
 				PA.UpdatedBy,
 				AT.Description AS AddressTypeName
 			FROM	ce_Person_Address PA 
-			INNER JOIN ce_Sys_AddressType AT ON AT.AddressTypeID = PA.AddressTypeID
+			LEFT OUTER JOIN ce_Sys_AddressType AT ON AT.AddressTypeID = PA.AddressTypeID
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"AddressID") and len(arguments.AddressID)>

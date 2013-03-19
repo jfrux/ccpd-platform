@@ -2,7 +2,7 @@
 <!--- ADDED A COMMENT FOR A FILE REFRESH --->
 <cfsetting showdebugoutput="no" />	
 
-    <cfif getToken(Attributes.Fuseaction,1,".") NEQ "Public">
+    <cfif lcase(getToken(Attributes.Fuseaction,1,".")) NEQ "public" AND lcase(getToken(Attributes.Fuseaction,1,".")) NEQ "auth">
         <!---<cfinvoke component="#Application.Settings.Com#Page" method="Get" Identifier="#Attributes.Fuseaction#" returnvariable="Request.PageInfo">--->
         
         <!--- Create Account Bean --->
@@ -25,7 +25,6 @@
         <cfif qAuthPage.AuthCount NEQ 1>
             <cflocation url="#myself#Main.Login?FailMessage=Permission Denied." addtoken="no" />
         </cfif>--->
-		
 		<cfif Session.Person.getPersonID() EQ "" AND Attributes.Fuseaction NEQ "Main.Login" AND Attributes.Fuseaction NEQ "Main.doLogin" AND Attributes.Fuseaction NEQ "File.ScanUpload" AND CGI.SCRIPT_NAME DOES NOT CONTAIN "API.cfc" AND CGI.SCRIPT_NAME DOES NOT CONTAIN "dailyReport.cfc">
 			<cfif NOT request.isException>
 			<cflocation url="#myself#Main.Login?FailMessage=Permission Denied." addtoken="no" />

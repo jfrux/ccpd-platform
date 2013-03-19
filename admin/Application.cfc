@@ -6,7 +6,7 @@
 		
 	<!--- set application name based on the directory path --->
 	
-	<cfset namekey = "f32f23f" />
+	<cfset namekey = "aksj90f3" />
 	<cfswitch expression="#CGI.SERVER_NAME#">
 		<!--- PRODUCTION --->
 		<cfcase value="ccpd.uc.edu">
@@ -44,9 +44,10 @@
 	</cfswitch>
 	
 	<cfset this.clientManagement = true>
-	<cfset this.clientStorage = "registry">
+	<cfset this.clientStorage = "ccpd_clone">
 	<cfset this.loginStorage = "session">
 	<cfset this.sessionManagement = true>
+	<cfset this.sessionStorage = "ccpd_clone">
 	<cfset this.sessionTimeout = createTimeSpan(0,0,180,0)>
 	<cfset this.setClientCookies = true>
 	

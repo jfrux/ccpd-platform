@@ -1,44 +1,48 @@
 
 <cfsilent><!--- DEFAULT COOKIES --->
 <cfparam name="session.loggedin" default="false" />
-<cfif NOT isDefined("Cookie.USER_ActListPos")>
+<cfif NOT structKeyExists(cookie,"USER_ActListPos")>
 	<cfcookie name="USER_ActListPos" value="200,200">
 </cfif>
 
-<cfif NOT isDefined("Cookie.USER_ActListOpen")>
+<cfif NOT structKeyExists(cookie,"USER_ActListOpen")>
 	<cfcookie name="USER_ActListOpen" value="false">
 </cfif>
 
-<cfif NOT isDefined("Cookie.USER_ActListSize")>
+<cfif NOT structKeyExists(cookie,"USER_ActListSize")>
 	<cfcookie name="USER_ActListSize" value="200,253">
 </cfif>
 
-<cfif NOT isDefined("Cookie.USER_ActNotesPos")>
+<cfif NOT structKeyExists(cookie,"USER_ActNotesPos")>
 	<cfcookie name="USER_ActNotesPos" value="200,200">
 </cfif>
 
-<cfif NOT isDefined("Cookie.USER_ActNotesOpen")>
+<cfif NOT structKeyExists(cookie,"USER_ActNotesOpen")>
 	<cfcookie name="USER_ActNotesOpen" value="false">
 </cfif>
 
-<cfif NOT isDefined("Cookie.USER_ActNotesSize")>
+<cfif NOT structKeyExists(cookie,"USER_ActNotesSize")>
 	<cfcookie name="USER_ActNotesSize" value="200,253">
 </cfif>
 
-<cfif NOT isDefined("Cookie.USER_PersonFinderOpen")>
+<cfif NOT structKeyExists(cookie,"USER_PersonFinderOpen")>
 	<cfcookie name="USER_PersonFinderOpen" value="false">
 </cfif>
 
-<cfif NOT isDefined("Cookie.USER_AttendeePage")>
+<cfif NOT structKeyExists(cookie,"USER_AttendeePage")>
 	<cfcookie name="USER_AttendeePage" value="0|1">
 </cfif>
 
-<cfif NOT isDefined("Cookie.USER_AttendeeStatus")>
+<cfif NOT structKeyExists(cookie,"USER_AttendeeStatus")>
 	<cfcookie name="USER_AttendeeStatus" value="0|0">
 </cfif>
 
-<cfif NOT isDefined("Cookie.USER_Containers")>
+<cfif NOT structKeyExists(cookie,"USER_Containers")>
 	<cfcookie name="USER_Containers" value="" />
+</cfif>
+
+<cfif NOT structKeyExists(cookie,"USER_FINDSTARTDATE")>
+	<cfcookie name="USER_FINDSTARTDATE" value="" />
 </cfif>
 
 <cfif isDefined("Session.Person")>

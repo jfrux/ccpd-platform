@@ -175,7 +175,7 @@ jQuery().ready(function(){
 
 			BugLog.notifyService({
 				message: "XHR: " + sMessage,
-				error: x,
+				error: JSON.stringify(x),
 				severity: "ERROR"
 			});
 
@@ -185,20 +185,12 @@ jQuery().ready(function(){
 	  
 	$(".BreadcrumbIcon").attr("src","#Application.Settings.RootPath#/admin/_images/icons/bullet_go#Request.NavItem#.png");
 	$("##PageStandard").hide();
-	/* SESSION TIMEOUT ALERT BOX */
-	var divObject = $('##SessionTimeout')[0]; 
-	
-	$('##SessionOkay').click(function() { 
-		$.unblockUI();
-		window.location='#myself#Main.Login';
-	}); 
-	
+	/* SESSION TIMEOUT REDIRECT */
 	function sessionTimeout() {
-		$.extend($.blockUI.defaults.overlayCSS, { backgroundColor: '##000' });
-		$.blockUI({message: divObject, width: '275px' });
+		window.location='#myself#Main.Login';
 	}
 	<cfif NOT isDefined("Client.Login") OR Client.Login EQ "">
-	window.setTimeout(sessionTimeout, 3600000);
+	window.setTimeout(sessionTimeout, 10800000);
 	</cfif>
 	
 	 LoadDocWidth = $(document).width();

@@ -39,7 +39,7 @@ $(document).ready(function() {
 <div id="stats-container">
 <table width="100%" cellspacing="1" cellpadding="3" border="0">
 	<tr>
-		<td width="46%" nowrap="nowrap">Attendees:</td>
+		<td width="46%" nowrap="nowrap">Att. Records:</td>
 		<td width="54%">#ActivityBean.getStatAttendees()#</td>
 	</tr>
 	<tr>
@@ -48,7 +48,13 @@ $(document).ready(function() {
 	</tr>
 	<tr>
 		<td nowrap="nowrap">Non MDs:</td>
-		<td>#ActivityBean.getStatNonMD()#</td>
+		<td>#ActivityBean.getStatNonMD()#
+		</td>
+	</tr>
+	<tr class="stat_addlattendees">
+		<td nowrap="nowrap">Addl Attendees:</td>
+		<td>#ActivityBean.getStatAddlAttendees()#
+		</td>
 	</tr>
 	<tr>
 		<td nowrap="nowrap">Supporters:</td>

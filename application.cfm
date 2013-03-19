@@ -1,4 +1,5 @@
-<cfif cgi.script_name DOES NOT CONTAIN "/lms">
+<cfset checkList = "/lms|/auth|.cfc" />
+<cfif NOT reFindNoCase("(#checkList#)",cgi.script_name)>
 	<cfswitch expression="#cgi.server_name#">
 		<cfcase value="v2.ccpd.uc.edu">
 			<cflocation url="http://v2.ccpd.uc.edu/lms/" addtoken="no" />
@@ -19,11 +20,4 @@
 			<cflocation url="http://ccpd.uc.edu/lms/" addtoken="no" />
 		</cfdefaultcase>
 	</cfswitch>
-<cfelseif cgi.server_name CONTAINS "www">
-	<cflocation url="http://ccpd.uc.edu/lms" addtoken="no" />
-<cfelseif cgi.script_name DOES NOT CONTAIN ".cfc">
-	<cflocation url="http://ccpd.uc.edu/lms" addtoken="no" />
 </cfif>
-
-<cferror template="/error.cfm" type="exception" mailto="rountrjf@ucmail.uc.edu">
-<cferror template="/error.cfm" type="request" mailto="rountrjf@ucmail.uc.edu">

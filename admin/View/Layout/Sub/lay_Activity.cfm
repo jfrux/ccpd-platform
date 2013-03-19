@@ -61,7 +61,7 @@ function continueCopy() {
 		{ method: "CopyPaste", Mode: nCopyChoice, NewActivityTitle: sNewActivityTitle, NewActivityTypeID: nNewActivityType, NewGroupingID: nNewGrouping, ActivityID: nActivity, ReturnFormat:"plain" },
 		function(data) {
 			if(data.STATUS) {
-				window.location = sMyself + 'Activity.Detail?ActivityID=' + data.DATASET[0].ACTIVITYID + '&Message=' + data.STATUSMSG;
+				window.location = sMyself + 'Activity.Detail?ActivityID=' + data.DATASET[0].activityid + '&Message=' + data.STATUSMSG;
 			} else {
 				addError(data.STATUSMSG,250,6000,4000);
 			}
@@ -423,8 +423,17 @@ $(document).ready(function() {
 });
 </script>
 
+<cfset isParent = false />
+<cfif activitybean.getGroupingID() EQ 2>
+	<cfif activitybean.getParentActivityId() EQ "">
+		<cfset isParent = true />
+	<cfelse>
+		<cfset isParent = false />
+	</cfif>
+</cfif>
 <cfoutput>
 <link href="#Application.Settings.RootPath#/_styles/Activity.css" rel="stylesheet" type="text/css" />
+<div class="activity type-#activitybean.getActivityTypeID()# grouping-#activitybean.getGroupingID()# <cfif activitybean.getParentActivityId() EQ "">parent_activity<cfelse>child_activity</cfif>">
 <cfif ActivityBean.getDeletedFlag() EQ "Y">
     <div style="font-size:18px;color:##FF0000;">THIS ACTIVITY HAS BEEN DELETED.</div>
 <cfelse>
@@ -579,5 +588,6 @@ $(document).ready(function() {
 	</cfif>
 <div id="DisableActivity">
 &nbsp;
+</div>
 </div>
 </cfoutput>

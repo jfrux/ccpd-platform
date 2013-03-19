@@ -23,7 +23,7 @@
 <div class="TabControl" id="Tabs#Attributes.Instance#">
 	<ul>
 <cfloop from="1" to="#LabelCount#" index="i">
-		<li<cfif ListFindNoCase(GetToken(Attributes.Fuseactions,i,","),Attributes.Current,"|")> class="current"</cfif>><a href="#request.myself##GetToken(GetToken(Attributes.Fuseactions,i,","),1,"|")##Attributes.QueryString#<cfif url.Mini NEQ ''>&Mini=1</cfif>">#GetToken(Attributes.Labels,i,',')#</a></li>
+		<li class="<cfif ListFindNoCase(GetToken(Attributes.Fuseactions,i,","),Attributes.Current,"|")>current </cfif>#replace(lcase(GetToken(GetToken(Attributes.Fuseactions,i,","),1,"|")),'.','_')#"><a href="#request.myself##GetToken(GetToken(Attributes.Fuseactions,i,","),1,"|")##Attributes.QueryString#<cfif url.Mini NEQ ''>&Mini=1</cfif>">#GetToken(Attributes.Labels,i,',')#</a></li>
 </cfloop>
 	</ul>
 </div>

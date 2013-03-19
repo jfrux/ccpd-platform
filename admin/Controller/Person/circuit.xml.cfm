@@ -3,19 +3,19 @@
 <!-- Person -->
 <circuit access="public">
 	<prefuseaction callsuper="true">
-		<set name="Request.NavItem" value="3" />
-		<if condition="isDefined('Attributes.PersonID')">
-			<true>
-				<if condition="Attributes.Fuseaction NEQ 'Person.Detail'">
-					<true>
-						<do action="mPerson.getPerson" />
-					</true>
-				</if>
-				<set name="Request.ActionsLimit" value="4" />
-				<do action="mPerson.getActions" />
-			</true>
-		</if>
-    </prefuseaction>
+	<set name="Request.NavItem" value="3" />
+	<if condition="isDefined('Attributes.PersonID')">
+		<true>
+			<if condition="Attributes.Fuseaction NEQ 'Person.Detail'">
+				<true>
+					<do action="mPerson.getPerson" />
+				</true>
+			</if>
+			<set name="Request.ActionsLimit" value="4" />
+			<do action="mPerson.getActions" />
+		</true>
+	</if>
+	</prefuseaction>
 	
 	<fuseaction name="Actions">
 		<set name="Request.Page.Title" value="#Attributes.FirstName# #Attributes.LastName#" />

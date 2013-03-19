@@ -73,6 +73,7 @@
 	<cfcase value="v2.ccpd.uc.edu">
 		<cfset Application.Settings.assetsUrl = "http://localhost:3000/assets">
 		<cfset Application.Settings.apiUrl = "http://localhost:3000">
+		
 		<cfset Application.Settings.DSN = "CCPD_CLONE">
 		<cfset Application.Settings.AppName = "CCPD Admin 2.0" /> <!--- appears on Window Titles, etc. --->
 		<cfset Application.Settings.RootPath = "/admin" /> <!--- HTTP path for images, and links --->
@@ -87,7 +88,7 @@
 		<cfset application.settings.javaloaderKey = "JAVALOADER-CCPD-PROD-15313">
 	</cfcase>
 </cfswitch>
-
+		
 <cfset Application.BugLog = CreateObject("component","#Application.Settings.Com#bugLogService").init(
 bugLogListener="http://bugs.swodev.com/listeners/bugLogListenerREST.cfm",
 bugEmailRecipients="rountrjf@ucmail.uc.edu,slamkajs@ucmail.uc.edu",

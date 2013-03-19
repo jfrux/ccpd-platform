@@ -1,3 +1,20 @@
+.activity.grouping-2.parent_activity .activity_attendees {
+ display:none;
+}
+.activity.grouping-2.parent_activity .activity_credits {
+ display:none;
+}
+.activity.grouping-2.parent_activity .activity_attendees {
+ display:none;
+}
+.activity.grouping-2.child_activity .activity_finances {
+ display:none;
+}
+
+.activity.grouping-2.parent_activity .stat_addlattendees {
+ display:none;
+}
+
 td.ActivityLeft { width:150px; }
 td.ActivityRight { width:700px; }
 
@@ -39,13 +56,13 @@ div.OverviewSectionRight { margin-left: 4px; margin-bottom: 4px; }
 div#DisableActivity { position:absolute; height:1000px; width:610px;left:0px; top:140px; background-color:#FFF; display:none; }
 div#ActivityDialogs {
 -moz-border-radius:5px 5px 5px 5px;
-background-color:#FFFFFF;
-border:1px solid #DDDDDD;
-display:block;
-left:623px;
-position:absolute;
-top:21px;
-width:335px;
+    background-color: #FFFFFF;
+    border: 1px solid #DDDDDD;
+    display: block;
+    left: 623px;
+    position: absolute;
+    top: 26px;
+    width: 346px;
 }
 div#ActivityDialogs a {       float: right;
     line-height: 24px;

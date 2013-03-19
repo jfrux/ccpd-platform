@@ -135,15 +135,11 @@
 									 FROM ce_Activity AS A2
 									 WHERE 
 										(A2.ParentActivityID = A.ActivityID) AND
+										(A2.DeletedFlag='N') AND
 										(A2.StatusID IN (1,2,3))
 									)
 								ELSE
-									(SELECT isNull(A2.statAddlAttendees,0)
-									 FROM
-									 ce_Activity AS A2
-									 WHERE  
-										(A2.ActivityID = A.ActivityID) AND 
-										(A2.StatusID IN (1,2,3)))
+									A.statAddlAttendees
 							END
 						WHEN 'S' THEN
 							A.statAddlAttendees

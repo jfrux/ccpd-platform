@@ -32,6 +32,8 @@
         <circuit alias="mSupport" path="../Model/Support/" parent="" />
 		
 		<!-- View -->
+		<circuit alias="vAuth" path="../View/Auth/" parent="" />
+		
 		<circuit alias="vFile" path="../View/File/" parent="" />
 		<circuit alias="vImage" path="../View/Image/" parent="" />
 		<circuit alias="vMain" path="../View/" parent="" />
@@ -47,6 +49,8 @@
         <circuit alias="vSupport" path="../View/Support/" parent="" />
 		
 		<!-- Controller -->
+		<circuit alias="Auth" path="../Controller/Auth/" relative="true" />
+		
 		<circuit alias="File" path="../Controller/File/" relative="true" />
 		<circuit alias="Image" path="../Controller/Image/" relative="true" />
 		<circuit alias="Main" path="../Controller/" relative="true" />
