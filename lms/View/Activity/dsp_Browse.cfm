@@ -238,7 +238,7 @@ function midLimit(sString,nLimit) {
 			</cfloop>
 			</ul>
 		</cfif>
-		<h2 class="Head DarkGray">Tags</h2>
+		<!--- <h2 class="Head DarkGray">Tags</h2>
 		<cfquery name="qTags" cachedwithin="#createTimeSpan(0,1,0,0)#" datasource="#Application.Settings.DSN#">
 			SELECT     
 				id, 
@@ -270,7 +270,7 @@ function midLimit(sString,nLimit) {
 			<cfloop query="qTags">
 			<li><a href="#Application.Settings.RootPath#/browse?tag=#qTags.id#&submitted=1" title="#qTags.Name#" style="text-decoration:none;">#midLimit(qTags.Name,30)# (#qTags.ActivityCount#) <img src="/lms/_images/icons/bullet_go.png" align="absmiddle" border="0" /></a></li>
 			</cfloop>
-			</ul>
+			</ul> --->
 			</cfoutput>
 			
 			

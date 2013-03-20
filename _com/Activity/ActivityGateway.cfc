@@ -643,7 +643,6 @@
 	<cffunction name="getBySearchLMS" access="public" output="false" returntype="query">
 		<cfargument name="ActivityTypeID" type="numeric" required="false" />
 		<cfargument name="CategoryID" type="string" required="false" />
-		<cfargument name="TagID" type="string" required="false" />
 		<cfargument name="GroupingID" type="numeric" required="false" />
 		<cfargument name="SpecialtyID" type="string" required="false" />
 		<cfargument name="CategoryLMSID" type="string" required="false" />
@@ -734,9 +733,7 @@
                 <cfif structKeyExists(arguments,"CategoryID") and len(arguments.CategoryID) AND arguments.CategoryID GT 0>
                     AND	(SELECT Count(AC.Activity_CategoryID) FROM ce_Activity_Category AC WHERE AC.CategoryID=<cfqueryparam value="#Arguments.CategoryID#" cfsqltype="cf_sql_integer" /> AND AC.DeletedFlag='N' AND AC.ActivityID=C.ActivityID) > 0
                 </cfif>
-                <cfif structKeyExists(arguments,"TagID") and len(arguments.TagID) AND arguments.TagID GT 0>
-                    AND	(SELECT Count(AC.activityid) FROM ce_Activity_Tag_relates AC WHERE AC.tagid=<cfqueryparam value="#Arguments.TagID#" cfsqltype="cf_sql_integer" /> AND AC.ActivityID=C.ActivityID) > 0
-                </cfif>
+                
                 <cfif structKeyExists(arguments,"Title") and len(arguments.Title)>
                     AND	C.Title LIKE <cfqueryparam value="%#arguments.Title#%" CFSQLType="cf_sql_varchar" />
                 </cfif>
@@ -783,9 +780,7 @@
                 <cfif structKeyExists(arguments,"CategoryID") and len(arguments.CategoryID) AND arguments.CategoryID GT 0>
                     AND	(SELECT Count(AC.Activity_CategoryID) FROM ce_Activity_Category AC WHERE AC.CategoryID=<cfqueryparam value="#Arguments.CategoryID#" cfsqltype="cf_sql_integer" /> AND AC.DeletedFlag='N' AND AC.ActivityID=C.ActivityID) > 0
                 </cfif>
-                <cfif structKeyExists(arguments,"TagID") and len(arguments.TagID) AND arguments.TagID GT 0>
-                    AND	(SELECT Count(AC.activityid) FROM ce_Activity_Tag_relates AC WHERE AC.tagid=<cfqueryparam value="#Arguments.TagID#" cfsqltype="cf_sql_integer" /> AND AC.ActivityID=C.ActivityID) > 0
-                </cfif>
+               
                 <cfif structKeyExists(arguments,"Title") and len(arguments.Title)>
                     AND	C.Title LIKE <cfqueryparam value="%#arguments.Title#%" CFSQLType="cf_sql_varchar" />
                 </cfif>
