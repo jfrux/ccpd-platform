@@ -54,7 +54,7 @@
 	</cfcase>
 
 	<cfcase value="localhost">
-		<cfset Application.Settings.assetsUrl = "http://localhost:3000/assets">
+		<cfset Application.Settings.assetsUrl = "http://localhost:9292/">
 		<cfset Application.Settings.apiUrl = "http://localhost:3000">
 		<cfset Application.Settings.DSN = "CCPD_CLONE">
 		<cfset Application.Settings.AppName = "CCPD Admin 2.0" /> <!--- appears on Window Titles, etc. --->

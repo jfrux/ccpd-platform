@@ -262,6 +262,7 @@ limitations under the License.
 	
 	<cffunction name="onError">
 		<cfargument name="exception" />
+		<!--- 
 		
 		<cfset var stack = 0 />
 		<cfset var prefix = "Raised at " />
@@ -307,12 +308,12 @@ limitations under the License.
 				</cfif>
 				<cfoutput>#variables.myFusebox.renderTrace()#</cfoutput>
 			</cfif>
-			<cfthrow object="#caughtException#" />
 		</cfif>
 		
 		<!--- if we hit an error before starting the request, prevent the request from running --->
 		<cfset myFusebox.parameters.execute = false />
-		
+		 --->
+		<cfthrow object="#arguments.exception#" />
 	</cffunction>
 	
 	<cffunction name="override" returntype="void" access="public" output="false">

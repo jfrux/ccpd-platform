@@ -1,6 +1,12 @@
+<cffunction name="stylesheet_links">
+	<cfhttp method="get" url="http://localhost:9292/stylesheet_tags" result="css_markup">
+		
+	</cfhttp>
 
+	<cfreturn css_markup.filecontent />
+</cffunction>
 <cfoutput>
-<link href="/public/assets/stylesheets/application.css" media="screen, projection" rel="stylesheet" type="text/css" />
+#stylesheet_links()#
 <!--[if lt IE 8]>
   <link href="/stylesheets/ie.css" media="screen, projection" rel="stylesheet" type="text/css" />
 <![endif]-->
