@@ -1,0 +1,3 @@
+Find: (<cfquery .*[>])((.|\n)*?)(<\/cfquery>)
+
+Replace: $1\L$2\n</cfquery>
