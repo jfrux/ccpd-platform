@@ -6,4 +6,5 @@ _uploads
 *.xlsx
 *.csv
 *.xls
+.DS_Store
 node_modules
