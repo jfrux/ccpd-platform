@@ -263,7 +263,7 @@ limitations under the License.
 	<cffunction name="onError">
 		<cfargument name="exception" />
 		
-		<cfset var stack = 0 />
+		<!--- <cfset var stack = 0 />
 		<cfset var prefix = "Raised at " />
 		
 		<!--- top-level exception is always event name / expression for Application.cfc (but not fusebox5.cfm) --->
@@ -307,9 +307,9 @@ limitations under the License.
 				</cfif>
 				<cfoutput>#variables.myFusebox.renderTrace()#</cfoutput>
 			</cfif>
-			<cfthrow object="#caughtException#" />
-		</cfif>
-		
+			
+		</cfif> --->
+		<cfthrow object="#arguments.exception#" />
 		<!--- if we hit an error before starting the request, prevent the request from running --->
 		<cfset myFusebox.parameters.execute = false />
 		

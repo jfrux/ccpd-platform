@@ -1,4 +1,4 @@
-<script>
+<!---<script>
 function generateTranscript(dtDate1, dtDate2, nCredit) {
 	$("#TranscriptTitle").fadeIn();
 	$("#frmTranscript").fadeIn();
@@ -8,8 +8,6 @@ function generateTranscript(dtDate1, dtDate2, nCredit) {
 		function(data) {
 			var cleanData = $.Trim(data);
 			var tempURL = "<cfoutput>#application.settings.apiurl#/users/#session.person.getPersonID()#</cfoutput>/transcript?startdate=" + encodeURIComponent(dtDate1) + "&enddate=" + encodeURIComponent(dtDate2) + "&rand=" + encodeURIComponent(cleanData);
-			
-			$("#frmTranscript").attr("src",tempURL);
 	});
 }
 
@@ -30,7 +28,7 @@ $(document).ready(function() {
 	/* TRANSCRIPT FUNCTIONS END */
 });
 </script>
-
+--->
 <cfoutput>
 <div class="ContentBlock">
 	<h1>My Transcript</h1>
@@ -45,7 +43,7 @@ $(document).ready(function() {
 				<img alt="Get Adobe Reader" src="http://www.adobe.com/images/shared/download_buttons/get_adobe_reader.gif" border="0" />
 				</a></p>
 				<h2 class="Head LightGray" id="TranscriptTitle" style="display:none;">Your Transcript</h2>
-				<iframe src="" name="frmTranscript" id="frmTranscript" height="550" width="100%" style="display:none;" frameborder="0"></iframe>
+				<!--- <iframe src="" name="frmTranscript" id="frmTranscript" height="550" width="100%" style="display:none;" frameborder="0"></iframe> --->
 			</td>
 			<td valign="top" width="250">
 				<h2 class="Head Red">Criteria</h2>
@@ -59,16 +57,20 @@ $(document).ready(function() {
 						</cfloop>
 					</select>
 				</p>--->
+				<form method="get" action="#application.settings.apiurl#/users/#session.person.getPersonID()#/transcript">
+					
 				<p id="TranscriptGenerator">
 					<strong>Transcript Dates:</strong><br />
 					<em>Start Date</em>
-					<input type="text" id="new-date1" name="StartDate" style="width:80px;" /><br />
+					<input type="text" id="new-date1" name="startdate" style="width:80px;" value="01/01/2012" /><br />
 					<em>End Date</em>
-					<input type="text" id="new-date2" name="EndDate" style="width:80px;" />
+					<input type="text" id="new-date2" name="enddate" style="width:80px;" value="#DateFormat(now(),"mm/dd/yyyy")#" />
+					
 				</p>
 				<p>
-					<input type="button" value="Generate" id="GenerateTranscript" />
+					<input type="submit" value="Generate" id="GenerateTranscript" />
 				</p>
+				</form>
 			</td>
 		</tr>
 	</table>

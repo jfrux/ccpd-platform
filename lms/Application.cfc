@@ -10,8 +10,8 @@
 			<cfset this.name = "CCPD_LMS_PRODUCTION_#namekey#" />
 	
 			<cfset THIS.CustomTagPaths = expandPath("/lms/_tags") />
-			<cferror template="/lms/error.cfm" type="exception" mailto="rountrjf@ucmail.uc.edu">
-			<cferror template="/lms/error.cfm" type="request" mailto="rountrjf@ucmail.uc.edu">
+			<!--- <cferror template="/lms/error.cfm" type="exception" mailto="rountrjf@ucmail.uc.edu">
+			<cferror template="/lms/error.cfm" type="request" mailto="rountrjf@ucmail.uc.edu"> --->
 		</cfcase>
 		
 		<cfcase value="www.ccpd.uc.edu">
