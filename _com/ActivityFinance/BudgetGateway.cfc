@@ -34,7 +34,7 @@
 				UpdatedBy,
 				Deleted,
 				DeletedFlag
-			FROM	ce_Activity_FinBudget
+			FROM	Activities_FinBudget
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"BudgetID") and len(arguments.BudgetID)>
@@ -113,10 +113,10 @@
 					p1.lastname AS CreateByLName, 
 					p2.firstname AS UpdatedByFName, 
 		            p2.lastname AS UpdatedByLName
-			FROM	ce_Activity_FinBudget afb
-			LEFT OUTER JOIN ce_Sys_EntryType AS et ON et.EntryTypeID = afb.EntryTypeID 
-			LEFT OUTER JOIN ce_person AS p1 ON p1.personid = afb.CreatedBy 
-			LEFT OUTER JOIN ce_person AS p2 ON p2.personid = afb.UpdatedBy
+			FROM	Activities_FinBudget afb
+			LEFT OUTER JOIN sys_entrytypes AS et ON et.EntryTypeID = afb.EntryTypeID 
+			LEFT OUTER JOIN Users AS p1 ON p1.personid = afb.CreatedBy 
+			LEFT OUTER JOIN Users AS p2 ON p2.personid = afb.UpdatedBy
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"BudgetID") and len(arguments.BudgetID)>

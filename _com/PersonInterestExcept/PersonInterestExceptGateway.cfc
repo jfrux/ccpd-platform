@@ -19,7 +19,7 @@
 				PersonID,
 				ActivityID,
 				Created
-			FROM	ce_Person_Interest_Except
+			FROM	Users_Interest_Except
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"PersonIntExceptID") and len(arguments.PersonIntExceptID)>

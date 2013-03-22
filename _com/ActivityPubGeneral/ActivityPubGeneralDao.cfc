@@ -11,7 +11,7 @@
 
 		<cfset var qCreate = "" />
 		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
-				INSERT INTO ce_Activity_PubGeneral
+				INSERT INTO Activities_PubGeneral
 					(
 					ActivityID,
 					LinkName,
@@ -100,7 +100,7 @@
 					ExtHostLink,
 					RestrictedFlag,
 					Updated
-				FROM	ce_Activity_PubGeneral
+				FROM	Activities_PubGeneral
 				WHERE	ActivityID = <cfqueryparam value="#arguments.ActivityPubGeneral.getActivityID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -116,7 +116,7 @@
 
 		<cfset var qUpdate = "" />
 		<cfquery name="qUpdate" datasource="#variables.dsn#">
-				UPDATE	ce_Activity_PubGeneral
+				UPDATE	Activities_PubGeneral
 				SET
 					ActivityID = <cfqueryparam value="#arguments.ActivityPubGeneral.getActivityID()#" CFSQLType="cf_sql_integer" />,
 					LinkName = <cfqueryparam value="#arguments.ActivityPubGeneral.getLinkName()#" CFSQLType="cf_sql_varchar" null="#not len(arguments.ActivityPubGeneral.getLinkName())#" />,
@@ -153,7 +153,7 @@
 
 		<cfset var qDelete = "">
 		<cfquery name="qDelete" datasource="#variables.dsn#">
-				DELETE FROM	ce_Activity_PubGeneral 
+				DELETE FROM	Activities_PubGeneral 
 				WHERE	ActivityID = <cfqueryparam value="#arguments.ActivityPubGeneral.getActivityID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -166,7 +166,7 @@
 		<cfset var qExists = "">
 		<cfquery name="qExists" datasource="#variables.dsn#" maxrows="1">
 			SELECT count(1) as idexists
-			FROM	ce_Activity_PubGeneral
+			FROM	Activities_PubGeneral
 			WHERE	ActivityID = <cfqueryparam value="#arguments.ActivityPubGeneral.getActivityID()#" CFSQLType="cf_sql_integer" />
 		</cfquery>
 

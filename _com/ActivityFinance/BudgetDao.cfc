@@ -12,7 +12,7 @@
 
 		<cfset var qCreate = "" />
 		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
-				INSERT INTO ce_Activity_FinBudget
+				INSERT INTO Activities_FinBudget
 					(
 					ActivityID,
 					Description,
@@ -51,7 +51,7 @@
 					UpdatedBy,
 					Deleted,
 					DeletedFlag
-				FROM	ce_Activity_FinBudget
+				FROM	Activities_FinBudget
 				WHERE	BudgetID = <cfqueryparam value="#arguments.Budget.getBudgetID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -67,7 +67,7 @@
 
 		<cfset var qUpdate = "" />
 		<cfquery name="qUpdate" datasource="#variables.dsn#">
-				UPDATE	ce_Activity_FinBudget
+				UPDATE	Activities_FinBudget
 				SET
 					ActivityID = <cfqueryparam value="#arguments.Budget.getActivityID()#" CFSQLType="cf_sql_integer" />,
 					Description = <cfqueryparam value="#arguments.Budget.getDescription()#" CFSQLType="cf_sql_varchar" />,
@@ -90,7 +90,7 @@
 
 		<cfset var qDelete = "">
 		<cfquery name="qDelete" datasource="#variables.dsn#">
-				DELETE FROM	ce_Activity_FinBudget 
+				DELETE FROM	Activities_FinBudget 
 				WHERE	BudgetID = <cfqueryparam value="#arguments.Budget.getBudgetID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -103,7 +103,7 @@
 		<cfset var qExists = "">
 		<cfquery name="qExists" datasource="#variables.dsn#" maxrows="1">
 			SELECT count(1) as idexists
-			FROM	ce_Activity_FinBudget
+			FROM	Activities_FinBudget
 			WHERE	BudgetID = <cfqueryparam value="#arguments.Budget.getBudgetID()#" CFSQLType="cf_sql_integer" />
 		</cfquery>
 

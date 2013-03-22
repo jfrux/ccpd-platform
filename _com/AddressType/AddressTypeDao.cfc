@@ -11,7 +11,7 @@
 
 		<cfset var qCreate = "" />
 		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
-				INSERT INTO ce_Sys_AddressType
+				INSERT INTO sys_addresstypes
 					(
 					Name,
 					Description,
@@ -39,7 +39,7 @@
 					Name,
 					Description,
 					Code
-				FROM	ce_Sys_AddressType
+				FROM	sys_addresstypes
 				WHERE	AddressTypeID = <cfqueryparam value="#arguments.AddressType.getAddressTypeID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -55,7 +55,7 @@
 
 		<cfset var qUpdate = "" />
 		<cfquery name="qUpdate" datasource="#variables.dsn#">
-				UPDATE	ce_Sys_AddressType
+				UPDATE	sys_addresstypes
 				SET
 					Name = <cfqueryparam value="#arguments.AddressType.getName()#" CFSQLType="cf_sql_varchar" />,
 					Description = <cfqueryparam value="#arguments.AddressType.getDescription()#" CFSQLType="cf_sql_varchar" null="#not len(arguments.AddressType.getDescription())#" />,
@@ -71,7 +71,7 @@
 
 		<cfset var qDelete = "">
 		<cfquery name="qDelete" datasource="#variables.dsn#">
-				DELETE FROM	ce_Sys_AddressType 
+				DELETE FROM	sys_addresstypes 
 				WHERE	AddressTypeID = <cfqueryparam value="#arguments.AddressType.getAddressTypeID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -84,7 +84,7 @@
 		<cfset var qExists = "">
 		<cfquery name="qExists" datasource="#variables.dsn#" maxrows="1">
 			SELECT count(1) as idexists
-			FROM	ce_Sys_AddressType
+			FROM	sys_addresstypes
 			WHERE	AddressTypeID = <cfqueryparam value="#arguments.AddressType.getAddressTypeID()#" CFSQLType="cf_sql_integer" />
 		</cfquery>
 

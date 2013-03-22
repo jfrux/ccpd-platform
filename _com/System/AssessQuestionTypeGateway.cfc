@@ -27,7 +27,7 @@
 				Updated,
 				Deleted,
 				DeletedFlag
-			FROM	ce_Sys_AssessQuestionType
+			FROM	sys_assessquestiontypes
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"QuestionTypeID") and len(arguments.QuestionTypeID)>

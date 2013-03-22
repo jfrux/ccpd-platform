@@ -52,7 +52,7 @@
 				CreatedBy,
 				Updated,
 				UpdatedBy
-			FROM	ce_Person_Address
+			FROM	Users_Address
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"AddressID") and len(arguments.AddressID)>
@@ -167,8 +167,8 @@
 				PA.Updated,
 				PA.UpdatedBy,
 				AT.Description AS AddressTypeName
-			FROM	ce_Person_Address PA 
-			LEFT OUTER JOIN ce_Sys_AddressType AT ON AT.AddressTypeID = PA.AddressTypeID
+			FROM	Users_Address PA 
+			LEFT OUTER JOIN sys_addresstypes AT ON AT.AddressTypeID = PA.AddressTypeID
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"AddressID") and len(arguments.AddressID)>

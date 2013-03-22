@@ -9,9 +9,9 @@
 <cfsavecontent variable="feattmpl">
 <div class="mbm detailedsearch_result clearfix">
 	<div class="UIImageBlock clearfix">
-	<a href="${LINK}" class="UIImageBlock_Image UIImageBlock_ICON_Image">
-	<img alt="" src="${IMAGE}" class="img">
-	</a>
+		<a href="${LINK}" class="UIImageBlock_Image UIImageBlock_ICON_Image">
+		<img alt="" src="${IMAGE}" class="img">
+		</a>
 		<div class="pls UIImageBlock_Content UIImageBlock_ICON_Content">
 			<div class="clearfix"><!---
 				<div class="rfloat">

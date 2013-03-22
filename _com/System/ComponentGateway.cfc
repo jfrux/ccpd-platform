@@ -23,7 +23,7 @@
 				TypeCode,
 				SortFlag,
 				MaxUsage
-			FROM	ce_Sys_Component
+			FROM	sys_components
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"ComponentID") and len(arguments.ComponentID)>

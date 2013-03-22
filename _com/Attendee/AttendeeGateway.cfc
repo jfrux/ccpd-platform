@@ -95,7 +95,7 @@
 				UpdatedBy,
 				Deleted,
 				DeletedFlag
-			FROM	ce_Attendee
+			FROM	attendees
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"AttendeeID") and len(arguments.AttendeeID)>
@@ -275,11 +275,11 @@
                 pub.StatVoteCount,
                 pub.StatVoteValue
 			FROM
-            	ce_Attendee AS att 
+            	attendees AS att 
             INNER JOIN
-				ce_Activity AS act ON act.ActivityID = att.ActivityID
+				Activities AS act ON act.ActivityID = att.ActivityID
             INNER JOIN
-				ce_Activity_PubGeneral AS pub ON act.ActivityID = pub.ActivityID
+				Activities_PubGeneral AS pub ON act.ActivityID = pub.ActivityID
 			WHERE     (0 = 0)
 		
 		<cfif structKeyExists(arguments,"AttendeeID") and len(arguments.AttendeeID)>
@@ -418,16 +418,16 @@
 				acdc.CurrentlyEnrolled,
 				acdc.RelevantTraining,
 				acdc.MotivationTraining
-			FROM	ce_Attendee a
-			INNER JOIN ce_AttendeeCDC acdc ON acdc.AttendeeID = a.AttendeeID
-			INNER JOIN ce_Person p ON p.PersonID = a.PersonID
-			INNER JOIN ce_Person_Address AS Address ON p.PrimaryAddressID = address.AddressID
-			LEFT JOIN ce_Sys_Ethnicity e ON e.EthnicityID = p.EthnicityID
-			LEFT JOIN ce_Sys_OccClass occ ON occ.OccClassID = acdc.OccClassID
-			LEFT JOIN ce_Sys_ProfC pc ON pc.ProfCID = acdc.ProfCID
-			LEFT JOIN ce_Sys_FunRN frn ON frn.FunRNID = acdc.FunRNID
-			LEFT JOIN ce_Sys_OrgType ot ON ot.OrgTypeID = acdc.OrgTypeID
-			LEFT JOIN ce_Sys_Market sm ON sm.MarketID = acdc.MarketID
+			FROM	attendees a
+			INNER JOIN attendeesCDC acdc ON acdc.AttendeeID = a.AttendeeID
+			INNER JOIN Users p ON p.PersonID = a.PersonID
+			INNER JOIN Users_Address AS Address ON p.PrimaryAddressID = address.AddressID
+			LEFT JOIN sys_ethnicities e ON e.EthnicityID = p.EthnicityID
+			LEFT JOIN sys_occclasses occ ON occ.OccClassID = acdc.OccClassID
+			LEFT JOIN sys_profcs pc ON pc.ProfCID = acdc.ProfCID
+			LEFT JOIN sys_funrns frn ON frn.FunRNID = acdc.FunRNID
+			LEFT JOIN sys_orgtypes ot ON ot.OrgTypeID = acdc.OrgTypeID
+			LEFT JOIN sys_markets sm ON sm.MarketID = acdc.MarketID
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"AttendeeID") and len(arguments.AttendeeID)>
@@ -534,19 +534,19 @@
 				A.StartDate,
 				SD.Name AS DegreeName
         FROM         
-			ce_Attendee AS att 
+			attendees AS att 
         INNER JOIN 
-			ce_Activity AS A ON att.ActivityID = A.ActivityID 
+			Activities AS A ON att.ActivityID = A.ActivityID 
         INNER JOIN 
-			ce_person AS p1 ON p1.personid = att.PersonID
+			Users AS p1 ON p1.personid = att.PersonID
         LEFT OUTER JOIN 
-			ce_Person_Address AS Address ON p1.PrimaryAddressID=Address.addressid
+			Users_Address AS Address ON p1.PrimaryAddressID=Address.addressid
         LEFT OUTER JOIN 
-			ce_Person_Degree AS PD ON PD.PersonID = p1.PersonID
+			Users_Degree AS PD ON PD.PersonID = p1.PersonID
         LEFT OUTER JOIN 
-			ce_Sys_Degree AS SD ON SD.DegreeID = PD.DegreeID
+			sys_degrees AS SD ON SD.DegreeID = PD.DegreeID
         LEFT OUTER JOIN 
-			ce_Sys_AttendeeStatus ats ON ats.AttendeeStatusID = att.StatusID
+			sys_attendeestatuses ats ON ats.AttendeeStatusID = att.StatusID
         WHERE     
 			(A.DeletedFlag='N') AND PD.DeletedFlag='N'
 		<cfif structKeyExists(arguments,"AttendeeID") and len(arguments.AttendeeID)>
@@ -572,7 +572,7 @@
 		</cfif><!---
 		OR
 		(A.DeletedFlag='N') AND ((SELECT COUNT(PD1.PersonDegreeID)
-        									 FROM ce_Person_Degree PD1
+        									 FROM Users_Degree PD1
                                              WHERE PersonID = ATT.PersonID) = 0) --->
 		<!---<cfif structKeyExists(arguments,"AttendeeID") and len(arguments.AttendeeID)>
 			AND	att.AttendeeID = <cfqueryparam value="#arguments.AttendeeID#" CFSQLType="cf_sql_integer" />
@@ -626,10 +626,10 @@
                         a.Title, 
                         ac.Amount AS CreditAmount, 
                         sc.Name AS CreditType
-            FROM ce_Attendee AS att 
-            LEFT JOIN ce_Activity AS A ON att.ActivityID = A.ActivityID 
-            LEFT JOIN ce_AttendeeCredit AS ac ON ac.AttendeeID = att.AttendeeID
-            LEFT JOIN ce_Sys_Credit AS sc ON sc.CreditID = ac.CreditID
+            FROM attendees AS att 
+            LEFT JOIN Activities AS A ON att.ActivityID = A.ActivityID 
+            LEFT JOIN attendeesCredit AS ac ON ac.AttendeeID = att.AttendeeID
+            LEFT JOIN sys_credits AS sc ON sc.CreditID = ac.CreditID
             WHERE
             	A.DeletedFlag='N' AND
                 ATT.StatusID = 1 AND

@@ -38,7 +38,7 @@
 				UpdatedBy,
 				Deleted,
 				DeletedFlag
-			FROM	ce_Activity_FinFee
+			FROM	Activities_FinFee
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"FeeID") and len(arguments.FeeID)>
@@ -123,9 +123,9 @@
 					p1.lastname AS CreateByLName, 
 					p2.firstname AS UpdatedByFName, 
 		            p2.lastname AS UpdatedByLName
-			FROM	ce_Activity_FinFee aff
-			LEFT OUTER JOIN ce_Person p1 ON p1.PersonID = aff.CreatedBy
-			LEFT OUTER JOIN ce_Person p2 ON p2.PersonID = aff.UpdatedBy
+			FROM	Activities_FinFee aff
+			LEFT OUTER JOIN Users p1 ON p1.PersonID = aff.CreatedBy
+			LEFT OUTER JOIN Users p2 ON p2.PersonID = aff.UpdatedBy
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"FeeID") and len(arguments.FeeID)>

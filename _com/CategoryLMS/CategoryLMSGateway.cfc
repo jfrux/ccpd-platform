@@ -17,7 +17,7 @@
 				CategoryID,
 				Name,
 				Description
-			FROM	ce_Sys_CategoryLMS
+			FROM	sys_categorylms
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"CategoryID") and len(arguments.CategoryID)>
@@ -50,9 +50,9 @@
 				sclms.Name,
 				sclms.Description,
                 (SELECT COUNT(ActivityID)
-                 FROM ce_Activity_CategoryLMS aclms
+                 FROM Activities_CategoryLMS aclms
                  WHERE aclms.CategoryID = sclms.CategoryID) AS ActivityCount
-			FROM	ce_Sys_CategoryLMS sclms
+			FROM	sys_categorylms sclms
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"CategoryID") and len(arguments.CategoryID)>

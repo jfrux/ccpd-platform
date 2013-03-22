@@ -21,7 +21,7 @@
 				ExpenseFlag,
 				Description,
 				Created
-			FROM	ce_Sys_EntryType
+			FROM	sys_entrytypes
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"EntryTypeID") and len(arguments.EntryTypeID)>

@@ -11,7 +11,7 @@
 
 		<cfset var qCreate = "" />
 		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
-				INSERT INTO ce_Sys_PrinEmp
+				INSERT INTO sys_prinemps
 					(
 					Name,
 					Description
@@ -37,7 +37,7 @@
 					Name,
 					Description,
 					Created
-				FROM	ce_Sys_PrinEmp
+				FROM	sys_prinemps
 				WHERE	PrinEmpID = <cfqueryparam value="#arguments.PrinEmp.getPrinEmpID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -53,7 +53,7 @@
 
 		<cfset var qUpdate = "" />
 		<cfquery name="qUpdate" datasource="#variables.dsn#">
-				UPDATE	ce_Sys_PrinEmp
+				UPDATE	sys_prinemps
 				SET
 					Name = <cfqueryparam value="#arguments.PrinEmp.getName()#" CFSQLType="cf_sql_varchar" null="#not len(arguments.PrinEmp.getName())#" />,
 					Description = <cfqueryparam value="#arguments.PrinEmp.getDescription()#" CFSQLType="cf_sql_varchar" null="#not len(arguments.PrinEmp.getDescription())#" />,
@@ -69,7 +69,7 @@
 
 		<cfset var qDelete = "">
 		<cfquery name="qDelete" datasource="#variables.dsn#">
-				DELETE FROM	ce_Sys_PrinEmp 
+				DELETE FROM	sys_prinemps 
 				WHERE	PrinEmpID = <cfqueryparam value="#arguments.PrinEmp.getPrinEmpID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -82,7 +82,7 @@
 		<cfset var qExists = "">
 		<cfquery name="qExists" datasource="#variables.dsn#" maxrows="1">
 			SELECT count(1) as idexists
-			FROM	ce_Sys_PrinEmp
+			FROM	sys_prinemps
 			WHERE	PrinEmpID = <cfqueryparam value="#arguments.PrinEmp.getPrinEmpID()#" CFSQLType="cf_sql_integer" />
 		</cfquery>
 

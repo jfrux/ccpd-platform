@@ -29,7 +29,7 @@
 				HiddenFlag,
 				Created,
 				CreatedBy
-			FROM	ce_Action
+			FROM	actions
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"ActionID") and len(arguments.ActionID)>
@@ -85,8 +85,8 @@
 			SELECT     
 			<cfif Arguments.Limit NEQ "">TOP #Arguments.Limit# </cfif>
 			A.ActionID, A.ActivityID, A.PersonID, A.ShortName, A.LongName, A.Code, A.Created, A.CreatedBy, P.firstname, P.middlename, P.lastname, Left(P.FirstName,1) + '. ' + P.LastName As Username
-			FROM         ce_Action AS A INNER JOIN
-				  ce_person AS P ON A.CreatedBy = P.personid
+			FROM         actions AS A INNER JOIN
+				  Users AS P ON A.CreatedBy = P.personid
 			WHERE    0=0
 		
 		<cfif structKeyExists(arguments,"ActionID") and len(arguments.ActionID)>

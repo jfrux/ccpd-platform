@@ -11,7 +11,7 @@
 
 		<cfset var qCreate = "" />
 		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
-				INSERT INTO ce_Sys_EntryType
+				INSERT INTO sys_entrytypes
 					(
 					Name,
 					ExpenseFlag,
@@ -40,7 +40,7 @@
 					ExpenseFlag,
 					Description,
 					Created
-				FROM	ce_Sys_EntryType
+				FROM	sys_entrytypes
 				WHERE	EntryTypeID = <cfqueryparam value="#arguments.EntryType.getEntryTypeID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -56,7 +56,7 @@
 
 		<cfset var qUpdate = "" />
 		<cfquery name="qUpdate" datasource="#variables.dsn#">
-				UPDATE	ce_Sys_EntryType
+				UPDATE	sys_entrytypes
 				SET
 					Name = <cfqueryparam value="#arguments.EntryType.getName()#" CFSQLType="cf_sql_varchar" />,
 					ExpenseFlag = <cfqueryparam value="#arguments.EntryType.getExpenseFlag()#" CFSQLType="cf_sql_char" null="#not len(arguments.EntryType.getExpenseFlag())#" />,
@@ -73,7 +73,7 @@
 
 		<cfset var qDelete = "">
 		<cfquery name="qDelete" datasource="#variables.dsn#">
-				DELETE FROM	ce_Sys_EntryType 
+				DELETE FROM	sys_entrytypes 
 				WHERE	EntryTypeID = <cfqueryparam value="#arguments.EntryType.getEntryTypeID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -86,7 +86,7 @@
 		<cfset var qExists = "">
 		<cfquery name="qExists" datasource="#variables.dsn#" maxrows="1">
 			SELECT count(1) as idexists
-			FROM	ce_Sys_EntryType
+			FROM	sys_entrytypes
 			WHERE	EntryTypeID = <cfqueryparam value="#arguments.EntryType.getEntryTypeID()#" CFSQLType="cf_sql_integer" />
 		</cfquery>
 

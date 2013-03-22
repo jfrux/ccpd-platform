@@ -28,7 +28,7 @@
 				Updated,
 				Deleted,
 				DeletedFlag
-			FROM	ce_Account
+			FROM	accounts
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"AccountID") and len(arguments.AccountID)>

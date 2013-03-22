@@ -25,7 +25,7 @@
 			<!--- GET ADDRESS --->
 			<cfquery name="qAddress" datasource="#Application.Settings.DSN#">
 				SELECT     Phone1, Address1, Address2, City, State, ZipCode, Country
-				FROM         dbo.ce_Person_Address
+				FROM         dbo.Users_Address
 				WHERE     (personid = #Session.PersonID#) AND (AddressTypeID = 2)
 				ORDER BY UpdatedBy DESC
 			</cfquery>

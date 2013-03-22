@@ -24,7 +24,7 @@ WHERE     ((SELECT     COUNT(CourseSectionId) AS Expr1
 		<cfloop query="qCourseContrib">
 			<cfquery name="qFind" datasource="#NewDSN#">
 				SELECT ActivityID,Title,ReleaseDate
-				FROM ce_Activity
+				FROM Activities
 				WHERE 
 				Title=<cfqueryparam value="#Trim(qCourseContrib.CourseTitle)#" cfsqltype="cf_sql_varchar" /> AND 
 				ReleaseDate BETWEEN DateAdd(m,-#nMonths#,#CreateODBCDateTime(qCourseContrib.Created)#) AND DateAdd(m,#nMonths#,#CreateODBCDateTime(qCourseContrib.Created)#) AND
@@ -54,7 +54,7 @@ WHERE     ((SELECT     COUNT(CourseSectionId) AS Expr1
 			 <!--- DETERMINE TYPE ID --->
 			 <cfquery name="qCheck" datasource="#NewDSN#">
 			 	SELECT ContribTypeID
-				FROM ce_Sys_SupportType
+				FROM sys_supporttypes
 				WHERE Name=<cfqueryparam value="#qCourseContrib.ContribType#" cfsqltype="cf_sql_varchar" />
 			 </cfquery>
 			 
@@ -68,7 +68,7 @@ WHERE     ((SELECT     COUNT(CourseSectionId) AS Expr1
 				<!--- Check if exists --->
 				<cfquery name="qCheck" datasource="#NewDSN#">
 					SELECT ContributorID
-					FROM ce_Sys_Supporter
+					FROM sys_supporters
 					WHERE Name=<cfqueryparam value="#Trim(qCourseContrib.Name)#" cfsqltype="cf_sql_varchar" />
 				</cfquery>
 				
@@ -118,7 +118,7 @@ WHERE     ((SELECT     COUNT(CourseSectionId) AS Expr1
 		<cfoutput>
 		<cfloop query="qFiles">
 			<cfquery name="qActivity" datasource="#NewDSN#">
-				SELECT ActivityID FROM ce_Activity
+				SELECT ActivityID FROM Activities
 				WHERE ExternalID=#qFiles.CourseSectionID#
 			</cfquery>
 			
@@ -194,7 +194,7 @@ WHERE     ((SELECT     COUNT(CourseSectionId) AS Expr1
 			<!--- FIND ACTIVITY --->
 			<cfquery name="qActivity" datasource="#NewDSN#">
 				SELECT ActivityID,ParentActivityID
-				FROM ce_Activity
+				FROM Activities
 				WHERE Title='#qCourses.Name#'
 			</cfquery>
 			
@@ -304,13 +304,13 @@ WHERE     ((SELECT     COUNT(CourseSectionId) AS Expr1
 		<cfloop query="qSTD">
 			#qSTD.CourseTitle#...
 			<cfquery name="qActivity" datasource="#NewDSN#">
-				SELECT ActivityID,ExternalID FROM ce_Activity WHERE ExternalID='#qSTD.CourseSectionID#'
+				SELECT ActivityID,ExternalID FROM Activities WHERE ExternalID='#qSTD.CourseSectionID#'
 			</cfquery>
 			
 			<cfloop query="qActivity">
 			found [#qActivity.ActivityID#] [#qActivity.ExternalID#]
 			<cfquery name="qInsert" datasource="#NewDSN#">
-				INSERT INTO ce_Activity_Category (
+				INSERT INTO Activities_Category (
 					ActivityID,
 					CategoryID,
 					CreatedBy
@@ -344,7 +344,7 @@ WHERE     ((SELECT     COUNT(CourseSectionId) AS Expr1
 				
 				<cfquery name="qFind" datasource="#NewDSN#">
 					SELECT ActivityID,Title
-					FROM ce_Activity
+					FROM Activities
 					WHERE Title=<cfqueryparam value="#Trim(STD.Title)#" cfsqltype="cf_sql_varchar" />
 				</cfquery>
 				#STD.Title#
@@ -352,7 +352,7 @@ WHERE     ((SELECT     COUNT(CourseSectionId) AS Expr1
 					 (Found #qFind.RecordCount#)<br>
 					 <cfloop query="qFind">
 					 	<cfquery name="qUpdate" datasource="#NewDSN#">
-							UPDATE ce_Activity
+							UPDATE Activities
 							SET ExternalID=<cfqueryparam value="#STD.ExternalID#" cfsqltype="cf_sql_varchar" />
 							WHERE ActivityID=#qFind.ActivityID#
 						</cfquery>
@@ -375,12 +375,12 @@ WHERE     ((SELECT     COUNT(CourseSectionId) AS Expr1
                 Act.ReleaseDate, 
                 Act.Title, 
                 Att.PersonID
-            FROM ce_Attendee AS Att 
-            INNER JOIN ce_Activity AS Act ON Att.ActivityID = Act.ActivityID
+            FROM attendees AS Att 
+            INNER JOIN Activities AS Act ON Att.ActivityID = Act.ActivityID
             WHERE 
             	(Att.DeletedFlag = 'N') AND
               ((SELECT     COUNT(Activity_CategoryID) AS CatCount
-                  FROM         ce_Activity_Category AS AC
+                  FROM         Activities_Category AS AC
                   WHERE     (CategoryID = 31) AND (DeletedFlag = 'N') AND (ActivityID = Att.ActivityID)) > 0)
                   AND Act.ReleaseDate >= '4/1/2009 00:00:00' AND Act.ReleaseDate < '4/1/2010 00:00:00'
              ORDER BY Act.ReleaseDate
@@ -660,7 +660,7 @@ WHERE     ((SELECT     COUNT(CourseSectionId) AS Expr1
         
         <!--- CHECK IF PARENT ALREADY EXISTS --->
         <cfquery name="qCheck" datasource="#NewDSN#">
-        	SELECT ActivityID FROM ce_Activity
+        	SELECT ActivityID FROM Activities
             WHERE Title='#qEventTypes.EventType# #Yr#' AND DeletedFlag='N'
         </cfquery>
        
@@ -833,7 +833,7 @@ WHERE     (CS.CourseId = C.CourseID) AND (ISNULL(CSI.EventTypeId, '') <> '')) AS
         <cfloop query="qCourses">
 			<!--- CHECK IF EXISTS --->
 			<cfquery name="qCheckParent" datasource="#NewDSN#">
-				SELECT ActivityID FROM ce_Activity WHERE Title='#qCourses.Name#' AND ReleaseDate=#CreateODBCDateTime(qCourses.ReleaseDate)#
+				SELECT ActivityID FROM Activities WHERE Title='#qCourses.Name#' AND ReleaseDate=#CreateODBCDateTime(qCourses.ReleaseDate)#
 			</cfquery>
 			
 			<cfif qCheckParent.RecordCount GT 0>
@@ -883,7 +883,7 @@ WHERE     (CS.CourseId = C.CourseID) AND (ISNULL(CSI.EventTypeId, '') <> '')) AS
 				<cfloop query="qSessions">
 					<!--- CHECK IF EXISTS --->
 					<cfquery name="qCheck" datasource="#NewDSN#">
-						SELECT ActivityID,ParentActivityID FROM ce_Activity WHERE Title='#qSessions.Name#' AND ReleaseDate=#CreateODBCDateTime(qSessions.StartDate)#
+						SELECT ActivityID,ParentActivityID FROM Activities WHERE Title='#qSessions.Name#' AND ReleaseDate=#CreateODBCDateTime(qSessions.StartDate)#
 					</cfquery>
 					
 					<cfif qCheck.RecordCount EQ 0>
@@ -990,7 +990,7 @@ WHERE     (CS.CourseId = C.CourseID) AND (ISNULL(CSI.EventTypeId, '') <> '')) AS
 				<cfset FeeAmount = qFees.Fee>
 			</cfif>
 			<cfquery name="qAddFee" datasource="#NewDSN#">
-				INSERT INTO ce_Activity_FinFee (
+				INSERT INTO Activities_FinFee (
 					ActivityID,
 					Name,
 					DisplayName,
@@ -1046,7 +1046,7 @@ WHERE     (CS.CourseId = C.CourseID) AND (ISNULL(CSI.EventTypeId, '') <> '')) AS
 			
 			
 			<cfquery name="qInsertComm" datasource="#NewDSN#">
-				INSERT INTO ce_Activity_Committee (
+				INSERT INTO Activities_Committee (
 					ActivityID,
 					PersonID<cfif nRoleID GT 0>,
 					RoleID</cfif>
@@ -1181,7 +1181,7 @@ WHERE     (CS.CourseId = C.CourseID) AND (ISNULL(CSI.EventTypeId, '') <> '')) AS
 		
 		<cfloop query="qEventTimes">
 			<cfquery name="qInsertAgenda" datasource="#NewDSN#">
-				INSERT INTO ce_Agenda (
+				INSERT INTO agendas (
 					ActivityID,
 					EventDate,
 					StartTime,
@@ -1228,7 +1228,7 @@ WHERE     (CS.CourseId = C.CourseID) AND (ISNULL(CSI.EventTypeId, '') <> '')) AS
 		
 		
 		<cfquery name="qGetCatID" datasource="#NewDSN#">
-			SELECT CategoryID FROM ce_Category
+			SELECT CategoryID FROM categories
 			WHERE Name = <cfqueryparam value="#Arguments.EventType#" cfsqltype="cf_sql_varchar" />
 		</cfquery>
 		
@@ -1253,7 +1253,7 @@ WHERE     (CS.CourseId = C.CourseID) AND (ISNULL(CSI.EventTypeId, '') <> '')) AS
 		<cfset FullDate = TheMonth & "/" & TheDay & "/" & TheYear>
 		
 		<cfquery name="qGetCourses" datasource="#NewDSN#">
-			SELECT ActivityID,ParentActivityID,ExternalID FROM ce_Activity
+			SELECT ActivityID,ParentActivityID,ExternalID FROM Activities
 			WHERE ExternalID <> '' AND ReleaseDate BETWEEN '#FullDate# 00:00:00' AND '#FullDate# 23:59:59' AND Len(ExternalID) > 3 AND ParentActivityID IS NOT NULL
 		</cfquery>
 		
@@ -1274,7 +1274,7 @@ WHERE     (CS.CourseId = C.CourseID) AND (ISNULL(CSI.EventTypeId, '') <> '')) AS
 			
 			<cfloop query="qAttendees">
 				<cfquery name="qCheck" datasource="#NewDSN#">
-					SELECT AttendeeID FROM ce_Attendee
+					SELECT AttendeeID FROM attendees
 					WHERE PersonID=#qAttendees.PersonID# AND ActivityID=#qGetCourses.ActivityID#
 				</cfquery>
 				
@@ -1307,7 +1307,7 @@ WHERE     (CS.CourseId = C.CourseID) AND (ISNULL(CSI.EventTypeId, '') <> '')) AS
 					</cfif>
 					
 					<cfquery name="qInsertAttendeeCredit" datasource="#NewDSN#">
-						INSERT INTO ce_AttendeeCredit (
+						INSERT INTO attendeesCredit (
 							AttendeeID,
 							CreditID,
 							Amount,

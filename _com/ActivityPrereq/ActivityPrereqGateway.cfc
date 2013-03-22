@@ -22,7 +22,7 @@
 				PrereqID,
 				Created,
 				CreatedBy
-			FROM	ce_Activity_Prereq
+			FROM	Activities_Prereq
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"ActivityPrereqID") and len(arguments.ActivityPrereqID)>
@@ -67,9 +67,9 @@
 				AP.CreatedBy,
                 P.FirstName,
                 P.LastName
-			FROM	ce_Activity_Prereq AP
-            INNER JOIN ce_Activity A ON A.ActivityID = AP.PrereqID
-            INNER JOIN ce_Person P ON P.PersonID = AP.CreatedBy
+			FROM	Activities_Prereq AP
+            INNER JOIN Activities A ON A.ActivityID = AP.PrereqID
+            INNER JOIN Users P ON P.PersonID = AP.CreatedBy
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"ActivityPrereqID") and len(arguments.ActivityPrereqID)>

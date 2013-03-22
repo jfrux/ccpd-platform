@@ -11,7 +11,7 @@
 
 		<cfset var qCreate = "" />
 		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
-				INSERT INTO ce_Activity_Vote
+				INSERT INTO Activities_Vote
 					(
 					ActivityID,
 					PersonID,
@@ -40,7 +40,7 @@
 					PersonID,
 					VoteValue,
 					Created
-				FROM	ce_Activity_Vote
+				FROM	Activities_Vote
 				WHERE	ActivityID = <cfqueryparam value="#arguments.ActivityVote.getActivityID()#" CFSQLType="cf_sql_integer" /> AND PersonID = <cfqueryparam value="#arguments.ActivityVote.getPersonID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -56,7 +56,7 @@
 
 		<cfset var qUpdate = "" />
 		<cfquery name="qUpdate" datasource="#variables.dsn#">
-				UPDATE	ce_Activity_Vote
+				UPDATE	Activities_Vote
 				SET
 					ActivityID = <cfqueryparam value="#arguments.ActivityVote.getActivityID()#" CFSQLType="cf_sql_integer" />,
 					PersonID = <cfqueryparam value="#arguments.ActivityVote.getPersonID()#" CFSQLType="cf_sql_integer" />,
@@ -73,7 +73,7 @@
 
 		<cfset var qDelete = "">
 		<cfquery name="qDelete" datasource="#variables.dsn#">
-				DELETE FROM	ce_Activity_Vote 
+				DELETE FROM	Activities_Vote 
 				WHERE	ActivityID = <cfqueryparam value="#arguments.ActivityVote.getActivityID()#" CFSQLType="cf_sql_integer" /> AND PersonID = <cfqueryparam value="#arguments.ActivityVote.getPersonID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -86,7 +86,7 @@
 		<cfset var qExists = "">
 		<cfquery name="qExists" datasource="#variables.dsn#" maxrows="1">
 			SELECT count(1) as idexists
-			FROM	ce_Activity_Vote
+			FROM	Activities_Vote
 			WHERE	ActivityID = <cfqueryparam value="#arguments.ActivityVote.getActivityID()#" CFSQLType="cf_sql_integer" /> AND PersonID = <cfqueryparam value="#arguments.ActivityVote.getPersonID()#" CFSQLType="cf_sql_integer" />
 		</cfquery>
 

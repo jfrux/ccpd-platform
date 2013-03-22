@@ -17,7 +17,7 @@
 				AssessTypeID,
 				Name,
 				Description
-			FROM	ce_Sys_AssessType
+			FROM	sys_assesstypes
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"AssessTypeID") and len(arguments.AssessTypeID)>

@@ -27,7 +27,7 @@
 				Updated,
 				Deleted,
 				DeletedFlag
-			FROM	ce_Sys_AssessResultStatus
+			FROM	sys_assessresultstatuses
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"ResultStatusID") and len(arguments.ResultStatusID)>

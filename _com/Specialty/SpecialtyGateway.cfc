@@ -18,7 +18,7 @@
 				SpecialtyID,
 				Name,
 				Description
-			FROM	ce_Sys_SpecialtyLMS
+			FROM	sys_specialtylms
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"SpecialtyID") and len(arguments.SpecialtyID)>
@@ -51,9 +51,9 @@
 				sslms.Name,
 				sslms.Description,
                 (SELECT COUNT(ActivityID)
-                 FROM ce_Activity_SpecialtyLMS aslms
+                 FROM Activities_SpecialtyLMS aslms
                  WHERE aslms.SpecialtyID = sslms.SpecialtyID) AS ActivityCount
-			FROM	ce_Sys_SpecialtyLMS sslms
+			FROM	sys_specialtylms sslms
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"SpecialtyID") and len(arguments.SpecialtyID)>

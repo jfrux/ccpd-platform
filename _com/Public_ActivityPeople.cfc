@@ -30,14 +30,14 @@
             <cfif Arguments.FileType EQ "CV">
                 <!--- UPDATE CVAPPROVEFLAG --->
                 <cfquery name="qUpdateCVFlag" datasource="#Application.Settings.DSN#">
-                    UPDATE ce_Activity_Faculty
+                    UPDATE Activities_Faculty
                     SET CVApproveFlag = <cfqueryparam value="#ApproveFlag#" cfsqltype="cf_sql_char" />
                     WHERE ActivityID = <cfqueryparam value="#Arguments.ActivityID#" cfsqltype="cf_sql_integer" /> AND PersonID = <cfqueryparam value="#Arguments.PersonID#" cfsqltype="cf_sql_integer" />
                 </cfquery>
             <cfelseif Arguments.FileType EQ "Disclosure">
                 <!--- UPDATE DISCLOSUREAPPROVEFLAG --->
                 <cfquery name="qUpdateDisclosureFlag" datasource="#Application.Settings.DSN#">
-                    UPDATE ce_Activity_Faculty
+                    UPDATE Activities_Faculty
                     SET DisclosureApproveFlag = <cfqueryparam value="#ApproveFlag#" cfsqltype="cf_sql_char" />
                     WHERE ActivityID = <cfqueryparam value="#Arguments.ActivityID#" cfsqltype="cf_sql_integer" /> AND PersonID = <cfqueryparam value="#Arguments.PersonID#" cfsqltype="cf_sql_integer" />
                 </cfquery>
@@ -46,7 +46,7 @@
             <!--- GET PERSONS NAME --->
             <cfquery name="qGetPersonName" datasource="#Application.Settings.DSN#">
                 SELECT FirstName, LastName
-                FROM ce_Person
+                FROM Users
                 WHERE PersonID = <cfqueryparam value="#Arguments.PersonID#" cfsqltype="cf_sql_integer" />
             </cfquery>
             
@@ -105,7 +105,7 @@
             <cfloop list="#Arguments.PersonList#" index="tempPersonID" delimiters=",">
                 <!--- Delete each record --->
                 <cfquery name="qUpdateRole" datasource="#Application.Settings.DSN#" result="UpdatedRole">
-                    UPDATE ce_Activity_Committee
+                    UPDATE Activities_Committee
                     SET RoleID = <cfif Arguments.RoleID NEQ 0><cfqueryparam value="#Arguments.RoleID#" cfsqltype="cf_sql_integer" /><cfelse><cfqueryparam null="true" cfsqltype="cf_sql_integer" /></cfif>
                     WHERE PersonID = <cfqueryparam value="#tempPersonID#" CFSQLType="cf_sql_integer" /> AND ActivityID = <cfqueryparam value="#Arguments.ActivityID#" CFSQLType="cf_sql_integer" />
                 </cfquery>
@@ -139,7 +139,7 @@
                 
                 <cfquery name="PersonInfo" datasource="#Application.Settings.DSN#">
                     SELECT DisplayName
-                    FROM ce_Person
+                    FROM Users
                     WHERE PersonID IN (#PersonList#)
                 </cfquery>
                 
@@ -212,7 +212,7 @@
             <cfloop list="#Arguments.PersonList#" index="PersonID">
                 <!--- Delete each record --->
                 <cfquery name="qUpdateRole" datasource="#Application.Settings.DSN#">
-                    UPDATE ce_Activity_Faculty
+                    UPDATE Activities_Faculty
                     SET RoleID = <cfif Arguments.RoleID NEQ 0><cfqueryparam value="#Arguments.RoleID#" cfsqltype="cf_sql_integer" /><cfelse><cfqueryparam null="true" cfsqltype="cf_sql_integer" /></cfif>
                     WHERE PersonID = <cfqueryparam value="#PersonID#" CFSQLType="cf_sql_integer" /> AND ActivityID = <cfqueryparam value="#Arguments.ActivityID#" CFSQLType="cf_sql_integer" />
                 </cfquery>
@@ -245,7 +245,7 @@
                 
                 <cfquery name="PersonInfo" datasource="#Application.Settings.DSN#">
                     SELECT DisplayName
-                    FROM ce_Person
+                    FROM Users
                     WHERE PersonID IN (#PersonList#)
                 </cfquery>
                 
@@ -280,8 +280,8 @@
                 AC.CreditID,
                 SC.Name AS CreditName
             FROM
-                ce_Activity_Credit AC
-            INNER JOIN ce_Sys_Credit SC ON SC.CreditID = AC.CreditID
+                Activities_Credit AC
+            INNER JOIN sys_credits SC ON SC.CreditID = AC.CreditID
             WHERE
                 ActivityID = <cfqueryparam value="#Arguments.ActivityID#" cfsqltype="cf_sql_integer" /> AND AC.DeletedFlag = 'N'
         </cfquery>
@@ -292,9 +292,9 @@
                 PD.DegreeID,
                 SD.Name AS DegreeName
             FROM
-                ce_Person_Degree PD
+                Users_Degree PD
             INNER JOIN
-                ce_Sys_Degree SD ON SD.DegreeID = PD.DegreeID
+                sys_degrees SD ON SD.DegreeID = PD.DegreeID
             WHERE
                 PD.PersonID = <cfqueryparam value="#Arguments.PersonID#" cfsqltype="cf_sql_integer" /> AND PD.DeletedFlag = 'N'
         </cfquery>
@@ -305,9 +305,9 @@
                 	PD.DegreeID,
                     SD.Name AS DegreeName
                 FROM
-                	ce_Person_Degree PD
+                	Users_Degree PD
                 INNER JOIN 
-                	ce_Sys_Degree SD ON SD.DegreeID = PD.DegreeID
+                	sys_degrees SD ON SD.DegreeID = PD.DegreeID
                 WHERE
                 	PD.PersonID = <cfqueryparam value="#Arguments.PersonID#" cfsqltype="cf_sql_integer" />
             </cfquery>
@@ -362,7 +362,7 @@
         				
             <!--- Delete each record --->
             <cfquery name="qRemoveAll" datasource="#Application.Settings.DSN#">
-                UPDATE ce_Activity_Committee
+                UPDATE Activities_Committee
                 SET DeletedFlag = <cfqueryparam value="Y" cfsqltype="cf_sql_char" />
                 WHERE ActivityID = <cfqueryparam value="#Arguments.ActivityID#" CFSQLType="cf_sql_integer" />
             </cfquery>
@@ -401,7 +401,7 @@
         				
             <!--- Delete each record --->
             <cfquery name="qRemoveAll" datasource="#Application.Settings.DSN#">
-                UPDATE ce_Activity_Faculty
+                UPDATE Activities_Faculty
                 SET DeletedFlag = <cfqueryparam value="Y" cfsqltype="cf_sql_char" />,
                     UpdatedBy = <cfqueryparam value="#Session.Person.getPersonID()#" cfsqltype="cf_sql_char" />
                 WHERE ActivityID = <cfqueryparam value="#Arguments.ActivityID#" CFSQLType="cf_sql_integer" />
@@ -451,7 +451,7 @@
             <cfloop list="#Arguments.PersonList#" index="PersonID">
                 <!--- Delete each record --->
                 <cfquery name="qRemoveChecked" datasource="#Application.Settings.DSN#">
-                    UPDATE ce_Activity_Committee
+                    UPDATE Activities_Committee
                     SET DeletedFlag = <cfqueryparam value="Y" cfsqltype="cf_sql_char" />
                     WHERE PersonID = <cfqueryparam value="#PersonID#" CFSQLType="cf_sql_integer" /> AND ActivityID = <cfqueryparam value="#Arguments.ActivityID#" CFSQLType="cf_sql_integer" />
                 </cfquery>
@@ -482,7 +482,7 @@
                 
                 <cfquery name="PersonInfo" datasource="#Application.Settings.DSN#">
                     SELECT DisplayName
-                    FROM ce_Person
+                    FROM Users
                     WHERE PersonID IN (#PersonList#)
                 </cfquery>
                 
@@ -529,7 +529,7 @@
             <cfloop list="#Arguments.PersonList#" index="PersonID">
                 <!--- Delete each record --->
                 <cfquery name="qRemoveChecked" datasource="#Application.Settings.DSN#">
-                    UPDATE ce_Activity_Faculty
+                    UPDATE Activities_Faculty
                     SET DeletedFlag = <cfqueryparam value="Y" cfsqltype="cf_sql_char" />,
                         UpdatedBy = <cfqueryparam value="#Session.Person.getPersonID()#" cfsqltype="cf_sql_char" />
                     WHERE PersonID = <cfqueryparam value="#PersonID#" CFSQLType="cf_sql_integer" /> AND ActivityID = <cfqueryparam value="#Arguments.ActivityID#" CFSQLType="cf_sql_integer" />
@@ -562,7 +562,7 @@
                 
                 <cfquery name="PersonInfo" datasource="#Application.Settings.DSN#">
                     SELECT DisplayName
-                    FROM ce_Person
+                    FROM Users
                     WHERE PersonID IN (#PersonList#)
                 </cfquery>
                 
@@ -601,13 +601,13 @@
 			
 				<cfquery name="qFindCommitteeMember" datasource="#Application.Settings.DSN#">
 					SELECT DeletedFlag
-					FROM ce_Activity_Committee
+					FROM Activities_Committee
 					WHERE PersonID = <cfqueryparam value="#Arguments.PersonID#" CFSQLType="cf_sql_integer" /> AND ActivityID = <cfqueryparam value="#Arguments.ActivityID#" CFSQLType="cf_sql_integer" />
 				</cfquery>
 				
 				<cfif qFindCommitteeMember.RecordCount LTE 0>
 					<cfquery name="addCommitteeMember" datasource="#Application.Settings.DSN#">
-						INSERT INTO ce_Activity_Committee
+						INSERT INTO Activities_Committee
 							(
 							ActivityID,
 							PersonID,
@@ -634,7 +634,7 @@
 					<cfif qFindCommitteeMember.RecordCount EQ 1 AND qFindCommitteeMember.DeletedFlag EQ 'Y'>
 						<!--- If a record exists but DeletedFlag EQ Y then it is updated to N --->
 						<cfquery name="qUpdateDeletedFlag" datasource="#Application.Settings.DSN#">
-							UPDATE ce_Activity_Committee
+							UPDATE Activities_Committee
 							SET DeletedFlag = <cfqueryparam value="N" cfsqltype="cf_sql_char" />
 							WHERE PersonID = <cfqueryparam value="#PersonID#" CFSQLType="cf_sql_integer" /> AND ActivityID = <cfqueryparam value="#Arguments.ActivityID#" CFSQLType="cf_sql_integer" />
 							
@@ -675,7 +675,7 @@
 			
 				<cfquery name="qFindFacultyMember" datasource="#Application.Settings.DSN#">
 					SELECT DeletedFlag
-					FROM ce_Activity_Faculty
+					FROM Activities_Faculty
 					WHERE PersonID = <cfqueryparam value="#Arguments.PersonID#" CFSQLType="cf_sql_integer" /> AND ActivityID = <cfqueryparam value="#Arguments.ActivityID#" CFSQLType="cf_sql_integer" />
 				</cfquery>
 				
@@ -683,7 +683,7 @@
                 	<!--- GET CV FILEID --->
                 	<cfquery name="qGetCVFile" datasource="#Application.Settings.DSN#">
                     	SELECT TOP 1 FileID
-                        FROM ce_File
+                        FROM files
                         WHERE PersonID = <cfqueryparam value="#Arguments.PersonID#" cfsqltype="cf_sql_integer" /> AND FileTypeID = <cfqueryparam value="4" cfsqltype="cf_sql_integer" />
                         ORDER BY Created DESC
                     </cfquery>
@@ -691,14 +691,14 @@
                 	<!--- GET DISCLOSURE FILEID --->
                 	<cfquery name="qGetDisclosureFile" datasource="#Application.Settings.DSN#">
                     	SELECT TOP 1 FileID
-                        FROM ce_File
+                        FROM files
                         WHERE PersonID = <cfqueryparam value="#Arguments.PersonID#" cfsqltype="cf_sql_integer" /> AND FileTypeID = <cfqueryparam value="5" cfsqltype="cf_sql_integer" />
                         ORDER BY Created DESC
                     </cfquery>
                 
                 	<!--- INSERT FACULTY MEMBER RECORD --->
 					<cfquery name="addFacultyMember" datasource="#Application.Settings.DSN#">
-						INSERT INTO ce_Activity_Faculty
+						INSERT INTO Activities_Faculty
 							(
 							ActivityID,
 							PersonID,
@@ -745,7 +745,7 @@
                         <!--- GET CV FILEID --->
                         <cfquery name="qGetCVFile" datasource="#Application.Settings.DSN#">
                             SELECT TOP 1 FileID
-                            FROM ce_File
+                            FROM files
                             WHERE PersonID = <cfqueryparam value="#Arguments.PersonID#" cfsqltype="cf_sql_integer" /> AND FileTypeID = <cfqueryparam value="4" cfsqltype="cf_sql_integer" /> AND DeletedFlag = <cfqueryparam value="N" cfsqltype="cf_sql_char" />
                             ORDER BY Created DESC
                         </cfquery>
@@ -753,7 +753,7 @@
                         <!--- GET OLD CV FILEID --->
                         <cfquery name="qGetOldCVFileID" datasource="#Application.Settings.DSN#">
                         	SELECT CVFileID
-                            FROM ce_Activity_Faculty
+                            FROM Activities_Faculty
                             WHERE PersonID = <cfqueryparam value="#PersonID#" CFSQLType="cf_sql_integer" /> AND ActivityID = <cfqueryparam value="#Arguments.ActivityID#" CFSQLType="cf_sql_integer" />
                         </cfquery>
                         
@@ -767,7 +767,7 @@
                         <!--- GET DISCLOSURE FILEID --->
                         <cfquery name="qGetDisclosureFile" datasource="#Application.Settings.DSN#">
                             SELECT TOP 1 FileID
-                            FROM ce_File
+                            FROM files
                             WHERE PersonID = <cfqueryparam value="#Arguments.PersonID#" cfsqltype="cf_sql_integer" /> AND FileTypeID = <cfqueryparam value="5" cfsqltype="cf_sql_integer" /> AND DeletedFlag = <cfqueryparam value="N" cfsqltype="cf_sql_char" />
                             ORDER BY Created DESC
                         </cfquery>
@@ -775,7 +775,7 @@
                         <!--- GET OLD DISCLOSURE FILEID --->
                         <cfquery name="qGetOldDisclosureFileID" datasource="#Application.Settings.DSN#">
                         	SELECT DisclosureFileID
-                            FROM ce_Activity_Faculty
+                            FROM Activities_Faculty
                             WHERE PersonID = <cfqueryparam value="#PersonID#" CFSQLType="cf_sql_integer" /> AND ActivityID = <cfqueryparam value="#Arguments.ActivityID#" CFSQLType="cf_sql_integer" />
                         </cfquery>
                         
@@ -788,7 +788,7 @@
                         
 						<!--- If a record exists but DeletedFlag EQ Y then it is updated to N --->
 						<cfquery name="qUpdateDeletedFlag" datasource="#Application.Settings.DSN#">
-							UPDATE ce_Activity_Faculty
+							UPDATE Activities_Faculty
 							SET 
                             	<!--- SET CV FILE INFORMATION --->
                             	<cfif qGetCVFile.RecordCount NEQ 0>

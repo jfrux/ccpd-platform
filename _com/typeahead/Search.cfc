@@ -76,7 +76,7 @@
 					type = 'activity'
 				FROM 
 				view_Activities AS obj
-				LEFT JOIN ce_activity_profile As actProf ON actProf.activity_Id = obj.activityid
+				LEFT JOIN Activities_profile As actProf ON actProf.activity_Id = obj.activityid
 				INNER JOIN
 				CONTAINSTABLE(view_Activities, (searchAll), @search) AS fts ON obj.activityId = fts.[KEY] 
 				ORDER BY fts.[RANK] DESC,obj.startDate DESC,obj.activityId DESC
@@ -137,7 +137,7 @@
 				FROM 
 				view_people AS obj
 				LEFT JOIN 
-				ce_Person_User As usr ON usr.person_id=obj.personid
+				Users_User As usr ON usr.person_id=obj.personid
 				INNER JOIN
 				CONTAINSTABLE(view_people, (searchAll), @search) AS fts ON obj.personId = fts.[KEY] 
 				ORDER BY fts.[RANK] DESC,obj.personId DESC
@@ -230,9 +230,9 @@
 				link = '',
 				type = 'country'
 			FROM 
-			ce_Sys_Country AS obj
+			sys_countries AS obj
 			INNER JOIN
-			CONTAINSTABLE(ce_Sys_Country, (name), @search) AS fts ON obj.id = fts.[KEY] 
+			CONTAINSTABLE(sys_countries, (name), @search) AS fts ON obj.id = fts.[KEY] 
 			ORDER BY fts.[RANK] DESC
 		</cfquery>
 
@@ -434,9 +434,9 @@
 				link = '/admin/index.cfm?event=main.search&type=activity&folder=' + CAST(obj.categoryid As nvarchar(12)),
 				type = 'folder'
 			FROM 
-			ce_category AS obj
+			categories AS obj
 			INNER JOIN
-			CONTAINSTABLE(ce_category, (name), @search) AS fts ON obj.categoryid = fts.[KEY] 
+			CONTAINSTABLE(categories, (name), @search) AS fts ON obj.categoryid = fts.[KEY] 
 			ORDER BY fts.[RANK] DESC
 		</cfquery>
 		
@@ -532,9 +532,9 @@
 				link = '',
 				type = 'specialty'
 			FROM
-			ce_sys_specialtyLMS AS obj
+			sys_specialtylms AS obj
 			INNER JOIN
-			CONTAINSTABLE(ce_sys_specialtyLMS, name, @search) AS fts ON obj.specialtyid = fts.[KEY] 
+			CONTAINSTABLE(sys_specialtylms, name, @search) AS fts ON obj.specialtyid = fts.[KEY] 
 		</cfquery>
 
 		<cfreturn query />
@@ -578,9 +578,9 @@
 				link = '',
 				type = 'state'
 			FROM 
-			ce_Sys_State AS obj
+			sys_states AS obj
 			INNER JOIN
-			CONTAINSTABLE(ce_Sys_State, (name), @search) AS fts ON obj.stateId = fts.[KEY] 
+			CONTAINSTABLE(sys_states, (name), @search) AS fts ON obj.stateId = fts.[KEY] 
 			ORDER BY fts.[RANK] DESC
 		</cfquery>
 
@@ -625,9 +625,9 @@
 					role_id,
 					max(history.created) As last_touch
 				FROM 
-					ce_activity_user act_user
+					Activities_user act_user
 				LEFT JOIN
-					ce_History As history ON history.ToActivityID=act_user.activity_id AND history.FromPersonID=act_user.user_id
+					histories As history ON history.ToActivityID=act_user.activity_id AND history.FromPersonID=act_user.user_id
 				INNER JOIN 
 					CONTAINSTABLE(view_activities, (searchAll), @search) AS fts ON act_user.activity_id = fts.[KEY]
 				WHERE
@@ -653,7 +653,7 @@
 			INNER JOIN 
 				View_Activities As activity ON activity.activityid = CTE.activity_id
 			LEFT JOIN 
-				ce_activity_profile As act_prof ON act_prof.activity_id = activity.activityid
+				Activities_profile As act_prof ON act_prof.activity_id = activity.activityid
 			ORDER BY last_touch DESC;
 		</cfquery>
 		

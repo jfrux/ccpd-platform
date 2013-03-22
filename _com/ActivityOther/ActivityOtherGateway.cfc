@@ -42,7 +42,7 @@
 				competenceEval,
 				performanceEval,
 				outcomesEval
-			FROM	ce_Activity_Other
+			FROM	Activities_Other
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"OtherID") and len(arguments.OtherID)>

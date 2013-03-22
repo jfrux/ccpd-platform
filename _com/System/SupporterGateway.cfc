@@ -25,7 +25,7 @@
 				Updated,
 				Deleted,
 				DeletedFlag
-			FROM	ce_Sys_Supporter
+			FROM	sys_supporters
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"ContributorID") and len(arguments.ContributorID)>

@@ -34,7 +34,7 @@
 				UpdatedBy,
 				Deleted,
 				DeletedFlag
-			FROM	ce_Comment
+			FROM	comments
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"CommentID") and len(arguments.CommentID)>
@@ -106,8 +106,8 @@
 				C.UpdatedBy,
 				C.Deleted,
 				C.DeletedFlag
-			FROM	ce_Comment C
-            INNER JOIN ce_Person P ON P.PersonID = C.CreatedBy
+			FROM	comments C
+            INNER JOIN Users P ON P.PersonID = C.CreatedBy
 			WHERE 
             	P.DeletedFlag = 'N'
 		<cfif structKeyExists(arguments,"CommentID") and len(arguments.CommentID)>

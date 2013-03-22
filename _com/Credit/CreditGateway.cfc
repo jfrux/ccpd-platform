@@ -29,7 +29,7 @@
 				Updated,
 				Deleted,
 				DeletedFlag
-			FROM	ce_Sys_Credit
+			FROM	sys_credits
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"CreditID") and len(arguments.CreditID)>

@@ -11,7 +11,7 @@
 
 		<cfset var qCreate = "" />
 		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
-				INSERT INTO ce_Category
+				INSERT INTO categories
 					(
 					Name,
 					Description,
@@ -47,7 +47,7 @@
 					UpdatedBy,
 					Deleted,
 					DeletedFlag
-				FROM	ce_Category
+				FROM	categories
 				WHERE	CategoryID = <cfqueryparam value="#arguments.Category.getCategoryID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -63,7 +63,7 @@
 
 		<cfset var qUpdate = "" />
 		<cfquery name="qUpdate" datasource="#variables.dsn#">
-				UPDATE	ce_Category
+				UPDATE	categories
 				SET
 					Name = <cfqueryparam value="#arguments.Category.getName()#" CFSQLType="cf_sql_varchar" />,
 					Description = <cfqueryparam value="#arguments.Category.getDescription()#" CFSQLType="cf_sql_varchar" null="#not len(arguments.Category.getDescription())#" />,
@@ -85,7 +85,7 @@
 
 		<cfset var qDelete = "">
 		<cfquery name="qDelete" datasource="#variables.dsn#">
-				DELETE FROM	ce_Category 
+				DELETE FROM	categories 
 				WHERE	CategoryID = <cfqueryparam value="#arguments.Category.getCategoryID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -98,7 +98,7 @@
 		<cfset var qExists = "">
 		<cfquery name="qExists" datasource="#variables.dsn#" maxrows="1">
 			SELECT count(1) as idexists
-			FROM	ce_Category
+			FROM	categories
 			WHERE	CategoryID = <cfqueryparam value="#arguments.Category.getCategoryID()#" CFSQLType="cf_sql_integer" />
 		</cfquery>
 

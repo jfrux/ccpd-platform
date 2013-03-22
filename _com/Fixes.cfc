@@ -5,8 +5,8 @@
 	<cffunction name="fixSlugs" access="remote" output="yes" returntype="string">
 		<cfquery name="qTitles" datasource="#NewDSN#">
 			SELECT     A.ActivityID, A.Title, PG.LinkName
-FROM         ce_Activity AS A INNER JOIN
-                      ce_Activity_PubGeneral AS PG ON A.ActivityID = PG.ActivityID
+FROM         Activities AS A INNER JOIN
+                      Activities_PubGeneral AS PG ON A.ActivityID = PG.ActivityID
 WHERE     (PG.LinkName = '') AND (A.DeletedFlag = 'N') OR
                       (PG.LinkName IS NULL) AND (A.DeletedFlag = 'N')
 			ORDER BY A.StartDate
@@ -15,7 +15,7 @@ WHERE     (PG.LinkName = '') AND (A.DeletedFlag = 'N') OR
 		<cfloop query="qTitles">
 			<cfset SlugOutput = LCase(left(sluggify(qTitles.Title,'-'),250))>
 			<cfquery name="qCount" datasource="#NewDSN#">
-				SELECT Count(ActivityID) As TheCount FROM ce_Activity_PubGeneral
+				SELECT Count(ActivityID) As TheCount FROM Activities_PubGeneral
 				WHERE LinkName = <cfqueryparam value="#SlugOutput#" cfsqltype="cf_sql_varchar" />
 				OR LinkName LIKE <cfqueryparam value="#SlugOutput#_%" cfsqltype="cf_sql_varchar" />
 			</cfquery>
@@ -24,7 +24,7 @@ WHERE     (PG.LinkName = '') AND (A.DeletedFlag = 'N') OR
 			</cfif>
 			
 			<cfquery name="qUpdate" datasource="#NewDSN#">
-				UPDATE ce_Activity_PubGeneral
+				UPDATE Activities_PubGeneral
 				SET LinkName=<cfqueryparam value="#SlugOutput#" cfsqltype="cf_sql_varchar" />
 				WHERE ActivityID=#qTitles.ActivityID#
 			</cfquery>
@@ -36,7 +36,7 @@ WHERE     (PG.LinkName = '') AND (A.DeletedFlag = 'N') OR
     	<!--- GET ALL ACTION DATA --->
         <cfquery name="qGetActions" datasource="#Application.Settings.DSN#">
         	SELECT ActionID, LongName
-            FROM ce_Action
+            FROM actions
         </cfquery>
         
         <cfloop query="qGetActions">
@@ -51,7 +51,7 @@ WHERE     (PG.LinkName = '') AND (A.DeletedFlag = 'N') OR
             
             <!--- COMMIT UPDATED LONGNAMES FOR ACTIONS --->
             <cfquery name="qUpdateAction" datasource="#Application.Settings.DSN#">
-            	UPDATE ce_Action
+            	UPDATE actions
                 SET LongName = <cfqueryparam value="#UpdatedLongName#" cfsqltype="cf_sql_varchar" />
                 WHERE ActionID = <cfqueryparam value="#qGetActions.ActionID#" cfsqltype="cf_sql_integer" />
             </cfquery>
@@ -70,9 +70,9 @@ WHERE     (PG.LinkName = '') AND (A.DeletedFlag = 'N') OR
 			<!--- GET PARENT ACTIVITY --->
 			<cfquery name="qParentActivity" datasource="#NewDSN#">
 				SELECT     A.ActivityID, A.ActivityTypeID, A.Title, AT.Name AS ActivityType, A.GroupingID, G.Name AS Grouping
-				FROM         ce_Activity AS A INNER JOIN
-				ce_Sys_ActivityType AS AT ON A.ActivityTypeID = AT.ActivityTypeID INNER JOIN
-				ce_Sys_Grouping AS G ON A.GroupingID = G.GroupingID
+				FROM         Activities AS A INNER JOIN
+				sys_activitytypes AS AT ON A.ActivityTypeID = AT.ActivityTypeID INNER JOIN
+				sys_groupings AS G ON A.GroupingID = G.GroupingID
 				WHERE A.Title = '#qSTD.Name#' AND A.ParentActivityID IS NULL
 			</cfquery>
 			
@@ -91,21 +91,21 @@ WHERE     (PG.LinkName = '') AND (A.DeletedFlag = 'N') OR
 				
 					<cfquery name="qChildActivity" datasource="#NewDSN#">
 						SELECT     A.ActivityID, A.ActivityTypeID, A.ParentActivityID, A.Title, AT.Name AS ActivityType, A.GroupingID, G.Name AS Grouping
-						FROM         ce_Activity AS A INNER JOIN
-						ce_Sys_ActivityType AS AT ON A.ActivityTypeID = AT.ActivityTypeID INNER JOIN
-						ce_Sys_Grouping AS G ON A.GroupingID = G.GroupingID
+						FROM         Activities AS A INNER JOIN
+						sys_activitytypes AS AT ON A.ActivityTypeID = AT.ActivityTypeID INNER JOIN
+						sys_groupings AS G ON A.GroupingID = G.GroupingID
 						WHERE A.ExternalID = #qEvents.CourseSectionID#
 					</cfquery>
 					<cfif qChildActivity.GroupingID NEQ 1>
 						<!--- Live Internet --->
 						<cfif qSTD.CourseTypeID EQ 9>
 							<cfquery name="qFix" datasource="#NewDSN#">
-								UPDATE ce_Activity
+								UPDATE Activities
 								SET GroupingID=3
 								WHERE ActivityID=#qChildActivity.ParentActivityID#
 							</cfquery>
 							<cfquery name="qFix" datasource="#NewDSN#">
-								UPDATE ce_Activity
+								UPDATE Activities
 								SET GroupingID=3
 								WHERE ActivityID=#qChildActivity.ActivityID#
 							</cfquery>
@@ -114,7 +114,7 @@ WHERE     (PG.LinkName = '') AND (A.DeletedFlag = 'N') OR
 						<cfelse>
 							[Live Course]
 							<cfquery name="qFix" datasource="#NewDSN#">
-								UPDATE ce_Activity
+								UPDATE Activities
 								SET GroupingID=1
 								WHERE ActivityID=#qChildActivity.ActivityID#
 							</cfquery>
@@ -143,9 +143,9 @@ WHERE     (PG.LinkName = '') AND (A.DeletedFlag = 'N') OR
 			<!--- GET PARENT ACTIVITY --->
 			<cfquery name="qParentActivity" datasource="#NewDSN#">
 				SELECT     A.ActivityID, A.ActivityTypeID, A.Title, AT.Name AS ActivityType, A.GroupingID, G.Name AS Grouping
-				FROM         ce_Activity AS A INNER JOIN
-				ce_Sys_ActivityType AS AT ON A.ActivityTypeID = AT.ActivityTypeID INNER JOIN
-				ce_Sys_Grouping AS G ON A.GroupingID = G.GroupingID
+				FROM         Activities AS A INNER JOIN
+				sys_activitytypes AS AT ON A.ActivityTypeID = AT.ActivityTypeID INNER JOIN
+				sys_groupings AS G ON A.GroupingID = G.GroupingID
 				WHERE A.Title = '#qNONgrandRounds.Name#' AND A.ParentActivityID IS NULL
 			</cfquery>
 			
@@ -163,15 +163,15 @@ WHERE     (PG.LinkName = '') AND (A.DeletedFlag = 'N') OR
 				<cfloop query="qLiveEvents">
 					<cfquery name="qChildActivity" datasource="#NewDSN#">
 						SELECT     A.ActivityID, A.ActivityTypeID, A.Title, AT.Name AS ActivityType, A.GroupingID, G.Name AS Grouping
-						FROM         ce_Activity AS A INNER JOIN
-						ce_Sys_ActivityType AS AT ON A.ActivityTypeID = AT.ActivityTypeID INNER JOIN
-						ce_Sys_Grouping AS G ON A.GroupingID = G.GroupingID
+						FROM         Activities AS A INNER JOIN
+						sys_activitytypes AS AT ON A.ActivityTypeID = AT.ActivityTypeID INNER JOIN
+						sys_groupings AS G ON A.GroupingID = G.GroupingID
 						WHERE A.ExternalID = #qLiveEvents.CourseSectionID#
 					</cfquery>
 					<cfif qChildActivity.GroupingID NEQ 1>
 						- [#qChildActivity.ActivityID#] #qNONgrandRounds.Name#(#qLiveEvents.CourseSectionID#) (#qChildActivity.ActivityType# > #qChildActivity.Grouping#)
 						<cfquery name="qFix" datasource="#NewDSN#">
-							UPDATE ce_Activity
+							UPDATE Activities
 							SET GroupingID=1
 							WHERE ActivityID=#qChildActivity.ActivityID#
 						</cfquery>
@@ -188,7 +188,7 @@ WHERE     (PG.LinkName = '') AND (A.DeletedFlag = 'N') OR
 		<cfquery name="qList" datasource="#NewDSN#">
 			SELECT 
 				ActivityID, Title
-			FROM ce_Activity
+			FROM Activities
 			WHERE Title LIKE '%// Session%'
 		</cfquery>
 		
@@ -198,7 +198,7 @@ WHERE     (PG.LinkName = '') AND (A.DeletedFlag = 'N') OR
 			<strong>New:</strong> #REReplace(qList.Title," // Session [0-9]*","")#<br>
 			------------------------------<br>
 			<cfquery name="qUpdate" datasource="#NewDSN#">
-				UPDATE ce_Activity
+				UPDATE Activities
 				SET Title=<cfqueryparam value="#REReplace(qList.Title," // Session [0-9]*","")#" cfsqltype="cf_sql_varchar" />
 				WHERE ActivityID=#qList.ActivityID#
 			</cfquery>
@@ -215,14 +215,14 @@ WHERE     (PG.LinkName = '') AND (A.DeletedFlag = 'N') OR
 		
 		<cfif Arguments.Wipe EQ "Y">
 		<cfquery name="qWipe" datasource="#NewDSN#">
-		UPDATE ce_Activity
+		UPDATE Activities
 		SET StatAttendees=0,StatMD=0,StatNonMD=0
 		WHERE StartDate BETWEEN '#TheMonth#/1/#TheYear# 00:00:00' AND '#DateFormat(LastDayOfMonth(TheMonth,TheYear),'mm/dd/yyyy')# 23:59:59'
 		</cfquery>
 		</cfif>
 		
 		<cfquery name="qCourses" datasource="#NewDSN#">
-			SELECT ActivityID,ParentActivityID FROM ce_Activity
+			SELECT ActivityID,ParentActivityID FROM Activities
 			WHERE StartDate BETWEEN '#TheMonth#/1/#TheYear# 00:00:00' AND '#DateFormat(LastDayOfMonth(TheMonth,TheYear),'mm/dd/yyyy')# 23:59:59'
 			ORDER BY ActivityID
 		</cfquery>
@@ -237,7 +237,7 @@ WHERE     (PG.LinkName = '') AND (A.DeletedFlag = 'N') OR
 			
 			<!--- Total --->
 			<cfquery name="qTotal" datasource="#NewDSN#">
-				SELECT Count(AttendeeID) As Total FROM ce_Attendee WHERE ActivityID=#qCourses.ActivityID# AND DeletedFlag='N'
+				SELECT Count(AttendeeID) As Total FROM attendees WHERE ActivityID=#qCourses.ActivityID# AND DeletedFlag='N'
 			</cfquery>
 			
 			<cfif qCourses.ParentActivityID NEQ "">
@@ -247,7 +247,7 @@ WHERE     (PG.LinkName = '') AND (A.DeletedFlag = 'N') OR
 			
 			<!--- MDs --->
 			<cfquery name="qMDs" datasource="#NewDSN#">
-				SELECT Count(AttendeeID) As MDCount FROM ce_Attendee WHERE MDFlag='Y' AND ActivityID=#qCourses.ActivityID# AND DeletedFlag='N'
+				SELECT Count(AttendeeID) As MDCount FROM attendees WHERE MDFlag='Y' AND ActivityID=#qCourses.ActivityID# AND DeletedFlag='N'
 			</cfquery>
 			
 			<cfif qCourses.ParentActivityID NEQ "">
@@ -257,7 +257,7 @@ WHERE     (PG.LinkName = '') AND (A.DeletedFlag = 'N') OR
 			
 			<!--- Non MDs --->
 			<cfquery name="qNonMDs" datasource="#NewDSN#">
-				SELECT Count(AttendeeID) As NonMDCount FROM ce_Attendee WHERE MDFlag='N' AND ActivityID=#qCourses.ActivityID# AND DeletedFlag='N'
+				SELECT Count(AttendeeID) As NonMDCount FROM attendees WHERE MDFlag='N' AND ActivityID=#qCourses.ActivityID# AND DeletedFlag='N'
 			</cfquery>
 			
 			<cfif qCourses.ParentActivityID NEQ "">
@@ -290,8 +290,8 @@ WHERE     (PG.LinkName = '') AND (A.DeletedFlag = 'N') OR
         
         <cfquery name="qPersonDegree" datasource="#Application.Settings.DSN#">
             SELECT PersonDegreeID 
-            FROM ce_Person_Degree pd
-            INNER JOIN ce_Sys_Degree sd ON sd.DegreeID = pd.DegreeID
+            FROM Users_Degree pd
+            INNER JOIN sys_degrees sd ON sd.DegreeID = pd.DegreeID
             WHERE 	PersonID=<cfqueryparam value="#Arguments.PersonID#" cfsqltype="cf_sql_integer" /> AND
                     sd.Name='MD'
         </cfquery>
@@ -301,7 +301,7 @@ WHERE     (PG.LinkName = '') AND (A.DeletedFlag = 'N') OR
         <cfelse>
             <cfquery name="qEducation" datasource="#Application.Settings.DSN#">
                 SELECT DegreeID 
-                FROM ce_Person_Degree
+                FROM Users_Degree
                 WHERE PersonID=<cfqueryparam value="#Arguments.PersonID#" cfsqltype="cf_sql_integer" />
             </cfquery>
         
@@ -321,7 +321,7 @@ WHERE     (PG.LinkName = '') AND (A.DeletedFlag = 'N') OR
         <!--- ACTIVITIES --->
         <cfquery name="qGetActivities" datasource="#Application.Settings.DSN#">
         	SELECT ActivityID, State
-            FROM ce_Activity
+            FROM Activities
             WHERE State = '' OR isNumeric(State) = 1
         </cfquery>
         
@@ -335,7 +335,7 @@ WHERE     (PG.LinkName = '') AND (A.DeletedFlag = 'N') OR
             </cfif>
             
             <cfquery name="qUpdateActivities" datasource="#Application.Settings.DSN#">
-            	UPDATE ce_Activity
+            	UPDATE Activities
                 SET 
                 	<cfif qGetActivities.State EQ "" OR qGetActivities.State EQ 0>
                     	State = <cfqueryparam null="yes" />
@@ -353,7 +353,7 @@ WHERE     (PG.LinkName = '') AND (A.DeletedFlag = 'N') OR
         <!--- ADDRESSES --->
         <cfquery name="qGetAddresses" datasource="#Application.Settings.DSN#">
         	SELECT AddressID, State
-            FROM ce_Person_Address
+            FROM Users_Address
             WHERE State = '' OR isNumeric(State) = 1
         </cfquery>
         
@@ -367,7 +367,7 @@ WHERE     (PG.LinkName = '') AND (A.DeletedFlag = 'N') OR
             </cfif>
             
             <cfquery name="qUpdateAddresses" datasource="#Application.Settings.DSN#">
-            	UPDATE ce_Person_Address
+            	UPDATE Users_Address
                 SET 
                 	<cfif qGetAddresses.State EQ "" OR qGetAddresses.State EQ 0>
                     	State = <cfqueryparam null="yes" />
@@ -385,7 +385,7 @@ WHERE     (PG.LinkName = '') AND (A.DeletedFlag = 'N') OR
         <!--- CDC ATTENDEE RECORDS --->
         <cfquery name="qGetAttendees" datasource="#Application.Settings.DSN#">
         	SELECT AttendeeCDCID, WorkState
-            FROM ce_AttendeeCDC
+            FROM attendeesCDC
             WHERE WorkState = '' OR isNumeric(WorkState) = 1
         </cfquery>
         
@@ -399,7 +399,7 @@ WHERE     (PG.LinkName = '') AND (A.DeletedFlag = 'N') OR
             </cfif>
             
             <cfquery name="qUpdateAttendees" datasource="#Application.Settings.DSN#">
-            	UPDATE ce_AttendeeCDC
+            	UPDATE attendeesCDC
                 SET 
                 	<cfif qGetAttendees.WorkState EQ "" OR qGetAttendees.WorkState EQ 0>
                     	WorkState = <cfqueryparam null="yes" />

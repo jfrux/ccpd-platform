@@ -11,7 +11,7 @@
 
 		<cfset var qCreate = "" />
 		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
-				INSERT INTO ce_Person_Degree
+				INSERT INTO Users_Degree
 					(
 					PersonID,
 					DegreeID
@@ -38,7 +38,7 @@
 					DegreeID,
 					Created,
 					DeletedFlag
-				FROM	ce_Person_Degree
+				FROM	Users_Degree
 				WHERE	PersonID = <cfqueryparam value="#arguments.PersonDegree.getPersonID()#" CFSQLType="cf_sql_integer" /> AND DegreeID = <cfqueryparam value="#arguments.PersonDegree.getDegreeID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -54,7 +54,7 @@
 
 		<cfset var qUpdate = "" />
 		<cfquery name="qUpdate" datasource="#variables.dsn#">
-				UPDATE	ce_Person_Degree
+				UPDATE	Users_Degree
 				SET
 					PersonID = <cfqueryparam value="#arguments.PersonDegree.getPersonID()#" CFSQLType="cf_sql_integer" />,
 					DegreeID = <cfqueryparam value="#arguments.PersonDegree.getDegreeID()#" CFSQLType="cf_sql_integer" />,
@@ -71,7 +71,7 @@
 
 		<cfset var qDelete = "">
 		<cfquery name="qDelete" datasource="#variables.dsn#">
-				DELETE FROM	ce_Person_Degree 
+				DELETE FROM	Users_Degree 
 				WHERE	PersonID = <cfqueryparam value="#arguments.PersonDegree.getPersonID()#" CFSQLType="cf_sql_integer" /> AND DegreeID = <cfqueryparam value="#arguments.PersonDegree.getDegreeID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -84,7 +84,7 @@
 		<cfset var qExists = "">
 		<cfquery name="qExists" datasource="#variables.dsn#" maxrows="1">
 			SELECT count(1) as idexists
-			FROM	ce_Person_Degree
+			FROM	Users_Degree
 			WHERE	PersonID = <cfqueryparam value="#arguments.PersonDegree.getPersonID()#" CFSQLType="cf_sql_integer" /> AND DegreeID = <cfqueryparam value="#arguments.PersonDegree.getDegreeID()#" CFSQLType="cf_sql_integer" />
 		</cfquery>
 

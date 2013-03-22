@@ -690,7 +690,7 @@
 			IF @Grouping = 2
 			BEGIN
 				SELECT Count(A.ActivityID) AS ActivityCount
-				FROM ce_Activity As A
+				FROM Activities As A
 				WHERE 
 						(A.ParentActivityID IS NULL) AND 
 						(A.GroupingID = @Grouping) AND 
@@ -698,33 +698,33 @@
 						(A.Sponsorship = @Sponsorship) AND 
 						(A.DeletedFlag = 'N') AND 
 						(SELECT Count(ActivityID) 
-						FROM ce_Activity As A2 
+						FROM Activities As A2 
 						WHERE 
 							(A2.ParentActivityID=A.ActivityID) AND 
 							(A2.StartDate BETWEEN @StartDate AND @EndDate) AND 
 							(A2.StatusID IN (1,2,3)) AND 
 							(A2.DeletedFlag='N') AND 
-							(SELECT Count(Activity_CreditID) FROM ce_Activity_Credit AS ACr WHERE ACr.ActivityID=A2.ActivityID AND ACr.CreditID=1) > 0
+							(SELECT Count(Activity_CreditID) FROM Activities_Credit AS ACr WHERE ACr.ActivityID=A2.ActivityID AND ACr.CreditID=1) > 0
 								OR
 							(A2.ParentActivityID=A.ActivityID) AND 
 							(A2.EndDate BETWEEN @StartDate AND @EndDate) AND 
 							(A2.StatusID IN (1,2,3)) AND 
 							(A2.DeletedFlag='N') AND 
-							(SELECT Count(Activity_CreditID) FROM ce_Activity_Credit AS ACr WHERE ACr.ActivityID=A2.ActivityID AND ACr.CreditID=1) > 0
+							(SELECT Count(Activity_CreditID) FROM Activities_Credit AS ACr WHERE ACr.ActivityID=A2.ActivityID AND ACr.CreditID=1) > 0
 							) > 0
 			END
 			ELSE IF @Grouping = 6 OR @Grouping = 7 OR @Grouping = 8 OR @Grouping = 9 OR @Grouping = 10
 			BEGIN
 				SELECT Count(A.ActivityID) AS ActivityCount
-				FROM ce_Activity As A
+				FROM Activities As A
 				WHERE 
 						(A.ParentActivityID IS NULL) AND 
 						(A.GroupingID = @Grouping) AND 
 						(A.StatusID IN (1,2,3)) AND 
 						(A.Sponsorship = @Sponsorship) AND 
 						(A.DeletedFlag = 'N') AND 
-						(SELECT Count(attendeeid) FROM ce_Attendee AS Att WHERE Att.ActivityID = A.ActivityID AND Att.CompleteDate BETWEEN @StartDate AND @EndDate) > 0 AND
-						(SELECT Count(Activity_CreditID) FROM ce_Activity_Credit AS ACr WHERE ACr.ActivityID=A.ActivityID AND ACr.CreditID=1) > 0 AND
+						(SELECT Count(attendeeid) FROM attendees AS Att WHERE Att.ActivityID = A.ActivityID AND Att.CompleteDate BETWEEN @StartDate AND @EndDate) > 0 AND
+						(SELECT Count(Activity_CreditID) FROM Activities_Credit AS ACr WHERE ACr.ActivityID=A.ActivityID AND ACr.CreditID=1) > 0 AND
 						(A.StartDate BETWEEN @StartDate AND @EndDate)
 					OR
 						(A.ParentActivityID IS NULL) AND 
@@ -732,20 +732,20 @@
 						(A.StatusID IN (1,2,3)) AND 
 						(A.Sponsorship = @Sponsorship) AND 
 						(A.DeletedFlag = 'N') AND 
-						(SELECT Count(attendeeid) FROM ce_Attendee AS Att WHERE Att.ActivityID = A.ActivityID AND Att.CompleteDate BETWEEN @StartDate AND @EndDate) > 0 AND
-						(SELECT Count(Activity_CreditID) FROM ce_Activity_Credit AS ACr WHERE ACr.ActivityID=A.ActivityID AND ACr.CreditID=1) > 0 AND
+						(SELECT Count(attendeeid) FROM attendees AS Att WHERE Att.ActivityID = A.ActivityID AND Att.CompleteDate BETWEEN @StartDate AND @EndDate) > 0 AND
+						(SELECT Count(Activity_CreditID) FROM Activities_Credit AS ACr WHERE ACr.ActivityID=A.ActivityID AND ACr.CreditID=1) > 0 AND
 						(A.EndDate BETWEEN @StartDate AND @EndDate)
 			END
 			ELSE
 				SELECT Count(A.ActivityID) AS ActivityCount
-				FROM ce_Activity As A
+				FROM Activities As A
 				WHERE 
 						(A.ParentActivityID IS NULL) AND 
 						(A.GroupingID = @Grouping) AND 
 						(A.StatusID IN (1,2,3)) AND 
 						(A.Sponsorship = @Sponsorship) AND 
 						(A.DeletedFlag = 'N') AND 
-						(SELECT Count(Activity_CreditID) FROM ce_Activity_Credit AS ACr WHERE ACr.ActivityID=A.ActivityID AND ACr.CreditID=1) > 0 AND
+						(SELECT Count(Activity_CreditID) FROM Activities_Credit AS ACr WHERE ACr.ActivityID=A.ActivityID AND ACr.CreditID=1) > 0 AND
 						(A.StartDate BETWEEN @StartDate AND @EndDate)
 					OR
 						(A.ParentActivityID IS NULL) AND 
@@ -753,7 +753,7 @@
 						(A.StatusID IN (1,2,3)) AND 
 						(A.Sponsorship = @Sponsorship) AND 
 						(A.DeletedFlag = 'N') AND 
-						(SELECT Count(Activity_CreditID) FROM ce_Activity_Credit AS ACr WHERE ACr.ActivityID=A.ActivityID AND ACr.CreditID=1) > 0 AND
+						(SELECT Count(Activity_CreditID) FROM Activities_Credit AS ACr WHERE ACr.ActivityID=A.ActivityID AND ACr.CreditID=1) > 0 AND
 						(A.EndDate BETWEEN @StartDate AND @EndDate)
 		</cfquery>
 		
@@ -795,8 +795,8 @@
 						StatHrs =
 						(
 						isNull((SELECT SUM(AC.Amount) AS TotalHours
-								FROM ce_Activity_Credit AS AC 
-								INNER JOIN ce_Activity AS A4 ON AC.ActivityID = A4.ActivityID
+								FROM Activities_Credit AS AC 
+								INNER JOIN Activities AS A4 ON AC.ActivityID = A4.ActivityID
 								WHERE (AC.CreditID = 1) AND (A4.ParentActivityID = A.ActivityID) AND (A4.StatusID IN (1,2,3)) AND (AC.DeletedFlag='N') AND (A4.StartDate BETWEEN @StartDate AND @EndDate)
 								OR
 								(AC.CreditID = 1) AND (A4.ParentActivityID = A.ActivityID) AND (A4.StatusID IN (1,2,3)) AND (AC.DeletedFlag='N') AND (A4.EndDate BETWEEN @StartDate AND @EndDate)),0)
@@ -805,7 +805,7 @@
 						(
 						isNull((SELECT Sum(A2.StatAttendees)
 								FROM
-								 ce_Activity AS A2
+								 Activities AS A2
 								 WHERE 
 									(A2.ParentActivityID = A.ActivityID) AND (A2.StatusID IN (1,2,3)) AND (A2.StartDate BETWEEN @StartDate AND @EndDate)
 									OR
@@ -815,7 +815,7 @@
 						(
 						isNull((SELECT Sum(A2.StatMD)
 								FROM
-								 ce_Activity AS A2
+								 Activities AS A2
 								 WHERE 
 									(A2.ParentActivityID = A.ActivityID) AND (A2.StatusID IN (1,2,3)) AND (A2.StartDate BETWEEN @StartDate AND @EndDate)
 									OR
@@ -825,13 +825,13 @@
 						(
 						isNull((SELECT isNull(Sum(A2.StatNonMD),0)+isNull(Sum(A2.StatAddlAttendees),0)
 								FROM
-								 ce_Activity AS A2
+								 Activities AS A2
 								 WHERE 
 									(A2.ParentActivityID = A.ActivityID) AND (A2.StatusID IN (1,2,3)) AND (A2.StartDate BETWEEN @StartDate AND @EndDate)
 									OR
 									(A2.ParentActivityID = A.ActivityID) AND (A2.StatusID IN (1,2,3)) AND (A2.EndDate BETWEEN @StartDate AND @EndDate)),0)
 						)
-					FROM ce_Activity As A
+					FROM Activities As A
 					WHERE 
 							(A.ParentActivityID IS NULL) AND 
 							(A.GroupingID = @Grouping) AND 
@@ -839,19 +839,19 @@
 							(A.Sponsorship = @Sponsorship) AND 
 							(A.DeletedFlag = 'N') AND 
 							(SELECT Count(ActivityID) 
-							FROM ce_Activity As A2 
+							FROM Activities As A2 
 							WHERE 
 								(A2.ParentActivityID=A.ActivityID) AND 
 								(A2.StartDate BETWEEN @StartDate AND @EndDate) AND 
 								(A2.StatusID IN (1,2,3)) AND 
 								(A2.DeletedFlag='N') AND 
-								(SELECT Count(Activity_CreditID) FROM ce_Activity_Credit AS ACr WHERE ACr.ActivityID=A2.ActivityID AND ACr.CreditID=1) > 0
+								(SELECT Count(Activity_CreditID) FROM Activities_Credit AS ACr WHERE ACr.ActivityID=A2.ActivityID AND ACr.CreditID=1) > 0
 									OR
 								(A2.ParentActivityID=A.ActivityID) AND 
 								(A2.EndDate BETWEEN @StartDate AND @EndDate) AND 
 								(A2.StatusID IN (1,2,3)) AND 
 								(A2.DeletedFlag='N') AND 
-								(SELECT Count(Activity_CreditID) FROM ce_Activity_Credit AS ACr WHERE ACr.ActivityID=A2.ActivityID AND ACr.CreditID=1) > 0
+								(SELECT Count(Activity_CreditID) FROM Activities_Credit AS ACr WHERE ACr.ActivityID=A2.ActivityID AND ACr.CreditID=1) > 0
 								) > 0
 				) SELECT Sum(StatHrs) As StatHrs,Sum(StatAttendees) As StatAttendees,Sum(StatMD) As StatMD,Sum(StatNonMD) As StatNonMD FROM RSS_Stats;
 			END
@@ -862,15 +862,15 @@
 					isNull(Sum(A.StatAttendees),0) As StatAttendees,
 					isNull(Sum(A.StatMD),0) As StatMD,
 					isNull(Sum(A.StatNonMD),0)+isNull(Sum(A.StatAddlAttendees),0) As StatNonMD
-				FROM ce_Activity As A
+				FROM Activities As A
 				WHERE 
 						(A.ParentActivityID IS NULL) AND 
 						(A.GroupingID = @Grouping) AND 
 						(A.StatusID IN (1,2,3)) AND 
 						(A.Sponsorship = @Sponsorship) AND 
 						(A.DeletedFlag = 'N') AND 
-						(SELECT Count(Activity_CreditID) FROM ce_Activity_Credit AS ACr WHERE ACr.ActivityID=A.ActivityID AND ACr.CreditID=1) > 0 AND
-						(SELECT Count(attendeeid) FROM ce_Attendee AS Att WHERE Att.ActivityID = A.ActivityID AND Att.CompleteDate BETWEEN @StartDate AND @EndDate) > 0 AND
+						(SELECT Count(Activity_CreditID) FROM Activities_Credit AS ACr WHERE ACr.ActivityID=A.ActivityID AND ACr.CreditID=1) > 0 AND
+						(SELECT Count(attendeeid) FROM attendees AS Att WHERE Att.ActivityID = A.ActivityID AND Att.CompleteDate BETWEEN @StartDate AND @EndDate) > 0 AND
 						(A.StartDate BETWEEN @StartDate AND @EndDate)
 					OR
 						(A.ParentActivityID IS NULL) AND 
@@ -878,8 +878,8 @@
 						(A.StatusID IN (1,2,3)) AND 
 						(A.Sponsorship = @Sponsorship) AND 
 						(A.DeletedFlag = 'N') AND 
-						(SELECT Count(Activity_CreditID) FROM ce_Activity_Credit AS ACr WHERE ACr.ActivityID=A.ActivityID AND ACr.CreditID=1) > 0 AND
-						(SELECT Count(attendeeid) FROM ce_Attendee AS Att WHERE Att.ActivityID = A.ActivityID AND Att.CompleteDate BETWEEN @StartDate AND @EndDate) > 0 AND
+						(SELECT Count(Activity_CreditID) FROM Activities_Credit AS ACr WHERE ACr.ActivityID=A.ActivityID AND ACr.CreditID=1) > 0 AND
+						(SELECT Count(attendeeid) FROM attendees AS Att WHERE Att.ActivityID = A.ActivityID AND Att.CompleteDate BETWEEN @StartDate AND @EndDate) > 0 AND
 						(A.EndDate BETWEEN @StartDate AND @EndDate)
 			END
 			ELSE
@@ -888,14 +888,14 @@
 					isNull(Sum(A.StatAttendees),0) As StatAttendees,
 					isNull(Sum(A.StatMD),0) As StatMD,
 					isNull(Sum(A.StatNonMD),0)+isNull(Sum(A.StatAddlAttendees),0) As StatNonMD
-				FROM ce_Activity As A
+				FROM Activities As A
 				WHERE 
 						(A.ParentActivityID IS NULL) AND 
 						(A.GroupingID = @Grouping) AND 
 						(A.StatusID IN (1,2,3)) AND 
 						(A.Sponsorship = @Sponsorship) AND 
 						(A.DeletedFlag = 'N') AND 
-						(SELECT Count(Activity_CreditID) FROM ce_Activity_Credit AS ACr WHERE ACr.ActivityID=A.ActivityID AND ACr.CreditID=1) > 0 AND
+						(SELECT Count(Activity_CreditID) FROM Activities_Credit AS ACr WHERE ACr.ActivityID=A.ActivityID AND ACr.CreditID=1) > 0 AND
 						(A.StartDate BETWEEN @StartDate AND @EndDate)
 					OR
 						(A.ParentActivityID IS NULL) AND 
@@ -903,7 +903,7 @@
 						(A.StatusID IN (1,2,3)) AND 
 						(A.Sponsorship = @Sponsorship) AND 
 						(A.DeletedFlag = 'N') AND 
-						(SELECT Count(Activity_CreditID) FROM ce_Activity_Credit AS ACr WHERE ACr.ActivityID=A.ActivityID AND ACr.CreditID=1) > 0 AND
+						(SELECT Count(Activity_CreditID) FROM Activities_Credit AS ACr WHERE ACr.ActivityID=A.ActivityID AND ACr.CreditID=1) > 0 AND
 						(A.EndDate BETWEEN @StartDate AND @EndDate)
 		</cfquery>
 		
@@ -939,9 +939,9 @@
 			SELECT     
 				SUM(FS.Amount) As DollarAmount
 			FROM
-				ce_Activity_FinSupport AS FS 
+				Activities_FinSupport AS FS 
 			INNER JOIN
-				ce_Activity AS A ON FS.ActivityID = A.ActivityID
+				Activities AS A ON FS.ActivityID = A.ActivityID
 			WHERE     
 				(FS.SupportTypeID IN (#PreserveSingleQuotes(Arguments.DollarsType)#)) AND 
 				(FS.DeletedFlag = 'N') AND

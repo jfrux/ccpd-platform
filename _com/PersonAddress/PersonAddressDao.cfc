@@ -12,7 +12,7 @@
 
 		<cfset var qCreate = "" />
 		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
-				INSERT INTO ce_Person_Address
+				INSERT INTO Users_Address
 					(
 					PersonID,
 					AddressTypeID,
@@ -85,7 +85,7 @@
 					CreatedBy,
 					Updated,
 					UpdatedBy
-				FROM	ce_Person_Address
+				FROM	Users_Address
 				WHERE	AddressID = <cfqueryparam value="#arguments.PersonAddress.getAddressID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -101,7 +101,7 @@
 
 		<cfset var qUpdate = "" />
 		<cfquery name="qUpdate" datasource="#variables.dsn#">
-				UPDATE	ce_Person_Address
+				UPDATE	Users_Address
 				SET
 					PersonID = <cfqueryparam value="#arguments.PersonAddress.getPersonID()#" CFSQLType="cf_sql_integer" />,
 					AddressTypeID = <cfqueryparam value="#arguments.PersonAddress.getAddressTypeID()#" CFSQLType="cf_sql_integer" null="#not len(arguments.PersonAddress.getAddressTypeID())#" />,
@@ -134,7 +134,7 @@
 
 		<cfset var qDelete = "">
 		<cfquery name="qDelete" datasource="#variables.dsn#">
-				DELETE FROM	ce_Person_Address 
+				DELETE FROM	Users_Address 
 				WHERE	AddressID = <cfqueryparam value="#arguments.PersonAddress.getAddressID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -147,7 +147,7 @@
 		<cfset var qExists = "">
 		<cfquery name="qExists" datasource="#variables.dsn#" maxrows="1">
 			SELECT count(1) as idexists
-			FROM	ce_Person_Address
+			FROM	Users_Address
 			WHERE	AddressID = <cfqueryparam value="#arguments.PersonAddress.getAddressID()#" CFSQLType="cf_sql_integer" />
 		</cfquery>
 

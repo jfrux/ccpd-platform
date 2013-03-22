@@ -11,7 +11,7 @@
 
 		<cfset var qCreate = "" />
 		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
-				INSERT INTO ce_Sys_Status
+				INSERT INTO sys_statuses
 					(
 					Name
 					)
@@ -34,7 +34,7 @@
 					StatusID,
 					Name,
 					Created
-				FROM	ce_Sys_Status
+				FROM	sys_statuses
 				WHERE	StatusID = <cfqueryparam value="#arguments.Status.getStatusID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -50,7 +50,7 @@
 
 		<cfset var qUpdate = "" />
 		<cfquery name="qUpdate" datasource="#variables.dsn#">
-				UPDATE	ce_Sys_Status
+				UPDATE	sys_statuses
 				SET
 					Name = <cfqueryparam value="#arguments.Status.getName()#" CFSQLType="cf_sql_varchar" null="#not len(arguments.Status.getName())#" />,
 					Created = <cfqueryparam value="#arguments.Status.getCreated()#" CFSQLType="cf_sql_timestamp" null="#not len(arguments.Status.getCreated())#" />
@@ -65,7 +65,7 @@
 
 		<cfset var qDelete = "">
 		<cfquery name="qDelete" datasource="#variables.dsn#">
-				DELETE FROM	ce_Sys_Status 
+				DELETE FROM	sys_statuses 
 				WHERE	StatusID = <cfqueryparam value="#arguments.Status.getStatusID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -78,7 +78,7 @@
 		<cfset var qExists = "">
 		<cfquery name="qExists" datasource="#variables.dsn#" maxrows="1">
 			SELECT count(1) as idexists
-			FROM	ce_Sys_Status
+			FROM	sys_statuses
 			WHERE	StatusID = <cfqueryparam value="#arguments.Status.getStatusID()#" CFSQLType="cf_sql_integer" />
 		</cfquery>
 

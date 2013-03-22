@@ -12,7 +12,7 @@
 		<cfset var qCreate = "" />
 		
 		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
-				INSERT INTO ce_Attendee
+				INSERT INTO attendees
 					(
 					ActivityID,
 					PersonID,
@@ -146,7 +146,7 @@
 					UpdatedBy,
 					Deleted,
 					DeletedFlag
-				FROM	ce_Attendee
+				FROM	attendees
 				WHERE	
 				<cfif arguments.Attendee.getAttendeeID() GT 0>
 					AttendeeID = <cfqueryparam value="#arguments.Attendee.getAttendeeID()#" CFSQLType="cf_sql_integer" />
@@ -172,7 +172,7 @@
 
 		<cfset var qUpdate = "" />
 		<cfquery name="qUpdate" datasource="#variables.dsn#">
-				UPDATE	ce_Attendee
+				UPDATE	attendees
 				SET
 					ActivityID = <cfqueryparam value="#arguments.Attendee.getActivityID()#" CFSQLType="cf_sql_integer" />,
 					PersonID = <cfqueryparam value="#arguments.Attendee.getPersonID()#" CFSQLType="cf_sql_integer" />,
@@ -236,7 +236,7 @@
 
 		<cfset var qDelete = "">
 		<cfquery name="qDelete" datasource="#variables.dsn#">
-				DELETE FROM	ce_Attendee 
+				DELETE FROM	attendees 
 				WHERE
 				<cfif arguments.Attendee.getAttendeeID() GT 0>
 					AttendeeID = <cfqueryparam value="#arguments.Attendee.getAttendeeID()#" CFSQLType="cf_sql_integer" />
@@ -259,7 +259,7 @@
 		<cfset var qExists = "">
 		<cfquery name="qExists" datasource="#variables.dsn#" maxrows="1">
 			SELECT count(1) as idexists
-			FROM	ce_Attendee
+			FROM	attendees
 			WHERE
 				<cfif arguments.Attendee.getAttendeeID() GT 0>
 					AttendeeID = <cfqueryparam value="#arguments.Attendee.getAttendeeID()#" CFSQLType="cf_sql_integer" />

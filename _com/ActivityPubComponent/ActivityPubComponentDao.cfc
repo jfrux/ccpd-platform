@@ -11,7 +11,7 @@
 
 		<cfset var qCreate = "" />
 		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
-				INSERT INTO ce_Activity_PubComponent
+				INSERT INTO Activities_PubComponent
 					(
 					ComponentID,
 					ActivityID,
@@ -62,7 +62,7 @@
 					UpdatedBy,
 					Deleted,
 					DeletedFlag
-				FROM	ce_Activity_PubComponent
+				FROM	Activities_PubComponent
 				WHERE	
                 	PubComponentID = <cfqueryparam value="#arguments.ActivityPubComponent.getPubComponentID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
@@ -79,7 +79,7 @@
 
 		<cfset var qUpdate = "" />
 		<cfquery name="qUpdate" datasource="#variables.dsn#">
-				UPDATE	ce_Activity_PubComponent
+				UPDATE	Activities_PubComponent
 				SET
 					ComponentID = <cfqueryparam value="#arguments.ActivityPubComponent.getComponentID()#" CFSQLType="cf_sql_integer" />,
 					ActivityID = <cfqueryparam value="#arguments.ActivityPubComponent.getActivityID()#" CFSQLType="cf_sql_integer" />,
@@ -107,7 +107,7 @@
 
 		<cfset var qDelete = "">
 		<cfquery name="qDelete" datasource="#variables.dsn#">
-				DELETE FROM	ce_Activity_PubComponent 
+				DELETE FROM	Activities_PubComponent 
 				WHERE	
                 	PubComponentID = <cfqueryparam value="#arguments.ActivityPubComponent.getPubComponentID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
@@ -121,7 +121,7 @@
 		<cfset var qExists = "">
 		<cfquery name="qExists" datasource="#variables.dsn#" maxrows="1">
 			SELECT count(1) as idexists
-			FROM	ce_Activity_PubComponent
+			FROM	Activities_PubComponent
 			WHERE	
                 PubComponentID = <cfqueryparam value="#arguments.ActivityPubComponent.getPubComponentID()#" CFSQLType="cf_sql_integer" />
 		</cfquery>

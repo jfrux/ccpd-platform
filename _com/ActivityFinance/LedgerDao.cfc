@@ -12,7 +12,7 @@
 
 		<cfset var qCreate = "" />
 		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
-				INSERT INTO ce_Activity_FinLedger
+				INSERT INTO Activities_FinLedger
 					(
 					ActivityID,
 					EntryDate,
@@ -57,7 +57,7 @@
 					UpdatedBy,
 					Deleted,
 					DeletedFlag
-				FROM	ce_Activity_FinLedger
+				FROM	Activities_FinLedger
 				WHERE	EntryID = <cfqueryparam value="#arguments.Ledger.getEntryID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -73,7 +73,7 @@
 
 		<cfset var qUpdate = "" />
 		<cfquery name="qUpdate" datasource="#variables.dsn#">
-				UPDATE	ce_Activity_FinLedger
+				UPDATE	Activities_FinLedger
 				SET
 					ActivityID = <cfqueryparam value="#arguments.Ledger.getActivityID()#" CFSQLType="cf_sql_integer" />,
 					EntryDate = <cfqueryparam value="#arguments.Ledger.getEntryDate()#" CFSQLType="cf_sql_timestamp" />,
@@ -93,7 +93,7 @@
 
 		<cfset var qDelete = "">
 		<cfquery name="qDelete" datasource="#variables.dsn#">
-				DELETE FROM	ce_Activity_FinLedger 
+				DELETE FROM	Activities_FinLedger 
 				WHERE	EntryID = <cfqueryparam value="#arguments.Ledger.getEntryID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -106,7 +106,7 @@
 		<cfset var qExists = "">
 		<cfquery name="qExists" datasource="#variables.dsn#" maxrows="1">
 			SELECT count(1) as idexists
-			FROM	ce_Activity_FinLedger
+			FROM	Activities_FinLedger
 			WHERE	EntryID = <cfqueryparam value="#arguments.Ledger.getEntryID()#" CFSQLType="cf_sql_integer" />
 		</cfquery>
 

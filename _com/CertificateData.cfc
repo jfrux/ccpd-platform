@@ -24,17 +24,17 @@
                     p.DisplayDegree,
                     ac.Amount AS TotalAmount,
                     (SELECT TOP 1 attc.Amount
-                     FROM ce_AttendeeCredit attc
+                     FROM attendeesCredit attc
                      WHERE (attc.AttendeeID = a.AttendeeID) AND (attc.CreditID = 1)) AS CreditAmount,
                     (SELECT TOP 1 attc.ReferenceNo
-                     FROM ce_AttendeeCredit attc
+                     FROM attendeesCredit attc
                      WHERE (attc.AttendeeID = a.AttendeeID) AND (attc.CreditID = 1)) AS ReferenceNumber,
                     sc.Name AS CreditName
-            FROM ce_Attendee a
+            FROM attendees a
             INNER JOIN pd_Person p ON p.PersonID = a.PersonID
-            INNER JOIN ce_Activity_Credit ac ON ac.ActivityID = a.ActivityID
-            INNER JOIN ce_Sys_Credit sc ON sc.CreditID = ac.CreditID
-            INNER JOIN ce_Activity act ON act.ActivityID = a.ActivityID
+            INNER JOIN Activities_Credit ac ON ac.ActivityID = a.ActivityID
+            INNER JOIN sys_credits sc ON sc.CreditID = ac.CreditID
+            INNER JOIN Activities act ON act.ActivityID = a.ActivityID
             WHERE 
                 a.PersonID = <cfqueryparam value="#Arguments.PersonID#" cfsqltype="cf_sql_integer" /> AND
                 a.DeletedFlag <> <cfqueryparam value="Y" cfsqltype="cf_sql_char" /> AND 
@@ -92,9 +92,9 @@
             </cfif>
         <cfelse>
             <cfif qReportDataPre.CreditAmount NEQ "">
-                <cfset QuerySetCell(qReportData, "AwardStatement", "The activity was designated for " & qReportDataPre.CreditAmount & " AMA PRA Category 1 Credit(s)™")>
+                <cfset QuerySetCell(qReportData, "AwardStatement", "The activity was designated for " & qReportDataPre.CreditAmount & " AMA PRA Category 1 Credit(s)ï¿½")>
             <cfelse>
-                <cfset QuerySetCell(qReportData, "AwardStatement", "The activity was designated for " & qReportDataPre.TotalAmount & " AMA PRA Category 1 Credit(s)™")>
+                <cfset QuerySetCell(qReportData, "AwardStatement", "The activity was designated for " & qReportDataPre.TotalAmount & " AMA PRA Category 1 Credit(s)ï¿½")>
             </cfif>
         </cfif>
         
@@ -124,24 +124,24 @@
                     ac.Amount AS TotalAmount,
                     sc.Name AS CreditName,
                     (SELECT TOP 1 attc.Amount
-                     FROM ce_AttendeeCredit attc
+                     FROM attendeesCredit attc
                      WHERE (attc.AttendeeID = a.AttendeeID) AND (attc.CreditID = 2)) AS CreditAmount,
                     (SELECT TOP 1 attc.ReferenceNo
-                     FROM ce_AttendeeCredit attc
+                     FROM attendeesCredit attc
                      WHERE (attc.AttendeeID = a.AttendeeID) AND (attc.CreditID = 2)) AS ReferenceNumber,
                     (SELECT TOP 1 p1.FirstName
-                     FROM ce_Activity_Faculty af
+                     FROM Activities_Faculty af
                      INNER JOIN pd_Person p1 ON p1.PersonID = af.PersonID
                      WHERE af.DeletedFlag = 'N') AS FacultyFName,
                     (SELECT TOP 1 p1.LastName
-                     FROM ce_Activity_Faculty af
+                     FROM Activities_Faculty af
                      INNER JOIN pd_Person p1 ON p1.PersonID = af.PersonID
                      WHERE af.DeletedFlag = 'N') AS FacultyLName
-            FROM ce_Attendee a
+            FROM attendees a
             INNER JOIN pd_Person p ON p.PersonID = a.PersonID
-            INNER JOIN ce_Activity_Credit ac ON ac.ActivityID = a.ActivityID
-            INNER JOIN ce_Sys_Credit sc ON sc.CreditID = ac.CreditID
-            LEFT OUTER JOIN ce_Activity act ON act.ActivityID = a.ActivityID
+            INNER JOIN Activities_Credit ac ON ac.ActivityID = a.ActivityID
+            INNER JOIN sys_credits sc ON sc.CreditID = ac.CreditID
+            LEFT OUTER JOIN Activities act ON act.ActivityID = a.ActivityID
             WHERE 
                 a.PersonID = <cfqueryparam value="#Arguments.PersonID#" cfsqltype="cf_sql_integer" /> AND
                 a.ActivityID = <cfqueryparam value="#Arguments.ActivityID#" cfsqltype="cf_sql_integer" /> AND 

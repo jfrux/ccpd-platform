@@ -11,7 +11,7 @@
 
 		<cfset var qCreate = "" />
 		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
-				INSERT INTO ce_Activity_Credit
+				INSERT INTO Activities_Credit
 					(
 					ActivityID,
 					CreditID,
@@ -50,7 +50,7 @@
 					UpdatedBy,
 					Deleted,
 					DeletedFlag
-				FROM	ce_Activity_Credit
+				FROM	Activities_Credit
 				WHERE	ActivityID = <cfqueryparam value="#arguments.ActivityCredit.getActivityID()#" CFSQLType="cf_sql_integer" /> AND CreditID = <cfqueryparam value="#arguments.ActivityCredit.getCreditID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -66,7 +66,7 @@
 
 		<cfset var qUpdate = "" />
 		<cfquery name="qUpdate" datasource="#variables.dsn#">
-				UPDATE	ce_Activity_Credit
+				UPDATE	Activities_Credit
 				SET
 					ActivityID = <cfqueryparam value="#arguments.ActivityCredit.getActivityID()#" CFSQLType="cf_sql_integer" />,
 					CreditID = <cfqueryparam value="#arguments.ActivityCredit.getCreditID()#" CFSQLType="cf_sql_integer" />,
@@ -89,7 +89,7 @@
 
 		<cfset var qDelete = "">
 		<cfquery name="qDelete" datasource="#variables.dsn#">
-				DELETE FROM	ce_Activity_Credit 
+				DELETE FROM	Activities_Credit 
 				WHERE	ActivityID = <cfqueryparam value="#arguments.ActivityCredit.getActivityID()#" CFSQLType="cf_sql_integer" /> AND CreditID = <cfqueryparam value="#arguments.ActivityCredit.getCreditID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -102,7 +102,7 @@
 		<cfset var qExists = "">
 		<cfquery name="qExists" datasource="#variables.dsn#" maxrows="1">
 			SELECT count(1) as idexists
-			FROM	ce_Activity_Credit
+			FROM	Activities_Credit
 			WHERE	ActivityID = <cfqueryparam value="#arguments.ActivityCredit.getActivityID()#" CFSQLType="cf_sql_integer" /> AND CreditID = <cfqueryparam value="#arguments.ActivityCredit.getCreditID()#" CFSQLType="cf_sql_integer" />
 		</cfquery>
 

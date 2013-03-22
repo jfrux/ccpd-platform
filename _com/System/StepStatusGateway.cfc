@@ -19,7 +19,7 @@
 				Name,
 				Description,
 				Priority
-			FROM	ce_Sys_StepStatus
+			FROM	sys_stepstatuses
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"StepStatusID") and len(arguments.StepStatusID)>

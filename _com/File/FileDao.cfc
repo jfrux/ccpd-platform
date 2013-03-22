@@ -12,7 +12,7 @@
 
 		<cfset var qCreate = "" />
 		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
-				INSERT INTO ce_File
+				INSERT INTO files
 					(
 					FileName,
 					FileCaption,
@@ -57,7 +57,7 @@
 					UpdatedBy,
 					Deleted,
 					DeletedFlag
-				FROM	ce_File
+				FROM	files
 				WHERE	FileID = <cfqueryparam value="#arguments.File.getFileID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -73,7 +73,7 @@
 
 		<cfset var qUpdate = "" />
 		<cfquery name="qUpdate" datasource="#variables.dsn#">
-				UPDATE	ce_File
+				UPDATE	files
 				SET
 					FileCaption = <cfqueryparam value="#arguments.File.getFileCaption()#" CFSQLType="cf_sql_varchar" null="#not len(arguments.File.getFileCaption())#" />,
 					FileSize = <cfqueryparam value="#arguments.File.getFileSize()#" CFSQLType="cf_sql_float" null="#not len(arguments.File.getFileSize())#" />,
@@ -90,7 +90,7 @@
 
 		<cfset var qDelete = "">
 		<cfquery name="qDelete" datasource="#variables.dsn#">
-				DELETE FROM	ce_File 
+				DELETE FROM	files 
 				WHERE	FileID = <cfqueryparam value="#arguments.File.getFileID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -103,7 +103,7 @@
 		<cfset var qExists = "">
 		<cfquery name="qExists" datasource="#variables.dsn#" maxrows="1">
 			SELECT count(1) as idexists
-			FROM	ce_File
+			FROM	files
 			WHERE	FileID = <cfqueryparam value="#arguments.File.getFileID()#" CFSQLType="cf_sql_integer" />
 		</cfquery>
 

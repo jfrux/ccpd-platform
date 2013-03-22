@@ -389,7 +389,7 @@ AuthID,Name,Description
 	<cffunction name="getHistoryStyles" access="public" output="no" returntype="query">
 		<cfquery name="qNewStyle" datasource="#Application.Settings.DSN#">
 			SELECT HistoryStyleID,Title,OldTitles
-			FROM ce_Sys_HistoryStyle
+			FROM sys_historystyles
 			ORDER BY Title
 		</cfquery>
 		
@@ -399,7 +399,7 @@ AuthID,Name,Description
 	<cffunction name="getActivityTypes" access="public" output="no" returntype="query">
 		<cfquery name="qActivityTypes" datasource="#Application.Settings.DSN#">
 			SELECT     ActivityTypeID, Name, Description, Code, Created, Updated, Deleted, DeletedFlag
-			FROM         ce_Sys_ActivityType
+			FROM         sys_activitytypes
 			ORDER BY Code
 		</cfquery>
 		
@@ -409,7 +409,7 @@ AuthID,Name,Description
 	<cffunction name="getGroupings" access="public" output="no" returntype="query">
 		<cfquery name="qGroupings" datasource="#Application.Settings.DSN#">
 			SELECT     GroupingID, ActivityTypeID, Name, Created
-			FROM         ce_Sys_Grouping
+			FROM         sys_groupings
 			ORDER BY GroupingID
 		</cfquery>
 		

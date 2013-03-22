@@ -12,14 +12,14 @@
         <!--- GET RESULT INFO --->
         <cfquery name="qGetResult" datasource="#Application.Settings.DSN#">
         	SELECT ResultID, PersonID, AssessmentID, ResultStatusID, Score, Created, Updated, Deleted, DeletedFlag
-            FROM ce_AssessResult
+            FROM assessresults
             WHERE ResultID = <cfqueryparam value="#Arguments.ResultID#" cfsqltype="cf_sql_integer" /> 
         </cfquery>
         
         <!--- GET PERSON NAME --->
         <cfquery name="qGetPerson" datasource="#Application.Settings.DSN#">
         	SELECT FirstName, LastName
-            FROM ce_Person
+            FROM Users
             WHERE PersonID = <cfqueryparam value="#qGetResult.PersonID#" cfsqltype="cf_sql_integer" />
         </cfquery>
         
@@ -33,8 +33,8 @@
                     ass.Name,
                     ass.PassingScore,
                     sat.Name AS AssessType
-            FROM ce_Assessment ass
-            INNER JOIN ce_Sys_AssessType sat ON sat.AssessTypeID = ass.AssessTypeID
+            FROM assessments ass
+            INNER JOIN sys_assesstypes sat ON sat.AssessTypeID = ass.AssessTypeID
             WHERE ass.AssessmentID = <cfqueryparam value="#qGetResult.AssessmentID#" cfsqltype="cf_sql_integer" />
         </cfquery>
         
@@ -99,14 +99,14 @@
                         <cfif Len(qQuestions.CorrectField) GT 0 AND qQuestions.CorrectField NEQ "VC0">
                             <cfquery name="qGetCorrectAnswer" datasource="#Application.Settings.DSN#">
                                 SELECT #qQuestions.CorrectField# AS CorrectAnswer
-                                FROM ce_AssessQuestion
+                                FROM assessquestions
                                 WHERE QuestionID = <cfqueryparam value="#qQuestions.QuestionID#" cfsqltype="cf_sql_integer" />
                             </cfquery>
                         </cfif>
                         
                         <cfquery name="qGetAnswer" datasource="#Application.Settings.DSN#">
                             SELECT AnswerID, VC1
-                            FROM ce_AssessAnswer
+                            FROM assessanswers
                             WHERE QuestionID = <cfqueryparam value="#qQuestions.QuestionID#" cfsqltype="cf_sql_integer" /> AND ResultID = <cfqueryparam value="#Arguments.ResultID#" cfsqltype="cf_sql_integer" />
                         </cfquery>
                         
@@ -200,8 +200,8 @@
             		a.PassingScore,
                     a.MaxAttempts,
                     act.Title AS ActivityTitle
-            FROM ce_Assessment a
-            INNER JOIN ce_Activity act ON act.ActivityID = a.ActivityID
+            FROM assessments a
+            INNER JOIN Activities act ON act.ActivityID = a.ActivityID
             WHERE a.AssessmentID = <cfqueryparam value="#Arguments.AssessmentID#" cfsqltype="cf_sql_integer" /> AND a.DeletedFlag = 'N'
         </cfquery>
         
@@ -243,8 +243,8 @@
                         aq.TXT4,
                         aq.TXT5,
                         aqt.Name AS QuestionType
-                FROM ce_AssessQuestion aq
-                INNER JOIN ce_Sys_AssessQuestionType aqt ON aqt.QuestionTypeID = aq.QuestionTypeID
+                FROM assessquestions aq
+                INNER JOIN sys_assessquestiontypes aqt ON aqt.QuestionTypeID = aq.QuestionTypeID
                 WHERE aq.AssessmentID = <cfqueryparam value="#qGetAssess.AssessmentID#" cfsqltype="cf_sql_integer" /> AND aq.DeletedFlag = 'N'
                 ORDER BY Sort
             </cfquery>
@@ -354,7 +354,7 @@
                                                     VC1,
                                                     DT1,
                                                     TXT1
-                                            FROM ce_AssessAnswer
+                                            FROM assessanswers
                                             WHERE QuestionID = #qGetQuestions.QuestionID# AND DeletedFlag = 'N'
                                         </cfquery>
                                         
@@ -363,7 +363,7 @@
                                             <cfif qGetQuestions.VC1 NEQ "">
                                                 <cfquery name="qGetVC1" datasource="#Application.Settings.DSN#">
                                                     SELECT Count(AnswerID) AS TallyCount
-                                                    FROM ce_AssessAnswer
+                                                    FROM assessanswers
                                                     WHERE QuestionID = #qGetQuestions.QuestionID# AND VC1 = '#qGetQuestions.VC1#'
                                                 </cfquery>
                                                 <poi:row>
@@ -380,7 +380,7 @@
                                             	<cfloop from="1" to="5" index="RateCount">
                                                     <cfquery name="qGetVC1" datasource="#Application.Settings.DSN#">
                                                         SELECT Count(AnswerID) AS TallyCount
-                                                        FROM ce_AssessAnswer
+                                                        FROM assessanswers
                                                         WHERE QuestionID = #qGetQuestions.QuestionID# AND VC1 = '#RateCount#'
                                                     </cfquery>
                                                     <poi:row>
@@ -399,7 +399,7 @@
                                             <cfif qGetQuestions.VC2 NEQ "">
                                                 <cfquery name="qGetVC2" datasource="#Application.Settings.DSN#">
                                                     SELECT Count(AnswerID) AS TallyCount
-                                                    FROM ce_AssessAnswer
+                                                    FROM assessanswers
                                                     WHERE QuestionID = #qGetQuestions.QuestionID# AND VC1 = '#qGetQuestions.VC2#'
                                                 </cfquery>
                                                 <poi:row>
@@ -414,7 +414,7 @@
                                             <cfif qGetQuestions.VC3 NEQ "">
                                                 <cfquery name="qGetVC3" datasource="#Application.Settings.DSN#">
                                                     SELECT Count(AnswerID) AS TallyCount
-                                                    FROM ce_AssessAnswer
+                                                    FROM assessanswers
                                                     WHERE QuestionID = #qGetQuestions.QuestionID# AND VC1 = '#qGetQuestions.VC3#'
                                                 </cfquery>
                                                 <poi:row>
@@ -429,7 +429,7 @@
                                             <cfif qGetQuestions.VC4 NEQ "">
                                                 <cfquery name="qGetVC4" datasource="#Application.Settings.DSN#">
                                                     SELECT Count(AnswerID) AS TallyCount
-                                                    FROM ce_AssessAnswer
+                                                    FROM assessanswers
                                                     WHERE QuestionID = #qGetQuestions.QuestionID# AND VC1 = '#qGetQuestions.VC4#'
                                                 </cfquery>
                                                 <poi:row>
@@ -445,7 +445,7 @@
                                             <cfif qGetQuestions.VC5 NEQ "">
                                                 <cfquery name="qGetVC5" datasource="#Application.Settings.DSN#">
                                                     SELECT Count(AnswerID) AS TallyCount
-                                                    FROM ce_AssessAnswer
+                                                    FROM assessanswers
                                                     WHERE QuestionID = #qGetQuestions.QuestionID# AND VC1 = '#qGetQuestions.VC5#'
                                                 </cfquery>
                                                 <poi:row>
@@ -460,7 +460,7 @@
                                             <cfif qGetQuestions.VC6 NEQ "">
                                                 <cfquery name="qGetVC6" datasource="#Application.Settings.DSN#">
                                                     SELECT Count(AnswerID) AS TallyCount
-                                                    FROM ce_AssessAnswer
+                                                    FROM assessanswers
                                                     WHERE QuestionID = #qGetQuestions.QuestionID# AND VC1 = '#qGetQuestions.VC6#'
                                                 </cfquery>
                                                 <poi:row>
@@ -475,7 +475,7 @@
                                             <cfif qGetQuestions.VC7 NEQ "">
                                                 <cfquery name="qGetVC7" datasource="#Application.Settings.DSN#">
                                                     SELECT Count(AnswerID) AS TallyCount
-                                                    FROM ce_AssessAnswer
+                                                    FROM assessanswers
                                                     WHERE QuestionID = #qGetQuestions.QuestionID# AND VC1 = '#qGetQuestions.VC7#'
                                                 </cfquery>
                                                 <poi:row>
@@ -490,7 +490,7 @@
                                             <cfif qGetQuestions.VC8 NEQ "">
                                                 <cfquery name="qGetVC8" datasource="#Application.Settings.DSN#">
                                                     SELECT Count(AnswerID) AS TallyCount
-                                                    FROM ce_AssessAnswer
+                                                    FROM assessanswers
                                                     WHERE QuestionID = #qGetQuestions.QuestionID# AND VC1 = '#qGetQuestions.VC8#'
                                                 </cfquery>
                                                 <poi:row>
@@ -505,7 +505,7 @@
                                             <cfif qGetQuestions.VC9 NEQ "">
                                                 <cfquery name="qGetVC9" datasource="#Application.Settings.DSN#">
                                                     SELECT Count(AnswerID) AS TallyCount
-                                                    FROM ce_AssessAnswer
+                                                    FROM assessanswers
                                                     WHERE QuestionID = #qGetQuestions.QuestionID# AND VC1 = '#qGetQuestions.VC9#'
                                                 </cfquery>
                                                 <poi:row>
@@ -520,7 +520,7 @@
                                             <cfif qGetQuestions.VC10 NEQ "">
                                                 <cfquery name="qGetVC10" datasource="#Application.Settings.DSN#">
                                                     SELECT Count(AnswerID) AS TallyCount
-                                                    FROM ce_AssessAnswer
+                                                    FROM assessanswers
                                                     WHERE QuestionID = #qGetQuestions.QuestionID# AND VC1 = '#qGetQuestions.VC10#'
                                                 </cfquery>
                                                 <poi:row>
@@ -567,7 +567,7 @@
                                 	SELECT 	ResultID, 
                                     		PersonID,
                                             Score
-                                   	FROM ce_AssessResult
+                                   	FROM assessresults
                                     WHERE assessmentID = <cfqueryparam value="#Arguments.AssessmentID#" cfsqltype="cf_sql_integer" />
                                 </cfquery>
                                 
@@ -577,8 +577,8 @@
                                         SELECT 	aa.QuestionID,
                                         		aa.vc1,
                                         		aq.LabelText
-                                        FROM ce_AssessAnswer aa
-                                        INNER JOIN ce_AssessQuestion aq ON aq.QuestionID = aa.QuestionID
+                                        FROM assessanswers aa
+                                        INNER JOIN assessquestions aq ON aq.QuestionID = aa.QuestionID
                                         WHERE aa.ResultID = <cfqueryparam value="#qGetResults.ResultID#" cfsqltype="cf_sql_integer" />
                                         ORDER BY aq.Sort,aq.QuestionID
                                     </cfquery>

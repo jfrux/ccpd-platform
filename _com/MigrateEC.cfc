@@ -85,7 +85,7 @@
 			<!--- LOOKUP CATEGORY --->
 			<cfquery name="qCategory" datasource="#NewDSN#">
 				SELECT CategoryID,Name
-				FROM ce_Sys_CategoryLMS
+				FROM sys_categorylms
 				WHERE Name=<cfqueryparam value="#qCourses.CreditCategory#" cfsqltype="cf_sql_varchar" />
 			</cfquery>
 			
@@ -117,7 +117,7 @@
 			
 			<cfif qCategory.CategoryID GT 0>
 				<cfquery name="qSetCategory" datasource="#NewDSN#">
-					INSERT INTO ce_Activity_CategoryLMS (
+					INSERT INTO Activities_CategoryLMS (
 						ActivityID,
 						CategoryID,
 						CreatedBy
@@ -209,7 +209,7 @@
 		
 		<cfif Session.qTraining.RecordCount GT 0>
 			#Arguments.Current# // #Arguments.Current+Arguments.Amount#<br>
-			SELECT TOP 1 ActivityID FROM ce_Activity
+			SELECT TOP 1 ActivityID FROM Activities
 						WHERE ExternalID = 'EC#TheCurrentCourse#' AND DeletedFlag='N'
 						ORDER BY Title<cfflush>
 			<cfoutput startrow="#Arguments.Current#" maxrows="#Arguments.Amount#" query="Session.qTraining">				
@@ -217,7 +217,7 @@
 						<cfset TheCurrentCourse = Session.qTraining.CourseID>
 					</cfif>
 					<cfquery name="qActivity" datasource="#NewDSN#">
-						SELECT TOP 1 ActivityID FROM ce_Activity
+						SELECT TOP 1 ActivityID FROM Activities
 						WHERE ExternalID = 'EC#TheCurrentCourse#' AND DeletedFlag='N'
 						ORDER BY Title
 					</cfquery>
@@ -231,7 +231,7 @@
 				
 				<cfif qActivity.ActivityID GT 0>
 					<!---<cfquery name="qCheck" datasource="#NewDSN#">
-						SELECT AttendeeID FROM ce_Attendee
+						SELECT AttendeeID FROM attendees
 						WHERE PersonID=#Session.qTraining.PersonID# AND ActivityID=#Session.qActivity.ActivityID#
 					</cfquery>--->
 					#CurrentRow# - [#Session.qTraining.PersonID#]...<cfflush>
@@ -270,7 +270,7 @@
 					</cfif>
 					
 					<cfquery name="qInsertAttendeeCredit" datasource="#NewDSN#">
-						INSERT INTO ce_AttendeeCredit (
+						INSERT INTO attendeesCredit (
 							AttendeeID,
 							CreditID,
 							Amount,
@@ -401,18 +401,18 @@
 		<cfloop query="qItems">
 			<!--- DELETE RECORDS FOR THIS ACTIVITY --->
 			<cfquery name="qGetFile" datasource="#NewDSN#">
-				SELECT FileID FROM ce_File
+				SELECT FileID FROM files
 				WHERE ActivityID=#Arguments.ActivityID# AND FileName='#qItems.FileOrURL#'
 			</cfquery>
 			
 			<cfloop query="qGetFile">
 				<cfif qGetFile.FileID GT 0>
 				<cfquery name="qDelete" datasource="#NewDSN#">
-					DELETE ce_File
+					DELETE files
 					WHERE FileID=#qGetFile.FileID#
 				</cfquery>
 				<cfquery name="qDelete" datasource="#NewDSN#">
-					DELETE ce_Activity_PubComponent
+					DELETE Activities_PubComponent
 					WHERE FileID=#qGetFile.FileID#
 				</cfquery>
 				</cfif>
@@ -498,10 +498,10 @@
 		<cfquery name="qTests" datasource="#NewDSN#">
 			SELECT     A.AssessmentID, A.ActivityID, A.Name, A.ExternalID,
 					  (SELECT     COUNT(QuestionID) AS Expr1
-						FROM          ce_AssessQuestion AS Q
+						FROM          assessquestions AS Q
 						WHERE      (AssessmentID = A.AssessmentID) AND (DeletedFlag = 'N')) AS QuestionCount, A.DeletedFlag
-			FROM         ce_Assessment AS A INNER JOIN
-				  ce_Activity AS Act ON A.ActivityID = Act.ActivityID
+			FROM         assessments AS A INNER JOIN
+				  Activities AS Act ON A.ActivityID = Act.ActivityID
 			WHERE     (A.ExternalID LIKE 'EC-%-#Arguments.TestNumber#')<cfif TestType GT 0> AND (A.AssessTypeID = #TestType#)</cfif> AND (A.DeletedFlag = 'N') AND (Act.DeletedFlag = 'N')
 		</cfquery>
 
@@ -536,7 +536,7 @@
 				</cfswitch>
 				
 				<cfquery name="qCheckResult" datasource="#NewDSN#">
-					SELECT TOP (1) ResultID FROM ce_AssessResult
+					SELECT TOP (1) ResultID FROM assessresults
 					WHERE PersonID=#qResults.PersonID# AND AssessmentID=#qTests.AssessmentID# AND ResultStatusID=#ResultStatusID#
 				</cfquery>
 				
@@ -578,12 +578,12 @@
 				<cfloop query="qAnswers">
 					<cfquery name="qLookup" datasource="#NewDSN#">
 						SELECT QuestionID
-						FROM ce_AssessQuestion
+						FROM assessquestions
 						WHERE ExternalID='EC-#qAnswers.TestQuestionID#'
 					</cfquery>
 					
 					<cfquery name="qCheckResult" datasource="#NewDSN#">
-						SELECT TOP (1) AnswerID FROM ce_AssessAnswer
+						SELECT TOP (1) AnswerID FROM assessanswers
 						WHERE AssessmentID=#ResultBean.getAssessmentID()# AND QuestionID=#qLookup.QuestionID#
 					</cfquery>
 					
@@ -632,7 +632,7 @@
 	<cffunction name="OldSurveyFix" access="remote" output="yes">
 		<cfquery name="qActivities" datasource="#NewDSN#">
 			SELECT *
-			FROM ce_Activity_PubGeneral
+			FROM Activities_PubGeneral
 			WHERE Overview LIKE '%course_send.cfm%'
 		</cfquery>
 		
@@ -645,7 +645,7 @@
 			#TheOverview#
 			<hr>
 			<cfquery name="qUpdate" datasource="#NewDSN#">
-				UPDATE ce_Activity_PubGeneral
+				UPDATE Activities_PubGeneral
 				SET Overview=<cfqueryparam value="#TheOverview#" cfsqltype="cf_sql_varchar" />
 				WHERE ActivityID=#qActivities.ActivityID#
 			</cfquery>
@@ -687,19 +687,19 @@
 				<!--- CLEAR FIRST --->
 				<cfloop query="qTests">
 					<cfquery name="qGetActivityID" datasource="#NewDSN#">
-						SELECT ActivityID FROM ce_Activity
+						SELECT ActivityID FROM Activities
 						WHERE ExternalID='EC#qTests.CourseID#' AND DeletedFlag='N'
 					</cfquery>
 					
 					<cfif qGetActivityID.ActivityID GT 0>
 						<cfquery name="qClear" datasource="#NewDSN#">
-							UPDATE ce_Assessment
+							UPDATE assessments
 							SET DeletedFlag='Y'
 							WHERE ActivityID = #qGetActivityID.ActivityID#
 						</cfquery>
 						
 						<cfquery name="qClearComp" datasource="#NewDSN#">
-							UPDATE ce_Activity_PubComponent
+							UPDATE Activities_PubComponent
 							SET DeletedFlag='Y'
 							WHERE ActivityID = #qGetActivityID.ActivityID# AND ComponentID IN (5,11,12)
 						</cfquery>
@@ -714,7 +714,7 @@
 			<cfcase value="Import">
 				<cfloop query="qTests">
 					<cfquery name="qGetActivityID" datasource="#NewDSN#">
-						SELECT ActivityID FROM ce_Activity
+						SELECT ActivityID FROM Activities
 						WHERE ExternalID='EC#qTests.CourseID#' AND DeletedFlag='N'
 					</cfquery>
 					
@@ -863,7 +863,7 @@
 			<cfif qCourse.CourseID GT 0>
 				<!--- GET ACTIVITY ID --->
 				<cfquery name="qActivity" datasource="#NewDSN#">
-					SELECT ActivityID FROM ce_Activity
+					SELECT ActivityID FROM Activities
 					WHERE ExternalID = 'EC#qCourse.CourseID#' AND DeletedFlag='N'
 				</cfquery>
 				

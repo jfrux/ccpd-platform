@@ -12,7 +12,7 @@
 
 		<cfset var qCreate = "" />
 		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
-				INSERT INTO ce_Activity_SpecialtyLMS
+				INSERT INTO Activities_SpecialtyLMS
 					(
 					ActivityID,
 					SpecialtyID,
@@ -45,7 +45,7 @@
 					UpdatedBy,
 					Deleted,
 					DeletedFlag
-				FROM	ce_Activity_SpecialtyLMS
+				FROM	Activities_SpecialtyLMS
 				WHERE	ActivityID = <cfqueryparam value="#arguments.ActivitySpecialtyLMS.getActivityID()#" CFSQLType="cf_sql_integer" /> AND SpecialtyID = <cfqueryparam value="#arguments.ActivitySpecialtyLMS.getSpecialtyID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -61,7 +61,7 @@
 
 		<cfset var qUpdate = "" />
 		<cfquery name="qUpdate" datasource="#variables.dsn#">
-				UPDATE	ce_Activity_SpecialtyLMS
+				UPDATE	Activities_SpecialtyLMS
 				SET
 					ActivityID = <cfqueryparam value="#arguments.ActivitySpecialtyLMS.getActivityID()#" CFSQLType="cf_sql_integer" />,
 					SpecialtyID = <cfqueryparam value="#arguments.ActivitySpecialtyLMS.getSpecialtyID()#" CFSQLType="cf_sql_integer" />,
@@ -82,7 +82,7 @@
 
 		<cfset var qDelete = "">
 		<cfquery name="qDelete" datasource="#variables.dsn#">
-				DELETE FROM	ce_Activity_SpecialtyLMS 
+				DELETE FROM	Activities_SpecialtyLMS 
 				WHERE	ActivityID = <cfqueryparam value="#arguments.ActivitySpecialtyLMS.getActivityID()#" CFSQLType="cf_sql_integer" /> AND SpecialtyID = <cfqueryparam value="#arguments.ActivitySpecialtyLMS.getSpecialtyID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -95,7 +95,7 @@
 		<cfset var qExists = "">
 		<cfquery name="qExists" datasource="#variables.dsn#" maxrows="1">
 			SELECT count(1) as idexists
-			FROM	ce_Activity_SpecialtyLMS
+			FROM	Activities_SpecialtyLMS
 			WHERE	ActivityID = <cfqueryparam value="#arguments.ActivitySpecialtyLMS.getActivityID()#" CFSQLType="cf_sql_integer" /> AND SpecialtyID = <cfqueryparam value="#arguments.ActivitySpecialtyLMS.getSpecialtyID()#" CFSQLType="cf_sql_integer" />
 		</cfquery>
 

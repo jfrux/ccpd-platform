@@ -27,11 +27,11 @@
 			SELECT     
 				A.ActivityID, A.ParentActivityID, A.Title, A.StartDate, A.EndDate, Sp.Name AS Category, A.StatAttendees
 			FROM         
-				ce_Activity_Category AS S 
+				Activities_Category AS S 
 			INNER JOIN
-				ce_Activity AS A ON S.ActivityID = A.ActivityID 
+				Activities AS A ON S.ActivityID = A.ActivityID 
 			INNER JOIN
-			ce_Category AS Sp ON S.CategoryID = Sp.CategoryID
+			categories AS Sp ON S.CategoryID = Sp.CategoryID
 			WHERE 
 				(A.DeletedFlag = 'N') AND 
 				(Sp.CategoryID IN (#Arguments.Categories#)) AND 

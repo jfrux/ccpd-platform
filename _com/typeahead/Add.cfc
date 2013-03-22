@@ -87,7 +87,7 @@
     	<cfargument name="text" type="string" default="" />
         
         <cfquery name="qAdd" datasource="#variables.dsn#" result="qResult">
-            INSERT INTO ce_sys_specialtyLMS
+            INSERT INTO sys_specialtylms
             (
                 name,
                 verifyFlag

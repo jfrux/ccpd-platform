@@ -60,7 +60,7 @@
 				Deleted,
 				DeletedFlag,
 				DeletedBy
-			FROM	ce_Person
+			FROM	Users
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"PersonID") and len(arguments.PersonID)>
@@ -154,9 +154,7 @@
 		<cfset var qList = "" />		
 		<cfquery name="qList" datasource="#variables.dsn#">
 			SELECT   
-				<cfif Arguments.Limit NEQ "">
-				TOP #Arguments.Limit#
-				</cfif>  
+				
 				P.personid, 
 				P.firstname, 
 				P.middlename, 
@@ -165,13 +163,14 @@
 				P.Suffix, 
 				P.certname,
 				P.displayname,
-                (Select TOP 1 SD.Name
-                 FROM ce_Person_Degree PD
-                 INNER JOIN ce_Sys_Degree SD ON SD.DegreeID = PD.DegreeID AND PD.PersonID = P.PersonID AND PD.DeletedFlag = 'N') AS DisplayDegree,
+                (Select SD.Name
+                 FROM User_Degrees PD
+                 INNER JOIN sys_degrees SD ON SD.DegreeID = PD.DegreeID AND PD.PersonID = P.PersonID AND PD.DeletedFlag = 'N'
+                 LIMIT 1) AS DisplayDegree,
 				P.Email, 
 				P.Gender
 			FROM
-				ce_Person AS P 
+				Users AS P
 			WHERE	0=0
 		<cfif structKeyExists(arguments,"SSN") and len(arguments.SSN)>
 			AND	ssn = <cfqueryparam value="#arguments.ssn#" CFSQLType="cf_sql_varchar" />
@@ -194,6 +193,9 @@
 		<cfif structKeyExists(arguments, "orderby") and len(arguments.orderBy)>
 			ORDER BY #arguments.orderby#
 		</cfif>
+		<cfif Arguments.Limit NEQ "">
+				LIMIT #Arguments.Limit#
+				</cfif>  
 		</cfquery>
 		
 		<cfreturn qList />

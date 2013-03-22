@@ -12,7 +12,7 @@
         
         <cfquery name="ComponentInfo" datasource="#Application.Settings.DSN#">
         	SELECT PubComponentID
-            FROM ce_Activity_PubComponent
+            FROM Activities_PubComponent
             WHERE 
             	ActivityID = <cfqueryparam value="#Arguments.ActivityID#" cfsqltype="cf_sql_integer" /> AND 
             	FileID = <cfqueryparam value="#Arguments.FileID#" cfsqltype="cf_sql_integer" />
@@ -127,13 +127,13 @@
             
             <cfquery name="TemplateInfo" datasource="#Application.Settings.DSN#">
             	SELECT AssessTmplID, Name
-                FROM ce_AssessTmpl
+                FROM assesstmpls
                 WHERE AssessmentID = <cfqueryparam value="#PubComponentBean.getAssessmentID()#" cfsqltype="cf_sql_integer"> AND CreatedBy = <cfqueryparam value="#Session.Person.getPersonID()#" cfsqltype="cf_sql_integer" />
             </cfquery>
             
             <cfif TemplateInfo.RecordCount GT 0>
             	<cfquery name="DeleteTemplate" datasource="#Application.Settings.DSN#">
-                    DELETE FROM ce_AssessTmpl
+                    DELETE FROM assesstmpls
                     WHERE AssessmentID = <cfqueryparam value="#PubComponentBean.getAssessmentID()#" cfsqltype="cf_sql_integer"> AND CreatedBy = <cfqueryparam value="#Session.Person.getPersonID()#" cfsqltype="cf_sql_integer" />
                 </cfquery>
                 
@@ -153,7 +153,7 @@
         <!--- CHECK IF ASSESSMENT HAS QUESTIONS --->
         <cfquery name="AssessmentInfo" datasource="#Application.Settings.DSN#">
         	SELECT QuestionID, Sort
-            FROM ce_AssessQuestion
+            FROM assessquestions
             WHERE AssessmentID = <cfqueryparam value="#Arguments.AssessmentID#" cfsqltype="cf_sql_integer" /> AND DeletedFlag = 'N'
             ORDER BY Sort, QuestionID
         </cfquery>
@@ -165,7 +165,7 @@
 				<cfif AssessmentInfo.Sort EQ "">
                 	<cfquery name="qUpdateSort" datasource="#application.settings.dsn#">
                     	UPDATE 
-                        	ce_assessQuestion
+                        	assessquestions
                         SET
                         	sort = <cfqueryparam value="#currSort#" cfsqltype="cf_sql_integer" />
                         WHERE
@@ -496,7 +496,7 @@
             	SELECT 
                 	questionId, questionTypeId, Sort
                 FROM
-                	ce_AssessQuestion
+                	assessquestions
                 WHERE
                 	assessmentId = <cfqueryparam value="#arguments.assessmentId#" cfsqltype="cf_sql_integer" /> AND
                     deletedFlag = 'N'
@@ -510,7 +510,7 @@
             <cfloop query="qQuestionsList">
             	<cfquery name="qUpdateSortOrder" datasource="#application.settings.dsn#">
                 	UPDATE
-                    	ce_assessQuestion
+                    	assessquestions
                     SET 
                     	sort = <cfqueryparam value="#nSort#" cfsqltype="cf_sql_integer" />
                     WHERE
@@ -524,7 +524,7 @@
             	SELECT 
                 	questionId, questionTypeId, Sort
                 FROM
-                	ce_AssessQuestion
+                	assessquestions
                 WHERE
                 	assessmentId = <cfqueryparam value="#arguments.assessmentId#" cfsqltype="cf_sql_integer" /> AND
                     deletedFlag = 'N' AND
@@ -542,7 +542,7 @@
             <cfloop query="qQuestionsList">
             	<cfquery name="qUpdateNewSortOrder" datasource="#application.settings.dsn#">
                 	UPDATE
-                    	ce_assessQuestion
+                    	assessquestions
                     SET 
                     	<cfif nSort LT questionBean.getSort()>
                     		sort = <cfqueryparam value="#nSort#" cfsqltype="cf_sql_integer" />
@@ -588,7 +588,7 @@
         	<cfset CurrCompID = Replace(GetToken(CompList,i,'&'),'Comp[]=','')>
             
 			<cfquery name="qUpdate" datasource="#Application.Settings.DSN#">
-				UPDATE ce_Activity_PubComponent
+				UPDATE Activities_PubComponent
 				SET Sort=#i#
 				WHERE PubComponentID=<cfqueryparam value="#CurrCompID#" cfsqltype="cf_sql_integer" />
 			</cfquery>
@@ -611,7 +611,7 @@
         	<cfset CurrQuestionID = Replace(GetToken(QuestionList,i,'&'),'Question[]=','')>
             
 			<cfquery name="qUpdate" datasource="#Application.Settings.DSN#">
-				UPDATE ce_AssessQuestion
+				UPDATE assessquestions
 				SET Sort=#i#
 				WHERE QuestionID=<cfqueryparam value="#CurrQuestionID#" cfsqltype="cf_sql_integer" />
 			</cfquery>

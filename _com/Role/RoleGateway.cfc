@@ -18,7 +18,7 @@
 				RoleID,
 				Name,
 				Description
-			FROM	ce_Sys_Role
+			FROM	sys_roles
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"RoleID") and len(arguments.RoleID)>

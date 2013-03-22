@@ -15,7 +15,7 @@
 		<!--- GET ATTENDEES --->
         <cfquery name="AttendeeList" datasource="#Application.Settings.DSN#">
             SELECT PersonID, MDFlag
-            FROM ce_Attendee
+            FROM attendees
             WHERE ActivityID = <cfqueryparam value="#Arguments.ActivityID#" cfsqltype="cf_sql_integer" /> AND DeletedFlag = 'N' AND StatusID = 1
         </cfquery>
             
@@ -31,7 +31,7 @@
    		<!--- GET SUPPORTER INFORMATION --->
         <cfquery name="SupporterList" datasource="#Application.Settings.DSN#">
         	SELECT SupportID, Amount
-            FROM ce_Activity_FinSupport
+            FROM Activities_FinSupport
             WHERE ActivityID = <cfqueryparam value="#Arguments.ActivityID#" cfsqltype="cf_sql_integer" /> AND DeletedFlag = 'N'
         </cfquery>
         
@@ -47,7 +47,7 @@
         <!--- CHECK IF CURRENT ACTIVITY IS A PARENT --->
         <cfquery name="ActivityList" datasource="#Application.Settings.DSN#">
         	SELECT ActivityID
-            FROM ce_Activity
+            FROM Activities
             WHERE ParentActivityID = <cfqueryparam value="#Arguments.ActivityID#" cfsqltype="cf_sql_integer" /> AND DeletedFlag = 'N'
         </cfquery>
         
@@ -57,7 +57,7 @@
             	<!--- GET ATTENDEES --->
             	<cfquery name="AttendeeList" datasource="#Application.Settings.DSN#">
                 	SELECT PersonID, MDFlag
-                    FROM ce_Attendee
+                    FROM attendees
                     WHERE ActivityID = <cfqueryparam value="#ActivityList.ActivityID#" cfsqltype="cf_sql_integer" /> AND DeletedFlag = 'N'
                 </cfquery>
             
@@ -73,7 +73,7 @@
         		<!--- GET SUPPORTER INFORMATION --->
                 <cfquery name="SupporterList" datasource="#Application.Settings.DSN#">
                     SELECT SupportID, Amount
-                    FROM ce_Activity_FinSupport
+                    FROM Activities_FinSupport
                     WHERE ActivityID = <cfqueryparam value="#ActivityList.ActivityID#" cfsqltype="cf_sql_integer" /> AND DeletedFlag = 'N'
                 </cfquery>
                 

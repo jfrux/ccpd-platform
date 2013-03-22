@@ -41,7 +41,7 @@
 				UpdatedBy,
 				Deleted,
 				DeletedFlag
-			FROM	ce_Activity_PubComponent
+			FROM	Activities_PubComponent
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"PubComponentID") and len(arguments.PubComponentID)>
@@ -136,9 +136,9 @@
                 sc.Name AS ComponentName,
                 f.FileSize,
                 f.FileName
-			FROM	ce_Activity_PubComponent apc
-            INNER JOIN ce_Sys_Component sc ON sc.ComponentID = apc.ComponentID
-            LEFT JOIN ce_File f ON f.FileID = apc.FileID
+			FROM	Activities_PubComponent apc
+            INNER JOIN sys_components sc ON sc.ComponentID = apc.ComponentID
+            LEFT JOIN files f ON f.FileID = apc.FileID
 			WHERE	AssessmentID IS NOT NULL
 		
 		<cfif structKeyExists(arguments,"PubComponentID") and len(arguments.PubComponentID)>
@@ -238,7 +238,7 @@
 				A.RequiredFlag, 
 				A.RandomFlag, 
 				A.CommentFlag, 
-				(SELECT Count(Q.QuestionID) As QuestionCount FROM ce_AssessQuestion Q WHERE Q.QuestionTypeID NOT IN (5,6,7) AND Q.AssessmentID=A.AssessmentID AND Q.DeletedFlag='N') As QuestionCount,
+				(SELECT Count(Q.QuestionID) As QuestionCount FROM assessquestions Q WHERE Q.QuestionTypeID NOT IN (5,6,7) AND Q.AssessmentID=A.AssessmentID AND Q.DeletedFlag='N') As QuestionCount,
 				PC.FileID, 
 				F.FileName, 
 				F.FileCaption, 
@@ -250,15 +250,15 @@
 				PC.Deleted, 
 				PC.DeletedFlag
 			FROM
-				ce_Sys_AssessType AS AT 
+				sys_assesstypes AS AT 
 			INNER JOIN
-				  ce_Assessment AS A ON AT.AssessTypeID = A.AssessTypeID 
+				  assessments AS A ON AT.AssessTypeID = A.AssessTypeID 
 			RIGHT OUTER JOIN
-				  ce_Activity_PubComponent AS PC 
+				  Activities_PubComponent AS PC 
 			INNER JOIN
-				  ce_Sys_Component AS C ON PC.ComponentID = C.ComponentID ON A.AssessmentID = PC.AssessmentID 
+				  sys_components AS C ON PC.ComponentID = C.ComponentID ON A.AssessmentID = PC.AssessmentID 
 			LEFT OUTER JOIN
-				  ce_File AS F ON PC.FileID = F.FileID
+				  files AS F ON PC.FileID = F.FileID
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"PubComponentID") and len(arguments.PubComponentID)>
@@ -360,9 +360,9 @@
                 sc.Name AS ComponentName,
                 f.FileSize,
                 f.FileName
-			FROM	ce_Activity_PubComponent apc
-            INNER JOIN ce_Sys_Component sc ON sc.ComponentID = apc.ComponentID
-            LEFT JOIN ce_File f ON f.FileID = apc.FileID
+			FROM	Activities_PubComponent apc
+            INNER JOIN sys_components sc ON sc.ComponentID = apc.ComponentID
+            LEFT JOIN files f ON f.FileID = apc.FileID
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"PubComponentID") and len(arguments.PubComponentID)>

@@ -11,7 +11,7 @@
 
 		<cfset var qCreate = "" />
 		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
-				INSERT INTO ce_Sys_Component
+				INSERT INTO sys_components
 					(
 					Name,
 					Description,
@@ -45,7 +45,7 @@
 					TypeCode,
 					SortFlag,
 					MaxUsage
-				FROM	ce_Sys_Component
+				FROM	sys_components
 				WHERE	ComponentID = <cfqueryparam value="#arguments.Component.getComponentID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -61,7 +61,7 @@
 
 		<cfset var qUpdate = "" />
 		<cfquery name="qUpdate" datasource="#variables.dsn#">
-				UPDATE	ce_Sys_Component
+				UPDATE	sys_components
 				SET
 					Name = <cfqueryparam value="#arguments.Component.getName()#" CFSQLType="cf_sql_varchar" />,
 					Description = <cfqueryparam value="#arguments.Component.getDescription()#" CFSQLType="cf_sql_varchar" null="#not len(arguments.Component.getDescription())#" />,
@@ -79,7 +79,7 @@
 
 		<cfset var qDelete = "">
 		<cfquery name="qDelete" datasource="#variables.dsn#">
-				DELETE FROM	ce_Sys_Component 
+				DELETE FROM	sys_components 
 				WHERE	ComponentID = <cfqueryparam value="#arguments.Component.getComponentID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -92,7 +92,7 @@
 		<cfset var qExists = "">
 		<cfquery name="qExists" datasource="#variables.dsn#" maxrows="1">
 			SELECT count(1) as idexists
-			FROM	ce_Sys_Component
+			FROM	sys_components
 			WHERE	ComponentID = <cfqueryparam value="#arguments.Component.getComponentID()#" CFSQLType="cf_sql_integer" />
 		</cfquery>
 

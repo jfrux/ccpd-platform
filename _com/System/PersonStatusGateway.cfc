@@ -20,7 +20,7 @@
 				Name,
 				Description,
 				Code
-			FROM	ce_Sys_PersonStatus
+			FROM	sys_personstatuses
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"PersonStatusID") and len(arguments.PersonStatusID)>

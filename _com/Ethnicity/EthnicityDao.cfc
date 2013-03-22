@@ -12,7 +12,7 @@
 
 		<cfset var qCreate = "" />
 		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
-				INSERT INTO ce_Sys_Ethnicity
+				INSERT INTO sys_ethnicities
 					(
 					EthnicityID,
 					Name,
@@ -42,7 +42,7 @@
 					Name,
 					Description,
 					Code
-				FROM	ce_Sys_Ethnicity
+				FROM	sys_ethnicities
 				WHERE	EthnicityID = <cfqueryparam value="#arguments.Ethnicity.getEthnicityID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -58,7 +58,7 @@
 
 		<cfset var qUpdate = "" />
 		<cfquery name="qUpdate" datasource="#variables.dsn#">
-				UPDATE	ce_Sys_Ethnicity
+				UPDATE	sys_ethnicities
 				SET
 					Name = <cfqueryparam value="#arguments.Ethnicity.getName()#" CFSQLType="cf_sql_varchar" null="#not len(arguments.Ethnicity.getName())#" />,
 					Description = <cfqueryparam value="#arguments.Ethnicity.getDescription()#" CFSQLType="cf_sql_varchar" null="#not len(arguments.Ethnicity.getDescription())#" />,
@@ -74,7 +74,7 @@
 
 		<cfset var qDelete = "">
 		<cfquery name="qDelete" datasource="#variables.dsn#">
-				DELETE FROM	ce_Sys_Ethnicity 
+				DELETE FROM	sys_ethnicities 
 				WHERE	EthnicityID = <cfqueryparam value="#arguments.Ethnicity.getEthnicityID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -87,7 +87,7 @@
 		<cfset var qExists = "">
 		<cfquery name="qExists" datasource="#variables.dsn#" maxrows="1">
 			SELECT count(1) as idexists
-			FROM	ce_Sys_Ethnicity
+			FROM	sys_ethnicities
 			WHERE	EthnicityID = <cfqueryparam value="#arguments.Ethnicity.getEthnicityID()#" CFSQLType="cf_sql_integer" />
 		</cfquery>
 

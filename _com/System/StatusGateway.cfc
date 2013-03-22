@@ -17,7 +17,7 @@
 				StatusID,
 				Name,
 				Created
-			FROM	ce_Sys_Status
+			FROM	sys_statuses
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"StatusID") and len(arguments.StatusID)>

@@ -23,7 +23,7 @@
 				FileName,
 				Created,
 				Updated
-			FROM	ce_Sys_Report
+			FROM	sys_reports
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"ReportID") and len(arguments.ReportID)>

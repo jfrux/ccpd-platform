@@ -17,7 +17,7 @@
 				FileTypeID,
 				Name,
 				Description
-			FROM	ce_Sys_FileType
+			FROM	sys_filetypes
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"FileTypeID") and len(arguments.FileTypeID)>

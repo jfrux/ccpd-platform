@@ -58,7 +58,7 @@
 				ExtHostFlag,
 				ExtHostLink,
 				Updated
-			FROM	ce_Activity_PubGeneral
+			FROM	Activities_PubGeneral
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"PubGeneralID") and len(arguments.PubGeneralID)>

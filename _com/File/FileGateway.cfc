@@ -38,7 +38,7 @@
 				UpdatedBy,
 				Deleted,
 				DeletedFlag
-			FROM	ce_File
+			FROM	files
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"FileID") and len(arguments.FileID)>
@@ -125,15 +125,15 @@
 					p2.lastname AS UpdatedByLName, 
                     ft.Name AS FileTypeName,
                     (SELECT COUNT(APC.PubComponentID)
-                     FROM ce_Activity_PubComponent APC
+                     FROM Activities_PubComponent APC
                      WHERE 
 						APC.ActivityID = F.ActivityID AND
 						APC.FileID = F.FileID AND
 						APC.DeletedFlag = 'N') AS ComponentCount
-			FROM ce_File AS f 
-			LEFT OUTER JOIN ce_person AS p1 ON p1.personid = f.CreatedBy 
-			LEFT OUTER JOIN ce_person AS p2 ON p2.personid = f.UpdatedBy 
-			LEFT OUTER JOIN ce_Sys_FileType AS ft ON ft.FileTypeID = f.FileTypeID
+			FROM files AS f 
+			LEFT OUTER JOIN Users AS p1 ON p1.personid = f.CreatedBy 
+			LEFT OUTER JOIN Users AS p2 ON p2.personid = f.UpdatedBy 
+			LEFT OUTER JOIN sys_filetypes AS ft ON ft.FileTypeID = f.FileTypeID
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"FileID") and len(arguments.FileID)>

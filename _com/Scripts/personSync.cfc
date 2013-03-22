@@ -18,10 +18,10 @@
 				
 				P.PersonID
 			FROM 
-				ce_Attendee AS Att INNER JOIN
+				attendees AS Att INNER JOIN
 				dbo.pd_person AS P ON Att.PersonID = P.personid 
 				LEFT JOIN
-				ce_Activity AS Act ON Act.ActivityID=Att.ActivityID
+				Activities AS Act ON Act.ActivityID=Att.ActivityID
 				LEFT JOIN
 				dbo.pd_Salutation AS Prefix ON P.SalutationId = Prefix.SalutationId LEFT OUTER JOIN
 				dbo.cs_user AS U ON Att.PersonID = U.personid
@@ -29,10 +29,10 @@
 				Att.PersonID NOT IN (
 					SELECT DISTINCT TOP (@CurrNumber) P.PersonID
 					FROM 
-						ce_Attendee AS Att INNER JOIN
+						attendees AS Att INNER JOIN
 						dbo.pd_person AS P ON Att.PersonID = P.personid 
 						LEFT JOIN
-						ce_Activity AS Act ON Act.ActivityID=Att.ActivityID
+						Activities AS Act ON Act.ActivityID=Att.ActivityID
 						LEFT JOIN
 						dbo.pd_Salutation AS Prefix ON P.SalutationId = Prefix.SalutationId LEFT OUTER JOIN
 						dbo.cs_user AS U ON Att.PersonID = U.personid
@@ -88,7 +88,7 @@
 					U.UCFlag, 
 					Created = P.CreationDate
 				FROM 
-					ce_Account AS Att INNER JOIN
+					accounts AS Att INNER JOIN
 					dbo.pd_person AS P ON Att.PersonID = P.personid 
 					LEFT JOIN
 					dbo.pd_Salutation AS Prefix ON P.SalutationId = Prefix.SalutationId LEFT OUTER JOIN

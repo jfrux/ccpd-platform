@@ -11,7 +11,7 @@
 
 		<cfset var qCreate = "" />
 		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
-				INSERT INTO ce_Sys_FunRN
+				INSERT INTO sys_funrns
 					(
 					Name,
 					Description
@@ -37,7 +37,7 @@
 					Name,
 					Description,
 					Created
-				FROM	ce_Sys_FunRN
+				FROM	sys_funrns
 				WHERE	FunRNID = <cfqueryparam value="#arguments.FunRN.getFunRNID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -53,7 +53,7 @@
 
 		<cfset var qUpdate = "" />
 		<cfquery name="qUpdate" datasource="#variables.dsn#">
-				UPDATE	ce_Sys_FunRN
+				UPDATE	sys_funrns
 				SET
 					Name = <cfqueryparam value="#arguments.FunRN.getName()#" CFSQLType="cf_sql_varchar" null="#not len(arguments.FunRN.getName())#" />,
 					Description = <cfqueryparam value="#arguments.FunRN.getDescription()#" CFSQLType="cf_sql_varchar" null="#not len(arguments.FunRN.getDescription())#" />,
@@ -69,7 +69,7 @@
 
 		<cfset var qDelete = "">
 		<cfquery name="qDelete" datasource="#variables.dsn#">
-				DELETE FROM	ce_Sys_FunRN 
+				DELETE FROM	sys_funrns 
 				WHERE	FunRNID = <cfqueryparam value="#arguments.FunRN.getFunRNID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -82,7 +82,7 @@
 		<cfset var qExists = "">
 		<cfquery name="qExists" datasource="#variables.dsn#" maxrows="1">
 			SELECT count(1) as idexists
-			FROM	ce_Sys_FunRN
+			FROM	sys_funrns
 			WHERE	FunRNID = <cfqueryparam value="#arguments.FunRN.getFunRNID()#" CFSQLType="cf_sql_integer" />
 		</cfquery>
 

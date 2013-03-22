@@ -12,7 +12,7 @@
 
 		<cfset var qCreate = "" />
 		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
-				INSERT INTO ce_AssessResult
+				INSERT INTO assessresults
 					(
 					PersonID,
 					AssessmentID,
@@ -47,7 +47,7 @@
 					Updated,
 					Deleted,
 					DeletedFlag
-				FROM	ce_AssessResult
+				FROM	assessresults
 				WHERE	AssessmentID = <cfqueryparam value="#arguments.AssessResult.getAssessmentID()#" CFSQLType="cf_sql_integer" /> AND PersonID = <cfqueryparam value="#arguments.AssessResult.getPersonID()#" CFSQLType="cf_sql_integer" />
 				<!---<cfif arguments.AssessResult.getResultStatusID() GT 0>
 					AND ResultStatusID = <cfqueryparam value="#arguments.AssessResult.getResultStatusID()#" CFSQLType="cf_sql_integer" />
@@ -77,7 +77,7 @@
 					Updated,
 					Deleted,
 					DeletedFlag
-				FROM	ce_AssessResult
+				FROM	assessresults
 				WHERE	AssessmentID = <cfqueryparam value="#arguments.AssessResult.getAssessmentID()#" CFSQLType="cf_sql_integer" /> AND PersonID = <cfqueryparam value="#arguments.AssessResult.getPersonID()#" CFSQLType="cf_sql_integer" /> AND DeletedFlag = <cfqueryparam value="N" CFSQLType="cf_sql_char" />
                 ORDER BY Score DESC
 			</cfquery>
@@ -105,7 +105,7 @@
 					Updated,
 					Deleted,
 					DeletedFlag
-				FROM	ce_AssessResult
+				FROM	assessresults
 				WHERE	AssessmentID = <cfqueryparam value="#arguments.AssessResult.getAssessmentID()#" CFSQLType="cf_sql_integer" /> AND PersonID = <cfqueryparam value="#arguments.AssessResult.getPersonID()#" CFSQLType="cf_sql_integer" /> AND DeletedFlag = <cfqueryparam value="N" CFSQLType="cf_sql_char" /> AND Score IS NULL
                 ORDER BY Score DESC
 			</cfquery>
@@ -133,7 +133,7 @@
 					Updated,
 					Deleted,
 					DeletedFlag
-				FROM	ce_AssessResult
+				FROM	assessresults
 				WHERE	ResultID = <cfqueryparam value="#arguments.AssessResult.getResultID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -149,7 +149,7 @@
 
 		<cfset var qUpdate = "" />
 		<cfquery name="qUpdate" datasource="#variables.dsn#">
-				UPDATE	ce_AssessResult
+				UPDATE	assessresults
 				SET
 					PersonID = <cfqueryparam value="#arguments.AssessResult.getPersonID()#" CFSQLType="cf_sql_integer" null="#not len(arguments.AssessResult.getPersonID())#" />,
 					AssessmentID = <cfqueryparam value="#arguments.AssessResult.getAssessmentID()#" CFSQLType="cf_sql_integer" null="#not len(arguments.AssessResult.getAssessmentID())#" />,
@@ -175,7 +175,7 @@
 
 		<cfset var qUpdate = "" />
 		<cfquery name="qUpdate" datasource="#variables.dsn#">
-				UPDATE	ce_AssessResult
+				UPDATE	assessresults
 				SET
 					PersonID = <cfqueryparam value="#arguments.AssessResult.getPersonID()#" CFSQLType="cf_sql_integer" null="#not len(arguments.AssessResult.getPersonID())#" />,
 					AssessmentID = <cfqueryparam value="#arguments.AssessResult.getAssessmentID()#" CFSQLType="cf_sql_integer" null="#not len(arguments.AssessResult.getAssessmentID())#" />,
@@ -196,7 +196,7 @@
 
 		<cfset var qDelete = "">
 		<cfquery name="qDelete" datasource="#variables.dsn#">
-				DELETE FROM	ce_AssessResult 
+				DELETE FROM	assessresults 
 				WHERE	AssessmentID = <cfqueryparam value="#arguments.AssessResult.getAssessmentID()#" CFSQLType="cf_sql_integer" /> AND PersonID = <cfqueryparam value="#arguments.AssessResult.getPersonID()#" CFSQLType="cf_sql_integer" />
 				<!---<cfif arguments.AssessResult.getResultStatusID() GT 0>
 					AND ResultStatusID = <cfqueryparam value="#arguments.AssessResult.getResultStatusID()#" CFSQLType="cf_sql_integer" />
@@ -212,7 +212,7 @@
 		<cfset var qExists = "">
 		<cfquery name="qExists" datasource="#variables.dsn#" maxrows="1">
 			SELECT count(1) as idexists
-			FROM	ce_AssessResult
+			FROM	assessresults
 				WHERE	AssessmentID = <cfqueryparam value="#arguments.AssessResult.getAssessmentID()#" CFSQLType="cf_sql_integer" /> AND PersonID = <cfqueryparam value="#arguments.AssessResult.getPersonID()#" CFSQLType="cf_sql_integer" />
 				<!---<cfif arguments.AssessResult.getResultStatusID() GT 0>
 					AND ResultStatusID = <cfqueryparam value="#arguments.AssessResult.getResultStatusID()#" CFSQLType="cf_sql_integer" />
@@ -232,7 +232,7 @@
 		<cfset var qExists = "">
 		<cfquery name="qExists" datasource="#variables.dsn#" maxrows="1">
 			SELECT count(1) as idexists
-			FROM	ce_AssessResult
+			FROM	assessresults
 				WHERE	AssessmentID = <cfqueryparam value="#arguments.AssessResult.getAssessmentID()#" CFSQLType="cf_sql_integer" /> AND PersonID = <cfqueryparam value="#arguments.AssessResult.getPersonID()#" CFSQLType="cf_sql_integer" /> AND Score IS NULL
 				<!---<cfif arguments.AssessResult.getResultStatusID() GT 0>
 					AND ResultStatusID = <cfqueryparam value="#arguments.AssessResult.getResultStatusID()#" CFSQLType="cf_sql_integer" />
@@ -252,7 +252,7 @@
 		<cfset var qExists = "">
 		<cfquery name="qExists" datasource="#variables.dsn#" maxrows="1">
 			SELECT count(1) as idexists
-			FROM	ce_AssessResult
+			FROM	assessresults
 			WHERE	ResultID = <cfqueryparam value="#arguments.AssessResult.getResultID()#" CFSQLType="cf_sql_integer" />
 		</cfquery>
 

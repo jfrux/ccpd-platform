@@ -25,7 +25,7 @@
 				TemplateTo,
 				PossessiveFlag,
 				IconImg
-			FROM	ce_Sys_HistoryStyle
+			FROM	sys_historystyles
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"HistoryStyleID") and len(arguments.HistoryStyleID)>

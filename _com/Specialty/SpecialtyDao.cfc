@@ -12,7 +12,7 @@
 
 		<cfset var qCreate = "" />
 		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
-				INSERT INTO ce_Sys_SpecialtyLMS
+				INSERT INTO sys_specialtylms
 					(
 					Name,
 					Description
@@ -37,7 +37,7 @@
 					SpecialtyID,
 					Name,
 					Description
-				FROM	ce_Sys_SpecialtyLMS
+				FROM	sys_specialtylms
 				WHERE	
 					<cfif arguments.Specialty.getName() NEQ "">
                         Name = <cfqueryparam value="#arguments.Specialty.getName()#" CFSQLType="cf_sql_varchar" />
@@ -58,7 +58,7 @@
 
 		<cfset var qUpdate = "" />
 		<cfquery name="qUpdate" datasource="#variables.dsn#">
-				UPDATE	ce_Sys_SpecialtyLMS
+				UPDATE	sys_specialtylms
 				SET
 					SpecialtyID = <cfqueryparam value="#arguments.Specialty.getSpecialtyID()#" CFSQLType="cf_sql_integer" />,
 					Name = <cfqueryparam value="#arguments.Specialty.getName()#" CFSQLType="cf_sql_varchar" />,
@@ -79,7 +79,7 @@
 
 		<cfset var qDelete = "">
 		<cfquery name="qDelete" datasource="#variables.dsn#">
-				DELETE FROM	ce_Sys_SpecialtyLMS 
+				DELETE FROM	sys_specialtylms 
 				WHERE	
 					<cfif arguments.Specialty.getName() NEQ "">
                         Name = <cfqueryparam value="#arguments.Specialty.getName()#" CFSQLType="cf_sql_varchar" />
@@ -98,7 +98,7 @@
         
 		<cfquery name="qExists" datasource="#variables.dsn#" maxrows="1">
 			SELECT count(1) as idexists
-			FROM	ce_Sys_SpecialtyLMS
+			FROM	sys_specialtylms
 			WHERE	
             	<cfif arguments.Specialty.getName() NEQ "">
                 	Name = <cfqueryparam value="#arguments.Specialty.getName()#" CFSQLType="cf_sql_varchar" />

@@ -18,7 +18,7 @@
 				PersonID,
 				EmailSpecialtyFlag,
                 PrimaryEmailId
-			FROM	ce_Person_Pref
+			FROM	Users_Pref
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"PersonPrefID") and len(arguments.PersonPrefID)>

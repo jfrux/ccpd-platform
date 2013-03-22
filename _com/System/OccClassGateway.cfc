@@ -19,7 +19,7 @@
 				Name,
 				Description,
 				Created
-			FROM	ce_Sys_OccClass
+			FROM	sys_occclasses
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"OccClassID") and len(arguments.OccClassID)>

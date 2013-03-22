@@ -36,8 +36,8 @@
 					ato.ExperimentalHrs,
 					/* Total Students */
 				  	(SELECT COUNT(ACDC.AttendeeID) AS AttCount
-					 FROM ce_AttendeeCDC AS ACDC 
-                     INNER JOIN ce_Attendee AS A ON ACDC.AttendeeID = A.AttendeeID
+					 FROM attendeesCDC AS ACDC 
+                     INNER JOIN attendees AS A ON ACDC.AttendeeID = A.AttendeeID
 					 WHERE 	(ACDC.SentFlag = 'N') AND 
                      		(A.ActivityID = act.ActivityID) AND 
                      		(A.DeletedFlag = 'N') AND
@@ -49,17 +49,17 @@
                     ato.CollabPTCSpecify, 
                     ato.CollabAgencyFlag,
                     ato.CollabAgencySpecify
-				FROM ce_Activity AS act 
-				LEFT OUTER JOIN ce_Activity_Other AS ato ON ato.ActivityID = act.ActivityID 
-				INNER JOIN ce_Activity_Site AS ASi ON ASi.ActivityID = act.ActivityID 
+				FROM Activities AS act 
+				LEFT OUTER JOIN Activities_Other AS ato ON ato.ActivityID = act.ActivityID 
+				INNER JOIN Activities_Site AS ASi ON ASi.ActivityID = act.ActivityID 
 				
 				/* CRITERIA */
 				WHERE 
 					(ASi.SiteID = 4) AND 
                     (act.StatusID = 3) AND
 					(SELECT COUNT(ACDC.AttendeeID) AS AttCount
-					 FROM ce_AttendeeCDC AS ACDC 
-                     INNER JOIN ce_Attendee AS A ON ACDC.AttendeeID = A.AttendeeID
+					 FROM attendeesCDC AS ACDC 
+                     INNER JOIN attendees AS A ON ACDC.AttendeeID = A.AttendeeID
 					 WHERE 	(ACDC.SentFlag = 'N') AND 
                      		(A.ActivityID = act.ActivityID) AND 
                      		(A.DeletedFlag = 'N') AND
@@ -631,10 +631,10 @@
                     acdc.MarketID,
                     acdc.MSpecify,
                     acdc.SentFlag
-                FROM	ce_Activity act
-                INNER JOIN ce_Attendee att ON att.ActivityID = act.ActivityID
-                INNER JOIN ce_AttendeeCDC acdc ON acdc.AttendeeID = att.AttendeeID
-                INNER JOIN ce_Person p ON p.PersonID = att.PersonID
+                FROM	Activities act
+                INNER JOIN attendees att ON att.ActivityID = act.ActivityID
+                INNER JOIN attendeesCDC acdc ON acdc.AttendeeID = att.AttendeeID
+                INNER JOIN Users p ON p.PersonID = att.PersonID
                 WHERE 	
                     (acdc.SentFlag = 'N') AND 
                     (act.StartDate < @EndDate) AND 
@@ -654,7 +654,7 @@
                 </cfloop>
                 
                 <cfquery name="qUpdateSentFlag" datasource="#Application.Settings.DSN#">
-                	UPDATE ce_AttendeeCDC
+                	UPDATE attendeesCDC
                   	SET SentFlag = 'Y',
                     	SentDate = <cfqueryparam value="#DateFormat(Now(), "MM/DD/YYYY")# #TimeFormat(Now(), "hh:mm:ssTT")#" cfsqltype="cf_sql_date" />
                     WHERE AttendeeID IN (#PersonList#)
@@ -931,23 +931,23 @@
                     SET @StartDate = <cfqueryparam value="#DateFormat(Arguments.StartDate, 'MM/DD/YYYY')#" cfsqltype="cf_sql_date" />;
                     SET @EndDate = <cfqueryparam value="#DateFormat(Arguments.EndDate, 'MM/DD/YYYY')#" cfsqltype="cf_sql_date" />;
                     SET @Container = (SELECT CategoryID
-                                      FROM ce_Category
+                                      FROM categories
                                       WHERE Name = 'STD/HIV');
                     
                     WITH attendees(PersonID,EduName)
                         AS (
                             SELECT	ATT.PersonID, 
                             		EDU.Name
-                        	FROM ce_Sys_Degree EDU
-                            INNER JOIN ce_Person_Degree PE ON EDU.DegreeID = PE.DegreeID 
-                            RIGHT OUTER JOIN ce_Attendee AS Att 
-                            INNER JOIN ce_Activity AS A ON Att.ActivityID = A.ActivityID ON PE.PersonID = Att.PersonID
+                        	FROM sys_degrees EDU
+                            INNER JOIN Users_Degree PE ON EDU.DegreeID = PE.DegreeID 
+                            RIGHT OUTER JOIN attendees AS Att 
+                            INNER JOIN Activities AS A ON Att.ActivityID = A.ActivityID ON PE.PersonID = Att.PersonID
                         	WHERE 	(A.StartDate BETWEEN @StartDate AND @EndDate) AND 
                             		(A.StatusID IN (1, 2, 3)) AND 
                                     (A.DeletedFlag = 'N') AND 
                                     (Att.DeletedFlag = 'N') AND
                                     ((SELECT COUNT(Activity_CategoryID) AS Expr1
-                                      FROM ce_Activity_Category AS AC
+                                      FROM Activities_Category AS AC
                                       WHERE (ActivityID = A.ActivityID) AND 
                                       (CategoryID = 31)) > 0)
 							),
@@ -987,7 +987,7 @@
                     SET @StartDate = <cfqueryparam value="#DateFormat(Arguments.StartDate, 'MM/DD/YYYY')#" cfsqltype="cf_sql_date" />;
                     SET @EndDate = <cfqueryparam value="#DateFormat(Arguments.EndDate, 'MM/DD/YYYY')#" cfsqltype="cf_sql_date" />;
                     SET @Container = (SELECT CategoryID
-                                      FROM ce_Category
+                                      FROM categories
                                       WHERE Name = 'STD/HIV');
                                           
                     SELECT 	act.ActivityID,
@@ -998,10 +998,10 @@
                             act.StatusID,
                             act.DeletedFlag,
                             (SELECT COUNT(att.AttendeeID)
-                             FROM ce_Attendee att
+                             FROM attendees att
                              WHERE 	att.ActivityID = act.ActivityID AND att.DeletedFlag = 'N') AS AttendeeCount
-                    FROM ce_Activity act
-                    INNER JOIN ce_Activity_Category ac ON ac.ActivityID = act.ActivityID
+                    FROM Activities act
+                    INNER JOIN Activities_Category ac ON ac.ActivityID = act.ActivityID
                     WHERE	
                         (act.StartDate BETWEEN @StartDate AND @EndDate) AND 
                         (ac.CategoryID = @Container) AND 
@@ -1012,7 +1012,7 @@
                         (act.ParentActivityID IS NOT NULL) AND
                         (act.DeletedFlag = 'N') AND
                         (SELECT COUNT(att.AttendeeID)
-                             FROM ce_Attendee att
+                             FROM attendees att
                              WHERE 	att.ActivityID = act.ActivityID AND att.DeletedFlag = 'N') > 0
                      OR
                      	(act.StartDate BETWEEN @StartDate AND @EndDate) AND 
@@ -1023,7 +1023,7 @@
                         (act.ParentActivityID IS NOT NULL) AND
                         (act.DeletedFlag = 'N') AND
                         (SELECT COUNT(att.AttendeeID)
-                             FROM ce_Attendee att
+                             FROM attendees att
                              WHERE 	att.ActivityID = act.ActivityID AND att.DeletedFlag = 'N') > 0
                     ORDER BY act.Title, act.StartDate
                 </cfquery>
@@ -1083,15 +1083,15 @@
                     SET @StartDate = <cfqueryparam value="#DateFormat(Arguments.StartDate, 'MM/DD/YYYY')#" cfsqltype="cf_sql_date" />;
                     SET @EndDate = <cfqueryparam value="#DateFormat(Arguments.EndDate, 'MM/DD/YYYY')#" cfsqltype="cf_sql_date" />;
                     SET @Container = (SELECT CategoryID
-                                      FROM ce_Category
+                                      FROM categories
                                       WHERE Name = 'STD/HIV');
                         
                     WITH DistinctAttendees (PersonID) 
                     AS (
                         SELECT DISTINCT A.PersonID
-                        FROM ce_Attendee AS A 
-                        INNER JOIN ce_Activity_Category AS AC ON AC.ActivityID = A.ActivityID
-                        INNER JOIN ce_Activity AS Act ON Act.ActivityID = A.ActivityID
+                        FROM attendees AS A 
+                        INNER JOIN Activities_Category AS AC ON AC.ActivityID = A.ActivityID
+                        INNER JOIN Activities AS Act ON Act.ActivityID = A.ActivityID
                         WHERE   AC.CategoryID = @Container AND 
                                 (Act.StartDate BETWEEN @StartDate AND @EndDate) AND 
                                 a.DeletedFlag = 'N' AND 
@@ -1105,7 +1105,7 @@
                             s.Name,
                             (SELECT	COUNT(att.PersonID)
                              FROM DistinctAttendees att
-                             INNER JOIN ce_Person_Address a ON a.PersonID = att.PersonID
+                             INNER JOIN Users_Address a ON a.PersonID = att.PersonID
                              WHERE (a.StateID = s.StateID) AND (a.PrimaryFlag = 'Y')) AS AttendeeCount
                     FROM pd_State s
                     WHERE (SELECT	COUNT(att.PersonID)
@@ -1124,15 +1124,15 @@
                     SET @StartDate = <cfqueryparam value="#DateFormat(Arguments.StartDate, 'MM/DD/YYYY')#" cfsqltype="cf_sql_date" />;
                     SET @EndDate = <cfqueryparam value="#DateFormat(Arguments.EndDate, 'MM/DD/YYYY')#" cfsqltype="cf_sql_date" />;
                     SET @Container = (SELECT CategoryID
-                                      FROM ce_Category
+                                      FROM categories
                                       WHERE Name = 'STD/HIV');
                         
                     WITH DistinctAttendees (PersonID) 
                     AS (
                         SELECT DISTINCT A.PersonID
-                        FROM ce_Attendee AS A 
-                        INNER JOIN ce_Activity_Category AS AC ON AC.ActivityID = A.ActivityID
-                        INNER JOIN ce_Activity AS Act ON Act.ActivityID = A.ActivityID
+                        FROM attendees AS A 
+                        INNER JOIN Activities_Category AS AC ON AC.ActivityID = A.ActivityID
+                        INNER JOIN Activities AS Act ON Act.ActivityID = A.ActivityID
                         WHERE   AC.CategoryID = @Container AND 
                                 (Act.StartDate BETWEEN @StartDate AND @EndDate) AND 
                                 a.DeletedFlag = 'N' AND 
@@ -1159,15 +1159,15 @@
                     SET @StartDate = <cfqueryparam value="#DateFormat(Arguments.StartDate, 'MM/DD/YYYY')#" cfsqltype="cf_sql_date" />;
                     SET @EndDate = <cfqueryparam value="#DateFormat(Arguments.EndDate, 'MM/DD/YYYY')#" cfsqltype="cf_sql_date" />;
                     SET @Container = (SELECT CategoryID
-                                      FROM ce_Category
+                                      FROM categories
                                       WHERE Name = 'STD/HIV');
                         
                     WITH DistinctAttendees (PersonID) 
                     AS (
                         SELECT DISTINCT A.PersonID
-                        FROM ce_Attendee AS A 
-                        INNER JOIN ce_Activity_Category AS AC ON AC.ActivityID = A.ActivityID
-                        INNER JOIN ce_Activity AS Act ON Act.ActivityID = A.ActivityID
+                        FROM attendees AS A 
+                        INNER JOIN Activities_Category AS AC ON AC.ActivityID = A.ActivityID
+                        INNER JOIN Activities AS Act ON Act.ActivityID = A.ActivityID
                         WHERE   AC.CategoryID = @Container AND 
                                 (Act.StartDate BETWEEN @StartDate AND @EndDate) AND 
                                 a.DeletedFlag = 'N' AND 

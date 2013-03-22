@@ -19,7 +19,7 @@
 				Name,
 				Description,
 				Created
-			FROM	ce_Sys_ProfC
+			FROM	sys_profcs
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"ProfCID") and len(arguments.ProfCID)>

@@ -24,7 +24,7 @@
 				is_verified,
 				verification_key,
 				allow_login
-			FROM	ce_Person_Email
+			FROM	Users_Email
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"email_id") and len(arguments.email_id)>
@@ -75,8 +75,8 @@
                 	WHEN pe.email_id = pp.primaryEmailId THEN 1
                     ELSE 0
                 END AS isPrimaryEmail
-			FROM	ce_Person_Email AS pe
-           	LEFT JOIN ce_person_pref AS pp ON pp.personId = pe.person_id
+			FROM	Users_Email AS pe
+           	LEFT JOIN Users_pref AS pp ON pp.personId = pe.person_id
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"email_id") and len(arguments.email_id)>

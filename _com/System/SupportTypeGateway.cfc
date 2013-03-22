@@ -25,7 +25,7 @@
 				Updated,
 				Deleted,
 				DeletedFlag
-			FROM	ce_Sys_SupportType
+			FROM	sys_supporttypes
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"ContribTypeID") and len(arguments.ContribTypeID)>

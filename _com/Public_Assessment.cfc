@@ -14,8 +14,8 @@
                     ass.RequiredFlag,
                     ass.PassingScore,
                     ass.DeletedFlag
-            FROM ce_Assessment ass
-            INNER JOIN ce_Activity_PubComponent apc ON apc.AssessmentID = ass.AssessmentID
+            FROM assessments ass
+            INNER JOIN Activities_PubComponent apc ON apc.AssessmentID = ass.AssessmentID
             WHERE 	ass.ActivityID = <cfqueryparam value="#Arguments.ActivityID#" cfsqltype="cf_sql_integer" /> AND
             		apc.activityId = <cfqueryparam value="#Arguments.ActivityID#" cfsqltype="cf_sql_integer" /> AND
             		ass.RequiredFlag = 'Y' AND
@@ -33,7 +33,7 @@
             	SELECT 	ResultID,
                 		ResultStatusID,
                         Score
-                FROM ce_AssessResult
+                FROM assessresults
                 WHERE 	AssessmentID = <cfqueryparam value="#qGetAssessmentInfo.AssessmentID#" cfsqltype="cf_sql_integer" /> AND
                 		PersonID = <cfqueryparam value="#Arguments.PersonID#" cfsqltype="cf_sql_integer" /> AND
                 		DeletedFlag = 'N'
@@ -69,8 +69,8 @@
         <!--- GET THE NUMBER OF FAILED ASSESSMENTS --->
         <cfquery name="qGetFailCount" datasource="#Application.Settings.DSN#">
         	SELECT Count(ar.ResultID) AS FailCount
-            FROM ce_AssessResult ar
-            INNER JOIN ce_Assessment a ON a.AssessmentID = ar.AssessmentID
+            FROM assessresults ar
+            INNER JOIN assessments a ON a.AssessmentID = ar.AssessmentID
             WHERE 	ar.AssessmentID = <cfqueryparam value="#Arguments.AssessmentID#" cfsqltype="cf_sql_integer" /> AND 
             		ar.PersonID = <cfqueryparam value="#Arguments.PersonID#" cfsqltype="cf_sql_integer" /> AND 
                     a.PassingScore > ar.Score
@@ -79,7 +79,7 @@
         <!--- GET THE MAX NUMBER OF ATTEMPTS FOR ASSESSMENT- --->
         <cfquery name="qGetMaxAttempts" datasource="#Application.Settings.DSN#">
         	SELECT MaxAttempts
-            FROM ce_Assessment
+            FROM assessments
             WHERE AssessmentID = <cfqueryparam value="#Arguments.AssessmentID#" cfsqltype="cf_sql_integer" />
         </cfquery>
         
@@ -89,7 +89,7 @@
         <cfelse>
             <cfquery name="qGetScore" datasource="#Application.Settings.DSN#">
             	SELECT TOP 1 Score
-                FROM ce_AssessResult
+                FROM assessresults
                 WHERE 	
                 		AssessmentID = <cfqueryparam value="#Arguments.AssessmentID#" cfsqltype="cf_sql_integer" /> AND 
                 		PersonID = <cfqueryparam value="#Arguments.PersonID#" cfsqltype="cf_sql_integer" /> AND 
@@ -116,7 +116,7 @@
         <!--- CHECK HOW MANY ATTEMPTS HAVE BEEN MADE FOR A PARTICULAR ASSESSMENT --->
         <cfquery name="qGetResultCount" datasource="#Application.Settings.DSN#">
         	SELECT Count(ResultID) AS AttemptCount
-            FROM ce_AssessResult
+            FROM assessresults
             WHERE 	AssessmentID = <cfqueryparam value="#Arguments.AssessmentID#" cfsqltype="cf_sql_integer" /> AND 
 					PersonID = <cfqueryparam value="#Arguments.PersonID#" cfsqltype="cf_sql_integer" /> AND 
 					DeletedFlag = 'N'
@@ -133,7 +133,7 @@
         
         <cfquery name="qGetBestResult" datasource="#Application.Settings.DSN#">
         	SELECT TOP 1 ResultID, ResultStatusID, Score
-            FROM ce_AssessResult
+            FROM assessresults
             WHERE 	AssessmentID = <cfqueryparam value="#Arguments.AssessmentID#" cfsqltype="cf_sql_integer" /> AND
             		PersonID = <cfqueryparam value="#Arguments.PersonID#" cfsqltype="cf_sql_integer" />
             ORDER BY Score DESC
@@ -180,7 +180,7 @@
         <cfif Arguments.ResultStatusID NEQ "">
             <cfquery name="qGetResultCode" datasource="#Application.Settings.DSN#">
                 SELECT Code
-                FROM ce_Sys_AssessResultStatus
+                FROM sys_assessresultstatuses
                 WHERE ResultStatusID = <cfqueryparam value="#Arguments.ResultStatusID#" cfsqltype="cf_sql_integer" />
             </cfquery>
             
@@ -200,8 +200,8 @@
         <!--- GET THE NUMBER OF FAILED ASSESSMENTS --->
         <cfquery name="qGetFailCount" datasource="#Application.Settings.DSN#">
         	SELECT Count(ar.ResultID) AS FailCount
-            FROM ce_AssessResult ar
-            INNER JOIN ce_Assessment a ON a.AssessmentID = ar.AssessmentID
+            FROM assessresults ar
+            INNER JOIN assessments a ON a.AssessmentID = ar.AssessmentID
             WHERE 	ar.AssessmentID = <cfqueryparam value="#Arguments.AssessmentID#" cfsqltype="cf_sql_integer" /> AND 
             		ar.PersonID = <cfqueryparam value="#Arguments.PersonID#" cfsqltype="cf_sql_integer" /> AND 
                     a.PassingScore > ar.Score
@@ -210,7 +210,7 @@
         <!--- GET THE MAX NUMBER OF ATTEMPTS FOR ASSESSMENT- --->
         <cfquery name="qGetMaxAttempts" datasource="#Application.Settings.DSN#">
         	SELECT MaxAttempts
-            FROM ce_Assessment
+            FROM assessments
             WHERE AssessmentID = <cfqueryparam value="#Arguments.AssessmentID#" cfsqltype="cf_sql_integer" />
         </cfquery>
         
@@ -226,7 +226,7 @@
         <cfelse>
             <cfquery name="qGetScore" datasource="#Application.Settings.DSN#">
             	SELECT TOP 1 Score
-                FROM ce_AssessResult
+                FROM assessresults
                 WHERE 	
                 		AssessmentID = <cfqueryparam value="#Arguments.AssessmentID#" cfsqltype="cf_sql_integer" /> AND 
                 		PersonID = <cfqueryparam value="#Arguments.PersonID#" cfsqltype="cf_sql_integer" /> AND 
@@ -288,8 +288,8 @@
                     AQ.TXT1,AQ.TXT2,AQ.TXT3,AQ.TXT4,AQ.TXT5,
                     AA.AnswerID,
                     AA.VC1 AS AnswerValue
-            FROM ce_AssessQuestion AQ
-            LEFT OUTER JOIN ce_AssessAnswer AA ON AA.QuestionID = AQ.QuestionID AND AA.ResultID = <cfqueryparam value="#ResultBean.getResultID()#" cfsqltype="cf_sql_integer">
+            FROM assessquestions AQ
+            LEFT OUTER JOIN assessanswers AA ON AA.QuestionID = AQ.QuestionID AND AA.ResultID = <cfqueryparam value="#ResultBean.getResultID()#" cfsqltype="cf_sql_integer">
             WHERE 
             	AQ.AssessmentID = <cfqueryparam value="#Arguments.AssessmentID#" cfsqltype="cf_sql_integer" /> AND 
                 AQ.QuestionTypeID NOT IN (5,6,7) AND
@@ -350,7 +350,7 @@
                 
                 <cfquery name="qGetPassingScore" datasource="#Application.Settings.DSN#">
                     SELECT PassingScore
-                    FROM ce_Assessment
+                    FROM assessments
                     WHERE AssessmentID = <cfqueryparam value="#Arguments.AssessmentID#" cfsqltype="cf_sql_integer" />
                 </cfquery>
                 

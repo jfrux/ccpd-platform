@@ -110,8 +110,8 @@
 FROM         ce_ProcessStep_Activity AS PSA INNER JOIN
                       ce_ProcessStep AS PS ON PSA.StepID = PS.StepID INNER JOIN
                       ce_Process AS P ON PS.ProcessID = P.ProcessID LEFT OUTER JOIN
-                      ce_Activity AS A ON PSA.ActivityID = A.ActivityID LEFT OUTER JOIN
-                      ce_Sys_StepStatus AS SS ON PSA.StepStatusID = SS.StepStatusID LEFT OUTER JOIN
+                      Activities AS A ON PSA.ActivityID = A.ActivityID LEFT OUTER JOIN
+                      sys_stepstatuses AS SS ON PSA.StepStatusID = SS.StepStatusID LEFT OUTER JOIN
                       dbo.pd_person AS P1 ON PSA.AssignedToID = P1.personid
 WHERE     (0 = 0)
 		

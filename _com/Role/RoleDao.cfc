@@ -12,7 +12,7 @@
 
 		<cfset var qCreate = "" />
 		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
-				INSERT INTO ce_Sys_Role
+				INSERT INTO sys_roles
 					(
 					Name,
 					Description
@@ -37,7 +37,7 @@
 					RoleID,
 					Name,
 					Description
-				FROM	ce_Sys_Role
+				FROM	sys_roles
 				WHERE	
 			</cfquery>
 			
@@ -53,7 +53,7 @@
 
 		<cfset var qUpdate = "" />
 		<cfquery name="qUpdate" datasource="#variables.dsn#">
-				UPDATE	ce_Sys_Role
+				UPDATE	sys_roles
 				SET
 					RoleID = <cfqueryparam value="#arguments.Role.getRoleID()#" CFSQLType="cf_sql_integer" />,
 					Name = <cfqueryparam value="#arguments.Role.getName()#" CFSQLType="cf_sql_varchar" null="#not len(arguments.Role.getName())#" />,
@@ -69,7 +69,7 @@
 
 		<cfset var qDelete = "">
 		<cfquery name="qDelete" datasource="#variables.dsn#">
-				DELETE FROM	ce_Sys_Role 
+				DELETE FROM	sys_roles 
 				WHERE	
 			</cfquery>
 			
@@ -82,7 +82,7 @@
 		<cfset var qExists = "">
 		<cfquery name="qExists" datasource="#variables.dsn#" maxrows="1">
 			SELECT count(1) as idexists
-			FROM	ce_Sys_Role
+			FROM	sys_roles
 			WHERE	
 		</cfquery>
 

@@ -12,7 +12,7 @@
 
 		<cfset var qCreate = "" />
 		<cfquery name="qCreate" datasource="#variables.dsn#">
-				INSERT INTO ce_Person_File
+				INSERT INTO Users_File
 					(
 					FileID,
 					PersonID,
@@ -44,7 +44,7 @@
 					Updated,
 					Deleted,
 					DeletedFlag
-				FROM	ce_Person_File
+				FROM	Users_File
 				WHERE	PersonFileID = <cfqueryparam value="#arguments.PersonFile.getPersonFileID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -60,7 +60,7 @@
 
 		<cfset var qUpdate = "" />
 		<cfquery name="qUpdate" datasource="#variables.dsn#">
-				UPDATE	ce_Person_File
+				UPDATE	Users_File
 				SET
 					FileID = <cfqueryparam value="#arguments.PersonFile.getFileID()#" CFSQLType="cf_sql_integer" null="#not len(arguments.PersonFile.getFileID())#" />,
 					PersonID = <cfqueryparam value="#arguments.PersonFile.getPersonID()#" CFSQLType="cf_sql_integer" null="#not len(arguments.PersonFile.getPersonID())#" />,
@@ -80,7 +80,7 @@
 
 		<cfset var qDelete = "">
 		<cfquery name="qDelete" datasource="#variables.dsn#">
-				DELETE FROM	ce_Person_File 
+				DELETE FROM	Users_File 
 				WHERE	PersonFileID = <cfqueryparam value="#arguments.PersonFile.getPersonFileID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -93,7 +93,7 @@
 		<cfset var qExists = "">
 		<cfquery name="qExists" datasource="#variables.dsn#" maxrows="1">
 			SELECT count(1) as idexists
-			FROM	ce_Person_File
+			FROM	Users_File
 			WHERE	PersonFileID = <cfqueryparam value="#arguments.PersonFile.getPersonFileID()#" CFSQLType="cf_sql_integer" />
 		</cfquery>
 

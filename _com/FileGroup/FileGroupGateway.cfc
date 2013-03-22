@@ -29,7 +29,7 @@
 				Updated,
 				Deleted,
 				DeletedFlag
-			FROM	ce_FileGroup
+			FROM	filesGroup
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"FileGroupID") and len(arguments.FileGroupID)>

@@ -6,7 +6,7 @@
         
         <cfquery name="AttendeeList" datasource="#Application.Settings.DSN#">
         	SELECT AttendeeID, PersonID
-            FROM ce_Attendee
+            FROM attendees
             WHERE ActivityID = <cfqueryparam value="#Arguments.ActivityID#" cfsqltype="cf_sql_integer" /> AND StatusID = 1 AND CompleteDate IS NULL AND DeletedFlag = 'N'
         </cfquery>
         
@@ -28,15 +28,15 @@
         
     	<cfquery name="ComponentList" datasource="#Application.Settings.DSN#">
         	SELECT APC.AssessmentID, AR.ResultStatusID, AR.Created
-            FROM ce_Activity_PubComponent APC
-            INNER JOIN ce_AssessResult AR ON AR.AssessmentID = APC.AssessmentID AND AR.PersonID = <cfqueryparam value="#Arguments.PersonID#" cfsqltype="cf_sql_integer" />
+            FROM Activities_PubComponent APC
+            INNER JOIN assessresults AR ON AR.AssessmentID = APC.AssessmentID AND AR.PersonID = <cfqueryparam value="#Arguments.PersonID#" cfsqltype="cf_sql_integer" />
             WHERE APC.DeletedFlag = 'N' AND AR.DeletedFlag = 'N'
         </cfquery>
         
         <cfif ComponentList.RecordCount GT 0>
         	<cfif ComponentList.ResultStatusID EQ 1>
                 <cfquery name="updateAttendee" datasource="#Application.Settings.DSN#">
-                    UPDATE ce_Attendee
+                    UPDATE attendees
                     SET CompleteDate = <cfqueryparam value="#ComponentList.Created#" cfsqltype="cf_sql_timestamp" />
                     WHERE AttendeeID = <cfqueryparam value="#Arguments.AttendeeID#" cfsqltype="cf_sql_integer" />
                 </cfquery>

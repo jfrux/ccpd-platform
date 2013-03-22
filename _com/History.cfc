@@ -17,7 +17,7 @@
 		<cfargument name="PostDate" type="date" required="no" default="#now()#" />
         
 		<cfquery name="qCreate" datasource="#Application.Settings.dsn#" result="CreateResult">
-			INSERT INTO ce_History
+			INSERT INTO histories
 				(
 				HistoryStyleID,
 				HistoryHTML,
@@ -87,8 +87,8 @@
 						MIN(H.Created) AS LeastRecentDate,
 						MAX(H.HistoryID) AS MostRecentID, 
 						MAX(H.Created) AS MostRecentDate
-					FROM ce_History AS H 
-					INNER JOIN ce_Sys_HistoryStyle AS HS ON H.HistoryStyleID = HS.HistoryStyleID
+					FROM histories AS H 
+					INNER JOIN sys_historystyles AS HS ON H.HistoryStyleID = HS.HistoryStyleID
 					WHERE 
 						0=0
 						

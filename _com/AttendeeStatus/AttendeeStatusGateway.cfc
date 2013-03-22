@@ -20,7 +20,7 @@
 				Name,
 				Description,
 				Code
-			FROM	ce_Sys_AttendeeStatus
+			FROM	sys_attendeestatuses
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"AttendeeStatusID") and len(arguments.AttendeeStatusID)>

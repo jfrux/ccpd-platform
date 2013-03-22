@@ -20,7 +20,7 @@
 				Name,
 				Abbrev,
 				Sort
-			FROM	ce_Sys_Degree
+			FROM	sys_degrees
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"DegreeID") and len(arguments.DegreeID)>

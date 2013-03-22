@@ -63,7 +63,7 @@
 				ConflictDate,
 				EvalFlag,
 				EvalDate
-			FROM	ce_Activity_Application
+			FROM	Activities_Application
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"ApplicationID") and len(arguments.ApplicationID)>

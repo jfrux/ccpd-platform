@@ -19,7 +19,7 @@
 				Name,
 				Description,
 				Created
-			FROM	ce_Sys_CBAFund
+			FROM	sys_cbafunds
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"CBAFundID") and len(arguments.CBAFundID)>

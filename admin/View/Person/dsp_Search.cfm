@@ -117,7 +117,7 @@
 	</table>
 	<cfif PeoplePager.getTotalNumberOfPages() GT 1><div><cfoutput>#PeoplePager.getRenderedHTML()#</cfoutput></div></cfif>
 	<cfelse>
-		<cfquery name="qList" datasource="#application.settings.dsn#">
+		<!--- <cfquery name="qList" datasource="#application.settings.dsn#">
 			/* MOST RECENTLY MODIFIED ACTIVITIES */
 			WITH CTE_MostRecent AS (
 			SELECT H.ToPersonID,MAX(H.Created) As MaxCreated
@@ -127,9 +127,9 @@
 			) SELECT * FROM CTE_MostRecent M INNER JOIN ce_Person A  ON A.PersonID=M.ToPersonId
 			WHERE A.DeletedFlag='N'
 			ORDER BY M.MaxCreated DESC
-		</cfquery>
-	<cfoutput>
-	<h3 style="background-color:##555;">Your Recent Persons</h3>
+		</cfquery> --->
+	<!---<cfoutput>
+	 <h3 style="background-color:##555;">Your Recent Persons</h3>
 	<table border="0" width="100%" cellpadding="0" cellspacing="0" class="ViewSectionGrid">
 		<tbody>
 			<cfloop query="qList">
@@ -147,7 +147,7 @@
 			</cfloop>
 		</tbody>
 	</table>
-	</cfoutput>
+	</cfoutput> --->
 	</cfif>
 	</div>
 	<div id="PhotoUpload" style="display:none;">

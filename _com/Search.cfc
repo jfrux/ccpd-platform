@@ -57,12 +57,12 @@
 					S.Name As StatusName, 
 					S.StatusID
 					 <cfif Trim(sKeyword) NEQ ""> , KeyTbl.Rank</cfif>
-					FROM         ce_Sys_Status AS S RIGHT OUTER JOIN
-					  ce_Activity AS C ON S.StatusID = C.StatusID LEFT OUTER JOIN
-					  ce_Sys_ActivityType AS CT ON C.ActivityTypeID = CT.ActivityTypeID LEFT OUTER JOIN
-					  ce_Sys_Grouping AS G ON C.GroupingID = G.GroupingID LEFT OUTER JOIN
-					  ce_person AS P1 ON C.CreatedBy = P1.personid LEFT OUTER JOIN
-					  ce_person AS P2 ON C.UpdatedBy = P2.personid
+					FROM         sys_statuses AS S RIGHT OUTER JOIN
+					  Activities AS C ON S.StatusID = C.StatusID LEFT OUTER JOIN
+					  sys_activitytypes AS CT ON C.ActivityTypeID = CT.ActivityTypeID LEFT OUTER JOIN
+					  sys_groupings AS G ON C.GroupingID = G.GroupingID LEFT OUTER JOIN
+					  Users AS P1 ON C.CreatedBy = P1.personid LEFT OUTER JOIN
+					  Users AS P2 ON C.UpdatedBy = P2.personid
 					  <cfif Trim(sKeyword) NEQ ""> INNER JOIN
 						CONTAINSTABLE(View_Activities,(Searchable), @Search) AS KeyTbl ON C.ActivityID = KeyTbl.[KEY]</cfif>
 						WHERE     (0 = 0)
@@ -73,7 +73,7 @@
 						AND	C.GroupingID = <cfqueryparam value="#arguments.Grouping#" CFSQLType="cf_sql_integer" />
 					</cfif>
 					<cfif structKeyExists(arguments,"Container") and len(arguments.Container) AND arguments.Container GT 0>
-						AND	(SELECT Count(AC.Activity_CategoryID) FROM ce_Activity_Category AC WHERE AC.CategoryID=<cfqueryparam value="#Arguments.Container#" cfsqltype="cf_sql_integer" /> AND AC.DeletedFlag='N' AND AC.ActivityID=C.ActivityID) > 0
+						AND	(SELECT Count(AC.Activity_CategoryID) FROM Activities_Category AC WHERE AC.CategoryID=<cfqueryparam value="#Arguments.Container#" cfsqltype="cf_sql_integer" /> AND AC.DeletedFlag='N' AND AC.ActivityID=C.ActivityID) > 0
 					</cfif>
 					<cfif structKeyExists(arguments,"StartDate") and isDate(arguments.StartDate)>
 						AND	C.StartDate BETWEEN #CreateODBCDateTime("#Arguments.StartDate# 00:00:00")# AND #CreateODBCDateTime("#Arguments.StartDate# 23:59:59")#

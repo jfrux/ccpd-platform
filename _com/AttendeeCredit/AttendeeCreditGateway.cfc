@@ -34,7 +34,7 @@
 				UpdatedBy,
 				Deleted,
 				DeletedFlag
-			FROM	ce_AttendeeCredit
+			FROM	attendeesCredit
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"AttendeeCreditID") and len(arguments.AttendeeCreditID)>

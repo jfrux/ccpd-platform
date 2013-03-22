@@ -71,7 +71,7 @@
     	<cfargument name="PersonID" type="numeric" required="yes">
         
         <cfquery name="CreateSession" datasource="#Application.Settings.DSN#" result="CreateResult">
-        	INSERT INTO ce_Account 
+        	INSERT INTO accounts 
             	(
             		PersonID,
                     AuthorityID,
@@ -146,7 +146,7 @@
             	SELECT 
                 	Email, Password
                 FROM 
-                	ce_Person
+                	Users
                 WHERE 
                 	PersonID = <cfqueryparam value="#Arguments.PersonID#" cfsqltype="cf_sql_integer" /> AND
                     DeletedFlag = 'N'
@@ -170,11 +170,11 @@
             SELECT
                 P.PersonID, A.AccountID, PE.Email_ADDRESS
             FROM
-                ce_Person_Email PE
+                Users_Email PE
             INNER JOIN
-            	ce_Person AS P ON P.PERSONID = PE.PERSON_ID
+            	Users AS P ON P.PERSONID = PE.PERSON_ID
             LEFT OUTER JOIN
-                ce_Account AS A ON A.PersonID = P.PersonID
+                accounts AS A ON A.PersonID = P.PersonID
             WHERE
                 PE.Email_ADDRESS = @Email AND
                 PE.IS_VERIFIED = 1 AND
@@ -186,7 +186,7 @@
         <cfif LoginCheck.RecordCount GT 0>
 			<!--- CHECK IF ACCOUNTID IS BLANK --->
             <cfif LoginCheck.AccountID EQ "">
-            	<!--- CREATES ce_Account RECORD // REQUIRED FOR UNIFORM FUNCTIONALITY OF APPLICATIONS --->
+            	<!--- CREATES accounts RECORD // REQUIRED FOR UNIFORM FUNCTIONALITY OF APPLICATIONS --->
                 <cfset LoginCheck.AccountID = createAccount(LoginCheck.PersonID)>
             </cfif>
 			
@@ -227,8 +227,8 @@
                 	WHEN pe.person_ID IS NOT NULL THEN pe.person_id
                     WHEN p.personId IS NOT NULL THEN p.personId
                 END AS personId
-            FROM  ce_person AS p
-            LEFT JOIN ce_person_email AS pe ON pe.person_id = p.personId
+            FROM  Users AS p
+            LEFT JOIN Users_email AS pe ON pe.person_id = p.personId
             WHERE
             	dbo.cleanEmailDomain(p.email) = @Email
 				AND p.deletedFlag='N'
@@ -464,7 +464,7 @@
             	SELECT
                 	email_id
                 FROM
-                	ce_person_email
+                	Users_email
                 WHERE
                 	email_address = <cfqueryparam value="#arguments.k#" cfsqltype="cf_sql_varchar" /> AND
                     verification_key = <cfqueryparam value="#arguments.v#" cfsqltype="cf_sql_varchar" />

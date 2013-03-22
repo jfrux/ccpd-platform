@@ -11,7 +11,7 @@
 
 		<cfset var qCreate = "" />
 		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
-				INSERT INTO ce_Activity_Application
+				INSERT INTO Activities_Application
 					(
 					ActivityID,
 					ReceivedFlag,
@@ -105,7 +105,7 @@
 					ConflictDate,
 					EvalFlag,
 					EvalDate
-				FROM	ce_Activity_Application
+				FROM	Activities_Application
 				WHERE	ActivityID = <cfqueryparam value="#arguments.ActivityApplication.getActivityID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -121,7 +121,7 @@
 
 		<cfset var qUpdate = "" />
 		<cfquery name="qUpdate" datasource="#variables.dsn#">
-				UPDATE	ce_Activity_Application
+				UPDATE	Activities_Application
 				SET
 					ActivityID = <cfqueryparam value="#arguments.ActivityApplication.getActivityID()#" CFSQLType="cf_sql_integer" />,
 					ReceivedFlag = <cfqueryparam value="#arguments.ActivityApplication.getReceivedFlag()#" CFSQLType="cf_sql_char" null="#not len(arguments.ActivityApplication.getReceivedFlag())#" />,
@@ -159,7 +159,7 @@
 
 		<cfset var qDelete = "">
 		<cfquery name="qDelete" datasource="#variables.dsn#">
-				DELETE FROM	ce_Activity_Application 
+				DELETE FROM	Activities_Application 
 				WHERE	ActivityID = <cfqueryparam value="#arguments.ActivityApplication.getActivityID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -172,7 +172,7 @@
 		<cfset var qExists = "">
 		<cfquery name="qExists" datasource="#variables.dsn#" maxrows="1">
 			SELECT count(1) as idexists
-			FROM	ce_Activity_Application
+			FROM	Activities_Application
 			WHERE	ActivityID = <cfqueryparam value="#arguments.ActivityApplication.getActivityID()#" CFSQLType="cf_sql_integer" />
 		</cfquery>
 

@@ -26,7 +26,7 @@
         	<cfcase value="1">
             	<cfquery name="AttendeeInfo" datasource="#Application.Settings.DSN#">
                 	SELECT CompleteDate AS RequestedDate
-                    FROM ce_Attendee
+                    FROM attendees
                     WHERE 
                     	<cfif arguments.attendeeId GT 0>
                         attendeeId = <cfqueryparam value="#Arguments.attendeeId#" cfsqltype="cf_sql_integer" />
@@ -38,7 +38,7 @@
         	<cfcase value="2">
             	<cfquery name="AttendeeInfo" datasource="#Application.Settings.DSN#">
                 	SELECT RegisterDate AS RequestedDate
-                    FROM ce_Attendee
+                    FROM attendees
                     WHERE 
                     	<cfif arguments.attendeeId GT 0>
                         attendeeId = <cfqueryparam value="#Arguments.attendeeId#" cfsqltype="cf_sql_integer" />
@@ -50,7 +50,7 @@
         	<cfcase value="3">
             	<cfquery name="AttendeeInfo" datasource="#Application.Settings.DSN#">
                 	SELECT RegisterDate AS RequestedDate
-                    FROM ce_Attendee
+                    FROM attendees
                     WHERE 
                     	<cfif arguments.attendeeId GT 0>
                         attendeeId = <cfqueryparam value="#Arguments.attendeeId#" cfsqltype="cf_sql_integer" />
@@ -62,7 +62,7 @@
         	<cfcase value="4">
             	<cfquery name="AttendeeInfo" datasource="#Application.Settings.DSN#">
                 	SELECT TermDate AS RequestedDate
-                    FROM ce_Attendee
+                    FROM attendees
                     WHERE 
                     	<cfif arguments.attendeeId GT 0>
                         attendeeId = <cfqueryparam value="#Arguments.attendeeId#" cfsqltype="cf_sql_integer" />
@@ -142,15 +142,15 @@
 						1
 				END As hasAcctFlag
         FROM         
-			ce_Attendee AS att 
+			attendees AS att 
         INNER JOIN 
-			ce_Activity AS A ON att.ActivityID = A.ActivityID 
+			Activities AS A ON att.ActivityID = A.ActivityID 
         LEFT OUTER JOIN 
-			ce_person AS p1 ON p1.personid = att.PersonID
+			Users AS p1 ON p1.personid = att.PersonID
         LEFT OUTER JOIN 
-			ce_Person_Address AS Address ON p1.PrimaryAddressID=Address.addressid
+			Users_Address AS Address ON p1.PrimaryAddressID=Address.addressid
         LEFT OUTER JOIN 
-			ce_Sys_AttendeeStatus ats ON ats.AttendeeStatusID = att.StatusID
+			sys_attendeestatuses ats ON ats.AttendeeStatusID = att.StatusID
         WHERE     
 			(A.DeletedFlag='N')
 		<cfif structKeyExists(arguments,"AttendeeID") and len(arguments.AttendeeID)>
@@ -176,7 +176,7 @@
 		</cfif><!---
 		OR
 		(A.DeletedFlag='N') AND ((SELECT COUNT(PD1.PersonDegreeID)
-        									 FROM ce_Person_Degree PD1
+        									 FROM Users_Degree PD1
                                              WHERE PersonID = ATT.PersonID) = 0) --->
 		<!---<cfif structKeyExists(arguments,"AttendeeID") and len(arguments.AttendeeID)>
 			AND	att.AttendeeID = <cfqueryparam value="#arguments.AttendeeID#" CFSQLType="cf_sql_integer" />
@@ -221,8 +221,8 @@
         
         <cfquery name="qGetAttendeeStatus" datasource="#Application.Settings.DSN#">
         	SELECT a.StatusID, ats.Name
-            FROM ce_Attendee a
-            INNER JOIN ce_Sys_AttendeeStatus ats ON ats.AttendeeStatusID = a.StatusID
+            FROM attendees a
+            INNER JOIN sys_attendeestatuses ats ON ats.AttendeeStatusID = a.StatusID
             WHERE 
             	a.ActivityID = <cfqueryparam value="#Arguments.ActivityID#" cfsqltype="cf_sql_integer" /> AND 
             	a.PersonID = <cfqueryparam value="#Arguments.PersonID#" cfsqltype="cf_sql_integer" /> AND
@@ -259,8 +259,8 @@
 					SELECT 
 						APC.AssessmentID,
 						ASS.PassingScore
-					FROM ce_Activity_PubComponent APC
-					INNER JOIN ce_Assessment ASS ON ASS.AssessmentID = APC.AssessmentID
+					FROM Activities_PubComponent APC
+					INNER JOIN assessments ASS ON ASS.AssessmentID = APC.AssessmentID
 					WHERE 
 						(APC.ActivityID = <cfqueryparam value="#Arguments.ActivityID#" cfsqltype="cf_sql_integer" />) AND
 						(APC.AssessmentID IS NOT NULL) AND
@@ -350,13 +350,13 @@
             
             <!--- DELETE ATTENDEECREDIT RECORDS --->
             <cfquery name="qDeleteAttendeeCredits" datasource="#Application.Settings.DSN#">
-            	DELETE FROM ce_AttendeeCredit
-				WHERE attendeeId IN (SELECT attendeeId FROM ce_attendee WHERE ActivityId = <cfqueryparam value="#Arguments.ActivityID#" cfsqltype="cf_sql_integer" />)
+            	DELETE FROM attendeesCredit
+				WHERE attendeeId IN (SELECT attendeeId FROM attendees WHERE ActivityId = <cfqueryparam value="#Arguments.ActivityID#" cfsqltype="cf_sql_integer" />)
             </cfquery>
             
             <!--- UPDATE ATTENDEE RECORDS --->
             <cfquery name="qRemoveAll" datasource="#Application.Settings.DSN#">
-                UPDATE ce_Attendee
+                UPDATE attendees
                 SET DeletedFlag = <cfqueryparam value="Y" cfsqltype="cf_sql_char" />
                 WHERE ActivityID = <cfqueryparam value="#Arguments.ActivityID#" CFSQLType="cf_sql_integer" />
             </cfquery>
@@ -434,7 +434,7 @@
             
             <!--- DELETE ATTENDEECREDIT RECORDS --->
             <cfquery name="qDeleteAttendeeCredits" datasource="#Application.Settings.DSN#">
-                DELETE FROM ce_AttendeeCredit
+                DELETE FROM attendeesCredit
                 WHERE AttendeeID = <cfqueryparam value="#AttendeeBean.getAttendeeID()#" cfsqltype="cf_sql_integer" />
             </cfquery>
             
@@ -463,7 +463,7 @@
             
             <cfquery name="PersonInfo" datasource="#Application.Settings.DSN#">
                 SELECT DisplayName
-                FROM ce_Person
+                FROM Users
                 WHERE PersonID IN (#PersonList#)
             </cfquery>
             
@@ -514,7 +514,7 @@
             	SELECT 
                 	AssessmentID
                 FROM
-                	ce_Assessment
+                	assessments
                 WHERE 
                 	ActivityID = <cfqueryparam value="#attendeeBean.getActivityID()#" cfsqltype="cf_sql_integer" />
             </cfquery>
@@ -530,7 +530,7 @@
                 	SELECT
                     	ResultID
                     FROM
-                    	ce_AssessResult
+                    	assessresults
                     WHERE
                     	PersonID = <cfqueryparam value="#attendeeBean.getPersonId()#" cfsqltype="cf_sql_integer" /> AND
                     	AssessmentID IN (<cfoutput>#Assessments#</cfoutput>)
@@ -545,7 +545,7 @@
                     <!--- DELETE ANSWERS RELATED TO RESULTS VARIABLE --->
                     <cfquery name="clearAnswers" datasource="#Application.Settings.DSN#">
                     	DELETE FROM 
-                        	ce_AssessAnswer
+                        	assessanswers
                         WHERE 
                         	ResultID IN (<cfoutput>#Results#</cfoutput>)
                     </cfquery>
@@ -553,7 +553,7 @@
 					<!--- DELETE RESULTS FROM RESULT VARIABLE --->
                     <cfquery name="cleanResults" datasource="#Application.Settings.DSN#">
                         DELETE FROM 
-                            ce_AssessResult
+                            assessresults
                         WHERE
                             ResultID IN (<cfoutput>#Results#</cfoutput>)
                     </cfquery>
@@ -646,7 +646,7 @@
 				<cfelse>
 					 <cfif arguments.personId EQ 0 AND len(arguments.email) GT 0>
 					 	<cfquery name="qCheckByEmail" datasource="#application.settings.dsn#">
-							SELECT count(attendeeId) As foundCount FROM ce_attendee
+							SELECT count(attendeeId) As foundCount FROM attendees
 							WHERE email=<cfqueryparam value="#arguments.email#" cfsqltype="cf_sql_varchar" /> AND deletedFlag='N'
 						</cfquery>
 						
@@ -935,14 +935,14 @@
         <!--- UPDATE ETHNICITY INFO --->
         <cfquery name="qGetAttendeeInfo" datasource="#application.settings.dsn#">
         	SELECT PersonID
-            FROM ce_Attendee
+            FROM attendees
             WHERE attendeeId = <cfqueryparam value="#arguments.AttendeeID#" cfsqltype="cf_sql_integer" />
         </cfquery>
         
         <cfif qGetAttendeeInfo.recordCount GT 0>
             <cfquery name="qUpdateEthnicityInfo" datasource="#application.settings.dsn#">
                 UPDATE 
-                	ce_person
+                	Users
                 SET 
                 	ethnicityId = <cfqueryparam value="#arguments.ethnicityId#" cfsqltype="cf_sql_integer" />,
                 	ombEthnicityId = <cfqueryparam value="#arguments.ombEthnicityid#" cfsqltype="cf_sql_integer" />
@@ -957,18 +957,18 @@
             	SELECT 
                 	ACT.ActivityID, ATT.AttendeeID
                 FROM
-                	ce_Activity AS ACT
+                	Activities AS ACT
                 INNER JOIN
-                	ce_Activity_Category AS AC ON AC.ActivityId = ACT.ActivityId
+                	Activities_Category AS AC ON AC.ActivityId = ACT.ActivityId
                 INNER JOIN
-                	ce_Attendee AS ATT ON ATT.ActivityId = ACT.ActivityId
+                	attendees AS ATT ON ATT.ActivityId = ACT.ActivityId
                 WHERE 
                 	ATT.AttendeeId <> <cfqueryparam value="#arguments.AttendeeId#" cfsqltype="cf_sql_integer" /> AND
                 	ATT.PersonId = <cfqueryparam value="#session.personId#" cfsqltype="cf_sql_integer" /> AND
                     AC.CategoryId IN (31,162,196) AND
                     ACT.StatusId IN (1,2,3) AND
                     (SELECT COUNT(ACDC.AttendeeCDCId)
-                     FROM ce_AttendeeCDC AS ACDC
+                     FROM attendeesCDC AS ACDC
                      WHERE ACDC.AttendeeID = ATT.AttendeeId) = 0
             </cfquery>
             
@@ -1008,7 +1008,7 @@
         <cfswitch expression="#Arguments.Type#">
         	<cfcase value="1">
             	<cfquery name="UpdateAttendee" datasource="#Application.Settings.DSN#">
-                	UPDATE ce_Attendee
+                	UPDATE attendees
                     SET CompleteDate = <cfqueryparam value="#Arguments.DateValue#" cfsqltype="cf_sql_timestamp" />
                     WHERE AttendeeID = <cfqueryparam value="#arguments.attendeeId#" cfsqltype="cf_sql_integer" /> AND DeletedFlag = 'N'
                 </cfquery>
@@ -1017,7 +1017,7 @@
             </cfcase>
         	<cfcase value="2">
             	<cfquery name="UpdateAttendee" datasource="#Application.Settings.DSN#">
-                	UPDATE ce_Attendee
+                	UPDATE attendees
                     SET RegisterDate = <cfqueryparam value="#Arguments.DateValue#" cfsqltype="cf_sql_timestamp" />
                     WHERE AttendeeID = <cfqueryparam value="#arguments.attendeeId#" cfsqltype="cf_sql_integer" /> AND DeletedFlag = 'N'
                 </cfquery>
@@ -1026,7 +1026,7 @@
             </cfcase>
         	<cfcase value="3">
             	<cfquery name="UpdateAttendee" datasource="#Application.Settings.DSN#">
-                	UPDATE ce_Attendee
+                	UPDATE attendees
                     SET RegisterDate = <cfqueryparam value="#Arguments.DateValue#" cfsqltype="cf_sql_timestamp" />
                     WHERE AttendeeID = <cfqueryparam value="#arguments.attendeeId#" cfsqltype="cf_sql_integer" /> AND DeletedFlag = 'N'
                 </cfquery>
@@ -1035,7 +1035,7 @@
             </cfcase>
         	<cfcase value="4">
             	<cfquery name="UpdateAttendee" datasource="#Application.Settings.DSN#">
-                	UPDATE ce_Attendee
+                	UPDATE attendees
                     SET TermDate = <cfqueryparam value="#Arguments.DateValue#" cfsqltype="cf_sql_timestamp" />
                     WHERE AttendeeID = <cfqueryparam value="#arguments.attendeeId#" cfsqltype="cf_sql_integer" /> AND DeletedFlag = 'N'
                 </cfquery>
@@ -1223,7 +1223,7 @@
                 	<!--- GET ATTENDEE STATUS --->
                     <cfquery name="AttendeeInfo" datasource="#Application.Settings.DSN#">
                     	SELECT AttendeeID,StatusID,personId
-                        FROM ce_Attendee
+                        FROM attendees
 						WHERE 
                         	attendeeId = <cfqueryparam value="#AttendeeId#" cfsqltype="cf_sql_integer" />
                     </cfquery>
@@ -1233,7 +1233,7 @@
                     
 					<!--- Delete each record --->
 					<cfquery name="qUpdateStatus" datasource="#Application.Settings.DSN#" result="qUpdatedStatuses">
-						UPDATE ce_Attendee
+						UPDATE attendees
 						SET StatusID = <cfif Arguments.StatusID NEQ 0><cfqueryparam value="#Arguments.StatusID#" cfsqltype="cf_sql_integer" /><cfelse><cfqueryparam null="true" cfsqltype="cf_sql_integer" /></cfif>
                         <cfswitch expression="#Arguments.StatusID#">
                         	<cfcase value="1">
@@ -1317,7 +1317,7 @@
                     
                     <cfquery name="PersonInfo" datasource="#Application.Settings.DSN#">
                     	SELECT DisplayName
-                        FROM ce_Person
+                        FROM Users
                         WHERE PersonID IN (#PersonList#)
                     </cfquery>
                     

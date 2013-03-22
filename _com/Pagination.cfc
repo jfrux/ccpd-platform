@@ -21,9 +21,9 @@ Version 1.0 RC1 - 1/6/2008 - Further cleanup, CSS, Examples, Documentation
       Enhancements under consideration
 /---------^---------------------------------------------------------------------------------------\
 "Bridging" numbers like amazon - 1 number out of range will show if it bridges the "..." gap.
-	// « Previous|Page:1 2 3 ... |Next »        page 1, 1000 pages total
-	// « Previous|Page:1 2 3 4 5 ... |Next »    page 4  <--- this is a sticky #2!
-	// « Previous|Page:1 ... 5 6 7 ... |Next »  page 6
+	// ï¿½ Previous|Page:1 2 3 ... |Next ï¿½        page 1, 1000 pages total
+	// ï¿½ Previous|Page:1 2 3 4 5 ... |Next ï¿½    page 4  <--- this is a sticky #2!
+	// ï¿½ Previous|Page:1 ... 5 6 7 ... |Next ï¿½  page 6
 Separate Left and Right (beginning and end) numeric padding
 Show exactly this number maximum, e.g. sticky is 5 but we are on pg.1, show 11 on pg.1 and 5
 Number separators, 1 | 2 | 3 or 1, 2, 3

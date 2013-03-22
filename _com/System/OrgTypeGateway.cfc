@@ -19,7 +19,7 @@
 				Name,
 				Description,
 				Created
-			FROM	ce_Sys_OrgType
+			FROM	sys_orgtypes
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"OrgTypeID") and len(arguments.OrgTypeID)>

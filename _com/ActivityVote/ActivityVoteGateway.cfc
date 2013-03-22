@@ -21,7 +21,7 @@
 				PersonID,
 				VoteValue,
 				Created
-			FROM	ce_Activity_Vote
+			FROM	Activities_Vote
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"ActivityVoteID") and len(arguments.ActivityVoteID)>

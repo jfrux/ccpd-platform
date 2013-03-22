@@ -11,7 +11,7 @@
 
 		<cfset var qCreate = "" />
 		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
-				INSERT INTO ce_Activity_Category
+				INSERT INTO Activities_Category
 					(
 					ActivityID,
 					CategoryID,
@@ -44,7 +44,7 @@
 					UpdatedBy,
 					Deleted,
 					DeletedFlag
-				FROM	ce_Activity_Category
+				FROM	Activities_Category
 				WHERE	Activity_CategoryID = <cfqueryparam value="#arguments.ActivityCategory.getActivity_CategoryID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -60,7 +60,7 @@
 
 		<cfset var qUpdate = "" />
 		<cfquery name="qUpdate" datasource="#variables.dsn#">
-				UPDATE	ce_Activity_Category
+				UPDATE	Activities_Category
 				SET
 					ActivityID = <cfqueryparam value="#arguments.ActivityCategory.getActivityID()#" CFSQLType="cf_sql_integer" />,
 					CategoryID = <cfqueryparam value="#arguments.ActivityCategory.getCategoryID()#" CFSQLType="cf_sql_integer" />,
@@ -81,7 +81,7 @@
 
 		<cfset var qDelete = "">
 		<cfquery name="qDelete" datasource="#variables.dsn#">
-				DELETE FROM	ce_Activity_Category 
+				DELETE FROM	Activities_Category 
 				WHERE	Activity_CategoryID = <cfqueryparam value="#arguments.ActivityCategory.getActivity_CategoryID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -94,7 +94,7 @@
 		<cfset var qExists = "">
 		<cfquery name="qExists" datasource="#variables.dsn#" maxrows="1">
 			SELECT count(1) as idexists
-			FROM	ce_Activity_Category
+			FROM	Activities_Category
 			WHERE	Activity_CategoryID = <cfqueryparam value="#arguments.ActivityCategory.getActivity_CategoryID()#" CFSQLType="cf_sql_integer" />
 		</cfquery>
 

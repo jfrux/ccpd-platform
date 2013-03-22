@@ -4,7 +4,7 @@
     	<cfargument name="ReportID" type="string" required="true" default="13" />
         
 		<cfquery name="qActivity" datasource="#Application.Settings.DSN#">
-			SELECT Title FROM ce_Activity
+			SELECT Title FROM Activities
 			WHERE ActivityID=#Arguments.ActivityID#
 		</cfquery>
 		

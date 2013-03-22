@@ -37,7 +37,7 @@
 				UpdatedBy,
 				Deleted,
 				DeletedFlag
-			FROM	ce_Sys_SiteLMS
+			FROM	sys_sitelms
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"SiteID") and len(arguments.SiteID)>

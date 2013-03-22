@@ -11,7 +11,7 @@
 
 		<cfset var qCreate = "" />
 		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
-				INSERT INTO ce_Person_Interest_Except
+				INSERT INTO Users_Interest_Except
 					(
 					PersonID,
 					ActivityID
@@ -37,7 +37,7 @@
 					PersonID,
 					ActivityID,
 					Created
-				FROM	ce_Person_Interest_Except
+				FROM	Users_Interest_Except
 				WHERE	PersonID = <cfqueryparam value="#arguments.PersonInterestExcept.getPersonID()#" CFSQLType="cf_sql_integer" /> AND ActivityID = <cfqueryparam value="#arguments.PersonInterestExcept.getActivityID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -53,7 +53,7 @@
 
 		<cfset var qUpdate = "" />
 		<cfquery name="qUpdate" datasource="#variables.dsn#">
-				UPDATE	ce_Person_Interest_Except
+				UPDATE	Users_Interest_Except
 				SET
 					PersonID = <cfqueryparam value="#arguments.PersonInterestExcept.getPersonID()#" CFSQLType="cf_sql_integer" />,
 					ActivityID = <cfqueryparam value="#arguments.PersonInterestExcept.getActivityID()#" CFSQLType="cf_sql_integer" />,
@@ -69,7 +69,7 @@
 
 		<cfset var qDelete = "">
 		<cfquery name="qDelete" datasource="#variables.dsn#">
-				DELETE FROM	ce_Person_Interest_Except 
+				DELETE FROM	Users_Interest_Except 
 				WHERE	PersonID = <cfqueryparam value="#arguments.PersonInterestExcept.getPersonID()#" CFSQLType="cf_sql_integer" /> AND ActivityID = <cfqueryparam value="#arguments.PersonInterestExcept.getActivityID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -82,7 +82,7 @@
 		<cfset var qExists = "">
 		<cfquery name="qExists" datasource="#variables.dsn#" maxrows="1">
 			SELECT count(1) as idexists
-			FROM	ce_Person_Interest_Except
+			FROM	Users_Interest_Except
 			WHERE	PersonID = <cfqueryparam value="#arguments.PersonInterestExcept.getPersonID()#" CFSQLType="cf_sql_integer" /> AND ActivityID = <cfqueryparam value="#arguments.PersonInterestExcept.getActivityID()#" CFSQLType="cf_sql_integer" />
 		</cfquery>
 

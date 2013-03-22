@@ -38,7 +38,7 @@
 				UpdatedBy,
 				Deleted,
 				DeletedFlag
-			FROM	ce_Activity_FinLedger
+			FROM	Activities_FinLedger
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"EntryID") and len(arguments.EntryID)>
@@ -126,10 +126,10 @@
 					p1.lastname AS CreateByLName, 
 					p2.firstname AS UpdatedByFName, 
 		            p2.lastname AS UpdatedByLName
-			FROM ce_Activity_FinLedger AS afl 
-			LEFT OUTER JOIN ce_Sys_EntryType AS et ON et.EntryTypeID = afl.EntryTypeID 
-			LEFT OUTER JOIN ce_person AS p1 ON p1.personid = afl.CreatedBy 
-			LEFT OUTER JOIN ce_person AS p2 ON p2.personid = afl.UpdatedBy
+			FROM Activities_FinLedger AS afl 
+			LEFT OUTER JOIN sys_entrytypes AS et ON et.EntryTypeID = afl.EntryTypeID 
+			LEFT OUTER JOIN Users AS p1 ON p1.personid = afl.CreatedBy 
+			LEFT OUTER JOIN Users AS p2 ON p2.personid = afl.UpdatedBy
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"EntryID") and len(arguments.EntryID)>

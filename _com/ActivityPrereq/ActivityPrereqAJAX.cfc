@@ -10,7 +10,7 @@
         	SELECT
             	ActivityID
             FROM
-            	ce_Activity
+            	Activities
            	WHERE
             	Title = <cfqueryparam value="#Arguments.Title#" cfsqltype="cf_sql_varchar" /> AND DeletedFlag = 'N'
         </cfquery>
@@ -28,7 +28,7 @@
             	SELECT
                 	ActivityPrereqID
                 FROM
-                	ce_Activity_Prereq
+                	Activities_Prereq
                 WHERE
                 	ActivityID = <cfqueryparam value="#Arguments.ActivityID#" cfsqltype="cf_sql_integer" /> AND PrereqID = <cfqueryparam value="#PrereqInfo.ActivityID#" cfsqltype="cf_sql_integer" />
             </cfquery>
@@ -67,8 +67,8 @@
                     AP.PrereqID, 
                     ActivityTitle = A.Title, 
                     PrereqLevel = 0
-                FROM ce_Activity_Prereq AP
-                INNER JOIN ce_Activity A ON A.ActivityID = AP.PrereqID
+                FROM Activities_Prereq AP
+                INNER JOIN Activities A ON A.ActivityID = AP.PrereqID
                 WHERE AP.ActivityID = <cfqueryparam value="#Arguments.ActivityID#" cfsqltype="cf_sql_integer" />
                 UNION ALL
             -- Recursive member definition
@@ -77,8 +77,8 @@
                     AP.PrereqID, 
                     ActivityTitle = A.Title, 
                     P.PrereqLevel + 1
-                FROM ce_Activity_Prereq AP
-                INNER JOIN ce_Activity A ON A.ActivityID = AP.PrereqID
+                FROM Activities_Prereq AP
+                INNER JOIN Activities A ON A.ActivityID = AP.PrereqID
                 INNER JOIN Prereqs P ON P.PrereqID = AP.ActivityID
             )
             -- Statement that executes the CTE
@@ -100,14 +100,14 @@
         	SELECT
             	ActivityPrereqID
             FROM
-            	ce_Activity_Prereq
+            	Activities_Prereq
             WHERE
             	ActivityID = <cfqueryparam value="#Arguments.ActivityID#" cfsqltype="cf_sql_integer" /> AND PrereqID = <cfqueryparam value="#Arguments.PrereqID#" cfsqltype="cf_sql_integer" />
         </cfquery>
         <cfif PrereqInfo.RecordCount GT 0>
         	<!--- DELETE PREREQUISITE --->
         	<cfquery name="DeletePrereq" datasource="#Application.Settings.DSN#">
-            	DELETE FROM ce_Activity_Prereq
+            	DELETE FROM Activities_Prereq
                 WHERE ActivityPrereqID = <cfqueryparam value="#PrereqInfo.ActivityPrereqID#" cfsqltype="cf_sql_integer" />
             </cfquery>
             

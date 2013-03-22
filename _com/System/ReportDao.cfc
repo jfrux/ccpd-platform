@@ -11,7 +11,7 @@
 
 		<cfset var qCreate = "" />
 		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
-				INSERT INTO ce_Sys_Report
+				INSERT INTO sys_reports
 					(
 					Title,
 					Description,
@@ -41,7 +41,7 @@
 					FileName,
 					Created,
 					Updated
-				FROM	ce_Sys_Report
+				FROM	sys_reports
 				WHERE	ReportID = <cfqueryparam value="#arguments.Report.getReportID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -57,7 +57,7 @@
 
 		<cfset var qUpdate = "" />
 		<cfquery name="qUpdate" datasource="#variables.dsn#">
-				UPDATE	ce_Sys_Report
+				UPDATE	sys_reports
 				SET
 					Title = <cfqueryparam value="#arguments.Report.getTitle()#" CFSQLType="cf_sql_varchar" null="#not len(arguments.Report.getTitle())#" />,
 					Description = <cfqueryparam value="#arguments.Report.getDescription()#" CFSQLType="cf_sql_varchar" null="#not len(arguments.Report.getDescription())#" />,
@@ -75,7 +75,7 @@
 
 		<cfset var qDelete = "">
 		<cfquery name="qDelete" datasource="#variables.dsn#">
-				DELETE FROM	ce_Sys_Report 
+				DELETE FROM	sys_reports 
 				WHERE	ReportID = <cfqueryparam value="#arguments.Report.getReportID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -88,7 +88,7 @@
 		<cfset var qExists = "">
 		<cfquery name="qExists" datasource="#variables.dsn#" maxrows="1">
 			SELECT count(1) as idexists
-			FROM	ce_Sys_Report
+			FROM	sys_reports
 			WHERE	ReportID = <cfqueryparam value="#arguments.Report.getReportID()#" CFSQLType="cf_sql_integer" />
 		</cfquery>
 

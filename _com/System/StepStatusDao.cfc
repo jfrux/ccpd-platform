@@ -11,7 +11,7 @@
 
 		<cfset var qCreate = "" />
 		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
-				INSERT INTO ce_Sys_StepStatus
+				INSERT INTO sys_stepstatuses
 					(
 					Name,
 					Description,
@@ -39,7 +39,7 @@
 					Name,
 					Description,
 					Priority
-				FROM	ce_Sys_StepStatus
+				FROM	sys_stepstatuses
 				WHERE	StepStatusID = <cfqueryparam value="#arguments.StepStatus.getStepStatusID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -55,7 +55,7 @@
 
 		<cfset var qUpdate = "" />
 		<cfquery name="qUpdate" datasource="#variables.dsn#">
-				UPDATE	ce_Sys_StepStatus
+				UPDATE	sys_stepstatuses
 				SET
 					Name = <cfqueryparam value="#arguments.StepStatus.getName()#" CFSQLType="cf_sql_varchar" null="#not len(arguments.StepStatus.getName())#" />,
 					Description = <cfqueryparam value="#arguments.StepStatus.getDescription()#" CFSQLType="cf_sql_varchar" null="#not len(arguments.StepStatus.getDescription())#" />,
@@ -71,7 +71,7 @@
 
 		<cfset var qDelete = "">
 		<cfquery name="qDelete" datasource="#variables.dsn#">
-				DELETE FROM	ce_Sys_StepStatus 
+				DELETE FROM	sys_stepstatuses 
 				WHERE	StepStatusID = <cfqueryparam value="#arguments.StepStatus.getStepStatusID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -84,7 +84,7 @@
 		<cfset var qExists = "">
 		<cfquery name="qExists" datasource="#variables.dsn#" maxrows="1">
 			SELECT count(1) as idexists
-			FROM	ce_Sys_StepStatus
+			FROM	sys_stepstatuses
 			WHERE	StepStatusID = <cfqueryparam value="#arguments.StepStatus.getStepStatusID()#" CFSQLType="cf_sql_integer" />
 		</cfquery>
 

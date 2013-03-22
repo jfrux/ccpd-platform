@@ -19,7 +19,7 @@
 				Name,
 				Description,
 				Created
-			FROM	ce_Sys_Market
+			FROM	sys_markets
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"MarketID") and len(arguments.MarketID)>

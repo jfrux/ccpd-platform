@@ -11,7 +11,7 @@
 
 		<cfset var qCreate = "" />
 		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
-				INSERT INTO ce_AssessSection
+				INSERT INTO assesssections
 					(
 					Name,
 					Description,
@@ -49,7 +49,7 @@
 					Updated,
 					Deleted,
 					DeletedFlag
-				FROM	ce_AssessSection
+				FROM	assesssections
 				WHERE	SectionID = <cfqueryparam value="#arguments.AssessSection.getSectionID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -65,7 +65,7 @@
 
 		<cfset var qUpdate = "" />
 		<cfquery name="qUpdate" datasource="#variables.dsn#">
-				UPDATE	ce_AssessSection
+				UPDATE	assesssections
 				SET
 					Name = <cfqueryparam value="#arguments.AssessSection.getName()#" CFSQLType="cf_sql_varchar" null="#not len(arguments.AssessSection.getName())#" />,
 					Description = <cfqueryparam value="#arguments.AssessSection.getDescription()#" CFSQLType="cf_sql_longvarchar" null="#not len(arguments.AssessSection.getDescription())#" />,
@@ -87,7 +87,7 @@
 
 		<cfset var qDelete = "">
 		<cfquery name="qDelete" datasource="#variables.dsn#">
-				DELETE FROM	ce_AssessSection 
+				DELETE FROM	assesssections 
 				WHERE	SectionID = <cfqueryparam value="#arguments.AssessSection.getSectionID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -100,7 +100,7 @@
 		<cfset var qExists = "">
 		<cfquery name="qExists" datasource="#variables.dsn#" maxrows="1">
 			SELECT count(1) as idexists
-			FROM	ce_AssessSection
+			FROM	assesssections
 			WHERE	SectionID = <cfqueryparam value="#arguments.AssessSection.getSectionID()#" CFSQLType="cf_sql_integer" />
 		</cfquery>
 

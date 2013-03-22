@@ -19,7 +19,7 @@
 				ActivityTypeID,
 				Name,
 				Created
-			FROM	ce_Sys_Grouping
+			FROM	sys_groupings
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"GroupingID") and len(arguments.GroupingID)>

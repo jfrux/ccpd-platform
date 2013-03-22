@@ -21,7 +21,7 @@
 				DegreeID,
 				Created,
 				DeletedFlag
-			FROM	ce_Person_Degree
+			FROM	Users_Degree
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"PersonDegreeID") and len(arguments.PersonDegreeID)>
@@ -64,8 +64,8 @@
 				pd.Created,
 				pd.DeletedFlag,
                 sd.Name AS DegreeName
-			FROM	ce_Person_Degree pd
-            INNER JOIN ce_Sys_Degree sd ON sd.DegreeID = pd.DegreeID
+			FROM	Users_Degree pd
+            INNER JOIN sys_degrees sd ON sd.DegreeID = pd.DegreeID
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"PersonDegreeID") and len(arguments.PersonDegreeID)>

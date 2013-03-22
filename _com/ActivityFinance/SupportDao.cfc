@@ -12,7 +12,7 @@
 
 		<cfset var qCreate = "" />
 		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
-				INSERT INTO ce_Activity_FinSupport
+				INSERT INTO Activities_FinSupport
 					(
 					ActivityID,
 					SupporterID,
@@ -69,7 +69,7 @@
 					UpdatedBy,
 					Deleted,
 					DeletedFlag
-				FROM	ce_Activity_FinSupport
+				FROM	Activities_FinSupport
 				WHERE	SupportID = <cfqueryparam value="#arguments.Support.getSupportID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -85,7 +85,7 @@
 
 		<cfset var qUpdate = "" />
 		<cfquery name="qUpdate" datasource="#variables.dsn#">
-				UPDATE	ce_Activity_FinSupport
+				UPDATE	Activities_FinSupport
 				SET
 					ActivityID = <cfqueryparam value="#arguments.Support.getActivityID()#" CFSQLType="cf_sql_integer" />,
 					SupporterID = <cfqueryparam value="#arguments.Support.getSupporterID()#" CFSQLType="cf_sql_integer" />,
@@ -114,7 +114,7 @@
 
 		<cfset var qDelete = "">
 		<cfquery name="qDelete" datasource="#variables.dsn#">
-				DELETE FROM	ce_Activity_FinSupport 
+				DELETE FROM	Activities_FinSupport 
 				WHERE	SupportID = <cfqueryparam value="#arguments.Support.getSupportID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -127,7 +127,7 @@
 		<cfset var qExists = "">
 		<cfquery name="qExists" datasource="#variables.dsn#" maxrows="1">
 			SELECT count(1) as idexists
-			FROM	ce_Activity_FinSupport
+			FROM	Activities_FinSupport
 			WHERE	SupportID = <cfqueryparam value="#arguments.Support.getSupportID()#" CFSQLType="cf_sql_integer" />
 		</cfquery>
 

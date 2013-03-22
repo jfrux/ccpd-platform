@@ -23,7 +23,7 @@
         				
             <!--- Delete ledger record --->
             <cfquery name="qRemoveBudget" datasource="#Application.Settings.DSN#">
-                UPDATE ce_Activity_FinBudget
+                UPDATE Activities_FinBudget
                 SET DeletedFlag = <cfqueryparam value="Y" cfsqltype="cf_sql_char" />
                 WHERE BudgetID = <cfqueryparam value="#Arguments.BudgetID#" CFSQLType="cf_sql_integer" /> AND ActivityID = <cfqueryparam value="#Arguments.ActivityID#" CFSQLType="cf_sql_integer" />
             </cfquery>
@@ -64,7 +64,7 @@
         				
             <!--- Delete ledger record --->
             <cfquery name="qRemoveFee" datasource="#Application.Settings.DSN#">
-                UPDATE ce_Activity_FinFee
+                UPDATE Activities_FinFee
                 SET DeletedFlag = <cfqueryparam value="Y" cfsqltype="cf_sql_char" />
                 WHERE FeeID = <cfqueryparam value="#Arguments.FeeID#" CFSQLType="cf_sql_integer" /> AND ActivityID = <cfqueryparam value="#Arguments.ActivityID#" CFSQLType="cf_sql_integer" />
             </cfquery>>
@@ -117,7 +117,7 @@
             
             <!--- Delete ledger record --->
             <cfquery name="qRemoveLedger" datasource="#Application.Settings.DSN#">
-                UPDATE ce_Activity_FinLedger
+                UPDATE Activities_FinLedger
                 SET DeletedFlag = <cfqueryparam value="Y" cfsqltype="cf_sql_char" />
                 WHERE EntryID = <cfqueryparam value="#Arguments.EntryID#" CFSQLType="cf_sql_integer" /> AND ActivityID = <cfqueryparam value="#Arguments.ActivityID#" CFSQLType="cf_sql_integer" />
             </cfquery>
@@ -201,7 +201,7 @@
             
             <!--- Delete ledger record --->
             <cfquery name="qRemoveSupport" datasource="#Application.Settings.DSN#">
-                UPDATE ce_Activity_FinSupport
+                UPDATE Activities_FinSupport
                 SET DeletedFlag = <cfqueryparam value="Y" cfsqltype="cf_sql_char" />
                 WHERE SupportID = <cfqueryparam value="#Arguments.SupportID#" CFSQLType="cf_sql_integer" /> AND ActivityID = <cfqueryparam value="#Arguments.ActivityID#" CFSQLType="cf_sql_integer" />
             </cfquery>
@@ -256,7 +256,7 @@
 		<!--- Query of Queries to get the ExpenseFlag and Name for the Selected EntryType --->
         <cfquery name="qExpenseTypeInfo" datasource="#Application.Settings.DSN#">
             SELECT Name,ExpenseFlag
-            FROM ce_Sys_EntryType
+            FROM sys_entrytypes
             WHERE EntryTypeID = <cfqueryparam value="#ActivityBudgetBean.getEntryTypeID()#" cfsqltype="cf_sql_integer">
         </cfquery>
     
@@ -463,7 +463,7 @@
 		<!--- Query of Queries to get the ExpenseFlag and Name for the Selected EntryType --->
         <cfquery name="qExpenseTypeInfo" datasource="#Application.Settings.DSN#">
             SELECT Name,ExpenseFlag
-            FROM ce_Sys_EntryType
+            FROM sys_entrytypes
             WHERE EntryTypeID = <cfqueryparam value="#ActivityLedgerBean.getEntryTypeID()#" cfsqltype="cf_sql_integer">
         </cfquery>
         

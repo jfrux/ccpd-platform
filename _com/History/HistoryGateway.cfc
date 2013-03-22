@@ -31,7 +31,7 @@
 				ToSiteID,
 				Created,
 				HiddenFlag
-			FROM	ce_History
+			FROM	histories
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"HistoryID") and len(arguments.HistoryID)>

@@ -2,7 +2,7 @@
 	<cffunction name="getActivityTypes" hint="Returns a JSON list of Activity types." access="remote" output="false" returntype="string">        
         <cfquery name="getActivityTypes" datasource="#Application.Settings.DSN#">
         	SELECT ActivityTypeID, Name
-            FROM ce_Sys_ActivityType
+            FROM sys_activitytypes
             WHERE DeletedFlag = 'N'
             ORDER BY Name
         </cfquery>
@@ -15,8 +15,8 @@
 	<cffunction name="getGroupings" hint="Returns a JSON list of Activity Groupings." access="remote" output="false" returntype="string">        
         <cfquery name="getGroupings" datasource="#Application.Settings.DSN#">
         	SELECT G.GroupingID, G.Name, AT.Name AS ActivityTypeName
-            FROM ce_Sys_Grouping G
-            INNER JOIN ce_Sys_ActivityType AT ON AT.ActivityTypeID = G.ActivityTypeID
+            FROM sys_groupings G
+            INNER JOIN sys_activitytypes AT ON AT.ActivityTypeID = G.ActivityTypeID
             ORDER BY AT.Name
         </cfquery>
        
@@ -67,15 +67,15 @@
                 A.EndDate,
                 A.statAttendees
 			FROM 
-            	ce_Activity AS A 
+            	Activities AS A 
                 <cfswitch expression="#Arguments.ReportType#">
                 	<cfcase value="Activity Type">	
                         INNER JOIN
-                            ce_Sys_ActivityType AS AT ON AT.ActivityTypeID = A.ActivityTypeID
+                            sys_activitytypes AS AT ON AT.ActivityTypeID = A.ActivityTypeID
                     </cfcase>
                 	<cfcase value="Grouping">
                         INNER JOIN
-                            ce_Sys_Grouping AS G ON G.GroupingID = A.GroupingID
+                            sys_groupings AS G ON G.GroupingID = A.GroupingID
                     </cfcase>
                 </cfswitch>
 			WHERE 

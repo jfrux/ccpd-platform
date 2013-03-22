@@ -30,7 +30,7 @@
 				UpdatedBy,
 				Deleted,
 				DeletedFlag
-			FROM	ce_Person_Note
+			FROM	Users_Note
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"NoteID") and len(arguments.NoteID)>
@@ -96,9 +96,9 @@
                 p1.LastName AS CreatedByLName,
 				p2.FirstName AS UpdatedByFName,
 				p2.LastName AS UpdatedByLName
-			FROM	ce_Person_Note pn
-			LEFT OUTER JOIN ce_Person p1 ON p1.PersonID = pn.CreatedBy
-			LEFT OUTER JOIN ce_Person p2 ON p2.PersonID = pn.UpdatedBy
+			FROM	Users_Note pn
+			LEFT OUTER JOIN Users p1 ON p1.PersonID = pn.CreatedBy
+			LEFT OUTER JOIN Users p2 ON p2.PersonID = pn.UpdatedBy
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"NoteID") and len(arguments.NoteID)>

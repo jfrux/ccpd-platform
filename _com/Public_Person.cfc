@@ -21,8 +21,8 @@
                     P.LastName, 
                     CONVERT(varchar, P.Birthdate, 101) AS Birthdate,
                     PE.Email
-            FROM ce_Person AS P 
-            INNER JOIN ce_Person_Email AS PE ON PE.Person_Id = P.PersonID
+            FROM Users AS P 
+            INNER JOIN Users_Email AS PE ON PE.Person_Id = P.PersonID
             WHERE 0 = 0
             
             <cfif len(Arguments.FirstName)>
@@ -70,7 +70,7 @@
             <cfif PersonAddressBean.getPersonID() EQ Arguments.PersonID>
             	<!--- DELETE ADDRESS RECORD --->
             	<cfquery name="DeleteAddress" datasource="#Application.Settings.DSN#">
-                	DELETE FROM ce_Person_Address
+                	DELETE FROM Users_Address
                     WHERE AddressID = <cfqueryparam value="#Arguments.AddressID#" cfsqltype="cf_sql_integer" />
                 </cfquery>
             	
@@ -167,7 +167,7 @@
             <cfset Attributes.Deleted = CreateODBCDateTime(Now())>
             
             <cfquery name="qDeleteNote" datasource="#Application.Settings.DSN#">
-                UPDATE ce_Person_Note
+                UPDATE Users_Note
                 SET DeletedFlag = <cfqueryparam value="Y" cfsqltype="cf_sql_char">,
                     Deleted = <cfqueryparam value="#Attributes.Deleted#" cfsqltype="cf_sql_timestamp">,
                     UpdatedBy = <cfqueryparam value="#Session.PersonID#" cfsqltype="cf_sql_integer">
@@ -223,13 +223,13 @@
                     
                     <!--- DELETE ALL EMAILS --->
                     <cfquery name="qDeleteEmails" datasource="#application.settings.dsn#">
-                    	DELETE FROM ce_person_email
+                    	DELETE FROM Users_email
                         WHERE person_id = <cfqueryparam value="#arguments.personId#" cfsqltype="cf_sql_integer" />
                     </cfquery>
                     
                     <!--- DELETE PERSON PREFERENCES --->
                     <cfquery name="qDeletedPreferences" datasource="#application.settings.dsn#">
-                    	DELETE FROM ce_person_pref
+                    	DELETE FROM Users_pref
                         WHERE personId = <cfqueryparam value="#arguments.personId#" cfsqltype="cf_sql_integer" />
                     </cfquery>
                 	
@@ -296,7 +296,7 @@
         <cfif Session.Account.getAuthorityID() EQ 3>
         	<cfquery name="AuthInfo" datasource="#Application.Settings.DSN#">
             	SELECT AccountID,AuthorityID
-                FROM ce_Account
+                FROM accounts
                 WHERE PersonID = <cfqueryparam value="#Arguments.PersonID#" cfsqltype="cf_sql_integer" />
             </cfquery>
             
@@ -315,7 +315,7 @@
         
         <cfquery name="PersonInfo" datasource="#Application.Settings.DSN#">
         	SELECT Email, Password
-            FROM ce_Person
+            FROM Users
             WHERE PersonID = <cfqueryparam value="#Arguments.PersonID#" cfsqltype="cf_sql_integer" />
         </cfquery>
     
@@ -333,7 +333,7 @@
 		<cfargument name="PersonID" type="numeric" required="yes">
 		
 		<cfquery name="qGetName" datasource="#Application.Settings.DSN#">
-			SELECT FirstName,LastName,MiddleName FROM ce_Person
+			SELECT FirstName,LastName,MiddleName FROM Users
 			WHERE PersonID=<cfqueryparam value="#Arguments.PersonID#" cfsqltype="cf_sql_integer" />
 		</cfquery>
 		
@@ -351,7 +351,7 @@
         
         <cfquery name="qPersonSpecialties" datasource="#Application.Settings.DSN#">
         	SELECT SpecialtyID
-            FROM ce_Person_SpecialtyLMS
+            FROM Users_SpecialtyLMS
             WHERE PersonID = <cfqueryparam value="#Arguments.PersonID#" cfsqltype="cf_sql_integer" /> AND DeletedFlag = 'N'
         </cfquery>
         
@@ -370,7 +370,7 @@
         
         <cfquery name="PersonInfo" datasource="#Application.Settings.DSN#">
         	SELECT PrimaryAddressID
-            FROM ce_Person
+            FROM Users
             WHERE PersonID = <cfqueryparam value="#Arguments.PersonID#" cfsqltype="cf_sql_integer" />
         </cfquery>
         
@@ -395,7 +395,7 @@
         <cfset status.setStatusMsg("Cannot access the activity move functionality.")>
         
         <cfquery name="qGetActivitiesFrom" datasource="#Application.Settings.DSN#">
-        	UPDATE ce_Attendee
+        	UPDATE attendees
             SET PersonID = <cfqueryparam value="#Arguments.MoveToPersonID#" cfsqltype="cf_sql_integer" />
             WHERE PersonID = <cfqueryparam value="#Arguments.MoveFromPersonID#" cfsqltype="cf_sql_integer" />
         </cfquery>
@@ -451,8 +451,8 @@
             SET @Email = <cfqueryparam value="#CurrEmail#" cfsqltype="cf_sql_varchar" />
             
         	SELECT p.personId, p.password
-            FROM ce_person_email AS pe
-            INNER JOIN ce_person AS p ON p.personId = pe.person_id
+            FROM Users_email AS pe
+            INNER JOIN Users AS p ON p.personId = pe.person_id
             WHERE dbo.cleanEmailDomain(pe.email_address) = @Email AND pe.allow_login = 1
         </cfquery>
         
@@ -461,7 +461,7 @@
         	<cfif PersonInfo.Password EQ "">
             	<cfquery name="updatePersonInfo" datasource="#application.settings.dsn#">
                 	UPDATE 
-                    	ce_person
+                    	Users
                     SET
                     	password = <cfqueryparam value="#Application.UDF.getRandomString()#" cfsqltype="cf_sql_varchar" />
                     WHERE personId = <cfqueryparam value="#PersonInfo.PersonId#" cfsqltype="cf_sql_integer" />
@@ -713,7 +713,7 @@
         
         <!--- UPDATE ALL CURRENT PERSON DEGREE RECORDS TO DELETED --->
         <cfquery name="qDelete" datasource="#Application.Settings.DSN#">
-            UPDATE ce_Person_Degree
+            UPDATE Users_Degree
             SET DeletedFlag='Y'
             WHERE PersonID= <cfqueryparam value="#Arguments.PersonID#" cfsqltype="cf_sql_integer" />
         </cfquery>
@@ -1097,13 +1097,13 @@
         
         
             <cfquery name="DeleteSpecialties" datasource="#Application.Settings.DSN#">
-                DELETE FROM ce_Person_SpecialtyLMS
+                DELETE FROM Users_SpecialtyLMS
                 WHERE PersonID = <cfqueryparam value="#Arguments.PersonID#" cfsqltype="cf_sql_integer" />
             </cfquery>
             
             <cfloop list="#Specialties#" index="SpecialtyID">
                 <cfquery name="SaveSpecialty" datasource="#Application.Settings.DSN#">
-                    INSERT INTO ce_Person_SpecialtyLMS (
+                    INSERT INTO Users_SpecialtyLMS (
                         PersonID,
                         SpecialtyID,
                         Created,
@@ -1306,7 +1306,7 @@
     	<cfargument name="CertName" type="string" required="yes">
         
         <cfquery name="qUpdateDisplayName" datasource="#application.settings.dsn#">
-        	UPDATE ce_Person
+        	UPDATE Users
             SET certName = <cfqueryparam value="#arguments.certName#" cfsqltype="cf_sql_varchar" />
             WHERE personId = <cfqueryparam value="#session.personId#" cfsqltype="cf_sql_integer" />
         </cfquery>

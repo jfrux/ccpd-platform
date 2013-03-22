@@ -11,7 +11,7 @@
 
 		<cfset var qCreate = "" />
 		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
-				INSERT INTO ce_Person_Pref
+				INSERT INTO Users_Pref
 					(
 					PersonID,
 					EmailSpecialtyFlag,
@@ -39,7 +39,7 @@
 					PersonID,
 					EmailSpecialtyFlag,
                     PrimaryEmailId
-				FROM	ce_Person_Pref
+				FROM	Users_Pref
 				WHERE	PersonID = <cfqueryparam value="#arguments.PersonPref.getPersonID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -55,7 +55,7 @@
 
 		<cfset var qUpdate = "" />
 		<cfquery name="qUpdate" datasource="#variables.dsn#">
-				UPDATE	ce_Person_Pref
+				UPDATE	Users_Pref
 				SET
 					PersonID = <cfqueryparam value="#arguments.PersonPref.getPersonID()#" CFSQLType="cf_sql_integer" />,
 					EmailSpecialtyFlag = <cfqueryparam value="#arguments.PersonPref.getEmailSpecialtyFlag()#" CFSQLType="cf_sql_char" null="#not len(arguments.PersonPref.getEmailSpecialtyFlag())#" />,
@@ -71,7 +71,7 @@
 
 		<cfset var qDelete = "">
 		<cfquery name="qDelete" datasource="#variables.dsn#">
-				DELETE FROM	ce_Person_Pref 
+				DELETE FROM	Users_Pref 
 				WHERE	PersonID = <cfqueryparam value="#arguments.PersonPref.getPersonID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -84,7 +84,7 @@
 		<cfset var qExists = "">
 		<cfquery name="qExists" datasource="#variables.dsn#" maxrows="1">
 			SELECT count(1) as idexists
-			FROM	ce_Person_Pref
+			FROM	Users_Pref
 			WHERE	PersonID = <cfqueryparam value="#arguments.PersonPref.getPersonID()#" CFSQLType="cf_sql_integer" />
 		</cfquery>
 

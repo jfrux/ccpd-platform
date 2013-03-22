@@ -3,7 +3,7 @@
 		
 		<!--- NON-RSS MULTI-SESSION PARENTS --->
 		<cfquery name="qParents" datasource="#Application.Settings.DSN#">
-			SELECT * FROM ce_Activity
+			SELECT * FROM Activities
 			WHERE GroupingID <> 2 AND ParentActivityID IS NULL AND DeletedFlag='N' AND SessionType='M'
 			ORDER BY StartDate
 		</cfquery>
@@ -13,14 +13,14 @@
 			START PARENT: #UCase(qParents.Title)#<br>
 			=================================================<br><cfflush>
 			<cfquery name="qChildren" datasource="#Application.Settings.DSN#">
-				SELECT * FROM ce_Activity
+				SELECT * FROM Activities
 				WHERE ParentActivityID = #qParents.ActivityID# AND DeletedFlag='N'
 			</cfquery>
 			
 			<cfif qChildren.RecordCount GT 0>
 				<cfloop query="qChildren">
 					<cfquery name="qUpdate" datasource="#Application.Settings.DSN#">
-						UPDATE ce_Activity
+						UPDATE Activities
 						SET ParentActivityID=NULL,
 							SessionType='S',
 							ActivityTypeID=#qParents.ActivityTypeID#,
@@ -35,7 +35,7 @@
 				
 				<!--- LOGICALLY DELETE PARENT --->
 				<cfquery name="qUpdate" datasource="#Application.Settings.DSN#">
-					UPDATE ce_Activity
+					UPDATE Activities
 					SET
 						Updated=#CreateODBCDateTime(now())#,
 						UpdatedBy=169841,

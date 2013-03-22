@@ -29,7 +29,7 @@
 				UpdatedBy,
 				Deleted,
 				DeletedFlag
-			FROM	ce_Activity_Category
+			FROM	Activities_Category
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"Activity_CategoryID") and len(arguments.Activity_CategoryID)>
@@ -84,9 +84,9 @@
                 A.StartDate,
                 APG.PublishDate,
                 APG.RemoveDate
-            FROM ce_Activity AS A
-            INNER JOIN ce_Activity_PubGeneral APG ON APG.ActivityID = A.ActivityID
-            INNER JOIN ce_Activity_Site ASi ON ASi.ActivityID = A.ActivityID
+            FROM Activities AS A
+            INNER JOIN Activities_PubGeneral APG ON APG.ActivityID = A.ActivityID
+            INNER JOIN Activities_Site ASi ON ASi.ActivityID = A.ActivityID
             WHERE 
                 (ASi.SiteID = 4) AND
                 (A.DeletedFlag = 'N') AND 
@@ -128,8 +128,8 @@
                 a.Title,
                 a.StatAttendees,
                 a.StatMaxRegistrants
-			FROM	ce_Activity_Category ac
-            INNER JOIN ce_Activity a ON a.ActivityID = ac.ActivityID
+			FROM	Activities_Category ac
+            INNER JOIN Activities a ON a.ActivityID = ac.ActivityID
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"Activity_CategoryID") and len(arguments.Activity_CategoryID)>
@@ -195,8 +195,8 @@
                        AC.UpdatedBy, 
                        AC.Deleted, 
 				  AC.DeletedFlag
-			FROM         ce_Activity_Category AS AC INNER JOIN
-				  ce_Category AS C ON AC.CategoryID = C.CategoryID
+			FROM         Activities_Category AS AC INNER JOIN
+				  categories AS C ON AC.CategoryID = C.CategoryID
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"Activity_CategoryID") and len(arguments.Activity_CategoryID)>

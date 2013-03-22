@@ -20,7 +20,7 @@
 				Name,
 				Description,
 				Code
-			FROM	ce_Sys_Ethnicity
+			FROM	sys_ethnicities
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"EthnicityID") and len(arguments.EthnicityID)>

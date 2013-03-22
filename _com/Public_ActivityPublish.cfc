@@ -13,7 +13,7 @@
         
         
             <cfquery name="qUpdateComment" datasource="#Application.Settings.DSN#">
-                UPDATE ce_Comment
+                UPDATE comments
                 SET	ApproveFlag = <cfqueryparam value="Y" cfsqltype="cf_sql_char" />,
                     ApprovedBy = <cfqueryparam value="#Session.PersonID#" cfsqltype="cf_sql_integer" />,
                     DeletedFlag = <cfqueryparam value="N" cfsqltype="cf_sql_char" />,
@@ -44,7 +44,7 @@
     	<cfargument name="CommentID" type="string" required="true">
         
         <cfquery name="qDeleteComment" datasource="#Application.Settings.DSN#">
-        	UPDATE ce_Comment
+        	UPDATE comments
             SET ApproveFlag='N',
             	DeletedFlag = 'Y'
             WHERE CommentID = <cfqueryparam value="#Arguments.CommentID#" cfsqltype="cf_sql_integer" />
@@ -65,7 +65,7 @@
         
         
             <cfquery name="qUpdateComment" datasource="#Application.Settings.DSN#">
-                UPDATE ce_Comment
+                UPDATE comments
                 SET	ApproveFlag = <cfqueryparam value="N" cfsqltype="cf_sql_char" />,
                     DeletedFlag = <cfqueryparam value="Y" cfsqltype="cf_sql_char" />,
                     ApprovedBy = <cfqueryparam NULL />,
@@ -97,7 +97,7 @@
         
         <cfquery name="qSpecialtyInfo" datasource="#Application.Settings.DSN#">
         	SELECT SpecialtyId, Name
-            FROM ce_sys_SpecialtyLMS
+            FROM sys_specialtylms
             ORDER BY Name
         </cfquery>
         
@@ -161,20 +161,20 @@
         
         <cfquery name="qCheckPublishStatus" datasource="#Application.Settings.DSN#">
         	SELECT 	ActivitySiteID
-            FROM ce_Activity_Site
+            FROM Activities_Site
             WHERE	ActivityID = <cfqueryparam value="#Arguments.ActivityID#" cfsqltype="cf_sql_integer" /> AND
             		SiteID = <cfqueryparam value="#Arguments.SiteID#" cfsqltype="cf_sql_integer" />
         </cfquery>
         
         <cfif qCheckPublishStatus.RecordCount GT 0>
         	<cfquery name="qDeletePublishStatus" datasource="#Application.Settings.DSN#">
-            	DELETE FROM ce_Activity_Site
+            	DELETE FROM Activities_Site
                 WHERE	ActivityID = <cfqueryparam value="#Arguments.ActivityID#" cfsqltype="cf_sql_integer" /> AND
                         SiteID = <cfqueryparam value="#Arguments.SiteID#" cfsqltype="cf_sql_integer" />
             </cfquery>
         <cfelse>
         	<cfquery name="qCreatePublishStatus" datasource="#Application.Settings.DSN#">
-            	INSERT INTO ce_Activity_Site 
+            	INSERT INTO Activities_Site 
                 (
                 	ActivityID,
                     SiteID,
@@ -268,7 +268,7 @@
         	<!--- CLEAR ALL PREVIOUS CATEGORIES FOR CURRENT ACTIVITY --->
         	<cfquery name="qDeleteCategories" datasource="#Application.Settings.DSN#">
             	DELETE 
-                FROM ce_Activity_CategoryLMS
+                FROM Activities_CategoryLMS
                 WHERE ActivityID = <cfqueryparam value="#Arguments.ActivityID#" cfsqltype="cf_sql_integer" />
             </cfquery>
         
@@ -481,14 +481,14 @@
 			<!--- CLEAR ALL PREVIOUS SPECIALTIES FOR CURRENT ACTIVITY --->
             <cfquery name="qDeleteSpecialties" datasource="#Application.Settings.DSN#">
                 DELETE 
-                FROM ce_Activity_SpecialtyLMS
+                FROM Activities_SpecialtyLMS
                 WHERE ActivityID = <cfqueryparam value="#Arguments.ActivityID#" cfsqltype="cf_sql_integer" />
             </cfquery>
     
 			<!--- CREATE RECORDS FOR SELECTED SPECIALTIES --->
             <cfloop list="#Arguments.Specialties#" index="CurrSpecialtyID">
                 <cfquery name="SaveSpecialty" datasource="#Application.Settings.DSN#">
-                    INSERT INTO ce_Activity_SpecialtyLMS (
+                    INSERT INTO Activities_SpecialtyLMS (
                         ActivityID,
                         SpecialtyID,
                         Created,
@@ -527,7 +527,7 @@
         
         <cfquery name="UpdateComponent" datasource="#Application.Settings.DSN#">
         	UPDATE 
-            	ce_Activity_PubComponent
+            	Activities_PubComponent
             SET
             	DeletedFlag = 'Y'
             WHERE

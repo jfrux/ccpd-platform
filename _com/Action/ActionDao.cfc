@@ -11,7 +11,7 @@
 
 		<cfset var qCreate = "" />
 		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
-				INSERT INTO ce_Action
+				INSERT INTO actions
 					(
 					ActivityID,
 					PersonID,
@@ -56,7 +56,7 @@
 					HiddenFlag,
 					Created,
 					CreatedBy
-				FROM	ce_Action
+				FROM	actions
 				WHERE	ActionID = <cfqueryparam value="#arguments.Action.getActionID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -72,7 +72,7 @@
 
 		<cfset var qUpdate = "" />
 		<cfquery name="qUpdate" datasource="#variables.dsn#">
-				UPDATE	ce_Action
+				UPDATE	actions
 				SET
 					ActivityID = <cfqueryparam value="#arguments.Action.getActivityID()#" CFSQLType="cf_sql_integer" null="#not len(arguments.Action.getActivityID())#" />,
 					PersonID = <cfqueryparam value="#arguments.Action.getPersonID()#" CFSQLType="cf_sql_integer" null="#not len(arguments.Action.getPersonID())#" />,
@@ -93,7 +93,7 @@
 
 		<cfset var qDelete = "">
 		<cfquery name="qDelete" datasource="#variables.dsn#">
-				DELETE FROM	ce_Action 
+				DELETE FROM	actions 
 				WHERE	ActionID = <cfqueryparam value="#arguments.Action.getActionID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -106,7 +106,7 @@
 		<cfset var qExists = "">
 		<cfquery name="qExists" datasource="#variables.dsn#" maxrows="1">
 			SELECT count(1) as idexists
-			FROM	ce_Action
+			FROM	actions
 			WHERE	ActionID = <cfqueryparam value="#arguments.Action.getActionID()#" CFSQLType="cf_sql_integer" />
 		</cfquery>
 

@@ -30,7 +30,7 @@
 				UpdatedBy,
 				Deleted,
 				DeletedFlag
-			FROM	ce_Activity_SpecialtyLMS
+			FROM	Activities_SpecialtyLMS
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"Activity_LMS_SpecialtyID") and len(arguments.Activity_LMS_SpecialtyID)>

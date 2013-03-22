@@ -31,7 +31,7 @@
 				Updated,
 				Deleted,
 				DeletedFlag
-			FROM	ce_AssessSection
+			FROM	assesssections
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"SectionID") and len(arguments.SectionID)>

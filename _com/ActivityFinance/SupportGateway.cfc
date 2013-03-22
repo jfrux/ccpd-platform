@@ -46,7 +46,7 @@
 				UpdatedBy,
 				Deleted,
 				DeletedFlag
-			FROM	ce_Activity_FinSupport
+			FROM	Activities_FinSupport
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"SupportID") and len(arguments.SupportID)>
@@ -147,11 +147,11 @@
 					p1.lastname AS CreateByLName, 
 					p2.firstname AS UpdatedByFName, 
 		            p2.lastname AS UpdatedByLName
-			FROM	ce_Activity_FinSupport afs
-			LEFT OUTER JOIN ce_Sys_Supporter ss ON ss.ContributorID = afs.SupporterID
-			LEFT OUTER JOIN ce_Sys_SupportType sst ON sst.ContribTypeID = afs.SupportTypeID
-			LEFT OUTER JOIN ce_person AS p1 ON p1.personid = afs.CreatedBy 
-			LEFT OUTER JOIN ce_person AS p2 ON p2.personid = afs.UpdatedBy
+			FROM	Activities_FinSupport afs
+			LEFT OUTER JOIN sys_supporters ss ON ss.ContributorID = afs.SupporterID
+			LEFT OUTER JOIN sys_supporttypes sst ON sst.ContribTypeID = afs.SupportTypeID
+			LEFT OUTER JOIN Users AS p1 ON p1.personid = afs.CreatedBy 
+			LEFT OUTER JOIN Users AS p2 ON p2.personid = afs.UpdatedBy
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"SupportID") and len(arguments.SupportID)>

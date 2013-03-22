@@ -12,7 +12,7 @@
 
 		<cfset var qCreate = "" />
 		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
-				INSERT INTO ce_Sys_Degree
+				INSERT INTO sys_degrees
 					(
 					Name,
 					Abbrev,
@@ -40,7 +40,7 @@
 					Name,
 					Abbrev,
 					Sort
-				FROM	ce_Sys_Degree
+				FROM	sys_degrees
 				WHERE	DegreeID = <cfqueryparam value="#arguments.Degree.getDegreeID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -56,7 +56,7 @@
 
 		<cfset var qUpdate = "" />
 		<cfquery name="qUpdate" datasource="#variables.dsn#">
-				UPDATE	ce_Sys_Degree
+				UPDATE	sys_degrees
 				SET
 					Name = <cfqueryparam value="#arguments.Degree.getName()#" CFSQLType="cf_sql_varchar" />,
 					Abbrev = <cfqueryparam value="#arguments.Degree.getAbbrev()#" CFSQLType="cf_sql_varchar" null="#not len(arguments.Degree.getAbbrev())#" />,
@@ -72,7 +72,7 @@
 
 		<cfset var qDelete = "">
 		<cfquery name="qDelete" datasource="#variables.dsn#">
-				DELETE FROM	ce_Sys_Degree 
+				DELETE FROM	sys_degrees 
 				WHERE	DegreeID = <cfqueryparam value="#arguments.Degree.getDegreeID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -85,7 +85,7 @@
 		<cfset var qExists = "">
 		<cfquery name="qExists" datasource="#variables.dsn#" maxrows="1">
 			SELECT count(1) as idexists
-			FROM	ce_Sys_Degree
+			FROM	sys_degrees
 			WHERE	DegreeID = <cfqueryparam value="#arguments.Degree.getDegreeID()#" CFSQLType="cf_sql_integer" />
 		</cfquery>
 

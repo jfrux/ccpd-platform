@@ -22,7 +22,7 @@
                     <cfloop list="#Arguments.DocList#" index="FileID">
                         <!--- Delete each record --->
                         <cfquery name="qRemoveChecked" datasource="#Application.Settings.DSN#">
-                            UPDATE ce_File
+                            UPDATE files
                             SET DeletedFlag = <cfqueryparam value="Y" cfsqltype="cf_sql_char" />,
                                 UpdatedBy = <cfqueryparam value="#Session.Person.getPersonID()#" cfsqltype="cf_sql_char" />
                             WHERE FileID = <cfqueryparam value="#FileID#" CFSQLType="cf_sql_integer" /> AND ActivityID = <cfqueryparam value="#Arguments.ActivityID#" CFSQLType="cf_sql_integer" />
@@ -69,7 +69,7 @@
                     <cfloop list="#Arguments.DocList#" index="FileID">
                         <!--- Delete each record --->
                         <cfquery name="qRemoveChecked" datasource="#Application.Settings.DSN#">
-                            UPDATE ce_File
+                            UPDATE files
                             SET DeletedFlag = <cfqueryparam value="Y" cfsqltype="cf_sql_char" />,
                                 UpdatedBy = <cfqueryparam value="#Session.Person.getPersonID()#" cfsqltype="cf_sql_char" />
                             WHERE FileID = <cfqueryparam value="#FileID#" CFSQLType="cf_sql_integer" /> AND PersonID = <cfqueryparam value="#Arguments.PersonID#" CFSQLType="cf_sql_integer" />
@@ -123,7 +123,7 @@
                 				
                     <!--- Delete each record --->
                     <cfquery name="qRemoveAll" datasource="#Application.Settings.DSN#">
-                        UPDATE ce_File
+                        UPDATE files
                         SET DeletedFlag = <cfqueryparam value="Y" cfsqltype="cf_sql_char" />,
                             UpdatedBy = <cfqueryparam value="#Session.Person.getPersonID()#" cfsqltype="cf_sql_char" />
                         WHERE ActivityID = <cfqueryparam value="#Arguments.ActivityID#" CFSQLType="cf_sql_integer" />
@@ -153,7 +153,7 @@
                 				
                     <!--- Delete each record --->
                     <cfquery name="qRemoveAll" datasource="#Application.Settings.DSN#">
-                        UPDATE ce_File
+                        UPDATE files
                         SET DeletedFlag = <cfqueryparam value="Y" cfsqltype="cf_sql_char" />,
                             UpdatedBy = <cfqueryparam value="#Session.Person.getPersonID()#" cfsqltype="cf_sql_char" />
                         WHERE PersonID = <cfqueryparam value="#Arguments.PersonID#" CFSQLType="cf_sql_integer" />

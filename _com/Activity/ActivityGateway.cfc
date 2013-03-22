@@ -82,7 +82,7 @@
 				UpdatedBy,
 				Deleted,
 				DeletedFlag
-			FROM	ce_Activity
+			FROM	Activities
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"ActivityID") and len(arguments.ActivityID)>
@@ -254,14 +254,14 @@
 				a.ExternalID,
 				a.Deleted,
 				a.DeletedFlag
-			FROM	ce_Activity a
+			FROM	Activities a
 			WHERE	
             	a.SessionType = 'S'
 				AND (a.StatusID IN (1,2,3))
                 AND a.DeletedFlag = 'N'
                 <cfif structKeyExists(arguments,"AssessTypeID") AND len(arguments.AssessTypeID)>
                     AND (SELECT Count(AssessmentID)
-                         FROM ce_Assessment
+                         FROM assessments
                          WHERE ActivityID = a.ActivityID AND AssessTypeID = <cfqueryparam value="#arguments.AssessTypeID#" cfsqltype="cf_sql_integer" />) > 0
                 </cfif>
 				<cfif structKeyExists(arguments,"StartDate") and len(arguments.StartDate)>
@@ -272,12 +272,12 @@
                 </cfif>
                 <cfif structKeyExists(arguments,"CategoryID") and len(arguments.CategoryID)>
                 	AND (SELECT COUNT(ActivityID)
-                    	 FROM ce_Activity_Category ac
+                    	 FROM Activities_Category ac
                          WHERE ac.ActivityID = a.ActivityID AND ac.CategoryID = <cfqueryparam value="#arguments.CategoryID#" cfsqltype="cf_sql_integer" />) > 0
                 </cfif>
                 <cfif structKeyExists(arguments,"NeedAssessments") and len(arguments.NeedAssessments)>
                 	AND (SELECT COUNT(AssessmentID)
-                    	 FROM ce_Assessment ass
+                    	 FROM assessments ass
                          WHERE ass.ActivityID = a.ActivityID AND ass.DeletedFlag = 'N') > 0
                 </cfif>
             OR		a.SessionType = 'M'
@@ -286,7 +286,7 @@
                 AND a.DeletedFlag = 'N'
                 <cfif structKeyExists(arguments,"AssessTypeID") AND len(arguments.AssessTypeID)>
                     AND (SELECT Count(AssessmentID)
-                         FROM ce_Assessment
+                         FROM assessments
                          WHERE ActivityID = a.ActivityID AND AssessTypeID = <cfqueryparam value="#arguments.AssessTypeID#" cfsqltype="cf_sql_integer" />) > 0
                 </cfif>
 				<cfif structKeyExists(arguments,"StartDate") and len(arguments.StartDate)>
@@ -297,12 +297,12 @@
                 </cfif>
                 <cfif structKeyExists(arguments,"CategoryID") and len(arguments.CategoryID)>
                 	AND (SELECT COUNT(ActivityID)
-                    	 FROM ce_Activity_Category ac
+                    	 FROM Activities_Category ac
                          WHERE ac.ActivityID = a.ActivityID AND ac.CategoryID = <cfqueryparam value="#arguments.CategoryID#" cfsqltype="cf_sql_integer" />) > 0
                 </cfif>
                 <cfif structKeyExists(arguments,"NeedAssessments") and len(arguments.NeedAssessments)>
                 	AND (SELECT COUNT(AssessmentID)
-                    	 FROM ce_Assessment ass
+                    	 FROM assessments ass
                          WHERE ass.ActivityID = a.ActivityID AND ass.DeletedFlag = 'N') > 0
                 </cfif>
 		</cfquery>
@@ -367,9 +367,9 @@
 				a.ExternalID,
 				a.Deleted,
 				a.DeletedFlag
-			FROM	ce_Activity a
-            INNER JOIN ce_Activity_Category ac ON ac.ActivityID = a.ActivityID
-            INNER JOIN ce_Category c ON c.CategoryID = ac.CategoryID
+			FROM	Activities a
+            INNER JOIN Activities_Category ac ON ac.ActivityID = a.ActivityID
+            INNER JOIN categories c ON c.CategoryID = ac.CategoryID
 			WHERE	c.Name = 'STD/HIV'
                 AND a.Sponsorship = 'J'
                 AND a.SessionType = 'M'
@@ -377,7 +377,7 @@
 				AND (a.StatusID IN (1,2,3))
                 <cfif structKeyExists(arguments,"AssessTypeID") AND len(arguments.AssessTypeID)>
                     AND (SELECT Count(AssessmentID)
-                         FROM ce_Assessment
+                         FROM assessments
                          WHERE ActivityID = a.ActivityID AND AssessTypeID = <cfqueryparam value="#arguments.AssessTypeID#" cfsqltype="cf_sql_integer" />) > 0
                 </cfif>
 				<cfif structKeyExists(arguments,"ReleaseDate") and len(arguments.ReleaseDate)>
@@ -393,7 +393,7 @@
 				AND (a.StatusID IN (1,2,3))
                 <cfif structKeyExists(arguments,"AssessTypeID") AND len(arguments.AssessTypeID)>
                     AND (SELECT Count(AssessmentID)
-                         FROM ce_Assessment
+                         FROM assessments
                          WHERE ActivityID = a.ActivityID AND AssessTypeID = <cfqueryparam value="#arguments.AssessTypeID#" cfsqltype="cf_sql_integer" />) > 0
                 </cfif>
 				<cfif structKeyExists(arguments,"ReleaseDate") and len(arguments.ReleaseDate)>
@@ -475,9 +475,9 @@
 				p1.LastName AS CreatedByLName,
 				p2.FirstName AS UpdatedByFName,
 				p2.LastName AS UpdatedByLName
-			FROM	ce_Activity a
-			INNER JOIN ce_Person p1 ON p1.PersonID = a.CreatedBy
-			INNER JOIN ce_Person p2 ON p2.PersonID = a.UpdatedBy
+			FROM	Activities a
+			INNER JOIN Users p1 ON p1.PersonID = a.CreatedBy
+			INNER JOIN Users p2 ON p2.PersonID = a.UpdatedBy
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"ActivityID") and len(arguments.ActivityID)>
@@ -603,12 +603,12 @@
                 C.Deleted, C.DeletedFlag, 
                 S.Name As StatusName, 
                 S.StatusID
-			FROM ce_Sys_Status AS S 
-            RIGHT OUTER JOIN ce_Activity AS C ON S.StatusID = C.StatusID 
-            LEFT OUTER JOIN ce_Sys_ActivityType AS CT ON C.ActivityTypeID = CT.ActivityTypeID 
-            LEFT OUTER JOIN ce_Sys_Grouping AS G ON C.GroupingID = G.GroupingID 
-            LEFT OUTER JOIN ce_person AS P1 ON C.CreatedBy = P1.personid 
-          	LEFT OUTER JOIN ce_person AS P2 ON C.UpdatedBy = P2.personid
+			FROM sys_statuses AS S 
+            RIGHT OUTER JOIN Activities AS C ON S.StatusID = C.StatusID 
+            LEFT OUTER JOIN sys_activitytypes AS CT ON C.ActivityTypeID = CT.ActivityTypeID 
+            LEFT OUTER JOIN sys_groupings AS G ON C.GroupingID = G.GroupingID 
+            LEFT OUTER JOIN Users AS P1 ON C.CreatedBy = P1.personid 
+          	LEFT OUTER JOIN Users AS P2 ON C.UpdatedBy = P2.personid
 			WHERE     (0 = 0)
 		<cfif structKeyExists(arguments,"ActivityTypeID") and len(arguments.ActivityTypeID) AND arguments.ActivityTypeID GT 0>
 			AND	C.ActivityTypeID = <cfqueryparam value="#arguments.ActivityTypeID#" CFSQLType="cf_sql_integer" />
@@ -617,7 +617,7 @@
 			AND	C.GroupingID = <cfqueryparam value="#arguments.GroupingID#" CFSQLType="cf_sql_integer" />
 		</cfif>
 		<cfif structKeyExists(arguments,"CategoryID") and len(arguments.CategoryID) AND arguments.CategoryID GT 0>
-			AND	(SELECT Count(AC.Activity_CategoryID) FROM ce_Activity_Category AC WHERE AC.CategoryID=<cfqueryparam value="#Arguments.CategoryID#" cfsqltype="cf_sql_integer" /> AND AC.DeletedFlag='N' AND AC.ActivityID=C.ActivityID) > 0
+			AND	(SELECT Count(AC.Activity_CategoryID) FROM Activities_Category AC WHERE AC.CategoryID=<cfqueryparam value="#Arguments.CategoryID#" cfsqltype="cf_sql_integer" /> AND AC.DeletedFlag='N' AND AC.ActivityID=C.ActivityID) > 0
 		</cfif>
 		<cfif structKeyExists(arguments,"Title") and len(arguments.Title)>
 			AND	C.Title LIKE <cfqueryparam value="%#arguments.Title#%" CFSQLType="cf_sql_varchar" />
@@ -706,16 +706,16 @@
                         END,
                     <cfif structKeyExists(arguments,"MyPersonID") and len(arguments.MyPersonID) AND arguments.MyPersonID GT 0>
                     ISNULL((SELECT TOP 1 Att3.StatusID
-                              FROM         ce_Attendee Att3
+                              FROM         attendees Att3
                               WHERE (Att3.ActivityID = C.ActivityID) AND (Att3.PersonID = <cfqueryparam value="#Arguments.MyPersonID#" cfsqltype="cf_sql_integer" />)), 0) AS MyStatus
                     <cfelse>
                     0 As MyStatus
                     </cfif>
-                FROM ce_Sys_Status AS S 
-                RIGHT OUTER JOIN ce_Activity AS C ON S.StatusID = C.StatusID 
-                LEFT OUTER JOIN ce_Sys_ActivityType AS CT ON C.ActivityTypeID = CT.ActivityTypeID 
-                LEFT OUTER JOIN ce_Sys_Grouping AS G ON C.GroupingID = G.GroupingID 
-                INNER JOIN ce_Activity_PubGeneral AS ACP ON ACP.ActivityID = C.ActivityID
+                FROM sys_statuses AS S 
+                RIGHT OUTER JOIN Activities AS C ON S.StatusID = C.StatusID 
+                LEFT OUTER JOIN sys_activitytypes AS CT ON C.ActivityTypeID = CT.ActivityTypeID 
+                LEFT OUTER JOIN sys_groupings AS G ON C.GroupingID = G.GroupingID 
+                INNER JOIN Activities_PubGeneral AS ACP ON ACP.ActivityID = C.ActivityID
                 WHERE 
             	((0 = 0)
 				<cfif structKeyExists(arguments,"ActivityTypeID") and len(arguments.ActivityTypeID) AND arguments.ActivityTypeID GT 0>
@@ -725,13 +725,13 @@
                     AND	C.GroupingID = <cfqueryparam value="#arguments.GroupingID#" CFSQLType="cf_sql_integer" />
                 </cfif>
 				<cfif structKeyExists(arguments,"SpecialtyID") and len(arguments.SpecialtyID) AND arguments.SpecialtyID GT 0>
-                    AND	(SELECT Count(Activity_LMS_SpecialtyID) FROM ce_Activity_SpecialtyLMS ActS WHERE ActS.ActivityID=C.ActivityID AND ActS.SpecialtyID = <cfqueryparam value="#arguments.SpecialtyID#" CFSQLType="cf_sql_integer" />) > 0
+                    AND	(SELECT Count(Activity_LMS_SpecialtyID) FROM Activities_SpecialtyLMS ActS WHERE ActS.ActivityID=C.ActivityID AND ActS.SpecialtyID = <cfqueryparam value="#arguments.SpecialtyID#" CFSQLType="cf_sql_integer" />) > 0
                 </cfif>
 				<cfif structKeyExists(arguments,"CategoryLMSID") and len(arguments.CategoryLMSID) AND arguments.CategoryLMSID GT 0>
-                    AND	(SELECT Count(Activity_LMS_CategoryID) FROM ce_Activity_CategoryLMS ActC WHERE ActC.ActivityID=C.ActivityID AND ActC.CategoryID = <cfqueryparam value="#arguments.CategoryLMSID#" CFSQLType="cf_sql_integer" />) > 0
+                    AND	(SELECT Count(Activity_LMS_CategoryID) FROM Activities_CategoryLMS ActC WHERE ActC.ActivityID=C.ActivityID AND ActC.CategoryID = <cfqueryparam value="#arguments.CategoryLMSID#" CFSQLType="cf_sql_integer" />) > 0
                 </cfif>
                 <cfif structKeyExists(arguments,"CategoryID") and len(arguments.CategoryID) AND arguments.CategoryID GT 0>
-                    AND	(SELECT Count(AC.Activity_CategoryID) FROM ce_Activity_Category AC WHERE AC.CategoryID=<cfqueryparam value="#Arguments.CategoryID#" cfsqltype="cf_sql_integer" /> AND AC.DeletedFlag='N' AND AC.ActivityID=C.ActivityID) > 0
+                    AND	(SELECT Count(AC.Activity_CategoryID) FROM Activities_Category AC WHERE AC.CategoryID=<cfqueryparam value="#Arguments.CategoryID#" cfsqltype="cf_sql_integer" /> AND AC.DeletedFlag='N' AND AC.ActivityID=C.ActivityID) > 0
                 </cfif>
                 
                 <cfif structKeyExists(arguments,"Title") and len(arguments.Title)>
@@ -752,7 +752,7 @@
 				<cfif structKeyExists(arguments,"PersonID") and len(arguments.PersonID) AND arguments.PersonID GT 0 AND structKeyExists(arguments,"StatusID") and len(arguments.StatusID) AND arguments.StatusID GT 0>
 					AND 
 						 ((SELECT     COUNT(AttendeeID) AS Expr1
-                              FROM         ce_Attendee
+                              FROM         attendees
                               WHERE     (ActivityID = C.ActivityID) AND (PersonID = <cfqueryparam value="#arguments.PersonID#" CFSQLType="cf_sql_varchar" />) AND (StatusID = <cfqueryparam value="#arguments.StatusID#" CFSQLType="cf_sql_varchar" />)) > 0)
 				</cfif>
 				AND C.DeletedFlag = 'N'
@@ -772,13 +772,13 @@
                     AND	C.GroupingID = <cfqueryparam value="#arguments.GroupingID#" CFSQLType="cf_sql_integer" />
                 </cfif>
 				<cfif structKeyExists(arguments,"SpecialtyID") and len(arguments.SpecialtyID) AND arguments.SpecialtyID GT 0>
-                    AND	(SELECT Count(Activity_LMS_SpecialtyID) FROM ce_Activity_SpecialtyLMS ActS WHERE ActS.ActivityID=C.ActivityID AND ActS.SpecialtyID = <cfqueryparam value="#arguments.SpecialtyID#" CFSQLType="cf_sql_integer" />) > 0
+                    AND	(SELECT Count(Activity_LMS_SpecialtyID) FROM Activities_SpecialtyLMS ActS WHERE ActS.ActivityID=C.ActivityID AND ActS.SpecialtyID = <cfqueryparam value="#arguments.SpecialtyID#" CFSQLType="cf_sql_integer" />) > 0
                 </cfif>
 				<cfif structKeyExists(arguments,"CategoryLMSID") and len(arguments.CategoryLMSID) AND arguments.CategoryLMSID GT 0>
-                    AND	(SELECT Count(Activity_LMS_CategoryID) FROM ce_Activity_CategoryLMS ActC WHERE ActC.ActivityID=C.ActivityID AND ActC.CategoryID = <cfqueryparam value="#arguments.CategoryLMSID#" CFSQLType="cf_sql_integer" />) > 0
+                    AND	(SELECT Count(Activity_LMS_CategoryID) FROM Activities_CategoryLMS ActC WHERE ActC.ActivityID=C.ActivityID AND ActC.CategoryID = <cfqueryparam value="#arguments.CategoryLMSID#" CFSQLType="cf_sql_integer" />) > 0
                 </cfif>
                 <cfif structKeyExists(arguments,"CategoryID") and len(arguments.CategoryID) AND arguments.CategoryID GT 0>
-                    AND	(SELECT Count(AC.Activity_CategoryID) FROM ce_Activity_Category AC WHERE AC.CategoryID=<cfqueryparam value="#Arguments.CategoryID#" cfsqltype="cf_sql_integer" /> AND AC.DeletedFlag='N' AND AC.ActivityID=C.ActivityID) > 0
+                    AND	(SELECT Count(AC.Activity_CategoryID) FROM Activities_Category AC WHERE AC.CategoryID=<cfqueryparam value="#Arguments.CategoryID#" cfsqltype="cf_sql_integer" /> AND AC.DeletedFlag='N' AND AC.ActivityID=C.ActivityID) > 0
                 </cfif>
                
                 <cfif structKeyExists(arguments,"Title") and len(arguments.Title)>
@@ -799,7 +799,7 @@
 				<cfif structKeyExists(arguments,"PersonID") and len(arguments.PersonID) AND arguments.PersonID GT 0 AND structKeyExists(arguments,"StatusID") and len(arguments.StatusID) AND arguments.StatusID GT 0>
 					AND 
 						 ((SELECT     COUNT(AttendeeID) AS Expr1
-                              FROM         ce_Attendee
+                              FROM         attendees
                               WHERE     (ActivityID = C.ActivityID) AND (PersonID = <cfqueryparam value="#arguments.PersonID#" CFSQLType="cf_sql_varchar" />) AND (StatusID = <cfqueryparam value="#arguments.StatusID#" CFSQLType="cf_sql_varchar" />)) > 0)
 				</cfif>
                 AND C.DeletedFlag = 'N'
@@ -886,17 +886,17 @@
                         END,
                     <cfif structKeyExists(arguments,"MyPersonID") and len(arguments.MyPersonID) AND arguments.MyPersonID GT 0>
                     ISNULL((SELECT TOP 1 Att3.StatusID
-                              FROM         ce_Attendee Att3
+                              FROM         attendees Att3
                               WHERE (Att3.ActivityID = C.ActivityID) AND (Att3.PersonID = <cfqueryparam value="#Arguments.MyPersonID#" cfsqltype="cf_sql_integer" />)), 0) AS MyStatus
                     <cfelse>
                     0 As MyStatus
                     </cfif>
-                FROM ce_Attendee AS att 
-                INNER JOIN ce_Activity AS C ON C.ActivityID = att.ActivityID
-                LEFT OUTER JOIN ce_Sys_ActivityType AS CT ON C.ActivityTypeID = CT.ActivityTypeID 
-                LEFT OUTER JOIN ce_Sys_Grouping AS G ON G.GroupingId = C.GroupingId
-                LEFT OUTER JOIN ce_Sys_Status AS S ON S.statusId = C.statusId 
-                LEFT OUTER JOIN ce_Activity_PubGeneral AS ACP ON ACP.ActivityID = C.ActivityID
+                FROM attendees AS att 
+                INNER JOIN Activities AS C ON C.ActivityID = att.ActivityID
+                LEFT OUTER JOIN sys_activitytypes AS CT ON C.ActivityTypeID = CT.ActivityTypeID 
+                LEFT OUTER JOIN sys_groupings AS G ON G.GroupingId = C.GroupingId
+                LEFT OUTER JOIN sys_statuses AS S ON S.statusId = C.statusId 
+                LEFT OUTER JOIN Activities_PubGeneral AS ACP ON ACP.ActivityID = C.ActivityID
                 WHERE 
             	(
                 	(0 = 0)

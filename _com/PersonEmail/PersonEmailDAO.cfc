@@ -12,7 +12,7 @@
 
 		<cfset var qCreate = "" />
 		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
-				INSERT INTO ce_Person_Email
+				INSERT INTO Users_Email
 					(
 					person_id,
 					email_address,
@@ -47,7 +47,7 @@
 					is_verified,
 					verification_key,
 					allow_login
-				FROM	ce_Person_Email
+				FROM	Users_Email
 				WHERE	email_id = <cfqueryparam value="#arguments.PersonEmail.getemail_id()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 		<cfif qRead.recordCount>
@@ -62,7 +62,7 @@
 
 		<cfset var qUpdate = "" />
 		<cfquery name="qUpdate" datasource="#variables.dsn#">
-				UPDATE	ce_Person_Email
+				UPDATE	Users_Email
 				SET
 					person_id = <cfqueryparam value="#arguments.PersonEmail.getperson_id()#" CFSQLType="cf_sql_integer" />,
 					email_address = <cfqueryparam value="#arguments.PersonEmail.getemail_address()#" CFSQLType="cf_sql_varchar" />,
@@ -80,7 +80,7 @@
 
 		<cfset var qDelete = "">
 		<cfquery name="qDelete" datasource="#variables.dsn#">
-				DELETE FROM	ce_Person_Email 
+				DELETE FROM	Users_Email 
 				WHERE	email_id = <cfqueryparam value="#arguments.PersonEmail.getemail_id()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -93,7 +93,7 @@
 		<cfset var qExists = "">
 		<cfquery name="qExists" datasource="#variables.dsn#" maxrows="1">
 			SELECT count(1) as idexists
-			FROM	ce_Person_Email
+			FROM	Users_Email
 			WHERE	email_id = <cfqueryparam value="#arguments.PersonEmail.getemail_id()#" CFSQLType="cf_sql_integer" />
 		</cfquery>
 

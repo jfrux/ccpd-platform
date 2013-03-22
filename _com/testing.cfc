@@ -71,10 +71,10 @@
                     acdc.MarketID,
                     acdc.MSpecify,
                     acdc.SentFlag
-                FROM	ce_Activity act
-                INNER JOIN ce_Attendee att ON att.ActivityID = act.ActivityID
-                INNER JOIN ce_AttendeeCDC acdc ON acdc.AttendeeID = att.AttendeeID
-                INNER JOIN ce_Person p ON p.PersonID = att.PersonID
+                FROM	Activities act
+                INNER JOIN attendees att ON att.ActivityID = act.ActivityID
+                INNER JOIN attendeesCDC acdc ON acdc.AttendeeID = att.AttendeeID
+                INNER JOIN Users p ON p.PersonID = att.PersonID
                 WHERE 	
                     (acdc.SentFlag = 'N') AND 
                     (act.StartDate < @EndDate) AND 

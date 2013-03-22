@@ -12,7 +12,7 @@
 
 		<cfset var qCreate = "" />
 		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
-				INSERT INTO ce_Person_Note
+				INSERT INTO Users_Note
 					(
 					PersonID,
 					Body,
@@ -45,7 +45,7 @@
 					UpdatedBy,
 					Deleted,
 					DeletedFlag
-				FROM	ce_Person_Note
+				FROM	Users_Note
 				WHERE	NoteID = <cfqueryparam value="#arguments.PersonNote.getNoteID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -61,7 +61,7 @@
 
 		<cfset var qUpdate = "" />
 		<cfquery name="qUpdate" datasource="#variables.dsn#">
-				UPDATE	ce_Person_Note
+				UPDATE	Users_Note
 				SET
 					PersonID = <cfqueryparam value="#arguments.PersonNote.getPersonID()#" CFSQLType="cf_sql_integer" />,
 					Body = <cfqueryparam value="#arguments.PersonNote.getBody()#" CFSQLType="cf_sql_varchar" />,
@@ -82,7 +82,7 @@
 
 		<cfset var qDelete = "">
 		<cfquery name="qDelete" datasource="#variables.dsn#">
-				DELETE FROM	ce_Person_Note 
+				DELETE FROM	Users_Note 
 				WHERE	NoteID = <cfqueryparam value="#arguments.PersonNote.getNoteID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -95,7 +95,7 @@
 		<cfset var qExists = "">
 		<cfquery name="qExists" datasource="#variables.dsn#" maxrows="1">
 			SELECT count(1) as idexists
-			FROM	ce_Person_Note
+			FROM	Users_Note
 			WHERE	NoteID = <cfqueryparam value="#arguments.PersonNote.getNoteID()#" CFSQLType="cf_sql_integer" />
 		</cfquery>
 

@@ -28,7 +28,7 @@
 				Updated,
 				Deleted,
 				DeletedFlag
-			FROM	ce_Person_File
+			FROM	Users_File
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"PersonFileID") and len(arguments.PersonFileID)>

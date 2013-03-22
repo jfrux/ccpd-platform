@@ -30,7 +30,7 @@
 				Updated,
 				Deleted,
 				DeletedFlag
-			FROM	ce_AssessResult
+			FROM	assessresults
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"ResultID") and len(arguments.ResultID)>

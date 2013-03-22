@@ -14,9 +14,9 @@
 	<cffunction name="Run" access="remote" output="yes">
 		<cfquery name="ReportData" datasource="#Application.Settings.DSN#">
 			SELECT     A.ActivityID, A.Title, A.StartDate, A.EndDate, Sp.Name AS Category
-			FROM         ce_Activity_CategoryLMS AS S INNER JOIN
-				  ce_Activity AS A ON S.ActivityID = A.ActivityID INNER JOIN
-				  ce_Sys_CategoryLMS AS Sp ON S.CategoryID = Sp.CategoryID
+			FROM         Activities_CategoryLMS AS S INNER JOIN
+				  Activities AS A ON S.ActivityID = A.ActivityID INNER JOIN
+				  sys_categorylms AS Sp ON S.CategoryID = Sp.CategoryID
 			WHERE (A.DeletedFlag = 'N') AND (Sp.CategoryID IN (#Arguments.Categories#)) AND A.StartDate BETWEEN <cfqueryparam value="#Arguments.StartDate# 00:00:00" cfsqltype="cf_sql_varchar" /> AND <cfqueryparam value="#Arguments.EndDate# 23:59:59" cfsqltype="cf_sql_varchar" />
 			ORDER BY A.StartDate
 		</cfquery>

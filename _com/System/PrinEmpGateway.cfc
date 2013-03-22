@@ -19,7 +19,7 @@
 				Name,
 				Description,
 				Created
-			FROM	ce_Sys_PrinEmp
+			FROM	sys_prinemps
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"PrinEmpID") and len(arguments.PrinEmpID)>

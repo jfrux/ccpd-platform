@@ -11,7 +11,7 @@
 
 		<cfset var qCreate = "" />
 		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
-				INSERT INTO ce_Sys_Market
+				INSERT INTO sys_markets
 					(
 					Name,
 					Description
@@ -37,7 +37,7 @@
 					Name,
 					Description,
 					Created
-				FROM	ce_Sys_Market
+				FROM	sys_markets
 				WHERE	MarketID = <cfqueryparam value="#arguments.Market.getMarketID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -53,7 +53,7 @@
 
 		<cfset var qUpdate = "" />
 		<cfquery name="qUpdate" datasource="#variables.dsn#">
-				UPDATE	ce_Sys_Market
+				UPDATE	sys_markets
 				SET
 					Name = <cfqueryparam value="#arguments.Market.getName()#" CFSQLType="cf_sql_varchar" null="#not len(arguments.Market.getName())#" />,
 					Description = <cfqueryparam value="#arguments.Market.getDescription()#" CFSQLType="cf_sql_varchar" null="#not len(arguments.Market.getDescription())#" />,
@@ -69,7 +69,7 @@
 
 		<cfset var qDelete = "">
 		<cfquery name="qDelete" datasource="#variables.dsn#">
-				DELETE FROM	ce_Sys_Market 
+				DELETE FROM	sys_markets 
 				WHERE	MarketID = <cfqueryparam value="#arguments.Market.getMarketID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -82,7 +82,7 @@
 		<cfset var qExists = "">
 		<cfquery name="qExists" datasource="#variables.dsn#" maxrows="1">
 			SELECT count(1) as idexists
-			FROM	ce_Sys_Market
+			FROM	sys_markets
 			WHERE	MarketID = <cfqueryparam value="#arguments.Market.getMarketID()#" CFSQLType="cf_sql_integer" />
 		</cfquery>
 

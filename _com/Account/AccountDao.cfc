@@ -12,7 +12,7 @@
 
 		<cfset var qCreate = "" />
 		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
-				INSERT INTO ce_Account
+				INSERT INTO accounts
 					(
 					PersonID,
 					UserID,
@@ -44,7 +44,7 @@
 					Updated,
 					Deleted,
 					DeletedFlag
-				FROM	ce_Account
+				FROM	accounts
 				WHERE	AccountID = <cfqueryparam value="#arguments.Account.getAccountID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 		
@@ -61,7 +61,7 @@
 
 		<cfset var qUpdate = "" />
 		<cfquery name="qUpdate" datasource="#variables.dsn#">
-				UPDATE	ce_Account
+				UPDATE	accounts
 				SET
 					PersonID = <cfqueryparam value="#arguments.Account.getPersonID()#" CFSQLType="cf_sql_integer" null="#not len(arguments.Account.getPersonID())#" />,
 					UserID = <cfqueryparam value="#arguments.Account.getUserID()#" CFSQLType="cf_sql_integer" null="#not len(arguments.Account.getUserID())#" />,
@@ -81,7 +81,7 @@
 
 		<cfset var qDelete = "">
 		<cfquery name="qDelete" datasource="#variables.dsn#">
-				DELETE FROM	ce_Account 
+				DELETE FROM	accounts 
 				WHERE	AccountID = <cfqueryparam value="#arguments.Account.getAccountID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -94,7 +94,7 @@
 		<cfset var qExists = "">
 		<cfquery name="qExists" datasource="#variables.dsn#" maxrows="1">
 			SELECT count(1) as idexists
-			FROM	ce_Account
+			FROM	accounts
 			WHERE	AccountID = <cfqueryparam value="#arguments.Account.getAccountID()#" CFSQLType="cf_sql_integer" />
 		</cfquery>
 

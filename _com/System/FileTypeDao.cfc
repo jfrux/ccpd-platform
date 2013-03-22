@@ -11,7 +11,7 @@
 
 		<cfset var qCreate = "" />
 		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
-				INSERT INTO ce_Sys_FileType
+				INSERT INTO sys_filetypes
 					(
 					Name,
 					Description
@@ -36,7 +36,7 @@
 					FileTypeID,
 					Name,
 					Description
-				FROM	ce_Sys_FileType
+				FROM	sys_filetypes
 				WHERE	FileTypeID = <cfqueryparam value="#arguments.FileType.getFileTypeID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -52,7 +52,7 @@
 
 		<cfset var qUpdate = "" />
 		<cfquery name="qUpdate" datasource="#variables.dsn#">
-				UPDATE	ce_Sys_FileType
+				UPDATE	sys_filetypes
 				SET
 					Name = <cfqueryparam value="#arguments.FileType.getName()#" CFSQLType="cf_sql_varchar" />,
 					Description = <cfqueryparam value="#arguments.FileType.getDescription()#" CFSQLType="cf_sql_varchar" null="#not len(arguments.FileType.getDescription())#" />
@@ -67,7 +67,7 @@
 
 		<cfset var qDelete = "">
 		<cfquery name="qDelete" datasource="#variables.dsn#">
-				DELETE FROM	ce_Sys_FileType 
+				DELETE FROM	sys_filetypes 
 				WHERE	FileTypeID = <cfqueryparam value="#arguments.FileType.getFileTypeID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -80,7 +80,7 @@
 		<cfset var qExists = "">
 		<cfquery name="qExists" datasource="#variables.dsn#" maxrows="1">
 			SELECT count(1) as idexists
-			FROM	ce_Sys_FileType
+			FROM	sys_filetypes
 			WHERE	FileTypeID = <cfqueryparam value="#arguments.FileType.getFileTypeID()#" CFSQLType="cf_sql_integer" />
 		</cfquery>
 

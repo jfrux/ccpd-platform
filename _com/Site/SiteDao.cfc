@@ -11,7 +11,7 @@
 
 		<cfset var qCreate = "" />
 		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
-				INSERT INTO ce_Sys_SiteLMS
+				INSERT INTO sys_sitelms
 					(
 					Name,
 					NameShort,
@@ -56,7 +56,7 @@
 					UpdatedBy,
 					Deleted,
 					DeletedFlag
-				FROM	ce_Sys_SiteLMS
+				FROM	sys_sitelms
 				WHERE	SiteID = <cfqueryparam value="#arguments.Site.getSiteID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -72,7 +72,7 @@
 
 		<cfset var qUpdate = "" />
 		<cfquery name="qUpdate" datasource="#variables.dsn#">
-				UPDATE	ce_Sys_SiteLMS
+				UPDATE	sys_sitelms
 				SET
 					Name = <cfqueryparam value="#arguments.Site.getName()#" CFSQLType="cf_sql_varchar" />,
 					NameShort = <cfqueryparam value="#arguments.Site.getNameShort()#" CFSQLType="cf_sql_varchar" />,
@@ -97,7 +97,7 @@
 
 		<cfset var qDelete = "">
 		<cfquery name="qDelete" datasource="#variables.dsn#">
-				DELETE FROM	ce_Sys_SiteLMS 
+				DELETE FROM	sys_sitelms 
 				WHERE	SiteID = <cfqueryparam value="#arguments.Site.getSiteID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -110,7 +110,7 @@
 		<cfset var qExists = "">
 		<cfquery name="qExists" datasource="#variables.dsn#" maxrows="1">
 			SELECT count(1) as idexists
-			FROM	ce_Sys_SiteLMS
+			FROM	sys_sitelms
 			WHERE	SiteID = <cfqueryparam value="#arguments.Site.getSiteID()#" CFSQLType="cf_sql_integer" />
 		</cfquery>
 

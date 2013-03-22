@@ -12,7 +12,7 @@
 
 		<cfset var qCreate = "" />
 		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
-				INSERT INTO ce_Activity_FinFee
+				INSERT INTO Activities_FinFee
 					(
 					ActivityID,
 					Name,
@@ -57,7 +57,7 @@
 					UpdatedBy,
 					Deleted,
 					DeletedFlag
-				FROM	ce_Activity_FinFee
+				FROM	Activities_FinFee
 				WHERE	FeeID = <cfqueryparam value="#arguments.Fee.getFeeID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -73,7 +73,7 @@
 
 		<cfset var qUpdate = "" />
 		<cfquery name="qUpdate" datasource="#variables.dsn#">
-				UPDATE	ce_Activity_FinFee
+				UPDATE	Activities_FinFee
 				SET
 					ActivityID = <cfqueryparam value="#arguments.Fee.getActivityID()#" CFSQLType="cf_sql_integer" />,
 					Name = <cfqueryparam value="#arguments.Fee.getName()#" CFSQLType="cf_sql_varchar" />,
@@ -98,7 +98,7 @@
 
 		<cfset var qDelete = "">
 		<cfquery name="qDelete" datasource="#variables.dsn#">
-				DELETE FROM	ce_Activity_FinFee 
+				DELETE FROM	Activities_FinFee 
 				WHERE	FeeID = <cfqueryparam value="#arguments.Fee.getFeeID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -111,7 +111,7 @@
 		<cfset var qExists = "">
 		<cfquery name="qExists" datasource="#variables.dsn#" maxrows="1">
 			SELECT count(1) as idexists
-			FROM	ce_Activity_FinFee
+			FROM	Activities_FinFee
 			WHERE	FeeID = <cfqueryparam value="#arguments.Fee.getFeeID()#" CFSQLType="cf_sql_integer" />
 		</cfquery>
 

@@ -19,7 +19,7 @@
 				Name,
 				Description,
 				Code
-			FROM	ce_Sys_AddressType
+			FROM	sys_addresstypes
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"AddressTypeID") and len(arguments.AddressTypeID)>

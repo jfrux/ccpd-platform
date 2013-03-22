@@ -11,7 +11,7 @@
 
 		<cfset var qCreate = "" />
 		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
-				INSERT INTO ce_Sys_CBAFund
+				INSERT INTO sys_cbafunds
 					(
 					Name,
 					Description
@@ -37,7 +37,7 @@
 					Name,
 					Description,
 					Created
-				FROM	ce_Sys_CBAFund
+				FROM	sys_cbafunds
 				WHERE	CBAFundID = <cfqueryparam value="#arguments.CBAFund.getCBAFundID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -53,7 +53,7 @@
 
 		<cfset var qUpdate = "" />
 		<cfquery name="qUpdate" datasource="#variables.dsn#">
-				UPDATE	ce_Sys_CBAFund
+				UPDATE	sys_cbafunds
 				SET
 					Name = <cfqueryparam value="#arguments.CBAFund.getName()#" CFSQLType="cf_sql_varchar" null="#not len(arguments.CBAFund.getName())#" />,
 					Description = <cfqueryparam value="#arguments.CBAFund.getDescription()#" CFSQLType="cf_sql_varchar" null="#not len(arguments.CBAFund.getDescription())#" />,
@@ -69,7 +69,7 @@
 
 		<cfset var qDelete = "">
 		<cfquery name="qDelete" datasource="#variables.dsn#">
-				DELETE FROM	ce_Sys_CBAFund 
+				DELETE FROM	sys_cbafunds 
 				WHERE	CBAFundID = <cfqueryparam value="#arguments.CBAFund.getCBAFundID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -82,7 +82,7 @@
 		<cfset var qExists = "">
 		<cfquery name="qExists" datasource="#variables.dsn#" maxrows="1">
 			SELECT count(1) as idexists
-			FROM	ce_Sys_CBAFund
+			FROM	sys_cbafunds
 			WHERE	CBAFundID = <cfqueryparam value="#arguments.CBAFund.getCBAFundID()#" CFSQLType="cf_sql_integer" />
 		</cfquery>
 

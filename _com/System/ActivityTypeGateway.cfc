@@ -27,7 +27,7 @@
 				Updated,
 				Deleted,
 				DeletedFlag
-			FROM	ce_Sys_ActivityType
+			FROM	sys_activitytypes
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"ActivityTypeID") and len(arguments.ActivityTypeID)>

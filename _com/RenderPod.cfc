@@ -33,8 +33,8 @@
 			
 			WITH CTE_MostRecent (HistoryStyleID,FromPersonID,ToActivityID,ToPersonID,LeastRecentID,LeastRecentDate,MostRecentID,MostRecentDate) AS
 			(SELECT     TOP (@RecordCount)  H.HistoryStyleID,H.FromPersonID,H.ToActivityID,H.ToPersonID,MIN(H.HistoryID) AS LeastRecentID, MIN(H.Created) AS LeastRecentDate,MAX(H.HistoryID) AS MostRecentID, MAX(H.Created) AS MostRecentDate
-			FROM          ce_History AS H INNER JOIN
-			ce_Sys_HistoryStyle AS HS ON H.HistoryStyleID = HS.HistoryStyleID
+			FROM          histories AS H INNER JOIN
+			sys_historystyles AS HS ON H.HistoryStyleID = HS.HistoryStyleID
 			WHERE     0=0
 			<cfif isNumeric(Arguments.FromPerson) AND Arguments.FromPerson GT 0> AND (H.FromPersonID = @FromPerson)</cfif>
 			<cfif isNumeric(Arguments.NotFromPerson) AND Arguments.NotFromPerson GT 0> AND (H.FromPersonID <> @NotFromPerson)</cfif>

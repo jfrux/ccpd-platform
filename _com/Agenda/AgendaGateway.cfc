@@ -35,7 +35,7 @@
 				UpdatedBy,
 				Deleted,
 				DeletedFlag
-			FROM	ce_Agenda
+			FROM	agendas
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"AgendaID") and len(arguments.AgendaID)>

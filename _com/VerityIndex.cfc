@@ -6,7 +6,7 @@
 		<cfsetting requesttimeout="120" />
 		<cfquery name="qActivityIndex" datasource="#Application.Settings.DSN#">
 			SELECT ActivityID AS ObjectID,'Activity' As ObjectType,Title,ReleaseDate,ActivityTypeID,GroupingID,'ActivityID=' + CAST(ActivityID AS nvarchar) As IndexKey,'/index.cfm/event/Activity.Detail?ActivityID=' + CAST(ActivityID AS nvarchar) As URLPath
-			FROM ce_Activity
+			FROM Activities
 			WHERE DeletedFlag='N'
 		</cfquery>
 		
@@ -57,8 +57,8 @@
 			<cfset qNewAttendees = QueryNew("FirstName,LastName,UCID,PersonID")>
 			<cfquery name="qAttendees" datasource="#Application.Settings.DSN#">
 				SELECT     p1.firstname, p1.lastname, p1.UCID, ac.PersonID
-				FROM         ce_Attendee AS ac LEFT OUTER JOIN
-				  dbo.ce_person AS p1 ON p1.personid = ac.PersonID
+				FROM         attendees AS ac LEFT OUTER JOIN
+				  dbo.Users AS p1 ON p1.personid = ac.PersonID
 				WHERE ac.ActivityID=#qIndex.ObjectID# AND ac.DeletedFlag='N'
 			</cfquery>
 			
@@ -90,13 +90,13 @@
 	<cffunction name="IndexFiles" access="remote" output="yes">
 		<cfquery name="qFileIndex" datasource="#Application.Settings.DSN#">
 			SELECT FileID AS ObjectID,'Activity File' As ObjectType,FileName + ' ' + FileCaption As FileTitle,'C:\Sites\ccpdadmin-prod\_uploads\ActivityFiles\' + CAST(ActivityID AS nvarchar) + '\' + FileName As IndexKey,'/index.cfm/event/File.Download?Mode=Activity&ModeID=' + CAST(ActivityID AS nvarchar) + '&ID=' + CAST(FileID AS nvarchar) As URLPath
-			FROM ce_File
+			FROM files
 			WHERE ActivityID IS NOT NULL AND DeletedFlag='N'
 			
 			UNION
 			
 			SELECT FileID AS ObjectID,'Person File' As ObjectType,FileName + ' ' + FileCaption As FileTitle,'C:\Sites\ccpdadmin-prod\_uploads\PersonFiles\' + CAST(PersonID AS nvarchar) + '\' + FileName As IndexKey,'/index.cfm/event/File.Download?Mode=Person&ModeID=' + CAST(PersonID AS nvarchar) + '&ID=' + CAST(FileID AS nvarchar) As URLPath
-			FROM ce_File
+			FROM files
 			WHERE PersonID IS NOT NULL AND DeletedFlag='N'
 		</cfquery>
 		

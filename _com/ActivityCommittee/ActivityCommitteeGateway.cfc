@@ -28,7 +28,7 @@
 				Updated,
 				Deleted,
 				DeletedFlag
-			FROM	ce_Activity_Committee
+			FROM	Activities_Committee
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"CommitteeID") and len(arguments.CommitteeID)>
@@ -87,9 +87,9 @@
 				p1.FirstName,
 				p1.LastName,
 				p1.Gender
-			FROM	ce_Activity_Committee ac 
-			LEFT OUTER JOIN ce_person AS p1 ON p1.personid = ac.PersonID
-            LEFT OUTER JOIN ce_Sys_Role AS sr ON sr.RoleID = ac.RoleID
+			FROM	Activities_Committee ac 
+			LEFT OUTER JOIN Users AS p1 ON p1.personid = ac.PersonID
+            LEFT OUTER JOIN sys_roles AS sr ON sr.RoleID = ac.RoleID
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"CommitteeID") and len(arguments.CommitteeID)>

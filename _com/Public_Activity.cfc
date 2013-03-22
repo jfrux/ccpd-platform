@@ -10,7 +10,7 @@
 		<cfargument name="activityId" type="numeric" required="yes" />
 		
 		<cfquery name="qRefresh" datasource="#application.settings.dsn#">
-			UPDATE ce_Activity
+			UPDATE Activities
 			SET refreshFlag=1
 			WHERE activityId=<cfqueryparam value="#arguments.activityId#" cfsqltype="cf_sql_integer" />
 		</cfquery>
@@ -24,7 +24,7 @@
 		
 		<cfquery name="qList" datasource="#Application.Settings.DSN#">
         	SELECT DISTINCT TOP #Arguments.Limit# Title 
-            FROM ce_Activity 
+            FROM Activities 
             WHERE Title LIKE <cfqueryparam value="#Arguments.q#%" cfsqltype="cf_sql_varchar" /> AND DeletedFlag='N'
 		</cfquery>
 		<cfsavecontent variable="ResultArray"><cfoutput><cfloop query="qList">#qList.Title#<cfif qList.RecordCount NEQ qList.CurrentRow>#Chr(10)#</cfif></cfloop></cfoutput></cfsavecontent>
@@ -40,11 +40,11 @@
 		
 		<cfquery name="qList" datasource="#Application.Settings.DSN#">
 			SELECT DISTINCT TOP #Arguments.Limit# C.Title 
-			FROM ce_Sys_Status AS S 
-            RIGHT OUTER JOIN ce_Activity AS C ON S.StatusID = C.StatusID 
-            LEFT OUTER JOIN ce_Sys_ActivityType AS CT ON C.ActivityTypeID = CT.ActivityTypeID 
-            LEFT OUTER JOIN ce_Sys_Grouping AS G ON C.GroupingID = G.GroupingID
-            INNER JOIN ce_Activity_PubGeneral AS ACP ON ACP.ActivityID = C.ActivityID
+			FROM sys_statuses AS S 
+            RIGHT OUTER JOIN Activities AS C ON S.StatusID = C.StatusID 
+            LEFT OUTER JOIN sys_activitytypes AS CT ON C.ActivityTypeID = CT.ActivityTypeID 
+            LEFT OUTER JOIN sys_groupings AS G ON C.GroupingID = G.GroupingID
+            INNER JOIN Activities_PubGeneral AS ACP ON ACP.ActivityID = C.ActivityID
 			WHERE 
             	(
                 C.Title LIKE <cfqueryparam value="%#Arguments.q#%" cfsqltype="cf_sql_varchar" /> AND 
@@ -326,7 +326,7 @@
         <cfset status.setStatusMsg("Failed for unknown reason.")>
 		
 		<cfquery name="qCheck" datasource="#Application.Settings.DSN#">
-			SELECT CategoryID FROM ce_Category
+			SELECT CategoryID FROM categories
 			WHERE Name='#Arguments.Name#'
 		</cfquery>
 		
@@ -404,7 +404,7 @@
 			<cfset AgendaBean = Application.Com.AgendaDAO.read(AgendaBean)>
             
             <cfquery name="qDelete" datasource="#Application.Settings.DSN#">
-                DELETE ce_Agenda WHERE AgendaID=<cfqueryparam value="#Arguments.AgendaID#" cfsqltype="cf_sql_integer" />
+                DELETE agendas WHERE AgendaID=<cfqueryparam value="#Arguments.AgendaID#" cfsqltype="cf_sql_integer" />
             </cfquery>
             
             <!--- ACTION UPDATER --->
@@ -442,7 +442,7 @@
 		
 			<!--- Delete each record --->
 			<cfquery name="qRemove" datasource="#Application.Settings.DSN#">
-				UPDATE ce_Activity_Category
+				UPDATE Activities_Category
 				SET DeletedFlag = <cfqueryparam value="Y" cfsqltype="cf_sql_char" />,Deleted=#CreateODBCDateTime(now())#,
 					UpdatedBy = <cfqueryparam value="#Session.Person.getPersonID()#" cfsqltype="cf_sql_char" />
 				WHERE CategoryID = <cfqueryparam value="#CategoryID#" CFSQLType="cf_sql_integer" /> AND ActivityID = <cfqueryparam value="#Arguments.ActivityID#" CFSQLType="cf_sql_integer" />
@@ -483,7 +483,7 @@
             <cfset Attributes.Deleted = CreateODBCDateTime(Now())>
             
             <cfquery name="qDeleteNote" datasource="#Application.Settings.DSN#">
-                UPDATE ce_Activity_Note
+                UPDATE Activities_Note
                 SET DeletedFlag = <cfqueryparam value="Y" cfsqltype="cf_sql_char">,
                     Deleted = <cfqueryparam value="#Attributes.Deleted#" cfsqltype="cf_sql_timestamp">,
                     UpdatedBy = <cfqueryparam value="#Session.Person.getPersonID()#" cfsqltype="cf_sql_integer">
@@ -541,21 +541,21 @@
                     <cfif CertType NEQ "Participation">
                     ,ac.Amount AS TotalAmount,
                     (SELECT TOP 1 attc.Amount
-                     FROM ce_AttendeeCredit attc
+                     FROM attendeesCredit attc
                      WHERE (attc.AttendeeID = a.AttendeeID) AND (attc.CreditID = <cfqueryparam value="#CurrCreditID#" cfsqltype="cf_sql_integer" />)) AS CreditAmount,
                     (SELECT TOP 1 attc.ReferenceNo
-                     FROM ce_AttendeeCredit attc
+                     FROM attendeesCredit attc
                      WHERE (attc.AttendeeID = a.AttendeeID) AND (attc.CreditID = <cfqueryparam value="#CurrCreditID#" cfsqltype="cf_sql_integer" />)) AS ReferenceNumber,
                     sc.Name AS CreditName
                     </cfif>
-            FROM ce_Attendee a
-            INNER JOIN ce_Person p ON p.PersonID = a.PersonID
+            FROM attendees a
+            INNER JOIN Users p ON p.PersonID = a.PersonID
             <cfif CertType NEQ "Participation">
-                INNER JOIN ce_Activity_Credit ac ON ac.ActivityID = a.ActivityID
-                INNER JOIN ce_Sys_Credit sc ON sc.CreditID = ac.CreditID
+                INNER JOIN Activities_Credit ac ON ac.ActivityID = a.ActivityID
+                INNER JOIN sys_credits sc ON sc.CreditID = ac.CreditID
             </cfif>
-            INNER JOIN ce_Activity act ON act.ActivityID = a.ActivityID
-            LEFT JOIN ce_Sys_state s ON s.StateId = act.State
+            INNER JOIN Activities act ON act.ActivityID = a.ActivityID
+            LEFT JOIN sys_states s ON s.StateId = act.State
             WHERE 
                 <cfif IsDefined("Attributes.PersonID")>
                     a.PersonID IN (#Attributes.PersonID#) AND
@@ -608,13 +608,13 @@
 			(CASE A.SessionType
 				WHEN 'M' THEN 
 					isNull((SELECT SUM(AC.Amount) AS TotalHours
-							FROM ce_Activity_Credit AS AC 
-							INNER JOIN ce_Activity AS A4 ON AC.ActivityID = A4.ActivityID
+							FROM Activities_Credit AS AC 
+							INNER JOIN Activities AS A4 ON AC.ActivityID = A4.ActivityID
 							WHERE (AC.CreditID = 1) AND (A4.ParentActivityID = A.ActivityID) AND AC.DeletedFlag='N' AND (A4.StatusID IN (1,2,3))),0)
 				WHEN 'S' THEN 
 					isNull((SELECT SUM(AC.Amount) AS TotalHours
-							FROM ce_Activity_Credit AS AC 
-							INNER JOIN ce_Activity AS A4 ON AC.ActivityID = A4.ActivityID
+							FROM Activities_Credit AS AC 
+							INNER JOIN Activities AS A4 ON AC.ActivityID = A4.ActivityID
 							WHERE (AC.CreditID = 1) AND (A4.ActivityID = A.ActivityID) AND AC.DeletedFlag='N' AND (A4.StatusID IN (1,2,3))),0)
 			END),
 			StatAttendees = 
@@ -623,21 +623,21 @@
 						CASE
 							WHEN isNull(A.ParentActivityID,0) = 0 THEN
 								(SELECT Count(Att.AttendeeID)
-								 FROM ce_Attendee AS Att 
-								 INNER JOIN ce_Activity AS A2 ON Att.ActivityID = A2.ActivityID
+								 FROM attendees AS Att 
+								 INNER JOIN Activities AS A2 ON Att.ActivityID = A2.ActivityID
 								 WHERE 
 									(Att.StatusID = 1) AND (A2.ParentActivityID = A.ActivityID) AND (A2.StatusID IN (1,2,3)) AND (Att.CompleteDate BETWEEN A2.StartDate AND DATEADD(n, 1439, A2.EndDate)) AND (Att.DeletedFlag='N'))
 							ELSE
 								(SELECT Count(Att.AttendeeID)
-								 FROM ce_Attendee AS Att 
-								 INNER JOIN ce_Activity AS A2 ON Att.ActivityID = A2.ActivityID
+								 FROM attendees AS Att 
+								 INNER JOIN Activities AS A2 ON Att.ActivityID = A2.ActivityID
 								 WHERE 
 									(Att.StatusID = 1) AND (A2.ActivityID = A.ActivityID) AND (A2.StatusID IN (1,2,3)) AND (Att.CompleteDate BETWEEN A2.StartDate AND DATEADD(n, 1439, A2.EndDate)) AND (Att.DeletedFlag='N'))
 						END
 					WHEN 'S' THEN
 						(SELECT Count(Att.AttendeeID)
-						 FROM ce_Attendee AS Att 
-						 INNER JOIN ce_Activity AS A2 ON Att.ActivityID = A2.ActivityID
+						 FROM attendees AS Att 
+						 INNER JOIN Activities AS A2 ON Att.ActivityID = A2.ActivityID
 						 WHERE 
 							(Att.StatusID = 1) AND (Att.ActivityID = a.ActivityID) AND (A2.StatusID IN (1,2,3)) AND (Att.CompleteDate BETWEEN A2.StartDate AND DATEADD(n, 1439, A2.EndDate)) AND (Att.DeletedFlag='N'))
 				END),
@@ -647,21 +647,21 @@
 						CASE
 							WHEN isNull(A.ParentActivityID,0) = 0 THEN
 								(SELECT Count(Att.AttendeeID)
-								 FROM ce_Attendee AS Att 
-								 INNER JOIN ce_Activity AS A2 ON Att.ActivityID = A2.ActivityID
+								 FROM attendees AS Att 
+								 INNER JOIN Activities AS A2 ON Att.ActivityID = A2.ActivityID
 								 WHERE 
 									(Att.StatusID = 1) AND (A2.ParentActivityID = A.ActivityID) AND (Att.MDflag = 'Y') AND (A2.StatusID IN (1,2,3)) AND (Att.CompleteDate BETWEEN A2.StartDate AND DATEADD(n, 1439, A2.EndDate)) AND (Att.DeletedFlag='N'))
 							ELSE
 								(SELECT Count(Att.AttendeeID)
-								 FROM ce_Attendee AS Att 
-								 INNER JOIN ce_Activity AS A2 ON Att.ActivityID = A2.ActivityID
+								 FROM attendees AS Att 
+								 INNER JOIN Activities AS A2 ON Att.ActivityID = A2.ActivityID
 								 WHERE 
 									(Att.StatusID = 1) AND (A2.ActivityID = A.ActivityID) AND (Att.MDflag = 'Y') AND (A2.StatusID IN (1,2,3)) AND (Att.CompleteDate BETWEEN A2.StartDate AND DATEADD(n, 1439, A2.EndDate)) AND (Att.DeletedFlag='N'))
 						END
 					WHEN 'S' THEN
 						(SELECT Count(Att.AttendeeID)
-						 FROM ce_Attendee AS Att 
-						 INNER JOIN ce_Activity AS A2 ON Att.ActivityID = A2.ActivityID
+						 FROM attendees AS Att 
+						 INNER JOIN Activities AS A2 ON Att.ActivityID = A2.ActivityID
 						 WHERE 
 							(Att.StatusID = 1) AND (Att.ActivityID = a.ActivityID) AND (Att.MDflag = 'Y') AND (A2.StatusID IN (1,2,3)) AND (Att.CompleteDate BETWEEN A2.StartDate AND DATEADD(n, 1439, A2.EndDate)) AND (Att.DeletedFlag='N'))
 				END),
@@ -671,26 +671,26 @@
 						CASE
 							WHEN isNull(A.ParentActivityID,0) = 0 THEN
 								(SELECT Count(Att.AttendeeID)
-								 FROM ce_Attendee AS Att 
-								 INNER JOIN ce_Activity AS A2 ON Att.ActivityID = A2.ActivityID
+								 FROM attendees AS Att 
+								 INNER JOIN Activities AS A2 ON Att.ActivityID = A2.ActivityID
 								 WHERE 
 									(Att.StatusID = 1) AND (A2.ParentActivityID = A.ActivityID) AND (Att.MDflag = 'N') AND (A2.StatusID IN (1,2,3)) AND (Att.CompleteDate BETWEEN A2.StartDate AND DATEADD(n, 1439, A2.EndDate)) AND (Att.DeletedFlag='N'))
 							ELSE
 								(SELECT Count(Att.AttendeeID)
-								 FROM ce_Attendee AS Att 
-								 INNER JOIN ce_Activity AS A2 ON Att.ActivityID = A2.ActivityID
+								 FROM attendees AS Att 
+								 INNER JOIN Activities AS A2 ON Att.ActivityID = A2.ActivityID
 								 WHERE 
 									(Att.StatusID = 1) AND (A2.ActivityID = A.ActivityID) AND (Att.MDflag = 'N') AND (A2.StatusID IN (1,2,3)) AND (Att.CompleteDate BETWEEN A2.StartDate AND DATEADD(n, 1439, A2.EndDate)) AND (Att.DeletedFlag='N'))
 						END
 					WHEN 'S' THEN
 						(SELECT Count(Att.AttendeeID)
-						 FROM ce_Attendee AS Att 
-						 INNER JOIN ce_Activity AS A2 ON Att.ActivityID = A2.ActivityID
+						 FROM attendees AS Att 
+						 INNER JOIN Activities AS A2 ON Att.ActivityID = A2.ActivityID
 						 WHERE 
 							(Att.StatusID = 1) AND (Att.ActivityID = a.ActivityID) AND (Att.MDflag = 'N') AND (A2.StatusID IN (1,2,3)) AND (Att.CompleteDate BETWEEN A2.StartDate AND DATEADD(n, 1439, A2.EndDate)) AND (Att.DeletedFlag='N'))
 				END)
 		FROM 
-			ce_Activity A
+			Activities A
 		WHERE
 			(A.StatusID IN (1, 2, 3)) AND
 			(A.DeletedFlag = 'N')
@@ -726,7 +726,7 @@
 				<cfset stats['nonmd'] = qSelector.StatNonMD />
 			</cfif>
 			<cfquery name="qUpdater" datasource="#Application.Settings.DSN#">
-				UPDATE ce_Activity
+				UPDATE Activities
 				SET 
 					StatCMEHours=#stats.hrs#,
 					StatAttendees=#stats.attendees#,
@@ -749,7 +749,7 @@
         
         <cfquery name="qActivitySpecialties" datasource="#Application.Settings.DSN#">
         	SELECT SpecialtyID
-            FROM ce_Activity_SpecialtyLMS
+            FROM Activities_SpecialtyLMS
             WHERE ActivityID = <cfqueryparam value="#Arguments.ActivityID#" cfsqltype="cf_sql_integer" /> AND DeletedFlag = 'N'
         </cfquery>
         
@@ -769,7 +769,7 @@
         	SELECT
             	GroupingID, Name
             FROM 
-            	ce_Sys_Grouping
+            	sys_groupings
             WHERE 
             	ActivityTypeID = <cfqueryparam value="#Arguments.ATID#" cfsqltype="cf_sql_integer" />
         </cfquery>
@@ -792,7 +792,7 @@
         
         <cfquery name="NoteInfo" datasource="#Application.Settings.DSN#">
         	SELECT COUNT(NoteID) AS NoteCount
-            FROM ce_Activity_Note
+            FROM Activities_Note
             WHERE ActivityID = <cfqueryparam value="#Arguments.ActivityID#" cfsqltype="cf_sql_integer" /> AND DeletedFlag = 'N'
         </cfquery>
         
@@ -806,7 +806,7 @@
         
         <cfquery name="qActivityInfo" datasource="#Application.Settings.DSN#">
         	SELECT COUNT(ActivityID) AS activityCount
-            FROM ce_Activity_Category 
+            FROM Activities_Category 
             WHERE 
             	ActivityID = <cfqueryparam value="#arguments.ActivityID#" cfsqltype="cf_sql_integer" /> AND
             	CategoryID IN(31,162,196)
@@ -827,7 +827,7 @@
 		
 		<cfquery name="qList" datasource="#Application.Settings.DSN#">
 			SELECT DISTINCT TOP #Arguments.Limit# Sponsor
-			FROM ce_Activity
+			FROM Activities
 			WHERE Sponsor LIKE <cfqueryparam value="#Arguments.q#%" cfsqltype="cf_sql_varchar" />
 			ORDER BY Sponsor
 		</cfquery>
@@ -1119,13 +1119,13 @@
 			
 				<cfquery name="qFindCategory" datasource="#Application.Settings.DSN#">
 					SELECT DeletedFlag
-					FROM ce_Activity_Category
+					FROM Activities_Category
 					WHERE CategoryID = <cfqueryparam value="#Arguments.CategoryID#" CFSQLType="cf_sql_integer" /> AND ActivityID = <cfqueryparam value="#Arguments.ActivityID#" CFSQLType="cf_sql_integer" />
 				</cfquery>
 				
 				<cfif qFindCategory.RecordCount LTE 0>
 					<cfquery name="addCategory" datasource="#Application.Settings.DSN#">
-						INSERT INTO ce_Activity_Category
+						INSERT INTO Activities_Category
 							(
 							ActivityID,
 							CategoryID,
@@ -1163,7 +1163,7 @@
 					<cfif qFindCategory.RecordCount EQ 1 AND qFindCategory.DeletedFlag EQ 'Y'>
 						<!--- If a record exists but DeletedFlag EQ Y then it is updated to N --->
 						<cfquery name="qUpdateDeletedFlag" datasource="#Application.Settings.DSN#">
-							UPDATE ce_Activity_Category
+							UPDATE Activities_Category
 							SET DeletedFlag = <cfqueryparam value="N" cfsqltype="cf_sql_char" />,
 								UpdatedBy = <cfqueryparam value="#Session.Person.getPersonID()#" cfsqltype="cf_sql_integer" />
 							WHERE CategoryID = <cfqueryparam value="#CategoryID#" CFSQLType="cf_sql_integer" /> AND ActivityID = <cfqueryparam value="#Arguments.ActivityID#" CFSQLType="cf_sql_integer" />
@@ -1588,7 +1588,7 @@
 				
 				<cfif Arguments.Flag EQ "Y">
 					<cfquery name="qSet" datasource="#Application.Settings.DSN#">
-						UPDATE ce_Activity_Application
+						UPDATE Activities_Application
 						SET #Arguments.Field#Flag='Y',
 							#Arguments.Field#Date=<cfqueryparam value="#Arguments.AppDate#" cfsqltype="cf_sql_date" />
 						WHERE ActivityID=<cfqueryparam value="#Arguments.ActivityID#" cfsqltype="cf_sql_integer" />
@@ -1600,7 +1600,7 @@
 								ToActivityID=Arguments.ActivityID)>
 				<cfelse>
 					<cfquery name="qSet" datasource="#Application.Settings.DSN#">
-						UPDATE ce_Activity_Application
+						UPDATE Activities_Application
 						SET #Arguments.Field#Flag='N',
 							#Arguments.Field#Date=<cfqueryparam null />
 						WHERE ActivityID=<cfqueryparam value="#Arguments.ActivityID#" cfsqltype="cf_sql_integer" />

@@ -11,7 +11,7 @@
 
 		<cfset var qCreate = "" />
 		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
-				INSERT INTO ce_Sys_AssessType
+				INSERT INTO sys_assesstypes
 					(
 					Name,
 					Description
@@ -36,7 +36,7 @@
 					AssessTypeID,
 					Name,
 					Description
-				FROM	ce_Sys_AssessType
+				FROM	sys_assesstypes
 				WHERE	AssessTypeID = <cfqueryparam value="#arguments.AssessType.getAssessTypeID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -52,7 +52,7 @@
 
 		<cfset var qUpdate = "" />
 		<cfquery name="qUpdate" datasource="#variables.dsn#">
-				UPDATE	ce_Sys_AssessType
+				UPDATE	sys_assesstypes
 				SET
 					Name = <cfqueryparam value="#arguments.AssessType.getName()#" CFSQLType="cf_sql_varchar" null="#not len(arguments.AssessType.getName())#" />,
 					Description = <cfqueryparam value="#arguments.AssessType.getDescription()#" CFSQLType="cf_sql_varchar" null="#not len(arguments.AssessType.getDescription())#" />
@@ -67,7 +67,7 @@
 
 		<cfset var qDelete = "">
 		<cfquery name="qDelete" datasource="#variables.dsn#">
-				DELETE FROM	ce_Sys_AssessType 
+				DELETE FROM	sys_assesstypes 
 				WHERE	AssessTypeID = <cfqueryparam value="#arguments.AssessType.getAssessTypeID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -80,7 +80,7 @@
 		<cfset var qExists = "">
 		<cfquery name="qExists" datasource="#variables.dsn#" maxrows="1">
 			SELECT count(1) as idexists
-			FROM	ce_Sys_AssessType
+			FROM	sys_assesstypes
 			WHERE	AssessTypeID = <cfqueryparam value="#arguments.AssessType.getAssessTypeID()#" CFSQLType="cf_sql_integer" />
 		</cfquery>
 

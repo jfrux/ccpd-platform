@@ -52,7 +52,7 @@
 			<cfinvoke component="Listing" method="Get" 
 				PageSize="#Arguments.PageSize#" 
 				PageIndex="#Arguments.PageIndex#"
-				TableName="ce_Person"
+				TableName="Users"
 				Columns="PersonID,FirstName,LastName,Email1,Birthdate"
 				QueryFilter="#sWhere#" SortField="LastName,FirstName" PrimaryKey="PersonID" returnvariable="qPeople">
 		</cfif>

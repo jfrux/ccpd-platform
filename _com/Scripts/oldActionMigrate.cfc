@@ -47,7 +47,7 @@ SELECT
 		
 	
 	ToPersonID = PersonID, ToActivityID = ActivityID, FromPersonID = CreatedBy,ToContent = LongName,PostDate = Created
-FROM ce_Action
+FROM actions
 WHERE ShortName IS NOT NULL AND ShortName <> '' AND MovedFlag='N'
 ORDER BY ShortName
 		</cfquery>
@@ -80,7 +80,7 @@ ORDER BY ShortName
 				)>
 				
 				<cfquery name="qUpdate" datasource="#Application.Settings.DSN#">
-					UPDATE ce_Action
+					UPDATE actions
 					SET MovedFlag='Y'
 					WHERE ActionID=<cfqueryparam value="#qActions.ActionID#" cfsqltype="cf_sql_integer" />
 				</cfquery>
@@ -119,7 +119,7 @@ SELECT
 		
 	
 	ToPersonID = PersonID, ToActivityID = ActivityID, FromPersonID = CreatedBy,ToContent = LongName,Created
-FROM ce_Action
+FROM actions
 WHERE ShortName IS NOT NULL AND ShortName <> '' AND MovedFlag='N'
 ORDER BY ShortName
 		</cfquery>

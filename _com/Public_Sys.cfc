@@ -54,7 +54,7 @@
         
         <cfquery name="CategoryInfo" datasource="#Application.Settings.DSN#">
         	SELECT Name
-            FROM ce_Sys_CategoryLMS
+            FROM sys_categorylms
             WHERE CategoryID = <cfqueryparam value="#Arguments.CategoryID#" cfsqltype="cf_sql_integer" />
         </cfquery>
         
@@ -68,7 +68,7 @@
         
         <cfquery name="SpecialtyInfo" datasource="#Application.Settings.DSN#">
         	SELECT Name
-            FROM ce_Sys_SpecialtyLMS
+            FROM sys_specialtylms
             WHERE SpecialtyID = <cfqueryparam value="#Arguments.SpecialtyID#" cfsqltype="cf_sql_integer" />
         </cfquery>
         
@@ -146,7 +146,7 @@
 		<!--- Query if the New Supporter already exists --->
         <cfquery name="qSupporter" datasource="#Application.Settings.DSN#">
             SELECT ContributorID, Name, DeletedFlag
-            FROM ce_Sys_Supporter
+            FROM sys_supporters
             WHERE Name = <cfqueryparam value="#Arguments.original_name#" cfsqltype="cf_sql_varchar">
         </cfquery>
         <!--- Checks if this is a new supporter --->
@@ -169,7 +169,7 @@
         <cfelseif qSupporter.RecordCount EQ 1>
             <!--- Updates the DB record to have DeletedFlag=N --->
             <cfquery name="qUpdateSupporter" datasource="#Application.Settings.DSN#">
-                UPDATE ce_Sys_Supporter
+                UPDATE sys_supporters
                 SET name = <cfqueryparam value="#Arguments.SupporterName#" cfsqltype="cf_sql_varchar">,
                     DeletedFlag = <cfqueryparam value="N" cfsqltype="cf_sql_char">,
                     Description = <cfqueryparam value="#Arguments.SupporterDescrip#" cfsqltype="cf_sql_varchar">
@@ -210,7 +210,7 @@
         
         <cfif CategoryExists>
             <cfquery name="qUpdateCategory" datasource="#Application.Settings.DSN#">
-                UPDATE ce_Sys_CategoryLMS
+                UPDATE sys_categorylms
                 SET Name = <cfqueryparam value="#Arguments.UpdatedCategoryName#" cfsqltype="cf_sql_varchar" />
                 WHERE CategoryID = <cfqueryparam value="#Arguments.CategoryID#" cfsqltype="cf_sql_integer" />
             </cfquery>
@@ -235,7 +235,7 @@
         
         <cfif SpecialtyExists>
             <cfquery name="qUpdateSpecialty" datasource="#Application.Settings.DSN#">
-                UPDATE ce_Sys_SpecialtyLMS
+                UPDATE sys_specialtylms
                 SET Name = <cfqueryparam value="#Arguments.UpdatedSpecialtyName#" cfsqltype="cf_sql_varchar" />
                 WHERE SpecialtyID = <cfqueryparam value="#Arguments.SpecialtyID#" cfsqltype="cf_sql_integer" />
             </cfquery>

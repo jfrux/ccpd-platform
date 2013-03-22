@@ -21,7 +21,7 @@
 				SpecialtyID,
 				Created,
 				DeletedFlag
-			FROM	ce_Person_SpecialtyLMS
+			FROM	Users_SpecialtyLMS
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"PersonSpecialtyID") and len(arguments.PersonSpecialtyID)>

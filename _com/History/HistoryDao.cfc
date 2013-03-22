@@ -11,7 +11,7 @@
 
 		<cfset var qCreate = "" />
 		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
-				INSERT INTO ce_History
+				INSERT INTO histories
 					(
 					HistoryStyleID,
 					HistoryHTML,
@@ -55,7 +55,7 @@
 					ToSiteID,
 					Created,
 					HiddenFlag
-				FROM	ce_History
+				FROM	histories
 				WHERE	HistoryID = <cfqueryparam value="#arguments.History.getHistoryID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -71,7 +71,7 @@
 
 		<cfset var qUpdate = "" />
 		<cfquery name="qUpdate" datasource="#variables.dsn#">
-				UPDATE	ce_History
+				UPDATE	histories
 				SET
 					HistoryStyleID = <cfqueryparam value="#arguments.History.getHistoryStyleID()#" CFSQLType="cf_sql_integer" />,
 					HistoryHTML = <cfqueryparam value="#arguments.History.getHistoryHTML()#" CFSQLType="cf_sql_varchar" null="#not len(arguments.History.getHistoryHTML())#" />,
@@ -93,7 +93,7 @@
 
 		<cfset var qDelete = "">
 		<cfquery name="qDelete" datasource="#variables.dsn#">
-				DELETE FROM	ce_History 
+				DELETE FROM	histories 
 				WHERE	HistoryID = <cfqueryparam value="#arguments.History.getHistoryID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -106,7 +106,7 @@
 		<cfset var qExists = "">
 		<cfquery name="qExists" datasource="#variables.dsn#" maxrows="1">
 			SELECT count(1) as idexists
-			FROM	ce_History
+			FROM	histories
 			WHERE	HistoryID = <cfqueryparam value="#arguments.History.getHistoryID()#" CFSQLType="cf_sql_integer" />
 		</cfquery>
 

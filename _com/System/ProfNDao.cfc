@@ -11,7 +11,7 @@
 
 		<cfset var qCreate = "" />
 		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
-				INSERT INTO ce_Sys_ProfN
+				INSERT INTO sys_profns
 					(
 					Name,
 					Description
@@ -37,7 +37,7 @@
 					Name,
 					Description,
 					Created
-				FROM	ce_Sys_ProfN
+				FROM	sys_profns
 				WHERE	ProfNID = <cfqueryparam value="#arguments.ProfN.getProfNID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -53,7 +53,7 @@
 
 		<cfset var qUpdate = "" />
 		<cfquery name="qUpdate" datasource="#variables.dsn#">
-				UPDATE	ce_Sys_ProfN
+				UPDATE	sys_profns
 				SET
 					Name = <cfqueryparam value="#arguments.ProfN.getName()#" CFSQLType="cf_sql_varchar" null="#not len(arguments.ProfN.getName())#" />,
 					Description = <cfqueryparam value="#arguments.ProfN.getDescription()#" CFSQLType="cf_sql_varchar" null="#not len(arguments.ProfN.getDescription())#" />,
@@ -69,7 +69,7 @@
 
 		<cfset var qDelete = "">
 		<cfquery name="qDelete" datasource="#variables.dsn#">
-				DELETE FROM	ce_Sys_ProfN 
+				DELETE FROM	sys_profns 
 				WHERE	ProfNID = <cfqueryparam value="#arguments.ProfN.getProfNID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -82,7 +82,7 @@
 		<cfset var qExists = "">
 		<cfquery name="qExists" datasource="#variables.dsn#" maxrows="1">
 			SELECT count(1) as idexists
-			FROM	ce_Sys_ProfN
+			FROM	sys_profns
 			WHERE	ProfNID = <cfqueryparam value="#arguments.ProfN.getProfNID()#" CFSQLType="cf_sql_integer" />
 		</cfquery>
 

@@ -31,7 +31,7 @@
 				UpdatedBy,
 				Deleted,
 				DeletedFlag
-			FROM	ce_Category
+			FROM	categories
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"CategoryID") and len(arguments.CategoryID)>
@@ -98,11 +98,11 @@
 				cat.UpdatedBy,
 				cat.Deleted,
 				cat.DeletedFlag
-			FROM	ce_Category cat
+			FROM	categories cat
 			WHERE	
             (SELECT COUNT(CategoryID)
-             FROM ce_Activity_Category ac
-             INNER JOIN ce_Activity act ON act.ActivityID = ac.ActivityID
+             FROM Activities_Category ac
+             INNER JOIN Activities act ON act.ActivityID = ac.ActivityID
              WHERE ac.CategoryID = cat.CategoryID AND ac.DeletedFlag='N' AND (act.StartDate BETWEEN <cfqueryparam value="#DateFormat(DateAdd('yyyy',-1,Now()),'MM/DD/YYYY')#" cfsqltype="cf_sql_date" /> AND <cfqueryparam value="#DateFormat(DateAdd('m',4,Now()))#" cfsqltype="cf_sql_date" />)) > 0
 		
 		<cfif structKeyExists(arguments,"CategoryID") and len(arguments.CategoryID)>
@@ -159,7 +159,7 @@
 				UpdatedBy,
 				Deleted,
 				DeletedFlag
-			FROM	ce_Category
+			FROM	categories
 			WHERE CategoryID IN (<cfif Arguments.TheList EQ "">0<cfelse>#Arguments.TheList#</cfif>)
 		
 		<cfif structKeyExists(arguments, "orderby") and len(arguments.orderBy)>

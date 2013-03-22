@@ -33,7 +33,7 @@
 				UpdatedBy,
 				Deleted,
 				DeletedFlag
-			FROM	ce_Activity_Credit
+			FROM	Activities_Credit
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"Activity_CreditID") and len(arguments.Activity_CreditID)>
@@ -107,8 +107,8 @@
 				ac.Deleted,
 				ac.DeletedFlag,
                 c.Name AS CreditName
-			FROM	ce_Activity_Credit AS ac
-            INNER JOIN ce_Sys_Credit AS c ON c.CreditID = ac.CreditID
+			FROM	Activities_Credit AS ac
+            INNER JOIN sys_credits AS c ON c.CreditID = ac.CreditID
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"Activity_CreditID") and len(arguments.Activity_CreditID)>

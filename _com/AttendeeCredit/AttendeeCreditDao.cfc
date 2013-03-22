@@ -12,7 +12,7 @@
 
 		<cfset var qCreate = "" />
 		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
-				INSERT INTO ce_AttendeeCredit
+				INSERT INTO attendeesCredit
 					(
 					AttendeeID,
 					CreditID,
@@ -51,7 +51,7 @@
 					UpdatedBy,
 					Deleted,
 					DeletedFlag
-				FROM	ce_AttendeeCredit
+				FROM	attendeesCredit
 				WHERE	AttendeeID = <cfqueryparam value="#arguments.AttendeeCredit.getAttendeeID()#" CFSQLType="cf_sql_integer" />
                 <cfif Arguments.AttendeeCredit.getCreditID() NEQ "">
                 	AND CreditID = <cfqueryparam value="#arguments.AttendeeCredit.getCreditID()#" cfsqltype="cf_sql_integer" />
@@ -83,7 +83,7 @@
 					UpdatedBy,
 					Deleted,
 					DeletedFlag
-				FROM	ce_AttendeeCredit
+				FROM	attendeesCredit
 				WHERE	AttendeeID = <cfqueryparam value="#arguments.AttendeeCredit.getAttendeeID()#" CFSQLType="cf_sql_integer" />
                 <cfif Arguments.AttendeeCredit.getCreditID() NEQ "">
                 	AND CreditID = <cfqueryparam value="#arguments.AttendeeCredit.getCreditID()#" cfsqltype="cf_sql_integer" />
@@ -102,7 +102,7 @@
 
 		<cfset var qUpdate = "" />
 		<cfquery name="qUpdate" datasource="#variables.dsn#">
-				UPDATE	ce_AttendeeCredit
+				UPDATE	attendeesCredit
 				SET
 					AttendeeID = <cfqueryparam value="#arguments.AttendeeCredit.getAttendeeID()#" CFSQLType="cf_sql_integer" />,
 					CreditID = <cfqueryparam value="#arguments.AttendeeCredit.getCreditID()#" CFSQLType="cf_sql_integer" />,
@@ -128,7 +128,7 @@
 
 		<cfset var qUpdate = "" />
 		<cfquery name="qUpdate" datasource="#variables.dsn#">
-				UPDATE	ce_AttendeeCredit
+				UPDATE	attendeesCredit
 				SET
 					AttendeeID = <cfqueryparam value="#arguments.AttendeeCredit.getAttendeeID()#" CFSQLType="cf_sql_integer" />,
 					CreditID = <cfqueryparam value="#arguments.AttendeeCredit.getCreditID()#" CFSQLType="cf_sql_integer" />,
@@ -156,7 +156,7 @@
 
 		<cfset var qDelete = "">
 		<cfquery name="qDelete" datasource="#variables.dsn#">
-				DELETE FROM	ce_AttendeeCredit 
+				DELETE FROM	attendeesCredit 
 				WHERE	AttendeeID = <cfqueryparam value="#arguments.AttendeeCredit.getAttendeeID()#" CFSQLType="cf_sql_integer" />
                 <cfif Arguments.AttendeeCredit.getCreditID() NEQ "">
                 	AND CreditID = <cfqueryparam value="#arguments.AttendeeCredit.getCreditID()#" cfsqltype="cf_sql_integer" />
@@ -172,7 +172,7 @@
 		<cfset var qExists = "">
 		<cfquery name="qExists" datasource="#variables.dsn#" maxrows="1">
 			SELECT count(1) as idexists
-			FROM	ce_AttendeeCredit
+			FROM	attendeesCredit
 			WHERE	AttendeeID = <cfqueryparam value="#arguments.AttendeeCredit.getAttendeeID()#" CFSQLType="cf_sql_integer" />
 			<cfif Arguments.AttendeeCredit.getCreditID() NEQ "">
                 AND CreditID = <cfqueryparam value="#arguments.AttendeeCredit.getCreditID()#" cfsqltype="cf_sql_integer" />

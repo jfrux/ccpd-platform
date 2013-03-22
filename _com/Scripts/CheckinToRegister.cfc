@@ -6,7 +6,7 @@
         
 		<cfquery name="AttendeeList" datasource="#Application.Settings.DSN#">
         	SELECT AttendeeID, CheckIn
-            FROM ce_Attendee
+            FROM attendees
             WHERE  ActivityID = <cfqueryparam value="#Arguments.ActivityID#" cfsqltype="cf_sql_integer" /> AND DeletedFlag = 'N' AND RegisterDate IS NULL
         </cfquery>
         
@@ -26,7 +26,7 @@
         <cfargument name="CheckInDate" type="date" required="yes">
         
         <cfquery name="UpdateAttendee" datasource="#Application.Settings.DSN#">
-        	UPDATE ce_Attendee
+        	UPDATE attendees
             SET RegisterDate = <cfqueryparam value="#Arguments.CheckInDate#" cfsqltype="cf_sql_timestamp" />
             WHERE AttendeeID = <cfqueryparam value="#Arguments.AttendeeID#" cfsqltype="cf_sql_integer" />
         </cfquery>

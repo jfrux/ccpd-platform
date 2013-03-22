@@ -11,7 +11,7 @@
 
 		<cfset var qCreate = "" />
 		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
-				INSERT INTO ce_Sys_Credit
+				INSERT INTO sys_credits
 					(
 					Name,
 					Description,
@@ -46,7 +46,7 @@
 					Updated,
 					Deleted,
 					DeletedFlag
-				FROM	ce_Sys_Credit
+				FROM	sys_credits
 				WHERE	CreditID = <cfqueryparam value="#arguments.Credit.getCreditID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -62,7 +62,7 @@
 
 		<cfset var qUpdate = "" />
 		<cfquery name="qUpdate" datasource="#variables.dsn#">
-				UPDATE	ce_Sys_Credit
+				UPDATE	sys_credits
 				SET
 					Name = <cfqueryparam value="#arguments.Credit.getName()#" CFSQLType="cf_sql_varchar" null="#not len(arguments.Credit.getName())#" />,
 					Description = <cfqueryparam value="#arguments.Credit.getDescription()#" CFSQLType="cf_sql_varchar" null="#not len(arguments.Credit.getDescription())#" />,
@@ -83,7 +83,7 @@
 
 		<cfset var qDelete = "">
 		<cfquery name="qDelete" datasource="#variables.dsn#">
-				DELETE FROM	ce_Sys_Credit 
+				DELETE FROM	sys_credits 
 				WHERE	CreditID = <cfqueryparam value="#arguments.Credit.getCreditID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -96,7 +96,7 @@
 		<cfset var qExists = "">
 		<cfquery name="qExists" datasource="#variables.dsn#" maxrows="1">
 			SELECT count(1) as idexists
-			FROM	ce_Sys_Credit
+			FROM	sys_credits
 			WHERE	CreditID = <cfqueryparam value="#arguments.Credit.getCreditID()#" CFSQLType="cf_sql_integer" />
 		</cfquery>
 

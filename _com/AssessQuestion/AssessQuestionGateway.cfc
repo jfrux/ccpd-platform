@@ -99,7 +99,7 @@
 				Updated,
 				Deleted,
 				DeletedFlag
-			FROM	ce_AssessQuestion
+			FROM	assessquestions
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"QuestionID") and len(arguments.QuestionID)>
@@ -337,9 +337,9 @@
 				AQ.Deleted,
 				AQ.DeletedFlag,
                 AQT.Name,
-                (SELECT COUNT(aa.answerId) FROM ce_AssessAnswer AS aa WHERE aa.questionId = AQ.questionId) AS answerCount
-			FROM         ce_AssessQuestion AS AQ 
-			INNER JOIN ce_Sys_AssessQuestionType AS AQT ON AQ.QuestionTypeID = aqt.QuestionTypeID 
+                (SELECT COUNT(aa.answerId) FROM assessanswers AS aa WHERE aa.questionId = AQ.questionId) AS answerCount
+			FROM         assessquestions AS AQ 
+			INNER JOIN sys_assessquestiontypes AS AQT ON AQ.QuestionTypeID = aqt.QuestionTypeID 
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"QuestionID") and len(arguments.QuestionID)>

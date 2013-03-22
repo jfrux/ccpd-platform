@@ -32,7 +32,7 @@
 				UpdatedBy,
 				Deleted,
 				DeletedFlag
-			FROM	ce_AssessTmpl
+			FROM	assesstmpls
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"AssessTmplID") and len(arguments.AssessTmplID)>

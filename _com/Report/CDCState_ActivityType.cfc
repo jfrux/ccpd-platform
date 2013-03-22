@@ -19,21 +19,21 @@
             SET @StartDate = <cfqueryparam value="#DateFormat(Arguments.StartDate, 'MM/DD/YYYY')#" cfsqltype="cf_sql_date" />;
             SET @EndDate = <cfqueryparam value="#DateFormat(Arguments.EndDate, 'MM/DD/YYYY')#" cfsqltype="cf_sql_date" />;
             SET @Container = (SELECT CategoryID
-                              FROM ce_Category
+                              FROM categories
                               WHERE Name = 'STD/HIV');
                 
            WITH DistinctAttendees (AttendeeID) 
 			AS (
 				SELECT AttendeeID
-				FROM ce_Attendee AS A 
-				INNER JOIN ce_Activity_Category AS AC ON AC.ActivityID = A.ActivityID
-				INNER JOIN ce_Activity AS Act ON Act.ActivityID = A.ActivityID
+				FROM attendees AS A 
+				INNER JOIN Activities_Category AS AC ON AC.ActivityID = A.ActivityID
+				INNER JOIN Activities AS Act ON Act.ActivityID = A.ActivityID
 				WHERE   AC.CategoryID = @Container AND 
 						(Act.StartDate BETWEEN @StartDate AND @EndDate) AND 
 						a.DeletedFlag = 'N' AND 
 						act.StatusID IN (1,2,3) AND
                         (SELECT COUNT(AC2.Activity_CategoryID)
-                         FROM ce_Activity_Category AC2
+                         FROM Activities_Category AC2
                          WHERE AC2.ActivityID = ACT.ActivityID AND AC2.CategoryID IN (162,196) AND AC2.DeletedFlag = 'N') = 0
 			)
 			
@@ -41,12 +41,12 @@
 					s.Name,
 					(SELECT	COUNT(att.AttendeeID)
 					 FROM DistinctAttendees att
-					 INNER JOIN ce_AttendeeCDC a ON a.AttendeeID = att.AttendeeID
+					 INNER JOIN attendeesCDC a ON a.AttendeeID = att.AttendeeID
 					 WHERE (a.WorkState = s.StateID)) AS AttendeeCount
 			FROM pd_State s
 			WHERE (SELECT	COUNT(att.AttendeeID)
 					 FROM DistinctAttendees att
-					 INNER JOIN ce_AttendeeCDC a ON a.AttendeeID = att.AttendeeID
+					 INNER JOIN attendeesCDC a ON a.AttendeeID = att.AttendeeID
 					 WHERE (a.WorkState = s.StateID)) > 0
 			ORDER BY s.Name
         </cfquery>
@@ -59,15 +59,15 @@
             SET @StartDate = <cfqueryparam value="#DateFormat(Arguments.StartDate, 'MM/DD/YYYY')#" cfsqltype="cf_sql_date" />;
             SET @EndDate = <cfqueryparam value="#DateFormat(Arguments.EndDate, 'MM/DD/YYYY')#" cfsqltype="cf_sql_date" />;
             SET @Container = (SELECT CategoryID
-                              FROM ce_Category
+                              FROM categories
                               WHERE Name = 'STD/HIV');
                 
             WITH DistinctAttendees (AttendeeID) 
 			AS (
 				SELECT AttendeeID
-				FROM ce_Attendee AS A 
-				INNER JOIN ce_Activity_Category AS AC ON AC.ActivityID = A.ActivityID
-				INNER JOIN ce_Activity AS Act ON Act.ActivityID = A.ActivityID
+				FROM attendees AS A 
+				INNER JOIN Activities_Category AS AC ON AC.ActivityID = A.ActivityID
+				INNER JOIN Activities AS Act ON Act.ActivityID = A.ActivityID
 				WHERE 
 				AC.CategoryID IN (162,196) AND
 						(Act.StartDate BETWEEN @StartDate AND @EndDate) AND 
@@ -79,12 +79,12 @@
 					s.Name,
 					(SELECT	COUNT(att.AttendeeID)
 					 FROM DistinctAttendees att
-					 INNER JOIN ce_AttendeeCDC a ON a.AttendeeID = att.AttendeeID
+					 INNER JOIN attendeesCDC a ON a.AttendeeID = att.AttendeeID
 					 WHERE (a.WorkState = s.StateID)) AS AttendeeCount
 			FROM pd_State s
 			WHERE (SELECT	COUNT(att.AttendeeID)
 					 FROM DistinctAttendees att
-					 INNER JOIN ce_AttendeeCDC a ON a.AttendeeID = att.AttendeeID
+					 INNER JOIN attendeesCDC a ON a.AttendeeID = att.AttendeeID
 					 WHERE (a.WorkState = s.StateID)) > 0
 			ORDER BY s.Name
         </cfquery>

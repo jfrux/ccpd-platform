@@ -12,7 +12,7 @@
 
 		<cfset var qCreate = "" />
 		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
-				INSERT INTO ce_Activity_Prereq
+				INSERT INTO Activities_Prereq
 					(
 					ActivityID,
 					PrereqID,
@@ -41,7 +41,7 @@
 					PrereqID,
 					Created,
 					CreatedBy
-				FROM	ce_Activity_Prereq
+				FROM	Activities_Prereq
 				WHERE	ActivityPrereqID = <cfqueryparam value="#arguments.ActivityPrereq.getActivityPrereqID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -57,7 +57,7 @@
 
 		<cfset var qUpdate = "" />
 		<cfquery name="qUpdate" datasource="#variables.dsn#">
-				UPDATE	ce_Activity_Prereq
+				UPDATE	Activities_Prereq
 				SET
 					ActivityID = <cfqueryparam value="#arguments.ActivityPrereq.getActivityID()#" CFSQLType="cf_sql_integer" />,
 					PrereqID = <cfqueryparam value="#arguments.ActivityPrereq.getPrereqID()#" CFSQLType="cf_sql_integer" />,
@@ -74,7 +74,7 @@
 
 		<cfset var qDelete = "">
 		<cfquery name="qDelete" datasource="#variables.dsn#">
-				DELETE FROM	ce_Activity_Prereq 
+				DELETE FROM	Activities_Prereq 
 				WHERE	ActivityPrereqID = <cfqueryparam value="#arguments.ActivityPrereq.getActivityPrereqID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -87,7 +87,7 @@
 		<cfset var qExists = "">
 		<cfquery name="qExists" datasource="#variables.dsn#" maxrows="1">
 			SELECT count(1) as idexists
-			FROM	ce_Activity_Prereq
+			FROM	Activities_Prereq
 			WHERE	ActivityPrereqID = <cfqueryparam value="#arguments.ActivityPrereq.getActivityPrereqID()#" CFSQLType="cf_sql_integer" />
 		</cfquery>
 

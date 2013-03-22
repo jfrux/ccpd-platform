@@ -12,7 +12,7 @@
 
 		<cfset var qCreate = "" />
 		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
-				INSERT INTO ce_Comment
+				INSERT INTO comments
 					(
 					ActivityID,
 					Comment,
@@ -51,7 +51,7 @@
 					UpdatedBy,
 					Deleted,
 					DeletedFlag
-				FROM	ce_Comment
+				FROM	comments
 				WHERE	
                 <cfif Arguments.Comment.getActivityID() NEQ "" AND Arguments.Credit.getCreatedBy() NEQ "">
 					ActivityID = <cfqueryparam value="#arguments.Comment.getActivityID()#" CFSQLType="cf_sql_int" /> AND CreatedBy = <cfqueryparam value="#arguments.Comment.getCreatedBy()#" CFSQLType="cf_sql_int" />
@@ -72,7 +72,7 @@
 
 		<cfset var qUpdate = "" />
 			<cfquery name="qUpdate" datasource="#variables.dsn#">
-				UPDATE	ce_Comment
+				UPDATE	comments
 				SET
 					CommentID = <cfqueryparam value="#arguments.Comment.getCommentID()#" CFSQLType="cf_sql_integer" />,
 					ActivityID = <cfqueryparam value="#arguments.Comment.getActivityID()#" CFSQLType="cf_sql_integer" />,
@@ -102,7 +102,7 @@
 
 		<cfset var qDelete = "">
 		<cfquery name="qDelete" datasource="#variables.dsn#">
-				DELETE FROM	ce_Comment
+				DELETE FROM	comments
 				WHERE		
                 <cfif Arguments.Comment.getActivityID() NEQ "" AND Arguments.Credit.getCreatedBy() NEQ "">
 					ActivityID = <cfqueryparam value="#arguments.Comment.getActivityID()#" CFSQLType="cf_sql_int" /> AND CreatedBy = <cfqueryparam value="#arguments.Comment.getCreatedBy()#" CFSQLType="cf_sql_int" />
@@ -120,7 +120,7 @@
 		<cfset var qExists = "">
 		<cfquery name="qExists" datasource="#variables.dsn#" maxrows="1">
 			SELECT count(1) as idexists
-			FROM	ce_Comment
+			FROM	comments
 			WHERE		
 			<cfif Arguments.Comment.getActivityID() NEQ "" AND Arguments.Credit.getCreatedBy() NEQ "">
                 ActivityID = <cfqueryparam value="#arguments.Comment.getActivityID()#" CFSQLType="cf_sql_int" /> AND CreatedBy = <cfqueryparam value="#arguments.Comment.getCreatedBy()#" CFSQLType="cf_sql_int" />

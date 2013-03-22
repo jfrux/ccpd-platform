@@ -45,7 +45,7 @@
 				UpdatedBy,
 				Deleted,
 				DeletedFlag
-			FROM	ce_Assessment
+			FROM	assessments
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"AssessmentID") and len(arguments.AssessmentID)>
@@ -147,8 +147,8 @@
                     A.Deleted, 
                     A.DeletedFlag, 
                     AT.Name AS AssessTypeName
-			FROM	ce_Assessment AS A 
-            INNER JOIN ce_Sys_AssessType AS AT ON A.AssessTypeID = AT.AssessTypeID
+			FROM	assessments AS A 
+            INNER JOIN sys_assesstypes AS AT ON A.AssessTypeID = AT.AssessTypeID
 			WHERE	0=0
 		<cfif structKeyExists(arguments,"AssessmentID") and len(arguments.AssessmentID)>
 			AND	A.AssessmentID = <cfqueryparam value="#arguments.AssessmentID#" CFSQLType="cf_sql_integer" />

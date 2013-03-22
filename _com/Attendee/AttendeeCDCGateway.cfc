@@ -149,7 +149,7 @@
 				UpdatedBy,
 				Deleted,
 				DeletedFlag
-			FROM	ce_AttendeeCDC
+			FROM	attendeesCDC
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"AttendeeCDCID") and len(arguments.AttendeeCDCID)>
@@ -516,23 +516,23 @@
                 act.Title,
                 act.ReleaseDate,
                 (SELECT TOP 1 ass.AssessmentID
-                 FROM ce_Assessment ass
+                 FROM assessments ass
                  WHERE ass.ActivityID = act.ActivityID) AS AssessmentID,
                  
                 (SELECT TOP 1 ass.AssessmentID
-                 FROM ce_Assessment ass
+                 FROM assessments ass
                  WHERE ass.ActivityID = act.ParentActivityID) AS ParentAssessmentID,
                  
                 (SELECT TOP 1 EventDate
-                 FROM ce_Agenda ag
+                 FROM agendas ag
                  WHERE ag.ActivityID = act.ActivityID AND ag.DeletedFlag = 'N') AS ActivityEventDate,
                  
                 (SELECT TOP 1 EndTime
-                 FROM ce_Agenda ag
+                 FROM agendas ag
                  WHERE ag.ActivityID = act.ActivityID AND ag.DeletedFlag = 'N') AS ActivityEndTime
-			FROM	ce_AttendeeCDC ACDC
-            INNER JOIN ce_Attendee ATT ON att.AttendeeID = acdc.AttendeeID
-            INNER JOIN ce_Activity ACT ON act.ActivityID = att.ActivityID
+			FROM	attendeesCDC ACDC
+            INNER JOIN attendees ATT ON att.AttendeeID = acdc.AttendeeID
+            INNER JOIN Activities ACT ON act.ActivityID = att.ActivityID
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"AttendeeCDCID") and len(arguments.AttendeeCDCID)>

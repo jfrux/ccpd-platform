@@ -3,7 +3,7 @@
 		<!--- Retrieve data from the table. --->
 		<cfquery name="getPeople" datasource="#Application.Settings.DSN#">
 			SELECT PersonID,FirstName,MiddleName,LastName,EmailSSN,CONVERT(varchar,Birthdate,101) As Birthdate, UCID
-			FROM ce_Person
+			FROM Users
 		</cfquery>
 		
 		<!--- Update the collection with the above query results. --->

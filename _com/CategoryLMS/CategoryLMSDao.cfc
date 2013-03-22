@@ -11,7 +11,7 @@
 
 		<cfset var qCreate = "" />
 		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
-				INSERT INTO ce_Sys_CategoryLMS
+				INSERT INTO sys_categorylms
 					(
 					Name,
 					Description
@@ -36,7 +36,7 @@
 					CategoryID,
 					Name,
 					Description
-				FROM	ce_Sys_CategoryLMS
+				FROM	sys_categorylms
 				WHERE	
 					<cfif Len(arguments.CategoryLMS.getName()) GT 0>
 						Name = <cfqueryparam value="#arguments.CategoryLMS.getName()#" CFSQLType="cf_sql_varchar" />
@@ -57,7 +57,7 @@
 
 		<cfset var qUpdate = "" />
 		<cfquery name="qUpdate" datasource="#variables.dsn#">
-				UPDATE	ce_Sys_CategoryLMS
+				UPDATE	sys_categorylms
 				SET
 					Name = <cfqueryparam value="#arguments.CategoryLMS.getName()#" CFSQLType="cf_sql_varchar" />,
 					Description = <cfqueryparam value="#arguments.CategoryLMS.getDescription()#" CFSQLType="cf_sql_varchar" null="#not len(arguments.CategoryLMS.getDescription())#" />
@@ -77,7 +77,7 @@
 
 		<cfset var qDelete = "">
 		<cfquery name="qDelete" datasource="#variables.dsn#">
-				DELETE FROM	ce_Sys_CategoryLMS 
+				DELETE FROM	sys_categorylms 
 				WHERE
 					<cfif Len(arguments.CategoryLMS.getName()) GT 0>
 						Name = <cfqueryparam value="#arguments.CategoryLMS.getName()#" CFSQLType="cf_sql_varchar" />
@@ -96,7 +96,7 @@
 		
 		<cfquery name="qExists" datasource="#variables.dsn#" maxrows="1">
 			SELECT count(1) as idexists
-			FROM	ce_Sys_CategoryLMS
+			FROM	sys_categorylms
 			WHERE	
 				<cfif Len(arguments.CategoryLMS.getName()) GT 0>
 					Name = <cfqueryparam value="#arguments.CategoryLMS.getName()#" CFSQLType="cf_sql_varchar" />

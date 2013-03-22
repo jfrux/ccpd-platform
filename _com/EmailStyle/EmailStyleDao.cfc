@@ -11,7 +11,7 @@
 
 		<cfset var qCreate = "" />
 		<cfquery name="qCreate" datasource="#variables.dsn#" result="CreateResult">
-				INSERT INTO ce_Sys_EmailStyle
+				INSERT INTO sys_emailstyles
 					(
 					Subject,
 					TemplateHTML,
@@ -39,7 +39,7 @@
 					Subject,
 					TemplateHTML,
 					TemplatePlain
-				FROM	ce_Sys_EmailStyle
+				FROM	sys_emailstyles
 				WHERE	EmailStyleID = <cfqueryparam value="#arguments.EmailStyle.getEmailStyleID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -55,7 +55,7 @@
 
 		<cfset var qUpdate = "" />
 		<cfquery name="qUpdate" datasource="#variables.dsn#">
-				UPDATE	ce_Sys_EmailStyle
+				UPDATE	sys_emailstyles
 				SET
 					Subject = <cfqueryparam value="#arguments.EmailStyle.getSubject()#" CFSQLType="cf_sql_varchar" />,
 					TemplateHTML = <cfqueryparam value="#arguments.EmailStyle.getTemplateHTML()#" CFSQLType="cf_sql_varchar" />,
@@ -71,7 +71,7 @@
 
 		<cfset var qDelete = "">
 		<cfquery name="qDelete" datasource="#variables.dsn#">
-				DELETE FROM	ce_Sys_EmailStyle 
+				DELETE FROM	sys_emailstyles 
 				WHERE	EmailStyleID = <cfqueryparam value="#arguments.EmailStyle.getEmailStyleID()#" CFSQLType="cf_sql_integer" />
 			</cfquery>
 			
@@ -84,7 +84,7 @@
 		<cfset var qExists = "">
 		<cfquery name="qExists" datasource="#variables.dsn#" maxrows="1">
 			SELECT count(1) as idexists
-			FROM	ce_Sys_EmailStyle
+			FROM	sys_emailstyles
 			WHERE	EmailStyleID = <cfqueryparam value="#arguments.EmailStyle.getEmailStyleID()#" CFSQLType="cf_sql_integer" />
 		</cfquery>
 

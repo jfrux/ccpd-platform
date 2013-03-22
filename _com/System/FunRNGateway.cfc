@@ -19,7 +19,7 @@
 				Name,
 				Description,
 				Created
-			FROM	ce_Sys_FunRN
+			FROM	sys_funrns
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"FunRNID") and len(arguments.FunRNID)>

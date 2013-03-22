@@ -19,7 +19,7 @@
 				Subject,
 				TemplateHTML,
 				TemplatePlain
-			FROM	ce_Sys_EmailStyle
+			FROM	sys_emailstyles
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"EmailStyleID") and len(arguments.EmailStyleID)>

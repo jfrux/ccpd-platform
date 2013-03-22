@@ -40,7 +40,7 @@
 				UpdatedBy,
 				Deleted,
 				DeletedFlag
-			FROM	ce_Activity_Faculty
+			FROM	Activities_Faculty
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"FacultyID") and len(arguments.FacultyID)>
@@ -129,12 +129,12 @@
                 a.StartDate,
                 cvf.Created AS CVCreatedDate,
                 disf.Created AS DisclosureCreatedDate
-			FROM	ce_Activity_Faculty af
-			LEFT OUTER JOIN ce_person AS p1 ON p1.personid = af.PersonID
-            LEFT OUTER JOIN ce_Activity AS a ON a.ActivityID = af.ActivityID
-            LEFT OUTER JOIN ce_Sys_Role AS sr ON sr.RoleID = af.RoleID
-            LEFT OUTER JOIN ce_File AS cvf ON cvf.FileID = af.CVFileID
-            LEFT OUTER JOIN ce_File AS disf on disf.FileID = af.DisclosureFileID
+			FROM	Activities_Faculty af
+			LEFT OUTER JOIN Users AS p1 ON p1.personid = af.PersonID
+            LEFT OUTER JOIN Activities AS a ON a.ActivityID = af.ActivityID
+            LEFT OUTER JOIN sys_roles AS sr ON sr.RoleID = af.RoleID
+            LEFT OUTER JOIN files AS cvf ON cvf.FileID = af.CVFileID
+            LEFT OUTER JOIN files AS disf on disf.FileID = af.DisclosureFileID
 			WHERE	0=0
 		
 		<cfif structKeyExists(arguments,"FacultyID") and len(arguments.FacultyID)>

@@ -7,8 +7,8 @@
     <cfif arguments.personId GT 0>
         <cfquery name="qPersonDegree" datasource="#Application.Settings.DSN#">
             SELECT PersonDegreeID 
-            FROM ce_Person_Degree pd
-            INNER JOIN ce_Sys_Degree sd ON sd.DegreeID = pd.DegreeID
+            FROM Users_Degree pd
+            INNER JOIN sys_degrees sd ON sd.DegreeID = pd.DegreeID
             WHERE 	PersonID=<cfqueryparam value="#Arguments.PersonID#" cfsqltype="cf_sql_integer" /> AND
                     sd.Name IN ('MD','DO')
         </cfquery>
