@@ -1,3 +1,6 @@
+require 'sprockets'
+require 'closure'
+require 'yui/compressor'
 require 'sinatra/sprockets/configuration'
 require 'sinatra/sprockets/asset_paths'
 require 'sinatra/sprockets/helpers'

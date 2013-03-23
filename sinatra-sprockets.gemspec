@@ -14,12 +14,14 @@ Gem::Specification.new do |s|
 
   s.rubyforge_project = s.name
 
-  s.add_runtime_dependency 'sprockets',       '~> 2.0.0'
-  s.add_runtime_dependency 'uglifier'
-  s.add_runtime_dependency 'closure-compiler'
-  s.add_runtime_dependency 'yui-compressor'
-  s.add_runtime_dependency 'execjs'
-  s.add_runtime_dependency 'therubyracer'
+  s.add_dependency 'sprockets'
+  s.add_dependency 'uglifier'
+  s.add_dependency 'closure'
+  s.add_dependency 'closure-compiler'
+  s.add_dependency 'yui-compressor'
+  s.add_dependency 'execjs'
+  s.add_dependency 'therubyracer'
+  s.add_runtime_dependency 'activesupport'
 
   s.files = [
     "Gemfile",
