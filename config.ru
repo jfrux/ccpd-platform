@@ -4,7 +4,7 @@ require 'sprockets'
 require 'sass'
 require 'sprockets-sass'
 require './app'
- 
+
 Sinatra::Sprockets.configure do |config|
   config.app = MyApp
   config.host = "http://localhost:9292"
