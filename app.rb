@@ -1,6 +1,6 @@
 require 'sinatra/base'
 require 'sinatra/sprockets'
-require 'sprockets-less'
+require 'sprockets-sass'
  
 class MyApp < Sinatra::Base
   helpers Sinatra::Sprockets::Helpers
@@ -15,7 +15,17 @@ class MyApp < Sinatra::Base
     }
   end
 
-  get '/stylesheet_tags' do
+  template :javascript_tags do
+    %q{
+    <%= javascript_include_tag 'application',:debug => true %>
+    }
+  end
+
+  get '/javascript_tags' do
+    erb :javascript_tags
+  end
+
+   get '/stylesheet_tags' do
     erb :stylesheet_tags
   end
 end

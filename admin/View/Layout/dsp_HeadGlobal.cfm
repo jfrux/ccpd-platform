@@ -1,12 +1,20 @@
-<cffunction name="stylesheet_links">
+<cffunction name="stylesheet_link_tag">
 	<cfhttp method="get" url="http://localhost:9292/stylesheet_tags" result="css_markup">
 		
 	</cfhttp>
 
 	<cfreturn css_markup.filecontent />
 </cffunction>
+
+<cffunction name="javascript_include_tag">
+	<cfhttp method="get" url="http://localhost:9292/javascript_tags" result="js_markup">
+		
+	</cfhttp>
+
+	<cfreturn js_markup.filecontent />
+</cffunction>
 <cfoutput>
-#stylesheet_links()#
+#stylesheet_link_tag()#
 <!--[if lt IE 8]>
   <link href="/stylesheets/ie.css" media="screen, projection" rel="stylesheet" type="text/css" />
 <![endif]-->

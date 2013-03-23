@@ -152,7 +152,7 @@
 		<div id="ajax-issue-details"></div>
 		<div id="ajax-issue-buttons"><input type="button" name="ajax-issue-button" id="ajax-issue-button" value="Okay" class="button" /></div>
 	</div>
-
-</body>
+	#javascript_include_tag()#
+	</body>
 </html>
 </cfoutput>
