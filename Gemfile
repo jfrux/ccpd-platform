@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 gem 'sinatra'
 gem 'sprockets'
-gem 'sinatra-sprockets', :path => '/Users/joshua/Projects/sinatra-sprockets'
+gem 'sinatra-sprockets', :path => 'https://github.com/joshuairl/sinatra-sprockets.git'
 gem 'therubyracer'
 gem 'sprockets-less', :git => 'https://github.com/viddo/sprockets-less.git'
 gem 'less'
