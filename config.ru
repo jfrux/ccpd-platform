@@ -1,6 +1,7 @@
 require 'bundler'
 Bundler.require
 require 'sprockets'
+require 'sass'
 require 'sprockets-sass'
 require './app'
  

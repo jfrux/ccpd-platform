@@ -1,5 +1,6 @@
 require 'sinatra/base'
 require 'sinatra/sprockets'
+require 'sass'
 require 'sprockets-sass'
  
 class MyApp < Sinatra::Base
