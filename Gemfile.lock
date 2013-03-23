@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 GIT
   remote: https://github.com/viddo/sprockets-less.git
   revision: 802d334422ef03c1f24e3ff6edbe18832c53a3a6
@@ -11,9 +10,11 @@ PATH
   remote: /Users/joshua/Projects/sinatra-sprockets
   specs:
     sinatra-sprockets (0.0.2)
+      activesupport
+      closure
       closure-compiler
       execjs
-      sprockets (~> 2.9.0)
+      sprockets
       therubyracer
       uglifier
       yui-compressor
@@ -25,6 +26,11 @@ GEM
       Platform (>= 0.4.0)
       open4
     Platform (0.4.0)
+    activesupport (3.2.13)
+      i18n (= 0.6.1)
+      multi_json (~> 1.0)
+    closure (1.4.3)
+      rack (>= 1.0.0)
     closure-compiler (1.1.8)
     coffee-script (2.2.0)
       coffee-script-source
@@ -34,10 +40,11 @@ GEM
     execjs (1.4.0)
       multi_json (~> 1.0)
     hike (1.2.1)
+    i18n (0.6.1)
     less (2.3.1)
       commonjs (~> 0.2.6)
-    libv8 (3.11.8.13)
-    multi_json (1.7.1)
+    libv8 (3.11.8.17)
+    multi_json (1.7.2)
     open4 (1.3.0)
     rack (1.5.2)
     rack-protection (1.5.0)
@@ -48,19 +55,10 @@ GEM
       rack-protection (~> 1.4)
       tilt (~> 1.3, >= 1.3.4)
     sprockets (2.9.0)
-=======
-GEM
-  specs:
-    hike (1.2.1)
-    multi_json (1.7.1)
-    rack (1.5.2)
-    sprockets (2.2.2)
->>>>>>> 7d34a8257a374e6b682263216be42b26f6287d7a
       hike (~> 1.2)
       multi_json (~> 1.0)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
-<<<<<<< HEAD
     therubyracer (0.11.4)
       libv8 (~> 3.11.8.12)
       ref
@@ -70,15 +68,11 @@ GEM
       multi_json (~> 1.0, >= 1.0.2)
     yui-compressor (0.9.6)
       POpen4 (>= 0.1.4)
-=======
-    tilt (1.3.6)
->>>>>>> 7d34a8257a374e6b682263216be42b26f6287d7a
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-<<<<<<< HEAD
   coffee-script
   less
   sinatra
@@ -86,6 +80,3 @@ DEPENDENCIES
   sprockets
   sprockets-less!
   therubyracer
-=======
-  sprockets (~> 2.0)
->>>>>>> 7d34a8257a374e6b682263216be42b26f6287d7a
