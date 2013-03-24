@@ -1,1 +1,0 @@
-<cflocation url="welcome.cfm" addtoken="no">
