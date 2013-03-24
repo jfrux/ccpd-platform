@@ -151,8 +151,8 @@ $zindexModal:             1050 !default;
 
 // Sprite icons path
 // -------------------------
-$iconSpritePath:          "../img/glyphicons-halflings.png" !default;
-$iconWhiteSpritePath:     "../img/glyphicons-halflings-white.png" !default;
+$iconSpritePath:          "twitter/bootstrap/glyphicons-halflings.png" !default;
+$iconWhiteSpritePath:     "twitter/bootstrap/glyphicons-halflings-white.png" !default;
 
 
 // Input placeholder text color
@@ -271,9 +271,9 @@ $popoverArrowOuterColor:  rgba(0,0,0,.25) !default;
 
 // Default 940px grid
 // -------------------------
-$gridColumns:             12 !default;
-$gridColumnWidth:         60px !default;
-$gridGutterWidth:         20px !default;
+$gridColumns:             24 !default;
+$gridColumnWidth:         30px !default;
+$gridGutterWidth:         10px !default;
 $gridRowWidth:            ($gridColumns * $gridColumnWidth) + ($gridGutterWidth * ($gridColumns - 1)) !default;
 
 // 1200px min

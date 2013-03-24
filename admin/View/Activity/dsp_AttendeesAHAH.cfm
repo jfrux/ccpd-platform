@@ -231,14 +231,23 @@ $(document).ready(function() {
 
 <cfoutput>
 <h3>Registrants</h3>
-<div class="attendees-filter">
-	<ul>
-    	<li id="attendees-0"<cfif attributes.status EQ 0> class="current"</cfif>><a href="javascript://">All (<cfoutput>#totalCount#</cfoutput>)</a></li>
-    	<li id="attendees-1"<cfif attributes.status EQ 1> class="current"</cfif>><a href="javascript://">Complete (<cfoutput>#completeCount#</cfoutput>)</a></li>
-    	<li id="attendees-4"<cfif attributes.status EQ 4> class="current"</cfif>><a href="javascript://">Failed (<cfoutput>#failCount#</cfoutput>)</a></li>
-    	<li id="attendees-2"<cfif attributes.status EQ 2> class="current"</cfif>><a href="javascript://">In Progress (<cfoutput>#progressCount#</cfoutput>)</a></li>
-    	<li id="attendees-3"<cfif attributes.status EQ 3> class="current"</cfif>><a href="javascript://">Registered (<cfoutput>#registeredCount#</cfoutput>)</a></li>
+<div class="btn-toolbar">
+  <div class="btn-group">
+    <a class="btn"><i class="icon icon-plus"></i></a>
+  </div>
+  <div class="btn-group">
+    <a class="btn">Filter</a>
+    <a class="btn dropdown-toggle" data-toggle="dropdown">
+    <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu attendees-filter">
+      <li id="attendees-0"<cfif attributes.status EQ 0> class="current"</cfif>><a href="javascript://">All (<cfoutput>#totalCount#</cfoutput>)</a></li>
+      <li id="attendees-1"<cfif attributes.status EQ 1> class="current"</cfif>><a href="javascript://">Complete (<cfoutput>#completeCount#</cfoutput>)</a></li>
+      <li id="attendees-4"<cfif attributes.status EQ 4> class="current"</cfif>><a href="javascript://">Failed (<cfoutput>#failCount#</cfoutput>)</a></li>
+      <li id="attendees-2"<cfif attributes.status EQ 2> class="current"</cfif>><a href="javascript://">In Progress (<cfoutput>#progressCount#</cfoutput>)</a></li>
+      <li id="attendees-3"<cfif attributes.status EQ 3> class="current"</cfif>><a href="javascript://">Registered (<cfoutput>#registeredCount#</cfoutput>)</a></li>
     </ul>
+  </div>
 </div>
 <div style="display: none;" id="prototypes">
 	<div style="display: none;" id="action_menu">

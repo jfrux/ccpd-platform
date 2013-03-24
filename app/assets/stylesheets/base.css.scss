@@ -1,0 +1,15 @@
+@import "app/variables.css.scss";
+@import "app/header.css.scss";
+@import "app/profile.css.scss";
+@import "app/activity.css.scss";
+
+body {
+	font-size:12px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	padding:0;
+	margin:0;
+	font-size:12px;
+	font-weight:normal;
+}

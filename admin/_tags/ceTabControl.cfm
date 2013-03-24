@@ -9,22 +9,24 @@
 
 <cfoutput>
 <cfif LabelCount NEQ FuseCount>
-	<cfexit>
+  <cfexit>
 </cfif>
 
 <cfif Attributes.Labels EQ "">
-	<cfexit>
+  <cfexit>
 </cfif>
 
 <cfif Attributes.Fuseactions EQ "">
-	<cfexit>
+  <cfexit>
 </cfif>
 
-<div class="TabControl" id="Tabs#Attributes.Instance#">
-	<ul>
-<cfloop from="1" to="#LabelCount#" index="i">
-		<li class="<cfif ListFindNoCase(GetToken(Attributes.Fuseactions,i,","),Attributes.Current,"|")>current </cfif>#replace(lcase(GetToken(GetToken(Attributes.Fuseactions,i,","),1,"|")),'.','_')#"><a href="#request.myself##GetToken(GetToken(Attributes.Fuseactions,i,","),1,"|")##Attributes.QueryString#<cfif url.Mini NEQ ''>&Mini=1</cfif>">#GetToken(Attributes.Labels,i,',')#</a></li>
-</cfloop>
-	</ul>
+<div class="TabControl linkbar" id="Tabs#Attributes.Instance#">
+  <div class="linkbar-inner">
+  <ul class="nav">
+    <cfloop from="1" to="#LabelCount#" index="i">
+    <li class="<cfif ListFindNoCase(GetToken(Attributes.Fuseactions,i,","),Attributes.Current,"|")>active </cfif>#replace(lcase(GetToken(GetToken(Attributes.Fuseactions,i,","),1,"|")),'.','_')#"><a href="#request.myself##GetToken(GetToken(Attributes.Fuseactions,i,","),1,"|")##Attributes.QueryString#<cfif url.Mini NEQ ''>&Mini=1</cfif>">#GetToken(Attributes.Labels,i,',')#</a></li>
+    </cfloop>
+  </ul>
+  </div>
 </div>
 </cfoutput>

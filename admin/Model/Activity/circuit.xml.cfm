@@ -314,7 +314,7 @@
 	
 	<fuseaction name="TabControl">
 		<set name="Request.MultiFormQS" value="?ActivityID=#Attributes.ActivityID#" />
-		<set name="Request.MultiFormLabels" value="General,Faculty,Committee,Finances,Credits,Documents,Registrants,Other,Publish,Reports,History" />
-		<set name="Request.MultiFormFuseactions" value="Activity.Detail,Activity.Faculty,Activity.Committee,Activity.Finances|Activity.FinLedger|Activity.FinBudget|Activity.FinSupport,Activity.Credits,Activity.Docs,Activity.Attendees,Activity.Other|Activity.Application|Activity.Agenda|Activity.CDCInfo|Activity.Meals,Activity.Publish|Activity.PubGeneral|Activity.PubSites|Activity.PubBuilder|Activity.PubCategory|Activity.PubSpecialty,Activity.Reports,Activity.History" />
+		<set name="Request.MultiFormLabels" value="General,Faculty,Committee,Finances,Credits,Documents,Registrants,Other,Publish,Reports,History,Notes" />
+		<set name="Request.MultiFormFuseactions" value="Activity.Detail,Activity.Faculty,Activity.Committee,Activity.Finances|Activity.FinLedger|Activity.FinBudget|Activity.FinSupport,Activity.Credits,Activity.Docs,Activity.Attendees,Activity.Other|Activity.Application|Activity.Agenda|Activity.CDCInfo|Activity.Meals,Activity.Publish|Activity.PubGeneral|Activity.PubSites|Activity.PubBuilder|Activity.PubCategory|Activity.PubSpecialty,Activity.Reports,Activity.History,Activity.Notes" />
 	</fuseaction>
 </circuit>
