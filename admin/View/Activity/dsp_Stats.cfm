@@ -34,34 +34,33 @@ $(document).ready(function() {
 </script>
 
 <cfoutput>
-<h3>Statistics</h3>
 <span class="RefreshLink" style="position:relative;"><a href="javascript://" id="refresh-link"><img src="#Application.Settings.RootPath#/_images/icons/refresh.png" style="position: absolute; right: -30px; top: 4px;" /></a></span>
 <div id="stats-container">
-<table width="100%" cellspacing="1" cellpadding="3" border="0">
+<table width="100%" cellspacing="0" cellpadding="0" border="0">
 	<tr>
-		<td width="46%" nowrap="nowrap">Att. Records:</td>
+		<td width="46%" nowrap="nowrap" class="text-right">Att. Records:</td>
 		<td width="54%">#ActivityBean.getStatAttendees()#</td>
 	</tr>
 	<tr>
-		<td nowrap="nowrap">MDs:</td>
+		<td nowrap="nowrap" class="text-right">MDs:</td>
 		<td>#ActivityBean.getStatMD()#</td>
 	</tr>
 	<tr>
-		<td nowrap="nowrap">Non MDs:</td>
+		<td nowrap="nowrap" class="text-right">Non MDs:</td>
 		<td>#ActivityBean.getStatNonMD()#
 		</td>
 	</tr>
 	<tr class="stat_addlattendees">
-		<td nowrap="nowrap">Addl Attendees:</td>
+		<td nowrap="nowrap" class="text-right">Addl Attendees:</td>
 		<td>#ActivityBean.getStatAddlAttendees()#
 		</td>
 	</tr>
 	<tr>
-		<td nowrap="nowrap">Supporters:</td>
+		<td nowrap="nowrap" class="text-right">Supporters:</td>
 		<td>#ActivityBean.getStatSupporters()#</td>
 	</tr>
 	<tr>
-		<td nowrap="nowrap">Support Dollars:</td>
+		<td nowrap="nowrap" class="text-right">Support Dollars:</td>
 		<td>#LSCurrencyFormat(ActivityBean.getStatSuppAmount())#</td>
 	</tr>
 </table>

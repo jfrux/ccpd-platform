@@ -161,7 +161,7 @@ $(document).ready(function(){
 		<table cellspacing="2" cellpadding="3" border="0">
 			<tr>
 				<td valign="top"><label for="Title">Title</label></td>
-				<td><textarea name="Title" rows="2" id="Title" style="width: 495px; height: 36px;">#HTMLSafe(Attributes.Title)#</textarea></td>
+				<td><textarea name="Title" rows="2" id="Title">#HTMLSafe(Attributes.Title)#</textarea></td>
 			</tr>
 			<tr>
 				<td valign="top"><label for="ActivityType">Activity Type</label></td>

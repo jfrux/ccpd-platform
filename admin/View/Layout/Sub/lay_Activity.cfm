@@ -442,75 +442,84 @@ $(document).ready(function() {
     <div><cfif ActivityBean.getParentActivityID() NEQ ""><cfif Len(ParentBean.getTitle()) GT 75><span title="#ParentBean.getTitle()#">#left(ParentBean.getTitle(),50) & "..."#</span><cfelse>#ParentBean.getTitle()#</cfif> <cfelse>Parent Activity</cfif> // <cfif ParentBean.getSessionType() EQ "M">Multi-Session<cfelse>Single-Session</cfif>
   </div>
   <div class="row">
-    <div class="span4 menu"><cf_ceTabControl Instance="MultiForm" Labels="#Request.MultiFormLabels#" Fuseactions="#Request.MultiFormFuseactions#" QueryString="#Request.MultiFormQS#" Current="#Attributes.Fuseaction#"></div>
-    <div class="span20 content">
-      <div class="row-fluid">
-        <div class="MultiFormContent span18">
-          #Request.MultiFormContent#
+    <div class="span5">
+      <div class="menu">
+        <div class="box">
+          <cf_ceTabControl Instance="MultiForm" Labels="#Request.MultiFormLabels#" Fuseactions="#Request.MultiFormFuseactions#" QueryString="#Request.MultiFormQS#" Current="#Attributes.Fuseaction#">
         </div>
-
-        <div class="InfoBar span6">
-          #Request.MultiFormRight#
-          <cfset qStatuses = Application.Com.StatusGateway.getByAttributes(OrderBy="Name")>
-          <div id="Status">
-            <h3>Activity Status</h3>
-            <table width="100%" cellspacing="1" border="0" cellpadding="2">
-              <tr>
-                <td>Status</td><td><div style="position:relative;"><img src="#Application.Settings.RootPath#/_images/icons/Status#ActivityBean.getStatusID()#.png" id="StatusIcon" style="position: absolute; left: 2px; top: -8px;" /></div></td>
-                <td>
-                  <select name="StatusChanger" id="StatusChanger" style="padding-left:16px;">
+      </div>
+    </div>
+    <div class="span19">
+      <div class="content">
+        <div class="row-fluid">
+          <div class="span18">
+            <div class="MultiFormContent content-inner">
+              #Request.MultiFormContent#
+            </div>
+          </div>
+          <div class="span6">
+            <div class="InfoBar infobar">
+              #Request.MultiFormRight#
+              <cfset qStatuses = Application.Com.StatusGateway.getByAttributes(OrderBy="Name")>
+              <div id="Status">
+                <h3><i class="fg fg-fruit"></i> Activity Health</h3>
+                <div class="box">
+                  <select name="StatusChanger" id="StatusChanger" class="span24">
                     <option value="">No Status</option>
                     <cfloop query="qStatuses">
                     <option value="#qStatuses.StatusID#"<cfif ActivityBean.getStatusID() EQ qStatuses.StatusID> selected</cfif>>#qStatuses.Name#</option>
                     </cfloop>
                   </select>
-                </td>
-              </tr>
-            </table>
-          </div>
-            
-          <div id="Containers">
-            
-          </div>
-          <cfinclude template="#Application.Settings.RootPath#/Model/Report/act_getIssues.cfm" />
-          <cfif qIssues.RecordCount GT 0>
-          <div id="Issues">
-            <h3>Issues</h3>
-            <table width="100%">
-            <cfloop query="qReasons">
-              <tr>
-                <td valign="top"><img src="#Application.Settings.RootPath#/_images/icons/flag_red.png" align="absmiddle" style="padding-right:4px;" /></td>
-                <td valign="top">#Reason#</td>
-              </tr>
-            </cfloop>
-            </table>
-          </div>
-          </cfif>
-          <div id="ActivityStats">
-            
-          </div>
-          <!---<div id="ProcessQueue">
-            <h3>Process Queue</h3>
-            <p>
-            <cfset qProcesses = Application.Com.ProcessGateway.getByAttributes(DeletedFlag="N",OrderBy="Title")>
-            <select name="ProcessSelect" id="ProcessSelect">
-              <option value="">-- Select --</option>
-              <cfloop query="qProcesses">
-              <option value="#qProcesses.ProcessID#">#qProcesses.Title#</option>
-              </cfloop>
-            </select>
-            <br />This will place the Activity into a "Task" queue so that managers of this process will be notified and can track the life of the Activity.
-            </p>
-          </div>--->
-          <div id="GlobalOptions">
-            <h3>Global Options</h3>
-            <cfif ActivityBean.getParentActivityID() EQ "" AND ActivityBean.getSessionType() EQ "M"><cfelse><div style="padding:6px 4px;"><a href="javascript:void(0);" id="MoveLink" style="text-decoration:none;"><img src="#Application.Settings.RootPath#/_images/icons/book_previous.png" align="absmiddle" style="padding-right:4px;" />Move Activity</a></div></cfif>
-            <div style="padding:6px 4px;"><a href="javascript:void(0);" id="CopyLink" style="text-decoration:none;"><img src="#Application.Settings.RootPath#/_images/icons/page_copy.png" align="absmiddle" style="padding-right:4px;" />Copy Activity</a></div>
-            <div style="padding:6px 4px;"><a href="javascript://" id="DeleteActivityLink" style="text-decoration:none;"><img src="#Application.Settings.RootPath#/_images/icons/book_delete.png" align="absmiddle" style="padding-right:4px;" />Delete Activity</a></div>
+
+                  <div id="ActivityStats">
+
+                  </div>
+                </div>
+                
+                
+              </div>
+                
+              <div id="Containers">
+                
+              </div>
+              <cfinclude template="#Application.Settings.RootPath#/Model/Report/act_getIssues.cfm" />
+              <cfif qIssues.RecordCount GT 0>
+              <div id="Issues">
+                <h3>Issues</h3>
+                <table width="100%">
+                <cfloop query="qReasons">
+                  <tr>
+                    <td valign="top"><img src="#Application.Settings.RootPath#/_images/icons/flag_red.png" align="absmiddle" style="padding-right:4px;" /></td>
+                    <td valign="top">#Reason#</td>
+                  </tr>
+                </cfloop>
+                </table>
+              </div>
+              </cfif>
+              
+              <!---<div id="ProcessQueue">
+                <h3>Process Queue</h3>
+                <p>
+                <cfset qProcesses = Application.Com.ProcessGateway.getByAttributes(DeletedFlag="N",OrderBy="Title")>
+                <select name="ProcessSelect" id="ProcessSelect">
+                  <option value="">-- Select --</option>
+                  <cfloop query="qProcesses">
+                  <option value="#qProcesses.ProcessID#">#qProcesses.Title#</option>
+                  </cfloop>
+                </select>
+                <br />This will place the Activity into a "Task" queue so that managers of this process will be notified and can track the life of the Activity.
+                </p>
+              </div>--->
+              <div id="GlobalOptions">
+                <h3>Global Options</h3>
+                <cfif ActivityBean.getParentActivityID() EQ "" AND ActivityBean.getSessionType() EQ "M"><cfelse><div style="padding:6px 4px;"><a href="javascript:void(0);" id="MoveLink" style="text-decoration:none;"><img src="#Application.Settings.RootPath#/_images/icons/book_previous.png" align="absmiddle" style="padding-right:4px;" />Move Activity</a></div></cfif>
+                <div style="padding:6px 4px;"><a href="javascript:void(0);" id="CopyLink" style="text-decoration:none;"><img src="#Application.Settings.RootPath#/_images/icons/page_copy.png" align="absmiddle" style="padding-right:4px;" />Copy Activity</a></div>
+                <div style="padding:6px 4px;"><a href="javascript://" id="DeleteActivityLink" style="text-decoration:none;"><img src="#Application.Settings.RootPath#/_images/icons/book_delete.png" align="absmiddle" style="padding-right:4px;" />Delete Activity</a></div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-  </div>
+    </div>
   <cfif ParentBean.getSessionType() EQ "M">
   <div id="ActivityList" style="display:none;">
     

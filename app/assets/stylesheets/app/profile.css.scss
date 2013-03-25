@@ -1,9 +1,61 @@
+@import "twitter/bootstrap/_mixins";
 .profile {
 	.menu {
-    background-color:#CCC;
+    @include box-shadow(4px 0 0px #dde1e7);
+    background-color: #EFEFEF;
+    border: 1px solid #CFCFCF;
+    padding: 4px;
+    
+    word-wrap: break-word;
+    .box {
+      @include border-radius(7px);
+      padding: 7px;
+      background-color:#FFF;
+      border:1px solid #CFCFCF;
+    }
+    .nav {
+      li {
+        a {
+          padding:3px;
+        }
+
+        &.active {
+          a {
+            background-color:#EFEFEF;
+          }
+        }
+      }
+    }
   }
   .content {
-    background-color:#EEE;
+    background-color:#FFF;
+    border:1px solid #CFCFCF;
+    
+    .content-inner {
 
+    }
+
+    &.show-infobar {
+      .info-bar {
+        display:block;
+      }
+    }
+    
+    .infobar {
+      //padding:8px;
+      background-color:#FFF;
+      @include box-shadow(-4px 0 0px #dde1e7);
+      .box {
+        padding:3px 7px 0 7px;
+      }
+      h3 {
+        padding:0 0 0 5px;
+        border-top: 1px solid #CFCFCF;
+        font-size: 13px;
+        font-weight: bold;
+        line-height: 28px;
+        margin-top: 10px;
+      }
+    }
   }
 }

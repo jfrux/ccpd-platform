@@ -91,29 +91,32 @@ $(document).ready(function() {
 <cfset qCats = Application.Com.CategoryGateway.getByAttributes(OrderBy="Name")>
 <cfset qPersonalCats = Application.Com.CategoryGateway.getByCookie(TheList=Cookie.USER_Containers,OrderBy="Name")>
 
-<h3>Containers</h3>
-<table width="100%" cellspacing="1" cellpadding="2" border="0" id="CatTable">
-<cfloop query="qActCats">
-	<cfset UsedCats = ListAppend(UsedCats,qActCats.CategoryID,",")>
-	<tr id="CatRow#qActCats.CategoryID#">
-		<td width="17"><img src="#Application.Settings.RootPath#/_images/icons/box_page.png" /></td>
-		<td><span style="cursor:default;" title="#qActCats.Name#">#midLimit(qActCats.Name,16)#</span></td>
-		<td><a href="javascript:void(0);" class="CatRemoveLink" id="CatRemove#qActCats.CategoryID#|#qActCats.Name#"><img src="#Application.Settings.RootPath#/_images/icons/delete.png" border="0" /></a></td>
-	</tr>
-</cfloop>
-</table>
-<div style="position:relative;clear:both;display:block;height:30px;">
-<select name="CatAdder" id="CatAdder" class="CatAdder" style="position: absolute; left: 3px; width: 123px; top: -1px;">
-	<option value="" selected>Add Container</option>
-	<cfif qPersonalCats.RecordCount GT 0>
-	<option value="0">---- Your Containers ----</option>
-		<cfloop query="qPersonalCats">
-		<cfif NOT ListFind(UsedCats,qPersonalCats.CategoryID,",")><option value="#qPersonalCats.CategoryID#">#qPersonalCats.Name#</option></cfif>
-		</cfloop>
-	<option value="0">--- All Other Containers ----</option>
-	</cfif>
-	<cfloop query="qCats">
-		<cfif NOT ListFind(Cookie.USER_Containers,qCats.CategoryID,",") AND NOT ListFind(UsedCats,qCats.CategoryID,",")><option value="#qCats.CategoryID#">#qCats.Name#</option></cfif>
+<h3><i class="fg fg-folder-horizontal"></i> Folders</h3>
+<div class="box">
+	<table width="100%" cellspacing="1" cellpadding="2" border="0" id="CatTable">
+	<cfloop query="qActCats">
+		<cfset UsedCats = ListAppend(UsedCats,qActCats.CategoryID,",")>
+		<tr id="CatRow#qActCats.CategoryID#">
+			<td width="17"><img src="#Application.Settings.RootPath#/_images/icons/box_page.png" /></td>
+			<td><span style="cursor:default;" title="#qActCats.Name#">#midLimit(qActCats.Name,16)#</span></td>
+			<td><a href="javascript:void(0);" class="CatRemoveLink" id="CatRemove#qActCats.CategoryID#|#qActCats.Name#"><img src="#Application.Settings.RootPath#/_images/icons/delete.png" border="0" /></a></td>
+		</tr>
 	</cfloop>
-</select><a href="javascript://" id="NewCatLink" title="Create a new container..." style="position: absolute; right: 3px;"><img src="#Application.Settings.RootPath#/_images/icons/asterisk_orange.png" border="0" /></a>
-</div></cfoutput>
+	</table>
+	<div style="position:relative;clear:both;display:block;height:30px;">
+	<select name="CatAdder" id="CatAdder" class="CatAdder" style="position: absolute; left: 3px; width: 123px; top: -1px;">
+		<option value="" selected>Add Folder</option>
+		<cfif qPersonalCats.RecordCount GT 0>
+		<option value="0">---- Your Folders ----</option>
+			<cfloop query="qPersonalCats">
+			<cfif NOT ListFind(UsedCats,qPersonalCats.CategoryID,",")><option value="#qPersonalCats.CategoryID#">#qPersonalCats.Name#</option></cfif>
+			</cfloop>
+		<option value="0">--- All Other Folders ----</option>
+		</cfif>
+		<cfloop query="qCats">
+			<cfif NOT ListFind(Cookie.USER_Containers,qCats.CategoryID,",") AND NOT ListFind(UsedCats,qCats.CategoryID,",")><option value="#qCats.CategoryID#">#qCats.Name#</option></cfif>
+		</cfloop>
+	</select><a href="javascript://" id="NewCatLink" title="Create a new container..." style="position: absolute; right: 3px;"><img src="#Application.Settings.RootPath#/_images/icons/asterisk_orange.png" border="0" /></a>
+	</div>
+</div>
+</cfoutput>
