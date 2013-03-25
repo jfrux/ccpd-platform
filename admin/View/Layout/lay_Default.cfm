@@ -8,12 +8,11 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <title>#Request.Page.Title# - #Application.Settings.AppName#</title>
   <cfinclude template="dsp_HeadGlobal.cfm" />
-
-  <style>
-    body {
-      padding-top:60px;
-    }
-  </style>
+  <script>
+  
+  sMyself = "#Myself#";
+  sRootPath = "#Application.Settings.RootPath#";
+  </script>
 </head>
 
 <body class="tabs tab#Request.NavItem#">
@@ -56,18 +55,20 @@
       <input type="button" id="yes" value="Yes" style="width:50px;" /> 
       <input type="button" id="no" value="No" style="width:50px;" /> 
     </div>
-  </div>
-  <div id="StatusBar">
-    <div style="display:none;" class="PageStandard" id="StatusBox0">
-      
+
+    <div id="StatusBar">
+      <div style="display:none;" class="PageStandard" id="StatusBox0">
+        
+      </div>
+    </div>
+    
+    <div id="ajax-issue">
+      <div id="ajax-issue-title"></div>
+      <div id="ajax-issue-details"></div>
+      <div id="ajax-issue-buttons"><input type="button" name="ajax-issue-button" id="ajax-issue-button" value="Okay" class="button" /></div>
     </div>
   </div>
   
-  <div id="ajax-issue">
-    <div id="ajax-issue-title"></div>
-    <div id="ajax-issue-details"></div>
-    <div id="ajax-issue-buttons"><input type="button" name="ajax-issue-button" id="ajax-issue-button" value="Okay" class="button" /></div>
-  </div>
   #javascript_include_tag()#
   </body>
 </html>

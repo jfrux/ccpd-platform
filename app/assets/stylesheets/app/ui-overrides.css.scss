@@ -1,0 +1,17 @@
+.ui-dialog {
+    background-clip: padding-box;
+    background-color: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 6px 6px 6px 6px;
+    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+    left: 0 !important;
+    margin: auto;
+    outline: medium none;
+    overflow: hidden;
+    padding: 0.2em;
+    position: absolute;
+    right: 0 !important;
+    top: 53px !important;
+    width: 300px;
+    z-index: 1050;
+}

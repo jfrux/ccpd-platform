@@ -583,6 +583,8 @@
 	</fuseaction>
 	
 	<fuseaction name="Notes">
+		<do action="mActivity.TabControl" />
+		
 		<do action="mActivity.getNotes" />
 		
 		<set name="Request.Page.Title" value="#ActivityTitleShort#" />
@@ -592,9 +594,9 @@
 		
 		<set name="Request.MultiFormTitle" value="Notes" />
 		
-		<do action="vActivity.Notes" contentvariable="Request.Page.Body" />
-        
-		<do action="vLayout.None" />
+		<do action="vActivity.Notes" contentvariable="Request.MultiFormContent" />
+		<do action="vLayout.Sub_Activity" contentvariable="Request.Page.Body" />
+		<do action="vLayout.Default" />
 	</fuseaction>
 	
 	<fuseaction name="Other">

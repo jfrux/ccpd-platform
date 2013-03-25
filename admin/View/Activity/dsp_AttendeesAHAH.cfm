@@ -55,7 +55,7 @@ function checkmarkMember(params) {
 
 $(document).ready(function() {
 	// UPDATED SELECTED MEMBER COUNT
-	$("#CheckedCount").html("(" + SelectedCount + ")");
+	$("#CheckedCount,#label-status-selected").html("" + SelectedCount + "");
 	$(".EditDateField").mask("99/99/9999 99:99aa");
 		
 	/* CHECK/UNCHECK ALL CHECKBOXES */
@@ -230,25 +230,7 @@ $(document).ready(function() {
 </script>
 
 <cfoutput>
-<h3>Registrants</h3>
-<div class="btn-toolbar">
-  <div class="btn-group">
-    <a class="btn"><i class="icon icon-plus"></i></a>
-  </div>
-  <div class="btn-group">
-    <a class="btn">Filter</a>
-    <a class="btn dropdown-toggle" data-toggle="dropdown">
-    <span class="caret"></span>
-    </a>
-    <ul class="dropdown-menu attendees-filter">
-      <li id="attendees-0"<cfif attributes.status EQ 0> class="current"</cfif>><a href="javascript://">All (<cfoutput>#totalCount#</cfoutput>)</a></li>
-      <li id="attendees-1"<cfif attributes.status EQ 1> class="current"</cfif>><a href="javascript://">Complete (<cfoutput>#completeCount#</cfoutput>)</a></li>
-      <li id="attendees-4"<cfif attributes.status EQ 4> class="current"</cfif>><a href="javascript://">Failed (<cfoutput>#failCount#</cfoutput>)</a></li>
-      <li id="attendees-2"<cfif attributes.status EQ 2> class="current"</cfif>><a href="javascript://">In Progress (<cfoutput>#progressCount#</cfoutput>)</a></li>
-      <li id="attendees-3"<cfif attributes.status EQ 3> class="current"</cfif>><a href="javascript://">Registered (<cfoutput>#registeredCount#</cfoutput>)</a></li>
-    </ul>
-  </div>
-</div>
+
 <div style="display: none;" id="prototypes">
 	<div style="display: none;" id="action_menu">
 		<ul style="display: block;" class="round" id="menuActions-{personid}">
@@ -278,8 +260,9 @@ $(document).ready(function() {
 </style>
 
 <cfif isDefined("qAttendees") AND qAttendees.RecordCount GT 0>
-	<cfif AttendeePager.getTotalNumberOfPages() GT 1><div style="clear:both;"><cfoutput>#AttendeePager.getRenderedHTML()#</cfoutput></div></cfif>
-    <table border="0" width="620" cellpadding="0" cellspacing="0" class="ViewSectionGrid">
+	<cfif AttendeePager.getTotalNumberOfPages() GT 1><div style="row-fluid"><cfoutput>#AttendeePager.getRenderedHTML()#</cfoutput></div></cfif>
+    <div class="row-fluid">
+    <table border="0" width="620" cellpadding="0" cellspacing="0" class="ViewSectionGrid span24">
         <thead>
             <tr>
                 <th width="15"><input type="checkbox" name="CheckAll" id="CheckAll" /></th>
@@ -362,6 +345,7 @@ $(document).ready(function() {
             </cfoutput>
         </tbody>
     </table>
+  </div>
 	<cfif AttendeePager.getTotalNumberOfPages() GT 1><div><cfoutput>#AttendeePager.getRenderedHTML()#</cfoutput></div></cfif>
 <cfelse>
 	<cfif attributes.status GT 0>

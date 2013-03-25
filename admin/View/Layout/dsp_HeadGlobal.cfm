@@ -109,27 +109,6 @@
 	});
 	</script>
 <script type="text/javascript">
-	BugLog.listener = "#Application.settings.bugLogServer#/listeners/bugLogListenerREST.cfm";
-	BugLog.appName = "#Application.settings.appname#";
-
-	
-// Method 1: Within your own error handler (full stacktrace)
-	// try {
-	// 	.... code that throws an error ...			
-	// } catch(e) {
-		
-	// }
-	
-// Method 2:  Within a global error handler (no stacktrace)
-	window.onerror = function(message, file, line) {
-	  	BugLog.notifyService({
-				  message: message,
-				  extraInfo: 'Error occurred in: ' + file + ':' + line,
-				  severity:"ERROR"
-		  });
-		  return true;
-	};		
-
 var loggedIn = false;
 var StatusCount = 0;
 var currPersonId = 0;
@@ -152,46 +131,44 @@ function addError(sStatus,nFadeIn,nFadeTo,nFadeOut) {
 	$("##StatusBox" + StatusCount).show("slide",{direction: "down"},500).fadeTo(nFadeTo,.9).hide("slide",{direction: "down"},nFadeOut);
 }
 
-sMyself = "#Myself#";
-sRootPath = "#Application.Settings.RootPath#";
 
 jQuery().ready(function(){
-	$("##ajax-issue-button").click(function() {
-		$("##ajax-issue").hide();
-	});
-	$.ajaxSetup({
-		error:function(x,e){
-			console.log(x);
-			console.log(e);
-			var sTitle = "Unexpected Error";
-			var sMessage = "";
-			if(x.status==0){
-				//sMessage = "Connection to CCPD failed... please check your internet connection.";
-			}else if(x.status==404){
-				sMessage = "OOPS! An error occurred during your last request. Page not found!";
-			}else if(x.status==500){
-				errMsg = "500 Internal Server Error"
-				sMessage = "OOPS! An error occurred during your last request.  We are sorry for the inconvenience.";
-			}else if(e=="parsererror"){
-				sMessage = "OOPS! An error occurred during your last request.  JSON parsing error.";
-			}else if(e=="timeout"){
-				sMessage = "OOPS! An error occurred during your last request.  REQUEST TIMED OUT";
-			}else {
-				sMessage = "OOPS! An error occurred during your last request. " + x.responseText;
-			}
+// 	$("##ajax-issue-button").click(function() {
+// 		$("##ajax-issue").hide();
+// 	});
+// 	$.ajaxSetup({
+// 		error:function(x,e){
+// 			console.log(x);
+// 			console.log(e);
+// 			var sTitle = "Unexpected Error";
+// 			var sMessage = "";
+// 			if(x.status==0){
+// 				//sMessage = "Connection to CCPD failed... please check your internet connection.";
+// 			}else if(x.status==404){
+// 				sMessage = "OOPS! An error occurred during your last request. Page not found!";
+// 			}else if(x.status==500){
+// 				errMsg = "500 Internal Server Error"
+// 				sMessage = "OOPS! An error occurred during your last request.  We are sorry for the inconvenience.";
+// 			}else if(e=="parsererror"){
+// 				sMessage = "OOPS! An error occurred during your last request.  JSON parsing error.";
+// 			}else if(e=="timeout"){
+// 				sMessage = "OOPS! An error occurred during your last request.  REQUEST TIMED OUT";
+// 			}else {
+// 				sMessage = "OOPS! An error occurred during your last request. " + x.responseText;
+// 			}
 			
-			$("##ajax-issue-title").html(sTitle);
-			$("##ajax-issue-details").html(sMessage);
+// 			$("##ajax-issue-title").html(sTitle);
+// 			$("##ajax-issue-details").html(sMessage);
 
-			BugLog.notifyService({
-				message: "XHR: " + sMessage,
-				error: JSON.stringify(x),
-				severity: "ERROR"
-			});
+// 			BugLog.notifyService({
+// 				message: "XHR: " + sMessage,
+// 				error: JSON.stringify(x),
+// 				severity: "ERROR"
+// 			});
 
-			$("##ajax-issue").show();
-		}
-	});  
+// 			$("##ajax-issue").show();
+// 		}
+// 	});  
 	  
 	$(".BreadcrumbIcon").attr("src","#Application.Settings.RootPath#/admin/_images/icons/bullet_go#Request.NavItem#.png");
 	$("##PageStandard").hide();

@@ -1,5 +1,6 @@
 <cfparam name="Attributes.Page" type="numeric" default="1" />
-
+<cf_cePersonFinder Instance="Attendee" DefaultName="Add Registrant" DefaultID="" AddPersonFunc="saveAttendee();" ActivityID="#Attributes.ActivityID#">
+    
 <script>
 	<cfoutput>
 	var nId = #Attributes.Page#;
@@ -64,7 +65,13 @@
 	
 	function updateSelectedCount(nAmount) {
 		SelectedCount = SelectedCount + nAmount;
-		$("#CheckedCount").html("(" + SelectedCount + ")");
+		$("#CheckedCount,.js-attendee-status-selected-count").html("" + SelectedCount + "");
+
+		if(SelectedCount > 0) {
+			$(".js-partic-actions").find('.btn').removeClass('disabled');
+		} else {
+			$(".js-partic-actions").find('.btn').addClass('disabled');
+		}
 	}
 	
 	function addSelectedAttendee(params) {
@@ -146,6 +153,8 @@
 		});
 		
 		$(".attendees-filter li").live("click",function() {
+			$this = $(this);
+			$this.parents('.btn-group').find('.btn span:first').text($this.text());
 			nStatus = $.ListGetAt(this.id, 2, "-");
 			$("#RegistrantsContainer").html("");
 			$("#RegistrantsLoading").show();
@@ -153,11 +162,15 @@
 				function(data) {
 					updateRegistrants(1, nStatus);
 			});
-			return false;
+			//return false;
 		});
 		
 		/* CHANGE ATTENDEE STATAUS START */
 		$("#btnStatusSubmit").bind("click",function() {
+			setCheckedStatuses($("#StatusID").val());
+		});
+
+		function setCheckedStatuses(nStatus) {
 			$.blockUI({ message: "<h1>Updating information...</h1>" });
 			var result = "";
 			var cleanData = "";
@@ -170,7 +183,7 @@
 			$.ajax({
 				url: sRootPath + "/_com/AJAX_Activity.cfc",
 				type: 'post',
-				data: { method: "updateAttendeeStatuses", AttendeeList: result, ActivityID: nActivity, StatusID:$("#StatusID").val(), returnFormat: "plain" },
+				data: { method: "updateAttendeeStatuses", AttendeeList: result, ActivityID: nActivity, StatusID:nStatus, returnFormat: "plain" },
 				dataType: 'json',
 				success: function(returnData)  {
 					status = returnData.STATUS;
@@ -189,7 +202,7 @@
 					}
 				}
 			});
-		});
+		}
 		/* CHANGE ATTENDEE STATAUS END */
 		
 		/* REGISTRANTS AND ATTENDEE TEXTBOX START */
@@ -369,9 +382,53 @@
 		});
 		/* PRINT SELECTED ONLY END */
 });
+$(document).ready(function() {
+  $(".importDialog").dialog({
+  	title:"Batch Attendee Import",
+  	modal: false, 
+  	autoOpen: false,
+  	height:200,
+  	width:500,
+  	buttons: { 
+  			Done:function() {
+  				updateRegistrants();
+  				$(".importDialog").find('iframe').attr('src',sMyself + 'activity.import?activityid=' + nActivity);
+  				$(".importDialog").dialog("close");
+  			}
+  		}
+  });
+
+  $(".newImportDialog").dialog({
+    title:"Batch Attendee Import",
+    modal: false, 
+    autoOpen: false,
+    height:550,
+    width:670,
+    buttons: { 
+        Done:function() {
+          updateRegistrants();
+          $(".newImportDialog").find('iframe').attr('src','<cfoutput>#Application.Settings.apiUrl#</cfoutput>/imports?importable_id=' + nActivity);
+          $(".newImportDialog").dialog("close");
+        }
+      }
+  });
+
+	$(".batchLink").click(function() {
+		$(".newImportDialog").dialog("open");
+	});
+});
 </script>
 <div class="ViewSection">
 	<div id="RegistrantsContainer"></div>
 	<div id="RegistrantsLoading" class="Loading"><img src="/admin/_images/ajax-loader.gif" />
 	<div>Please Wait</div></div>
 </div>
+<cfoutput>
+<div class="importDialog">
+	<iframe src="#myself#activity.import?activityid=#attributes.activityid#" frameborder="0" style="width: 400px; height: 100px;"></iframe>
+</div>
+
+<div class="newImportDialog">
+  <iframe src="#Application.Settings.apiUrl#/imports?importable_id=#attributes.activityid#" frameborder="0" style="width: 640px; height: 545px;"></iframe>
+</div>
+</cfoutput>

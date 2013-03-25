@@ -58,7 +58,6 @@ $(document).ready(function() {
 });
 </script>
 
-<a href="javascript:void(0);" id="#Attributes.Instance#Link" title="#Attributes.DefaultName#"><img src="#Application.Settings.RootPath#/_images/icons/ActionPA.png" align="absmiddle" style="padding-right:4px;" />#Attributes.DefaultName#</a>
 <input type="hidden" name="#Attributes.Instance#Name" id="#Attributes.Instance#Name" class="field text" value="#Attributes.DefaultName#" readonly="readonly" style="cursor:default;" />
 <input type="hidden" name="#Attributes.Instance#ID" id="#Attributes.Instance#ID" value="#Attributes.DefaultID#" />
 <div id="PersonWindow#Attributes.Instance#" style="display:none;">

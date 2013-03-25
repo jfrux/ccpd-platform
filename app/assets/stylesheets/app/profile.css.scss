@@ -1,24 +1,65 @@
 @import "twitter/bootstrap/_mixins";
 .profile {
-	.menu {
+  position:relative;
+
+  .profile-bg {
+    border-left: 1px solid #D9D9D9;
+    border-right: 1px solid #D9D9D9;
+    bottom: 0;
+    left: 160px;
+    margin: auto;
+    position: absolute;
+    top: -19px;
+    width: 799px;
+    z-index: -1;
+    
+    .profile-bg-inner {
+      background-color: #F2F2F2;
+      border-top: 1px solid #B3B3B3;
+      bottom: 0;
+      position: absolute;
+      top: 68px;
+      width: 799px;
+    }
+  }
+
+  .titlebar {
+    margin-top:10px;
+    .ContentTitle {
+      font-size:16px;
+      font-weight:bold;
+    }
+  }
+  
+	.projectbar {
     @include box-shadow(4px 0 0px #dde1e7);
     background-color: #EFEFEF;
     border: 1px solid #CFCFCF;
-    padding: 4px;
+    padding: 10px 4px 4px 4px;
     
     word-wrap: break-word;
+    
     .box {
       @include border-radius(7px);
       padding: 7px;
+      margin: 3px 2px 8px 2px;
       background-color:#FFF;
       border:1px solid #CFCFCF;
     }
+
     .nav {
       li {
         a {
           padding:3px;
-        }
+          i {
 
+          }
+
+          span {
+            
+          }
+        }
+        
         &.active {
           a {
             background-color:#EFEFEF;
@@ -29,10 +70,9 @@
   }
   .content {
     background-color:#FFF;
-    border:1px solid #CFCFCF;
     
-    .content-inner {
-
+    .toolbar,.content-inner {
+      margin:0 10px;
     }
 
     &.show-infobar {

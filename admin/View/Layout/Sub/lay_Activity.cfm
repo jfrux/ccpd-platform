@@ -211,7 +211,6 @@ $(document).ready(function() {
     title:"Move Activity",
     modal: true, 
     autoOpen: false,
-    position:[150,150],
     buttons: { 
       Continue:function() {
         $.post(sRootPath + "/_com/AJAX_Activity.cfc", { method:'Move', FromActivityID: nActivity, ToActivityID: $("#ToActivity").val() }, function(data) {
@@ -223,10 +222,10 @@ $(document).ready(function() {
         $("#MoveDialog").dialog("close");
       }
     },
-    height:200,
+    height:400,
     width:450,
     resizable: false,
-    draggable: true,
+    draggable: false,
     open:function() {
       $("#MoveDialog").show();
     },
@@ -245,7 +244,6 @@ $(document).ready(function() {
     title:"Copy &amp; Paste Activity",
     modal: true, 
     autoOpen: false,
-    position:[200,200],
     overlay: { 
       opacity: 0.5, 
       background: "black" 
@@ -259,10 +257,10 @@ $(document).ready(function() {
         $("#CopyDialog").dialog("close");
       }
     },
-    height:230,
+    height:400,
     width:400,
     resizable: false,
-    draggable: true,
+    draggable: false,
     open:function() {
       $("#CopyDialog").show();
     },
@@ -301,36 +299,7 @@ $(document).ready(function() {
   });
   /* // END COPY AND PASTE DIALOG */
   
-  /* NOTES DIALOG */
-  $("#NotesList").dialog({ 
-    title:"Notes",
-    modal: false, 
-    autoOpen: cActNotesOpen,
-    height:430,
-    width:390,
-    position:[cActNotesPosX,cActNotesPosY],
-    resizable: false,
-    dragStop: function(ev,ui) {
-      $.post(sRootPath + "/_com/UserSettings.cfc", { method:'setActNotesPos', position: ui.position.left + "," + ui.position.top });
-    },
-    open:function() {
-      $("#NotesList").show();
-      $("#frmNotes").attr("src",sMyself + "Activity.Notes?ActivityID=" + nActivity);
-      $.post(sRootPath + "/_com/UserSettings.cfc", { method:'setActNotesOpen', IsOpen: 'true' });
-      $("#NotesDialogLink").fadeOut();
-    },
-    close:function() {
-      updateNoteCount();
-      
-      $("#NotesDialogLink").fadeIn();
-      $("#frmNotes").attr("src","javascript://");
-      $.post(sRootPath + "/_com/UserSettings.cfc", { method:'setActNotesOpen', IsOpen: 'false' });
-    }
-  });
 
-  $("#NotesDialogLink").click(function() {
-    $("#NotesList").dialog("open");
-  });
   /* // END NOTES DIALOG */
   
   /* OVERVIEW DIALOG */
@@ -340,7 +309,6 @@ $(document).ready(function() {
     autoOpen: false,
     height:550,
     width:740,
-    position: [100,100],
     resizable: true,
     open:function() {
       $.post(sMyself + "Activity.Overview", { ActivityID: nActivity },
@@ -420,6 +388,8 @@ $(document).ready(function() {
   $("#ProcessSelect").val("");
   /* // END PROCESS QUEUES DIALOG */
   /* // END DIALOG WINDOWS */
+
+  
 });
 </script>
 
@@ -437,15 +407,33 @@ $(document).ready(function() {
 <cfif ActivityBean.getDeletedFlag() EQ "Y">
     <div style="font-size:18px;color:##FF0000;">THIS ACTIVITY HAS BEEN DELETED.</div>
 <cfelse>
-  <div class="ContentTitle">
-    <span title="#HTMLSafe(ActivityBean.getTitle())#">#midLimit(ActivityBean.getTitle(),75)# // #DateFormat(ActivityBean.getStartDate(),'mm/dd/yyyy')#</span></div>
-    <div><cfif ActivityBean.getParentActivityID() NEQ ""><cfif Len(ParentBean.getTitle()) GT 75><span title="#ParentBean.getTitle()#">#left(ParentBean.getTitle(),50) & "..."#</span><cfelse>#ParentBean.getTitle()#</cfif> <cfelse>Parent Activity</cfif> // <cfif ParentBean.getSessionType() EQ "M">Multi-Session<cfelse>Single-Session</cfif>
+  <div class="profile-bg">
+    <div class="profile-bg-inner"></div>
   </div>
   <div class="row">
     <div class="span5">
-      <div class="menu">
+      <div class="projectbar">
         <div class="box">
-          <cf_ceTabControl Instance="MultiForm" Labels="#Request.MultiFormLabels#" Fuseactions="#Request.MultiFormFuseactions#" QueryString="#Request.MultiFormQS#" Current="#Attributes.Fuseaction#">
+          <img src="http://placehold.it/164x100">
+        </div>
+        <div class="box">
+          <cf_ce_profilemenu type="activity" typeid="#attributes.activityid#" settings="#request.tabSettings#" current="#Attributes.Fuseaction#">
+        </div>
+      </div>
+    </div>
+    <div class="span19">
+      <div class="titlebar">
+        <div class="row-fluid">
+          <div class="span20">
+            <div class="ContentTitle">
+              <span title="#HTMLSafe(ActivityBean.getTitle())#">#midLimit(ActivityBean.getTitle(),75)# // #DateFormat(ActivityBean.getStartDate(),'mm/dd/yyyy')#</span></div>
+              <cfif ActivityBean.getParentActivityID() NEQ ""><cfif Len(ParentBean.getTitle()) GT 75><span title="#ParentBean.getTitle()#">#left(ParentBean.getTitle(),50) & "..."#</span><cfelse>#ParentBean.getTitle()#</cfif> <cfelse>Parent Activity</cfif> // <cfif ParentBean.getSessionType() EQ "M">Multi-Session<cfelse>Single-Session</cfif>
+            </div>
+          <div class="span4">
+            <div class="action-buttons pull-right">
+              <a href="/activities/#attributes.activityid#" class="btn">View Activity</a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -453,13 +441,19 @@ $(document).ready(function() {
       <div class="content">
         <div class="row-fluid">
           <div class="span18">
+            <div class="row-fluid">
+              <div class="toolbar">
+                <div class="btn-toolbar">
+                #Request.MultiFormRight#
+                </div>
+              </div>
+            </div>
             <div class="MultiFormContent content-inner">
               #Request.MultiFormContent#
             </div>
           </div>
           <div class="span6">
             <div class="InfoBar infobar">
-              #Request.MultiFormRight#
               <cfset qStatuses = Application.Com.StatusGateway.getByAttributes(OrderBy="Name")>
               <div id="Status">
                 <h3><i class="fg fg-fruit"></i> Activity Health</h3>
@@ -582,9 +576,7 @@ $(document).ready(function() {
   </div>
   <div id="CreditsDialog"></div>
   <div id="email-cert-dialog"></div>
-  <div id="pifDialog">
-    <div id="pifForm"></div>
-  </div>
+
   <div id="PersonDetail">
     <iframe src="" width="840" height="500" frameborder="0" scrolling="auto" name="frameDetail" id="frameDetail"></iframe>
   </div>
@@ -592,9 +584,7 @@ $(document).ready(function() {
   <div id="PhotoUpload" style="display:none;">
     <iframe width="440" height="110" scrolling="no" src="" frameborder="0" id="frmUpload"></iframe>
   </div>
-  <div id="ProcessQueueDialog" style="display:none;overflow:auto;">
-    <iframe width="550" height="350" scrolling="no" src="" frameborder="0" name="frmProcessQueue" id="frmProcessQueue"></iframe>
-  </div>
+  
   </cfif>
 <div id="DisableActivity">
 &nbsp;

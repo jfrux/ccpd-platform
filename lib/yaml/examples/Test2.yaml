@@ -1,0 +1,28 @@
+--- 
+comments: "Late afternoon is best. Backup contact is Nancy Billsmer @ 338-4338. "
+product: 
+  - !java.util.HashMap
+    price: !java.lang.Double 450.0
+    description: Basketball
+    quantity: 4
+    sku: BL394D
+  - !java.util.HashMap
+    price: !java.lang.Double 2392.0
+    description: Super Hoop
+    quantity: 1
+    sku: BL4438H
+total: !java.lang.Double 4443.52
+bill-to: &9 !java.util.HashMap
+  family: Dumars
+  address: !java.util.HashMap
+    lines: |
+      458 Walkman Dr.
+      Suite #292
+    state: MI
+    city: Royal Oak
+    postal: 48046
+  given: Chris
+tax: !java.lang.Double 251.42
+date: 2001-01-23
+invoice: 34843
+ship-to: *9
