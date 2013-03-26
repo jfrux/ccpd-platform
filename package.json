@@ -10,7 +10,6 @@
     "connect":"",
     "node-sass":"",
     "uglify-js":"",
-    "coffee-script":"",
     "csso":"",
     "jade":"",
     "mincer":"git://github.com/nodeca/mincer.git"
