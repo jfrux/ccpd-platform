@@ -1,0 +1,13 @@
+{
+  "assets": {
+    "application.js": "application-9b5da103b461b077aba29bf1dd200679.js"
+  },
+  "files": {
+    "application-9b5da103b461b077aba29bf1dd200679.js": {
+      "logical_path": "application.js",
+      "mtime": "2013-03-26T15:28:05.000Z",
+      "size": 62906,
+      "digest": "9b5da103b461b077aba29bf1dd200679"
+    }
+  }
+}
