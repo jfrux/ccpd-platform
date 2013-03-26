@@ -411,43 +411,48 @@ $(document).ready(function() {
     <div class="profile-bg-inner"></div>
   </div>
   <div class="row">
-    <div class="span5">
+    <div class="span4">
       <div class="projectbar">
         <div class="box">
+          <div class="thumbnail">
           <img src="http://placehold.it/164x100">
+          </div>
         </div>
         <div class="box">
           <cf_ce_profilemenu type="activity" typeid="#attributes.activityid#" settings="#request.tabSettings#" current="#Attributes.Fuseaction#">
         </div>
       </div>
     </div>
-    <div class="span19">
+    <div class="span20">
       <div class="titlebar">
         <div class="row-fluid">
           <div class="span20">
             <div class="ContentTitle">
-              <span title="#HTMLSafe(ActivityBean.getTitle())#">#midLimit(ActivityBean.getTitle(),75)# // #DateFormat(ActivityBean.getStartDate(),'mm/dd/yyyy')#</span></div>
-              <cfif ActivityBean.getParentActivityID() NEQ ""><cfif Len(ParentBean.getTitle()) GT 75><span title="#ParentBean.getTitle()#">#left(ParentBean.getTitle(),50) & "..."#</span><cfelse>#ParentBean.getTitle()#</cfif> <cfelse>Parent Activity</cfif> // <cfif ParentBean.getSessionType() EQ "M">Multi-Session<cfelse>Single-Session</cfif>
+              <span title="#HTMLSafe(ActivityBean.getTitle())#">#midLimit(ActivityBean.getTitle(),75)#</span></div>
+              <!--- <cfif ActivityBean.getParentActivityID() NEQ ""><cfif Len(ParentBean.getTitle()) GT 75><span title="#ParentBean.getTitle()#">#left(ParentBean.getTitle(),50) & "..."#</span><cfelse>#ParentBean.getTitle()#</cfif> <cfelse>Parent Activity</cfif> // <cfif ParentBean.getSessionType() EQ "M">Multi-Session<cfelse>Single-Session</cfif> --->
             </div>
           <div class="span4">
             <div class="action-buttons pull-right">
-              <a href="/activities/#attributes.activityid#" class="btn">View Activity</a>
+              <a href="/activities/#attributes.activityid#" class="btn btn-mini">View Activity</a>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="span19">
+    <div class="span20">
       <div class="content">
         <div class="row-fluid">
           <div class="span18">
-            <div class="row-fluid">
-              <div class="toolbar">
-                <div class="btn-toolbar">
-                #Request.MultiFormRight#
+            <cfif len(trim(request.multiformright)) GT 0>
+               <div class="row-fluid">
+                <div class="toolbar">
+                  <div class="btn-toolbar">
+                  #Request.MultiFormRight#
+                  </div>
                 </div>
               </div>
-            </div>
+            </cfif>
+           
             <div class="MultiFormContent content-inner">
               #Request.MultiFormContent#
             </div>

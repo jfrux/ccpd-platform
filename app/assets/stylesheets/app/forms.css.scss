@@ -1,0 +1,31 @@
+.profile {
+  .content {
+    .content-inner {
+      form {
+        .control-label {
+          color: #666666;
+          font-weight: bold;
+          padding-right: 10px;
+          width: 100px;
+        }
+        .controls {
+          margin-left: 115px;
+        }
+        .control-group {
+            margin-bottom: 0;
+            padding-bottom: 5px;
+        }
+        div.divider {
+          > hr {
+            background: none repeat scroll 0 0 #D9D9D9;
+            border-width: 0;
+            color: #D9D9D9;
+            height: 1px;
+            margin: 4px 0 9px;
+          }
+        }
+      }
+    }
+  }
+  
+}

@@ -117,16 +117,28 @@ $(document).ready(function(){
 	</cfif>
 	
 	/* CHECK IF SPONSORSHIP IS JOINTLY OR DIRECTLY START */
-	if($("#SponsorshipJ").attr("checked")) {
-		$("#JointlyTextFld").css("display","");
+	if($("#Sponsorship").val() == "J") {
+		$(".js-sponsorship-J").addClass('active');
+		$("#JointlyTextFld").removeClass('hide');
+	} else {
+		$(".js-sponsorship-D").addClass('active');
+		$("#JointlyTextFld").addClass('hide');
 	}
 	
-	$(".Sponsorship").bind("click", function() {
-		if($("#SponsorshipJ").attr("checked")) {
-			$("#JointlyTextFld").css("display","");
-		} else if($("#SponsorshipD").attr("checked")) {
-			$("#JointlyTextFld").css("display","none");
+	$(".js-sponsorship-toggle").bind("click", function(e) {
+		var $this = $(this);
+		if($this.hasClass('js-sponsorship-J')) {
+			Unsaved();
+			AddChange($("#SponsorshipJ").attr('name'),"SponsorshipJ");
+			$("#Sponsorship").val("J");
+			$("#JointlyTextFld").removeClass('hide');
+		} else {
+			Unsaved();
+			AddChange($("#SponsorshipD").attr('name'),"SponsorshipD");
+			$("#Sponsorship").val("D");
+			$("#JointlyTextFld").addClass('hide');
 		}
+		e.preventDefault();
 	});
 	/* CHECK IF SPONSORSHIP IS JOINTLY OR DIRECTLY END */
 });
@@ -148,128 +160,161 @@ $(document).ready(function(){
 <div class="ViewContainer">
 <div class="ViewSection">
 <h3>General Information</h3>
-	<form action="#Application.Settings.RootPath#/_com/AJAX_Activity.cfc" method="post" name="frmEditActivity" id="EditForm">
-		<fieldset class="common-form">
-    	<cfinclude template="#Application.Settings.RootPath#/View/Includes/SaveInfo.cfm" />
-		<!--- ADDED Attributes.SessionType HIDDEN FIELD FOR SAVING PURPOSES [Attributes.SessionType must be passed to save StartDate/EndDate] --->
-        <input type="hidden" value="saveActivity" name="Method" />
-        <input type="hidden" value="plain" name="returnFormat" />
-        <input type="hidden" value="#Attributes.ActivityID#" name="ActivityID" />
-    	<input type="hidden" value="#Attributes.SessionType#" name="SessionType" />
-		<input type="hidden" value="" name="ChangedFields" id="ChangedFields" />
-		<input type="hidden" value="" name="ChangedValues" id="ChangedValues" />
-		<table cellspacing="2" cellpadding="3" border="0">
-			<tr>
-				<td valign="top"><label for="Title">Title</label></td>
-				<td><textarea name="Title" rows="2" id="Title">#HTMLSafe(Attributes.Title)#</textarea></td>
-			</tr>
-			<tr>
-				<td valign="top"><label for="ActivityType">Activity Type</label></td>
-				<td valign="top">
+	<form action="#Application.Settings.RootPath#/_com/AJAX_Activity.cfc" method="post" class="form-horizontal" name="frmEditActivity" id="EditForm">
+    	<!--- ADDED Attributes.SessionType HIDDEN FIELD FOR SAVING PURPOSES [Attributes.SessionType must be passed to save StartDate/EndDate] --->
+			<input type="hidden" value="saveActivity" name="Method" />
+			<input type="hidden" value="plain" name="returnFormat" />
+			<input type="hidden" value="#Attributes.ActivityID#" name="ActivityID" />
+			<input type="hidden" value="#Attributes.SessionType#" name="SessionType" />
+			<input type="hidden" value="" name="ChangedFields" id="ChangedFields" />
+			<input type="hidden" value="" name="ChangedValues" id="ChangedValues" />
+		
+			<div class="control-group">
+				<label class="control-label" for="Title">Title</label>
+				<div class="controls">
+					<textarea name="Title" rows="2" style="height:40px;" class="span23" id="Title">#HTMLSafe(Attributes.Title)#</textarea>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="ActivityType">Type</label>
+				<div class="controls">
 					<select name="ActivityTypeID" id="ActivityType" disabled="disabled">
 						<cfloop query="qActivityTypeList">
 							<option value="#qActivityTypeList.ActivityTypeID#" <cfif Attributes.ActivityTypeID EQ qActivityTYpeList.ActivityTypeID> SELECTED</cfif>>#qActivityTypeList.Name#</option>
 						</cfloop>
 					</select>
-				</td>
-			</tr>
-			<tr id="Groupings">
-				<td><label for="Grouping">Grouping</label></td>
-				<td><select name="Grouping" id="Grouping" disabled="disabled"></select></td>
-			</tr>
-			<tr>
-				<td><label for="SessionType">Session Info</label></td>
-				<td>
+				</div>
+			</div>
+			<div class="control-group" id="Groupings">
+				<label class="control-label" for="Grouping">Sub Type</label>
+				<div class="controls">
+					<select name="Grouping" id="Grouping" disabled="disabled"></select>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="SessionType">Session Type</label>
+				<div class="controls">
 					<select name="SessionType" id="SessionType" disabled="disabled">
 						<option value="S"<cfif Attributes.SessionType EQ "S"> SELECTED</cfif>>Stand-alone</option>
 						<option value="M"<cfif Attributes.SessionType EQ "M"> SELECTED</cfif>>Multi-session</option>
 					</select>
-				</td>
-			</tr>
-			<tr style="display: none;">
-				<td><label for="ReleaseDate">Release Date</label></td>
-				<td><input type="text" name="ReleaseDate" id="ReleaseDate" value="#Attributes.ReleaseDate#" class="DatePicker" /></td>
-			</tr>
-			<tr>
-				<td><label for="Sponsorship">Sponsorship</label></td>
-				<td>
-					<input type="radio" name="Sponsorship" class="Sponsorship" id="SponsorshipD"<cfif Trim(Attributes.Sponsorship) EQ "D"> checked="checked"</cfif> value="D" /><label for="SponsorshipD"> Directly</label><br />
-					<input type="radio" name="Sponsorship" class="Sponsorship" id="SponsorshipJ"<cfif Trim(Attributes.Sponsorship) EQ "J"> checked</cfif> value="J" /><label for="SponsorshipJ"> Jointly</label><span id="JointlyTextFld" style="display:none;"><label for="Sponsor" style="display:none;">Sponsor</label><input style="margin-left:6px;" type="text" name="Sponsor" id="Sponsor" value="#Attributes.Sponsor#" /></span></td>
-			</tr>
-			<tr>
-				<td><label for="StartDate">Start Date</label></td>
-				<td><input type="text" name="StartDate" id="StartDate" value="#Attributes.StartDate#" class="DatePicker" /></td>
-			</tr>
-			<tr>
-				<td><label for="EndDate">End Date</label></td>
-				<td><input type="text" name="EndDate" id="EndDate" value="#Attributes.EndDate#" class="DatePicker" /></td>
-			</tr>
-			<tr class="Location">
-				<td><label for="Location">Location</label></td>
-				<td><input type="text" name="Location" id="Location" value="#Attributes.Location#" /></td>
-			</tr>
-			<tr class="Location">
-				<td><label for="Address1">Address 1</label></td>
-				<td><input type="text" name="Address1" id="Address1" value="#Attributes.Address1#" /></td>
-			</tr>
-			<tr class="Location">
-				<td><label for="Address2">Address 2</label></td>
-				<td><input type="text" name="Address2" id="Address2" value="#Attributes.Address2#" /></td>
-			</tr>
-			<tr class="Location">
-				<td><label for="City">City</label></td>
-				<td><input type="text" name="City" id="City" value="#Attributes.City#" /></td>
-			</tr>
-			<tr class="Location stateField">
-				<td><label for="State">State</label></td>
-				<td>
-					<select id="State" name="State">
-						<option value="0">Select one...</option>
-						<cfloop query="Application.List.States">
-							<option value="#trim(Application.List.States.StateId)#"<cfif Attributes.State EQ trim(Application.List.States.StateId)> Selected</cfif>>#Name#</option>
-						</cfloop>
-					</select>
-				</td>
-			</tr>
-			<tr class="Location provinceField">
-				<td><label for="Province">State / Province</label></td>
-				<td><input type="text" name="Province" id="Province" value="#Attributes.Province#" /></td>
-			</tr>
-            <tr class="Location">
-            	<td><label for="Country">Country</label></td>
-                <td>
+				</div>
+			</div>
+			<div class="control-group" style="display:none;">
+				<label class="control-label" for="ReleaseDate">Release Date</label>
+				<div class="controls">
+					<input type="text" name="ReleaseDate" id="ReleaseDate" value="#Attributes.ReleaseDate#" class="DatePicker" />
+				</div>
+			</div>
+			<div class="divider"><hr></div>
+			<div class="control-group">
+				<label class="control-label" for="Sponsorship">Sponsorship</label>
+				<div class="controls">
+					<div data-toggle="buttons-radio" class="btn-group">
+						<button class="btn js-sponsorship-toggle js-sponsorship-D">Directly</button>
+						<button class="btn js-sponsorship-toggle js-sponsorship-J">Jointly</button>
+					</div>
+					<span class="hide mls" id="JointlyTextFld">
+						<input type="text" value="#Attributes.Sponsor#" id="Sponsor" name="Sponsor">
+					</span>
+					<input type="text" name="Sponsorship" class="Sponsorship hide" id="Sponsorship" value="#attributes.sponsorship#" />
+				</div>
+			</div>
+			<div class="divider"><hr></div>
+			<div class="control-group">
+				<label class="control-label" for="StartDate">Start Date</label>
+				<div class="controls">
+					<input type="text" value="#Attributes.StartDate#"  id="StartDate" name="StartDate" class="DatePicker span5 text-center">
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="EndDate">End Date</label>
+				<div class="controls">
+					<input type="text" name="EndDate" id="EndDate" value="#Attributes.EndDate#" class="DatePicker span5 text-center" />
+				</div>
+			</div>
+			<div class="divider"><hr></div>
+			<div class="control-group Location">
+				<label class="control-label" for="Location">Location</label>
+				<div class="controls">
+					<input type="text" name="Location" id="Location" value="#Attributes.Location#" />
+				</div>
+			</div>
+			<div class="control-group Location">
+				<label class="control-label" for="Address1">Address 1</label>
+				<div class="controls">
+					<input type="text" name="Address1" id="Address1" value="#Attributes.Address1#" />
+				</div>
+			</div>
+			<div class="control-group Location">
+				<label class="control-label" for="Address2">Address 2</label>
+				<div class="controls">
+					<input type="text" name="Address2" id="Address2" value="#Attributes.Address2#" />
+				</div>
+			</div>
+			<div class="control-group Location">
+				<label class="control-label" for="City">City</label>
+				<div class="controls">
+					<input type="text" name="City" id="City" value="#Attributes.City#" />
+				</div>
+			</div>
+			<div class="control-group Location stateField">
+				<label class="control-label" for="State">State</label>
+				<div class="controls">
+				<select id="State" name="State">
+					<option value="0">Select one...</option>
+					<cfloop query="Application.List.States">
+						<option value="#trim(Application.List.States.StateId)#"<cfif Attributes.State EQ trim(Application.List.States.StateId)> Selected</cfif>>#Name#</option>
+					</cfloop>
+				</select>
+				</div>
+			</div>
+			<div class="control-group Location provinceField">
+				<label class="control-label" for="Province">State / Province</label>
+				<div class="controls">
+				<input type="text" name="Province" id="Province" value="#Attributes.Province#" />
+				</div>
+			</div>
+       <div class="control-group Location">
+        	<label class="control-label" for="Country">Country</label>
+          <div class="controls">
 					<select id="Country" name="Country">
 						<option value="0">Select one...</option>
 						<cfloop query="Application.List.Countries">
 							<option value="#trim(Application.List.Countries.CountryID)#"<cfif Attributes.Country EQ trim(Application.List.Countries.CountryID) OR Attributes.Country EQ "" AND trim(Application.List.Countries.Name) EQ "United States of America"> Selected</cfif>>#Name#</option>
 						</cfloop>
 					</select>
-                </td>
-            </tr>
-			<tr class="Location">
-				<td><label for="PostalCode">Postal Code</label></td>
-				<td><input type="text" name="PostalCode" id="PostalCode" value="#Attributes.PostalCode#" /></td>
-			</tr>
-			<tr>
-				<td><label for="ExternalID">External ID</label></td>
-				<td><input type="text" name="ExternalID" id="ExternalID" value="#Attributes.ExternalID#" /></td>
-			</tr>
-			<tr>
-				<td>Created By</td>
-				<td>
+          </div>
+      </div>
+			<div class="control-group Location">
+				<label class="control-label" for="PostalCode">Postal Code</label>
+				<div class="controls">
+				<input type="text" name="PostalCode" id="PostalCode" value="#Attributes.PostalCode#" />
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="ExternalID">External ID</label>
+				<div class="controls">
+				<input type="text" name="ExternalID" id="ExternalID" value="#Attributes.ExternalID#" />
+				</div>
+			</div>
+			<div class="control-group hide">
+				Created By
+
 					<a href="#myself#Person.Detail?PersonID=#qModified.CreatedByID#">#qModified.CreatedByName#</a> (#DateFormat(ActivityBean.getCreated(),"mm/dd/yyyy")# #TimeFormat(ActivityBean.getCreated(),"hh:mmTT")#)
-				</td>
-			</tr>
+			</div>
 			<cfif Attributes.UpdatedBy NEQ "">
-				<tr>
-					<td>Updated By</td>
-					<td>
+				<div class="control-group hide">
+				Updated By
+					
 						<a href="#myself#Person.Detail?PersonID=#qModified.UpdatedByID#">#qModified.UpdatedByName#</a> (#DateFormat(ActivityBean.getUpdated(),"mm/dd/yyyy")# #TimeFormat(ActivityBean.getUpdated(),"hh:mmTT")#)
-					</td>
-				</tr>
+					
+				</div>
 			</cfif>
-		</table>
-		</fieldset>
+			<div class="divider"><hr></div>
+			
+				<cfinclude template="#Application.Settings.RootPath#/View/Includes/SaveInfo.cfm" />
+		
   	</form>
 </div>
 </div>
