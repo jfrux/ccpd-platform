@@ -1,8 +1,8 @@
 <cfoutput>
   
   <div class="btn-group pull-left js-partic-actions">
-    <a class="btn dropdown-toggle disabled" data-toggle="dropdown" href="##">SELECTED: <span id="label-status-selected" class="js-attendee-status-selected-count">0</span></a>
-    <a class="btn dropdown-toggle disabled" data-toggle="dropdown" href="##">
+    <a class="btn btn-mini dropdown-toggle disabled" data-toggle="dropdown" href="##">SELECTED: <span id="label-status-selected" class="js-attendee-status-selected-count">0</span></a>
+    <a class="btn btn-mini dropdown-toggle disabled" data-toggle="dropdown" href="##">
       Actions
       <span class="caret"></span>
     </a>
@@ -29,7 +29,7 @@
     </ul>
   </div>
   <div class="btn-group">
-    <a class="btn dropdown-toggle attendee-filter-btn" data-toggle="dropdown" href="##">
+    <a class="btn btn-mini dropdown-toggle attendee-filter-btn" data-toggle="dropdown" href="##">
       <span>All</span>
       <span class="caret"></span>
     </a>
@@ -42,8 +42,8 @@
     </ul>
   </div>
   <div class="btn-group">
-    <a title="Add Registrant" class="btn" id="AttendeeLink" href="javascript:void(0);"><i class="icon-plus"></i> Add</a>
-    <a href="javascript:;" class="btn batchLink"><i class="icon-upload"></i> Import</a>
+    <a title="Add Registrant" class="btn btn-mini" id="AttendeeLink" href="javascript:void(0);"><i class="icon-plus"></i></a>
+    <a href="javascript:;" class="btn btn-mini batchLink"><i class="icon-upload"></i></a>
   </div>
   <div class="form-inline pull-right">
     <label>Addl. Partic.

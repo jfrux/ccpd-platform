@@ -6,9 +6,9 @@ group :development do
 	gem 'sass'
 	gem 'sinatra-sprockets', :git => 'https://github.com/joshuairl/sinatra-sprockets.git'
 	gem 'sprockets-sass'
-	gem 'rmagick'
+	#gem 'rmagick'
 	gem 'coffee-script'
-	gem 'chunky_png'
+	#gem 'chunky_png'
   gem 'sprite-factory'
 	gem 'rb-inotify', :require => false
 	gem 'rb-fsevent', :require => false

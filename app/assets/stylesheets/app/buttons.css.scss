@@ -1,0 +1,45 @@
+.btn-group > .btn:first-child {
+    border-bottom-left-radius: 2px;
+    border-top-left-radius: 2px;
+    margin-left: 0;
+}
+.btn-group > .btn:last-child, .btn-group > .dropdown-toggle {
+    border-bottom-right-radius: 2px;
+    border-top-right-radius: 2px;
+}
+
+.btn {
+  background-color: #EAEAEA;
+  background-image: linear-gradient(#FAFAFA, #EAEAEA);
+  background-repeat: repeat-x;
+  border-color: #DDDDDD #DDDDDD #C5C5C5;
+  border-image: none;
+  border-radius: 3px 3px 3px 3px;
+  border-style: solid;
+  border-width: 1px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.075);
+  color: #333333;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 13px;
+  font-weight: bold;
+  padding: 7px 15px;
+  position: relative;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.9);
+  vertical-align: middle;
+  white-space: nowrap;
+
+  &.btn-mini {
+        height: 12px;
+    line-height: 12px;
+  }
+  &:hover, &:active {
+      background-color: #3072B3;
+      background-image: linear-gradient(#599BCD, #3072B3);
+      background-repeat: repeat-x;
+      border-color: #2A65A0;
+      color: #FFFFFF;
+      text-decoration: none;
+      text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  }
+}

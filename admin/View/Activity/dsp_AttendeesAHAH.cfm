@@ -312,21 +312,12 @@ $(document).ready(function() {
 						</cfif>
                     </td>
                     <td valign="top">
-                    <select name="AttendeeStatusID" class="AttendeeStatusID" id="AttendeeStatus-#qAttendees.attendeeId#"<cfif personId EQ 0> disabled="true"</cfif>>
-                    	<option value="">Select one...</option>
-                        <cfif qAttendees.CompleteDate NEQ "" OR qAttendees.StatusID EQ 1>
-                    		<option value="1"<cfif qAttendees.StatusID EQ 1> SELECTED</cfif>>Complete</option>
-						</cfif>
-                        <cfif qAttendees.StatusID EQ 2>
-                    		<option value="2"<cfif qAttendees.StatusID EQ 2> SELECTED</cfif>>In progress</option>
-						</cfif>
-                        <cfif qAttendees.RegisterDate NEQ "" OR qAttendees.StatusID EQ 3>
-                    		<option value="3"<cfif qAttendees.StatusID EQ 3> SELECTED</cfif>>Registered</option>
-						</cfif>
-                        <cfif qAttendees.TermDate NEQ "" OR qAttendees.StatusID EQ 4>
-                    		<option value="4"<cfif qAttendees.StatusID EQ 4> SELECTED</cfif>>Terminated</option>
-						</cfif>
-                    </select>
+                      <cfset labels = {
+                        "complete":"success",
+                        "terminated":"danger",
+                        "in progress":"warning"
+                      } />
+                      <div class="label label-#labels[qAttendees.statusname]#">#qAttendees.StatusName#</div>
                     </td>
                     <td valign="top"><span class="MDNonMD" id="MDNonMD#qAttendees.attendeeId#"><cfif qAttendees.MDFlag EQ "Y">Yes<cfelse>No</cfif></span></td>
                     <td valign="top" class="user-actions-outer">

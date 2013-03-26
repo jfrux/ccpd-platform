@@ -1,10 +1,12 @@
-@import "app/variables.css.scss";
-@import "app/pagination.css.scss";
-@import "app/sprites-prefix.css.scss";
-@import "app/sprites.css.scss";
-@import "app/header.css.scss";
-@import "app/profile.css.scss";
-@import "app/activity.css.scss";
+@import "app/variables";
+@import "app/colors";
+@import "app/buttons";
+@import "app/pagination";
+@import "app/sprites-prefix";
+@import "app/sprites";
+@import "app/header";
+@import "app/profile";
+@import "app/activity";
 @import "app/ui-overrides";
 
 body {

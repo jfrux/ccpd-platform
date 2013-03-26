@@ -22,7 +22,6 @@ GEM
     activesupport (3.2.13)
       i18n (= 0.6.1)
       multi_json (~> 1.0)
-    chunky_png (1.2.7)
     closure (1.4.3)
       rack (>= 1.0.0)
     closure-compiler (1.1.8)
@@ -72,7 +71,6 @@ GEM
     rb-inotify (0.9.0)
       ffi (>= 0.5.0)
     ref (1.0.4)
-    rmagick (2.13.2)
     sass (3.2.7)
     sinatra (1.4.2)
       rack (~> 1.5, >= 1.5.2)
@@ -105,7 +103,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  chunky_png
   coffee-script
   guard
   guard-livereload
@@ -113,7 +110,6 @@ DEPENDENCIES
   rb-fchange
   rb-fsevent
   rb-inotify
-  rmagick
   sass
   sinatra
   sinatra-sprockets!
