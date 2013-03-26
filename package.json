@@ -5,8 +5,13 @@
   "scripts":{
     "ccpd":"./ccpd"
   },
-  "dependencies":{
-    "autoless":"",
-    "coffee-script":""
+  "devDependencies":{
+    "express":"",
+    "connect":"",
+    "node-sass":"",
+    "uglify-js":"",
+    "csso":"",
+    "jade":"",
+    "mincer":"git://github.com/nodeca/mincer.git"
   }
 }

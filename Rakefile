@@ -4,6 +4,14 @@ Bundler.require
 require 'sprite_factory'
 #require 'rake'
 require './app'
+require "fileutils"
+require 'sinatra/sprockets'
+require 'sinatra/sprockets/rake'
+
+# task :environment do
+#   Sinatra::Sprockets.environment = ENV['RACK_ENV']
+# end
+
 namespace :railo do
   desc "Start Railo for development"
   task :start do
@@ -17,6 +25,7 @@ namespace :assets do
     system "rackup"
   end
 
+
   desc 'recreate sprite images and css'
   task :resprite do 
     SpriteFactory.cssurl = "url('$IMAGE')"    # use a sass-rails helper method to be evaluated by the rails asset pipeline
@@ -28,39 +37,6 @@ namespace :assets do
       :selector => ".fg-",
       :output_style => 'app/assets/stylesheets/app/sprites.css.scss'
     )
-  end
-
-  desc 'compile assets'
-  task :compile => [:compile_js, :compile_css] do
-  
-  end
- 
-  desc 'compile javascript assets'
-  task :compile_js do
-    sprockets = Application.settings.sprockets
-    asset     = sprockets['application.js']
-    outpath   = File.join(Application.settings.assets_path, 'js')
-    outfile   = Pathname.new(outpath).join('application.min.js') # may want to use the digest in the future?
- 
-    FileUtils.mkdir_p outfile.dirname
- 
-    asset.write_to(outfile)
-    asset.write_to("#{outfile}.gz")
-    puts "successfully compiled js assets"
-  end
- 
-  desc 'compile css assets'
-  task :compile_css do
-    sprockets = Application.settings.sprockets
-    asset     = sprockets['application.css']
-    outpath   = File.join(Application.settings.assets_path, 'css')
-    outfile   = Pathname.new(outpath).join('application.min.css') # may want to use the digest in the future?
- 
-    FileUtils.mkdir_p outfile.dirname
- 
-    asset.write_to(outfile)
-    asset.write_to("#{outfile}.gz")
-    puts "successfully compiled css assets"
   end
 end
 
