@@ -99,26 +99,26 @@
 	});
 	</script>
 <script type="text/javascript">
-	BugLog.listener = "#Application.settings.bugLogServer#/listeners/bugLogListenerREST.cfm";
-	BugLog.appName = "#Application.settings.appname#";
+// 	BugLog.listener = "#Application.settings.bugLogServer#/listeners/bugLogListenerREST.cfm";
+// 	BugLog.appName = "#Application.settings.appname#";
 
 	
-// Method 1: Within your own error handler (full stacktrace)
-	// try {
-	// 	.... code that throws an error ...			
-	// } catch(e) {
+// // Method 1: Within your own error handler (full stacktrace)
+// 	// try {
+// 	// 	.... code that throws an error ...			
+// 	// } catch(e) {
 		
-	// }
+// 	// }
 	
-// Method 2:  Within a global error handler (no stacktrace)
-	window.onerror = function(message, file, line) {
-	  	BugLog.notifyService({
-				  message: message,
-				  extraInfo: 'Error occurred in: ' + file + ':' + line,
-				  severity:"ERROR"
-		  });
-		  return true;
-	};		
+// // Method 2:  Within a global error handler (no stacktrace)
+// 	window.onerror = function(message, file, line) {
+// 	  	BugLog.notifyService({
+// 				  message: message,
+// 				  extraInfo: 'Error occurred in: ' + file + ':' + line,
+// 				  severity:"ERROR"
+// 		  });
+// 		  return true;
+// 	};		
 
 var loggedIn = false;
 var StatusCount = 0;
@@ -173,11 +173,11 @@ jQuery().ready(function(){
 			$("##ajax-issue-title").html(sTitle);
 			$("##ajax-issue-details").html(sMessage);
 
-			BugLog.notifyService({
-				message: "XHR: " + sMessage,
-				error: JSON.stringify(x),
-				severity: "ERROR"
-			});
+			// BugLog.notifyService({
+			// 	message: "XHR: " + sMessage,
+			// 	error: JSON.stringify(x),
+			// 	severity: "ERROR"
+			// });
 
 			$("##ajax-issue").show();
 		}

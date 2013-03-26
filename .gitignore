@@ -7,3 +7,5 @@ _uploads
 *.csv
 *.xls
 .DS_Store
+node_modules
+.sass-cache

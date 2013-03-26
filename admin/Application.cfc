@@ -14,9 +14,9 @@
 			<cfset FUSEBOX_PARAMETERS.mode = "production" />
 			
 			<cfset THIS.CustomTagPaths = expandPath("/admin/_tags") />
-
+<!--- 
 			<cferror template="/admin/error.cfm" type="exception" mailto="rountrjf@ucmail.uc.edu">
-			<cferror template="/admin/error.cfm" type="request" mailto="rountrjf@ucmail.uc.edu">
+			<cferror template="/admin/error.cfm" type="request" mailto="rountrjf@ucmail.uc.edu"> --->
 		</cfcase>
 
 		<!--- TEST --->

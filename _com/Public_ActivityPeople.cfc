@@ -741,7 +741,7 @@
 					<cfset Status = "Success|Faculty member has been added.">
 				<cfelse>
 					<!--- Checks if there was a record for the person already --->
-					<cfif qFindFacultyMember.RecordCount EQ 1 AND qFindFacultyMember.DeletedFlag EQ 'Y'>
+					<cfif qFindFacultyMember.RecordCount GTE 1 AND qFindFacultyMember.DeletedFlag EQ 'Y'>
                         <!--- GET CV FILEID --->
                         <cfquery name="qGetCVFile" datasource="#Application.Settings.DSN#">
                             SELECT TOP 1 FileID
