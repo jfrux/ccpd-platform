@@ -611,6 +611,9 @@
 						</poi:sheet>
 					</poi:sheets>
 				</poi:document>
+				<cfheader name="Content-Type" value="application/msexcel">
+				<cfheader name="Content-Disposition" value="attachment; filename=#ReportFileName#">
+				<cfcontent type="application/msexcel" file="#ReportPath##ReportFileName#" deletefile="No">
 				</cfcase>
 				<cfcase value="tabbed">
 					<cfloop query="qReport">
