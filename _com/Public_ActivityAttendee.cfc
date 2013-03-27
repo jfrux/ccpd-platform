@@ -1217,127 +1217,120 @@
 				<cfset ActivityBean = CreateObject("component","#Application.Settings.Com#Activity.Activity").init(ActivityID=Arguments.ActivityID)>
 				<cfset ActivityBean = Application.Com.ActivityDAO.read(ActivityBean)>
                 
-                <cfset personList = "">
+        <cfset personList = "">
                 
-				<cfloop list="#Arguments.AttendeeList#" index="AttendeeId">
-                	<!--- GET ATTENDEE STATUS --->
-                    <cfquery name="AttendeeInfo" datasource="#Application.Settings.DSN#">
-                    	SELECT AttendeeID,StatusID,personId
-                        FROM ce_Attendee
-						WHERE 
-                        	attendeeId = <cfqueryparam value="#AttendeeId#" cfsqltype="cf_sql_integer" />
-                    </cfquery>
-                    
-                    <!--- UPDATE PERSONLIST --->
-                    <cfset personList = listAppend(personList, attendeeInfo.personId,",")>
-                    
-					<!--- Delete each record --->
-					<cfquery name="qUpdateStatus" datasource="#Application.Settings.DSN#" result="qUpdatedStatuses">
-						UPDATE ce_Attendee
-						SET StatusID = <cfif Arguments.StatusID NEQ 0><cfqueryparam value="#Arguments.StatusID#" cfsqltype="cf_sql_integer" /><cfelse><cfqueryparam null="true" cfsqltype="cf_sql_integer" /></cfif>
-                        <cfswitch expression="#Arguments.StatusID#">
-                        	<cfcase value="1">
-							<cfif structKeyExists(arguments,'completeDate') AND isDate(arguments.completeDate)>
-								,CompleteDate = <cfqueryparam value="#arguments.completeDate#" cfsqltype="cf_sql_timestamp" />
-							<cfelseif ActivityBean.getActivityTypeID() NEQ 2>
-                                ,CompleteDate = <cfqueryparam value="#ActivityBean.getEndDate()#" cfsqltype="cf_sql_timestamp" />
-                            <cfelse>
-                                ,CompleteDate = <cfqueryparam value="#now()#" cfsqltype="cf_sql_timestamp" />
-                            </cfif>
-                            ,TermDate = NULL
-                            </cfcase>
-                            <cfcase value="3">
-                            ,CompleteDate = NULL
-                            ,TermDate = NULL
-                            ,RegisterDate = <cfqueryparam value="#Now()#" cfsqltype="cf_sql_timestamp" />
-                            </cfcase>
-                            <cfcase value="4">
-                            ,CompleteDate = NULL
-                            ,TermDate = <cfqueryparam value="#Now()#" cfsqltype="cf_sql_timestamp" />
-                            </cfcase>
-                        </cfswitch>
-						WHERE attendeeId = <cfqueryparam value="#attendeeId#" cfsqltype="cf_sql_integer" />
-					</cfquery>
-                    
-					<cfif arguments.statusId EQ 1>
-						<cfif arguments.StatusID EQ 1>
-							
-								<cfif arguments.sendEmail>
-								<cfset application.email.send(EmailStyleID=5,ToAttendeeID=AttendeeInfo.AttendeeID,ToActivityID=arguments.activityId,ToPersonID=PersonID,ToCreditID=1) />
-								</cfif>
+        <cfloop list="#Arguments.AttendeeList#" index="AttendeeId">
+          <!--- GET ATTENDEE STATUS --->
+          <cfquery name="AttendeeInfo" datasource="#Application.Settings.DSN#">
+          SELECT AttendeeID,StatusID,personId
+          FROM ce_Attendee
+          WHERE 
+          attendeeId = <cfqueryparam value="#AttendeeId#" cfsqltype="cf_sql_integer" />
+          </cfquery>
 
-						</cfif>
-					</cfif>
-					
-					<!--- Count the total records being deleted --->
-					<cfset ChangeCount++>
-					
-					<!--- PERSON DETAIL --->
-					<cfset PersonBean = CreateObject("component","#Application.Settings.Com#Person.Person").init(PersonID=attendeeInfo.PersonID)>
-					<cfset PersonBean = Application.Com.PersonDAO.read(PersonBean)>
-            	</cfloop>
+          <!--- UPDATE PERSONLIST --->
+          <cfset personList = listAppend(personList, attendeeInfo.personId,",")>
+
+          <!--- Delete each record --->
+          <cfquery name="qUpdateStatus" datasource="#Application.Settings.DSN#" result="qUpdatedStatuses">
+            UPDATE ce_Attendee
+            SET StatusID = <cfif Arguments.StatusID NEQ 0><cfqueryparam value="#Arguments.StatusID#" cfsqltype="cf_sql_integer" /><cfelse><cfqueryparam null="true" cfsqltype="cf_sql_integer" /></cfif>
+            <cfswitch expression="#Arguments.StatusID#">
+              <cfcase value="1">
+              <cfif structKeyExists(arguments,'completeDate') AND isDate(arguments.completeDate)>
+              ,CompleteDate = <cfqueryparam value="#arguments.completeDate#" cfsqltype="cf_sql_timestamp" />
+              <cfelseif ActivityBean.getActivityTypeID() NEQ 2>
+              ,CompleteDate = <cfqueryparam value="#ActivityBean.getEndDate()#" cfsqltype="cf_sql_timestamp" />
+              <cfelse>
+              ,CompleteDate = <cfqueryparam value="#now()#" cfsqltype="cf_sql_timestamp" />
+              </cfif>
+              ,TermDate = NULL
+              </cfcase>
+              <cfcase value="3">
+              ,CompleteDate = NULL
+              ,TermDate = NULL
+              ,RegisterDate = <cfqueryparam value="#Now()#" cfsqltype="cf_sql_timestamp" />
+              </cfcase>
+              <cfcase value="4">
+              ,CompleteDate = NULL
+              ,TermDate = <cfqueryparam value="#Now()#" cfsqltype="cf_sql_timestamp" />
+              </cfcase>
+            </cfswitch>
+            WHERE attendeeId = <cfqueryparam value="#attendeeId#" cfsqltype="cf_sql_integer" />
+          </cfquery>
+        </cfloop>
+
+        <cfloop from="1" to="#listLen(personList)#" delimiters="," index="PersonID">
+          <cfif arguments.statusId EQ 1>
+            <cfif arguments.sendEmail>
+              <cfset application.email.send(EmailStyleID=5,ToAttendeeID=AttendeeInfo.AttendeeID,ToActivityID=arguments.activityId,ToPersonID=AttendeeId,ToCreditID=1) />
+            </cfif>
+          </cfif>
+        </cfloop>
+			
+			
+				<!--- Count the total records being deleted --->
+				<cfset ChangeCount++>
                 
 				<cfset createObject("component", "admin._com.scripts.statFixer").run(activityId=arguments.activityId,mode='manual')>
                 
-                <cfset OutputVar = "">
-                <cfswitch expression="#Arguments.StatusID#">
-                    <cfcase value="1">
-                        <cfset OutputVar = "<strong>Status:</strong> Complete"> 
-                    </cfcase>
-                    <cfcase value="2">
-                        <cfset OutputVar = "<strong>Status:</strong> In Progress">
-                    </cfcase>
-                    <cfcase value="3">
-                        <cfset OutputVar = "<strong>Status:</strong> Pending">
-                    </cfcase>
-                    <cfcase value="4">
-                        <cfset OutputVar = "<strong>Status:</strong> Registered">
-                    </cfcase>
-                    <cfcase value="5">
-                        <cfset OutputVar = "<strong>Status:</strong> Terminated">
-                    </cfcase>
-                </cfswitch>
+        <!--- <cfset OutputVar = "">
+        <cfswitch expression="#Arguments.StatusID#">
+            <cfcase value="1">
+                <cfset OutputVar = "<strong>Status:</strong> Complete"> 
+            </cfcase>
+            <cfcase value="2">
+                <cfset OutputVar = "<strong>Status:</strong> In Progress">
+            </cfcase>
+            <cfcase value="3">
+                <cfset OutputVar = "<strong>Status:</strong> Pending">
+            </cfcase>
+            <cfcase value="4">
+                <cfset OutputVar = "<strong>Status:</strong> Registered">
+            </cfcase>
+            <cfcase value="5">
+                <cfset OutputVar = "<strong>Status:</strong> Terminated">
+            </cfcase>
+        </cfswitch> --->
 				
 				<!--- ACTIVITY ACTION UPDATER --->
-				<cfif ChangeCount EQ 1>
-                	<cfset status.setStatus(true)>
-                    <cfset status.setStatusMsg("1 status has been changed.")>
+				<!--- <cfif ChangeCount EQ 1>
+          <cfset status.setStatus(true)>
+          <cfset status.setStatusMsg("1 status has been changed.")>
 				
-					<cfset Application.History.Add(
-                                HistoryStyleID=28,
-                                FromPersonID=Session.PersonID,
-                                ToPersonID=PersonList,
-                                ToActivityID=Arguments.ActivityID,
-								ToContent=OutputVar)>
+          <cfset Application.History.Add(
+                HistoryStyleID=28,
+                FromPersonID=Session.PersonID,
+                ToPersonID=PersonList,
+                ToActivityID=Arguments.ActivityID,
+          ToContent=OutputVar)>
 					
 					
 				<cfelse>
-                	<cfset status.setStatus(true)>
-                    <cfset status.setStatusMsg("#ChangeCount# statuses have been changed.")>
-                    
-                    <cfquery name="PersonInfo" datasource="#Application.Settings.DSN#">
-                    	SELECT DisplayName
-                        FROM ce_Person
-                        WHERE PersonID IN (#PersonList#)
-                    </cfquery>
-                    
-                    <cfset NameList = "">
-                    <cfloop query="PersonInfo">
-                    	<cfset NameList = ListAppend(NameList,Trim(PersonInfo.DisplayName),", ")>
-                    </cfloop>
-                    
-                    <cfset OutputVar = OutputVar & "<br /><strong>Attendees:</strong> " & NameList>
+          <cfset status.setStatus(true)>
+          <cfset status.setStatusMsg("#ChangeCount# statuses have been changed.")>
+
+          <cfquery name="PersonInfo" datasource="#Application.Settings.DSN#">
+            SELECT DisplayName
+            FROM ce_Person
+            WHERE PersonID IN (#PersonList#)
+          </cfquery>
+
+          <cfset NameList = "">
+          <cfloop query="PersonInfo">
+            <cfset NameList = ListAppend(NameList,Trim(PersonInfo.DisplayName),", ")>
+          </cfloop>
+
+          <cfset OutputVar = OutputVar & "<br /><strong>Attendees:</strong> " & NameList>
 				
 					<cfset Application.History.Add(
-                                HistoryStyleID=30,
-                                FromPersonID=Session.PersonID,
-                                ToActivityID=Arguments.ActivityID,
+                HistoryStyleID=30,
+                FromPersonID=Session.PersonID,
+                ToActivityID=Arguments.ActivityID,
 								ToContent=OutputVar)>
-				</cfif>
+				</cfif> --->
 				
 				<cfset application.activity.refresh(arguments.activityId) />
-				
-	
 		</cfif>
 		
 		<cfreturn status />
