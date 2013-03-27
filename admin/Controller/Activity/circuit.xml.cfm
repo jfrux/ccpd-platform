@@ -11,9 +11,11 @@
 				<do action="mActivity.getActivity" />
 				<do action="mActivity.getSubActivities" />
 				<do action="mActivity.getLiveGroupings" />
-                <do action="mActivity.getActivityTypes" />
+        <do action="mActivity.getActivityTypes" />
 				<set name="Request.ActionsLimit" value="4" />
-				
+
+				<set name="Request.Page.Title" value="#ActivityBean.getTitle()#" />
+        
 				<set name="ActivityTitleShort" value="#midLimit(Attributes.ActivityTitle,50)# // #DateFormat(ActivityBean.getStartDate(),'mm/dd/yyyy')#" />
 				
 				<do action="mActivity.getActions" />
@@ -48,7 +50,6 @@
 	<!-- //END AHAH pages -->
 	
 	<fuseaction name="ACCME">
-		<set name="Request.Page.Title" value="ACCME Information" />
 		
 		<set name="Request.Page.Breadcrumbs" value="Activities|Activity.Home,#ActivityTitleShort#|Activity.Detail?ActivityID=#Attributes.ActivityID#,ACCME Information|Activity.accme?ActivityID=#Attributes.ActivityID#" />
 		<do action="mPage.ParseCrumbs" />
@@ -64,7 +65,6 @@
     </fuseaction>
 	
 	<fuseaction name="Actions">
-		<set name="Request.Page.Title" value="Actions" />
 		
 		<set name="Request.Page.Breadcrumbs" value="Activities|Activity.Home,#ActivityTitleShort#|Activity.Detail?ActivityID=#Attributes.ActivityID#,Actions|Activity.actions?ActivityID=#Attributes.ActivityID#" />
 		<do action="mPage.ParseCrumbs" />
@@ -86,8 +86,6 @@
     
     <fuseaction name="Agenda">
 		<do action="mActivity.TabControl" />
-							
-		<set name="Request.Page.Title" value="#ActivityTitleShort#" />
         
 		<set name="Request.Page.Breadcrumbs" value="Activities|Activity.Home,#ActivityTitleShort#|Activity.Detail?ActivityID=#Attributes.ActivityID#,Other|Activity.Other?ActivityID=#Attributes.ActivityID#,Agenda|Activity.Agenda?ActivityID=#Attributes.ActivityID#" />
 		<do action="mPage.ParseCrumbs" />
@@ -113,8 +111,6 @@
 		<do action="mActivity.getApplication" />
 		<do action="mActivity.TabControl" />
 							
-		<set name="Request.Page.Title" value="#ActivityTitleShort#" />
-        
 		<set name="Request.Page.Breadcrumbs" value="Activities|Activity.Home,#ActivityTitleShort#|Activity.Detail?ActivityID=#Attributes.ActivityID#,Other|Activity.Other?ActivityID=#Attributes.ActivityID#,Application|Activity.Application?ActivityID=#Attributes.ActivityID#" />
 		<do action="mPage.ParseCrumbs" />
 		
@@ -135,7 +131,6 @@
 		<do action="mActivity.getAssessments" />
 		<do action="mActivity.TabControl" />
 		
-		<set name="Request.Page.Title" value="#ActivityTitleShort#" />
         
 		<set name="Request.Page.Breadcrumbs" value="Activities|Activity.Home,#ActivityTitleShort#|Activity.Detail?ActivityID=#Attributes.ActivityID#,Assessments|Activity.Assessments?ActivityID=#Attributes.ActivityID#" />
 		<do action="mPage.ParseCrumbs" />
@@ -159,8 +154,6 @@
 		<do action="mActivity.getAttendeeCDC" />
 		<do action="mActivity.saveAttendeeCDC" />
 		
-		<set name="Request.Page.Title" value="#ActivityTitleShort#" />
-        
 		<set name="Request.Page.Breadcrumbs" value="Activities|Activity.Home,#ActivityTitleShort#|Activity.Detail?ActivityID=#Attributes.ActivityID#,Needs Assessment|Activity.Needs?ActivityID=#Attributes.ActivityID#" />
 		<do action="mPage.ParseCrumbs" />
 		
@@ -181,8 +174,6 @@
         <do action="mActivity.getAttendeeStatuses" />
 		<do action="mActivity.TabControl" />
 		
-		<set name="Request.Page.Title" value="#ActivityTitleShort#" />
-        
 		<set name="Request.Page.Breadcrumbs" value="Activities|Activity.Home,#ActivityTitleShort#|Activity.Detail?ActivityID=#Attributes.ActivityID#,Attendees|Activity.Attendees?ActivityID=#Attributes.ActivityID#" />
 		<do action="mPage.ParseCrumbs" />
 		
@@ -207,8 +198,6 @@
         <do action="mActivity.getAttendeeStatuses" />
 		<do action="mActivity.TabControl" />
 		
-		<set name="Request.Page.Title" value="#ActivityTitleShort#" />
-        
 		<set name="Request.Page.Breadcrumbs" value="Activities|Activity.Home,#ActivityTitleShort#|Activity.Detail?ActivityID=#Attributes.ActivityID#,Attendees|Activity.Attendees?ActivityID=#Attributes.ActivityID#" />
 		<do action="mPage.ParseCrumbs" />
 		
@@ -232,8 +221,6 @@
 		<do action="mActivity.getCDCInfo" />
 		<do action="mActivity.TabControl" />
 							
-		<set name="Request.Page.Title" value="#ActivityTitleShort#" />
-        
 		<set name="Request.Page.Breadcrumbs" value="Activities|Activity.Home,#ActivityTitleShort#|Activity.Detail?ActivityID=#Attributes.ActivityID#,Other|Activity.Other?ActivityID=#Attributes.ActivityID#,CDC Info|Activity.CDCInfo?ActivityID=#Attributes.ActivityID#" />
 		<do action="mPage.ParseCrumbs" />
 		
@@ -249,8 +236,6 @@
         <do action="mActivity.getRoles" />
 		<do action="mActivity.getActivityCommittee" />
 		
-		<set name="Request.Page.Title" value="#ActivityTitleShort#" />
-        
 		<set name="Request.Page.Breadcrumbs" value="Activities|Activity.Home,#ActivityTitleShort#|Activity.Detail?ActivityID=#Attributes.ActivityID#,Committee|Activity.Committee?ActivityID=#Attributes.ActivityID#" />
 		<do action="mPage.ParseCrumbs" />
 		
@@ -273,7 +258,7 @@
         <do action="mActivity.getEMGroupings" />
 		<do action="mActivity.createActivity" />
 		
-		<set name="Request.Page.Title" value="Create activity" />
+		<set name="Request.Page.Title" value="Create Activity" />
         
 		<set name="Request.Page.Breadcrumbs" value="Activities|Activity.Home,Unsaved Activity|Activity.Create" />
         
@@ -292,8 +277,6 @@
 		<do action="mActivity.getCredits" />
 		<do action="mActivity.TabControl" />
 		
-		<set name="Request.Page.Title" value="#ActivityTitleShort#" />
-        
 		<set name="Request.Page.Breadcrumbs" value="Activities|Activity.Home,#ActivityTitleShort#|Activity.Detail?ActivityID=#Attributes.ActivityID#,Credits|Activity.Credits?ActivityID=#Attributes.ActivityID#" />
 		<do action="mPage.ParseCrumbs" />
 		
@@ -309,7 +292,6 @@
 	<fuseaction name="Detail">
 		<do action="mActivity.TabControl" />
 		
-		<set name="Request.Page.Title" value="#ActivityTitleShort#" />
 		<set name="Request.Page.Breadcrumbs" value="Activities|Activity.Home,#ActivityTitleShort#|Activity.Detail?ActivityID=#Attributes.ActivityID#" />
 		<do action="mPage.ParseCrumbs" />
 		
@@ -325,8 +307,6 @@
 		<do action="mActivity.getDocs" />
 		<do action="mActivity.TabControl" />
 		
-		<set name="Request.Page.Title" value="#ActivityTitleShort#" />
-        
 		<set name="Request.Page.Breadcrumbs" value="Activities|Activity.Home,#ActivityTitleShort#|Activity.Detail?ActivityID=#Attributes.ActivityID#,Documents|Activity.Docs?ActivityID=#Attributes.ActivityID#" />
 		<do action="mPage.ParseCrumbs" />
 		
@@ -369,8 +349,6 @@
 		<do action="mActivity.TabControl" />
         <do action="mActivity.getRoles" />
 		
-		<set name="Request.Page.Title" value="#ActivityTitleShort#" />
-        
 		<set name="Request.Page.Breadcrumbs" value="Activities|Activity.Home,#ActivityTitleShort#|Activity.Detail?ActivityID=#Attributes.ActivityID#,Faculty|Activity.Faculty?ActivityID=#Attributes.ActivityID#" />
 		<do action="mPage.ParseCrumbs" />
 		
@@ -398,7 +376,7 @@
 		<do action="mActivity.getFinOverview" />
 		<do action="mActivity.TabControl" />
 		
-		<set name="Request.Page.Title" value="#ActivityTitleShort#" />
+		
         
 		<set name="Request.Page.Breadcrumbs" value="Activities|Activity.Home,#ActivityTitleShort#|Activity.Detail?ActivityID=#Attributes.ActivityID#,Finances|Activity.Finances?ActivityID=#Attributes.ActivityID#" />
 		<do action="mPage.ParseCrumbs" />
@@ -415,7 +393,7 @@
 		<do action="mActivity.saveFinBudget" />
 		<do action="mActivity.TabControl" />
 		
-		<set name="Request.Page.Title" value="#ActivityTitleShort#" />
+		
         
 		<set name="Request.Page.Breadcrumbs" value="Activities|Activity.Home,#ActivityTitleShort#|Activity.Detail?ActivityID=#Attributes.ActivityID#,Finances|Activity.Finances?ActivityID=#Attributes.ActivityID#,Budget|Activity.FinBudget?ActivityID=#Attributes.ActivityID#" />
 		<do action="mPage.ParseCrumbs" />
@@ -437,7 +415,7 @@
 	<fuseaction name="FinFees">
 		<do action="mActivity.TabControl" />
 		
-		<set name="Request.Page.Title" value="#ActivityTitleShort#" />
+		
         
 		<set name="Request.Page.Breadcrumbs" value="Activities|Activity.Home,#ActivityTitleShort#|Activity.Detail?ActivityID=#Attributes.ActivityID#,Finances|Activity.Finances?ActivityID=#Attributes.ActivityID#,Fees|Activity.FinFees?ActivityID=#Attributes.ActivityID#" />
 		<do action="mPage.ParseCrumbs" />
@@ -459,7 +437,7 @@
 	<fuseaction name="FinLedger">
 		<do action="mActivity.TabControl" />
 		
-		<set name="Request.Page.Title" value="#ActivityTitleShort#" />
+		
         
 		<set name="Request.Page.Breadcrumbs" value="Activities|Activity.Home,#ActivityTitleShort#|Activity.Detail?ActivityID=#Attributes.ActivityID#,Finances|Activity.Finances?ActivityID=#Attributes.ActivityID#,General Ledger|Activity.FinLedger?ActivityID=#Attributes.ActivityID#" />
 		<do action="mPage.ParseCrumbs" />
@@ -484,7 +462,7 @@
 		<do action="mActivity.getSupportTypes" />
 		<do action="mActivity.TabControl" />
 		
-		<set name="Request.Page.Title" value="#ActivityTitleShort#" />
+		
         
 		<set name="Request.Page.Breadcrumbs" value="Activities|Activity.Home,#ActivityTitleShort#|Activity.Detail?ActivityID=#Attributes.ActivityID#,Finances|Activity.Finances?ActivityID=#Attributes.ActivityID#,Supporters|Activity.FinSupport?ActivityID=#Attributes.ActivityID#" />
 		<do action="mPage.ParseCrumbs" />
@@ -505,7 +483,7 @@
 	<fuseaction name="History">
 		<do action="mActivity.TabControl" />
 		
-		<set name="Request.Page.Title" value="#ActivityTitleShort#" />
+		
         
 		<set name="Request.Page.Breadcrumbs" value="Activities|Activity.Home,#ActivityTitleShort#|Activity.Detail?ActivityID=#Attributes.ActivityID#,Credits|Activity.Credits?ActivityID=#Attributes.ActivityID#" />
 		<do action="mPage.ParseCrumbs" />
@@ -548,7 +526,7 @@
 	<fuseaction name="Meals">
 		<do action="mActivity.TabControl" />
 							
-		<set name="Request.Page.Title" value="#ActivityTitleShort#" />
+		
         
 		<set name="Request.Page.Breadcrumbs" value="Activities|Activity.Home,#ActivityTitleShort#|Activity.Detail?ActivityID=#Attributes.ActivityID#,Other|Activity.Other?ActivityID=#Attributes.ActivityID#,Meals|Activity.Meals?ActivityID=#Attributes.ActivityID#" />
 		<do action="mPage.ParseCrumbs" />
@@ -565,7 +543,7 @@
 		
 		<do action="mActivity.TabControl" />
 			
-		<set name="Request.Page.Title" value="#ActivityTitleShort#" />
+		
         
 		<set name="Request.Page.Breadcrumbs" value="Activities|Activity.Home,#ActivityTitleShort#|Activity.Detail?ActivityID=#Attributes.ActivityID#,Notes|Activity.Notes?ActivityID=#Attributes.ActivityID#,New Note|Activity.CreateNote+ActivitiesectionID=2" />
 		<do action="mPage.ParseCrumbs" />
@@ -587,7 +565,7 @@
 		
 		<do action="mActivity.getNotes" />
 		
-		<set name="Request.Page.Title" value="#ActivityTitleShort#" />
+		
         
 		<set name="Request.Page.Breadcrumbs" value="Activities|Activity.Home,#ActivityTitleShort#|Activity.Detail?ActivityID=#Attributes.ActivityID#,Notes|Activity.Notes?ActivityID=#Attributes.ActivityID#" />
 		<do action="mPage.ParseCrumbs" />
@@ -602,7 +580,7 @@
 	<fuseaction name="Other">
 		<do action="mActivity.TabControl" />
 							
-		<set name="Request.Page.Title" value="#ActivityTitleShort#" />
+		
         
 		<set name="Request.Page.Breadcrumbs" value="Activities|Activity.Home,#ActivityTitleShort#|Activity.Detail?ActivityID=#Attributes.ActivityID#,Other|Activity.Other?ActivityID=#Attributes.ActivityID#" />
 		<do action="mPage.ParseCrumbs" />
@@ -634,7 +612,7 @@
 	<fuseaction name="PubPrereqs">
 		<do action="mActivity.TabControl" />
 							
-		<set name="Request.Page.Title" value="#ActivityTitleShort#" />
+		
         
 		<set name="Request.Page.Breadcrumbs" value="Activities|Activity.Home,#ActivityTitleShort#|Activity.Detail?ActivityID=#Attributes.ActivityID#,Publish|Activity.Publish?ActivityID=#Attributes.ActivityID#,Prerequisites|Activity.PubPrereqs?ActivityID=#Attributes.ActivityID#" />
 		<do action="mPage.ParseCrumbs" />
@@ -654,7 +632,7 @@
 	<fuseaction name="Publish">
 		<do action="mActivity.TabControl" />
 							
-		<set name="Request.Page.Title" value="#ActivityTitleShort#" />
+		
         
 		<set name="Request.Page.Breadcrumbs" value="Activities|Activity.Home,#ActivityTitleShort#|Activity.Detail?ActivityID=#Attributes.ActivityID#,Publish|Activity.Publish?ActivityID=#Attributes.ActivityID#" />
 		<do action="mPage.ParseCrumbs" />
@@ -671,7 +649,7 @@
 		<do action="mActivity.getPubGeneral" />
 		
 		<set name="Attributes.ThisUpdated" value="#ActivityPubGeneral.getUpdated()#" />
-		<set name="Request.Page.Title" value="#ActivityTitleShort#" />
+		
         
 		<set name="Request.Page.Breadcrumbs" value="Activities|Activity.Home,#ActivityTitleShort#|Activity.Detail?ActivityID=#Attributes.ActivityID#,Publish|Activity.Publish?ActivityID=#Attributes.ActivityID#,General|Activity.PubGeneral?ActivityID=#Attributes.ActivityID#" />
 		<do action="mPage.ParseCrumbs" />
@@ -692,7 +670,7 @@
 		<do action="mActivity.TabControl" />
         <do action="mActivity.getActivityPubSites" />
 		
-		<set name="Request.Page.Title" value="#ActivityTitleShort#" />
+		
         
 		<set name="Request.Page.Breadcrumbs" value="Activities|Activity.Home,#ActivityTitleShort#|Activity.Detail?ActivityID=#Attributes.ActivityID#,Publish|Activity.Publish?ActivityID=#Attributes.ActivityID#,Sites|Activity.PubSites?ActivityID=#Attributes.ActivityID#" />
 		<do action="mPage.ParseCrumbs" />
@@ -707,7 +685,7 @@
 	<fuseaction name="PubSpecialty">
 		<do action="mActivity.TabControl" />
 		
-		<set name="Request.Page.Title" value="#ActivityTitleShort#" />
+		
         
 		<set name="Request.Page.Breadcrumbs" value="Activities|Activity.Home,#ActivityTitleShort#|Activity.Detail?ActivityID=#Attributes.ActivityID#,Publish|Activity.Publish?ActivityID=#Attributes.ActivityID#,Specialties|Activity.PubSpecialty?ActivityID=#Attributes.ActivityID#" />
 		<do action="mPage.ParseCrumbs" />
@@ -735,7 +713,7 @@
 	<fuseaction name="PubCategory">
 		<do action="mActivity.TabControl" />
 		
-		<set name="Request.Page.Title" value="#ActivityTitleShort#" />
+		
         
 		<set name="Request.Page.Breadcrumbs" value="Activities|Activity.Home,#ActivityTitleShort#|Activity.Detail?ActivityID=#Attributes.ActivityID#,Publish|Activity.Publish?ActivityID=#Attributes.ActivityID#,Categories|Activity.PubCategory?ActivityID=#Attributes.ActivityID#" />
 		<do action="mPage.ParseCrumbs" />
@@ -757,7 +735,7 @@
 		<do action="mActivity.getComponents" />
 		<do action="mActivity.TabControl" />
 
-		<set name="Request.Page.Title" value="#ActivityTitleShort#" />
+		
         
 		<set name="Request.Page.Breadcrumbs" value="Activities|Activity.Home,#ActivityTitleShort#|Activity.Detail?ActivityID=#Attributes.ActivityID#,Publish|Activity.Publish?ActivityID=#Attributes.ActivityID#,Builder|Activity.PubBuilder?ActivityID=#Attributes.ActivityID#" />
 		<do action="mPage.ParseCrumbs" />
@@ -772,7 +750,7 @@
 	<fuseaction name="Reports">
 		<do action="mActivity.TabControl" />
 		
-		<set name="Request.Page.Title" value="#ActivityTitleShort#" />
+		
         
 		<set name="Request.Page.Breadcrumbs" value="Activities|Activity.Home,#ActivityTitleShort#|Activity.Detail?ActivityID=#Attributes.ActivityID#,Reports|Activity.Reports" />
 		<do action="mPage.ParseCrumbs" />

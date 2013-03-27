@@ -428,12 +428,12 @@ $(document).ready(function() {
         <div class="row-fluid">
           <div class="span20">
             <div class="ContentTitle">
-              <span title="#HTMLSafe(ActivityBean.getTitle())#">#midLimit(ActivityBean.getTitle(),75)#</span></div>
+              <span title="#HTMLSafe(ActivityBean.getTitle())#">#midLimit(ActivityBean.getTitle(),60)#</span></div>
               <!--- <cfif ActivityBean.getParentActivityID() NEQ ""><cfif Len(ParentBean.getTitle()) GT 75><span title="#ParentBean.getTitle()#">#left(ParentBean.getTitle(),50) & "..."#</span><cfelse>#ParentBean.getTitle()#</cfif> <cfelse>Parent Activity</cfif> // <cfif ParentBean.getSessionType() EQ "M">Multi-Session<cfelse>Single-Session</cfif> --->
             </div>
           <div class="span4">
             <div class="action-buttons pull-right">
-              <a href="/activities/#attributes.activityid#" class="btn btn-mini">View Activity</a>
+              <a href="/activities/#attributes.activityid#" class="btn">View Activity</a>
             </div>
           </div>
         </div>
