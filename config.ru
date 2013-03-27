@@ -4,12 +4,13 @@ require 'sprockets'
 require 'sass'
 require 'sinatra/sprockets'
 require 'sprockets-sass'
+require 'coffee_script'
 require './app'
 
 Sinatra::Sprockets.configure do |config|
   config.app = MyApp
 
-  config.host = "http://localhost:9292"
+  config.host = "http://localhost:3000"
   ['stylesheets', 'javascripts', 'images'].each do |dir|
     config.append_path(File.join('app','assets', dir))
   end
@@ -18,7 +19,7 @@ Sinatra::Sprockets.configure do |config|
   end
 
   config.compile = true
-  config.digest = true
+  config.digest = false
   config.compress = false
   config.debug = true
 

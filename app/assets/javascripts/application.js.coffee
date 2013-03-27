@@ -1,19 +1,17 @@
 ###
-#CCPD JS-ASSETS
+* CCPD JS-ASSETS
 #=require_self
 
-#=require twitter/bootstrap/bootstrap-tooltip
-#=require twitter/bootstrap/bootstrap-affix
-#=require twitter/bootstrap/bootstrap-alert
-#=require twitter/bootstrap/bootstrap-button
-#=require twitter/bootstrap/bootstrap-carousel
-#=require twitter/bootstrap/bootstrap-collapse
-#=require twitter/bootstrap/bootstrap-dropdown
-#=require twitter/bootstrap/bootstrap-modal
-#=require twitter/bootstrap/bootstrap-popover
-#=require twitter/bootstrap/bootstrap-scrollspy
-#=require twitter/bootstrap/bootstrap-tab
-#=require twitter/bootstrap/bootstrap-transition
-#=require twitter/bootstrap/bootstrap-typeahead
+#=require namespace
+#=require ./base.js
 #=require app/activity
+#=require app/activity_generalinfo
+#=require app/uiUtil
+#=require app/global
+#=require app/encoder
+#=require app/history
+#=require app/activity
+#=require app/action_menu
+#=require app/uiTokenizer
+#=require app/uiTypeahead
 ###

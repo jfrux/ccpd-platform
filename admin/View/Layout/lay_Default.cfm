@@ -44,7 +44,7 @@
       #Request.Page.Body#
     </div>
 
-    <div id="SessionTimeout" style="display:none; padding:5px; cursor: default;text-align:center;"> 
+<!---     <div id="SessionTimeout" style="display:none; padding:5px; cursor: default;text-align:center;"> 
        <p style="font-size:14px;"><strong>SESSION ENDED</strong></p>
       <p>Your session has expired, you will now be redirected to Login.</p>
       <input type="button" id="SessionOkay" value="Okay" style="width:50px;" /> 
@@ -66,10 +66,8 @@
       <div id="ajax-issue-title"></div>
       <div id="ajax-issue-details"></div>
       <div id="ajax-issue-buttons"><input type="button" name="ajax-issue-button" id="ajax-issue-button" value="Okay" class="button" /></div>
-    </div>
+    </div> --->
   </div>
-  
-  #javascript_include_tag()#
+  </cfoutput>
   </body>
 </html>
-</cfoutput>

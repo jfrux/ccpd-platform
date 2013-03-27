@@ -27,7 +27,6 @@
 
 <cfinclude template="#Application.Settings.RootPath#/View/Includes/SaveJS.cfm" />
 <script>
-
 <cfoutput>
 var LiveOptions = <cfloop query="qLiveGroupings">"<option value=\"#qLiveGroupings.GroupingID#\">#qLiveGroupings.Name#</option>"<cfif qLiveGroupings.RecordCount NEQ qLiveGroupings.CurrentRow> + </cfif></cfloop>;
 var EMOptions = <cfloop query="qEMGroupings">"<option value=\"#qEMGroupings.GroupingID#\">#qEMGroupings.Name#</option>"<cfif qEMGroupings.RecordCount NEQ qEMGroupings.CurrentRow> + </cfif></cfloop>;
@@ -35,113 +34,10 @@ var nActivityType = #Attributes.ActivityTypeID#;
 var nGrouping = #Attributes.GroupingID#;
 var sSessionType = "#Attributes.SessionType#";
 </cfoutput>
-function updateStateProvince(countryId) {
-	if(countryId  == 230) {
-		$(".stateField").show();
-		$(".provinceField").hide();
-	} else {
-		$(".stateField").hide().css({ display:'none' });
-		$(".provinceField").show();
-	}
-}
 
-function setSessionType(sSessionType) {
-	if(sSessionType == "M") {
-			$(".Sessions").fadeIn();
-			$(".SingleSession").fadeOut();
-		} else {
-			$(".Sessions").fadeOut();
-			$(".SingleSession").fadeIn();
-		}
-}
-
-function setActivityType(nActivity) {
-	
-	if(nActivity == 1) {
-		$("#Grouping").html(LiveOptions);
-		$("#Groupings").fadeIn();
-		$(".Location").fadeIn();
-	} else if(nActivity == 2) {
-		$("#Groupings").fadeIn();
-		$("#Grouping").html(EMOptions);
-	} else {
-		$("#Groupings").fadeOut();
-		$("#Grouping").html("");
-		$(".Location").fadeOut();
-	}
-	updateStateProvince($("#Country").val());
-}
-$(document).ready(function(){
-	updateStateProvince($("#Country").val());
-	
-	$("#Country").bind("change", this, function() {
-		updateStateProvince($(this).val());
-	});
-	
-	$(".DatePicker").datepicker({ 
-		showOn: "button", 
-		buttonImage: "/admin/_images/icons/calendar.png", 
-		buttonImageOnly: true,
-		showButtonPanel: true,
-		changeMonth: true,
-		changeYear: true,
-		onSelect: function() {
-			Unsaved();
-			AddChange($("label[for='" + this.id + "']").html(),$(this).val());
-		}
-
-	});
-	
-	$("#Title").autocomplete(sRootPath + '/_com/AJAX_Activity.cfc?method=AutoComplete&returnformat=plain');
-	$("#Sponsor").autocomplete(sRootPath + '/_com/AJAX_Activity.cfc?method=JointlyAutoComplete&returnformat=plain');
-	
-	$("#ActivityType").bind("change", this, function() {
-		setActivityType($(this).val());
-	});
-	
-	$("#SessionType").change(function() {
-		setSessionType($(this).val());
-	});
-	
-	<cfif Attributes.ActivityType NEQ "">
-	$("#ActivityType").val(nActivityType);
-	setActivityType($("#ActivityType").val());
-		<cfif Attributes.GroupingID NEQ "">
-	$("#Grouping").val(nGrouping);
-		</cfif>
-	</cfif>
-	
-	<cfif Attributes.SessionType NEQ "">
-		$("#SessionType").val(sSessionType);
-		setSessionType($("#SessionType").val());
-	</cfif>
-	
-	/* CHECK IF SPONSORSHIP IS JOINTLY OR DIRECTLY START */
-	if($("#Sponsorship").val() == "J") {
-		$(".js-sponsorship-J").addClass('active');
-		$("#JointlyTextFld").removeClass('hide');
-	} else {
-		$(".js-sponsorship-D").addClass('active');
-		$("#JointlyTextFld").addClass('hide');
-	}
-	
-	$(".js-sponsorship-toggle").bind("click", function(e) {
-		var $this = $(this);
-		if($this.hasClass('js-sponsorship-J')) {
-			Unsaved();
-			AddChange($("#SponsorshipJ").attr('name'),"SponsorshipJ");
-			$("#Sponsorship").val("J");
-			$("#JointlyTextFld").removeClass('hide');
-		} else {
-			Unsaved();
-			AddChange($("#SponsorshipD").attr('name'),"SponsorshipD");
-			$("#Sponsorship").val("D");
-			$("#JointlyTextFld").addClass('hide');
-		}
-		e.preventDefault();
-	});
-	/* CHECK IF SPONSORSHIP IS JOINTLY OR DIRECTLY END */
-});
+$(document).ready(function() {
+  ce.activity.general.init();
+})
 </script>
 <cfquery name="qModified" datasource="#Application.Settings.DSN#">
 	SELECT     

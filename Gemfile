@@ -4,6 +4,7 @@ group :development do
 	gem 'sinatra'
 	gem 'sprockets'
 	gem 'sass'
+	gem 'thin'
 	gem 'sinatra-sprockets', :git => 'https://github.com/joshuairl/sinatra-sprockets.git'
 	#gem 'sinatra-sprockets', require: 'sinatra/sprockets', :path => '~/Projects/alphasights-sinatra-sprockets'
 	gem 'sprockets-sass'
