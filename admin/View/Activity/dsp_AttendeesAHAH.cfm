@@ -262,62 +262,59 @@ $(document).ready(function() {
 <cfif isDefined("qAttendees") AND qAttendees.RecordCount GT 0>
 	<cfif AttendeePager.getTotalNumberOfPages() GT 1><div style="row-fluid"><cfoutput>#AttendeePager.getRenderedHTML()#</cfoutput></div></cfif>
     <div class="row-fluid">
-    <table border="0" width="620" cellpadding="0" cellspacing="0" class="ViewSectionGrid span24">
-        <thead>
-            <tr>
-                <th width="15"><input type="checkbox" name="CheckAll" id="CheckAll" /></th>
-                <th width="200">Name</th>
-                <th width="150">Status Date</th>
-                <th>Status</th>
-                <th>Is MD?</th>
-                <th>&nbsp;</th>
-            </tr>
-        </thead>
-        <tbody>
-            <cfoutput query="qAttendees" startrow="#AttendeePager.getStartRow()#" maxrows="#AttendeePager.getMaxRows()#">
-                <tr id="attendeeRow-#qAttendees.attendeeId#" class="personRow AllAttendees<cfif qAttendees.personDeleted> personDeleted</cfif>" rel="##PersonOptions#PersonID#">
+    <table class="ViewSectionGrid profile-grid span24 table table-bordered table-condensed">
+      <thead>
+        <tr>
+          <th class="span1"><input type="checkbox" name="CheckAll" id="CheckAll" /></th>
+          <th class="span7">Name</th>
+          <th class="span5">Status</th>
+          <th class="span3">Is MD?</th>
+          <th>&nbsp;</th>
+        </tr>
+      </thead>
+      <tbody>
+        <cfoutput query="qAttendees" startrow="#AttendeePager.getStartRow()#" maxrows="#AttendeePager.getMaxRows()#">
+          <tr id="attendeeRow-#qAttendees.attendeeId#" class="personRow AllAttendees<cfif qAttendees.personDeleted> personDeleted</cfif>" rel="##PersonOptions#PersonID#">
                     <td valign="top">
 						<input type="checkbox" name="Checked" class="MemberCheckbox" id="Checked-#attendeeId#" value="#attendeeId#" />
 						<input type="hidden" class="attendeeId" value="#attendeeId#" />
 						<input type="hidden" class="personId" value="#qAttendees.personId#" />
 					</td>
-                    <td valign="top" nowrap="nowrap">
+           <td valign="top" nowrap="nowrap">
 						<cfif personId GT 0>
-							<a href="#myself#Person.Detail?PersonID=#PersonID#" class="PersonLink" id="PERSON|#PersonID#|#LastName#, #FirstName#">#qAttendees.FullName#</a>
+							<a href="#myself#Person.Detail?PersonID=#PersonID#" class="PersonLink" id="PERSON|#PersonID#|#LastName#, #FirstName#">#UCase(qAttendees.FullName)#</a>
 						<cfelse>
-							#qAttendees.FullName#
+							#UCase(qAttendees.FullName)#
 						</cfif>
 						
 						<!---<cfif NOT qAttendees.personDeleted><a href="#myself#Person.Detail?PersonID=#PersonID#" class="PersonLink" id="PERSON|#PersonID#|#LastName#, #FirstName#">#LastName#, #FirstName# <cfif MiddleName NEQ "">#Left(MiddleName, 1)#.</cfif></a><cfelse>#LastName#, #FirstName# <cfif MiddleName NEQ "">#Left(MiddleName, 1)#.</cfif> **deleted</cfif>---></td>
                     <td class="StatusDate" id="StatusDate-#qAttendees.AttendeeId#">
                     	<span id="datefill-#qAttendees.AttendeeId#">
-						<cfswitch expression="#qAttendees.StatusID#">
+						            <cfswitch expression="#qAttendees.StatusID#">
                         	<cfcase value="1">
-                            	#DateFormat(qAttendees.CompleteDate, "MM/DD/YYYY") & " " & TimeFormat(qAttendees.CompleteDate, "h:mmTT")#
+                            	#DateFormat(qAttendees.CompleteDate, "MM/DD/YYYY")#
                             </cfcase>
                             <cfcase value="2">
-                            	#DateFormat(qAttendees.RegisterDate, "MM/DD/YYYY") & " " & TimeFormat(qAttendees.RegisterDate, "h:mmTT")#
+                            	#DateFormat(qAttendees.RegisterDate, "MM/DD/YYYY")#
                             </cfcase>
                             <cfcase value="3">
-                            	#DateFormat(qAttendees.RegisterDate, "MM/DD/YYYY") & " " & TimeFormat(qAttendees.RegisterDate, "h:mmTT")#
+                            	#DateFormat(qAttendees.RegisterDate, "MM/DD/YYYY")#
                             </cfcase>
                             <cfcase value="4">
-                            	#DateFormat(qAttendees.TermDate, "MM/DD/YYYY") & " " & TimeFormat(qAttendees.TermDate, "h:mmTT")#
+                            	#DateFormat(qAttendees.TermDate, "MM/DD/YYYY")#
                             </cfcase>
                         </cfswitch>
                         </span>
-						<cfif personID GT 0>
+						<!--- <cfif personID GT 0>
                         <div id="editdatecontainer-#qAttendees.attendeeId#" style="display:none;position:relative;"><input type="text" class="EditDateField" id="EditDateField-#qAttendees.attendeeId#" /><img src="#Application.Settings.RootPath#/_images/icons/tick.png" class="SaveDateEdit" id="SaveDate-#qAttendees.attendeeId#" style="position: absolute; left: -20px; top: 0pt;" /></div>
                         <div id="editdatelink-#qAttendees.attendeeId#" style="position:relative;"><input type="hidden" id="CurrStatusDate-#qAttendees.attendeeId#" value="" /><img src="#Application.Settings.RootPath#/_images/icons/pencil.png" class="EditStatusDate" id="editstatusdate-#qAttendees.attendeeId#" style="position: absolute; top: -16px; left: -20px;" /></div>
-						</cfif>
-                    </td>
-                    <td valign="top">
-                      <cfset labels = {
+						</cfif> --->
+            <cfset labels = {
                         "complete":"success",
                         "terminated":"danger",
                         "in progress":"warning"
                       } />
-                      <div class="label label-#labels[qAttendees.statusname]#">#qAttendees.StatusName#</div>
+                      <span class="label label-#labels[qAttendees.statusname]#">#qAttendees.StatusName#</span>
                     </td>
                     <td valign="top"><span class="MDNonMD" id="MDNonMD#qAttendees.attendeeId#"><cfif qAttendees.MDFlag EQ "Y">Yes<cfelse>No</cfif></span></td>
                     <td valign="top" class="user-actions-outer">
@@ -337,7 +334,8 @@ $(document).ready(function() {
         </tbody>
     </table>
   </div>
-	<cfif AttendeePager.getTotalNumberOfPages() GT 1><div><cfoutput>#AttendeePager.getRenderedHTML()#</cfoutput></div></cfif>
+	<cfif AttendeePager.getTotalNumberOfPages() GT 1><div style="row-fluid"><cfoutput>#AttendeePager.getRenderedHTML()#</cfoutput></div></cfif>
+    
 <cfelse>
 	<cfif attributes.status GT 0>
         <div style="background-image:url(/admin/_images/Sample_Attendees.jpg); font-size: 18px; text-align: center; height: 250px; width: 620px;">

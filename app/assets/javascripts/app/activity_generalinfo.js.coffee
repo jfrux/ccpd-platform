@@ -3,10 +3,13 @@
 ###
 ce.activity.general = do ($) ->
   updateStateProvince = (countryId) ->
-    if countryId is 230
+    #console.log countryId
+    if parseInt(countryId) == 230
+      #console.log("is united states")
       $(".stateField").show()
       $(".provinceField").hide()
     else
+      #console.log("is not united states")
       $(".stateField").hide().css display: "none"
       $(".provinceField").show()
   setSessionType = (sSessionType) ->
@@ -16,24 +19,31 @@ ce.activity.general = do ($) ->
     else
       $(".Sessions").fadeOut()
       $(".SingleSession").fadeIn()
-  setActivityType = (nActivity) ->
-    if nActivity is 1
+  setActivityType = (nActivityType) ->
+    if parseInt(nActivityType) is 1
       $("#Grouping").html LiveOptions
-      $("#Groupings").fadeIn()
-      $(".Location").fadeIn()
-    else if nActivity is 2
-      $("#Groupings").fadeIn()
+      $("#Groupings").show()
+      $(".Location").show()
+    else if parseInt(nActivityType) is 2
+      $("#Groupings").show()
       $("#Grouping").html EMOptions
     else
-      $("#Groupings").fadeOut()
+      $("#Groupings").hide()
       $("#Grouping").html ""
-      $(".Location").fadeOut()
-    updateStateProvince $("#Country").val()
+      $(".Location").hide()
+    updateStateProvince parseInt($("#Country").val())
 
   _init = ->
-    updateStateProvince $("#Country").val()
-    $("#Country").bind "change", this, ->
-      updateStateProvince $(this).val()
+    console.log("init: generalinfo\n" +
+    "activity type: " + nActivityType + "\n" +
+    "session type: " + sSessionType + "\n" +
+    "country: " + nCountryId + "\n")
+
+    updateStateProvince nCountryId
+
+    $("#Country").change () ->
+      updateStateProvince parseInt($(this).val())
+      return
 
     $(".DatePicker").datepicker
       showOn: "button"
@@ -46,21 +56,21 @@ ce.activity.general = do ($) ->
         Unsaved()
         AddChange $("label[for='" + @id + "']").html(), $(this).val()
 
-    $("#Title").autocomplete sRootPath + "/_com/AJAX_Activity.cfc?method=AutoComplete&returnformat=plain"
-    $("#Sponsor").autocomplete sRootPath + "/_com/AJAX_Activity.cfc?method=JointlyAutoComplete&returnformat=plain"
+    # $("#Title").autocomplete sRootPath + "/_com/AJAX_Activity.cfc?method=AutoComplete&returnformat=plain"
+    # $("#Sponsor").autocomplete sRootPath + "/_com/AJAX_Activity.cfc?method=JointlyAutoComplete&returnformat=plain"
     $("#ActivityType").bind "change", this, ->
-      setActivityType $(this).val()
+      setActivityType parseInt($(this).val())
 
     $("#SessionType").change ->
       setSessionType $(this).val()
 
-    if nActivityType
-      $("#ActivityType").val nActivityType
-      setActivityType $("#ActivityType").val()
-      $("#Grouping").val nGrouping  if nGrouping
-    if sSessionType
+    if !!nActivityType
+      $("#ActivityType").val parseInt(nActivityType)
+      setActivityType parseInt(nActivityType)
+      $("#Grouping").val parseInt(nGrouping)  if nGrouping
+    if !!sSessionType
       $("#SessionType").val sSessionType
-      setSessionType $("#SessionType").val()
+      setSessionType sSessionType
     
     # CHECK IF SPONSORSHIP IS JOINTLY OR DIRECTLY START 
     if $("#Sponsorship").val() is "J"

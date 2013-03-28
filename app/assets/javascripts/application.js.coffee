@@ -2,10 +2,10 @@
 * CCPD JS-ASSETS
 #=require_self
 
-#=require namespace
 #=require ./base.js
 #=require app/activity
 #=require app/activity_generalinfo
+#=require app/activity_participants
 #=require app/uiUtil
 #=require app/global
 #=require app/encoder

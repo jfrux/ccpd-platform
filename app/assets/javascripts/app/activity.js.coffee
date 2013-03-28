@@ -92,10 +92,12 @@ ce.activity = do ($) ->
 
 
   _init = ->
+    console.log("init: activity");
     #updateActions();
     updateContainers()
     updateStats()
     updateNoteCount()
+
     
     # STATUS CHANGER 
     $("#StatusChanger").change ->

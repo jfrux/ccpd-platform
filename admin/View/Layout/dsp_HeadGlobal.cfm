@@ -41,8 +41,6 @@
 <cfoutput>
 #javascript_include_tag("vendors")#
 #javascript_include_tag("application")#
-
-<script src="#Application.Settings.RootPath#/_scripts/action_menu.js" language="javascript" type="text/javascript"></script>
 </cfoutput>
 <cfinclude template="js_global.cfm" />
 

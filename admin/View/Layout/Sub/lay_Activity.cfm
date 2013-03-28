@@ -68,7 +68,7 @@ $(document).ready(function() {
           </div>
         </div>
         <div class="box">
-          <cf_ce_profilemenu type="activity" typeid="#attributes.activityid#" settings="#request.tabSettings#" current="#Attributes.Fuseaction#" />
+          <cf_ce_profilemenu type="activity" typeid="#attributes.activityid#" settings="#request.tabSettings#" current="#Attributes.Fuseaction#">
         </div>
       </div>
       </cfoutput>

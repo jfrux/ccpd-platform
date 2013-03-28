@@ -47,7 +47,7 @@
 <cfset AttendeePager.setQueryToPaginate(qAttendees)>
 <cfset AttendeePager.setMissingNumbersHTML("<span>...</span>")>
 <cfset AttendeePager.setBaseLink("#myself#Activity.Attendees?ActivityID=#Attributes.ActivityID#&status=#attributes.status#") />
-<cfset AttendeePager.setItemsPerPage(15) />
+<cfset AttendeePager.setItemsPerPage(30) />
 <cfset AttendeePager.setUrlPageIndicator("page") />
 <cfset AttendeePager.setShowNumericLinks(true) />
-<cfset AttendeePager.setClassName("green") />
+<cfset AttendeePager.setClassName("green span24") />

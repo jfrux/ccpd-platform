@@ -69,6 +69,12 @@
     }
   }
   .content {
+    table.profile-grid {
+      margin-bottom:0px;  
+    }
+    .pagination {
+      margin:auto;
+    }
     h3 {
       background-color: #E3E3E3;
       border-bottom: 1px solid #D9D9D9;

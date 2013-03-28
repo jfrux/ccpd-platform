@@ -33,9 +33,11 @@ var EMOptions = <cfloop query="qEMGroupings">"<option value=\"#qEMGroupings.Grou
 var nActivityType = #Attributes.ActivityTypeID#;
 var nGrouping = #Attributes.GroupingID#;
 var sSessionType = "#Attributes.SessionType#";
+var nCountryId = #attributes.country#
 </cfoutput>
 
 $(document).ready(function() {
+	console.log("trying to init general form");
   ce.activity.general.init();
 })
 </script>
@@ -68,7 +70,7 @@ $(document).ready(function() {
 			<div class="control-group">
 				<label class="control-label" for="Title">Title</label>
 				<div class="controls">
-					<textarea name="Title" rows="2" style="height:40px;" class="span23" id="Title">#HTMLSafe(Attributes.Title)#</textarea>
+					<textarea name="Title" rows="2" style="height:46px;" class="span23" id="Title">#HTMLSafe(Attributes.Title)#</textarea>
 				</div>
 			</div>
 			<div class="control-group">
