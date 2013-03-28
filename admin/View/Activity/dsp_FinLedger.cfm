@@ -30,7 +30,6 @@
 </script>
 
 <div class="ViewSection">
-	<h3>General Ledger</h3>
 	<div id="LedgerContainer"></div>
 	<div id="LedgerLoading" class="Loading"><img src="/admin/_images/ajax-loader.gif" />
 	<div>Please Wait</div>

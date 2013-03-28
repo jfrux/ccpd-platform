@@ -27,7 +27,6 @@
 </script>
 
 <div class="ViewSection">
-	<h3>Budget</h3>
 	<div id="BudgetContainer"></div>
 	<div id="BudgetLoading" class="Loading"><img src="/admin/_images/ajax-loader.gif" />
 	<div>Please Wait</div>

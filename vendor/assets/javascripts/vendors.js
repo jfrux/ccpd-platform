@@ -3,10 +3,11 @@
 * 
 *=require_self
 *=require buglog/bugLogClient
-*=require underscore
 *=require jquery/jquery
 *=require jquery/jquery-ui
 *=require jquery/json2
+*=require underscore
+*=require backbone
 #=require twitter/bootstrap/bootstrap-tooltip
 #=require twitter/bootstrap/bootstrap-affix
 #=require twitter/bootstrap/bootstrap-alert

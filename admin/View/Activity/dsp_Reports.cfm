@@ -64,7 +64,6 @@ padding:5px; min-height:95px; cursor:default; }
 <cfoutput>
 <cfset qAssessments = Application.Com.AssessmentGateway.getByViewAttributes(ActivityID=Attributes.ActivityID,DeletedFlag='N')>
 <div class="ViewSection">
-	<h3>Reports</h3>
 	<div class="report-group">
 		<h4>Assessment Reports</h4>
 		<div class="report-item">

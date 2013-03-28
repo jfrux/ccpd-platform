@@ -5,227 +5,9 @@
 var nId = #Attributes.Page#;
 var dtStatusMask = '#DateFormat(Now(), "MM/DD/YYYY")# #TimeFormat(Now(), "hh:mmTT")#';
 </cfoutput>
-function cancelButton() {
-	$("#CreditsDialog").dialog("close");
-}
-
-function updateStatusDate($Attendee,$Type) {
-	if($Type != "") {
-		$.post(sRootPath + "/_com/AJAX_Activity.cfc", { method: "getAttendeeDate", AttendeeId: $Attendee, type: $Type, returnFormat: "plain" },
-			function(data) {
-				var cleanData = $.Trim(data);
-				$("#datefill-" + $Attendee).html(cleanData);
-				$("#editdatelink-" + $Attendee).show();
-		});
-	} else {
-		$("#datefill-" + $Attendee).html("");
-		$("#editdatelink-" + $Attendee).hide();
-	}
-}
-
-function resetAttendee(nA,nP,sP) {
-	$.getJSON(sRootPath + "/_com/AJAX_Activity.cfc", { method: "resetAttendee", attendeeId: nP, ActivityID: nA, PaymentFlag: sP, returnFormat: "plain" },
-		function(data) {
-			if(data.STATUS) {				
-				addMessage(data.STATUSMSG,250,6000,4000);
-				updateActions();
-				updateStats();
-				updateRegistrants();
-			} else {
-				addError(data.STATUSMSG,250,6000,4000);
-			}
-		});
-}
-
-function checkmarkMember(params) {
-	/*if(settings.person && settings.person > 0) {
-		if($.ListFind(SelectedMembers, settings.person, ",")) {
-			$("#Checked" + settings.person).attr("checked",true);
-			$("#PersonRow" + settings.person).css("background-color","#FFD");
-		}
-	}*/
-	
-	if(settings.attendee && settings.attendee > 0) {
-		if($.ListFind(SelectedAttendees, settings.attendee, ",")) {
-			$("#Checked-" + settings.attendee).attr("checked",true);
-			$("#attendeeRow-" + settings.attendee).css("background-color","#FFD");
-		}
-	}
-}
 
 $(document).ready(function() {
-	// UPDATED SELECTED MEMBER COUNT
-	$("#CheckedCount,#label-status-selected").html("" + SelectedCount + "");
-	$(".EditDateField").mask("99/99/9999 99:99aa");
-		
-	/* CHECK/UNCHECK ALL CHECKBOXES */
-	$("#CheckAll").click(function() {
-		if($("#CheckAll").attr("checked")) {
-			$(".AllAttendees").each(function() {
-				var $row = $(this);
-				var $checkBox = $row.find('.MemberCheckbox');
-				var nPerson = $row.find('.personId').val();
-				var nAttendee = $row.find('.attendeeId').val();
-				
-				// ADD CURRENT MEMBER TO SELECTEDMEMBERS LIST
-				addSelectedAttendee({
-					person:nPerson,
-					attendee:nAttendee
-				});
-				
-				$checkBox.attr("checked",true);
-				
-				// CHANGE BACKGROUND COLOR OF PERSONROW
-				$row.css("background-color","#FFD");
-			});
-		} else {
-			$(".AllAttendees").each(function() {
-				var $row = $(this);
-				var $checkBox = $row.find('.MemberCheckbox');
-				var nPerson = $row.find('.personId').val();
-				var nAttendee = $row.find('.attendeeId').val();
-				
-				// ADD CURRENT MEMBER TO SELECTEDMEMBERS LIST
-				removeSelectedPerson({
-					person:nPerson,
-					attendee:nAttendee
-				});
-				
-				$checkBox.attr("checked",false);
-				
-				// CHANGE BACKGROUND COLOR OF PERSONROW
-				$row.css("background-color","#FFF");
-			});
-		}
-	}); 
-	
-	$(".deleteLink").one("click",function() {
-		var $row = $(this).parents('.personRow');
-		var attendee = $row.find('.attendeeId').val();
-		
-		$.ajax({
-			type:'post',
-			dataType:'json',
-			url:'/admin/_com/ajax_activity.cfc',
-			data:{
-				'method':'removeAttendeeByID',
-				'attendeeId':attendee
-			},
-			async:false,
-			success:function(data) {
-				if(data.STATUS) {
-					$row.remove();
-				}
-			}
-		});
-	});
-	
-	$("#PersonDetail").dialog({ 
-			title: "Person Detail",
-			modal: true, 
-			autoOpen: false,
-			height:550,
-			width:855,
-			position:[100,100],
-			resizable: false,
-			dragStop: function(ev,ui) {
-				
-			},
-			open:function() {
-				$("#frameDetail").attr('src',sMyself + 'Person.Detail?PersonID=' + nPersonID + '&Mini=1');
-			},
-			close:function() {
-				
-			},
-			resizeStop:function(ev,ui) {
-			}
-		});
-		
-		
-	$(".PersonLink").click(function() {
-		nPersonID = $.ListGetAt(this.id,2,"|");
-		sPersonName = $.ListGetAt(this.id,3,"|");
-
-		$("#PersonDetail").dialog("open");
-		return false;
-	});
-	
-	// EDIT REGISTRATION DATE FIELD
-	$(".EditCheckinLink").bind("click", this, function() {
-		nPersonID = $.Replace(this.id, "Checkin", "");
-		
-		// HIDE ALL EDIT FIELDS
-		$(".CheckinEdit").hide();
-		$(".CheckinOutput").show();
-		
-		// REVEAL CURRENT EDIT FIELD
-		$("#CheckinOutput" + nPersonID).hide();
-		$("#CheckinEdit" + nPersonID).show();
-	});
-	
-	$(".AttendeeStatusID").change(function() {
-		var $Attendee = $.ListGetAt(this.id, 2, "-");
-		var $Type = $(this).val();
-		
-		updateStatusDate($Attendee,$Type);
-	});
-	
-	$(".EditStatusDate").bind("click", this, function() {
-		var CurrID = this.id;
-		var nAttendee = $.ListGetAt(this.id, 2, "-");
-		var dtCurrDate = $.Trim($("#datefill-" + nAttendee).html());
-		var sDate = $.ListGetAt(dtCurrDate, 1," ");
-		var sTime = $.ListGetAt(dtCurrDate, 2," ");
-		var nHour = $.ListGetAt(sTime, 1, ":");
-		
-		if($.Len(nHour) == 1) {
-			nHour = "0" + nHour;
-			dtCurrDate = sDate + " " + nHour + ":" + $.ListGetAt(sTime, 2, ":");
-		}
-		
-		$("#CurrStatusDate-" + nAttendee).val(dtCurrDate);
-		$("#EditDateField-" + nAttendee).val(dtCurrDate);
-		
-		$("#editdatelink-" + nAttendee).hide();
-		$("#datefill-" + nAttendee).hide();
-		$("#editdatecontainer-" + nAttendee).show();
-	});
-	
-	$(".EditDateField").keydown(function() {
-		if($.Len($(this).val()) > 0) {
-			dtStatusMask = $(this).val();
-		}
-	});
-	
-	$(".SaveDateEdit").bind("click", this, function() {
-		var CurrID = this.id;
-		var nAttendee = $.ListGetAt(this.id, 2, "-");
-		var nType = $("#AttendeeStatus-" + nAttendee).val();
-		var dtDate = $("#EditDateField-" + nAttendee).val();
-		
-		if(nType != "" && $.Len(dtDate) > 0) {
-			$.post(sRootPath + "/_com/AJAX_Activity.cfc", { method: "saveAttendeeDate", attendeeId: nAttendee, DateValue: dtDate, Type: nType, returnFormat: "plain" },
-				function(data) {
-					var cleanData = $.Trim(data);
-					var Status = $.ListGetAt(cleanData, 1, "|");
-					var statusMsg = $.ListGetAt(cleanData, 2, "|");
-					
-					if(Status == "Success") {
-						addMessage(statusMsg,250,6000,4000);
-						updateRegistrants(nId);
-					} else {
-						addError(statusMsg,250,6000,4000);
-						$("#editdatecontainer-" + nAttendee).hide();
-						$("#datefill-" + nAttendee).show();
-						$("#editdatelink-" + nAttendee).show();
-					}
-			});
-		} else {
-			addError("You must provide full date and time.",250,6000,4000);
-			$("#EditDateField-" + nAttendee).focus();
-			$("#EditDateField-" + nAttendee).val(dtStatusMask);
-		}
-	});
+  App.activity.participants.bind()
 });
 </script>
 
@@ -289,7 +71,7 @@ $(document).ready(function() {
 						
 						<!---<cfif NOT qAttendees.personDeleted><a href="#myself#Person.Detail?PersonID=#PersonID#" class="PersonLink" id="PERSON|#PersonID#|#LastName#, #FirstName#">#LastName#, #FirstName# <cfif MiddleName NEQ "">#Left(MiddleName, 1)#.</cfif></a><cfelse>#LastName#, #FirstName# <cfif MiddleName NEQ "">#Left(MiddleName, 1)#.</cfif> **deleted</cfif>---></td>
                     <td class="StatusDate" id="StatusDate-#qAttendees.AttendeeId#">
-                    	<span id="datefill-#qAttendees.AttendeeId#">
+                    	<!--- <span id="datefill-#qAttendees.AttendeeId#">
 						            <cfswitch expression="#qAttendees.StatusID#">
                         	<cfcase value="1">
                             	#DateFormat(qAttendees.CompleteDate, "MM/DD/YYYY")#
@@ -304,17 +86,23 @@ $(document).ready(function() {
                             	#DateFormat(qAttendees.TermDate, "MM/DD/YYYY")#
                             </cfcase>
                         </cfswitch>
-                        </span>
+                        </span> --->
 						<!--- <cfif personID GT 0>
                         <div id="editdatecontainer-#qAttendees.attendeeId#" style="display:none;position:relative;"><input type="text" class="EditDateField" id="EditDateField-#qAttendees.attendeeId#" /><img src="#Application.Settings.RootPath#/_images/icons/tick.png" class="SaveDateEdit" id="SaveDate-#qAttendees.attendeeId#" style="position: absolute; left: -20px; top: 0pt;" /></div>
                         <div id="editdatelink-#qAttendees.attendeeId#" style="position:relative;"><input type="hidden" id="CurrStatusDate-#qAttendees.attendeeId#" value="" /><img src="#Application.Settings.RootPath#/_images/icons/pencil.png" class="EditStatusDate" id="editstatusdate-#qAttendees.attendeeId#" style="position: absolute; top: -16px; left: -20px;" /></div>
 						</cfif> --->
+            <cfsavecontent variable="tooltip_content">
+              <strong>Completed:</strong> #DateFormat(qAttendees.CompleteDate, "MM/DD/YYYY")#<br />
+              <strong>Registered:</strong> #DateFormat(qAttendees.RegisterDate, "MM/DD/YYYY")#<br />
+              <strong>In Progress:</strong> #DateFormat(qAttendees.RegisterDate, "MM/DD/YYYY")#<br />
+              <strong>Terminated:</strong> #DateFormat(qAttendees.TermDate, "MM/DD/YYYY")#
+            </cfsavecontent>
             <cfset labels = {
                         "complete":"success",
                         "terminated":"danger",
                         "in progress":"warning"
                       } />
-                      <span class="label label-#labels[qAttendees.statusname]#">#qAttendees.StatusName#</span>
+                      <span class="label label-#labels[qAttendees.statusname]#" data-title="#qAttendees.statusname#" data-content="#tooltip_content#">#qAttendees.StatusName#</span>
                     </td>
                     <td valign="top"><span class="MDNonMD" id="MDNonMD#qAttendees.attendeeId#"><cfif qAttendees.MDFlag EQ "Y">Yes<cfelse>No</cfif></span></td>
                     <td valign="top" class="user-actions-outer">

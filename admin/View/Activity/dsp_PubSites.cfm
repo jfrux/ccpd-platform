@@ -23,7 +23,6 @@ $(document).ready(function() {
 
 <cfoutput>
 <div class="ViewSection">
-	<h3>Sites</h3>
 	
 	<cfset qSites = Application.Com.SiteGateway.getByAttributes(DeletedFlag='N')>
 	

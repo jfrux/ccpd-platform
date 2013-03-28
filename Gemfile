@@ -15,8 +15,5 @@ group :development do
 	gem 'rb-inotify', :require => false
 	gem 'rb-fsevent', :require => false
 	gem 'rb-fchange', :require => false
-	gem 'guard'
-	gem 'guard-shell'             # Run shell commands.
-  gem 'guard-livereload'        # Browser reload.
   gem 'yajl-ruby'               # Faster JSON with LiveReload in the browser.
 end

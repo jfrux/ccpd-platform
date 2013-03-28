@@ -1,5 +1,5 @@
 <cfoutput>
-  
+<div class="btn-toolbar">
   <div class="btn-group pull-left js-partic-actions">
     <a class="btn btn-mini dropdown-toggle disabled" data-toggle="dropdown" href="##">SELECTED: <span id="label-status-selected" class="js-attendee-status-selected-count">0</span></a>
     <a class="btn btn-mini dropdown-toggle disabled" data-toggle="dropdown" href="##">
@@ -53,5 +53,5 @@
     <input type="text" name="MaxRegistrants" id="MaxRegistrants" value="#Attributes.MaxRegistrants#" style="width: 50px;" />
     </label>
   </div>
-
+</div>
 </cfoutput>

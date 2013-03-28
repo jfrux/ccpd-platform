@@ -2,7 +2,8 @@
 * CCPD JS-ASSETS
 #=require_self
 
-#=require ./base.js
+#=require ./module
+#=require ./base
 #=require app/activity
 #=require app/activity_generalinfo
 #=require app/activity_participants

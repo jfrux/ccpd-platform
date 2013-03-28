@@ -125,7 +125,6 @@
 </script>
 <cfoutput>
 <div class="ViewSection">
-	<h3>Documents</h3>
 	<div id="DocsContainer"></div>
 	<div id="DocsLoading" class="Loading"><img src="/admin/_images/ajax-loader.gif" />
 	<div>Please Wait</div>

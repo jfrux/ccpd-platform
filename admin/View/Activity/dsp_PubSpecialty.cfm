@@ -14,7 +14,6 @@ function updateSpecialties() {
 </script>
 
 <div class="ViewSection">
-	<h3>Specialties</h3>
 	<div id="SpecialtiesContainer"></div>
 	<div id="SpecialtiesLoading" class="Loading"><img src="/admin/_images/ajax-loader.gif" />
 	<div>Please Wait</div></div>

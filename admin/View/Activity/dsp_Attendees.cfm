@@ -18,7 +18,7 @@
 	</cfoutput>
 	
 	$(document).ready(function() {
-		ce.activity.participants.init();
+		App.activity.participants.init();
 	});
 </script>
 <div class="ViewSection">

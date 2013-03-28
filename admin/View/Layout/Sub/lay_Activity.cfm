@@ -31,7 +31,7 @@ var cActListHeight = #GetToken(Cookie.USER_ActListSize,2,",")#;
 var cActListWidth = #GetToken(Cookie.USER_ActListSize,1,",")#;
 
 $(document).ready(function() {
-  ce.activity.init('.activity');
+  App.activity.init()
 })
   
 
@@ -76,14 +76,21 @@ $(document).ready(function() {
     <div class="span20">
       <div class="titlebar">
         <div class="row-fluid">
-          <div class="span20">
+          <div class="span16">
             <div class="ContentTitle">
-              <span title="#HTMLSafe(ActivityBean.getTitle())#">#midLimit(ActivityBean.getTitle(),60)#</span></div>
+              <span title="#HTMLSafe(ActivityBean.getTitle())#">#midLimit(ActivityBean.getTitle(),55)#</span></div>
               <!--- <cfif ActivityBean.getParentActivityID() NEQ ""><cfif Len(ParentBean.getTitle()) GT 75><span title="#ParentBean.getTitle()#">#left(ParentBean.getTitle(),50) & "..."#</span><cfelse>#ParentBean.getTitle()#</cfif> <cfelse>Parent Activity</cfif> // <cfif ParentBean.getSessionType() EQ "M">Multi-Session<cfelse>Single-Session</cfif> --->
             </div>
-          <div class="span4">
+          <div class="span8">
             <div class="action-buttons pull-right">
-              <a href="/activities/#attributes.activityid#" class="btn">View Activity</a>
+              <div class="btn-group">
+                <a href="javascript:void(0);" class="btn" title="Move Activity" id="MoveLink"><i class="fg-road"></i></a>
+                <a href="javascript:void(0);" class="btn" title="Copy Activity" id="CopyLink"><i class="fg-documents"></i></a>
+                <a href="javascript:void(0);" class="btn" title="Delete Activity" id="DeleteActivityLink"><i class="icon-trash"></i></a>
+              </div>
+              <div class="btn-group">
+              <a href="/activities/#attributes.activityid#" class="btn" title="Links to the public profile of this activity.">View Activity</a>
+              </div>
             </div>
           </div>
         </div>
@@ -94,16 +101,18 @@ $(document).ready(function() {
         <cfoutput>
         <div class="row-fluid">
           <div class="span18">
-            <cfif len(trim(request.multiformright)) GT 0>
                <div class="row-fluid">
-                <div class="toolbar">
-                  <div class="btn-toolbar">
-                  #Request.MultiFormRight#
-                  </div>
+                <div class="content-title">
+                  <h3>#request.tabSettings.tabs[lcase(attributes.fuseaction)].title#</h3>
                 </div>
-              </div>
-            </cfif>
+             
+                <cfif len(trim(request.multiformright)) GT 0>   
+                  <div class="toolbar">
+                      #Request.MultiFormRight#
+                    </div>
+                </cfif>
            
+              </div>
             <div class="MultiFormContent content-inner">
               #Request.MultiFormContent#
             </div>
@@ -161,13 +170,13 @@ $(document).ready(function() {
                 <br />This will place the Activity into a "Task" queue so that managers of this process will be notified and can track the life of the Activity.
                 </p>
               </div> --->
-              <div id="GlobalOptions">
+             <!---  <div id="GlobalOptions">
                 <h3>Global Options</h3>
-                <cfif ActivityBean.getParentActivityID() EQ "" AND ActivityBean.getSessionType() EQ "M"><cfelse><div style="padding:6px 4px;"><a href="javascript:void(0);" id="MoveLink" style="text-decoration:none;"><img src="#Application.Settings.RootPath#/_images/icons/book_previous.png" align="absmiddle" style="padding-right:4px;" />Move Activity</a></div></cfif>
+                <cfif ActivityBean.getParentActivityID() EQ "" AND ActivityBean.getSessionType() EQ "M"><cfelse><div style="padding:6px 4px;"><a href="javascript:void(0);" style="text-decoration:none;"><img src="#Application.Settings.RootPath#/_images/icons/book_previous.png" align="absmiddle" style="padding-right:4px;" />Move Activity</a></div></cfif>
                 <div style="padding:6px 4px;"><a href="javascript:void(0);" id="CopyLink" style="text-decoration:none;"><img src="#Application.Settings.RootPath#/_images/icons/page_copy.png" align="absmiddle" style="padding-right:4px;" />Copy Activity</a></div>
-                <div style="padding:6px 4px;"><a href="javascript://" id="DeleteActivityLink" style="text-decoration:none;"><img src="#Application.Settings.RootPath#/_images/icons/book_delete.png" align="absmiddle" style="padding-right:4px;" />Delete Activity</a></div>
-              </div>
-            </div>
+                <div style="padding:6px 4px;"><a href="javascript://" id="DeleteActivityLink" style="text-decoration:none;"><img src="#Application.Settings.RootPath#/_images/icons/book_delete.png" align="absmiddle" style="padding-right:4px;" />Delete Activity</a></div>--->
+             <!---  </div> --->
+            </div> 
             
           </div>
         </div>

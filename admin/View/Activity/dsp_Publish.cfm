@@ -1,6 +1,5 @@
 <cfoutput>
 <div class="ViewSection">
-	<h3>Publish</h3>
 	<h4><a href="#Myself#Activity.PubGeneral?ActivityID=#Attributes.ActivityID#">General</a></h4>
 	<p>This area consists of Overview, Goals / Objectives, Keywords, Publish Terms, etc.</p>
 	

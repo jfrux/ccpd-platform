@@ -112,7 +112,6 @@
 </script>
 <cfoutput>
 <div class="ViewSection">
-	<h3>Faculty</h3>
 	<div id="FacultyContainer"></div>
 	<div id="FacultyLoading" class="Loading"><img src="/admin/_images/ajax-loader.gif" />
 	<div>Please Wait</div></div>

@@ -38,7 +38,7 @@ var nCountryId = #attributes.country#
 
 $(document).ready(function() {
 	console.log("trying to init general form");
-  ce.activity.general.init();
+  App.activity.general.init();
 })
 </script>
 <cfquery name="qModified" datasource="#Application.Settings.DSN#">
@@ -57,7 +57,6 @@ $(document).ready(function() {
 <cfoutput>
 <div class="ViewContainer">
 <div class="ViewSection">
-<h3>General Information</h3>
 	<form action="#Application.Settings.RootPath#/_com/AJAX_Activity.cfc" method="post" class="form-horizontal" name="frmEditActivity" id="EditForm">
     	<!--- ADDED Attributes.SessionType HIDDEN FIELD FOR SAVING PURPOSES [Attributes.SessionType must be passed to save StartDate/EndDate] --->
 			<input type="hidden" value="saveActivity" name="Method" />

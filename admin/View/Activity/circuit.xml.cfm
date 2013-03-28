@@ -24,7 +24,7 @@
 	</fuseaction>
 	
 	<fuseaction name="ACCMERight">
-		<include template="dsp_ACCMERight" />
+		<include template="toolbar/dsp_ACCMERight" />
 	</fuseaction>
 	
 	<fuseaction name="ActionsShort">
@@ -32,7 +32,7 @@
 	</fuseaction>
 	
 	<fuseaction name="ActionsRight">
-		<include template="dsp_ActionsRight" />
+		<include template="toolbar/dsp_ActionsRight" />
 	</fuseaction>
 	
 	<fuseaction name="AdjustCredits">
@@ -48,7 +48,7 @@
 	</fuseaction>
 	
 	<fuseaction name="AttendeeDetailAHAH">
-		<include template="dsp_AttendeeDetailAHAH" />
+		<include template="ahah/dsp_AttendeeDetailAHAH" />
 	</fuseaction>
 	
 	<fuseaction name="Attendees">
@@ -56,7 +56,7 @@
 	</fuseaction>
 	
 	<fuseaction name="AttendeesAHAH">
-		<include template="dsp_AttendeesAHAH" />
+		<include template="ahah/dsp_AttendeesAHAH" />
 	</fuseaction>
 	
 	<fuseaction name="Attendees2">
@@ -68,7 +68,7 @@
 	</fuseaction>
 	
 	<fuseaction name="AttendeesRight">
-		<include template="dsp_AttendeesRight" />
+		<include template="toolbar/dsp_AttendeesRight" />
 	</fuseaction>
 	
 	<fuseaction name="Attendees2Right">
@@ -84,11 +84,11 @@
 	</fuseaction>
 	
 	<fuseaction name="AssessmentsAHAH">
-		<include template="dsp_AssessmentsAHAH" />
+		<include template="ahah/dsp_AssessmentsAHAH" />
 	</fuseaction>
 	
 	<fuseaction name="AssessmentsRight">
-		<include template="dsp_AssessmentsRight" />
+		<include template="toolbar/dsp_AssessmentsRight" />
 	</fuseaction>
 	
     <fuseaction name="Application">
@@ -96,7 +96,7 @@
 	</fuseaction>
 	
 	<fuseaction name="ApplicationRight">
-		<include template="dsp_ApplicationRight" />
+		<include template="toolbar/dsp_ApplicationRight" />
 	</fuseaction>
     
     <fuseaction name="Agenda">
@@ -104,7 +104,7 @@
 	</fuseaction>
     
     <fuseaction name="AgendaAHAH">
-		<include template="dsp_AgendaAHAH" />
+		<include template="ahah/dsp_AgendaAHAH" />
 	</fuseaction>
 	
 	<fuseaction name="AgendaForm">
@@ -112,7 +112,7 @@
 	</fuseaction>
 	
 	<fuseaction name="AgendaRight">
-		<include template="dsp_AgendaRight" />
+		<include template="toolbar/dsp_AgendaRight" />
 	</fuseaction>
 	
 	<fuseaction name="BuilderFileUploader">
@@ -188,7 +188,7 @@
 	</fuseaction>
     
 	<fuseaction name="CalendarRight">
-		<include template="dsp_CalendarRight" />
+		<include template="toolbar/dsp_CalendarRight" />
 	</fuseaction>
 	
 	<fuseaction name="CDCInfo">
@@ -196,7 +196,7 @@
 	</fuseaction>
 	
 	<fuseaction name="CDCInfoRight">
-		<include template="dsp_CDCInfoRight" />
+		<include template="toolbar/dsp_CDCInfoRight" />
 	</fuseaction>
 	
 	<fuseaction name="Committee">
@@ -204,11 +204,11 @@
 	</fuseaction>
 	
 	<fuseaction name="CommitteeAHAH">
-		<include template="dsp_CommitteeAHAH" />
+		<include template="ahah/dsp_CommitteeAHAH" />
 	</fuseaction>
 	
 	<fuseaction name="CommitteeRight">
-		<include template="dsp_CommitteeRight" />
+		<include template="toolbar/dsp_CommitteeRight" />
 	</fuseaction>
 	
 	<fuseaction name="Create">
@@ -216,7 +216,7 @@
 	</fuseaction>
 	
 	<fuseaction name="CreateRight">
-		<include template="dsp_CreateRight" />
+		<include template="toolbar/dsp_CreateRight" />
 	</fuseaction>
 	
 	<fuseaction name="CreateAttendance">
@@ -224,7 +224,7 @@
 	</fuseaction>
 	
 	<fuseaction name="CreateAttendanceRight">
-		<include template="dsp_CreateAttendanceRight" />
+		<include template="toolbar/dsp_CreateAttendanceRight" />
 	</fuseaction>
 	
 	<fuseaction name="CreateCommittee">
@@ -248,7 +248,7 @@
 	</fuseaction>
 	
 	<fuseaction name="CreditsRight">
-		<include template="dsp_CreditsRight" />
+		<include template="toolbar/dsp_CreditsRight" />
 	</fuseaction>
 	
 	<fuseaction name="DeleteEvent">
@@ -260,11 +260,11 @@
 	</fuseaction>
 	
 	<fuseaction name="DocsRight">
-		<include template="dsp_DocsRight" />
+		<include template="toolbar/dsp_DocsRight" />
 	</fuseaction>
 	
 	<fuseaction name="DocsAHAH">
-		<include template="dsp_DocsAHAH" />
+		<include template="ahah/dsp_DocsAHAH" />
 	</fuseaction>
 	
 	<fuseaction name="Edit">
@@ -276,7 +276,7 @@
 	</fuseaction>
 	
 	<fuseaction name="EditRight">
-		<include template="dsp_EditRight" />
+		<include template="toolbar/dsp_EditRight" />
 	</fuseaction>
 	
 	<fuseaction name="EditForm">
@@ -296,7 +296,7 @@
 	</fuseaction>
 	
 	<fuseaction name="EventRight">
-		<include template="dsp_EventRight" />
+		<include template="toolbar/dsp_EventRight" />
 	</fuseaction>
 	
 	<fuseaction name="Faculty">
@@ -304,11 +304,11 @@
 	</fuseaction>
 	
 	<fuseaction name="FacultyAHAH">
-		<include template="dsp_FacultyAHAH" />
+		<include template="ahah/dsp_FacultyAHAH" />
 	</fuseaction>
 	
 	<fuseaction name="FacultyRight">
-		<include template="dsp_FacultyRight" />
+		<include template="toolbar/dsp_FacultyRight" />
 	</fuseaction>
     
 	<fuseaction name="history">
@@ -324,7 +324,7 @@
 	</fuseaction>
 	
 	<fuseaction name="FinancesRight">
-		<include template="dsp_FinancesRight" />
+		<include template="toolbar/dsp_FinancesRight" />
 	</fuseaction>
 	
 	<fuseaction name="FinBudget">
@@ -332,11 +332,11 @@
 	</fuseaction>
 	
 	<fuseaction name="FinBudgetAHAH">
-		<include template="dsp_FinBudgetAHAH" />
+		<include template="ahah/dsp_FinBudgetAHAH" />
 	</fuseaction>
 	
 	<fuseaction name="FinBudgetRight">
-		<include template="dsp_FinBudgetRight" />
+		<include template="toolbar/dsp_FinBudgetRight" />
 	</fuseaction>
 	
 	<fuseaction name="FinFee">
@@ -344,11 +344,11 @@
 	</fuseaction>
 	
 	<fuseaction name="FinFeeAHAH">
-		<include template="dsp_FinFeeAHAH" />
+		<include template="ahah/dsp_FinFeeAHAH" />
 	</fuseaction>
 	
 	<fuseaction name="FinFeeRight">
-		<include template="dsp_FinFeeRight" />
+		<include template="toolbar/dsp_FinFeeRight" />
 	</fuseaction>
 	
 	<fuseaction name="FinLedger">
@@ -356,11 +356,11 @@
 	</fuseaction>
 	
 	<fuseaction name="FinLedgerAHAH">
-		<include template="dsp_FinLedgerAHAH" />
+		<include template="ahah/dsp_FinLedgerAHAH" />
 	</fuseaction>
 	
 	<fuseaction name="FinLedgerRight">
-		<include template="dsp_FinLedgerRight" />
+		<include template="toolbar/dsp_FinLedgerRight" />
 	</fuseaction>
 	
 	<fuseaction name="FinSupport">
@@ -368,11 +368,11 @@
 	</fuseaction>
 	
 	<fuseaction name="FinSupportAHAH">
-		<include template="dsp_FinSupportAHAH" />
+		<include template="ahah/dsp_FinSupportAHAH" />
 	</fuseaction>
 	
 	<fuseaction name="FinSupportRight">
-		<include template="dsp_FinSupportRight" />
+		<include template="toolbar/dsp_FinSupportRight" />
 	</fuseaction>
 	
 	<fuseaction name="FormListSection">
@@ -384,7 +384,7 @@
 	</fuseaction>
 	
 	<fuseaction name="ListRight">
-		<include template="dsp_ListRight" />
+		<include template="toolbar/dsp_ListRight" />
 	</fuseaction>
 	
 	<fuseaction name="Notes">
@@ -392,7 +392,7 @@
 	</fuseaction>
 	
 	<fuseaction name="NotesRight">
-		<include template="dsp_NotesRight" />
+		<include template="toolbar/dsp_NotesRight" />
 	</fuseaction>
 	
 	<fuseaction name="Other">
@@ -400,7 +400,7 @@
 	</fuseaction>
 	
 	<fuseaction name="OtherRight">
-		<include template="dsp_OtherRight" />
+		<include template="toolbar/dsp_OtherRight" />
 	</fuseaction>
 	
 	<fuseaction name="Overview">
@@ -412,7 +412,7 @@
     </fuseaction>
     
     <fuseaction name="PubPrereqsAHAH">
-    	<include template="dsp_PubPrereqsAHAH" />
+    	<include template="ahah/dsp_PubPrereqsAHAH" />
     </fuseaction>
 	
 	<fuseaction name="RecordAttendance">
@@ -420,7 +420,7 @@
 	</fuseaction>
 	
 	<fuseaction name="RecordAttendanceRight">
-		<include template="dsp_RecordAttendanceRight" />
+		<include template="toolbar/dsp_RecordAttendanceRight" />
 	</fuseaction>
 	
 	<fuseaction name="Publish">
@@ -428,7 +428,7 @@
 	</fuseaction>
 	
 	<fuseaction name="PublishRight">
-		<include template="dsp_PublishRight" />
+		<include template="toolbar/dsp_PublishRight" />
 	</fuseaction>
 	
 	<fuseaction name="PublishBar">
@@ -440,7 +440,7 @@
 	</fuseaction>
 	
 	<fuseaction name="PubBuilderRight">
-		<include template="dsp_PubBuilderRight" />
+		<include template="toolbar/dsp_PubBuilderRight" />
 	</fuseaction>
 	
 	<fuseaction name="PubCategory">
@@ -448,11 +448,11 @@
 	</fuseaction>
 	
 	<fuseaction name="PubCategoryAHAH">
-		<include template="dsp_PubCategoryAHAH" />
+		<include template="ahah/dsp_PubCategoryAHAH" />
 	</fuseaction>
 	
 	<fuseaction name="PubCategoryRight">
-		<include template="dsp_PubCategoryRight" />
+		<include template="toolbar/dsp_PubCategoryRight" />
 	</fuseaction>
 	
 	<fuseaction name="PubGeneral">
@@ -460,7 +460,7 @@
 	</fuseaction>
 	
 	<fuseaction name="PubGeneralRight">
-		<include template="dsp_PubGeneralRight" />
+		<include template="toolbar/dsp_PubGeneralRight" />
 	</fuseaction>
 	
 	<fuseaction name="PubComponents">
@@ -472,7 +472,7 @@
 	</fuseaction>
 	
 	<fuseaction name="PubSitesRight">
-		<include template="dsp_PubSitesRight" />
+		<include template="toolbar/dsp_PubSitesRight" />
 	</fuseaction>
 	
 	<fuseaction name="PubSpecialty">
@@ -480,11 +480,11 @@
 	</fuseaction>
 	
 	<fuseaction name="PubSpecialtyAHAH">
-		<include template="dsp_PubSpecialtyAHAH" />
+		<include template="ahah/dsp_PubSpecialtyAHAH" />
 	</fuseaction>
 	
 	<fuseaction name="PubSpecialtyRight">
-		<include template="dsp_PubSpecialtyRight" />
+		<include template="toolbar/dsp_PubSpecialtyRight" />
 	</fuseaction>
     
     <fuseaction name="Reports">
@@ -492,6 +492,6 @@
     </fuseaction>
 	
 	<fuseaction name="ReportsRight">
-    	<include template="dsp_ReportsRight" />
+    	<include template="toolbar/dsp_ReportsRight" />
     </fuseaction>
 </circuit>

@@ -1,6 +1,5 @@
 <cfparam name="Attributes.Credits" default="">
 <div class="ViewSection">
-<h3>Credits</h3>
 <script>
 $(document).ready(function() {
 	$(".CreditBox").each(function() {

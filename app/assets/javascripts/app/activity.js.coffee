@@ -1,7 +1,7 @@
 ###
 * ACTIVITY
 ###
-ce.activity = do ($) ->
+App.activity = do ({App,$,Backbone} = window) ->
   activityContainer = null
 
   continueCopy = ->
@@ -97,8 +97,25 @@ ce.activity = do ($) ->
     updateContainers()
     updateStats()
     updateNoteCount()
+    $(".ContentTitle span").tooltip({
+      placement: 'bottom',
+      trigger:'hover focus',
+      container: 'body'
+    });
 
-    
+    $(".linkbar a").tooltip({
+      placement: 'right',
+      html: 'true',
+      trigger: 'hover focus',
+      container: 'body'
+      });
+
+    $(".action-buttons a.btn").tooltip({
+      placement: 'bottom',
+      trigger: 'hover focus',
+      container: 'body'
+    })
+
     # STATUS CHANGER 
     $("#StatusChanger").change ->
       nStatus = $(this).val()
@@ -338,7 +355,3 @@ ce.activity = do ($) ->
 
   pub =
     init: _init
-    log: (msg) -> write msg
-  # // END PROCESS QUEUES DIALOG 
-
-  # // END DIALOG WINDOWS 

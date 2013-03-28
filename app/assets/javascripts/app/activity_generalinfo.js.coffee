@@ -1,7 +1,7 @@
 ###
 * ACTIVITY > GENERAL INFORMATION
 ###
-ce.activity.general = do ($) ->
+App.activity.general = do (activity = App.activity,{App,$,Backbone} = window) ->
   updateStateProvince = (countryId) ->
     #console.log countryId
     if parseInt(countryId) == 230

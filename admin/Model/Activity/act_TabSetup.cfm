@@ -2,14 +2,15 @@
   request.tabSettings = {
     "tabsSort":[
       "activity.detail",
+      "activity.credits",
+      "activity.attendees",
       "activity.faculty",
       "activity.committee",
-      "activity.finances",
-      "activity.credits",
       "activity.docs",
-      "activity.attendees",
       "activity.application",
       "activity.agenda",
+      "activity.finances",
+      "activity.accme",
       "activity.pubgeneral",
       "activity.notes",
       "activity.reports",
@@ -19,6 +20,7 @@
       "activity.detail": {
         "label":"General Info",
         "title":"General Information",
+        "tooltip":"Start Date: #DateFormat(activityBean.getStartDate(),'mm/dd/yyyy')#<br />End Date: #DateFormat(activityBean.getEndDate(),'mm/dd/yyyy')#",
         "icon":"card-address",
         "event":"activity.detail",
         "subEvents":[]
@@ -27,6 +29,7 @@
         "label":"Faculty",
         "title":"Faculty / Speakers",
         "icon":"user-business",
+        "tooltip":"Total Faculty: Unknown",
         "event":"activity.faculty",
         "subEvents":[]
       },
@@ -34,19 +37,54 @@
         "label":"Committee Members",
         "title":"Planning Committee Members",
         "icon":"user-female",
+        "tooltip":"Total Members: Unknown",
         "event":"activity.committee",
         "subEvents":[]
       },
       "activity.finances": {
         "label":"Finances",
         "title":"Finances",
+        "tooltip":"Financial Overview",
         "icon":"money",
         "event":"activity.finances",
-        "subEvents":["activity.finledger","activity.finbudget","activity.finsupport"]
+        "subEvents":["activity.finledger","activity.finbudget","activity.finfees","activity.finsupport"]
+      },
+      "activity.finledger": {
+        "label":"General Ledger",
+        "title":"General Ledger",
+        "icon":"",
+        "tooltip":"Total Income: Unknown<br />Total Expenses: Unknown",
+        "event":"activity.finledger",
+        "subEvents":[]
+      },
+      "activity.finbudget": {
+        "label":"Budget",
+        "title":"Budget",
+        "tooltip":"Total Budget: Unknown",
+        "icon":"",
+        "event":"activity.finbudget",
+        "subEvents":[]
+      },
+      "activity.finsupport": {
+        "label":"Commercial Support",
+        "title":"Commercial Support",
+        "tooltip":"Total Supporters: #ActivityBean.getStatSupporters()#<br />Total Dollars: #LSCurrencyFormat(ActivityBean.getStatSuppAmount())#",
+        "icon":"",
+        "event":"activity.finsupport",
+        "subEvents":[]
+      },
+      "activity.finfees": {
+        "label":"Fees",
+        "title":"Fees",
+        "icon":"",
+        "tooltip":"Total Fees: Unknown",
+        "event":"activity.finfees",
+        "subEvents":[]
       },
       "activity.credits": {
         "label":"Credits",
         "title":"Credits",
+        "tooltip":"CME: #activityBean.getStatCMEHours()#",
         "icon":"medal",
         "event":"activity.credits",
         "subEvents":[]
@@ -54,6 +92,7 @@
       "activity.docs": {
         "label":"Files &amp; Documents",
         "title":"Files &amp; Documents",
+        "tooltip":"Total Documents: Unknown",
         "icon":"documents",
         "event":"activity.docs",
         "subEvents":[]
@@ -61,13 +100,16 @@
       "activity.attendees": {
         "label":"Participants",
         "title":"Participants",
+        "tooltip":"Total Records: #ActivityBean.getStatAttendees()#<br />Physicians: #ActivityBean.getStatMD()#<br />Non-Physicians: #ActivityBean.getStatNonMD()#<br />Addl Participants: #ActivityBean.getStatAddlAttendees()#",
         "icon":"users",
         "event":"activity.attendees",
+        "count":"#activityBean.getStatAttendees()#",
         "subEvents":[]
       },
       "activity.application": {
         "label":"Checklist",
         "title":"Application Checklist",
+        "tooltip":"",
         "icon":"flag-checker",
         "event":"activity.application",
         "subEvents":[]
@@ -75,6 +117,7 @@
       "activity.agenda": {
         "label":"Agenda",
         "title":"Agenda",
+        "tooltip":"",
         "icon":"calendar-blue",
         "event":"activity.agenda",
         "subEvents":[]
@@ -82,20 +125,71 @@
       "activity.pubgeneral": {
         "label":"Publish",
         "title":"Publishing Settings",
+        "tooltip":"",
         "icon":"globe-green",
         "event":"activity.pubgeneral",
         "subEvents":["activity.pubbuilder","activity.pubcategory","activity.pubspecialty"]
       },
-      "activity.history": {
-        "label":"",
-        "title":"",
+      "activity.pubbuilder": {
+        "label":"Builder",
+        "title":"Builder Components",
+        "tooltip":"",
+        "icon":"globe-green",
+        "event":"activity.pubbuilder",
+        "subEvents":[]
+      },
+      "activity.pubsites": {
+        "label":"Sites",
+        "title":"Sites to Publish To",
+        "tooltip":"",
+        "icon":"globe-green",
+        "event":"activity.pubsites",
+        "subEvents":[]
+      },
+      "activity.pubcategory": {
+        "label":"Categories",
+        "title":"Categories",
+        "tooltip":"",
+        "icon":"globe-green",
+        "event":"activity.pubcategory",
+        "subEvents":[]
+      },
+      "activity.pubspecialty": {
+        "label":"Specialities",
+        "title":"Specialty Areas",
+        "tooltip":"",
+        "icon":"globe-green",
+        "event":"activity.pubspecialty",
+        "subEvents":[]
+      },
+      "activity.pubsites": {
+        "label":"Sites",
+        "title":"Sites to Publish To",
+        "tooltip":"",
+        "icon":"globe-green",
+        "event":"activity.pubsites",
+        "subEvents":[]
+      },
+      "activity.accme": {
+        "label":"ACCME",
+        "title":"ACCME Details",
+        "tooltip":"",
         "icon":"",
-        "event":"",
+        "event":"activity.accme",
+        "subEvents":[]
+      },
+      "activity.history": {
+        "label":"History",
+        "title":"History",
+        "tooltip":"",
+        "icon":"",
+        "event":"activity.history",
         "subEvents":[]
       },
       "activity.notes": {
         "label":"Notes",
         "title":"Notes",
+        "tooltip":"",
         "icon":"sticky-note-pin",
         "event":"activity.notes",
         "subEvents":[]
@@ -103,6 +197,7 @@
       "activity.reports": {
         "label":"Reporting &amp; Exports",
         "title":"Reporting &amp; Exports",
+        "tooltip":"",
         "icon":"chart",
         "event":"activity.reports",
         "subEvents":[]

@@ -1,7 +1,6 @@
 <cfoutput>  
 <div class="ViewContainer">
 <div class="ViewSection">
-	<h3>Financial Overview</h3>
 	<p>
 	<cfchart format="png" chartheight="260" showlegend="yes" chartwidth="630" labelformat="currency" show3d="false" backgroundcolor="FFFFFF" xAxisTitle="Entry Types" yAxisTitle="Dollars" fontsize="9">
 		<cfchartseries type="bar" markerstyle="circle" query="qLedger" seriescolor="##555555" serieslabel="Expenses" valuecolumn="TotalAmount" itemcolumn="Name" />

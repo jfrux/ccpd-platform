@@ -109,9 +109,10 @@
 </script>
 <cfoutput>
 <div class="ViewSection">
-	<h3>Committee Members</h3>
 	<div id="CommitteeContainer"></div>
 	<div id="CommitteeLoading" class="Loading"><img src="/admin/_images/ajax-loader.gif" />
 	<div>Please Wait</div></div>
 </div>
+<cf_cePersonFinder Instance="Committee" DefaultName="Add Committee Member" DefaultID="" AddPersonFunc="saveCommitteeMember();" ActivityID="#Attributes.ActivityID#">
+  
 </cfoutput>

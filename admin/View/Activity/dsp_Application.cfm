@@ -70,7 +70,6 @@
 </script>
 <cfoutput>
 <div class="ViewSection">
-<h3>Application</h3>
 	<form action="#myself#Activity.Application?ActivityID=#Attributes.ActivityID#&Submitted=1" method="post" name="frmEditActivity">
     <table cellspacing="2" cellpadding="3" border="0">
 		<cfset FieldID = 0>

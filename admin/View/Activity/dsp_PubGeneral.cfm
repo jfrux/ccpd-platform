@@ -67,7 +67,6 @@ $(document).ready(function() {
 </script>
 <cfoutput>
 <div class="ViewSection">
-	<h3>General Publish Settings</h3>
 	<form action="#Application.Settings.RootPath#/_com/AJAX_Activity.cfc" method="post" name="frmPubGeneral" id="EditForm">
 
     	<input type="hidden" name="method" value="savePubGeneral" />

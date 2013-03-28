@@ -35,7 +35,7 @@
             <li><a href="#myself#person.detail?personid=#session.person.getPersonId()#">#session.person.getdisplayname()#</a></li>
             <li><a href="#myself#Main.doLogout">Logout</a></li>
           </ul>
-        </div><!--/.nav-collapse -->
+        </div>
       </div>
     </div>
   </div>

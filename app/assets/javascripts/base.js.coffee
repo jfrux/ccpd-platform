@@ -1,9 +1,9 @@
 root = this
 
-root.ce = do ($) ->
-  _init = (name,el) ->
-    console.log("init: app");
-    appContainer = el
+root.App = do({$,Backbone} = window) ->
+    _init = ->
+      console.log("init: application")
 
-  pub =
-    init: _init
+    _.extend({
+      init: _init
+    },Backbone.Events)

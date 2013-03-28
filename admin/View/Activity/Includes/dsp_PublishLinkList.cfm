@@ -58,14 +58,6 @@
 </script>
 
 <cfoutput>
-<div class="MultiFormRight_LinkList">
-	<a href="#myself#Activity.PubGeneral?ActivityID=#Attributes.ActivityID#"<cfif Attributes.Fuseaction EQ "Activity.PubGeneral"> id="MultiFormRight_CurrentLink"</cfif>><img src="#Application.Settings.RootPath#/_images/icons/application_form_edit.png" align="absmiddle" style="padding-right:4px;" />General</a>
-	<a href="#myself#Activity.PubSites?ActivityID=#Attributes.ActivityID#"<cfif Attributes.Fuseaction EQ "Activity.PubSites"> id="MultiFormRight_CurrentLink"</cfif>><img src="#Application.Settings.RootPath#/_images/icons/world_link.png" align="absmiddle" style="padding-right:4px;" />Sites</a>
-	<a href="#myself#Activity.PubBuilder?ActivityID=#Attributes.ActivityID#"<cfif Attributes.Fuseaction EQ "Activity.PubBuilder"> id="MultiFormRight_CurrentLink"</cfif>><img src="#Application.Settings.RootPath#/_images/icons/wrench.png" align="absmiddle" style="padding-right:4px;" />Builder</a>
-	<!---<a href="#myself#Activity.PubPrereqs?ActivityID=#Attributes.ActivityID#"<cfif Attributes.Fuseaction EQ "Activity.PubPrereqs"> id="MultiFormRight_CurrentLink"</cfif>><img src="#Application.Settings.RootPath#/_images/icons/application_link.png" align="absmiddle" style="padding-right:4px;" />Prerequisites</a>--->
-	<a href="#myself#Activity.PubCategory?ActivityID=#Attributes.ActivityID#"<cfif Attributes.Fuseaction EQ "Activity.PubCategory"> id="MultiFormRight_CurrentLink"</cfif>><img src="#Application.Settings.RootPath#/_images/icons/folder_page.png" align="absmiddle" style="padding-right:4px;" />Categories</a>
-	<a href="#myself#Activity.PubSpecialty?ActivityID=#Attributes.ActivityID#"<cfif Attributes.Fuseaction EQ "Activity.PubSpecialty"> id="MultiFormRight_CurrentLink"</cfif>><img src="#Application.Settings.RootPath#/_images/icons/award_star_gold_1.png" align="absmiddle" style="padding-right:4px;" />Specialties</a>
-</div>
 <div id="PublishState">
     
 </div>

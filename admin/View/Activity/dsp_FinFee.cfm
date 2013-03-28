@@ -31,7 +31,6 @@
 
 <cfoutput>
 <div class="ViewSection">
-	<h3>Fees</h3>
 	<div id="FeesContainer"></div>
 	<div id="FeesLoading" class="Loading"><img src="/admin/_images/ajax-loader.gif" />
 	<div>Please Wait</div>

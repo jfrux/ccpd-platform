@@ -31,6 +31,11 @@
       margin-top: 6px;
     }
     .action-buttons {
+      a.btn {
+        height: 16px;
+        line-height: 16px;
+        font-size:12px;
+      }
       margin-right: 5px;
       margin-top: 6px;
     }
@@ -45,12 +50,17 @@
           border-width: 1px 0 1px 1px;
       }
     }
-
+    .subnav {
+      background-color:#EFEFEF;
+      margin-right:1px;
+    }
     .nav {
       li {
         a {
           margin-right: 1px;
           padding: 2px 2px 2px 5px;
+          color: #333333;
+          line-height: 17px;
           i {
 
           }
@@ -58,24 +68,55 @@
           span {
             
           }
+
+          .navItemCount {
+              padding-bottom: 2px;
+          }
+          .navItemCount {
+            background-color: #D8DFEA;
+            border-radius: 2px 2px 2px 2px;
+            color: #3B5998;
+            font-weight: bold;
+            left: -1px;
+            padding: 0 4px;
+            position: relative;
+            top: 1px;
+          }
         }
         
         &.active {
           a {
-            background-color:#EFEFEF;
+            background-color:#E1E1E1;
           }
         }
       }
     }
   }
   .content {
+    .content-title {
+      >h3 {
+        background-color: #E3E3E3;
+        border-bottom: 1px solid #D9D9D9;
+        border-top: 1px solid #E5E5E5;
+        font-size: 13px;
+        font-weight: bold;
+        line-height: 22px;
+        margin-left:-10px;
+        margin-right:-4px;
+        margin-bottom: 5px;
+        margin-top: 0;
+        padding: 1px 6px;
+      }
+    }
     table.profile-grid {
-      margin-bottom:0px;  
+      margin-bottom:0px; 
+      background-color:#FFF; 
     }
     .pagination {
       margin:auto;
     }
-    h3 {
+    .ViewSection {
+      h3 {
       background-color: #E3E3E3;
       border-bottom: 1px solid #D9D9D9;
       border-top: 1px solid #E5E5E5;
@@ -87,7 +128,10 @@
       margin-bottom: 5px;
       margin-top: 0;
       padding: 1px 6px;
-      
+        &:before {
+          content: "NEEDS REMOVED --->";
+        }
+      }
     }
     .toolbar,.content-inner {
     }

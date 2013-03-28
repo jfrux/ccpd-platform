@@ -15,7 +15,6 @@
 </script>
 <cfoutput>
 <div class="ViewSection">
-	<h3>Agenda</h3>
 	<div id="AgendaContainer"></div>
 	<div id="AgendaLoading" class="Loading"><img src="/admin/_images/ajax-loader.gif" />
 	<div>Please Wait</div>
