@@ -4,6 +4,7 @@
 *=require_self
 *=require buglog/bugLogClient
 *=require jquery/jquery
+*=require jquery/jquery-migrate
 *=require jquery/jquery-ui
 *=require jquery/json2
 *=require underscore
@@ -24,7 +25,6 @@
 *=require jquery/plugins/jquery.maskedinput
 *=require jquery/plugins/jquery.tmpl
 *=require jquery/plugins/jquery.hotkeys
-*=require jquery/plugins/jquery.dimensions
 *=require jquery/plugins/jquery.blockui
 *=require jquery/plugins/jquery.selectboxes
 *=require jquery/plugins/jquery.tools

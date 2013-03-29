@@ -1,3 +1,4 @@
+/* MARGIN LEFT */
 .mls {
   margin-left:3px;
 }
@@ -8,4 +9,63 @@
 
 .mll {
   margin-left:7px;
+}
+
+/* MARGIN TOP */
+.mts {
+  margin-top:3px;
+}
+
+.mtm {
+  margin-top:5px;
+}
+
+.mtl {
+  margin-top:7px;
+}
+
+/* MARGIN BOTTOM */
+.mbs {
+  margin-bottom:3px;
+}
+
+.mbm {
+  margin-bottom:5px;
+}
+
+.mbl {
+  margin-bottom:7px;
+}
+
+
+/* MARGIN RIGHT */
+.mrs {
+  margin-right:3px;
+}
+
+.mrm {
+  margin-right:5px;
+}
+
+.mrl {
+  margin-right:7px;
+}
+
+/* NO BORDER */
+.no-border-top {
+  border-top:0!important;
+}
+.no-border-bottom {
+  border-bottom:0!important;
+}
+.no-border-left {
+  border-left:0!important;
+}
+.no-border-right {
+  border-right:0!important;
+}
+
+/* NO OVERFLOW */
+.no-overflow {
+  overflow:hidden;
 }

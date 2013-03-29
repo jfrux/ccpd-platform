@@ -10,7 +10,7 @@ require './app'
 Sinatra::Sprockets.configure do |config|
   config.app = MyApp
 
-  config.host = "http://localhost:3000"
+  config.host = "http://localhost:8888"
   ['stylesheets', 'javascripts', 'images'].each do |dir|
     config.append_path(File.join('app','assets', dir))
   end

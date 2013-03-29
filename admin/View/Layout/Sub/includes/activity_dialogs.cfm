@@ -3,14 +3,7 @@
     
   </div>
   </cfif>
-  <div id="ActivityDialogs">
-    <cfif ParentBean.getSessionType() EQ "M"><a href="javascript:void(0);" id="ActivityDialogLink" style="text-decoration:none;<cfif Cookie.USER_ActListOpen>display:none;</cfif>"><img src="#Application.Settings.RootPath#/_images/icons/layers.png" border="0" align="absmiddle" /> Open Activities</a></cfif>
-    <a href="javascript:void(0);" id="OverviewDialogLink" style="text-decoration:none;"><img src="#Application.Settings.RootPath#/_images/icons/page.png" border="0" align="absmiddle" /> Activity Overview</a>
-    <a href="javascript:void(0);" id="NotesDialogLink" style="text-decoration:none;<cfif Cookie.USER_ActNotesOpen>display:none;</cfif>"><img src="#Application.Settings.RootPath#/_images/icons/note.png" border="0" align="absmiddle" /><span id="NoteCount"></span> Open Notes</a>
-  </div>
-  <div id="NotesList" style="display:none;">
-    <iframe width="365" height="380" src="" id="frmNotes" frameborder="0" name="frmNotes" scrolling="auto"></iframe>
-  </div>
+  
   <div id="OverviewList" style="display:none;">
   </div>
   <div id="MoveDialog" style="display:none;">

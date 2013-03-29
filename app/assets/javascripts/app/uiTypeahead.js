@@ -291,79 +291,83 @@
 					//startTypingTimer($input);
 				},
                 //define select handler
-                select: function(e, ui) {
+        select: function(e, ui) {
+        	console.log(ui);
 					item_select(ui.item);
 					return false;
-                },
-                
-                //define select handler
-                change: function() {
-                    //prevent 'to' field being updated and correct position
-                    //$input.val("").css("top", 2);
+        },
+        //define select handler
+        change: function() {
+          //prevent 'to' field being updated and correct position
+          //$input.val("").css("top", 2);
+						return false;
+        }
+        })
+				.data("ui-autocomplete")._renderMenu = function( ul, items ) {
+					var self = this;
+					$(ul).addClass(settings.size);
 					
-					return false;
-                }
-            }).data( "autocomplete" )._renderMenu = function( ul, items ) {
-				$(ul).addClass(settings.size);
-				
-				
-				if(settings.bucketed) {
-					resize_math();
-				}
-				
-				$.each(items,function(index,item) {
-					var subtext1 = $("<span/>").addClass('fcg fsm clearfix').text(item.SUBTEXT1);
-					var subtext2 = $("<span/>").addClass('fcg fsm clearfix').text(item.SUBTEXT2);
 					
-					var li = $( "<li></li>" )
-						.data( "item.autocomplete", item )
-						.appendTo( ul );
+					// if(settings.bucketed) {
+					// 	resize_math();
+					// }
 					
-					var label = $("<a></a>")
-								.html("<div>" + item.label + "</div>")
-								.appendTo(li);
+					$.each(items,function(index,item) {
+						console.log(item);
+						var subtext1 = $("<span/>").addClass('fcg fsm clearfix').text(item.SUBTEXT1);
+						var subtext2 = $("<span/>").addClass('fcg fsm clearfix').text(item.SUBTEXT2);
 						
-					var img = $("<img/>")
-									.attr({ src:item.image })
-									.prependTo(label);
+						var li = $( "<li></li>" )
+							.data( "item.autocomplete", item )
+							.appendTo( ul );
+						
+						var label = $("<a></a>")
+									.html("<div>" + item.label + "</div>")
+									.appendTo(li);
+							
+						var img = $("<img/>")
+										.attr({ src:item.image })
+										.prependTo(label);
+						
+						if(item.ignored) {
+							label.click(function() {
+							//disable click
+							 return false;
+							 });
+						}
 					
-					if(item.ignored) {
-						label.click(function() {
-						//disable click
-						 return false;
-						 });
-					}
+						if(item.SUBTEXT1) {
+							label.append(subtext1);	
+						}
+						
+						if(item.SUBTEXT2) {
+							label.append(subtext2);	
+						}
+						
+						if(item.classes) {
+							li.addClass(item.classes);
+						}
+						
+						if(item.ignored) {
+							li.addClass('ignore');
+						}
+						
+						if(item.isHeader) {
+							img.remove();
+						}
+						
+						if(item.callToAction) {
+							img.remove();
+							li.addClass('calltoaction');
+						}
+
+						self._renderItem(ul,item);
+					});
 				
-					if(item.SUBTEXT1) {
-						label.append(subtext1);	
-					}
-					
-					if(item.SUBTEXT2) {
-						label.append(subtext2);	
-					}
-					
-					if(item.classes) {
-						li.addClass(item.classes);
-					}
-					
-					if(item.ignored) {
-						li.addClass('ignore');
-					}
-					
-					if(item.isHeader) {
-						img.remove();
-					}
-					
-					if(item.callToAction) {
-						img.remove();
-						li.addClass('calltoaction');
-					}
-				});
-				
-				if(settings.bucketed) {
-				search_resizer();
-				}
-			};
+					// if(settings.bucketed) {
+					// 	search_resizer();
+					// }
+				};
             
             //log("autocomplete plugin is installed.");
         }

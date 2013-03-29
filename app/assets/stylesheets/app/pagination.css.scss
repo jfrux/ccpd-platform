@@ -31,6 +31,12 @@
   a.previous {
 
   }
+  span.previous {
+    border-left-width:1px;
+  }
+  span.next {
+    border-right-width:1px;
+  }
 
   :first-child  {
     border-bottom-left-radius: 4px;

@@ -1,0 +1,36 @@
+.profile {
+  .content {
+    &.show-infobar {
+      .info-bar {
+        display:block;
+      }
+    }
+
+    .infobar {
+      padding-bottom:10px;
+      //padding:8px;
+      background-color:#FFF;
+      border-bottom:2px solid #E2E2E2;
+
+      @include box-shadow(-4px 0 0px #dde1e7);
+
+      .box {
+        padding:3px 7px 0 7px;
+      }
+
+      h3 {
+        margin-left:0;
+        margin-right:0;
+        background-color: #F2F2F2;
+        border-bottom: 1px solid #D9D9D9;
+        border-top: 1px solid #E5E5E5;
+        font-size: 13px;
+        font-weight: bold;
+        line-height: 22px;
+        margin-bottom: 5px;
+        margin-top: 0;
+        padding: 1px 6px;
+      }
+    }
+  }
+}

@@ -1,0 +1,181 @@
+	.uiTokenizer {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #BDC7D8;
+    position: relative;
+	 width: 100%;
+	}
+	/* LIST STYLE */
+	.uiListTokenizer {
+	 background: none repeat scroll 0 0 transparent;
+    border: 0;
+    position: relative;
+	}
+	
+	
+	.uiListToken {
+		margin: 4px 0;
+		display:block;
+	}
+	.uiListToken .name {
+		background: none repeat scroll 0 0 #E2E8F6;
+		border: 1px solid #BDC7D8;
+		font-size: 11px;
+		line-height: 13px;
+		padding: 3px 3px 3px 23px;
+		position: relative;
+	}
+	.uiListToken .name .photo {
+		height: 16px;
+		left: 2px;
+		position: absolute;
+		top: 2px;
+		width: 16px;
+	}
+	.uiListToken .name .remove {
+		position: absolute;
+		right: 3px;
+		top: 2px;
+	}
+	.uiListToken .description {
+		border: 1px solid #BDC7D8;
+		overflow: hidden;
+	}
+	.uiListToken .description textarea {
+		border: medium none;
+		width: 100%;
+	}
+	
+	/* LIST IMAGE STYLE */
+	.uiListImageTokenizer {
+		background: none repeat scroll 0 0 transparent;
+		border: 0;
+		position: relative;
+	}
+	
+	.uiListImageTokenizer .uiTokenarea {
+		background: no-repeat scroll 0 0 transparent;
+		padding: 0;
+		border:0;
+	}
+	
+	.uiImageTokenizer .uiTokenarea {
+		background: url("/static/images/uiTokenizer_placeholder.png") no-repeat scroll 10px 8px transparent;
+		padding: 8px 0 8px 10px;
+	}
+	
+	.uiTokenarea {
+		border-color: #CCCCCC #BDC7D8;
+		border-style: dashed;
+		border-width: 1px 0 0;
+		clear: both;
+		padding: 8px 10px;
+	}
+	.uiTokenizer.uiImageTokenizer .uiTypeahead {
+		border:0;
+	}
+	.uiTokenizer .tokenImg {
+		display:none;
+	}
+	.uiTokenizer .uiImageTokenizer .shown {
+		background-color: transparent;
+		border: 0 none;
+		color: #333333;
+		height: auto;
+		margin: 0;
+		padding: 0 10px 8px 0;
+		white-space: normal;
+		width: 62px;
+		word-wrap: break-word;
+	}
+	
+	
+	.uiToken {
+		-moz-border-radius: 2px 2px 2px 2px;
+		background: none repeat scroll 0 0 #E2E6F0;
+		border: 1px solid #9DACCC;
+		color: #1C2A47;
+		cursor: default;
+		display: block;
+		float: left;
+		font-size: 11px;
+		line-height: 13px;
+		margin: 0 2px 2px 0;
+		padding: 3px 7px;
+		position: relative;
+		white-space: nowrap;
+	}
+	.uiImageTokenizer .shown .text {
+    display: block;
+    font-size: 11px;
+    height: 28px;
+    line-height: 10px;
+    overflow: hidden;
+}
+	.uiImageTokenizer .shown {
+    background-color: transparent;
+    border: 0 none;
+    color: #333333;
+    height: auto;
+    margin: 0;
+    padding: 0 10px 3px 0;
+    white-space: normal;
+    width: 62px;
+    word-wrap: break-word;
+	}
+	
+	.uiTokenDragPlaceholder { 
+		display: block;
+		background-color:#CCC!important;
+		border:0px solid #CCC!important;
+	}
+	
+	.uiImageTokenizer .shownPlaceholder {
+    background: none repeat scroll 0 0 #F2F2F2;
+    height: 60px !important;
+    margin: 0 10px 34px 0;
+    width: 52px !important;
+	}
+	.drag {
+		z-index:1;
+	}
+	.uiImageTokenizer .hiddenPlaceholder {
+	}
+	
+	 .droppable_placeholder {
+	 	background-color:#EEE;
+		border:1px solid #F2F2F2;
+	 }
+	.uiTokenizer .expanded .hidden, .uiTokenizer .expanded .droppable_placeholder {
+		display: block;
+	}
+	.uiTokenizer .hidden, .uiTokenizer .hovered .droppable_placeholder {
+		display: none;
+	}
+	.uiTokenSelected {
+		background-color: #6D84B4;
+		border-color: #3B5998;
+		color: white;
+	}
+	
+	.uiImageTokenizer .uiTokenShownSelected .tokenImg .hubPhoto {
+		border: 1px solid #9DACCB;
+		overflow: hidden;
+	}
+	
+	.uiImageTokenizer .uiTokenShownSelected .tokenImg {
+		border: 3px solid #627AAD;
+		margin: -4px -4px -0px -4px!important;
+	}
+	
+	.uiImageTokenizer .shown .tokenImg {
+		display: block;
+		vertical-align: bottom;
+	}
+	
+	.uiImageTokenizer .shown .tokenImg {
+		background: white;
+		display: block;
+		margin-bottom: 4px;
+	}
+	
+	

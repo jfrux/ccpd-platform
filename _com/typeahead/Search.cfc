@@ -147,6 +147,56 @@
 		</cfif>
 		<cfreturn query />
 	</cffunction>
+
+	<cffunction name="folders" hint="returns folders list for typeahead" access="public" returntype="query" output="no">
+		<cfargument name="q" type="string" required="no" default="" />
+		<cfargument name="max" type="numeric" required="no" default="10" />
+		
+		<cfset var query = "" />
+		<cfset var searchStr = "" />
+		<cfset var aResults= QueryNew("") />
+		<cfset var returnVar = "" />
+		
+		<!--- Ensure browser reads this as raw javascript --->
+		<cfcontent type="text/javascript" />
+		
+		<!--- fail out if no query passed --->
+		<cfif len(arguments.q) LTE 0>
+			<cfset returnVar = [] />
+			<cfreturn returnVar />
+			<cfabort>
+		</cfif>
+		
+		<!--- prepares raw search string for full-text FORMSOF Inflectional, Partial, Thesaurus, etc.
+		searchFormatter() is a private function at the bottom --->
+		<cfset searchStr = searchFormatter(arguments.q) />
+		
+		<cfquery name="query" datasource="#variables.dsn#">
+			DECLARE @search nvarchar(500);
+			DECLARE @maxrows int;
+			
+			SET @search = <cfqueryparam value="#searchStr#" cfsqltype="cf_sql_varchar" />;
+			SET @maxrows = <cfqueryparam value="#arguments.max#" cfsqltype="cf_sql_integer" />;
+			
+			SELECT 
+				TOP (@maxrows)
+				item_id = obj.categoryid,
+				text = obj.name,
+				subtext1 = '',
+				subtext2 = '',
+				image = '/static/images/no-photo/folder_i.png',
+				fts.[rank],
+				link = '/admin/index.cfm?event=main.search&type=activity&folder=' + CAST(obj.categoryid As nvarchar(12)),
+				type = 'folder'
+			FROM 
+			ce_category AS obj
+			INNER JOIN
+			CONTAINSTABLE(ce_category, (name), @search) AS fts ON obj.categoryid = fts.[KEY] 
+			ORDER BY fts.[RANK] DESC
+		</cfquery>
+		
+		<cfreturn query />
+	</cffunction>
 	<!---
 	<cffunction name="city" hint="returns folders list for typeahead" access="public" returntype="query" output="no">
 		<cfargument name="q" type="string" required="no" default="" />

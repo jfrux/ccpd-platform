@@ -1,0 +1,53 @@
+.profile {
+  .projectbar {
+    word-wrap: break-word;
+    .box {
+      margin-top:10px;
+      .thumbnail {
+          border-radius: 4px 0 0 4px;
+          border-width: 1px 0 1px 1px;
+      }
+    }
+    .subnav {
+      background-color:#EFEFEF;
+      margin-right:1px;
+    }
+    .nav {
+      li {
+        a {
+          margin-right: 1px;
+          padding: 2px 2px 2px 5px;
+          color: #333333;
+          line-height: 17px;
+          i {
+
+          }
+
+          span {
+            
+          }
+
+          .navItemCount {
+              padding-bottom: 2px;
+          }
+          .navItemCount {
+            background-color: #D8DFEA;
+            border-radius: 2px 2px 2px 2px;
+            color: #3B5998;
+            font-weight: bold;
+            left: -1px;
+            padding: 0 4px;
+            position: relative;
+            top: 1px;
+          }
+        }
+        
+        &.active {
+          a {
+            background-color:#E1E1E1;
+          }
+        }
+      }
+    }
+  }
+}

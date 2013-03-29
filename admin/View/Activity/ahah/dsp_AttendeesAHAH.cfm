@@ -126,13 +126,16 @@ $(document).ready(function() {
     
 <cfelse>
 	<cfif attributes.status GT 0>
-        <div style="background-image:url(/admin/_images/Sample_Attendees.jpg); font-size: 18px; text-align: center; height: 250px; width: 620px;">
-            <div style="padding:25px 20px;">There are no registrants for this activity of this status.</div>
-        </div>
+      <div class="alert">
+        <!--- <button type="button" class="close" data-dismiss="alert">&times;</button> --->
+        There are not any participants with that status.
+      </div>
     <cfelse>
-        <div style="background-image:url(/admin/_images/Sample_Attendees.jpg); font-size: 18px; text-align: center; height: 250px; width: 620px;">
-            <div style="padding:25px 20px;">You have not added any registrants.<br />Please click 'Add Registrant' on the right to begin.</div>
-        </div>
+      <div class="alert alert-info">
+        You have not added any registrants.<br />
+        Please click '<a class="btn btn-mini"><i class="icon-plus"></i></a> on the right to begin.
+      </div>
+        
     </cfif>
 </cfif>
 <div id="PersonDetailContainer" class="simple_overlay">

@@ -7,6 +7,7 @@
 #=require app/activity
 #=require app/activity_generalinfo
 #=require app/activity_participants
+#=require app/profile
 #=require app/uiUtil
 #=require app/global
 #=require app/encoder

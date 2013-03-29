@@ -314,6 +314,7 @@ App.activity.participants = do (activity = App.activity,{App,$,Backbone} = windo
         addError "You must provide full date and time.", 250, 6000, 4000
         $("#EditDateField-" + nAttendee).focus()
         $("#EditDateField-" + nAttendee).val dtStatusMask
+    
     setDefaults = ->
       $(".js-attendee-status-selected-count").text(selectedCount)
       $(".AllAttendees").each ->
@@ -324,8 +325,6 @@ App.activity.participants = do (activity = App.activity,{App,$,Backbone} = windo
 
         if $.ListFind(selectedAttendees,nAttendee)
           $checkBox.attr 'checked',true
-
-
     setDefaults()
   # App.on "activity.participants.ahahload", () ->
   #   console.log "participants loaded..."
@@ -334,6 +333,12 @@ App.activity.participants = do (activity = App.activity,{App,$,Backbone} = windo
 
   _init = () ->
     console.log('init: participants\Selected Count: ' + selectedCount);
+
+    console.log CookieAttendeeStatus
+    if parseInt(CookieAttendeeStatus) > 0
+      statusText = $("#attendees-" + CookieAttendeeStatus).text()
+      console.log statusText
+      $(".js-attendee-filter-button").find("span:first").text statusText
     # CHANGE ATTENDEE STATAUS START 
     setCheckedStatuses = (nStatus) ->
       $.blockUI message: "<h1>Updating information...</h1>"
