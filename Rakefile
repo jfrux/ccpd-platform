@@ -22,7 +22,7 @@ end
 namespace :assets do
   desc "Start Sprockets Server for development"
   task :start do
-    system "rackup"
+    system "thin start"
   end
 
 

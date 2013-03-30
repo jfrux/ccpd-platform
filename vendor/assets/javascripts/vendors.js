@@ -4,8 +4,8 @@
 *=require_self
 *=require buglog/bugLogClient
 *=require jquery/jquery
-*=require jquery/jquery-migrate
 *=require jquery/jquery-ui
+*=require jquery/jquery.ui.autocomplete.selectFirst
 *=require jquery/json2
 *=require underscore
 *=require backbone

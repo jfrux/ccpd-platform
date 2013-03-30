@@ -303,7 +303,7 @@
 						return false;
         }
         })
-				.data("ui-autocomplete")._renderMenu = function( ul, items ) {
+				.data("autocomplete")._renderMenu = function( ul, items ) {
 					var self = this;
 					$(ul).addClass(settings.size);
 					
@@ -360,8 +360,8 @@
 							img.remove();
 							li.addClass('calltoaction');
 						}
-
-						self._renderItem(ul,item);
+						ul.append(li);
+						// self._renderItem(ul,item);
 					});
 				
 					// if(settings.bucketed) {
