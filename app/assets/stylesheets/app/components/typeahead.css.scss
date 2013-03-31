@@ -116,18 +116,20 @@ label.uiCloseButton {
 	padding-top: 0px;
 }
 
-LABEL.uiCloseButton {
-	OVERFLOW: hidden
+label.uiCloseButton {
+	overflow: hidden
 }
 
-.uiCloseButton INPUT {
+.uiCloseButton input {
 	filter: alpha(opacity=0); 
-	padding-bottom: 18px; 
-	outline-style: none; 
-	padding-left: 18px; 
-	padding-right: 18px; 
-	cursor: pointer; 
-	padding-top: 18px
+	padding-bottom: 0;
+	outline-style: none;
+	padding-left: 0;
+	padding-right: 0;
+	cursor: pointer;
+	padding-top: 0;
+	height: 15px;
+	width: 15px;
 }
 /* END IE*/
 

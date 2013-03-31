@@ -1,7 +1,28 @@
+<cfset UsedCats = "">
+<cfset qActCats = Application.Com.ActivityCategoryGateway.getByViewAttributes(ActivityID=Attributes.ActivityID,DeletedFlag='N')>
+<cfset qCats = Application.Com.CategoryGateway.getByAttributes(OrderBy="Name")>
+<cfset qPersonalCats = Application.Com.CategoryGateway.getByCookie(TheList=Cookie.USER_Containers,OrderBy="Name")>
+<cfset defaultValues = [
+
+] />
+<cfloop query="qActCats">
+	<cfset cat = {
+		name: qActCats.Name,
+		label: qActCats.Name,
+		value:qActCats.categoryid
+	} />
+
+	<cfset arrayAppend(defaultValues,cat) />
+</cfloop>
 <script>
 
 function saveActCat(oCategory) {
-	$.post(sRootPath + "/_com/AJAX_Activity.cfc", { method: "saveCategory", ActivityID: nActivity, CategoryID:$(oCategory).val(), returnFormat:"plain" },
+	$.post(sRootPath + "/_com/AJAX_Activity.cfc", { 
+		method: "saveCategory", 
+		ActivityID: nActivity, 
+		CategoryID:oCategory.ITEM_ID, 
+		returnFormat:"plain" 
+	},
 		function(data){
 			var cleanData = $.trim(data);
 			status = $.ListGetAt(cleanData,1,"|");
@@ -9,12 +30,12 @@ function saveActCat(oCategory) {
 			
 			if(status == 'Success') {
 				addMessage(statusMsg,250,6000,4000);
-				$("#Containers").html("");
-				updateContainers();
-				updateActions();
+				//$("#Containers").html("");
+				//updateContainers();
+				//updateActions();
 			} else if(status == 'Fail') {
 				addError(statusMsg,250,6000,4000);
-				$("#CatAdder").val("");
+				//$("#CatAdder").val("");
 			}
 	});
 }
@@ -23,11 +44,24 @@ $(document).ready(function() {
 	$(".js-tokenizer-list").uiTokenizer({
 		listLocation:"top",
 		type:"list",
+		watermarkText:"Type to Add Folder",
 		ajaxSearchURL:"/admin/_com/ajax/typeahead.cfc",
 		ajaxSearchParams:{
 			'method':'search',
 			'type':'folders'
+		},
+		onSelect:function(i,e) {
+			saveActCat(e);
+			return true;
 		}
+		,
+		onAdd:function(i,e) {
+			createNewCat(e);
+		},
+		onRemove:function(i,e) {
+			removeCat(e);
+		},
+		defaultValue:<cfoutput>#serializeJson(defaultValues)#</cfoutput>
 	});
 <!---	<cfif request.browser DOES NOT CONTAIN "MSIE">
 	$("[title]").mbTooltip({
@@ -53,7 +87,7 @@ $(document).ready(function() {
 		}
 	});
 	
-	$("#NewCatLink").click(function() {
+	createNewCat = function(oCategory) {
 		var CatTitle = prompt("Container Name:", "");
 		
 		if(CatTitle) {
@@ -68,9 +102,9 @@ $(document).ready(function() {
 					}
 			});
 		}
-	});
+	};
 	
-	$(".CatRemoveLink").click(function() {
+	removeCat = function(oCategory) {
 		var CleanID = $.Replace(this.id,'CatRemove','','all');
 		var CatID = $.ListGetAt(CleanID,1,"|");
 		var CatName = $.ListGetAt(CleanID,2,"|");
@@ -90,27 +124,17 @@ $(document).ready(function() {
 					}
 			});
 		}
-	});
+	}
 });
 </script>
 
 <cfoutput>
-<cfset UsedCats = "">
-<cfset qActCats = Application.Com.ActivityCategoryGateway.getByViewAttributes(ActivityID=Attributes.ActivityID,DeletedFlag='N')>
-<cfset qCats = Application.Com.CategoryGateway.getByAttributes(OrderBy="Name")>
-<cfset qPersonalCats = Application.Com.CategoryGateway.getByCookie(TheList=Cookie.USER_Containers,OrderBy="Name")>
 
 <h3><i class="fg fg-folder-horizontal"></i> Folders</h3>
 <div class="box containerBox">
 	<div class="row-fluid">
 	<input type="text" class="js-ui-tokenizer js-tokenizer-list" style="width:168px;" name="folder-input" />
-	<cfloop query="qActCats">
-		<cfset UsedCats = ListAppend(UsedCats,qActCats.CategoryID,",")>
-		<div id="CatRow#qActCats.CategoryID#">
-			<span style="cursor:default;" title="#qActCats.Name#">#midLimit(qActCats.Name,16)#</span>
-			<a href="javascript:void(0);" class="CatRemoveLink" id="CatRemove#qActCats.CategoryID#|#qActCats.Name#"><img src="#Application.Settings.RootPath#/_images/icons/delete.png" border="0" /></a>
-		</div>
-	</cfloop>
+	
 	</div>
 <!--- 	<div style="position:relative;clear:both;display:block;height:30px;">
 	<select name="CatAdder" id="CatAdder" class="CatAdder" style="position: absolute; left: 3px; width: 123px; top: -1px;">

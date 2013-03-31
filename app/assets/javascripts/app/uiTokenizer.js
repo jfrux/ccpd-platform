@@ -590,7 +590,18 @@
 					case 'list':
 						$token
 							.addClass('uiListToken');
-						$token.text(token.label);
+            if(token.label.length > settings.tokenMaxChar-3) {
+              tokenShort = token.label.substr(0,settings.tokenMaxChar-3) + '...';
+            } else {
+              tokenShort = token.label;
+            }
+						$token.text(tokenShort);
+            $token.attr('title',token.label);
+            $token.tooltip({
+              placement: 'top',
+              trigger:'hover focus',
+              container:'body'
+            });
 						$clearer.appendTo($token);
 						$removeBtn.appendTo($clearer);
 						$input.appendTo($token);
@@ -661,6 +672,7 @@
 			watermarkText: "Type in a search term",
 			searchDelay: 300,
 			minChars: 1,
+      tokenMaxChar: 25,
 			ajaxMethod:'get',
 			type:'token',
 			tokenLimit: null,
