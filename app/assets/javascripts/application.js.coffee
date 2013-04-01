@@ -5,15 +5,14 @@
 #=require ./module
 #=require ./base
 #=require app/activity
-#=require app/activity_generalinfo
-#=require app/activity_participants
+#=require_tree "./app/activity/"
 #=require app/profile
-#=require app/uiUtil
+#=require app/components/util
+#=require app/components/actionmenu
+#=require app/components/typeahead
+#=require app/components/tokenizer
 #=require app/global
 #=require app/encoder
 #=require app/history
 #=require app/activity
-#=require app/action_menu
-#=require app/uiTokenizer
-#=require app/uiTypeahead
 ###

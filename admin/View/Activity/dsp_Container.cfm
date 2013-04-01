@@ -2,9 +2,7 @@
 <cfset qActCats = Application.Com.ActivityCategoryGateway.getByViewAttributes(ActivityID=Attributes.ActivityID,DeletedFlag='N')>
 <cfset qCats = Application.Com.CategoryGateway.getByAttributes(OrderBy="Name")>
 <cfset qPersonalCats = Application.Com.CategoryGateway.getByCookie(TheList=Cookie.USER_Containers,OrderBy="Name")>
-<cfset defaultValues = [
-
-] />
+<cfset defaultValues = [] />
 <cfloop query="qActCats">
 	<cfset cat = {
 		name: qActCats.Name,
@@ -12,131 +10,12 @@
 		value:qActCats.categoryid
 	} />
 
-	<cfset arrayAppend(defaultValues,cat) />
+	<cfset defaultValues.add(cat) />
 </cfloop>
 <script>
-
-function saveActCat(oCategory) {
-	$.post(sRootPath + "/_com/AJAX_Activity.cfc", { 
-		method: "saveCategory", 
-		ActivityID: nActivity, 
-		CategoryID:oCategory.ITEM_ID, 
-		returnFormat:"plain" 
-	},
-		function(data){
-			var cleanData = $.trim(data);
-			status = $.ListGetAt(cleanData,1,"|");
-			statusMsg = $.ListGetAt(cleanData,2,"|");
-			
-			if(status == 'Success') {
-				addMessage(statusMsg,250,6000,4000);
-				//$("#Containers").html("");
-				//updateContainers();
-				//updateActions();
-			} else if(status == 'Fail') {
-				addError(statusMsg,250,6000,4000);
-				//$("#CatAdder").val("");
-			}
-	});
-}
-
 $(document).ready(function() {
-	$(".js-tokenizer-list").uiTokenizer({
-		listLocation:"top",
-		type:"list",
-		watermarkText:"Type to Add Folder",
-		ajaxAddURL: "/admin/_com/AJAX_Activity.cfc",
-		ajaxAddParams:{
-			'method':'createCategory'
-		},
-		ajaxSearchURL:"/admin/_com/ajax/typeahead.cfc",
-		ajaxSearchParams:{
-			'method':'search',
-			'type':'folders'
-		},
-		onSelect:function(i,e) {
-			saveActCat(e);
-			return true;
-		}
-		,
-		onAdd:function(i,e) {
-			//createNewCat(e);
-			return true;
-		},
-		onRemove:function(i,e) {
-			removeCat(e);
-			return true;
-		},
-		defaultValue:<cfoutput>#serializeJson(defaultValues)#</cfoutput>
-	});
-<!---	<cfif request.browser DOES NOT CONTAIN "MSIE">
-	$("[title]").mbTooltip({
-		opacity : .90, //opacity
-		wait:500, //before show
-		ancor:"mouse", //"parent"
-		cssClass:"default", // default = default
-		timePerWord:70, //time to show in milliseconds per word
-		hasArrow:false,
-		color:"white",
-		imgPath:"images/",
-		shadowColor:"black",
-		fade:500
-	});
-	</cfif>--->
-	
-	/* CATEGORY MANAGEMENT */
-	$("#CatAdder").val("");
-	
-	$(".CatAdder").change(function() {
-		if($(this).val() != '') {
-			saveActCat(this);
-		}
-	});
-	
-	createNewCat = function(oCategory) {
-		var CatTitle = prompt("Container Name:", "");
-		
-		if(CatTitle) {
-			$.getJSON(sRootPath + "/_com/AJAX_Activity.cfc", { method: "createCategory", Name: CatTitle, ReturnFormat:"plain" },
-				function(data) {
-					if(data.STATUS) {
-						$("#CatAdder").addOption(data.DATASET[0].CATEGORYID, CatTitle);
-						$("#CatAdder").val(data.DATASET[0].CATEGORYID);
-						saveActCat($("#CatAdder"));
-					} else {
-						addError(statusMsg,250,6000,4000);
-					}
-			});
-		}
-	};
-	
-	removeCat = function(oCategory) {
-		console.log('removing category:')
-		console.log(oCategory);
-		var CatID = oCategory.value
-		var CatName = oCategory.label
-		
-		if (confirm('Are you sure you want to remove the activity from the container \'' + CatName + '\'?')) {
-			$.post(sRootPath + "/_com/AJAX_Activity.cfc", { 
-					method: "deleteCategory", 
-					ActivityID: nActivity, 
-					CategoryID: CatID, 
-					returnFormat:"plain" 
-				},
-			  	function(data){
-					if(data.STATUS) {
-						updateContainers();
-						updateActions();
-						addMessage(data.STATUSMSG,250,6000,4000);
-			
-						$("#CatRow" + CatID).remove();
-						$("#CatAdder").val("");
-					} else {
-						addMessage(data.STATUSMSG,250,6000,4000);
-					}
-			});
-		}
-	}
+	var defaultValues = <cfoutput>#serializeJson(defaultValues)#</cfoutput>;
+	App.activity.folders.init(defaultValues);
 });
 </script>
 

@@ -143,7 +143,7 @@
         <cfreturn status.getJSON() />
     </cffunction>
     
-	<cffunction name="createCategory" access="Remote" output="false" returntype="string" returnformat="json">
+	<cffunction name="createCategory" access="Remote" output="false" returntype="string" returnformat="plain">
 		<cfargument name="Name" required="yes" type="string">
         
         <cfset var status = createObject("component", "#Application.Settings.Com#returnData.buildStruct").init()>
@@ -154,7 +154,7 @@
         <cfset status.setStatusMsg("Cannot access category create functionality for activities.")>
         
         <cfset status = Application.Activity.createCategory(Arguments.Name)>
-        
+        <cfcontent type="application/json" />
         <cfreturn status.getJSON() />
     </cffunction>
     

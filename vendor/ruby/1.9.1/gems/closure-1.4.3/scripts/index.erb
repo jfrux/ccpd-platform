@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style type="text/css" media="screen">
+      body{font:13px/1.231 arial,helvetica,clean,sans-serif;*font-size:small;*font:x-small;}
+      select,input,button,textarea,button{font:99% arial,helvetica,clean,sans-serif;}
+    </style>
+  </head>
+  <body>
+
+    <h1>Closure Script</h1>
+    
+    <%= render 'svn', :svn_name => 'Closure Library', :svn_path => 'closure-library',
+        :svn_url => 'http://closure-library.googlecode.com/svn/trunk/' %>
+
+    <p>
+      Only the documentation will work until Closure Library is downloaded.
+      <br />
+      You may need to manually download Closure Library if Subversion fails.
+    </p>
+
+    <ul>
+      <li>
+        <a href='docs/index'>Closure Script Documentation</a>
+      </li>
+      <li>
+        <a href='closure-library/all_tests'>Closure Library Tests</a>
+      </li>
+      <li>
+        <a href='closure-library/closure/goog/demos/index'>Closure Library Demos</a>
+      </li>
+      <li>
+        <a href='hello/index'>Hello Soy - Raw</a>
+      </li>
+      <li>
+        <a href='hello/index?build'>Hello Soy - Build</a>
+      </li>
+      <li>
+        <a href='hello/index?debug'>Hello Soy - Debug</a>
+      </li>
+      <li>
+        <a href='modules/index'>Modules - Raw</a>
+      </li>    
+      <li>
+        <a href='modules/index?build'>Modules - Build</a>
+      </li>    
+      <li>
+        <a href='modules/index?debug'>Modules - Debug</a>
+      </li>    
+      <li>
+        <a href='rails/index'>Rails 3 unobtrusive</a>
+      </li>    
+    </ul>
+    
+  </body>
+</html>

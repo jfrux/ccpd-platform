@@ -3,7 +3,9 @@
 ###
 App.activity = do ({App,$,Backbone} = window) ->
   activityContainer = null
-
+  App.on "activity.containers.load",->
+    console.log "containers loaded!"
+    
   continueCopy = ->
     sNewActivityTitle = $("#NewActivityTitle").val()
     nNewActivityType = $("#NewActivityType").val()

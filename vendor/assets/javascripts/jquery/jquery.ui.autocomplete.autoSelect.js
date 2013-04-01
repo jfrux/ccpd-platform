@@ -1,5 +1,5 @@
 /*
- * jQuery UI Autocomplete Auto Select Extension
+ * jQuery UI Autocomplete Select First Extension
  *
  * Copyright 2010, Scott González (http://scottgonzalez.com)
  * Dual licensed under the MIT or GPL Version 2 licenses.
@@ -8,22 +8,23 @@
  */
 (function( $ ) {
 
-$.ui.autocomplete.prototype.options.autoSelect = true;
-$( ".ui-autocomplete-input" ).live( "blur", function( event ) {
-	var autocomplete = $( this ).data( "autocomplete" );
-	if ( !autocomplete.options.autoSelect || autocomplete.selectedItem ) { return; }
+$( ".ui-autocomplete-input" ).live( "autocompleteopen", function() {
+	var autocomplete = $( this ).data( "autocomplete" ),
+		menu = autocomplete.menu;
 
-	var matcher = new RegExp( "^" + $.ui.autocomplete.escapeRegex( $(this).val() ) + "$", "i" );
-	autocomplete.widget().children( ".ui-menu-item" ).each(function() {
-		var item = $( this ).data( "item.autocomplete" );
-		if ( matcher.test( item.label || item.value || item ) ) {
-			autocomplete.selectedItem = item;
-			return false;
-		}
-	});
-	if ( autocomplete.selectedItem ) {
-		autocomplete._trigger( "select", event, { item: autocomplete.selectedItem } );
+	if ( !autocomplete.options.selectFirst ) {
+		return;
 	}
+	//the requested term no longer matches the search, so drop out of this now
+	if(autocomplete.term != $(this).val()){
+		//console.log("mismatch! "+autocomplete.term+'|'+$(this).val());
+		return;
+	}
+	//hack to prevent clearing of value on mismatch
+	menu.options.blur = function(event,ui){return}
+	menu.activate( $.Event({ type: "mouseenter" }), menu.element.children().first() );
+
 });
+
 
 }( jQuery ));

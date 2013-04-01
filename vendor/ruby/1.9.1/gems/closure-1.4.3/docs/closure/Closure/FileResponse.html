@@ -1,0 +1,628 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: Closure::FileResponse
+  
+    &mdash; Documentation by YARD 0.7.3
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '..';
+  if (relpath != '') relpath += '/';
+</script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../_index.html">Index (F)</a> &raquo; 
+    <span class='title'><span class='object_link'><a href="../Closure.html" title="Closure (class)">Closure</a></span></span>
+     &raquo; 
+    <span class="title">FileResponse</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a id="class_list_link" href="#">Class List</a>
+  
+    <a id="method_list_link" href="#">Method List</a>
+  
+    <a id="file_list_link" href="#">File List</a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Class: Closure::FileResponse
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">Closure::FileResponse</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/closure/file_response.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>
+Can be used as a Rack::Response.  Provides advanced cache control.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+
+  <h2>Instance Attribute Summary <small>(<a href="#" class="summary_toggle">collapse</a>)</small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#filename-instance_method" title="#filename (instance method)">- (String) <strong>filename</strong> </a>
+    
+
+    
+      (also: #to_path)
+    
+  </span>
+  
+  
+    <span class="note title readonly">readonly</span>
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Filename attribute.
+</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#each-instance_method" title="#each (instance method)">- <strong>each</strong> {|String| ... }</a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Support using self as a response body.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#finish-instance_method" title="#finish (instance method)">- (Array) <strong>finish</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Present the final response for rack.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#found%3F-instance_method" title="#found? (instance method)">- (Boolean) <strong>found?</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Was the file in the system and ready to be served?.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (FileResponse) <strong>initialize</strong>(env, filename, content_type = nil) </a>
+    
+
+    
+  </span>
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+A new instance of FileResponse.
+</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <p class="signature first" id="initialize-instance_method">
+  
+    - (<tt><span class='object_link'><a href="" title="Closure::FileResponse (class)">FileResponse</a></span></tt>) <strong>initialize</strong>(env, filename, content_type = nil) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+A new instance of FileResponse
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/closure/file_response.rb', line 22</span>
+
+<span class='kw'>def</span> <span class='id initialize'>initialize</span><span class='lparen'>(</span><span class='id env'>env</span><span class='comma'>,</span> <span class='id filename'>filename</span><span class='comma'>,</span> <span class='id content_type'>content_type</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='ivar'>@env</span> <span class='op'>=</span> <span class='id env'>env</span>
+  <span class='ivar'>@filename</span> <span class='op'>=</span> <span class='id filename'>filename</span>
+  <span class='ivar'>@status</span> <span class='op'>=</span> <span class='int'>200</span>
+  <span class='ivar'>@headers</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+  <span class='ivar'>@body</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  
+  <span class='kw'>begin</span>
+    <span class='id raise'>raise</span> <span class='const'>Errno</span><span class='op'>::</span><span class='const'>EPERM</span> <span class='kw'>unless</span> <span class='const'>File</span><span class='period'>.</span><span class='id file?'>file?</span><span class='lparen'>(</span><span class='id filename'>filename</span><span class='rparen'>)</span> <span class='kw'>and</span> <span class='const'>File</span><span class='period'>.</span><span class='id readable?'>readable?</span><span class='lparen'>(</span><span class='id filename'>filename</span><span class='rparen'>)</span>
+  <span class='kw'>rescue</span> <span class='const'>SystemCallError</span>
+    <span class='ivar'>@body</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>404 Not Found\n</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
+    <span class='ivar'>@headers</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Content-Length</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@body</span><span class='period'>.</span><span class='id first'>first</span><span class='period'>.</span><span class='id size'>size</span><span class='period'>.</span><span class='id to_s'>to_s</span>
+    <span class='ivar'>@headers</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Content-Type</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>text/plain</span><span class='tstring_end'>&quot;</span></span>
+    <span class='ivar'>@headers</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>X-Cascade</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>pass</span><span class='tstring_end'>&quot;</span></span>
+    <span class='ivar'>@status</span> <span class='op'>=</span> <span class='int'>404</span>
+    <span class='kw'>return</span>
+  <span class='kw'>end</span>
+  
+  <span class='comment'># Caching strategy
+</span>  <span class='id mod_since'>mod_since</span> <span class='op'>=</span> <span class='const'>Time</span><span class='period'>.</span><span class='id httpdate'>httpdate</span><span class='lparen'>(</span><span class='id env'>env</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>HTTP_IF_MODIFIED_SINCE</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span><span class='rparen'>)</span> <span class='kw'>rescue</span> <span class='kw'>nil</span>
+  <span class='id last_modified'>last_modified</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id mtime'>mtime</span><span class='lparen'>(</span><span class='id filename'>filename</span><span class='rparen'>)</span>
+  <span class='ivar'>@status</span> <span class='op'>=</span> <span class='int'>304</span> <span class='kw'>and</span> <span class='kw'>return</span> <span class='kw'>if</span> <span class='id last_modified'>last_modified</span> <span class='op'>==</span> <span class='id mod_since'>mod_since</span>
+  <span class='ivar'>@headers</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Last-Modified</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id last_modified'>last_modified</span><span class='period'>.</span><span class='id httpdate'>httpdate</span>
+  <span class='kw'>if</span> <span class='id env'>env</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>QUERY_STRING</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^[0-9]{9,10}$</span><span class='regexp_end'>/</span></span> <span class='kw'>and</span> <span class='id last_modified'>last_modified</span> <span class='op'>==</span> <span class='const'>Time</span><span class='period'>.</span><span class='id at'>at</span><span class='lparen'>(</span><span class='id env'>env</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>QUERY_STRING</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id to_i'>to_i</span><span class='rparen'>)</span>
+    <span class='ivar'>@headers</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Cache-Control</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>max-age=86400, public</span><span class='tstring_end'>'</span></span> <span class='comment'># one day
+</span>  <span class='kw'>else</span>
+    <span class='ivar'>@headers</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Cache-Control</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>max-age=0, private, must-revalidate</span><span class='tstring_end'>'</span></span>
+  <span class='kw'>end</span>
+  
+  <span class='comment'># Sending the file or reading an unknown length stream to send
+</span>  <span class='ivar'>@body</span> <span class='op'>=</span> <span class='kw'>self</span>
+  <span class='kw'>unless</span> <span class='id size'>size</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id size?'>size?</span><span class='lparen'>(</span><span class='id filename'>filename</span><span class='rparen'>)</span>
+    <span class='ivar'>@body</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='const'>File</span><span class='period'>.</span><span class='id read'>read</span><span class='lparen'>(</span><span class='id filename'>filename</span><span class='rparen'>)</span><span class='rbracket'>]</span>
+    <span class='id size'>size</span> <span class='op'>=</span> <span class='ivar'>@body</span><span class='period'>.</span><span class='id first'>first</span><span class='period'>.</span><span class='id respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:bytesize</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='ivar'>@body</span><span class='period'>.</span><span class='id first'>first</span><span class='period'>.</span><span class='id bytesize'>bytesize</span> <span class='op'>:</span> <span class='ivar'>@body</span><span class='period'>.</span><span class='id first'>first</span><span class='period'>.</span><span class='id size'>size</span>
+  <span class='kw'>end</span>
+  <span class='ivar'>@headers</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Content-Length</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id size'>size</span><span class='period'>.</span><span class='id to_s'>to_s</span>
+  <span class='ivar'>@headers</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Content-Type</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id content_type'>content_type</span> <span class='op'>||</span> <span class='const'>Rack</span><span class='op'>::</span><span class='const'>Mime</span><span class='period'>.</span><span class='id mime_type'>mime_type</span><span class='lparen'>(</span><span class='const'>File</span><span class='period'>.</span><span class='id extname'>extname</span><span class='lparen'>(</span><span class='id filename'>filename</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>text/plain</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id=""></span>
+      <span id="filename-instance_method"></span>
+      <div class="method_details first">
+  <p class="signature first" id="filename-instance_method">
+  
+    - (<tt>String</tt>) <strong>filename</strong>  <span class="extras">(readonly)</span>
+  
+
+  
+    <span class="aliases">Also known as:
+    <span class="names"><span id='to_path-instance_method'>to_path</span></span>
+    </span>
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Filename attribute. Alias is used by some rack servers to detach from Ruby
+early.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+74
+75
+76</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/closure/file_response.rb', line 74</span>
+
+<span class='kw'>def</span> <span class='id filename'>filename</span>
+  <span class='ivar'>@filename</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="each-instance_method">
+  
+    - <strong>each</strong> {|String| ... }
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Support using self as a response body.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<h3>Yields:</h3>
+<ul class="yield">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+8k blocks
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+63
+64
+65
+66
+67
+68
+69</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/closure/file_response.rb', line 63</span>
+
+<span class='kw'>def</span> <span class='id each'>each</span>
+  <span class='const'>File</span><span class='period'>.</span><span class='id open'>open</span><span class='lparen'>(</span><span class='ivar'>@filename</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>rb</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id file'>file</span><span class='op'>|</span>
+    <span class='kw'>while</span> <span class='id part'>part</span> <span class='op'>=</span> <span class='id file'>file</span><span class='period'>.</span><span class='id read'>read</span><span class='lparen'>(</span><span class='int'>8192</span><span class='rparen'>)</span>
+      <span class='kw'>yield</span> <span class='id part'>part</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="finish-instance_method">
+  
+    - (<tt>Array</tt>) <strong>finish</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Present the final response for rack.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'></div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+84
+85
+86</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/closure/file_response.rb', line 84</span>
+
+<span class='kw'>def</span> <span class='id finish'>finish</span>
+  <span class='lbracket'>[</span><span class='ivar'>@status</span><span class='comma'>,</span> <span class='ivar'>@headers</span><span class='comma'>,</span> <span class='ivar'>@body</span><span class='rbracket'>]</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="found?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>found?</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Was the file in the system and ready to be served?
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+78
+79
+80</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/closure/file_response.rb', line 78</span>
+
+<span class='kw'>def</span> <span class='id found?'>found?</span>
+  <span class='ivar'>@status</span> <span class='op'>==</span> <span class='int'>200</span> <span class='kw'>or</span> <span class='ivar'>@status</span> <span class='op'>==</span> <span class='int'>304</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Sun Oct 23 22:43:17 2011 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.7.3 (ruby-1.9.2).
+</div>
+
+  </body>
+</html>

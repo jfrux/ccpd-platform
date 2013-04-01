@@ -1,0 +1,103 @@
+have_library: checking for main() in -lpthread... -------------------- yes
+
+"/usr/local/bin/gcc-4.2 -o conftest -I/Users/joshua/.rvm/rubies/ruby-head/include/ruby-2.1.0/x86_64-darwin12.3.0 -I/Users/joshua/.rvm/rubies/ruby-head/include/ruby-2.1.0/ruby/backward -I/Users/joshua/.rvm/rubies/ruby-head/include/ruby-2.1.0 -I. -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT -I/Users/joshua/.rvm/usr/include -I/Users/joshua/.rvm/usr/include    -O3 -fno-fast-math -ggdb3 -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wunused-variable -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wshorten-64-to-32 -Wimplicit-function-declaration  -pipe conftest.c  -L. -L/Users/joshua/.rvm/rubies/ruby-head/lib -L/Users/joshua/.rvm/usr/lib -L. -fstack-protector -L/Users/joshua/.rvm/usr/lib -L/Users/joshua/.rvm/usr/lib      -lruby-static  -lpthread -ldl -lobjc "
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: int main(int argc, char **argv)
+4: {
+5:   return 0;
+6: }
+/* end */
+
+"/usr/local/bin/gcc-4.2 -o conftest -I/Users/joshua/.rvm/rubies/ruby-head/include/ruby-2.1.0/x86_64-darwin12.3.0 -I/Users/joshua/.rvm/rubies/ruby-head/include/ruby-2.1.0/ruby/backward -I/Users/joshua/.rvm/rubies/ruby-head/include/ruby-2.1.0 -I. -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT -I/Users/joshua/.rvm/usr/include -I/Users/joshua/.rvm/usr/include    -O3 -fno-fast-math -ggdb3 -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wunused-variable -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wshorten-64-to-32 -Wimplicit-function-declaration  -pipe conftest.c  -L. -L/Users/joshua/.rvm/rubies/ruby-head/lib -L/Users/joshua/.rvm/usr/lib -L. -fstack-protector -L/Users/joshua/.rvm/usr/lib -L/Users/joshua/.rvm/usr/lib      -lruby-static -lpthread  -lpthread -ldl -lobjc "
+conftest.c: In function ‘t’:
+conftest.c:5: error: ‘main’ undeclared (first use in this function)
+conftest.c:5: error: (Each undeclared identifier is reported only once
+conftest.c:5: error: for each function it appears in.)
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int t(void) { void ((*volatile p)()); p = (void ((*)()))main; return 0; }
+ 6: int main(int argc, char **argv)
+ 7: {
+ 8:   if (argc > 1000000) {
+ 9:     printf("%p", &t);
+10:   }
+11: 
+12:   return 0;
+13: }
+/* end */
+
+"/usr/local/bin/gcc-4.2 -o conftest -I/Users/joshua/.rvm/rubies/ruby-head/include/ruby-2.1.0/x86_64-darwin12.3.0 -I/Users/joshua/.rvm/rubies/ruby-head/include/ruby-2.1.0/ruby/backward -I/Users/joshua/.rvm/rubies/ruby-head/include/ruby-2.1.0 -I. -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT -I/Users/joshua/.rvm/usr/include -I/Users/joshua/.rvm/usr/include    -O3 -fno-fast-math -ggdb3 -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wunused-variable -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wshorten-64-to-32 -Wimplicit-function-declaration  -pipe conftest.c  -L. -L/Users/joshua/.rvm/rubies/ruby-head/lib -L/Users/joshua/.rvm/usr/lib -L. -fstack-protector -L/Users/joshua/.rvm/usr/lib -L/Users/joshua/.rvm/usr/lib      -lruby-static -lpthread  -lpthread -ldl -lobjc "
+conftest.c: In function ‘t’:
+conftest.c:5: warning: implicit declaration of function ‘main’
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int t(void) { main(); return 0; }
+ 6: int main(int argc, char **argv)
+ 7: {
+ 8:   if (argc > 1000000) {
+ 9:     printf("%p", &t);
+10:   }
+11: 
+12:   return 0;
+13: }
+/* end */
+
+--------------------
+
+have_library: checking for main() in -lobjc... -------------------- yes
+
+"/usr/local/bin/gcc-4.2 -o conftest -I/Users/joshua/.rvm/rubies/ruby-head/include/ruby-2.1.0/x86_64-darwin12.3.0 -I/Users/joshua/.rvm/rubies/ruby-head/include/ruby-2.1.0/ruby/backward -I/Users/joshua/.rvm/rubies/ruby-head/include/ruby-2.1.0 -I. -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT -I/Users/joshua/.rvm/usr/include -I/Users/joshua/.rvm/usr/include    -O3 -fno-fast-math -ggdb3 -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wunused-variable -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wshorten-64-to-32 -Wimplicit-function-declaration  -pipe conftest.c  -L. -L/Users/joshua/.rvm/rubies/ruby-head/lib -L/Users/joshua/.rvm/usr/lib -L. -fstack-protector -L/Users/joshua/.rvm/usr/lib -L/Users/joshua/.rvm/usr/lib     -lpthread  -lruby-static -lobjc -lpthread  -lpthread -ldl -lobjc "
+conftest.c: In function ‘t’:
+conftest.c:5: error: ‘main’ undeclared (first use in this function)
+conftest.c:5: error: (Each undeclared identifier is reported only once
+conftest.c:5: error: for each function it appears in.)
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int t(void) { void ((*volatile p)()); p = (void ((*)()))main; return 0; }
+ 6: int main(int argc, char **argv)
+ 7: {
+ 8:   if (argc > 1000000) {
+ 9:     printf("%p", &t);
+10:   }
+11: 
+12:   return 0;
+13: }
+/* end */
+
+"/usr/local/bin/gcc-4.2 -o conftest -I/Users/joshua/.rvm/rubies/ruby-head/include/ruby-2.1.0/x86_64-darwin12.3.0 -I/Users/joshua/.rvm/rubies/ruby-head/include/ruby-2.1.0/ruby/backward -I/Users/joshua/.rvm/rubies/ruby-head/include/ruby-2.1.0 -I. -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT -I/Users/joshua/.rvm/usr/include -I/Users/joshua/.rvm/usr/include    -O3 -fno-fast-math -ggdb3 -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wunused-variable -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wshorten-64-to-32 -Wimplicit-function-declaration  -pipe conftest.c  -L. -L/Users/joshua/.rvm/rubies/ruby-head/lib -L/Users/joshua/.rvm/usr/lib -L. -fstack-protector -L/Users/joshua/.rvm/usr/lib -L/Users/joshua/.rvm/usr/lib     -lpthread  -lruby-static -lobjc -lpthread  -lpthread -ldl -lobjc "
+conftest.c: In function ‘t’:
+conftest.c:5: warning: implicit declaration of function ‘main’
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int t(void) { main(); return 0; }
+ 6: int main(int argc, char **argv)
+ 7: {
+ 8:   if (argc > 1000000) {
+ 9:     printf("%p", &t);
+10:   }
+11: 
+12:   return 0;
+13: }
+/* end */
+
+--------------------
+

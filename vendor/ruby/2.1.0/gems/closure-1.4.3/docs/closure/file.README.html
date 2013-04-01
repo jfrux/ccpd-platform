@@ -1,0 +1,220 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>
+  File: README
+  
+    &mdash; Documentation by YARD 0.7.3
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '';
+  if (relpath != '') relpath += '/';
+</script>
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html" title="Index">Index</a> &raquo; 
+    <span class="title">File: README</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a id="class_list_link" href="#">Class List</a>
+  
+    <a id="method_list_link" href="#">Method List</a>
+  
+    <a id="file_list_link" href="#">File List</a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><div id='filecontents'><h1 id="closure-script">Closure Script</h1>
+
+<p>A development environment for Google Closure Tools.</p>
+
+<p>Licensed under the Apache License, Version 2.0 (the “License”); 
+<a href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
+
+<h1 id="installing">Installing</h1>
+
+<p>Everything you need for advanced Google Closure development is available in a
+single .jar for the Java Virtual Machine.  You may also run the tools on any
+Ruby platform (&gt;=1.8.6) including JRuby (JVM), Rubinius (LLVM), and Ruby 1.9 (YARV).</p>
+
+<p>It is generally easier to get started with the .jar distribution, especially
+under Windows.  Mac OSX and most Linux will have a compatible Ruby by default.</p>
+
+<h2 id="java-jar">Java (.jar)</h2>
+
+<h3 id="step-1-download-to-a-new-folder">Step 1: Download to a new folder</h3>
+
+<pre class="code">cd ~/empty-dir
+curl -LO https://github.com/downloads/dturnbull/closure-script/closure-1.4.0.jar
+</pre>
+
+<h3 id="step-2-start-server-from-the-new-folder">Step 2: Start server from the new folder</h3>
+
+<pre class="code">java -jar closure-1.4.0.jar
+</pre>
+
+<h3 id="step-3-open-a-web-browser">Step 3: Open a web browser</h3>
+
+<pre class="code">http://localhost:8080/ 
+</pre>
+
+<h2 id="ruby-gem">Ruby (.gem)</h2>
+
+<h3 id="step-1-install-the-gem">Step 1: Install the gem</h3>
+
+<pre class="code"><span class='id gem'>gem</span> <span class='id install'>install</span> <span class='id closure'>closure</span>
+</pre>
+
+<h3 id="step-2-start-server-from-a-new-folder">Step 2: Start server from a new folder</h3>
+
+<pre class="code"><span class='id cd'>cd</span> <span class='op'>~</span><span class='tstring'><span class='regexp_beg'>/</span><span class='regexp_end'>empty-dir
+</span></span></pre>
+
+<h3 id="step-3-open-a-web-browser-1">Step 3: Open a web browser</h3>
+
+<pre class="code">http://localhost:8080/
+</pre>
+
+<h1 id="the-closure-script-method">The Closure Script Method</h1>
+
+<p>When you start the server for the first time in an empty folder, the home page
+will prompt you to install scaffolding.  This includes three example projects to 
+demonstrate soy, modules, and unobtrusive markup.  Dissecting and working with
+these examples is the fast track to understanding The Closure Script Method.</p>
+
+<h2 id="the-server">The Server</h2>
+
+<p>Closure Script is a high-performance, multi-threaded web application engineered 
+exclusively for the needs of Google Closure Javascript development.</p>
+
+<p>You will be freed from the command line.  All error output from the compiler
+will show on the Javascript console.  This avoids lost time from not being
+in the correct log and missing an important error.  Javascript compilation
+is done just-in-time and only when source files have changed.
+No need for a separate build step; just refresh the browser.  Not working?
+Check your Javascript console.  Then back to your editor.</p>
+
+<h2 id="easy-configuration">Easy Configuration</h2>
+
+<p>You’ll need to supply the directories where you have source Javascript and static files.
+Ruby developers will recognize that Closure Script is Rack middleware.  This makes it trivial
+to include the Closure Script build tool in a Rails application.  If you’re not developing a
+Ruby application, your <code>config.ru</code> will probably never be more complex than the following:</p>
+
+<pre class="code"><span class='id require'>require</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>closure</span><span class='tstring_end'>'</span></span>
+<span class='const'>Closure</span><span class='period'>.</span><span class='id add_source'>add_source</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>.</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>/</span><span class='tstring_end'>'</span></span>
+<span class='id use'>use</span> <span class='const'>Closure</span><span class='op'>::</span><span class='const'>Middleware</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>index</span><span class='tstring_end'>'</span></span>
+<span class='id run'>run</span> <span class='const'>Rack</span><span class='op'>::</span><span class='const'>File</span><span class='period'>.</span><span class='id new'>new</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>.</span><span class='tstring_end'>'</span></span>
+</pre>
+
+<p>The add_source command may be duplicated for each source Javascript folder you want to
+serve.  The first argument is the local filesystem path, the second is the mount point
+for the http server.  Make sure not to accidentally serve more than one copy of
+Closure Library per Closure Script server or you’ll get an error.</p>
+
+<h2 id="cut-and-paste-ruby">Cut-and-Paste Ruby</h2>
+
+<p>In practice, all you do with Ruby is adjust the arguments to compiler.jar by
+analyzing options on the URL query string.  If you can handle conditionally appending
+strings to an array in Ruby, then you’re fully qualified to use Closure Script!
+There’s enough example code in the scaffolding to cut-and-paste your way to victory.</p>
+
+<h3 id="demo-scripts">Demo Scripts</h3>
+
+<p>The Closure Script Method is to create various demo pages to drive development.  You may
+also choose to use your main application instead of Closure Script for your demo pages.</p>
+
+<p>Files ending with .erb are Closure Scripts and will have their embedded Ruby evaluated
+as they are served.  Scripts may also render other Scripts and pass variables if you
+need that complexity.  Scripts default to a MIME type of text/html so <code>demo.erb</code> is
+the same as <code>demo.html.erb</code>.</p>
+
+<pre class="code">&lt;html&gt;
+  &lt;head&gt;
+    &lt;script src='compiler.js?&lt;%= query_string %&gt;'&gt;&lt;/script&gt;
+  &lt;/head&gt;
+</pre>
+
+<h3 id="compiler-scripts">Compiler Scripts</h3>
+
+<p>Compilation is performed by requesting a file that generates Javascript instead of HTML.
+The goog.compile() function of Closure Script handles everything for you.</p>
+
+<p>Note that goog.compile() does not simply call the compiler.  It will monitor your source
+files and skip calling the compiler if everything is up to date.  The Java process will
+remain running on a REPL so subsequent compilations don’t pay the Java startup cost.
+The dependency tree for all your sources is known so you can build from namespaces
+(–ns) as well as files (–js).  Modules have been automated to find common dependencies,
+like plovr, and work from namespaces so you don’t need to use filenames and counts.
+The luxurious goog.compile() can serve up a loader for the raw, uncompiled files,
+even when working with modules.</p>
+
+<p>A very simple compiler.js.erb is as follows.  Check the scaffold for practical examples
+that use the query string.</p>
+
+<pre class="code">&lt;%
+args = %w{
+  --compilation_level  ADVANCED_OPTIMIZATIONS
+  --js_output_file     compiler_build.js
+  --ns                 myapp.helloWorld
+}
+@response = goog.compile(args).to_response
+%&gt;
+</pre>
+
+<h3 id="testing">Testing</h3>
+
+<p>Closure Script helps with testing because it can see your data in ways that
+browsers are not allowed to. The <code>alltests.js</code> file in Closure Library is
+generated by a program that scans the filesystem.  Here’s a replacement in
+Closure Script so that a manual build step never has to be executed again:</p>
+
+<pre class="code">&lt;% all_test_files = Dir.glob expand_path '**/*_test.html'
+   json_strings = all_test_files.map { |x| relative_src(x).dump }
+-%&gt;var _allTests = [&lt;%= json_strings.join(',') %&gt;];
+</pre>
+
+<p>Since all of Ruby is at your disposal, you could even pull fixture data from SQL
+or a web service.  Perhaps a fixture refresh happens when the developer pushes a
+form button.  The svn.erb tool is a complex example that uses threads and a
+background process.  You’re only limited by your imagination.</p>
+</div></div>
+    
+    <div id="footer">
+  Generated on Sun Oct 23 22:43:16 2011 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.7.3 (ruby-1.9.2).
+</div>
+
+  </body>
+</html>

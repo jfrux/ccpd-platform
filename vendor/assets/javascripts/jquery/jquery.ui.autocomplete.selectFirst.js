@@ -9,14 +9,22 @@
 (function( $ ) {
 
 $( ".ui-autocomplete-input" ).live( "autocompleteopen", function() {
-	var autocomplete = $( this ).data( "autocomplete" ),
-		menu = autocomplete.menu;
+  var autocomplete = $( this ).data( "autocomplete" ),
+    menu = autocomplete.menu;
 
-	if ( !autocomplete.options.selectFirst ) {
-		return;
-	}
+  if ( !autocomplete.options.selectFirst ) {
+    return;
+  }
+  //the requested term no longer matches the search, so drop out of this now
+  if(autocomplete.term != $(this).val()){
+    //console.log("mismatch! "+autocomplete.term+'|'+$(this).val());
+    return;
+  }
+  //hack to prevent clearing of value on mismatch
+  menu.options.blur = function(event,ui){return}
+  menu.activate( $.Event({ type: "mouseenter" }), menu.element.children().first() );
 
-	menu.activate( $.Event({ type: "mouseenter" }), menu.element.children().first() );
 });
+
 
 }( jQuery ));
