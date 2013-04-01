@@ -91,42 +91,38 @@
 							autocomplete:"off",
 							spellcheck:false
 						})
-                        .addClass('inputtext textInput')
-                        .click(function () {
+						.addClass('inputtext textInput')
+						.click(function () {
 							if($(this).val().length > 0 && $hiddenInput.val().length == 0) {
 								$input.autocomplete('widget').show()
 							}
-                        })
+						})
 						.width(origWidth)
-                        .blur(function () {
-                            //hide_dropdown();
-                        })
-                        .keydown(function (event) {
-                            var previous_token;
-                            var next_token;
-                
-                            switch(event.keyCode) {
-                                case KEY.LEFT:
-                                case KEY.RIGHT:
-                                case KEY.UP:
-                                case KEY.DOWN:
-                                    
-                                    break;
-            
-                                case KEY.BACKSPACE:
+						.blur(function () {
+							//hide_dropdown();
+						})
+						.keydown(function (event) {
+							var previous_token;
+							var next_token;
+
+							switch(event.keyCode) {
+								case KEY.LEFT:
+								case KEY.RIGHT:
+								case KEY.UP:
+								case KEY.DOWN:
+									break;
+								case KEY.BACKSPACE:
 									item_deselect();
-                                    break;
-                                case KEY.TAB:
-                                case KEY.RETURN:
-                                case KEY.COMMA:
-                                  
-                                  break;
-                
-                                case KEY.ESC:
-                                
-                                  return true;
-                            }
-                        });
+									break;
+								case KEY.TAB:
+								case KEY.RETURN:
+								case KEY.COMMA:
+									break;
+								case KEY.ESC:
+
+							return true;
+						}
+						});
         // TOKENIZER WRAPPER - contains all elements for this instance of the tokenizer
         var $typeahead = $('<div/>')
 							.addClass('uiTypeahead')

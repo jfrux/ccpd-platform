@@ -45,6 +45,10 @@ $(document).ready(function() {
 		listLocation:"top",
 		type:"list",
 		watermarkText:"Type to Add Folder",
+		ajaxAddURL: "/admin/_com/AJAX_Activity.cfc",
+		ajaxAddParams:{
+			'method':'createCategory'
+		},
 		ajaxSearchURL:"/admin/_com/ajax/typeahead.cfc",
 		ajaxSearchParams:{
 			'method':'search',
@@ -56,10 +60,12 @@ $(document).ready(function() {
 		}
 		,
 		onAdd:function(i,e) {
-			createNewCat(e);
+			//createNewCat(e);
+			return true;
 		},
 		onRemove:function(i,e) {
 			removeCat(e);
+			return true;
 		},
 		defaultValue:<cfoutput>#serializeJson(defaultValues)#</cfoutput>
 	});
@@ -105,12 +111,18 @@ $(document).ready(function() {
 	};
 	
 	removeCat = function(oCategory) {
-		var CleanID = $.Replace(this.id,'CatRemove','','all');
-		var CatID = $.ListGetAt(CleanID,1,"|");
-		var CatName = $.ListGetAt(CleanID,2,"|");
+		console.log('removing category:')
+		console.log(oCategory);
+		var CatID = oCategory.value
+		var CatName = oCategory.label
 		
 		if (confirm('Are you sure you want to remove the activity from the container \'' + CatName + '\'?')) {
-			$.getJSON(sRootPath + "/_com/AJAX_Activity.cfc", { method: "deleteCategory", ActivityID: nActivity, CategoryID: CatID, returnFormat:"plain" },
+			$.post(sRootPath + "/_com/AJAX_Activity.cfc", { 
+					method: "deleteCategory", 
+					ActivityID: nActivity, 
+					CategoryID: CatID, 
+					returnFormat:"plain" 
+				},
 			  	function(data){
 					if(data.STATUS) {
 						updateContainers();

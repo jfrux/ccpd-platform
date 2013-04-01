@@ -320,11 +320,11 @@
 		<cfargument name="Name" type="string" required="yes">
         
 		<cfset var NewCategoryID = "">
-        <cfset var status = createObject("component", "#Application.Settings.Com#returnData.buildStruct").init()>
-        
-        <cfset status.setStatus(false)>
-        <cfset status.setStatusMsg("Failed for unknown reason.")>
-		
+    <cfset var status = createObject("component", "#Application.Settings.Com#returnData.buildStruct").init()>
+    
+    <cfset status.setStatus(false)>
+    <cfset status.setStatusMsg("Failed for unknown reason.")>
+
 		<cfquery name="qCheck" datasource="#Application.Settings.DSN#">
 			SELECT CategoryID FROM ce_Category
 			WHERE Name='#Arguments.Name#'
@@ -338,16 +338,17 @@
 			<cfset NewCategoryID = Application.Com.CategoryDAO.create(CatBean)>
             
 			<cfset status.setStatus(true)>
-            <cfset status.setStatusMsg("Category successfully created.")>
+      <cfset status.setStatusMsg("Category successfully created.")>
 		<cfelse>
-            <cfset status.setStatusMsg("That category name is already taken.")>
+      <cfset status.setStatusMsg("That category name is already taken.")>
 		</cfif>
 		
 		<cfif isNumeric(NewCategoryID)>
 			<cfset aCategoryInfo = [{
+                name = arguments.name
                 categoryid = NewCategoryID
                 }] />
-            <cfset status.setData(aCategoryInfo)>
+      <cfset status.setData(aCategoryInfo)>
 		</cfif>
         
 		<cfreturn status />

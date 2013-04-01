@@ -143,7 +143,7 @@
         <cfreturn status.getJSON() />
     </cffunction>
     
-	<cffunction name="createCategory" access="Remote" output="false" returntype="string">
+	<cffunction name="createCategory" access="Remote" output="false" returntype="string" returnformat="json">
 		<cfargument name="Name" required="yes" type="string">
         
         <cfset var status = createObject("component", "#Application.Settings.Com#returnData.buildStruct").init()>
