@@ -2,6 +2,7 @@
 <div class="ViewSection">
 <script>
 $(document).ready(function() {
+	App.activity.credits.init();
 	$(".CreditBox").each(function() {
 		var nCreditID = $.Replace(this.id,"Credits","","ALL");
 		if($(this).attr("checked")) {

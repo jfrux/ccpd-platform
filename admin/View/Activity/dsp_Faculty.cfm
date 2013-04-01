@@ -34,6 +34,7 @@
 	};
 	
 	$(document).ready(function() {
+		App.activity.faculty.init();
 		updateFaculty();
 		
 		$('#FacultyList').ajaxForm();

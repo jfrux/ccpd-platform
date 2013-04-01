@@ -1,0 +1,145 @@
+@import "twitter/bootstrap/mixins";
+div.jGrowl {
+  z-index:      9999;
+  color:        #fff;
+  font-size:      12px;
+}
+
+/** Special IE6 Style Positioning **/
+div.ie6 {
+  position:       absolute;
+  &.top-right {
+    right:        auto;
+    bottom:       auto;
+    left:         expression( ( 0 - jGrowl.offsetWidth + ( document.documentElement.clientWidth ? document.documentElement.clientWidth : document.body.clientWidth ) + ( ignoreMe2 = document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft ) ) + 'px' );
+    top:        expression( ( 0 + ( ignoreMe = document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop ) ) + 'px' );
+  }
+
+  &.top-left {
+    left:         expression( ( 0 + ( ignoreMe2 = document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft ) ) + 'px' );
+    top:        expression( ( 0 + ( ignoreMe = document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop ) ) + 'px' );
+  }
+
+  &.bottom-right {
+    left:         expression( ( 0 - jGrowl.offsetWidth + ( document.documentElement.clientWidth ? document.documentElement.clientWidth : document.body.clientWidth ) + ( ignoreMe2 = document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft ) ) + 'px' );
+    top:        expression( ( 0 - jGrowl.offsetHeight + ( document.documentElement.clientHeight ? document.documentElement.clientHeight : document.body.clientHeight ) + ( ignoreMe = document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop ) ) + 'px' );
+  }
+
+  &.bottom-left {
+    left:         expression( ( 0 + ( ignoreMe2 = document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft ) ) + 'px' );
+    top:        expression( ( 0 - jGrowl.offsetHeight + ( document.documentElement.clientHeight ? document.documentElement.clientHeight : document.body.clientHeight ) + ( ignoreMe = document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop ) ) + 'px' );
+  }
+
+  &.center {
+    left:         expression( ( 0 + ( ignoreMe2 = document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft ) ) + 'px' );
+    top:        expression( ( 0 + ( ignoreMe = document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop ) ) + 'px' );
+    width:        100%;
+  }
+}
+
+/** Normal Style Positions **/
+div.jGrowl {
+  position:     absolute;
+
+  &.top-left {
+    left:         0px;
+    top:        0px;
+  }
+
+  &.top-right {
+    right:        0px;
+    top:        0px;
+  }
+
+  &.bottom-left {
+    left:         0px;
+    bottom:       0px;
+  }
+
+  &.bottom-right {
+    right:        0px;
+    bottom:       0px;
+  }
+
+  &.center {
+    top:        0px;
+    width:        50%;
+    left:         25%;
+  }
+}
+
+body > div.jGrowl {
+  position:     fixed;
+}
+
+div.jGrowl-notification {
+  &.ui-state-normal {
+    @include gradientBar(#444, #222, #fff, 0 -1px 0 rgba(0,0,0,1));
+  }
+  &.ui-state-error {
+    $darkColor:darken(#FF0000,50%);
+    @include gradientBar(#FF0000,$darkColor, #fff, 0 -1px 0 rgba(0,0,0,1));
+  }
+}
+
+/** Cross Browser Styling **/
+div.center div.jGrowl-notification, 
+div.center div.jGrowl-closer {
+  margin-left:    auto;
+  margin-right:     auto;
+}
+
+div.jGrowl div.jGrowl-notification, 
+div.jGrowl div.jGrowl-closer {
+  background-color: #000;
+  //@include opacity(85);
+  @include border-radius(5);
+  @include box-shadow(0 1px 4px #000);
+  zoom: 1;
+  width: 235px;
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-family: Tahoma, Arial, Helvetica, sans-serif;
+  font-size: 1em;
+  text-align: left;
+  display: none;
+}
+
+div.jGrowl div.jGrowl-notification {
+  min-height:       40px;
+}
+
+div.jGrowl div.jGrowl-notification,
+div.jGrowl div.jGrowl-closer {
+  margin:         10px;
+}
+
+div.jGrowl div.jGrowl-notification div.jGrowl-header {
+  font-weight:      bold;
+  font-size:        .85em;
+}
+
+div.jGrowl div.jGrowl-notification div.jGrowl-close {
+  z-index:        99;
+  float:          right;
+  font-weight:      bold;
+  font-size:        1em;
+  cursor:         pointer;
+}
+
+div.jGrowl div.jGrowl-closer {
+  padding-top:      4px;
+  padding-bottom:     4px;
+  cursor:         pointer;
+  font-size:        .9em;
+  font-weight:      bold;
+  text-align:       center;
+}
+
+/** Hide jGrowl when printing **/
+@media print {
+  div.jGrowl {
+    display:      none;
+  }
+}

@@ -8,6 +8,6 @@ group :development do
 	gem 'sprockets-sass'
 	gem 'coffee-script'
   gem 'sprite-factory'
-  #gem 'rmagick'
-  #gem 'chunky_png'
+  gem 'rmagick'
+  gem 'chunky_png'
 end

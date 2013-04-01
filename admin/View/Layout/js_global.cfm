@@ -1,37 +1,14 @@
 <cfoutput>
 <script>
-  <cfif session.loggedIn>
-  var fuseaction = '#attributes.event#';
-  var user = {
-    firstName: '#session.person.getFirstName()#',
-    lastName: '#session.person.getLastName()#',
-    email: '#session.person.getEmail()#'
-  };
-  </cfif>
-  var popSupport = '';
-  function popupSupport() {
-    var w = 500;
-    var h = 600;
-    var left = (screen.width/2)-(w/2);
-    var top = (screen.height/2)-(h/2);
-    var extraData = '&firstname=' + user.firstName + '&lastname=' + user.lastName + '&email1=' + user.email + '&email2=' + user.email + '&supporttype=ADMIN';
-    popSupport = window.open('http://ccpd.uc.edu/lms/support?Display=popup' + extraData, 'support', 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
-  }
-  $(document).ready(function() {
-    $(document).bind('keydown', 'space', function (evt){
-      $('.header-search .ui-autocomplete-input').focus();
+<cfif session.loggedIn>
+var fuseaction = '#attributes.event#';
+var user = {
+  firstName: '#session.person.getFirstName()#',
+  lastName: '#session.person.getLastName()#',
+  email: '#session.person.getEmail()#'
+};
+</cfif>
 
-
-      return false; 
-    });
-      
-    $(".supportLink").click(function() {
-      popupSupport();
-      return false;
-    });
-  });
-  </script>
-<script type="text/javascript">
 var loggedIn = false;
 var StatusCount = 0;
 var currPersonId = 0;
@@ -39,59 +16,68 @@ var currPersonId = 0;
 currPersonId = <cfif isDefined("session.personId") AND len(trim(session.personId)) GT 0>#session.personid#<cfelse>0</cfif>;
 </cfif>
 
+$(document).ready(function() {
+  App.init();
+
+  //  $("##ajax-issue-button").click(function() {
+  //    $("##ajax-issue").hide();
+  //  });
+  //  $.ajaxSetup({
+  //    error:function(x,e){
+  //      console.log(x);
+  //      console.log(e);
+  //      var sTitle = "Unexpected Error";
+  //      var sMessage = "";
+  //      if(x.status==0){
+  //        //sMessage = "Connection to CCPD failed... please check your internet connection.";
+  //      }else if(x.status==404){
+  //        sMessage = "OOPS! An error occurred during your last request. Page not found!";
+  //      }else if(x.status==500){
+  //        errMsg = "500 Internal Server Error"
+  //        sMessage = "OOPS! An error occurred during your last request.  We are sorry for the inconvenience.";
+  //      }else if(e=="parsererror"){
+  //        sMessage = "OOPS! An error occurred during your last request.  JSON parsing error.";
+  //      }else if(e=="timeout"){
+  //        sMessage = "OOPS! An error occurred during your last request.  REQUEST TIMED OUT";
+  //      }else {
+  //        sMessage = "OOPS! An error occurred during your last request. " + x.responseText;
+  //      }
+        
+  //      $("##ajax-issue-title").html(sTitle);
+  //      $("##ajax-issue-details").html(sMessage);
+
+  //      BugLog.notifyService({
+  //        message: "XHR: " + sMessage,
+  //        error: JSON.stringify(x),
+  //        severity: "ERROR"
+  //      });
+
+  //      $("##ajax-issue").show();
+  //    }
+  //  }); 
+});
+
 function addMessage(sStatus,nFadeIn,nFadeTo,nFadeOut) {
-  $("##StatusBar").show();
-  StatusCount++;
-  $("##StatusBar").append("<div style=\"display:none;\" class=\"PageMessages\" id=\"StatusBox" + StatusCount + "\">" + sStatus + "</div>");
-  //console.log("Status: " + StatusCount);
-  $("##StatusBox" + StatusCount).show("slide",{direction: "down"},500).fadeTo(nFadeTo,.9).hide("slide",{direction: "down"},nFadeOut);
+  App.status.addMessage(sStatus,nFadeIn,nFadeTo,nFadeOut);
+  // $("##StatusBar").show();
+  // StatusCount++;
+  // $("##StatusBar").append("<div style=\"display:none;\" class=\"PageMessages\" id=\"StatusBox" + StatusCount + "\">" + sStatus + "</div>");
+  // //console.log("Status: " + StatusCount);
+  // $("##StatusBox" + StatusCount).show("slide",{direction: "down"},500).fadeTo(nFadeTo,.9).hide("slide",{direction: "down"},nFadeOut);
 }
 
 function addError(sStatus,nFadeIn,nFadeTo,nFadeOut) {
-  $("##StatusBar").show();
-  StatusCount++;
-  $("##StatusBar").append("<div style=\"display:none;\" class=\"PageErrors\" id=\"StatusBox" + StatusCount + "\">" + sStatus + "</div>");
-  $("##StatusBox" + StatusCount).show("slide",{direction: "down"},500).fadeTo(nFadeTo,.9).hide("slide",{direction: "down"},nFadeOut);
+  App.status.addMessage(sStatus,nFadeIn,nFadeTo,nFadeOut);
+  // $("##StatusBar").show();
+  // StatusCount++;
+  // $("##StatusBar").append("<div style=\"display:none;\" class=\"PageErrors\" id=\"StatusBox" + StatusCount + "\">" + sStatus + "</div>");
+  // $("##StatusBox" + StatusCount).show("slide",{direction: "down"},500).fadeTo(nFadeTo,.9).hide("slide",{direction: "down"},nFadeOut);
 }
 
 
 jQuery().ready(function(){
-//  $("##ajax-issue-button").click(function() {
-//    $("##ajax-issue").hide();
-//  });
-//  $.ajaxSetup({
-//    error:function(x,e){
-//      console.log(x);
-//      console.log(e);
-//      var sTitle = "Unexpected Error";
-//      var sMessage = "";
-//      if(x.status==0){
-//        //sMessage = "Connection to CCPD failed... please check your internet connection.";
-//      }else if(x.status==404){
-//        sMessage = "OOPS! An error occurred during your last request. Page not found!";
-//      }else if(x.status==500){
-//        errMsg = "500 Internal Server Error"
-//        sMessage = "OOPS! An error occurred during your last request.  We are sorry for the inconvenience.";
-//      }else if(e=="parsererror"){
-//        sMessage = "OOPS! An error occurred during your last request.  JSON parsing error.";
-//      }else if(e=="timeout"){
-//        sMessage = "OOPS! An error occurred during your last request.  REQUEST TIMED OUT";
-//      }else {
-//        sMessage = "OOPS! An error occurred during your last request. " + x.responseText;
-//      }
-      
-//      $("##ajax-issue-title").html(sTitle);
-//      $("##ajax-issue-details").html(sMessage);
 
-//      BugLog.notifyService({
-//        message: "XHR: " + sMessage,
-//        error: JSON.stringify(x),
-//        severity: "ERROR"
-//      });
-
-//      $("##ajax-issue").show();
-//    }
-//  });  
+//   
     
   $(".BreadcrumbIcon").attr("src","#Application.Settings.RootPath#/admin/_images/icons/bullet_go#Request.NavItem#.png");
   $("##PageStandard").hide();

@@ -10,6 +10,7 @@
 </cfoutput>
 <script>
 	$(document).ready(function() {
+		App.activity.checklist.init();
 		$("input").unbind("keyup");
 		$(".AppDate").keyup(function() {
 			var sField = $.Replace($(this).attr('name'),'Date','');

@@ -11,6 +11,7 @@
 	}
 	
 	$(document).ready(function() {
+		App.activity.files.init();
 		updateDocs();
 		<!--- $().ajaxStart(function(){
 			$.blockUI({ message: '<h1>Updating information...</h1>'});

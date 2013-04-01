@@ -1,4 +1,4 @@
-###
+###!
 * ACTIVITY
 ###
 App.activity = do ({App,$,Backbone} = window) ->

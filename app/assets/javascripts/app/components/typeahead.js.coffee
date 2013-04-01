@@ -58,6 +58,7 @@
           data = returnData.PAYLOAD
           data.label = data.name
           data.value = data.categoryid
+          data.ITEM_ID = data.categoryid
           item_select data
           true
 

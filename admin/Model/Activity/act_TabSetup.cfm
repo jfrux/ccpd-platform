@@ -174,7 +174,7 @@
         "label":"ACCME",
         "title":"ACCME Details",
         "tooltip":"",
-        "icon":"",
+        "icon":"sealing-wax",
         "event":"activity.accme",
         "subEvents":[]
       },
@@ -182,7 +182,7 @@
         "label":"History",
         "title":"History",
         "tooltip":"",
-        "icon":"",
+        "icon":"clock-history",
         "event":"activity.history",
         "subEvents":[]
       },

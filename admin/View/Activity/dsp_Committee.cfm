@@ -30,6 +30,7 @@
 	}
 	
 	$(document).ready(function() {
+		App.activity.committee.init();
 		updateCommittee();
 		
 		/* CHANGE COMMITTEE ROLE START */

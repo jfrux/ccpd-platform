@@ -34,10 +34,11 @@ App.activity.general = do (activity = App.activity,{App,$,Backbone} = window) ->
     updateStateProvince parseInt($("#Country").val())
 
   _init = ->
-    console.log("init: generalinfo\n" +
-    "activity type: " + nActivityType + "\n" +
-    "session type: " + sSessionType + "\n" +
-    "country: " + nCountryId + "\n")
+    App.components.formstate.init()
+    console.log "init: generalinfo
+                \nactivity type: #{nActivityType}
+                \nsession type: #{sSessionType}
+                \ncountry: #{nCountryId}"
 
     updateStateProvince nCountryId
 
