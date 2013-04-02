@@ -29,7 +29,7 @@
         "label":"Faculty",
         "title":"Faculty / Speakers",
         "icon":"user-business",
-        "tooltip":"Total Faculty: Unknown",
+        "tooltip":"",
         "event":"activity.faculty",
         "subEvents":[]
       },
@@ -37,14 +37,14 @@
         "label":"Committee Members",
         "title":"Planning Committee Members",
         "icon":"user-female",
-        "tooltip":"Total Members: Unknown",
+        "tooltip":"",
         "event":"activity.committee",
         "subEvents":[]
       },
       "activity.finances": {
         "label":"Finances",
         "title":"Finances",
-        "tooltip":"Financial Overview",
+        "tooltip":"",
         "icon":"money",
         "event":"activity.finances",
         "subEvents":["activity.finledger","activity.finbudget","activity.finfees","activity.finsupport"]
@@ -53,14 +53,14 @@
         "label":"General Ledger",
         "title":"General Ledger",
         "icon":"",
-        "tooltip":"Total Income: Unknown<br />Total Expenses: Unknown",
+        "tooltip":"",
         "event":"activity.finledger",
         "subEvents":[]
       },
       "activity.finbudget": {
         "label":"Budget",
         "title":"Budget",
-        "tooltip":"Total Budget: Unknown",
+        "tooltip":"",
         "icon":"",
         "event":"activity.finbudget",
         "subEvents":[]
@@ -77,7 +77,7 @@
         "label":"Fees",
         "title":"Fees",
         "icon":"",
-        "tooltip":"Total Fees: Unknown",
+        "tooltip":"",
         "event":"activity.finfees",
         "subEvents":[]
       },
@@ -92,7 +92,7 @@
       "activity.docs": {
         "label":"Files &amp; Documents",
         "title":"Files &amp; Documents",
-        "tooltip":"Total Documents: Unknown",
+        "tooltip":"",
         "icon":"documents",
         "event":"activity.docs",
         "subEvents":[]
@@ -136,14 +136,6 @@
         "tooltip":"",
         "icon":"globe-green",
         "event":"activity.pubbuilder",
-        "subEvents":[]
-      },
-      "activity.pubsites": {
-        "label":"Sites",
-        "title":"Sites to Publish To",
-        "tooltip":"",
-        "icon":"globe-green",
-        "event":"activity.pubsites",
         "subEvents":[]
       },
       "activity.pubcategory": {
