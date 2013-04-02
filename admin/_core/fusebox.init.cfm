@@ -39,6 +39,15 @@
 		<cfset request.isException  = true />
 	</cfif>
 </cfloop>
+
+<cffunction name="isAjax">
+	<cfset headers = GetHttpRequestData().headers>
+	<cfif structKeyExists( headers, "X-Requested-With" ) AND headers[ "X-Requested-With" ] EQ "XMLHttpRequest">
+		<cfreturn true />
+	<cfelse>
+		<cfreturn false />
+	</cfif>
+</cffunction>
 <!---
 <cfparam name="Request.Status.Errors" default="" />
 WE ARE PREPARING FOR A MIGRATION.<br />
