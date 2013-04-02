@@ -6,8 +6,8 @@ _uploads
 *.xlsx
 *.csv
 *.xls
-.DS_Store
 node_modules
 rewrite_log.txt
 .sass-cache
-vendor/ruby/
+.DS_Store
+vendor/ruby

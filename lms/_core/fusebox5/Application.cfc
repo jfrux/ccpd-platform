@@ -262,57 +262,8 @@ limitations under the License.
 	
 	<cffunction name="onError">
 		<cfargument name="exception" />
-		<!--- 
-		<cfset var stack = 0 />
-		<cfset var prefix = "Raised at " />
-		
-		<!--- top-level exception is always event name / expression for Application.cfc (but not fusebox5.cfm) --->
-		<cfset var caughtException = arguments.exception />
-		
-		<cfif structKeyExists(caughtException,"rootcause")>
-			<cfset caughtException = caughtException.rootcause />
-		</cfif>
-		
-		<cfif listFirst(caughtException.type,".") is "fusebox">
-			<cfif isDefined("_fba.debug") and _fba.debug and structKeyExists(variables,"myFusebox")>
-				<cfset variables.myFusebox.trace("Fusebox","Caught Fusebox exception '#caughtException.type#'") />
-				<cfif structKeyExists(caughtException,"tagcontext")>
-					<cfloop index="stack" from="1" to="#arrayLen(caughtException.tagContext)#">
-						<cfset variables.myFusebox.trace("Fusebox",prefix & 
-								caughtException.tagContext[stack].template & ":" & 
-								caughtException.tagContext[stack].line) />
-						<cfset prefix = "Called from " />
-					</cfloop>
-				</cfif>
-			</cfif>
-			<cfif not isDefined("_fba.errortemplatesPath") or (
-					structKeyExists(variables,"attributes") and structKeyExists(variables,"myFusebox") and
-					not _fba.handleFuseboxException(caughtException,variables.attributes,variables.myFusebox,variables.FUSEBOX_APPLICATION_KEY)
-					)>
-				<cfif isDefined("_fba.debug") and _fba.debug and structKeyExists(variables,"myFusebox")>
-					<cfoutput>#variables.myFusebox.renderTrace()#</cfoutput>
-				</cfif>
-				<cfthrow object="#caughtException#" />
-			</cfif>
-		<cfelse>
-			<cfif isDefined("_fba.debug") and _fba.debug and structKeyExists(variables,"myFusebox")>
-				<cfset variables.myFusebox.trace("Fusebox","Request failed with exception '#caughtException.type#' (#caughtException.message#)") />
-				<cfif structKeyExists(caughtException,"tagcontext")>
-					<cfloop index="stack" from="1" to="#arrayLen(caughtException.tagContext)#">
-						<cfset variables.myFusebox.trace("Fusebox",prefix & 
-								caughtException.tagContext[stack].template & ":" & 
-								caughtException.tagContext[stack].line) />
-						<cfset prefix = "Called from " />
-					</cfloop>
-				</cfif>
-				<cfoutput>#variables.myFusebox.renderTrace()#</cfoutput>
-			</cfif>
-			<cfthrow object="#caughtException#" />
-		</cfif> --->
+
 		<cfthrow object="#arguments.exception#" />
-		<!--- if we hit an error before starting the request, prevent the request from running --->
-		<cfset myFusebox.parameters.execute = false />
-		
 	</cffunction>
 	
 	<cffunction name="override" returntype="void" access="public" output="false">
