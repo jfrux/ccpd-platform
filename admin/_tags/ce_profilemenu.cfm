@@ -27,6 +27,7 @@
           <cfif structkeyExists(tab,'count')>
             <span class="navItemCount pull-right">#tab.count#</span>
           </cfif>
+          <span class="menuArrow"></span>
         </a>
       </li>
       <cfif arrayLen(tab.subEvents) GT 0>

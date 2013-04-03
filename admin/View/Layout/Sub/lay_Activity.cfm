@@ -29,6 +29,7 @@ var cActListPosY = #getToken(Cookie.USER_ActListPos,2,",")#;
 var cActListOpen = #Cookie.USER_ActListOpen#;
 var cActListHeight = #GetToken(Cookie.USER_ActListSize,2,",")#;
 var cActListWidth = #GetToken(Cookie.USER_ActListSize,1,",")#;
+var cActShowInfobar = $.cookie("USER_ACTSHOWINFOBAR");
 
 $(document).ready(function() {
   App.activity.init()
@@ -59,21 +60,21 @@ $(document).ready(function() {
     <div class="profile-bg-inner"></div>
   </div>
   <div class="row">
-    <div class="span4">
+    <div class="span5">
       <cfoutput>
-      <div class="projectbar">
+      <div class="projectbar js-projectbar">
         <div class="box">
           <div class="thumbnail">
-          <img src="http://placehold.it/164x100">
+          <img src="http://placehold.it/182x113">
           </div>
         </div>
-        <div class="box">
+        <div class="box js-profile-menu">
           <cf_ce_profilemenu type="activity" typeid="#attributes.activityid#" settings="#request.tabSettings#" current="#Attributes.Fuseaction#">
         </div>
       </div>
       </cfoutput>
     </div>
-    <div class="span20">
+    <div class="span19">
       <div class="titlebar">
         <div class="row-fluid">
           <div class="span16">
@@ -89,18 +90,18 @@ $(document).ready(function() {
                 <a href="javascript:void(0);" class="btn" title="Delete Activity" id="DeleteActivityLink"><i class="icon-trash"></i></a>
               </div>
               <div class="btn-group">
-              <a href="/activities/#attributes.activityid#" class="btn" title="Links to the public profile of this activity.">View Activity</a>
+                <button type="button" class="btn js-toggle-infobar" autocomplete="off" title="Toggle Infobar" data-toggle="button" ><i class="icon-info"></i></button></a>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="span20">
-      <div class="content">
+    <div class="span19">
+      <div class="content js-profile-content">
         <cfoutput>
         <div class="row-fluid">
-          <div class="span18">
+          <div class="span18 js-content-toggle">
                <div class="row-fluid">
                 <div class="content-title">
                   <h3>#request.tabSettings.tabs[lcase(attributes.fuseaction)].title#</h3>
@@ -117,9 +118,8 @@ $(document).ready(function() {
               #Request.MultiFormContent#
             </div>
           </div>
-          <div class="span6">
-            
-            <div class="InfoBar infobar">
+          <div class="span6 js-infobar-outer">
+            <div class="InfoBar infobar js-infobar">
               <cfset qStatuses = Application.Com.StatusGateway.getByAttributes(OrderBy="Name")>
               <div id="Status">
                 <h3><i class="fg fg-fruit"></i> Activity Health</h3>

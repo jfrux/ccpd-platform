@@ -27,8 +27,10 @@
 *=require jquery/plugins/jquery.hotkeys
 *=require jquery/plugins/jquery.blockui
 *=require jquery/plugins/jquery.selectboxes
+*=require jquery/plugins/jquery.cookie
 *=require jquery/plugins/jquery.tools
 *=require jquery/plugins/jquery.cfjs
+*=require jquery/plugins/jquery.pjax
 *=require jquery/plugins/jquery.event.drag
 *=require jquery/plugins/jquery.event.drop
 *=require jquery/plugins/jquery.form

@@ -48,6 +48,16 @@
 		<cfreturn false />
 	</cfif>
 </cffunction>
+
+<cffunction name="isPjax">
+	<cfset headers = GetHttpRequestData().headers>
+	<cfif structKeyExists( headers, "X-PJAX" )>
+		<cfabort />
+		<cfreturn true />
+	<cfelse>
+		<cfreturn false />
+	</cfif>
+</cffunction>
 <!---
 <cfparam name="Request.Status.Errors" default="" />
 WE ARE PREPARING FOR A MIGRATION.<br />

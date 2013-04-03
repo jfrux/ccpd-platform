@@ -1,6 +1,9 @@
 
 <cfsilent><!--- DEFAULT COOKIES --->
 <cfparam name="session.loggedin" default="false" />
+<!--- <cfif NOT structKeyExists(cookie,"USER_ActShowInfobar")>
+	<cfcookie name="USER_ActShowInfobar" value="false">
+</cfif> --->
 <cfif NOT structKeyExists(cookie,"USER_ActListPos")>
 	<cfcookie name="USER_ActListPos" value="200,200">
 </cfif>

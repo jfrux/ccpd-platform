@@ -3,8 +3,18 @@
 ###
 App.activity = do ({App,$,Backbone} = window) ->
   activityContainer = null
+  $profile = null;
+  $projectBar = null;
+  $contentArea = null;
+  $infoBar = null;
+  $infoBarToggler = null;
+  $contentToggleSpan = null;
+  $infoBarToggleSpan = null;
+  $menuBar = null;
+
   App.on "activity.containers.load",->
     console.log "containers loaded!"
+    return
     
   continueCopy = ->
     sNewActivityTitle = $("#NewActivityTitle").val()
@@ -33,11 +43,15 @@ App.activity = do ({App,$,Backbone} = window) ->
         window.location = sMyself + "Activity.Detail?ActivityID=" + data.DATASET[0].activityid + "&Message=" + data.STATUSMSG
       else
         addError data.STATUSMSG, 250, 6000, 4000
+    return
 
   cancelCopy = ->
+    return
+
   setCurrActivityType = (nID) ->
     $("#NewActivityType").val nID
     getGroupingList nID
+    return
   getGroupingList = (nID) ->
     $("#NewGrouping").removeOption ""
     $("#NewGrouping").removeOption /./
@@ -52,36 +66,64 @@ App.activity = do ({App,$,Backbone} = window) ->
       else
         $("#NewGrouping").val 0
         $("#NewGroupingSelect").hide()
+    return
 
+  showInfobar = ->
+    $spanDiv = $infoBar.parent()
+    $.cookie 'USER_ACTSHOWINFOBAR', 'true',
+      path: '/'
+    $infoBarToggler.find('i').attr('class','fg-application-sidebar-expand')
+    $infoBarToggler.addClass('active')
+    $infoBar.removeClass('hide')
+    $profile.removeClass('infobar-inactive').addClass('infobar-active')
+    $contentToggleSpan.removeClass('span24').addClass('span18')
+    $infoBarToggleSpan.addClass('span6')
+    return
+
+  hideInfobar = ->    
+    $infoBarToggler.removeClass('active')
+    $.cookie 'USER_ACTSHOWINFOBAR', 'false',
+      path: '/'
+    $spanDiv = $infoBar.parent()    
+    $infoBarToggler.find('i').attr('class','fg-application-sidebar-collapse')
+    $profile.removeClass('infobar-active').addClass('infobar-inactive')
+    $contentToggleSpan.removeClass('span18').addClass('span24')
+    $infoBar.addClass('hide')
+    $infoBarToggleSpan.removeClass('span6')
+    return
   updateAll = ->
     updateStats()
     
     #updateActions();
     updateContainers()
     updateActivityList()
+    return
   updateStats = ->
     $.post sMyself + "Activity.Stats",
       ActivityID: nActivity
     , (data) ->
       $("#ActivityStats").html data
+    return
 
   updateActions = ->
-
-  #$.post(sMyself + "Activity.ActionsShort", { ActivityID: nActivity }, 
-  #    function(data) {
-  #      $("#LatestActions").html(data);
-  #  });
+    #$.post(sMyself + "Activity.ActionsShort", { ActivityID: nActivity }, 
+    #    function(data) {
+    #      $("#LatestActions").html(data);
+    #  });
+    return
   updateContainers = ->
     $.post sMyself + "Activity.Container",
       ActivityID: nActivity
     , (data) ->
       $("#Containers").html data
+    return
 
   updateActivityList = ->
     $.post sMyself + "Activity.ActivityList",
       ActivityID: nActivity
     , (data) ->
       $("#ActivityList").html data
+    return
 
   updateNoteCount = ->
     $.post sRootPath + "/_com/AJAX_Activity.cfc",
@@ -91,32 +133,57 @@ App.activity = do ({App,$,Backbone} = window) ->
     , (data) ->
       nNoteCount = $.ListGetAt($.Trim(data), 1, ".")
       $("#NoteCount").html "(" + nNoteCount + ")"
+    return
 
 
   _init = ->
-    console.log("init: activity");
+    $profile = $(".profile")
+    $infoBar = $(".js-infobar")
+    $projectBar = $(".js-projectbar")
+    $menuBar = $(".js-profile-menu > div > div > ul")
+    $contentArea = $(".js-profile-content")
+    $infoBarToggler = $(".js-toggle-infobar")
+    $contentToggleSpan = $(".js-content-toggle")
+    $infoBarToggleSpan = $(".js-infobar-outer")
+
+    $(document).pjax('.js-profile-menu > div > div > ul a', '.content-inner')
+
+    $(document).on "click.button.data-api",(e) ->
+      #console.log(e);
+      $btn = $(e.target);
+      if $btn.hasClass('active')
+        showInfobar()
+      else
+        hideInfobar()
+    console.log("init: activity")
     #updateActions();
     updateContainers()
     updateStats()
     updateNoteCount()
-    $(".ContentTitle span").tooltip({
-      placement: 'bottom',
-      trigger:'hover focus',
-      container: 'body'
-    });
 
-    $(".linkbar a").tooltip({
-      placement: 'right',
-      html: 'true',
-      trigger: 'hover focus',
-      container: 'body'
-      });
+    if cActShowInfobar
+      showInfobar()
+    else
+      hideInfobar()
 
-    $(".action-buttons a.btn").tooltip({
-      placement: 'bottom',
-      trigger: 'hover focus',
+    $(".ContentTitle span").tooltip
+      placement: 'bottom'
+      trigger:'hover focus'
       container: 'body'
-    })
+    
+
+    $(".linkbar a").tooltip
+      placement: 'right'
+      html: 'true'
+      trigger: 'hover focus'
+      container: 'body'
+    
+
+    $(".action-buttons a.btn, .action-buttons button.btn").tooltip
+      placement: 'bottom'
+      trigger: 'hover focus'
+      container: 'body'
+    
 
     # STATUS CHANGER 
     $("#StatusChanger").change ->
@@ -322,7 +389,6 @@ App.activity = do ({App,$,Backbone} = window) ->
 
       else
         addError "Please provide a reason.", 250, 6000, 4000
-
     
     # END DELETE ACTIVITY 
     
@@ -354,6 +420,8 @@ App.activity = do ({App,$,Backbone} = window) ->
       $("#ProcessQueueDialog").dialog "open"
 
     $("#ProcessSelect").val ""
+
+    return
 
   pub =
     init: _init
