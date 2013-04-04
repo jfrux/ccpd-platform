@@ -98,7 +98,7 @@ App.components.formstate = do ({App,$,Backbone} = window) ->
     question232 = $("#question232")
     TheLink = ""
     $(".PageStandard").hide()
-    $(".TabControl a,#HeaderNav a,#HeaderSubNav a,#Breadcrumbs a,a.LeaveLink").bind "click", this, ->
+    $("#HeaderNav a,#HeaderSubNav a,#Breadcrumbs a,a.LeaveLink").bind "click", this, ->
       TheLink = @href
       unless IsSaved
         $.extend $.blockUI.defaults.overlayCSS,

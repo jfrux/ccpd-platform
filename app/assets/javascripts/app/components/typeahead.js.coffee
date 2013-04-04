@@ -161,9 +161,6 @@
                             .addClass(settings.typeaheadClass)
                             .width(origWidth)
     $wrap = $("<div/>").addClass("wrap").appendTo($typeahead)
-    if settings.showImage
-      $typeahead.addClass "imageTypeahead"
-      $img = $("<img/>").addClass("photo img").appendTo($wrap)
     if settings.clearable
       $typeahead.addClass "uiClearableTypeahead"
       $clearer = $("<label/>").addClass("clear uiCloseButton").prependTo($wrap)
@@ -179,7 +176,7 @@
                       .appendTo($typeahead)
     if $.isFunction($.fn.autocomplete)
       $input.autocomplete(
-        selectFirst: true
+        autoFocus: true
         appendTo: ($typeaheadView)
         source: (req, add) ->
           if $.trim(req.term).length
@@ -241,11 +238,11 @@
 
                 if settings.allowViewMore
                   anItem =
-                    label: "See more results for &quot;#{$input.val()}&quot;"
+                    label: "See more results for '#{$input.val()}'"
                     value: 0
                     image: ""
                     ITEM_ID: 0
-                    TEXT: "See more results for &quot;#{$input.val()}&quot;"
+                    TEXT: "See more results for '#{$input.val()}'"
                     SUBTEXT1: "Displaying top " +
                       data.PAYLOAD.DATASET.length +
                       " results"
@@ -256,11 +253,11 @@
                   suggestions.push anItem
                 if settings.allowAdd
                   anItem =
-                    label: "Add &quot;#{$input.val()}&quot;"
+                    label: "Add '#{$input.val()}'"
                     value: 0
                     image: ""
                     ITEM_ID: 0
-                    TEXT: "Add &quot;#{$input.val()}&quot;"
+                    TEXT: "Add '#{$input.val()}'"
                     IMAGE: ""
                     classes: ""
                     ignored: false
@@ -269,6 +266,7 @@
                   suggestions.push anItem
                 $(this).data "suggestions", suggestions
                 add suggestions
+                return
 
 
         focus: (e, ui) ->
@@ -277,6 +275,7 @@
         delay: 100
         search: (e, ui) ->
           item_deselect()
+          return
 
         select: (e, ui) ->
           #console.log ui
@@ -285,44 +284,34 @@
 
         change: ->
           false
-      ).data("autocomplete")._renderMenu = (ul, items) ->
-        self = this
-        $(ul).addClass settings.size
+      )
+      .data("ui-autocomplete")._renderMenu = (ul, items) ->
+        that = this
+        #.addClass settings.size
+        #lis = $(ul)
         $.each items, (index, item) ->
-          #console.log item
-          subtext1 = $("<span/>")
-                  .addClass("fcg fsm clearfix")
-                  .text(item.SUBTEXT1)
+          $li = that._renderItemData(ul,item)
+          $li.html('')
+          console.log $li
+          $subtext1 = $("<span></span>").addClass("fcg fsm clearfix").text(item.SUBTEXT1)
+          $subtext2 = $("<span></span>").addClass("fcg fsm clearfix").text(item.SUBTEXT2)
+          $label = $("<a></a>").html("<div>#{item.label}</div>").appendTo($li)
+          $img = $("<img/>").attr('src',item.image).prependTo($label)
 
-          subtext2 = $("<span/>")
-                  .addClass("fcg fsm clearfix")
-                  .text(item.SUBTEXT2)
+          # # if item.ignored
+          # #   $label.click ->
+          # #     false
 
-          li = $("<li></li>")
-                  .data("item.autocomplete", item)
-                  .appendTo(ul)
-
-          label = $("<a></a>")
-                  .html("<div>#{item.label}</div>")
-                  .appendTo(li)
-
-          img = $("<img/>")
-                  .attr(src: item.image)
-                  .prependTo(label)
-
-          if item.ignored
-            label.click ->
-              false
-
-          label.append subtext1  if item.SUBTEXT1
-          label.append subtext2  if item.SUBTEXT2
-          li.addClass item.classes  if item.classes
-          li.addClass "ignore"  if item.ignored
-          img.remove()  if item.isHeader
+          $label.append $subtext1  if item.SUBTEXT1
+          $label.append $subtext2  if item.SUBTEXT2
+          
+          $li.addClass "ignore"  if item.ignored
+          $img.remove()  if item.isHeader
           if item.callToAction
-            img.remove()
-            li.addClass "calltoaction"
-          ul.append li
+            $img.remove()
+            $li.addClass "calltoaction"
+          # #ul.append $li
+          return
 
     $typeahead.insertAfter $hiddenInput
     $typeahead.prependTo settings.appendTo  if settings.appendTo

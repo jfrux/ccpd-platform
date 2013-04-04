@@ -35,10 +35,10 @@ App.activity.general = do (activity = App.activity,{App,$,Backbone} = window) ->
 
   _init = ->
     App.components.formstate.init()
-    console.log "init: generalinfo
-                \nactivity type: #{nActivityType}
-                \nsession type: #{sSessionType}
-                \ncountry: #{nCountryId}"
+    #console.log "init: generalinfo
+    #            \nactivity type: #{nActivityType}
+    #            \nsession type: #{sSessionType}
+    #            \ncountry: #{nCountryId}"
 
     updateStateProvince nCountryId
 

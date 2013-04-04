@@ -4,8 +4,8 @@
 *=require_self
 *=require buglog/bugLogClient
 *=require jquery/jquery
+*=require jquery/jquery-migrate
 *=require jquery/jquery-ui
-*=require jquery/jquery.ui.autocomplete.selectFirst
 *=require jquery/json2
 *=require underscore
 *=require backbone
@@ -23,7 +23,6 @@
 #=require twitter/bootstrap/bootstrap-transition
 #=require twitter/bootstrap/bootstrap-typeahead
 *=require jquery/plugins/jquery.maskedinput
-*=require jquery/plugins/jquery.tmpl
 *=require jquery/plugins/jquery.hotkeys
 *=require jquery/plugins/jquery.blockui
 *=require jquery/plugins/jquery.selectboxes
@@ -39,7 +38,6 @@
 *=require jquery/plugins/jquery.maskedinput
 *=require jquery/plugins/jquery.scrollto
 *=require jquery/plugins/jquery.tipsy
-*=require jquery/plugins/jquery.watermark
 *=require jquery/plugins/jquery.periodicalupdater
 *=require tiny_mce/tiny_mce_src
 */

@@ -106,15 +106,9 @@ $(document).ready(function() {
                 <div class="content-title">
                   <h3>#request.tabSettings.tabs[lcase(attributes.fuseaction)].title#</h3>
                 </div>
-             
-                <cfif len(trim(request.multiformright)) GT 0>   
-                  <div class="toolbar">
-                      #Request.MultiFormRight#
-                    </div>
-                </cfif>
-           
               </div>
             <div class="MultiFormContent content-inner">
+         
               #Request.MultiFormContent#
             </div>
           </div>

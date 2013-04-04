@@ -8,6 +8,7 @@ App.activity.folders = do (activity = App.activity,{App,$,Backbone} = window) ->
     $(".js-tokenizer-list").uiTokenizer
       listLocation: "top"
       type: "list"
+      showImage:false
       watermarkText: "Type to Add Folder"
       ajaxAddURL: "/admin/_com/AJAX_Activity.cfc"
       ajaxAddParams:

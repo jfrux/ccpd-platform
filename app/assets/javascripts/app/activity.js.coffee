@@ -146,9 +146,9 @@ App.activity = do ({App,$,Backbone} = window) ->
     $contentToggleSpan = $(".js-content-toggle")
     $infoBarToggleSpan = $(".js-infobar-outer")
 
-    $($menuBar).pjax('.js-profile-menu > div > div > ul a', '.content-inner')
+    $(document).pjax('.js-profile-menu > div > div > ul a', '.content-inner')
 
-    $(document).on "click.button.data-api",(e) ->
+    $infoBarToggler.on "click.button.data-api",(e) ->
       #console.log(e);
       $btn = $(e.target);
       if $btn.hasClass('active')
