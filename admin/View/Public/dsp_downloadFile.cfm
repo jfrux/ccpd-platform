@@ -12,7 +12,6 @@
     
 	<cfset basePath = ExpandPath('/_uploads/#Attributes.Mode#Files/#Attributes.ModeID#/')>
     <cfset physFilePath = basePath & fileBean.getFileName() />
-    <cfdump var="#physFilePath#" abort=true />
     <cfset fileName = application.udf.friendlyUrl(application.udf.parseUrl(fileBean.getFileName()).file) & "_" & application.udf.getRandomString(10) & "." & application.udf.getExtension(application.udf.parseUrl(fileBean.getFileName()).file)>
     <!---<cfdump var="#basePath#"><br>
     <cfdump var="#physFilePath#"><br>

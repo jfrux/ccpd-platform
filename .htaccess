@@ -42,5 +42,5 @@ RewriteRule ^lms/preferences$ /lms/index.cfm?event=Member.Account  [NC,QSA]
 # #ADMIN
 RewriteRule ^register/([^/]*)/([^/]*) /admin/index.cfm?event=Public.Register?ActivityID=$1&Step=$2  [NC,QSA]
 RewriteRule ^register/([^/]*) /admin/index.cfm?event=Public.Register?ActivityID=$1  [NC,QSA]
-RewriteRule ^download/([^/]*)/([^/]*)/([^/]*) /admin/index.cfm?event=Public.Download?mode=$1&ModeID=$2&fid=$3  [NC,QSA]
+RewriteRule ^download/([^/]*)/([^/]*)/([^/]*) /admin/event/Public.Download?mode=$1&ModeID=$2&fid=$3  [NC,QSA]
 
