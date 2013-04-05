@@ -35,11 +35,11 @@
               <if condition="#request.currentTab.hasToolbar#">
                 <true>
                   <invoke object="myFusebox" 
-                          methodcall="do('vActivity.#request.page.action#right','multiformright',false,true)" />
+                          methodcall="do('vActivity.#request.page.action#right','multiformright')" />
                 </true>
               </if>
               <invoke object="myFusebox" 
-                      methodcall="do('vActivity.#request.page.action#','multiformcontent',true,false)" />
+                      methodcall="do('vActivity.#request.page.action#','multiformcontent')" />
             </true>
           </if>
           <do action="vLayout.Blank" />
@@ -55,11 +55,11 @@
                       <if condition="#request.currentTab.hasToolbar#">
                         <true>
                           <invoke object="myFusebox" 
-                                  methodcall="do('vActivity.#request.page.action#right','multiformright',false,true)" />
+                                  methodcall="do('vActivity.#request.page.action#right','multiformright')" />
                         </true>
                       </if>
                       <invoke object="myFusebox" 
-                              methodcall="do('vActivity.#request.page.action#','multiformcontent',true,false)" />
+                              methodcall="do('vActivity.#request.page.action#','multiformcontent')" />
                       <do action="vLayout.Sub_Activity" contentvariable="request.page.body" />
                     </true>
                   </if>
@@ -75,20 +75,14 @@
       <do action="vActivity.ActivityList" />
       <do action="vActivity.Stats" contentvariable="request.page.body" />
     </fuseaction>
-    <fuseaction name="ActionsShort">
-      <do action="vActivity.ActionsShort" />
-      <do action="vActivity.Stats" contentvariable="request.page.body" />
-    </fuseaction>
     <fuseaction name="Container">
-      <do action="vActivity.Container" />
-      <do action="vActivity.Stats" contentvariable="request.page.body" />
+      <do action="vActivity.Container" contentvariable="request.page.body" />
     </fuseaction>
     <fuseaction name="Stats">
       <do action="vActivity.Stats" contentvariable="request.page.body" />
     </fuseaction>
     <fuseaction name="Import">
       <do action="vActivity.Import" />
-      <do action="vLayout.None" contentvariable="Request.Page.Body" />
     </fuseaction>
 
     <!-- //END AHAH pages -->

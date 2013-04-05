@@ -1,7 +1,7 @@
 ###!
 * ACTIVITY > FINANCES > FEES
 ###
-App.activity.finfees = do (activity = App.activity,{App,$,Backbone} = window) ->
+App.module "Activity.Finances.Fees", (Self, App, Backbone, Marionette, $) ->
   _init = (defaults) ->
     console.log "init: finances > fees"
 

@@ -1,7 +1,7 @@
 ###!
 * ACTIVITY > ACCME
 ###
-App.activity.accme = do (activity = App.activity,{App,$,Backbone} = window) ->
+App.module "Activity.ACCME", (Self, App, Backbone, Marionette, $) ->
   _init = (defaults) ->
     console.log "init: accme"
 

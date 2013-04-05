@@ -1,7 +1,7 @@
 ###
 * ACTIVITY > FACULTY
 ###
-App.activity.faculty = do (activity = App.activity,{App,$,Backbone} = window) ->
+App.module "Activity.Faculty", (Self, App, Backbone, Marionette, $) ->
   _init = (defaults) ->
     console.log "init: faculty"
 

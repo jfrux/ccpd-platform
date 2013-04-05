@@ -1,7 +1,7 @@
 ###!
 * ACTIVITY > NOTES
 ###
-App.activity.notes = do (activity = App.activity,{App,$,Backbone} = window) ->
+App.module "Activity.Notes", (Self, App, Backbone, Marionette, $) ->
   _init = (defaults) ->
     console.log "init: notes"
 

@@ -1,40 +1,8 @@
 <script>
-<cfoutput>
-var nAID = #Attributes.ActivityID#;
-</cfoutput>
-$(document).ready(function() {
-	$("#refresh-link").click(function() {
-		$("#stats-container").hide();
-		$("#stats-loading").show();
-		
-		$.ajax({
-			url:'/admin/_com/scripts/statFixer.cfc',
-			type:'post',
-			async:false,
-			dataType:'json',
-			data:{
-				method:'run',
-				returnFormat:'plain',
-				mode:'manual',
-				activityId:nAID
-			},
-			success:function(data) {
-				if(data.STATUS) {
-					addMessage(data.STATUSMSG,250,6000,4000);
-					updateStats();
-				} else {
-					$("#stats-loading").hide();
-					$("#stats-container").show();
-					addError(data.STATUSMSG,250,6000,4000);
-				}
-			}
-		});
-	});
-});
+App.Activity.Stats.start()
 </script>
 
 <cfoutput>
-<span class="RefreshLink" style="position:relative;"><a href="javascript://" id="refresh-link"><img src="#Application.Settings.RootPath#/_images/icons/refresh.png" style="position: absolute; right: -30px; top: 4px;" /></a></span>
 <div id="stats-container">
 	<div class="row-fluid">
 		<table width="100%" class="mtm table table-condensed" cellspacing="0" cellpadding="0" border="0">

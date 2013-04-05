@@ -1,7 +1,7 @@
 ###!
 * ACTIVITY > FINANCES > BUDGET
 ###
-App.activity.finbudget = do (activity = App.activity,{App,$,Backbone} = window) ->
+App.module "Activity.Finances.Budget", (Self, App, Backbone, Marionette, $) ->
   _init = (defaults) ->
     console.log "init: finances > budget"
 

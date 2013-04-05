@@ -72,7 +72,7 @@
     </cfoutput>
     </div>
     <script>
-    App.init();
+    App.Components.Status.start();
     </script>
   </body>
 </html>

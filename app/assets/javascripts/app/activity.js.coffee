@@ -1,23 +1,29 @@
 ###!
 * ACTIVITY
 ###
-App.activity = do ({App,$,Backbone} = window) ->
-  activityContainer = null
-  $profile = null;
-  $projectBar = null;
-  $contentArea = null;
-  $infoBar = null;
-  $infoBarToggler = null;
-  $contentToggleSpan = null;
-  $infoBarToggleSpan = null;
-  $menuBar = null;
-  
-  App.on "activity.init", ->
-    console.log("init: activity")
-  App.on "activity.containers.load",->
-    console.log "containers loaded!"
+App.module "Activity", (Self, App, Backbone, Marionette, $) ->
+  @startWithParent = false
+
+  @on "before:start", ->
+    console.log "starting: Activity"
+
+  @on "start", ->
+    $(document).ready ->
+      _init()
+      console.log "started: #{Self.moduleName}"
+      return
     return
-    
+
+  activityContainer = null
+  $profile = null
+  $projectBar = null
+  $contentArea = null
+  $infoBar = null
+  $infoBarToggler = null
+  $contentToggleSpan = null
+  $infoBarToggleSpan = null
+  $menuBar = null
+
   continueCopy = ->
     sNewActivityTitle = $("#NewActivityTitle").val()
     nNewActivityType = $("#NewActivityType").val()
@@ -93,41 +99,36 @@ App.activity = do ({App,$,Backbone} = window) ->
     $infoBar.addClass('hide')
     $infoBarToggleSpan.removeClass('span6')
     return
-  updateAll = ->
+
+  updateAll = Self.updateAll = ->
     updateStats()
-    
     #updateActions();
     updateContainers()
     updateActivityList()
     return
-  updateStats = ->
+  
+  updateStats = Self.updateStats  = ->
     $.post sMyself + "Activity.Stats",
       ActivityID: nActivity
     , (data) ->
       $("#ActivityStats").html data
     return
 
-  updateActions = ->
-    #$.post(sMyself + "Activity.ActionsShort", { ActivityID: nActivity }, 
-    #    function(data) {
-    #      $("#LatestActions").html(data);
-    #  });
-    return
-  updateContainers = ->
+  updateContainers = Self.updateContainers = ->
     $.post sMyself + "Activity.Container",
       ActivityID: nActivity
     , (data) ->
       $("#Containers").html data
     return
 
-  updateActivityList = ->
+  updateActivityList = Self.updateActivityList = ->
     $.post sMyself + "Activity.ActivityList",
       ActivityID: nActivity
     , (data) ->
       $("#ActivityList").html data
     return
 
-  updateNoteCount = ->
+  updateNoteCount = Self.updateNoteCount = ->
     $.post sRootPath + "/_com/AJAX_Activity.cfc",
       method: "getNoteCount"
       ActivityID: nActivity
@@ -196,10 +197,9 @@ App.activity = do ({App,$,Backbone} = window) ->
       html: 'true'
       trigger: 'hover focus'
       title: (e)->
-        $(this).attr('data-title')
+        $(this).attr('data-tooltip-title')
       container: 'body'
     
-
     $(".action-buttons a.btn, .action-buttons button.btn").tooltip
       placement: 'bottom'
       trigger: 'hover focus'
@@ -410,41 +410,7 @@ App.activity = do ({App,$,Backbone} = window) ->
 
       else
         addError "Please provide a reason.", 250, 6000, 4000
-    
     # END DELETE ACTIVITY 
-    
-    # PROCESS QUEUES DIALOG 
-    $("#ProcessQueueDialog").dialog
-      title: "Process Queues"
-      modal: true
-      autoOpen: false
-      overlay:
-        opacity: 0.5
-        background: "black"
-
-      buttons:
-        Continue: ->
-          frmProcessQueue.addToQueue()
-
-        Cancel: ->
-          $("#ProcessSelect").val ""
-          $(this).dialog "close"
-
-      height: 400
-      width: 560
-      resizable: false
-      open: ->
-        $("#ProcessQueueDialog").show()
-
-    $("#ProcessSelect").change ->
-      $("#frmProcessQueue").attr "src", sMyself + "Process.AddToQueue?ActivityID=" + nActivity + "&ProcessID=" + $(this).val()
-      $("#ProcessQueueDialog").dialog "open"
-
-    $("#ProcessSelect").val ""
-
-    App.trigger('activity.init')
-
     return
-
   pub =
     init: _init

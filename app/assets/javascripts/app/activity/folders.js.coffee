@@ -1,10 +1,20 @@
 ###
 * ACTIVITY > FOLDERS
 ###
-App.activity.folders = do (activity = App.activity,{App,$,Backbone} = window) ->
-  _init = (defaults) ->
-    console.log "init: folders"
+App.module "Activity.Folders", (Self, App, Backbone, Marionette, $) ->
+  @startWithParent = false
+  
+  @on "before:start", ->
+    console.log "loaded: #{Self.moduleName}"
+    return
+  @on "start", (defaults)->
+    $(document).ready ->
+      _init(defaults)
+      console.log "started: #{Self.moduleName}"
+      return
+    return
 
+  _init = (defaults) ->
     $(".js-tokenizer-list").uiTokenizer
       listLocation: "top"
       type: "list"

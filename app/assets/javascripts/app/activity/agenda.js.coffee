@@ -1,7 +1,7 @@
 ###!
 * ACTIVITY > AGENDA
 ###
-App.activity.agenda = do (activity = App.activity,{App,$,Backbone} = window) ->
+App.module "Activity.Agenda", (Self, App, Backbone, Marionette, $) ->
   _init = (defaults) ->
     console.log "init: agenda"
 

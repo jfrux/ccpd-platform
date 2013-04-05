@@ -10,9 +10,28 @@
 
 <cfinclude template="/_com/_UDF/isActivityEditable.cfm" />
 
-<script>
+<cfoutput>
+  <script>
+var sLocation = sMyself + '#Attributes.Fuseaction#';
+var nActivity = #Attributes.ActivityID#;
+var sActivityTitle = "#jsStringFormat(attributes.activityTitle)#";
+var nActivityType = #Attributes.ActivityTypeID#;
+<cfif isDefined("attributes.groupingId") AND Attributes.GroupingID NEQ "">
+  var nGrouping = #Attributes.GroupingID#;
+<cfelse>
+  var nGrouping = 0;
+</cfif>
+var cActNotesPosX = #getToken(Cookie.USER_ActNotesPos,1,",")#;
+var cActNotesPosY = #getToken(Cookie.USER_ActNotesPos,2,",")#;
+var cActNotesOpen = #Cookie.USER_ActNotesOpen#;
+var cActListPosX = #getToken(Cookie.USER_ActListPos,1,",")#;
+var cActListPosY = #getToken(Cookie.USER_ActListPos,2,",")#;
+var cActListOpen = #Cookie.USER_ActListOpen#;
+var cActListHeight = #GetToken(Cookie.USER_ActListSize,2,",")#;
+var cActListWidth = #GetToken(Cookie.USER_ActListSize,1,",")#;
+var cActShowInfobar = $.cookie("USER_ACTSHOWINFOBAR");
 
-
+App.module('Activity').start();
 </script>
 
 <cfset isParent = false />
@@ -125,40 +144,6 @@
               <div id="Containers">
                 
               </div>
-              <cfinclude template="#Application.Settings.RootPath#/Model/Report/act_getIssues.cfm" />
-              <cfif qIssues.RecordCount GT 0>
-              <div id="Issues">
-                <h3>Issues</h3>
-                <table width="100%">
-                <cfloop query="qReasons">
-                  <tr>
-                    <td valign="top"><img src="#Application.Settings.RootPath#/_images/icons/flag_red.png" align="absmiddle" style="padding-right:4px;" /></td>
-                    <td valign="top">#Reason#</td>
-                  </tr>
-                </cfloop>
-                </table>
-              </div>
-              </cfif>
-              
-              <!--- <div id="ProcessQueue">
-                <h3>Process Queue</h3>
-                <p>
-                <cfset qProcesses = Application.Com.ProcessGateway.getByAttributes(DeletedFlag="N",OrderBy="Title")>
-                <select name="ProcessSelect" id="ProcessSelect">
-                  <option value="">-- Select --</option>
-                  <cfloop query="qProcesses">
-                  <option value="#qProcesses.ProcessID#">#qProcesses.Title#</option>
-                  </cfloop>
-                </select>
-                <br />This will place the Activity into a "Task" queue so that managers of this process will be notified and can track the life of the Activity.
-                </p>
-              </div> --->
-             <!---  <div id="GlobalOptions">
-                <h3>Global Options</h3>
-                <cfif ActivityBean.getParentActivityID() EQ "" AND ActivityBean.getSessionType() EQ "M"><cfelse><div style="padding:6px 4px;"><a href="javascript:void(0);" style="text-decoration:none;"><img src="#Application.Settings.RootPath#/_images/icons/book_previous.png" align="absmiddle" style="padding-right:4px;" />Move Activity</a></div></cfif>
-                <div style="padding:6px 4px;"><a href="javascript:void(0);" id="CopyLink" style="text-decoration:none;"><img src="#Application.Settings.RootPath#/_images/icons/page_copy.png" align="absmiddle" style="padding-right:4px;" />Copy Activity</a></div>
-                <div style="padding:6px 4px;"><a href="javascript://" id="DeleteActivityLink" style="text-decoration:none;"><img src="#Application.Settings.RootPath#/_images/icons/book_delete.png" align="absmiddle" style="padding-right:4px;" />Delete Activity</a></div>--->
-             <!---  </div> --->
             </div> 
             
           </div>
@@ -173,28 +158,4 @@
 </div>
 
 </cfoutput>
-<cfoutput>
-  <script>
-var sLocation = sMyself + '#Attributes.Fuseaction#';
-var nActivity = #Attributes.ActivityID#;
-var sActivityTitle = "#jsStringFormat(attributes.activityTitle)#";
-var nActivityType = #Attributes.ActivityTypeID#;
-<cfif isDefined("attributes.groupingId") AND Attributes.GroupingID NEQ "">
-  var nGrouping = #Attributes.GroupingID#;
-<cfelse>
-  var nGrouping = 0;
-</cfif>
-var cActNotesPosX = #getToken(Cookie.USER_ActNotesPos,1,",")#;
-var cActNotesPosY = #getToken(Cookie.USER_ActNotesPos,2,",")#;
-var cActNotesOpen = #Cookie.USER_ActNotesOpen#;
-var cActListPosX = #getToken(Cookie.USER_ActListPos,1,",")#;
-var cActListPosY = #getToken(Cookie.USER_ActListPos,2,",")#;
-var cActListOpen = #Cookie.USER_ActListOpen#;
-var cActListHeight = #GetToken(Cookie.USER_ActListSize,2,",")#;
-var cActListWidth = #GetToken(Cookie.USER_ActListSize,1,",")#;
-var cActShowInfobar = $.cookie("USER_ACTSHOWINFOBAR");
-App.on("init",function() {
-  App.activity.init();
-});
-</script>
 </cfoutput>

@@ -17,9 +17,7 @@
   var TotalAttendeeList = '#TotalAttendeeList#';
   </cfoutput>
   
-  App.on('activity.init',function() {
-    App.activity.participants.init();
-  });
+  App.Activity.Participants.start();
 </script>
 
 <div class="ViewSection">
@@ -29,10 +27,10 @@
 </div>
 <cfoutput>
 <div class="importDialog">
-  <iframe src="#myself#activity.import?activityid=#attributes.activityid#" frameborder="0" style="width: 400px; height: 100px;"></iframe>
+  <iframe src="" frameborder="0" style="width: 400px; height: 100px;"></iframe>
 </div>
 
 <div class="newImportDialog">
-  <iframe src="#Application.Settings.apiUrl#/imports?importable_id=#attributes.activityid#" frameborder="0" style="width: 640px; height: 545px;"></iframe>
+  <iframe src="" frameborder="0" style="width: 640px; height: 545px;"></iframe>
 </div>
 </cfoutput>

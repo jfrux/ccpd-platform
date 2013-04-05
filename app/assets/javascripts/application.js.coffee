@@ -2,7 +2,6 @@
 * CCPD JS-ASSETS
 #=require_self
 
-#=require ./module
 #=require ./base
 #=require app/activity
 #=require app/components/formstate

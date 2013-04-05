@@ -2,7 +2,7 @@
 <div class="ViewSection">
 <script>
 $(document).ready(function() {
-	App.activity.credits.init();
+	App.Activity.Credits.start();
 });
 </script>
 <cfoutput>

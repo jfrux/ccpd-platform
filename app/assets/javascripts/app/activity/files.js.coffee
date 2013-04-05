@@ -1,7 +1,7 @@
 ###
 * ACTIVITY > FILES & DOCS
 ###
-App.activity.files = do (activity = App.activity,{App,$,Backbone} = window) ->
+App.module "Activity.Files", (Self, App, Backbone, Marionette, $) ->
   _init = (defaults) ->
     console.log "init: files & docs"
 

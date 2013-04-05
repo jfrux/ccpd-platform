@@ -57,7 +57,7 @@ $(document).ready(function() {
 });
 
 function addMessage(sStatus,nFadeIn,nFadeTo,nFadeOut) {
-  App.status.addMessage(sStatus,nFadeIn,nFadeTo,nFadeOut);
+  App.Components.Status.addMessage(sStatus,nFadeIn,nFadeTo,nFadeOut);
   // $("##StatusBar").show();
   // StatusCount++;
   // $("##StatusBar").append("<div style=\"display:none;\" class=\"PageMessages\" id=\"StatusBox" + StatusCount + "\">" + sStatus + "</div>");
@@ -66,7 +66,7 @@ function addMessage(sStatus,nFadeIn,nFadeTo,nFadeOut) {
 }
 
 function addError(sStatus,nFadeIn,nFadeTo,nFadeOut) {
-  App.status.addMessage(sStatus,nFadeIn,nFadeTo,nFadeOut);
+  App.Components.Status.addError(sStatus,nFadeIn,nFadeTo,nFadeOut);
   // $("##StatusBar").show();
   // StatusCount++;
   // $("##StatusBar").append("<div style=\"display:none;\" class=\"PageErrors\" id=\"StatusBox" + StatusCount + "\">" + sStatus + "</div>");

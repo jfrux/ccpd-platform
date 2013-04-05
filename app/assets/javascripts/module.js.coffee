@@ -9,7 +9,6 @@
 ) this, (Backbone, {extend}) ->
 
   class Module
-
     @extend: (mixins...) ->
       for mixin in mixins
         for k of mixin when k not in ['included', 'extended']

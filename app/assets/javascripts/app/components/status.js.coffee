@@ -1,18 +1,33 @@
 ###!
 * STATUS MANAGER
 ###
-App.status = do ({App,$,Backbone} = window) ->
-  _init = () ->
-    console.log "init: app_status"
+App.module "Components.Status", (Self, App, Backbone, Marionette, $) ->
+  @startWithParent = false
+  
+  @addInitializer ->
+    $(document).ready ()->
+      _init()
+      return
+    return
+  @on "before:start", ->
+    console.log "loaded: #{@moduleName}"
+    return
+  @on "start", ->
+    console.log "started: #{@moduleName}"
+    return
 
-  _addMessage = (message,fadein,fadeto,fadeout) ->
+  _init = () ->
+    return
+
+  Self.addMessage = (message,fadein,fadeto,fadeout) ->
     console.log "adding status message: '#{message}'"
     $.jGrowl message,
       life: fadeto
       openDuration: fadein
       closeDuration: fadeout
       themeState: 'normal'
-  _addError = (message,fadein,fadeto,fadeout) ->
+    return
+  Self.addError = (message,fadein,fadeto,fadeout) ->
     console.log "adding error message: '#{message}'"
     $.jGrowl message
       header: 'ERROR!'
@@ -20,8 +35,4 @@ App.status = do ({App,$,Backbone} = window) ->
       openDuration: fadein
       closeDuration: fadeout
       themeState: 'error'
-
-  pub =
-    init: _init
-    addMessage: _addMessage
-    addError: _addError
+    return

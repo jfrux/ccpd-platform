@@ -1,6 +1,5 @@
 <cfinclude template="#Application.Settings.RootPath#/View/Includes/SaveJS.cfm" />
 <div class="ViewSection">
-<h3>ACCME Information</h3>
 <script>
 $(document).ready(function() {
 });

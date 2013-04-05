@@ -1,7 +1,7 @@
 ###!
 * ACTIVITY > CREDITS
 ###
-App.activity.credits = do (activity = App.activity,{App,$,Backbone} = window) ->
+App.module "Activity.Credits", (Self, App, Backbone, Marionette, $) ->
   $saveButton = null
   $form = null
   _init = (defaults) ->

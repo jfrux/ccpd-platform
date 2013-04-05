@@ -1,7 +1,20 @@
 ###
 * ACTIVITY > GENERAL INFORMATION
 ###
-App.activity.general = do (activity = App.activity,{App,$,Backbone} = window) ->
+App.module "Activity.GeneralInfo", (Self, App, Backbone, Marionette, $) ->
+  @startWithParent = false
+
+  @on "before:start", ->
+    console.log "starting: #{Self.moduleName}"
+
+  @on "start", ->
+    $(document).ready ()->
+      _init()
+      console.log "started: #{Self.moduleName}"
+  @on "stop", ->
+    FormState.stop()
+
+  FormState = null
   updateStateProvince = (countryId) ->
     #console.log countryId
     if parseInt(countryId) == 230
@@ -33,8 +46,12 @@ App.activity.general = do (activity = App.activity,{App,$,Backbone} = window) ->
       $(".Location").hide()
     updateStateProvince parseInt($("#Country").val())
 
-  _init = ->
-    App.components.formstate.init()
+  _init = () ->
+    $(".linkbar a").one "click",->
+      Self.stop()
+      return true
+    FormState = App.Components.FormState
+    FormState.start(true)
     #console.log "init: generalinfo
     #            \nactivity type: #{nActivityType}
     #            \nsession type: #{sSessionType}
@@ -45,17 +62,6 @@ App.activity.general = do (activity = App.activity,{App,$,Backbone} = window) ->
     $("#Country").change () ->
       updateStateProvince parseInt($(this).val())
       return
-
-    $(".DatePicker").datepicker
-      showOn: "button"
-      buttonImage: "/admin/_images/icons/calendar.png"
-      buttonImageOnly: true
-      showButtonPanel: true
-      changeMonth: true
-      changeYear: true
-      onSelect: ->
-        Unsaved()
-        AddChange $("label[for='" + @id + "']").html(), $(this).val()
 
     # $("#Title").autocomplete sRootPath + "/_com/AJAX_Activity.cfc?method=AutoComplete&returnformat=plain"
     # $("#Sponsor").autocomplete sRootPath + "/_com/AJAX_Activity.cfc?method=JointlyAutoComplete&returnformat=plain"
@@ -80,18 +86,21 @@ App.activity.general = do (activity = App.activity,{App,$,Backbone} = window) ->
     else
       $(".js-sponsorship-D").addClass "active"
       $("#JointlyTextFld").addClass "hide"
+      
     $(".js-sponsorship-toggle").bind "click", (e) ->
       $this = $(this)
       if $this.hasClass("js-sponsorship-J")
-        Unsaved()
-        AddChange $("#SponsorshipJ").attr("name"), "SponsorshipJ"
+        FormState.Unsaved()
+        FormState.AddChange $("#SponsorshipJ").attr("name"), "SponsorshipJ"
         $("#Sponsorship").val "J"
         $("#JointlyTextFld").removeClass "hide"
       else
-        Unsaved()
-        AddChange $("#SponsorshipD").attr("name"), "SponsorshipD"
+        FormState.Unsaved()
+        FormState.AddChange $("#SponsorshipD").attr("name"), "SponsorshipD"
         $("#Sponsorship").val "D"
         $("#JointlyTextFld").addClass "hide"
       e.preventDefault()
+      return
+    return
   pub =
     init: _init

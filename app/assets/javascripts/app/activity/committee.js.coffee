@@ -1,9 +1,11 @@
 ###
 * ACTIVITY > COMMITTEE
 ###
-App.activity.committee = do (activity = App.activity,{App,$,Backbone} = window) ->
+App.module "Activity.Committee", (Self, App, Backbone, Marionette, $) ->
   _init = (defaults) ->
-    console.log "init: committee"
+    $(".linkbar a").one "click",->
+      Self.stop()
+      return true
 
   # OTHER FUNCTIONS GO BELOW HERE
 

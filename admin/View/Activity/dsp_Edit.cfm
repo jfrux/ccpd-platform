@@ -36,10 +36,8 @@ var sSessionType = "#Attributes.SessionType#";
 var nCountryId = #attributes.country#
 </cfoutput>
 
-$(document).ready(function() {
-	console.log("trying to init general form");
-  App.activity.general.init();
-})
+
+App.module("Activity.GeneralInfo").start();
 </script>
 <cfquery name="qModified" datasource="#Application.Settings.DSN#">
 	SELECT     
@@ -108,8 +106,8 @@ $(document).ready(function() {
 				<label class="control-label" for="Sponsorship">Sponsorship</label>
 				<div class="controls">
 					<div data-toggle="buttons-radio" class="btn-group">
-						<button class="btn js-sponsorship-toggle js-sponsorship-D">Directly</button>
-						<button class="btn js-sponsorship-toggle js-sponsorship-J">Jointly</button>
+						<a class="btn js-sponsorship-toggle js-sponsorship-D">Directly</a>
+						<a class="btn js-sponsorship-toggle js-sponsorship-J">Jointly</a>
 					</div>
 					<span class="hide mls" id="JointlyTextFld">
 						<input type="text" value="#Attributes.Sponsor#" id="Sponsor" name="Sponsor">

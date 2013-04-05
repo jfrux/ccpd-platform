@@ -2,7 +2,8 @@
 * FORM STATE MANAGEMENT
 ###
 
-App.components.formstate = do ({App,$,Backbone} = window) ->
+App.module "Components.FormState", (Self, App, Backbone, Marionette, $) ->
+  @startWithParent = false
   $el = null
   $form = null
   $saveButton = null
@@ -15,8 +16,17 @@ App.components.formstate = do ({App,$,Backbone} = window) ->
   $changedFields = null
   $changedValues = null
 
+  @on "before:start", ->
+    console.log "starting: #{Self.moduleName}"
+
+  @on "start", (IsSaved) ->
+    $(document).ready ()->
+      _init(IsSaved)
+      console.log "started: #{Self.moduleName}"
+      return
+    return
+
   _init = (IsSaved) ->
-    console.log "init: formstate component"
     $form = $('#EditForm')
     $el = $('<div class="ViewSectionButtons control-group">
             <div class="controls">
@@ -39,33 +49,47 @@ App.components.formstate = do ({App,$,Backbone} = window) ->
 
     $form.find("input,textarea").keyup ->
       console.log "formstate: input.keyup!"
-      Unsaved()
-      AddChange $("label[for='" + @id + "']").html(), $(this).attr("value")
+      Self.Unsaved()
+      Self.AddChange $("label[for='" + @id + "']").html(), $(this).attr("value")
       return
+    $form.find("button").click ->
+
+      return false
+
+    $form.find(".DatePicker").datepicker
+      showOn: "button"
+      buttonImage: "/admin/_images/icons/calendar.png"
+      buttonImageOnly: true
+      showButtonPanel: true
+      changeMonth: true
+      changeYear: true
+      onSelect: ->
+        Self.Unsaved()
+        Self.AddChange $("label[for='" + @id + "']").html(), $(this).val()
 
     $form.find("select").on "change", ->
       console.log "formstate: select.change!"
       if @id isnt "AuthLevel" and @id isnt "StatusChanger" and @id isnt "CatAdder"
-        Unsaved()
-        AddChange $("label[for='" + @id + "']").html(), $(this).selectedTexts()
+        Self.Unsaved()
+        Self.AddChange $("label[for='" + @id + "']").html(), $(this).selectedTexts()
       return
 
     $form.find("input[type='checkbox']").on "change", ->
       console.log "formstate: checkbox.check!"
-      Unsaved()
-      AddChange $(this).attr("name"), $(this).attr("id")
+      Self.Unsaved()
+      Self.AddChange $(this).attr("name"), $(this).attr("id")
       return
 
     $form.find("input[type='radio']").on "click", ->
       console.log "formstate: radio.click!"
-      Unsaved()
+      Self.Unsaved()
       AddChange $(this).attr("name"), $("label[for='" + @id + "']").html()
       return
 
     $discardButton.click ->
       $saveButton.attr("disabled", true).val "Saved"
       IsSaved = true
-      ClearChanges()
+      Self.ClearChanges()
       $(this).hide()
       return
 
@@ -89,9 +113,10 @@ App.components.formstate = do ({App,$,Backbone} = window) ->
             $discardButton.hide()
             $saveInfo.text "Last saved at " + d.getHours() + ":" + d.getMinutes() + " "
             updatePublishState() if isPublishArea
-            updateAll()
-            ClearChanges()
+            App.Activity.updateAll()
+            Self.ClearChanges()
             IsSaved = true
+            addMessage "Activity Details saved!", 250, 6000, 4000
           return
       false
 
@@ -119,7 +144,7 @@ App.components.formstate = do ({App,$,Backbone} = window) ->
     $("a.button").unbind "click"
     return
 
-  FCKeditor_OnComplete = (editorInstance) ->
+  Self.FCKeditor_OnComplete = (editorInstance) ->
     if document.all
       # IE
       editorInstance.EditorDocument.attachEvent "onkeyup", Unsaved
@@ -127,7 +152,7 @@ App.components.formstate = do ({App,$,Backbone} = window) ->
       # other browser
       editorInstance.EditorDocument.addEventListener "keyup", Unsaved, true
     return
-  Unsaved = ->
+  Self.Unsaved = ->
     console.log "formstate: Unsaved called!"
     console.log "isSaved already? #{IsSaved}"
     if IsSaved
@@ -138,7 +163,7 @@ App.components.formstate = do ({App,$,Backbone} = window) ->
     IsSaved = false
     return
 
-  AddChange = (sField, sValue) ->
+  Self.AddChange = (sField, sValue) ->
     sValue = "%20"  if sValue is ""
     unless $.ListFind(ChangedFields, sField, "|")
       ChangedFields = $.ListAppend(ChangedFields, sField, "|")
@@ -151,7 +176,7 @@ App.components.formstate = do ({App,$,Backbone} = window) ->
     return
 
   # console.log(ChangedFields + ' ' + ChangedValues);
-  ClearChanges = ->
+  Self.ClearChanges = ->
     ChangedFields = ""
     ChangedValues = ""
     $changedFields.val ""

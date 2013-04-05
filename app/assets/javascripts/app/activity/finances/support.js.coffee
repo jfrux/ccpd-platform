@@ -1,7 +1,7 @@
 ###!
 * ACTIVITY > FINANCES > SUPPORT
 ###
-App.activity.finsupport = do (activity = App.activity,{App,$,Backbone} = window) ->
+App.module "Activity.Finances.Support", (Self, App, Backbone, Marionette, $) ->
   _init = (defaults) ->
     console.log "init: finances > support"
 

@@ -1,7 +1,7 @@
 ###!
 * ACTIVITY > CHECKLIST
 ###
-App.activity.checklist = do (activity = App.activity,{App,$,Backbone} = window) ->
+App.module "Activity.Checklist", (Self, App, Backbone, Marionette, $) ->
   _init = (defaults) ->
     console.log "init: checklist"
 

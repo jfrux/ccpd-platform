@@ -1,15 +1,18 @@
 root = this
 
-app = do({$,Backbone} = window) ->
-    _init = ->
-      App.status.init()
-      App.trigger('init')
-      return
-      
-    _.extend({
-      init: _init
-      components:{}
-    },Backbone.Events)
-root.App = root.App || app
-App.on "init", ->
-  console.log("init: application")
+root.App = new Backbone.Marionette.Application();
+
+_init = () ->
+  console.log "test"
+
+App.addInitializer (options)->
+  _init
+
+App.on "start", ->
+  console.log "started: application"
+
+App.addRegions
+  navbar: ".navbar:first"
+  mainContent: "#Content"
+
+App.start()

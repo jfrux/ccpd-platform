@@ -6,9 +6,7 @@ var nId = #Attributes.Page#;
 var dtStatusMask = '#DateFormat(Now(), "MM/DD/YYYY")# #TimeFormat(Now(), "hh:mmTT")#';
 </cfoutput>
 
-$(document).ready(function() {
-  App.activity.participants.bind()
-});
+App.Activity.Participants.bind()
 </script>
 
 <cfoutput>

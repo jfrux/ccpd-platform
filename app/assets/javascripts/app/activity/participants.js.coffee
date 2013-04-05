@@ -1,7 +1,21 @@
 # ###
 # * ACTIVITY > PARTICIPANTS
 # ###
-App.activity.participants = do (activity = App.activity,{App,$,Backbone} = window) ->
+App.module "Activity.Participants", (Self, App, Backbone, Marionette, $) ->
+  @startWithParent = false
+  
+  @on "before:start", ->
+    console.log "loaded: #{Self.moduleName}"
+    return
+  @on "start", (defaults)->
+    $(document).ready ->
+      _init()
+      console.log "started: #{Self.moduleName}"
+      return
+    return
+  @on "stop", () ->
+    console.log "stopped: #{Self.moduleName}"
+
   selectedCount = 0
   selectedAttendees = ""
   selectedMembers = ""
@@ -180,7 +194,7 @@ App.activity.participants = do (activity = App.activity,{App,$,Backbone} = windo
               person: nPerson
               attendee: nAttendee
 
-  _bind_records = () ->
+  Self.bind = () ->
     console.log("binding records")
     # UPDATED SELECTED MEMBER COUNT
     $("#CheckedCount,#label-status-selected").html "" + SelectedCount + ""
@@ -352,6 +366,9 @@ App.activity.participants = do (activity = App.activity,{App,$,Backbone} = windo
   #   return
 
   _init = () ->
+    $(".linkbar a").one "click",->
+      Self.stop()
+      return true
     console.log('init: participants');
 
     #console.log CookieAttendeeStatus
@@ -707,8 +724,5 @@ App.activity.participants = do (activity = App.activity,{App,$,Backbone} = windo
 
     App.trigger("activity.participants.load")
     return
-  pub =
-    init: _init
-    bind: _bind_records
-    selectedMembers:getSelectedMembers
-    selectedAttendees:getSelectedAttendees
+  Self.selectedMembers = getSelectedMembers
+  Self.selectedAttendees = getSelectedAttendees
