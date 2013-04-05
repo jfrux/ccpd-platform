@@ -11,32 +11,7 @@
 <cfinclude template="/_com/_UDF/isActivityEditable.cfm" />
 
 <script>
-<cfoutput>
-var sLocation = sMyself + '#Attributes.Fuseaction#';
-var nActivity = #Attributes.ActivityID#;
-var sActivityTitle = "#jsStringFormat(attributes.activityTitle)#";
-var nActivityType = #Attributes.ActivityTypeID#;
-<cfif isDefined("attributes.groupingId") AND Attributes.GroupingID NEQ "">
-  var nGrouping = #Attributes.GroupingID#;
-<cfelse>
-  var nGrouping = 0;
-</cfif>
-var cActNotesPosX = #getToken(Cookie.USER_ActNotesPos,1,",")#;
-var cActNotesPosY = #getToken(Cookie.USER_ActNotesPos,2,",")#;
-var cActNotesOpen = #Cookie.USER_ActNotesOpen#;
-var cActListPosX = #getToken(Cookie.USER_ActListPos,1,",")#;
-var cActListPosY = #getToken(Cookie.USER_ActListPos,2,",")#;
-var cActListOpen = #Cookie.USER_ActListOpen#;
-var cActListHeight = #GetToken(Cookie.USER_ActListSize,2,",")#;
-var cActListWidth = #GetToken(Cookie.USER_ActListSize,1,",")#;
-var cActShowInfobar = $.cookie("USER_ACTSHOWINFOBAR");
 
-$(document).ready(function() {
-  App.activity.init()
-})
-  
-
-</cfoutput>
 
 </script>
 
@@ -102,14 +77,20 @@ $(document).ready(function() {
         <cfoutput>
         <div class="row-fluid">
           <div class="span18 js-content-toggle">
-               <div class="row-fluid">
-                <div class="content-title">
-                  <h3>#request.tabSettings.tabs[lcase(attributes.fuseaction)].title#</h3>
-                </div>
+            <div class="row-fluid">
+              <div class="content-title">
+                <h3>#request.tabSettings.tabs[lcase(attributes.fuseaction)].title#</h3>
               </div>
+            </div>
             <div class="MultiFormContent content-inner">
-         
-              #Request.MultiFormContent#
+              <cfif structKeyExists(variables,'multiformright')>
+                <div class="toolbar">
+                  #multiformright#
+                </div>
+              </cfif>
+              <cfif structKeyExists(variables,'multiformcontent')>
+                #multiformcontent#
+              </cfif>
             </div>
           </div>
           <div class="span6 js-infobar-outer">
@@ -187,7 +168,33 @@ $(document).ready(function() {
     </div>
   </div>
  
-  <cfinclude template="includes/activity_dialogs.cfm" />
+    <cfinclude template="includes/activity_dialogs.cfm" />
   </cfif>
 </div>
+
+</cfoutput>
+<cfoutput>
+  <script>
+var sLocation = sMyself + '#Attributes.Fuseaction#';
+var nActivity = #Attributes.ActivityID#;
+var sActivityTitle = "#jsStringFormat(attributes.activityTitle)#";
+var nActivityType = #Attributes.ActivityTypeID#;
+<cfif isDefined("attributes.groupingId") AND Attributes.GroupingID NEQ "">
+  var nGrouping = #Attributes.GroupingID#;
+<cfelse>
+  var nGrouping = 0;
+</cfif>
+var cActNotesPosX = #getToken(Cookie.USER_ActNotesPos,1,",")#;
+var cActNotesPosY = #getToken(Cookie.USER_ActNotesPos,2,",")#;
+var cActNotesOpen = #Cookie.USER_ActNotesOpen#;
+var cActListPosX = #getToken(Cookie.USER_ActListPos,1,",")#;
+var cActListPosY = #getToken(Cookie.USER_ActListPos,2,",")#;
+var cActListOpen = #Cookie.USER_ActListOpen#;
+var cActListHeight = #GetToken(Cookie.USER_ActListSize,2,",")#;
+var cActListWidth = #GetToken(Cookie.USER_ActListSize,1,",")#;
+var cActShowInfobar = $.cookie("USER_ACTSHOWINFOBAR");
+App.on("init",function() {
+  App.activity.init();
+});
+</script>
 </cfoutput>

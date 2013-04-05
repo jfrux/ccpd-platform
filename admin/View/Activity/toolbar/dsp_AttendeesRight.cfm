@@ -1,4 +1,5 @@
 <cfoutput>
+  
 <div class="btn-toolbar">
   <div class="btn-group pull-left js-partic-actions">
     <a class="btn btn-mini dropdown-toggle disabled" data-toggle="dropdown" href="##">SELECTED: <span id="label-status-selected" class="js-attendee-status-selected-count">0</span></a>
@@ -45,13 +46,18 @@
     <a title="Add Individual Participant(s)" class="btn btn-mini" id="AttendeeLink" href="javascript:void(0);"><i class="icon-plus"></i></a>
     <a title="Batch Import Participants" class="btn btn-mini batchLink" href="javascript:;"><i class="icon-upload"></i></a>
   </div>
-  <div class="form-inline pull-right">
-    <label>Addl. Partic.
-    <input type="text" name="AddlAttendees" id="AddlAttendees" value="#Attributes.AddlAttendees#" style="width: 50px;" />
-    </label>
-    <label class="hide">Max.
-    <input type="text" name="MaxRegistrants" id="MaxRegistrants" value="#Attributes.MaxRegistrants#" style="width: 50px;" />
-    </label>
+  <div class="btn-group">
+    <a class="btn btn-mini dropdown-toggle" href="##" data-toggle="dropdown"><i class="icon-cog"></i> <strong class="caret"></strong></a>
+    <div class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
+      <form>
+      <label>Addl. Partic.
+      <input type="text" name="AddlAttendees" id="AddlAttendees" value="#Attributes.AddlAttendees#" style="width: 50px;" />
+      </label>
+      <label class="hide">Max.
+      <input type="text" name="MaxRegistrants" id="MaxRegistrants" value="#Attributes.MaxRegistrants#" style="width: 50px;" />
+      </label>
+      </form>
+    </div>
   </div>
 </div>
 </cfoutput>

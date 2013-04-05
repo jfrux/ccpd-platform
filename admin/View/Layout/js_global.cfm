@@ -17,7 +17,6 @@ currPersonId = <cfif isDefined("session.personId") AND len(trim(session.personId
 </cfif>
 
 $(document).ready(function() {
-  App.init();
 
   //  $("##ajax-issue-button").click(function() {
   //    $("##ajax-issue").hide();

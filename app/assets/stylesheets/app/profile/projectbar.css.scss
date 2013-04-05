@@ -54,7 +54,9 @@
             top: 6px;
             width: 7px;
           }
-
+          &:active,&:focus,&:hover {
+            outline: 0;
+          }
           i {
 
           }

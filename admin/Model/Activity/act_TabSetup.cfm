@@ -23,6 +23,7 @@
         "tooltip":"Start Date: #DateFormat(activityBean.getStartDate(),'mm/dd/yyyy')#<br />End Date: #DateFormat(activityBean.getEndDate(),'mm/dd/yyyy')#",
         "icon":"card-address",
         "event":"activity.detail",
+        "hasToolbar":false,
         "subEvents":[]
       },
       "activity.faculty": {
@@ -31,6 +32,7 @@
         "icon":"user-business",
         "tooltip":"",
         "event":"activity.faculty",
+        "hasToolbar":true,
         "subEvents":[]
       },
       "activity.committee": {
@@ -39,6 +41,7 @@
         "icon":"user-female",
         "tooltip":"",
         "event":"activity.committee",
+        "hasToolbar":true,
         "subEvents":[]
       },
       "activity.finances": {
@@ -47,6 +50,7 @@
         "tooltip":"",
         "icon":"money",
         "event":"activity.finances",
+        "hasToolbar":false,
         "subEvents":["activity.finledger","activity.finbudget","activity.finfees","activity.finsupport"]
       },
       "activity.finledger": {
@@ -55,6 +59,7 @@
         "icon":"",
         "tooltip":"",
         "event":"activity.finledger",
+        "hasToolbar":false,
         "subEvents":[]
       },
       "activity.finbudget": {
@@ -63,6 +68,7 @@
         "tooltip":"",
         "icon":"",
         "event":"activity.finbudget",
+        "hasToolbar":false,
         "subEvents":[]
       },
       "activity.finsupport": {
@@ -71,6 +77,7 @@
         "tooltip":"Total Supporters: #ActivityBean.getStatSupporters()#<br />Total Dollars: #LSCurrencyFormat(ActivityBean.getStatSuppAmount())#",
         "icon":"",
         "event":"activity.finsupport",
+        "hasToolbar":false,
         "subEvents":[]
       },
       "activity.finfees": {
@@ -79,6 +86,7 @@
         "icon":"",
         "tooltip":"",
         "event":"activity.finfees",
+        "hasToolbar":false,
         "subEvents":[]
       },
       "activity.credits": {
@@ -87,6 +95,7 @@
         "tooltip":"CME: #activityBean.getStatCMEHours()#",
         "icon":"medal",
         "event":"activity.credits",
+        "hasToolbar":true,
         "subEvents":[]
       },
       "activity.docs": {
@@ -95,6 +104,7 @@
         "tooltip":"",
         "icon":"documents",
         "event":"activity.docs",
+        "hasToolbar":true,
         "subEvents":[]
       },
       "activity.attendees": {
@@ -104,6 +114,7 @@
         "icon":"users",
         "event":"activity.attendees",
         "count":"#activityBean.getStatAttendees()#",
+        "hasToolbar":true,
         "subEvents":[]
       },
       "activity.application": {
@@ -112,6 +123,7 @@
         "tooltip":"",
         "icon":"flag-checker",
         "event":"activity.application",
+        "hasToolbar":true,
         "subEvents":[]
       },
       "activity.agenda": {
@@ -120,6 +132,7 @@
         "tooltip":"",
         "icon":"calendar-blue",
         "event":"activity.agenda",
+        "hasToolbar":true,
         "subEvents":[]
       },
       "activity.pubgeneral": {
@@ -128,6 +141,7 @@
         "tooltip":"",
         "icon":"globe-green",
         "event":"activity.pubgeneral",
+        "hasToolbar":true,
         "subEvents":["activity.pubbuilder","activity.pubcategory","activity.pubspecialty"]
       },
       "activity.pubbuilder": {
@@ -136,6 +150,7 @@
         "tooltip":"",
         "icon":"globe-green",
         "event":"activity.pubbuilder",
+        "hasToolbar":true,
         "subEvents":[]
       },
       "activity.pubcategory": {
@@ -144,6 +159,7 @@
         "tooltip":"",
         "icon":"globe-green",
         "event":"activity.pubcategory",
+        "hasToolbar":true,
         "subEvents":[]
       },
       "activity.pubspecialty": {
@@ -152,6 +168,7 @@
         "tooltip":"",
         "icon":"globe-green",
         "event":"activity.pubspecialty",
+        "hasToolbar":true,
         "subEvents":[]
       },
       "activity.pubsites": {
@@ -160,6 +177,7 @@
         "tooltip":"",
         "icon":"globe-green",
         "event":"activity.pubsites",
+        "hasToolbar":true,
         "subEvents":[]
       },
       "activity.accme": {
@@ -168,6 +186,7 @@
         "tooltip":"",
         "icon":"sealing-wax",
         "event":"activity.accme",
+        "hasToolbar":true,
         "subEvents":[]
       },
       "activity.history": {
@@ -176,6 +195,7 @@
         "tooltip":"",
         "icon":"clock-history",
         "event":"activity.history",
+        "hasToolbar":true,
         "subEvents":[]
       },
       "activity.notes": {
@@ -184,6 +204,7 @@
         "tooltip":"",
         "icon":"sticky-note-pin",
         "event":"activity.notes",
+        "hasToolbar":true,
         "subEvents":[]
       },
       "activity.reports": {
@@ -192,11 +213,25 @@
         "tooltip":"",
         "icon":"chart",
         "event":"activity.reports",
+        "hasToolbar":true,
         "subEvents":[]
       }
     }
   };
-  
+  if (structKeyExists(request.tabSettings.tabs,lcase(attributes.fuseaction))) {
+    request.currentTab = request.tabSettings.tabs[lcase(attributes.fuseaction)];
+  } else {
+    request.currentTab = {
+      "label":"",
+      "title":"",
+      "tooltip":"",
+      "icon":"",
+      "event":"#attributes.fuseaction#",
+      "hasToolbar":false,
+      "subEvents":[]
+    }
+  }
+
   Request.MultiFormQS = "?ActivityID=#Attributes.ActivityID#";
   Request.MultiFormLabels = "General,Faculty,Committee,Finances,Credits,Documents,Registrants,Other,Publish,Reports,History,Notes";
   Request.MultiFormFuseactions = "Activity.Detail,Activity.Faculty,Activity.Committee,Activity.Finances|Activity.FinLedger|Activity.FinBudget|Activity.FinSupport,Activity.Credits,Activity.Docs,Activity.Attendees,Activity.Other|Activity.Application|Activity.Agenda|Activity.CDCInfo|Activity.Meals,Activity.Publish|Activity.PubGeneral|Activity.PubSites|Activity.PubBuilder|Activity.PubCategory|Activity.PubSpecialty,Activity.Reports,Activity.History,Activity.Notes";

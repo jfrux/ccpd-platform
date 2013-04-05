@@ -5,6 +5,7 @@ App.activity.participants = do (activity = App.activity,{App,$,Backbone} = windo
   selectedCount = 0
   selectedAttendees = ""
   selectedMembers = ""
+  addlAttendeesUnsaved = false
   App.on "activity.participants.load",() ->
     console.log "participants_page_loaded"
     App.trigger("activity.participants.ahahload")
@@ -24,6 +25,25 @@ App.activity.participants = do (activity = App.activity,{App,$,Backbone} = windo
     selectedMembers = ""
     selectedCount = 0
     $("#CheckedCount").html "0"
+    return
+
+  setAddlPartic = (nPartic) ->
+    console.log("setting addl participants")
+    $.post sRootPath + "/_com/AJAX_Activity.cfc",
+      method: "updateAddlAttendees"
+      ActivityID: nActivity
+      AddlAttendees: nPartic
+      returnFormat: "plain"
+    , (returnData) ->
+      cleanData = $.trim(returnData)
+      status = $.ListGetAt(cleanData, 1, "|")
+      statusMsg = $.ListGetAt(cleanData, 2, "|")
+      if status is "Success"
+        addMessage statusMsg, 250, 6000, 4000
+        addlAttendeesUnsaved = false
+      else
+        addError statusMsg, 250, 6000, 4000
+      return
     return
 
   updateSelectedCount = (nAmount) ->
@@ -332,14 +352,17 @@ App.activity.participants = do (activity = App.activity,{App,$,Backbone} = windo
   #   return
 
   _init = () ->
-    console.log('init: participants\Selected Count: ' + selectedCount);
+    console.log('init: participants');
 
-    console.log CookieAttendeeStatus
+    #console.log CookieAttendeeStatus
     if parseInt(CookieAttendeeStatus) > 0
       statusText = $("#attendees-" + CookieAttendeeStatus).text()
-      console.log statusText
+      #console.log statusText
       $(".js-attendee-filter-button").find("span:first").text statusText
-    # CHANGE ATTENDEE STATAUS START 
+    # CHANGE ATTENDEE STATAUS START
+    $('.toolbar .dropdown-menu').find('form').click (e)->
+      e.stopPropagation()
+      return
     setCheckedStatuses = (nStatus) ->
       $.blockUI message: "<h1>Updating information...</h1>"
       result = ""
@@ -372,6 +395,7 @@ App.activity.participants = do (activity = App.activity,{App,$,Backbone} = windo
           else
             addError statusMsg, 250, 6000, 4000
             $.unblockUI()
+      return
 
     if parseInt(CookieAttendeePageActivity) is parseInt(nActivity)
       if parseInt(CookieAttendeeStatusActivity) is parseInt(nActivity)
@@ -380,9 +404,13 @@ App.activity.participants = do (activity = App.activity,{App,$,Backbone} = windo
         updateRegistrants parseInt(CookieAttendeePage), parseInt(nStatus)
     else
       updateRegistrants nId, nStatus
-    MaxRegistrants = $("#MaxRegistrants").val()
-    AddlAttendees = $("#AddlAttendees").val()
-    NoChange = 0
+    # MaxRegistrants = $("#MaxRegistrants").val()
+    # AddlAttendees = $("#AddlAttendees").val()
+    # NoChange = 0
+    
+    ###
+    PAGINATION BINDING
+    ###
     $("a.page,a.first,a.last,a.next,a.previous").live "click", ->
       nPageNo = $.Mid(@href, $.Find("page=", @href) + 5, $.Len(@href) - $.Find("page=", @href) + 4)
       $.post sRootPath + "/_com/UserSettings.cfc",
@@ -393,6 +421,9 @@ App.activity.participants = do (activity = App.activity,{App,$,Backbone} = windo
       updateRegistrants nPageNo, nStatus
       false
 
+    ###
+    ATTENDEE STATUS FILTER BINDING
+    ###
     $(".attendees-filter li").live "click", ->
       $this = $(this)
       $this.parents(".btn-group").find(".btn span:first").text $this.text()
@@ -409,55 +440,25 @@ App.activity.participants = do (activity = App.activity,{App,$,Backbone} = windo
 
     $("#btnStatusSubmit").bind "click", ->
       setCheckedStatuses $("#StatusID").val()
-
+      return
     
-    # CHANGE ATTENDEE STATAUS END 
-    
-    # REGISTRANTS AND ATTENDEE TEXTBOX START 
-    $("#MaxRegistrants,#AddlAttendees").bind "blur", ->
-      unless MaxRegistrants is $("#MaxRegistrants").val() # CHECK IF THE VALUE OF MAXREGISTRANTS CHANGED
-        $.post sRootPath + "/_com/AJAX_Activity.cfc",
-          method: "updateMaxRegistrants"
-          ActivityID: nActivity
-          MaxRegistrants: $("#MaxRegistrants").val()
-          returnFormat: "plain"
-        , (returnData) ->
-          cleanData = $.trim(returnData)
-          status = $.ListGetAt(cleanData, 1, "|")
-          statusMsg = $.ListGetAt(cleanData, 2, "|")
-          if status is "Success"
-            addMessage statusMsg, 250, 6000, 4000
-          else
-            addError statusMsg, 250, 6000, 4000
+    # ADDITIONAL SETTINGS
+    $("#AddlAttendees").keyup ->
+      console.log "attempting to set addl registrants"
+      $this = $(this)
+      addlAttendeesUnsaved = true
+      delay (->
+        if addlAttendeesUnsaved
+          console.log "waited 2500ms now setting addl registrants"
+          setAddlPartic($this.val())
+      ), 2500
+      return
 
-        MaxRegistrants = $("#MaxRegistrants").val() # UPDATE MAXREGISTRANTS VALUE
-      else
-        NoChange = NoChange + 1
-      unless AddlAttendees is $("#AddlAttendees").val() # CHECK IF THE VALUE OF ADDLATTENDEES CHANGED
-        $.post sRootPath + "/_com/AJAX_Activity.cfc",
-          method: "updateAddlAttendees"
-          ActivityID: nActivity
-          AddlAttendees: $("#AddlAttendees").val()
-          returnFormat: "plain"
-        , (returnData) ->
-          cleanData = $.trim(returnData)
-          status = $.ListGetAt(cleanData, 1, "|")
-          statusMsg = $.ListGetAt(cleanData, 2, "|")
-          if status is "Success"
-            addMessage statusMsg, 250, 6000, 4000
-          else
-            addError statusMsg, 250, 6000, 4000
-
-        AddlAttendees = $("#AddlAttendees").val() # UPDATE ADDLATTENDEES VALUE
-      else
-        NoChange = NoChange + 1
-      if NoChange is 2
-        addError "Please adjust the value you want to update and try again.", 250, 6000, 4000
-        NoChange = 0
-      else NoChange = 0  if NoChange > 0
-
-    
-    # REGISTRANTS AND ATTENDEE TEXTBOX START 
+    $("#AddlAttendees").bind "blur",->
+      $this = $(this)
+      if addlAttendeesUnsaved
+        setAddlPartic($this.val())
+      return
     
     # REMOVE ONLY CHECKED 
     $("#RemoveChecked").bind "click", ->

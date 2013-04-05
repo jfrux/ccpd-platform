@@ -51,8 +51,7 @@
 
 <cffunction name="isPjax">
 	<cfset headers = GetHttpRequestData().headers>
-	<cfif structKeyExists( headers, "X-PJAX" )>
-		<cfabort />
+	<cfif structKeyExists(headers, "X-PJAX")>
 		<cfreturn true />
 	<cfelse>
 		<cfreturn false />

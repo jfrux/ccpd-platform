@@ -40,7 +40,6 @@ $(document).ready(function() {
 <style>
 #pifForm { overflow:auto; height:356px; }
 </style>
-
 <cfif isDefined("qAttendees") AND qAttendees.RecordCount GT 0>
 	<cfif AttendeePager.getTotalNumberOfPages() GT 1><div style="row-fluid"><cfoutput>#AttendeePager.getRenderedHTML()#</cfoutput></div></cfif>
     <div class="row-fluid">

@@ -9,7 +9,6 @@ App.status = do ({App,$,Backbone} = window) ->
     console.log "adding status message: '#{message}'"
     $.jGrowl message,
       life: fadeto
-      sticky:true
       openDuration: fadein
       closeDuration: fadeout
       themeState: 'normal'

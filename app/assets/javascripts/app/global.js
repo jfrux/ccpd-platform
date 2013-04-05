@@ -10,6 +10,15 @@ $(function(){
         }
     });
 });
+
+var delay = (function(){
+  var timer = 0;
+  return function(callback, ms){
+    clearTimeout (timer);
+    timer = setTimeout(callback, ms);
+  };
+})();
+
 function getCookie(c_name)
 {
 var i,x,y,ARRcookies=document.cookie.split(";");

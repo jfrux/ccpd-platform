@@ -11,7 +11,9 @@ App.activity = do ({App,$,Backbone} = window) ->
   $contentToggleSpan = null;
   $infoBarToggleSpan = null;
   $menuBar = null;
-
+  
+  App.on "activity.init", ->
+    console.log("init: activity")
   App.on "activity.containers.load",->
     console.log "containers loaded!"
     return
@@ -147,6 +149,24 @@ App.activity = do ({App,$,Backbone} = window) ->
     $infoBarToggleSpan = $(".js-infobar-outer")
 
     $(document).pjax('.js-profile-menu > div > div > ul a', '.content-inner')
+    $(document).on 'pjax:send', ->
+      #console.log arguments
+
+    $(document).on 'pjax:complete',(xhr, options, textStatus) ->
+      console.log xhr
+      # console.log textStatus
+      # console.log options
+      $clickedLink = $(xhr.relatedTarget)
+      $pageTitle = $clickedLink.attr('data-pjax-title')
+      console.log($clickedLink)
+      $contentArea = $(xhr.target)
+      $contentTitle = $contentArea.parents('.js-profile-content').find('.content-title > h3')
+      $contentTitle.text($pageTitle)
+
+      $parent = $clickedLink.parent()
+      $parent.siblings().removeClass('active')
+      $parent.addClass('active')
+
 
     $infoBarToggler.on "click.button.data-api",(e) ->
       #console.log(e);
@@ -155,7 +175,6 @@ App.activity = do ({App,$,Backbone} = window) ->
         showInfobar()
       else
         hideInfobar()
-    console.log("init: activity")
     #updateActions();
     updateContainers()
     updateStats()
@@ -176,6 +195,8 @@ App.activity = do ({App,$,Backbone} = window) ->
       placement: 'right'
       html: 'true'
       trigger: 'hover focus'
+      title: (e)->
+        $(this).attr('data-title')
       container: 'body'
     
 
@@ -420,6 +441,8 @@ App.activity = do ({App,$,Backbone} = window) ->
       $("#ProcessQueueDialog").dialog "open"
 
     $("#ProcessSelect").val ""
+
+    App.trigger('activity.init')
 
     return
 
