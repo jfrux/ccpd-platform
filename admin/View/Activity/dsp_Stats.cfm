@@ -1,5 +1,5 @@
 <script>
-App.Activity.Stats.start()
+//App.Activity.Stats.start()
 </script>
 
 <cfoutput>

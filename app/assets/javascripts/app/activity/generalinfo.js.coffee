@@ -4,17 +4,21 @@
 App.module "Activity.GeneralInfo", (Self, App, Backbone, Marionette, $) ->
   @startWithParent = false
 
+  FormState = null
+
   @on "before:start", ->
     console.log "starting: #{Self.moduleName}"
-
+    return
   @on "start", ->
-    $(document).ready ()->
+    $(document).ready ->
       _init()
       console.log "started: #{Self.moduleName}"
+    return
   @on "stop", ->
+    console.log "stopped: #{Self.moduleName}"
     FormState.stop()
+    return
 
-  FormState = null
   updateStateProvince = (countryId) ->
     #console.log countryId
     if parseInt(countryId) == 230
@@ -102,5 +106,3 @@ App.module "Activity.GeneralInfo", (Self, App, Backbone, Marionette, $) ->
       e.preventDefault()
       return
     return
-  pub =
-    init: _init

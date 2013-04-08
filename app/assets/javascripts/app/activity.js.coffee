@@ -3,16 +3,27 @@
 ###
 App.module "Activity", (Self, App, Backbone, Marionette, $) ->
   @startWithParent = false
-
+  
   @on "before:start", ->
-    console.log "starting: Activity"
-
-  @on "start", ->
-    $(document).ready ->
-      _init()
-      console.log "started: #{Self.moduleName}"
-      return
+    console.log "starting: #{Self.moduleName}"
     return
+  @on "start", (options) ->
+    $(document).ready ->
+      _init(options)
+      console.log "started: #{Self.moduleName}"
+    return
+  @on "stop", ->
+    console.log "stopped: #{Self.moduleName}"
+    return
+  
+  @on "linkbar.click", (link) ->
+    console.log "clicked: #{link.attr('data-pjax-title')}"
+    excludedModules = "Folders,Stats".split(',')
+
+    $.each Self.submodules, (i,module) ->
+      if excludedModules.indexOf(i) == -1
+        module.stop()
+      return
 
   activityContainer = null
   $profile = null
@@ -23,123 +34,11 @@ App.module "Activity", (Self, App, Backbone, Marionette, $) ->
   $contentToggleSpan = null
   $infoBarToggleSpan = null
   $menuBar = null
+  defaultFolders = null
 
-  continueCopy = ->
-    sNewActivityTitle = $("#NewActivityTitle").val()
-    nNewActivityType = $("#NewActivityType").val()
-    nNewGrouping = $("#NewGrouping").val()
-    nCopyChoice = $(".CopyChoice:checked").val()
-    nError = 0
-    if nNewActivityType is "" and nCopyChoice is 1
-      addError "Please select an activity type.", 250, 6000, 4000
-      nError = nError + 1
-    if sNewActivityTitle is ""
-      addError "Please enter an activity title.", 250, 6000, 4000
-      nError = nError + 1
-    return false  if nError > 0
-    nNewGrouping = 0  if nNewGrouping is ""
-    $.getJSON sRootPath + "/_com/AJAX_Activity.cfc",
-      method: "CopyPaste"
-      Mode: nCopyChoice
-      NewActivityTitle: sNewActivityTitle
-      NewActivityTypeID: nNewActivityType
-      NewGroupingID: nNewGrouping
-      ActivityID: nActivity
-      ReturnFormat: "plain"
-    , (data) ->
-      if data.STATUS
-        window.location = sMyself + "Activity.Detail?ActivityID=" + data.DATASET[0].activityid + "&Message=" + data.STATUSMSG
-      else
-        addError data.STATUSMSG, 250, 6000, 4000
-    return
+  _init = (settings) ->
+    Self.data = settings
 
-  cancelCopy = ->
-    return
-
-  setCurrActivityType = (nID) ->
-    $("#NewActivityType").val nID
-    getGroupingList nID
-    return
-  getGroupingList = (nID) ->
-    $("#NewGrouping").removeOption ""
-    $("#NewGrouping").removeOption /./
-    $("#NewGrouping").ajaxAddOption sRootPath + "/_com/AJAX_Activity.cfc",
-      method: "getGroupings"
-      ATID: nID
-      returnFormat: "plain"
-    , false, (data) ->
-      unless $("#NewGrouping").val() is ""
-        $("#NewGrouping").val nGrouping
-        $("#NewGroupingSelect").show()
-      else
-        $("#NewGrouping").val 0
-        $("#NewGroupingSelect").hide()
-    return
-
-  showInfobar = ->
-    $spanDiv = $infoBar.parent()
-    $.cookie 'USER_ACTSHOWINFOBAR', 'true',
-      path: '/'
-    $infoBarToggler.find('i').attr('class','fg-application-sidebar-expand')
-    $infoBarToggler.addClass('active')
-    $infoBar.removeClass('hide')
-    $profile.removeClass('infobar-inactive').addClass('infobar-active')
-    $contentToggleSpan.removeClass('span24').addClass('span18')
-    $infoBarToggleSpan.addClass('span6')
-    return
-
-  hideInfobar = ->    
-    $infoBarToggler.removeClass('active')
-    $.cookie 'USER_ACTSHOWINFOBAR', 'false',
-      path: '/'
-    $spanDiv = $infoBar.parent()    
-    $infoBarToggler.find('i').attr('class','fg-application-sidebar-collapse')
-    $profile.removeClass('infobar-active').addClass('infobar-inactive')
-    $contentToggleSpan.removeClass('span18').addClass('span24')
-    $infoBar.addClass('hide')
-    $infoBarToggleSpan.removeClass('span6')
-    return
-
-  updateAll = Self.updateAll = ->
-    updateStats()
-    #updateActions();
-    updateContainers()
-    updateActivityList()
-    return
-  
-  updateStats = Self.updateStats  = ->
-    $.post sMyself + "Activity.Stats",
-      ActivityID: nActivity
-    , (data) ->
-      $("#ActivityStats").html data
-    return
-
-  updateContainers = Self.updateContainers = ->
-    $.post sMyself + "Activity.Container",
-      ActivityID: nActivity
-    , (data) ->
-      $("#Containers").html data
-    return
-
-  updateActivityList = Self.updateActivityList = ->
-    $.post sMyself + "Activity.ActivityList",
-      ActivityID: nActivity
-    , (data) ->
-      $("#ActivityList").html data
-    return
-
-  updateNoteCount = Self.updateNoteCount = ->
-    $.post sRootPath + "/_com/AJAX_Activity.cfc",
-      method: "getNoteCount"
-      ActivityID: nActivity
-      returnFormat: "plain"
-    , (data) ->
-      nNoteCount = $.ListGetAt($.Trim(data), 1, ".")
-      $("#NoteCount").html "(" + nNoteCount + ")"
-    return
-
-
-  _init = ->
     $profile = $(".profile")
     $infoBar = $(".js-infobar")
     $projectBar = $(".js-projectbar")
@@ -148,18 +47,21 @@ App.module "Activity", (Self, App, Backbone, Marionette, $) ->
     $infoBarToggler = $(".js-toggle-infobar")
     $contentToggleSpan = $(".js-content-toggle")
     $infoBarToggleSpan = $(".js-infobar-outer")
+    $menuLinks = $menuBar.find('a')
+
+    #Self.Folders.start(settings.folders)
 
     $(document).pjax('.js-profile-menu > div > div > ul a', '.content-inner')
     $(document).on 'pjax:send', ->
       #console.log arguments
 
     $(document).on 'pjax:complete',(xhr, options, textStatus) ->
-      console.log xhr
+      #console.log xhr
       # console.log textStatus
       # console.log options
       $clickedLink = $(xhr.relatedTarget)
       $pageTitle = $clickedLink.attr('data-pjax-title')
-      console.log($clickedLink)
+      #console.log($clickedLink)
       $contentArea = $(xhr.target)
       $contentTitle = $contentArea.parents('.js-profile-content').find('.content-title > h3')
       $contentTitle.text($pageTitle)
@@ -167,19 +69,21 @@ App.module "Activity", (Self, App, Backbone, Marionette, $) ->
       $parent = $clickedLink.parent()
       $parent.siblings().removeClass('active')
       $parent.addClass('active')
+      return
 
 
-    $infoBarToggler.on "click.button.data-api",(e) ->
+    $infoBarToggler.on "click",(e) ->
       #console.log(e);
-      $btn = $(e.target);
+      $btn = $(this)
       if $btn.hasClass('active')
-        showInfobar()
-      else
         hideInfobar()
+      else
+        showInfobar()
+      return
     #updateActions();
-    updateContainers()
-    updateStats()
-    updateNoteCount()
+    # updateContainers()
+    # updateStats()
+    #updateNoteCount()
 
     if cActShowInfobar
       showInfobar()
@@ -191,8 +95,12 @@ App.module "Activity", (Self, App, Backbone, Marionette, $) ->
       trigger:'hover focus'
       container: 'body'
     
+    $menuLinks.on "click", ->
+      $link = $(this)
 
-    $(".linkbar a").tooltip
+      Self.trigger('linkbar.click',$link)
+      return
+    $menuLinks.tooltip
       placement: 'right'
       html: 'true'
       trigger: 'hover focus'
@@ -412,5 +320,109 @@ App.module "Activity", (Self, App, Backbone, Marionette, $) ->
         addError "Please provide a reason.", 250, 6000, 4000
     # END DELETE ACTIVITY 
     return
-  pub =
-    init: _init
+
+  continueCopy = ->
+    sNewActivityTitle = $("#NewActivityTitle").val()
+    nNewActivityType = $("#NewActivityType").val()
+    nNewGrouping = $("#NewGrouping").val()
+    nCopyChoice = $(".CopyChoice:checked").val()
+    nError = 0
+    if nNewActivityType is "" and nCopyChoice is 1
+      addError "Please select an activity type.", 250, 6000, 4000
+      nError = nError + 1
+    if sNewActivityTitle is ""
+      addError "Please enter an activity title.", 250, 6000, 4000
+      nError = nError + 1
+    return false  if nError > 0
+    nNewGrouping = 0  if nNewGrouping is ""
+    $.getJSON sRootPath + "/_com/AJAX_Activity.cfc",
+      method: "CopyPaste"
+      Mode: nCopyChoice
+      NewActivityTitle: sNewActivityTitle
+      NewActivityTypeID: nNewActivityType
+      NewGroupingID: nNewGrouping
+      ActivityID: nActivity
+      ReturnFormat: "plain"
+    , (data) ->
+      if data.STATUS
+        window.location = sMyself + "Activity.Detail?ActivityID=" + data.DATASET[0].activityid + "&Message=" + data.STATUSMSG
+      else
+        addError data.STATUSMSG, 250, 6000, 4000
+    return
+
+  cancelCopy = ->
+    return
+
+  setCurrActivityType = (nID) ->
+    $("#NewActivityType").val nID
+    getGroupingList nID
+    return
+  getGroupingList = (nID) ->
+    $("#NewGrouping").removeOption ""
+    $("#NewGrouping").removeOption /./
+    $("#NewGrouping").ajaxAddOption sRootPath + "/_com/AJAX_Activity.cfc",
+      method: "getGroupings"
+      ATID: nID
+      returnFormat: "plain"
+    , false, (data) ->
+      unless $("#NewGrouping").val() is ""
+        $("#NewGrouping").val nGrouping
+        $("#NewGroupingSelect").show()
+      else
+        $("#NewGrouping").val 0
+        $("#NewGroupingSelect").hide()
+    return
+
+  showInfobar = ->
+    $spanDiv = $infoBar.parent()
+    $.cookie 'USER_ACTSHOWINFOBAR', 'true',
+      path: '/'
+    $infoBarToggler.find('i').attr('class','fg-application-sidebar-expand')
+    $infoBarToggler.addClass('active')
+    $infoBar.removeClass('hide')
+    $profile.removeClass('infobar-inactive').addClass('infobar-active')
+    $contentToggleSpan.removeClass('span24').addClass('span18')
+    $infoBarToggleSpan.addClass('span6')
+    return
+
+  hideInfobar = ->    
+    $infoBarToggler.removeClass('active')
+    $.cookie 'USER_ACTSHOWINFOBAR', 'false',
+      path: '/'
+    $spanDiv = $infoBar.parent()    
+    $infoBarToggler.find('i').attr('class','fg-application-sidebar-collapse')
+    $profile.removeClass('infobar-active').addClass('infobar-inactive')
+    $contentToggleSpan.removeClass('span18').addClass('span24')
+    $infoBar.addClass('hide')
+    $infoBarToggleSpan.removeClass('span6')
+    return
+
+  updateAll = Self.updateAll = ->
+    Self.Stats.refresh ->
+    #updateActions();
+    Self.Folders.refresh ->
+      
+    updateActivityList()
+    return
+
+  updateActivityList = Self.updateActivityList = ->
+    $.post sMyself + "Activity.ActivityList",
+      ActivityID: nActivity
+    , (data) ->
+      $("#ActivityList").html data
+    return
+
+  updateNoteCount = Self.updateNoteCount = ->
+    $.post sRootPath + "/_com/AJAX_Activity.cfc",
+      method: "getNoteCount"
+      ActivityID: nActivity
+      returnFormat: "plain"
+    , (data) ->
+      nNoteCount = $.ListGetAt($.Trim(data), 1, ".")
+      $("#NoteCount").html "(" + nNoteCount + ")"
+    return
+
+
+  
+
+  return

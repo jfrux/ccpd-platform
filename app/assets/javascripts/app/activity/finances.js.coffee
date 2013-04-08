@@ -1,7 +1,7 @@
 ###
-* ACTIVITY > FILES & DOCS
+* ACTIVITY > FINANCES
 ###
-App.module "Activity.Files", (Self, App, Backbone, Marionette, $) ->
+App.module "Activity.Finances", (Self, App, Backbone, Marionette, $) ->
   @startWithParent = false
   
   @on "before:start", ->
@@ -15,5 +15,6 @@ App.module "Activity.Files", (Self, App, Backbone, Marionette, $) ->
   @on "stop", ->
     console.log "stopped: #{Self.moduleName}"
     return
-  _init = (defaults) ->
-    #console.log "init: files & docs"
+  
+  _init =  (defaults) ->
+    return

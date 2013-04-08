@@ -112,8 +112,8 @@ App.module "Components.FormState", (Self, App, Backbone, Marionette, $) ->
             $saveButton.val("Saved").attr "disabled", true
             $discardButton.hide()
             $saveInfo.text "Last saved at " + d.getHours() + ":" + d.getMinutes() + " "
-            updatePublishState() if isPublishArea
-            App.Activity.updateAll()
+            #updatePublishState() if isPublishArea
+            #App.Activity.updateAll()
             Self.ClearChanges()
             IsSaved = true
             addMessage "Activity Details saved!", 250, 6000, 4000

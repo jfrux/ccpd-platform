@@ -9,7 +9,23 @@
 <cfparam name="Request.MultiFormEditLink" default="">
 
 <cfinclude template="/_com/_UDF/isActivityEditable.cfm" />
+<cfset qActCats = Application.Com.ActivityCategoryGateway.getByViewAttributes(ActivityID=Attributes.ActivityID,DeletedFlag='N')>
+<cfset qCats = Application.Com.CategoryGateway.getByAttributes(OrderBy="Name")>
+<cfset qPersonalCats = Application.Com.CategoryGateway.getByCookie(TheList=Cookie.USER_Containers,OrderBy="Name")>
+<cfset defaultValues = [] />
+<cfloop query="qActCats">
+  <cfset cat = {
+    name: qActCats.Name,
+    label: qActCats.Name,
+    value:qActCats.categoryid
+  } />
 
+  <cfset defaultValues.add(cat) />
+</cfloop>
+<script>
+var defaultFolders = <cfoutput>#serializeJson(defaultValues)#</cfoutput>;
+//App.module("Activity.Folders").start(defaultValues);
+</script>
 <cfoutput>
   <script>
 var sLocation = sMyself + '#Attributes.Fuseaction#';
@@ -31,7 +47,10 @@ var cActListHeight = #GetToken(Cookie.USER_ActListSize,2,",")#;
 var cActListWidth = #GetToken(Cookie.USER_ActListSize,1,",")#;
 var cActShowInfobar = $.cookie("USER_ACTSHOWINFOBAR");
 
-App.module('Activity').start();
+App.module('Activity').start({
+  'id':nActivity,
+  'folders':defaultFolders
+});
 </script>
 
 <cfset isParent = false />
@@ -84,7 +103,7 @@ App.module('Activity').start();
                 <a href="javascript:void(0);" class="btn" title="Delete Activity" id="DeleteActivityLink"><i class="icon-trash"></i></a>
               </div>
               <div class="btn-group">
-                <button type="button" class="btn js-toggle-infobar" autocomplete="off" title="Toggle Infobar" data-toggle="button" ><i class="icon-info"></i></button></a>
+                <a class="btn js-toggle-infobar" title="Toggle Infobar"><i class="icon-info"></i></button></a>
               </div>
             </div>
           </div>

@@ -3,13 +3,13 @@ root = this
 root.App = new Backbone.Marionette.Application();
 
 _init = () ->
-  console.log "test"
+  #console.log "test"
 
 App.addInitializer (options)->
-  _init
+  _init()
 
 App.on "start", ->
-  console.log "started: application"
+  console.log "started: Application"
 
 App.addRegions
   navbar: ".navbar:first"

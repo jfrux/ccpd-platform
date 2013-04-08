@@ -307,10 +307,12 @@
             $token.addClass "uiListToken"
             if token.label.length > settings.tokenMaxChar - 3
               tokenShort = token.label.substr(0, settings.tokenMaxChar - 3) + "..."
+              console.log tokenShort
               $token.tooltip
                 placement: "top"
                 trigger: "hover focus"
                 container: "body"
+              $token.tooltip('show')
             else
               tokenShort = token.label
 

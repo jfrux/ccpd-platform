@@ -5,16 +5,16 @@ App.module "Activity.Participants", (Self, App, Backbone, Marionette, $) ->
   @startWithParent = false
   
   @on "before:start", ->
-    console.log "loaded: #{Self.moduleName}"
+    console.log "starting: #{Self.moduleName}"
     return
-  @on "start", (defaults)->
+  @on "start", ->
     $(document).ready ->
       _init()
       console.log "started: #{Self.moduleName}"
-      return
     return
-  @on "stop", () ->
+  @on "stop", ->
     console.log "stopped: #{Self.moduleName}"
+    return
 
   selectedCount = 0
   selectedAttendees = ""

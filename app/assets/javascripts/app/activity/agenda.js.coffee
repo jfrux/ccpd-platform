@@ -2,10 +2,19 @@
 * ACTIVITY > AGENDA
 ###
 App.module "Activity.Agenda", (Self, App, Backbone, Marionette, $) ->
+  @startWithParent = false
+  
+  @on "before:start", ->
+    console.log "starting: #{Self.moduleName}"
+    return
+  @on "start", ->
+    $(document).ready ->
+      _init()
+      console.log "started: #{Self.moduleName}"
+    return
+  @on "stop", ->
+    console.log "stopped: #{Self.moduleName}"
+    return
+
   _init = (defaults) ->
-    console.log "init: agenda"
-
-  # OTHER FUNCTIONS GO BELOW HERE
-
-  pub =
-    init: _init
+    #console.log "init: agenda"

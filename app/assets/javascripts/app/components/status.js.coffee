@@ -3,17 +3,17 @@
 ###
 App.module "Components.Status", (Self, App, Backbone, Marionette, $) ->
   @startWithParent = false
-  
-  @addInitializer ->
-    $(document).ready ()->
-      _init()
-      return
-    return
+
   @on "before:start", ->
-    console.log "loaded: #{@moduleName}"
+    console.log "starting: #{Self.moduleName}"
     return
   @on "start", ->
-    console.log "started: #{@moduleName}"
+    $(document).ready ->
+      _init()
+      console.log "started: #{Self.moduleName}"
+    return
+  @on "stop", ->
+    console.log "stopped: #{Self.moduleName}"
     return
 
   _init = () ->
