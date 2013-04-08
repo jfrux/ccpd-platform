@@ -7,26 +7,26 @@ App.module "Activity.GeneralInfo", (Self, App, Backbone, Marionette, $) ->
   FormState = null
 
   @on "before:start", ->
-    console.log "starting: #{Self.moduleName}"
+    App.logInfo "starting: #{Self.moduleName}"
     return
   @on "start", ->
     $(document).ready ->
       _init()
-      console.log "started: #{Self.moduleName}"
+      App.logInfo "started: #{Self.moduleName}"
     return
   @on "stop", ->
-    console.log "stopped: #{Self.moduleName}"
+    App.logInfo "stopped: #{Self.moduleName}"
     FormState.stop()
     return
 
   updateStateProvince = (countryId) ->
-    #console.log countryId
+    #App.logInfo countryId
     if parseInt(countryId) == 230
-      #console.log("is united states")
+      #App.logInfo("is united states")
       $(".stateField").show()
       $(".provinceField").hide()
     else
-      #console.log("is not united states")
+      #App.logInfo("is not united states")
       $(".stateField").hide().css display: "none"
       $(".provinceField").show()
   setSessionType = (sSessionType) ->
@@ -56,7 +56,7 @@ App.module "Activity.GeneralInfo", (Self, App, Backbone, Marionette, $) ->
       return true
     FormState = App.Components.FormState
     FormState.start(true)
-    #console.log "init: generalinfo
+    #App.logInfo "init: generalinfo
     #            \nactivity type: #{nActivityType}
     #            \nsession type: #{sSessionType}
     #            \ncountry: #{nCountryId}"

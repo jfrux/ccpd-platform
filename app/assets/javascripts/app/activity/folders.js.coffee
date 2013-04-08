@@ -7,15 +7,15 @@ App.module "Activity.Folders", (Self, App, Backbone, Marionette, $) ->
   $containersBox = null
 
   @on "before:start", ->
-    console.log "starting: #{Self.moduleName}"
+    App.logInfo "starting: #{Self.moduleName}"
     return
   @on "start", (defaultFolders) ->
     $(document).ready ->
       _init(defaultFolders)
-      console.log "started: #{Self.moduleName}"
+      App.logInfo "started: #{Self.moduleName}"
     return
   @on "stop", ->
-    console.log "stopped: #{Self.moduleName}"
+    App.logInfo "stopped: #{Self.moduleName}"
     return
 
   refresh = Self.refresh = (callback) ->
@@ -91,8 +91,8 @@ App.module "Activity.Folders", (Self, App, Backbone, Marionette, $) ->
     return
 
   removeCat = (oCategory) ->
-    # console.log "removing category:"
-    # console.log oCategory
+    # App.logInfo "removing category:"
+    # App.logInfo oCategory
     CatID = oCategory.value
     CatName = oCategory.label
     if confirm("Are you sure you want to remove the activity from the container '" + CatName + "'?")

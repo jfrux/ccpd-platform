@@ -122,9 +122,9 @@
 								
 							});
 		
-		console.log($form);
-		console.log($creditRows);
-		console.log($creditLink);
+		App.logInfo($form);
+		App.logInfo($creditRows);
+		App.logInfo($creditLink);
         
 		
 		function alreadyExists(value) {

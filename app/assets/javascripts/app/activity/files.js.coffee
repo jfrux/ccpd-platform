@@ -5,15 +5,15 @@ App.module "Activity.Files", (Self, App, Backbone, Marionette, $) ->
   @startWithParent = false
   
   @on "before:start", ->
-    console.log "starting: #{Self.moduleName}"
+    App.logInfo "starting: #{Self.moduleName}"
     return
   @on "start", ->
     $(document).ready ->
       _init()
-      console.log "started: #{Self.moduleName}"
+      App.logInfo "started: #{Self.moduleName}"
     return
   @on "stop", ->
-    console.log "stopped: #{Self.moduleName}"
+    App.logInfo "stopped: #{Self.moduleName}"
     return
   _init = (defaults) ->
-    #console.log "init: files & docs"
+    #App.logInfo "init: files & docs"

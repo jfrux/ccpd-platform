@@ -5,16 +5,16 @@ App.module "Activity.Faculty", (Self, App, Backbone, Marionette, $) ->
   @startWithParent = false
   
   @on "before:start", ->
-    console.log "starting: #{Self.moduleName}"
+    App.logInfo "starting: #{Self.moduleName}"
     return
   @on "start", ->
     $(document).ready ->
       _init()
-      console.log "started: #{Self.moduleName}"
+      App.logInfo "started: #{Self.moduleName}"
     return
   @on "stop", ->
-    console.log "stopped: #{Self.moduleName}"
+    App.logInfo "stopped: #{Self.moduleName}"
     return
 
   _init = (defaults) ->
-    #console.log "init: faculty"
+    #App.logInfo "init: faculty"

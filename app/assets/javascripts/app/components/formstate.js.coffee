@@ -17,12 +17,12 @@ App.module "Components.FormState", (Self, App, Backbone, Marionette, $) ->
   $changedValues = null
 
   @on "before:start", ->
-    console.log "starting: #{Self.moduleName}"
+    App.logInfo "starting: #{Self.moduleName}"
 
   @on "start", (IsSaved) ->
     $(document).ready ()->
       _init(IsSaved)
-      console.log "started: #{Self.moduleName}"
+      App.logInfo "started: #{Self.moduleName}"
       return
     return
 
@@ -48,7 +48,7 @@ App.module "Components.FormState", (Self, App, Backbone, Marionette, $) ->
     $form.append($changedValues)
 
     $form.find("input,textarea").keyup ->
-      console.log "formstate: input.keyup!"
+      App.logInfo "formstate: input.keyup!"
       Self.Unsaved()
       Self.AddChange $("label[for='" + @id + "']").html(), $(this).attr("value")
       return
@@ -68,20 +68,20 @@ App.module "Components.FormState", (Self, App, Backbone, Marionette, $) ->
         Self.AddChange $("label[for='" + @id + "']").html(), $(this).val()
 
     $form.find("select").on "change", ->
-      console.log "formstate: select.change!"
+      App.logInfo "formstate: select.change!"
       if @id isnt "AuthLevel" and @id isnt "StatusChanger" and @id isnt "CatAdder"
         Self.Unsaved()
         Self.AddChange $("label[for='" + @id + "']").html(), $(this).selectedTexts()
       return
 
     $form.find("input[type='checkbox']").on "change", ->
-      console.log "formstate: checkbox.check!"
+      App.logInfo "formstate: checkbox.check!"
       Self.Unsaved()
       Self.AddChange $(this).attr("name"), $(this).attr("id")
       return
 
     $form.find("input[type='radio']").on "click", ->
-      console.log "formstate: radio.click!"
+      App.logInfo "formstate: radio.click!"
       Self.Unsaved()
       AddChange $(this).attr("name"), $("label[for='" + @id + "']").html()
       return
@@ -153,8 +153,8 @@ App.module "Components.FormState", (Self, App, Backbone, Marionette, $) ->
       editorInstance.EditorDocument.addEventListener "keyup", Unsaved, true
     return
   Self.Unsaved = ->
-    console.log "formstate: Unsaved called!"
-    console.log "isSaved already? #{IsSaved}"
+    App.logInfo "formstate: Unsaved called!"
+    App.logInfo "isSaved already? #{IsSaved}"
     if IsSaved
       $saveButton.attr("disabled", false).val "Save Now"
       $discardButton.show()
@@ -175,7 +175,7 @@ App.module "Components.FormState", (Self, App, Backbone, Marionette, $) ->
     $changedValues.val ChangedValues
     return
 
-  # console.log(ChangedFields + ' ' + ChangedValues);
+  # App.logInfo(ChangedFields + ' ' + ChangedValues);
   Self.ClearChanges = ->
     ChangedFields = ""
     ChangedValues = ""

@@ -5,15 +5,15 @@ App.module "Activity.Participants", (Self, App, Backbone, Marionette, $) ->
   @startWithParent = false
   
   @on "before:start", ->
-    console.log "starting: #{Self.moduleName}"
+    App.logInfo "starting: #{Self.moduleName}"
     return
   @on "start", ->
     $(document).ready ->
       _init()
-      console.log "started: #{Self.moduleName}"
+      App.logInfo "started: #{Self.moduleName}"
     return
   @on "stop", ->
-    console.log "stopped: #{Self.moduleName}"
+    App.logInfo "stopped: #{Self.moduleName}"
     return
 
   selectedCount = 0
@@ -21,11 +21,11 @@ App.module "Activity.Participants", (Self, App, Backbone, Marionette, $) ->
   selectedMembers = ""
   addlAttendeesUnsaved = false
   App.on "activity.participants.load",() ->
-    console.log "participants_page_loaded"
+    App.logInfo "participants_page_loaded"
     App.trigger("activity.participants.ahahload")
 
   App.on "activity.participants.ahahload", () ->
-    console.log "participants_ahah_loaded"
+    App.logInfo "participants_ahah_loaded"
   #checkmarkMember({
   #           person:nPerson,
   #           attendee:nAttendee
@@ -42,7 +42,7 @@ App.module "Activity.Participants", (Self, App, Backbone, Marionette, $) ->
     return
 
   setAddlPartic = (nPartic) ->
-    console.log("setting addl participants")
+    App.logInfo("setting addl participants")
     $.post sRootPath + "/_com/AJAX_Activity.cfc",
       method: "updateAddlAttendees"
       ActivityID: nActivity
@@ -61,10 +61,10 @@ App.module "Activity.Participants", (Self, App, Backbone, Marionette, $) ->
     return
 
   updateSelectedCount = (nAmount) ->
-    console.log "Count is currently " + parseInt(selectedCount)
-    console.log "Updating Count by " + parseInt(nAmount)
+    App.logInfo "Count is currently " + parseInt(selectedCount)
+    App.logInfo "Updating Count by " + parseInt(nAmount)
     selectedCount = parseInt(selectedCount) + parseInt(nAmount)
-    console.log "Count is now " + selectedCount
+    App.logInfo "Count is now " + selectedCount
     $("#CheckedCount,.js-attendee-status-selected-count").html "" + selectedCount + ""
     if selectedCount > 0
       $(".js-partic-actions").find(".btn").removeClass "disabled"
@@ -195,7 +195,7 @@ App.module "Activity.Participants", (Self, App, Backbone, Marionette, $) ->
               attendee: nAttendee
 
   Self.bind = () ->
-    console.log("binding records")
+    App.logInfo("binding records")
     # UPDATED SELECTED MEMBER COUNT
     $("#CheckedCount,#label-status-selected").html "" + SelectedCount + ""
     $(".EditDateField").mask "99/99/9999 99:99aa"
@@ -361,7 +361,7 @@ App.module "Activity.Participants", (Self, App, Backbone, Marionette, $) ->
           $checkBox.attr 'checked',true
     setDefaults()
   # App.on "activity.participants.ahahload", () ->
-  #   console.log "participants loaded..."
+  #   App.logInfo "participants loaded..."
   #   _bind_records()
   #   return
 
@@ -369,12 +369,12 @@ App.module "Activity.Participants", (Self, App, Backbone, Marionette, $) ->
     $(".linkbar a").one "click",->
       Self.stop()
       return true
-    console.log('init: participants');
+    App.logInfo('init: participants');
 
-    #console.log CookieAttendeeStatus
+    #App.logInfo CookieAttendeeStatus
     if parseInt(CookieAttendeeStatus) > 0
       statusText = $("#attendees-" + CookieAttendeeStatus).text()
-      #console.log statusText
+      #App.logInfo statusText
       $(".js-attendee-filter-button").find("span:first").text statusText
     # CHANGE ATTENDEE STATAUS START
     $('.toolbar .dropdown-menu').find('form').click (e)->
@@ -461,12 +461,12 @@ App.module "Activity.Participants", (Self, App, Backbone, Marionette, $) ->
     
     # ADDITIONAL SETTINGS
     $("#AddlAttendees").keyup ->
-      console.log "attempting to set addl registrants"
+      App.logInfo "attempting to set addl registrants"
       $this = $(this)
       addlAttendeesUnsaved = true
       delay (->
         if addlAttendeesUnsaved
-          console.log "waited 2500ms now setting addl registrants"
+          App.logInfo "waited 2500ms now setting addl registrants"
           setAddlPartic($this.val())
       ), 2500
       return

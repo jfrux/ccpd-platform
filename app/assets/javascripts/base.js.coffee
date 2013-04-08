@@ -9,7 +9,7 @@ App.addInitializer (options)->
   _init()
 
 App.on "start", ->
-  console.log "started: Application"
+  console.info "started: Application"
 
 App.addRegions
   navbar: ".navbar:first"

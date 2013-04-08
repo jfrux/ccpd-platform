@@ -13,6 +13,21 @@
       border-bottom:2px solid #E2E2E2;
 
       @include box-shadow(-4px 0 0px #dde1e7);
+      
+      .project-status {
+        position:relative;
+
+        select {
+          padding-left: 21px;
+          font-weight:bold;
+        }
+
+        i {
+          left: 6px;
+          position: absolute;
+          top: 7px;
+        }
+      }
 
       .box {
         position:relative;

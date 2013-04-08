@@ -71,7 +71,7 @@ function historyList(properties) {
 		maxrows:25
 	};
 	
-	console.log(settings);
+	App.logInfo(settings);
 	
 	$this.setMode = function(mode) {
 		settings.mode = mode;
@@ -125,8 +125,8 @@ function historyList(properties) {
 		dataToSend.startrow = settings.data.startrow;
 		dataToSend.maxrows = settings.data.maxrows;
 		
-		//console.log(settings.mode);
-		//console.log(dataToSend);
+		//App.logInfo(settings.mode);
+		//App.logInfo(dataToSend);
 		
 		if(clear) {
 		settings.appendto.find('.history-item').remove();
@@ -169,7 +169,7 @@ if ( typeof jQuery != "undefined" )
 
 function listHistory(appendTo,params,inject) {
 	var output = '';
-	console.log("in");
+	App.logInfo("in");
 	$.ajax({
 		url:"/admin/_com/ajax_history.cfc?method=list",
 		dataType:'json',
@@ -177,7 +177,7 @@ function listHistory(appendTo,params,inject) {
 		data:params,
 		success:function(data, textStatus, XMLHttpRequest) 
 			{
-				//console.log(data);
+				//App.logInfo(data);
 				$.each(data.DATASET,function(i,item) {
 					var $historyitem = '';
 					if(inject == 'append') {
@@ -204,7 +204,7 @@ function listHistory(appendTo,params,inject) {
 
 function renderHistoryItem(row) {
 	var re = /%[A-Za-z]+%/g;
-	console.log(row);
+	App.logInfo(row);
 	var ReturnContent = row.TEMPLATEFROM;
 	
 	var aFoundFields = ReturnContent.match(re);
@@ -215,12 +215,12 @@ function renderHistoryItem(row) {
 	$.each(aFoundFields,function(i,item) {
 		ReturnContent = ReturnContent.replace(item,item.toUpperCase());
 		VarName = $.trim($.Replace(item,"%","","ALL")).toUpperCase();
-		//console.log(item + " = " + VarName + " = " + eval("row." + VarName));
-		//console.log(VarName);
+		//App.logInfo(item + " = " + VarName + " = " + eval("row." + VarName));
+		//App.logInfo(VarName);
 		ReturnContent = $.Replace(ReturnContent,VarName,eval("row." + VarName.toUpperCase()),"ALL");
 	});
-	console.log(ReturnContent);
-	//console.log(ReturnContent);
+	App.logInfo(ReturnContent);
+	//App.logInfo(ReturnContent);
 	ToContent = $.Replace(row.TOCONTENT,"/index.cfm/event/",sMyself,"ALL");
 	sOutput = "<div class=\"history-item\" id=\"history-item-" + row.HISTORYID + "\" style=\"display:none;\">" +
 				"<div class=\"history-line\"><img src=\"/admin/_images/icons/" + row.ICONIMG + "\" border=\"0\" />" + ReturnContent + "</div>";

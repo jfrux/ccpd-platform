@@ -2,7 +2,7 @@
 (($) ->
   debug = true
   log = ->
-    console.log arguments[0] if debug
+    App.logInfo arguments[0] if debug
 
   methods = init: (options) ->
     settings = $.extend({}, $.uiTokenizer.defaults, options)
@@ -307,7 +307,7 @@
             $token.addClass "uiListToken"
             if token.label.length > settings.tokenMaxChar - 3
               tokenShort = token.label.substr(0, settings.tokenMaxChar - 3) + "..."
-              console.log tokenShort
+              #App.logInfo tokenShort
               $token.tooltip
                 placement: "top"
                 trigger: "hover focus"

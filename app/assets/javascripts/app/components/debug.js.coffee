@@ -52,5 +52,8 @@ App.module "Components.Debug", ((Self, App, Backbone, Marionette, $, _, wndw) ->
 ), window
 
 App.Components.Debug.start()
-
-console.log = ()->
+App.log = App.Components.Debug.log
+App.logInfo = App.Components.Debug.info
+App.logError = App.Components.Debug.error
+App.logWarn = App.Components.Debug.warn
+App.logDebug = App.Components.Debug.debug

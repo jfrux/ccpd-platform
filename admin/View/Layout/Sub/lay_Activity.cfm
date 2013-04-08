@@ -134,15 +134,19 @@ App.module('Activity').start({
           <div class="span6 js-infobar-outer">
             <div class="InfoBar infobar js-infobar">
               <cfset qStatuses = Application.Com.StatusGateway.getByAttributes(OrderBy="Name")>
+              
               <div id="Status">
                 <h3><i class="fg fg-fruit"></i> Activity Health</h3>
                 <div class="box">
-                  <select name="StatusChanger" id="StatusChanger" class="span24">
-                    <option value="">No Status</option>
-                    <cfloop query="qStatuses">
-                    <option value="#qStatuses.StatusID#"<cfif ActivityBean.getStatusID() EQ qStatuses.StatusID> selected</cfif>>#qStatuses.Name#</option>
-                    </cfloop>
-                  </select>
+                  <div class="project-status activity-status js-activity-status">
+                    <select name="StatusChanger" id="StatusChanger" class="span24">
+                      <option value="">No Status</option>
+                      <cfloop query="qStatuses">
+                      <option value="#qStatuses.StatusID#"<cfif ActivityBean.getStatusID() EQ qStatuses.StatusID> selected</cfif>>#qStatuses.Name#</option>
+                      </cfloop>
+                    </select>
+                  </div>
+
 
                   <div class="overview-buttons">
                     <div class="row-fluid">

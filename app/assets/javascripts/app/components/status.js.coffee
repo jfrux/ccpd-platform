@@ -5,22 +5,22 @@ App.module "Components.Status", (Self, App, Backbone, Marionette, $) ->
   @startWithParent = false
 
   @on "before:start", ->
-    console.log "starting: #{Self.moduleName}"
+    App.logInfo "starting: #{Self.moduleName}"
     return
   @on "start", ->
     $(document).ready ->
       _init()
-      console.log "started: #{Self.moduleName}"
+      App.logInfo "started: #{Self.moduleName}"
     return
   @on "stop", ->
-    console.log "stopped: #{Self.moduleName}"
+    App.logInfo "stopped: #{Self.moduleName}"
     return
 
   _init = () ->
     return
 
   Self.addMessage = (message,fadein,fadeto,fadeout) ->
-    console.log "adding status message: '#{message}'"
+    App.logInfo "adding status message: '#{message}'"
     $.jGrowl message,
       life: fadeto
       openDuration: fadein
@@ -28,7 +28,7 @@ App.module "Components.Status", (Self, App, Backbone, Marionette, $) ->
       themeState: 'normal'
     return
   Self.addError = (message,fadein,fadeto,fadeout) ->
-    console.log "adding error message: '#{message}'"
+    App.logInfo "adding error message: '#{message}'"
     $.jGrowl message
       header: 'ERROR!'
       life: fadeto

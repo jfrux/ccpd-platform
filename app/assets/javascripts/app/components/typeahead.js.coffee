@@ -2,7 +2,7 @@
 (($) ->
   debug = true
   log = ->
-    console.log arguments if debug
+    App.logInfo arguments if debug
   methods =
     init: (options) ->
       settings = $.extend({}, $.uiTypeahead.defaults, options)
@@ -278,7 +278,7 @@
           return
 
         select: (e, ui) ->
-          #console.log ui
+          #App.logInfo ui
           item_select ui.item
           false
 
@@ -292,7 +292,7 @@
         $.each items, (index, item) ->
           $li = that._renderItemData(ul,item)
           $li.html('')
-          console.log $li
+          App.logInfo $li
           $subtext1 = $("<span></span>").addClass("fcg fsm clearfix").text(item.SUBTEXT1)
           $subtext2 = $("<span></span>").addClass("fcg fsm clearfix").text(item.SUBTEXT2)
           $label = $("<a></a>").html("<div>#{item.label}</div>").appendTo($li)

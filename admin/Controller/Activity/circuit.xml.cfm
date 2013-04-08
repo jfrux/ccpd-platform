@@ -72,8 +72,7 @@
     </postfuseaction>
     <!-- AHAH pages -->
     <fuseaction name="ActivityList">
-      <do action="vActivity.ActivityList" />
-      <do action="vActivity.Stats" contentvariable="request.page.body" />
+      <do action="vActivity.ActivityList" contentvariable="request.page.body" />
     </fuseaction>
     <fuseaction name="Container">
       <do action="vActivity.Container" contentvariable="request.page.body" />
