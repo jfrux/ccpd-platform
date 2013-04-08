@@ -12,7 +12,16 @@
     width:650px!important;
     z-index:1002;
   }
-
+  #ActivityStats {
+    .stats-refresher {
+      display:none;
+    }
+    &:hover {
+      .stats-refresher {
+        display:block;
+      }
+    }
+  }
   .attendee-filter-btn {
     width:103px;
   }

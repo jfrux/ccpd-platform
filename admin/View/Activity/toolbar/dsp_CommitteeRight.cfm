@@ -7,7 +7,7 @@
       <span class="caret"></span>
     </a>
     <ul class="dropdown-menu">
-      <li><a href="javascript:void(0);" id="RemoveChecked" title="Remove selected members"><img src="#Application.Settings.RootPath#/_images/icons/application_form_delete.png" align="absmiddle" style="padding-right:4px;" />Remove</a></li>
+      <li><a href="javascript:void(0);" id="RemoveChecked" title="Remove selected members"><i class="icon-trash"></i> Remove</a></li>
       <li class="divider"></li>
       <li class="nav-header">CHANGE ROLES</li>
       <cfloop query="qRoles">
@@ -18,7 +18,7 @@
     </ul>
   </div>
   <div class="btn-group">
-    <a title="Add Person" class="btn btn-mini" id="AttendeeLink" href="javascript:void(0);"><i class="icon-plus"></i></a>
+    <a title="Add Committee Member" class="btn btn-mini" id="CommitteeLink" href="javascript:void(0);"><i class="icon-plus"></i></a>
   </div>
 </div>
 </cfoutput>

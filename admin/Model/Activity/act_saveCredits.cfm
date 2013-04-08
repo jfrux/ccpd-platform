@@ -1,5 +1,4 @@
 <!--- On form submission, run this code --->
-  <cfdump var="#attributes#" abort />
 <cfif IsDefined("Attributes.Submitted") AND Attributes.Submitted EQ 1>
   <!--- Creates CreditType List and sets up the Attributes.Credits var --->
   <cfset qCredits = Application.Com.CreditGateway.getByAttributes()>
@@ -34,7 +33,7 @@
       <cfset returnVar.addError("refNumber","The #Name# Reference Number is required.") />
     </cfif>
   </cfloop>
-    <cfdump var="#request.status.errors#" abort />
+    
   <cfif Request.Status.Errors EQ "">
     <!--- DELETE EXISTING --->
     <cfquery name="qDelete" datasource="#Application.Settings.DSN#">
@@ -43,9 +42,8 @@
     </cfquery>
     <cfloop query="qCredits">
       <!--- if the CreditAmount Field is not empty it saves those values to the DB --->
-      <cfdump var="#Evaluate("Attributes.CreditAmount#qCredits.CreditID#") GT 0#" />
-      <cfif ListFind(Attributes.Credits,qCredits.CreditID) AND Evaluate("Attributes.CreditAmount#qCredits.CreditID#") GT 0>
-        <cfabort />
+      <cfif ListFind(Attributes.Credits,qCredits.CreditID) AND Attributes['CreditAmount#qCredits.CreditID#'] GT 0>
+        
         <!--- Creates the Create Bean --->
         <cfset CreateCreditsBean = CreateObject("component","#Application.Settings.Com#ActivityCredit.ActivityCredit").Init()>
         
@@ -66,21 +64,13 @@
 
         <cfset returnVar.setStatus(true) />
         <cfset returnVar.setStatusMsg('Successfully saved credits.') /> 
-        <cfdump var="#returnVar.getStatus()#" abort=true />       <!--- ACTION UPDATER --->
+
         <cfset Application.History.add(
           HistoryStyleID=24,
           FromPersonID=Session.PersonID,
           ToActivityID=attributes.activityId,
           ToCreditID=qCredits.creditId
             )>
-              
-        <!---<cfset ActionBean = CreateObject("component","#Application.Settings.Com#Action.Action").init()>
-        <cfset ActionBean.setActivityID(Attributes.ActivityID)>
-        <cfset ActionBean.setCode("CRA")>
-        <cfset ActionBean.setShortName("Added credit.")>
-        <cfset ActionBean.setLongName("Added '#CreditInfo.getName()#' credit to activity '<a href=""#myself#Activity.Detail?ActivityID=#ActivityBean.getActivityID()#"">#ActivityBean.getTitle()#</a>'")>
-        <cfset ActionBean.setCreatedBy(Session.Person.getPersonID())>
-        <cfset Application.Com.ActionDAO.Create(ActionBean)>--->
       </cfif>
     </cfloop>
     <cfif isAjax()>

@@ -130,7 +130,7 @@ App.Activity.Participants.bind()
     <cfelse>
       <div class="alert alert-info">
         You have not added any registrants.<br />
-        Please click '<a class="btn btn-mini"><i class="icon-plus"></i></a> on the right to begin.
+        Please click '<a class="btn"><i class="icon-plus"></i></a> on the right to begin.
       </div>
         
     </cfif>

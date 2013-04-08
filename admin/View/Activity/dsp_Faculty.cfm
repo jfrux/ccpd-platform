@@ -11,7 +11,7 @@
 
 				if(status == 'Success') {
 					updateFaculty();
-					updateActions();
+					//updateActions();
 					addMessage(statusMsg,250,6000,4000);
 					$.unblockUI();
 				} else if(status == 'Fail') {
@@ -58,7 +58,7 @@
 					}
 					
 					updateFaculty();
-					updateActions();
+					//updateActions();
 					$.unblockUI();	
 				});
 			}
@@ -79,7 +79,7 @@
 					}
 					
 					updateFaculty();
-					updateActions();
+					//updateActions();
 					$.unblockUI();
 				});
 			}
@@ -112,6 +112,8 @@
 	});
 </script>
 <cfoutput>
+	<cf_cePersonFinder Instance="Faculty" DefaultName="Add Faculty / Speaker" DefaultID="" AddPersonFunc="saveFacultyMember();" ActivityID="#Attributes.ActivityID#">
+ 
 <div class="ViewSection">
 	<div id="FacultyContainer"></div>
 	<div id="FacultyLoading" class="Loading"><img src="/admin/_images/ajax-loader.gif" />

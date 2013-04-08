@@ -10,7 +10,7 @@ $(document).ready(function() {
 	name="frmAddCredits" 
 	method="post"
 	class="js-form-credits" 
-	action="#myself#Activity.Credits?ActivityID=#Attributes.ActivityID#">
+	action="#myself#Activity.Credits">
 	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="ViewSectionGrid table table-bordered table-condensed">
 		<thead>
 			<tr>
