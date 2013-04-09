@@ -6,6 +6,7 @@
 @import "app/sprites-prefix";
 @import "app/sprites";
 @import "app/header";
+@import "app/search";
 @import "app/profile";
 @import "app/profile/content";
 @import "app/profile/infobar";
@@ -27,6 +28,10 @@ body {
   .body-inner {
     margin:auto -20px;
     background-color:#edebeb;
+  }
+
+  &.no-layout {
+    background-color:#FFF;
   }
 }
 

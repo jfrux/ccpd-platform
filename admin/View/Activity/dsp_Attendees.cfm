@@ -1,5 +1,10 @@
 <cfparam name="Attributes.Page" type="numeric" default="1" />
-<cf_cePersonFinder Instance="Attendee" DefaultName="Add Registrant" DefaultID="" AddPersonFunc="saveAttendee();" ActivityID="#Attributes.ActivityID#">
+<cf_cePersonFinder 
+  Instance="Attendee" 
+  DefaultName="Add Registrant" 
+  DefaultID="" 
+  AddPersonFunc="App.Activity.Participants.saveAttendee();" 
+  ActivityID="#Attributes.ActivityID#">
 
 <script>
   <cfoutput>

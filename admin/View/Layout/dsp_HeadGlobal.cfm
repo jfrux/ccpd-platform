@@ -1,3 +1,4 @@
+<cfparam name="request.page.responsive" default="false" />
 <cffunction name="stylesheet_link_tag">
 	<cfargument name="source" type="string" required=true>
 	<cfhttp method="get" url="http://localhost:3000/stylesheet_tags?file=#arguments.source#" result="css_markup">
@@ -17,6 +18,9 @@
 </cffunction>
 <cfoutput>
 #stylesheet_link_tag("application")#
+<cfif request.page.responsive>
+#stylesheet_link_tag("responsive")#
+</cfif>
 </cfoutput>
 <!--- <!--[if lt IE 8]>
   <link href="/stylesheets/ie.css" media="screen, projection" rel="stylesheet" type="text/css" />

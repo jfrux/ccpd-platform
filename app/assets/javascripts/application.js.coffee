@@ -6,6 +6,7 @@
 #=require app/activity
 #=require app/components
 #=require app/components/debug
+#=require app/components/personfinder
 #=require app/components/formstate
 #=require_tree "./app/activity/"
 #=require app/profile

@@ -95,10 +95,11 @@ App.Activity.Participants.bind()
               <strong>Terminated:</strong> #DateFormat(qAttendees.TermDate, "MM/DD/YYYY")#
             </cfsavecontent>
             <cfset labels = {
-                        "complete":"success",
-                        "terminated":"danger",
-                        "in progress":"warning"
-                      } />
+                "registered":"info",
+                "complete":"success",
+                "terminated":"danger",
+                "in progress":"warning"
+              } />
                       <span class="label label-#labels[qAttendees.statusname]#" data-title="#qAttendees.statusname#" data-content="#tooltip_content#">#qAttendees.StatusName#</span>
                     </td>
                     <td valign="top"><span class="MDNonMD" id="MDNonMD#qAttendees.attendeeId#"><cfif qAttendees.MDFlag EQ "Y">Yes<cfelse>No</cfif></span></td>

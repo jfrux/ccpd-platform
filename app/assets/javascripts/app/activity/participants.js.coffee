@@ -87,7 +87,7 @@ App.module "Activity.Participants", (Self, App, Backbone, Marionette, $) ->
     updateSelectedCount -1
     return
 
-  saveAttendee = ->
+  saveAttendee = Self.saveAttendee = ->
     $.blockUI message: "<h1>Adding Attendee...</h1>"
     $.post sRootPath + "/_com/AJAX_Activity.cfc",
       method: "saveAttendee"

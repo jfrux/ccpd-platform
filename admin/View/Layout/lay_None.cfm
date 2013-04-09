@@ -1,5 +1,6 @@
 <cfparam name="Request.Page.Title" default="Untitled Page">
 <cfparam name="Request.Page.Body" default="No Body Found">
+<cfset request.page.responsive = true />
 <cfoutput>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -9,13 +10,10 @@
 <cfinclude template="dsp_HeadGlobal.cfm" />
 </head>
 
-<body style="margin:0px;">
-	#Request.Page.Body#
-	<div id="StatusBar">
-		<div style="display:none;" class="PageStandard" id="StatusBox0">
-			
-		</div>
-	</div>
+<body class="no-layout">
+  <div class="container-fluid">
+	 #Request.Page.Body#
+  </div>
 </body>
 </html>
 </cfoutput>
