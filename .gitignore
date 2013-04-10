@@ -11,3 +11,4 @@ rewrite_log.txt
 .sass-cache
 .DS_Store
 vendor/ruby
+.DS_Store
