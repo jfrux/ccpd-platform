@@ -4,9 +4,9 @@
 		
     	<cfquery name="qAttendees" datasource="#application.settings.dsn#">
         	SELECT 
-				* 
-			FROM ce_attendee
-            WHERE <!---
+    				* 
+    			FROM ce_attendee
+          WHERE <!---
 				ActivityID IN (#arguments.activityIds#) AND --->
 				attendeeId IN (298038,298494) AND
 				deletedFlag='N' AND 

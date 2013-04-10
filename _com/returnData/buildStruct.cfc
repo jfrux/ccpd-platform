@@ -36,11 +36,11 @@
 		<cfset variables.instance.payload = arguments.dataset />
 	</cffunction>
 	
-	<cffunction name="getPayload" access="public" returntype="struct" output="false">
+	<cffunction name="getPayload" access="public" returntype="any" output="false">
 		<cfreturn variables.instance.payload />
 	</cffunction>
 	<cffunction name="setPayload" access="public" returntype="void" output="false">
-		<cfargument name="payload" type="struct" required="true" />
+		<cfargument name="payload" type="any" required="true" />
 		<cfset variables.instance.payload = arguments.payload />
 	</cffunction>
     
