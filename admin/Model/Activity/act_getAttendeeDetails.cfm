@@ -32,9 +32,11 @@
         WHERE DeletedFlag = 'N'
     </cfquery>
     
+    <cfif qResultStatuses.RecordCount GT 0>
     <cfloop query="qResultStatuses">
-    	<cfset ResultStatuses = ListAppend(ResultStatuses, qResultStatuses.ResultStatusID& "|" & qResultStatuses..Name, ",")>
+    	<cfset ResultStatuses = ListAppend(ResultStatuses, qResultStatuses.ResultStatusID & "|" & qResultStatuses.Name, ",")>
     </cfloop>
+    </cfif>
     
 	<!--- CREATE ASSESSMENT ARRAY --->
     <cfset arrAssessment = ArrayNew(3)>

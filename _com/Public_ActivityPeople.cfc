@@ -401,9 +401,7 @@
         				
             <!--- Delete each record --->
             <cfquery name="qRemoveAll" datasource="#Application.Settings.DSN#">
-                UPDATE ce_Activity_Faculty
-                SET DeletedFlag = <cfqueryparam value="Y" cfsqltype="cf_sql_char" />,
-                    UpdatedBy = <cfqueryparam value="#Session.Person.getPersonID()#" cfsqltype="cf_sql_char" />
+                DELETE FROM activity_faculties
                 WHERE ActivityID = <cfqueryparam value="#Arguments.ActivityID#" CFSQLType="cf_sql_integer" />
             </cfquery>
             
@@ -451,8 +449,7 @@
             <cfloop list="#Arguments.PersonList#" index="PersonID">
                 <!--- Delete each record --->
                 <cfquery name="qRemoveChecked" datasource="#Application.Settings.DSN#">
-                    UPDATE ce_Activity_Committee
-                    SET DeletedFlag = <cfqueryparam value="Y" cfsqltype="cf_sql_char" />
+                    DELETE FROM activity_committees
                     WHERE PersonID = <cfqueryparam value="#PersonID#" CFSQLType="cf_sql_integer" /> AND ActivityID = <cfqueryparam value="#Arguments.ActivityID#" CFSQLType="cf_sql_integer" />
                 </cfquery>
                 
@@ -529,9 +526,7 @@
             <cfloop list="#Arguments.PersonList#" index="PersonID">
                 <!--- Delete each record --->
                 <cfquery name="qRemoveChecked" datasource="#Application.Settings.DSN#">
-                    UPDATE ce_Activity_Faculty
-                    SET DeletedFlag = <cfqueryparam value="Y" cfsqltype="cf_sql_char" />,
-                        UpdatedBy = <cfqueryparam value="#Session.Person.getPersonID()#" cfsqltype="cf_sql_char" />
+                    DELETE FROM activity_faculties
                     WHERE PersonID = <cfqueryparam value="#PersonID#" CFSQLType="cf_sql_integer" /> AND ActivityID = <cfqueryparam value="#Arguments.ActivityID#" CFSQLType="cf_sql_integer" />
                 </cfquery>
                 
@@ -741,7 +736,7 @@
 					<cfset Status = "Success|Faculty member has been added.">
 				<cfelse>
 					<!--- Checks if there was a record for the person already --->
-					<cfif qFindFacultyMember.RecordCount EQ 1 AND qFindFacultyMember.DeletedFlag EQ 'Y'>
+					<cfif qFindFacultyMember.RecordCount GTE 1 AND qFindFacultyMember.DeletedFlag EQ 'Y'>
                         <!--- GET CV FILEID --->
                         <cfquery name="qGetCVFile" datasource="#Application.Settings.DSN#">
                             SELECT TOP 1 FileID
