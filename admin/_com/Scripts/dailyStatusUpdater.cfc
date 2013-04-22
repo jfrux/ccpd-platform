@@ -9,50 +9,98 @@
 		<cfset returnData.setStatusMsg('failed for unknown reason') />
 
 		<cfquery name="qUpdater" datasource="#Application.Settings.DSN#">
-			SELECT Attendee.*,
-				activity.startdate,activity.enddate+'23:59:59' As EndDate,Person.Email 
-			FROM ce_Attendee As Attendee
-			LEFT JOIN ce_person AS Person ON Person.personid = Attendee.personid
-			LEFT JOIN ce_activity AS Activity ON Activity.activityID = attendee.activityid
+			SELECT     
+			  Attendee.attendeeid, 
+			  Attendee.activityid, 
+			  Attendee.personid, 
+			  Attendee.statusid, 
+			  Attendee.checkedinflag, 
+			  Attendee.checkin, 
+			  Attendee.checkedoutflag, 
+			  Attendee.checkout,
+			  Attendee.mdflag, 
+			  Attendee.termsflag, 
+			  Attendee.paymentflag, 
+			  Attendee.payamount, 
+			  Attendee.payorderno, 
+			  Attendee.paymentdate, 
+			  Attendee.registerdate,
+			  Attendee.completedate, 
+			  Attendee.termdate, 
+			  Attendee.firstname, 
+			  Attendee.middlename, 
+			  Attendee.lastname, 
+			  Attendee.email, 
+			  Attendee.certname, 
+			  Attendee.address1,
+			  Attendee.address2, 
+			  Attendee.city, 
+			  Attendee.stateprovince, 
+			  Attendee.stateid, 
+			  Attendee.countryid, 
+			  Attendee.postalcode, 
+			  Attendee.phone1, 
+			  Attendee.phone1ext,
+			  Attendee.phone2, 
+			  Attendee.phone2ext, 
+			  Attendee.fax, 
+			  Attendee.faxext, 
+			  Attendee.entrymethod, 
+			  Attendee.emailsentflag, 
+			  Attendee.created, 
+			  Attendee.createdby,
+			  Attendee.updated, 
+			  Attendee.updatedby, 
+			  Attendee.deleted, 
+			  Attendee.deletedflag, 
+			  Attendee.geonameid, 
+			  Activity.startdate, 
+			  Activity.enddate + '23:59:59' AS EndDate,
+			  Person.email AS Expr1
+			FROM         
+			  attendees AS Attendee 
+			LEFT OUTER JOIN
+			  users AS Person ON Person.personid = Attendee.personid 
+			LEFT OUTER JOIN
+			  activities AS Activity ON Activity.activityid = Attendee.activityid
 			WHERE     
-			( Attendee.AttendeeID IN
-				(SELECT
-					Att.AttendeeID
-				FROM          
-					ce_Attendee AS Att 
-				INNER JOIN
-					ce_Activity AS A ON Att.ActivityID = A.ActivityID
-				WHERE      
-					(A.StatusID IN (1, 2, 3)) AND 
-					(A.ActivityTypeID <> 2) AND 
-					(A.DeletedFlag = 'N') AND  
-					(A.EndDate < GETDATE())))
-			AND
-				 Attendee.DeletedFlag='N'
-				AND  
-				Attendee.StatusID <> 1
-			AND Attendee.created > '1/1/2008 00:00:00'
-			
-			OR
-			
-			(AttendeeID IN
-				(SELECT
-					Att.AttendeeID
-				FROM          
-					ce_Attendee AS Att 
-				INNER JOIN
-					ce_Activity AS A ON Att.ActivityID = A.ActivityID
-				WHERE      
-					(A.StatusID IN (1, 2, 3)) AND 
-					(A.ActivityTypeID <> 2) AND
-					(A.DeletedFlag = 'N') AND
-					(A.EndDate < GETDATE())))
-			AND
-			 Attendee.DeletedFlag='N'
-			AND Attendee.StatusID = 1
-			AND  Attendee.CompleteDate NOT BETWEEN activity.startDate AND activity.endDate + '23:59:59'
-			AND Attendee.created > '1/1/2007 00:00:00'
-			ORDER BY activityId
+			    (Attendee.attendeeid IN
+			      ( SELECT 
+			          Att.attendeeid
+			        FROM          
+			          attendees AS Att 
+			        INNER JOIN
+			          activities AS A ON Att.activityid = A.activityid
+			        WHERE      
+			          (A.statusid IN (1, 2, 3)) AND 
+			          (A.activitytypeid <> 2) AND 
+			          (A.deletedflag = 'N') AND 
+			          (A.enddate < GETDATE())
+			      )
+			    )
+			  AND 
+			    (Attendee.deletedflag = 'N') AND 
+			    (Attendee.statusid <> 1) AND 
+			    (Attendee.created > '1/1/2008 00:00:00') 
+			  OR
+			    (Attendee.attendeeid IN
+			      (SELECT     Att.attendeeid
+			        FROM
+			        attendees AS Att 
+			        INNER JOIN
+			        activities AS A ON Att.activityid = A.activityid
+			        WHERE      
+			        (A.statusid IN (1, 2, 3)) AND 
+			        (A.activitytypeid <> 2) AND 
+			        (A.deletedflag = 'N') AND 
+			        (A.enddate < GETDATE()))
+			    ) 
+			  AND 
+			    (Attendee.deletedflag = 'N') AND 
+			    (Attendee.statusid = 1) AND 
+			    (Attendee.created > '1/1/2008 00:00:00') AND 
+			    (Attendee.completedate NOT BETWEEN dbo.fngetBeginOfDay(Activity.startdate) AND dbo.fngetEndOfDay(Activity.enddate))
+			ORDER BY Attendee.activityid
 		</cfquery>
 		
 		<cfloop query="qUpdater">
@@ -68,15 +116,6 @@
 				WHERE attendeeId=#qUpdater.attendeeId#
 			</cfquery>
 			
-			<cfif arguments.sendEmail GT 0>
-				<cftry>
-					<cfset application.email.send(EmailStyleID=5,ToAttendeeID=qUpdater.AttendeeID,ToActivityID=qUpdater.activityId,ToPersonID=qUpdater.PersonID,ToCreditID=1) />
-					
-					<cfcatch type="any">
-					
-					</cfcatch>
-				</cftry>
-			</cfif>
 			<cfset recordsUpdated.add(QueryToStruct(qUpdater,qUpdater.currentRow)) />
 		</cfloop>
 

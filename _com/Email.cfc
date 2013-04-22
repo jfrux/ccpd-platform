@@ -208,7 +208,7 @@
 			<cflog text="EMAIL SEND ATTEMPT TO Attendee: #arguments.ToAttendeeId# (#ToPerson.Email#)" file="ccpd-attendee-emails" type="information">
 			
 			<cfquery name="updateEmailSent" datasource="#application.settings.dsn#">
-				UPDATE ce_attendee
+				UPDATE attendees
 				SET emailSentFlag=1
 				WHERE attendeeId = #arguments.toAttendeeId#
 			</cfquery>
