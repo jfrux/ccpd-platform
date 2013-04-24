@@ -147,7 +147,9 @@
 		<cfelse>
 		<a href="/">Welcome</a><a href="#Application.Settings.RootPath#/about">What is this?</a><a href="#Application.Settings.RootPath#/browse">Browse Activities</a><cfif NOT isDefined("Session.PersonID") OR isDefined("Session.PersonID") AND Session.PersonID EQ ""><a href="#Application.Settings.RootPath#/signup">Sign-up</a></cfif>
 		</cfif>
-		<a href="http://www.hipchat.com/ggNgWf8Pv">Get Help</a>
+		<noscript>
+		<a href="http://uccme.freshdesk.com/" target="_blank">Get Help</a>
+		</noscript>
 		</div>
 	</div>
 	<cfif Request.Page.Breadcrumbs NEQ ""><div id="Breadcrumbs"></div>
@@ -239,6 +241,12 @@ SESSION:<br />
 		<input type="button" name="btnClose" class="link-container-close MainButton" value="Finished" />
 	</div>
 </div>
-
+<script type="text/javascript" src="http://assets.freshdesk.com/widget/freshwidget.js"></script>
+<style type="text/css" media="screen, projection">
+	@import url(http://assets.freshdesk.com/widget/freshwidget.css); 
+</style> 
+<script type="text/javascript">
+	FreshWidget.init("", {"queryString": "", "buttonText": "Get Help!", "buttonColor": "white", "buttonBg": "#e32000", "alignment": "2", "offset": "235px", "url": "http://uccme.freshdesk.com", "assetUrl": "http://assets.freshdesk.com/widget"} );
+</script>
 </body>
 </html>

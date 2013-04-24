@@ -37,11 +37,7 @@ $(document).ready(function() {
 			<td valign="top" style="padding-right:4px;">
 				<h2 class="Head Gray">Create/Print Transcript</h2>
 				<p>You can generate your transcript by modifying the criteria to the right and pressing the &quot;Generate&quot; button.<br />
-				<br />
-				This tool requires that you have Adobe Reader installed.<br />
-				<a href="http://www.adobe.com/products/acrobat/readstep2.html">
-				<img alt="Get Adobe Reader" src="http://www.adobe.com/images/shared/download_buttons/get_adobe_reader.gif" border="0" />
-				</a></p>
+				</p>
 				<h2 class="Head LightGray" id="TranscriptTitle" style="display:none;">Your Transcript</h2>
 				<!--- <iframe src="" name="frmTranscript" id="frmTranscript" height="550" width="100%" style="display:none;" frameborder="0"></iframe> --->
 			</td>
