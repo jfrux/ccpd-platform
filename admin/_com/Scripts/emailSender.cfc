@@ -76,6 +76,10 @@
       Attendee.created > '1/1/2008'
       AND
       Activity.activitytypeid <> 2
+      AND
+      Attendee.deletedFlag='N'
+      AND 
+      activity.deletedFlag='N'
       ORDER BY Attendee.activityid
     </cfquery>
     
