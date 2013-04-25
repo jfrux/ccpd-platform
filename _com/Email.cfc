@@ -36,9 +36,13 @@
 		<cfset var aFoundFields = "">
 		<cfset var EmailBody = "">
 		<cfset var smtpDatas = structNew() />
+		<cfset var smtpTags = structNew() />
 		<cfset smtpDatas['person'] = "0" />
 		<cfset smtpDatas['activity'] = "0" />
 		<cfset smtpDatas['attendee'] = "0" />
+		<cfif arguments.emailstyleid EQ 5>
+			<cfset smtpTags = "ccpd_credit" />
+		</cfif>
 		
         <cfif len(trim(arguments.fromEmail)) GT 0>
         	<cfset fromEmail = arguments.fromEmail>
@@ -161,7 +165,9 @@
 		
 		<!--- SEND EMAIL --->
 		<cfmail to="#arguments.toEmailAddress#" from="#FromEmail#" subject="#EmailSubject#" replyto="do-not-reply@uc.edu" failto="rountrjf@ucmail.uc.edu">
-			<cfmailparam name="X-SMTPAPI" value="#serializeJson(SMTPAPI)#" />
+			<cfmailparam name="X-MC-Metadata" value="#serializeJson(smtpDatas)#" />
+			<cfmailparam name="X-MC-Tags" value="#smtpTags#" />
+			
 			<cfmailpart type="html">
 				<body style="background-color:##f7f7f7;font-family:Arial, Helvetica, sans-serif;font-size:12px;">
 				<table cellspacing="0" cellpadding="0" border="0" width="620">
