@@ -102,6 +102,8 @@
     <fuseaction name="Agenda">
 		<include template="dsp_Agenda" />
 	</fuseaction>
+
+
     
     <fuseaction name="AgendaAHAH">
 		<include template="dsp_AgendaAHAH" />
@@ -114,7 +116,12 @@
 	<fuseaction name="AgendaRight">
 		<include template="dsp_AgendaRight" />
 	</fuseaction>
-	
+	<fuseaction name="EmailLogs">
+		<include template="dsp_EmailLogs" />
+	</fuseaction>
+	<fuseaction name="EmailLogsRight">
+		<include template="dsp_EmailLogsRight" />
+	</fuseaction>
 	<fuseaction name="BuilderFileUploader">
 		<include template="Builder\dsp_FileUpload" />
 	</fuseaction>

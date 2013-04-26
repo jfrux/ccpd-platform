@@ -4,6 +4,8 @@
 	<a href="#myself#Activity.Agenda?ActivityID=#Attributes.ActivityID#"<cfif Attributes.Fuseaction EQ "Activity.Agenda"> id="MultiFormRight_CurrentLink"</cfif>><img src="#Application.Settings.RootPath#/_images/icons/calendar.png" align="absmiddle" style="padding-right:4px;" />Agenda</a>
 	<a href="#myself#Activity.CDCInfo?ActivityID=#Attributes.ActivityID#"<cfif Attributes.Fuseaction EQ "Activity.CDCInfo"> id="MultiFormRight_CurrentLink"</cfif>><img src="#Application.Settings.RootPath#/_images/icons/bug.png" align="absmiddle" style="padding-right:4px;" />CDC Information</a>
 	<a href="#myself#Activity.accme?ActivityID=#Attributes.ActivityID#"<cfif Attributes.Fuseaction EQ "Activity.accme"> id="MultiFormRight_CurrentLink"</cfif>><img src="#Application.Settings.RootPath#/_images/icons/asterisk_yellow.png" align="absmiddle" style="padding-right:4px;" />ACCME Information</a>
-	<!---<a href="#myself#Activity.Meals?ActivityID=#Attributes.ActivityID#"<cfif Attributes.Fuseaction EQ "Activity.Meals"> id="MultiFormRight_CurrentLink"</cfif>><img src="#Application.Settings.RootPath#/_images/icons/basket.png" align="absmiddle" style="padding-right:4px;" />Meals</a>--->
+	<a href="#myself#Activity.EmailLogs?ActivityID=#Attributes.ActivityID#"<cfif Attributes.Fuseaction EQ "Activity.EmailLogs"> id="MultiFormRight_CurrentLink"</cfif>><img src="#Application.Settings.RootPath#/_images/icons/asterisk_yellow.png" align="absmiddle" style="padding-right:4px;" />Email Logs</a>
+  
+  <!---<a href="#myself#Activity.Meals?ActivityID=#Attributes.ActivityID#"<cfif Attributes.Fuseaction EQ "Activity.Meals"> id="MultiFormRight_CurrentLink"</cfif>><img src="#Application.Settings.RootPath#/_images/icons/basket.png" align="absmiddle" style="padding-right:4px;" />Meals</a>--->
 </div>
 </cfoutput>

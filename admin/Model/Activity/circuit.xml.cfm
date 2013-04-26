@@ -54,6 +54,11 @@
 	<fuseaction name="getAgendaItem">
 		<include template="act_getAgendaItem" />
 	</fuseaction>
+
+
+	<fuseaction name="getEmailLogs">
+		<include template="act_getEmailLogs" />
+	</fuseaction>
 	
 	<fuseaction name="saveAgendaItem">
 		<include template="act_saveAgendaItem" />
