@@ -29,6 +29,7 @@
 <cfset scriptExceptions = [
 	"statFixer.cfc",
 	"dailyStatusUpdater.cfc",
+	"emailSender.cfc",
 	"upload.cfc"
 ]>
 <cfsetting showdebugoutput="no" />

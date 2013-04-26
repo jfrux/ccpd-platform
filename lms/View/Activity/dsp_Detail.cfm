@@ -301,7 +301,7 @@ function DownLoadTime56k(fileSize) {
 		<li><a href="/lms/browse">Browse Activities</a></li>
 		<cfif NOT isDefined("session.personId") OR isDefined("session.personId") AND session.personId EQ 0><li><a href="/lms/signup">Sign-up</a> or <a href="/lms/login">Login</a></li></cfif>
 		<li><a href="/lms/about">What is this?</a></li>
-		<li><a href="/lms/support">Contact Support</a></li>
+		<li>Contact Support by clicking the "Get Help" button on the right of the screen.</li>
 	</ul>
 	<cfelse>
 	<div id="ActivityWrapper">

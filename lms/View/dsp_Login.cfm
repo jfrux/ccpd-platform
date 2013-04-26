@@ -2,7 +2,20 @@
 <cfparam name="Attributes.Password" default="">
 <cfparam name="Attributes.RememberMe" default="">
 <cfparam name="Attributes.FailMessage" default="">
+<cfparam name="Attributes.freshdesk" default="0">
 <cfparam name="Attributes.SuccessMessage" default="">
+<cfscript>
+function freshdesk_login_url($name, $email) {
+  $secret = '900ff970b55c5b63cd468de4a7e798a5';
+  $base = 'http://uccme.freshdesk.com/';
+   
+  return $base & "login/sso/?name=" & urlencode($name) & "&email=" & urlencode($email) & "&hash=" & lcase(hash($name & $email & $secret, 'MD5'));
+}
+</cfscript>
+
+<cfif session.loggedIn AND attributes.freshdesk EQ 1>
+	<cflocation url="#freshdesk_login_url('#session.person.getCertName()#','#session.person.getEmail()#')#" addtoken="no" />
+</cfif>
 <!--- CHECK IF CLIENT.LOGIN EXISTS // REMEMBER ME FUNCTIONALITY --->
 <cfif isDefined("Client.Login") AND Client.Login NEQ "">
 	<cflocation url="#Myself##xfa.Authenticate#" addtoken="no" />
@@ -19,16 +32,18 @@
 	  </cfif>
 	});
 </script>
+
 <style>
 #LoginLeft { width:40%; float:left; }
 #LoginRight { width:60%; float:left; background-color:#EEE; }
 </style>
 <cfoutput>
+<cfset client.freshdesk = attributes.freshdesk />
 <div class="ContentBlock">
 	<h1>Sign-in</h1>
 	<div id="ContentLeft" class="Wide">
 		<h2>Member Login</h2>
-		<form name="formLogin" method="post" action="#myself##xfa.Authenticate#">
+		<form name="formLogin" method="post" action="#myself##xfa.Authenticate#<cfif attributes.freshdesk EQ 1>?freshdesk=1</cfif>">
 		<table width="200" border="0" cellspacing="1" cellpadding="2" style="font-family:Arial, Helvetica, sans-serif; font-size:14px;">
 			<tr>
 				<td width="75">

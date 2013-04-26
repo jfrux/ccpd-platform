@@ -121,7 +121,7 @@ $.fn.isPersonActionLink = function () {
 								$(this).dialog("close");
 							},
 							Preview:function() {
-								window.open("Report.CMECert?ActivityID=" + nActivity + "&ReportID=5&SelectedMembers=" + oPerson.nPerson);
+								window.open("http://getmycme.com/activities/" + nActivity + "/certificates?attendees=" + oPerson.nAttendee);
 							},
 							Cancel:function() {
 								$(this).dialog("close");
@@ -139,7 +139,7 @@ $.fn.isPersonActionLink = function () {
 					$("#email-cert-dialog").dialog("open");
 				break;
 			case "pCMECert":
-					window.open("Report.CMECert?ActivityID=" + nActivity + "&ReportID=5&SelectedMembers=" + oPerson.nPerson);
+					window.open("http://getmycme.com/activities/" + nActivity + "/certificates?attendees=" + oPerson.nAttendee);
 				break;
 			case "CNECert":
 					window.open("Report.CNECert?ActivityID=" + nActivity + "&ReportID=6&SelectedMembers=" + oPerson.nPerson);
