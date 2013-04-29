@@ -1,83 +1,5 @@
 <script>
-$(document).ready(function() {
-  /* PHOTO UPLOAD DIALOG */
-  $("#PhotoUpload").dialog({ 
-    title:"Upload Photo",
-    modal: false, 
-    autoOpen: false,
-    height:120,
-    width:450,
-    resizable: false,
-    open:function() {
-      $("#PhotoUpload").show();
-    }
-  });
-  
-  $("img.PersonPhoto").click(function() {
-    var nPersonID = $.Replace(this.id,"Photo","","ALL");
-    $("#frmUpload").attr("src",sMyself + "Person.PhotoUpload?PersonID=" + nPersonID + "&ElementID=" + this.id);
-    $("#PhotoUpload").dialog("open");
-  });
-  /* // END PHOTO UPLOAD DIALOG */
-  
-  $("#PersonDetail").dialog({ 
-      title: "Person Detail",
-      modal: true, 
-      autoOpen: false,
-      height:550,
-      width:855,
-      position:[100,100],
-      resizable: false,
-      dragStop: function(ev,ui) {
-        
-      },
-      open:function() {
-        $("#frameDetail").attr('src',sMyself + 'Person.Detail?PersonID=' + nPersonID + '&Mini=1');
-      },
-      close:function() {
-        
-      },
-      resizeStop:function(ev,ui) {
-      }
-    });
-        
-  $(".PersonLink").click(function() {
-    nPersonID = $.ListGetAt(this.id,2,"|");
-    sPersonName = $.ListGetAt(this.id,3,"|");
-
-    $("#PersonDetail").dialog("open");
-    return false;
-  });
-  
-  /* CHECK/UNCHECK ALL CHECKBOXES */
-  $("#CheckAll").click(function() {
-    if($("#CheckAll").attr("checked")) {
-      $(".MemberCheckbox").each(function() {
-        $(this).attr("checked",true);
-        
-        // CHANGE BACKGROUND COLOR OF PERSONROW
-        $(".AllCommittee").css("background-color","#FFD");
-      });
-    } else {
-      $(".MemberCheckbox").each(function() {
-        $(this).attr("checked",false);
-        
-        // CHANGE BACKGROUND COLOR OF PERSONROW
-        $(".AllCommittee").css("background-color","#FFF");
-      });
-    }
-  }); 
-  
-  $(".MemberCheckbox").bind("click", this, function() {
-    if($(this).attr("checked")) {
-      var nPersonID = $.Replace(this.id,"Checked","","ALL");
-      $("#PersonRow" + nPersonID).css("background-color","#FFD");
-    } else {
-      var nPersonID = $.Replace(this.id,"Checked","","ALL");
-      $("#PersonRow" + nPersonID).css("background-color","#FFF");
-    }
-  });
-});
+App.Activity.Committee.Ahah.start();
 </script>
 <style>
 .PersonPhoto { width:50px; }
@@ -88,15 +10,15 @@ $(document).ready(function() {
 <table class="ViewSectionGrid DetailView table table-condensed table-bordered">
   <thead>
     <tr>
-      <th width="15"><input type="checkbox" name="CheckAll" id="CheckAll" /></th>
+      <th width="15"><input type="checkbox" name="CheckAll" id="CheckAll" class="js-select-all" /></th>
       <th>Information</th>
       <th>Role</th>
     </tr>
   </thead>
   <tbody>
     <cfloop query="qActivityCommitteeList">
-      <tr id="PersonRow#PersonID#" class="AllCommittee">
-        <td valign="top"><input type="checkbox" name="Checked" class="MemberCheckbox" id="Checked#PersonID#" value="#PersonID#" /></td>
+      <tr id="PersonRow#PersonID#" data-key="#PersonID#" data-name="#LastName#, #FirstName#" class="js-row js-select-all-rows AllRows">
+        <td valign="top"><input type="checkbox" name="Checked" class="MemberCheckbox js-select-one" id="Checked#PersonID#" value="#PersonID#" /></td>
         <!--- <td valign="top" width="70" style="text-align:center;"><cfif FileExists(ExpandPath("\_uploads\PersonPhotos\#PersonID#.jpg"))><img src="/_uploads/PersonPhotos/#PersonID#.jpg" id="Photo#PersonID#" class="PersonPhoto" /><cfelse><img src="#Application.Settings.RootPath#/_images/icon_<cfif Gender EQ "F">female<cfelse>male</cfif>.gif" id="Photo#PersonID#" class="PersonPhoto" /></cfif></td> --->
         <td valign="top"><a href="#myself#Person.Detail?PersonID=#PersonID#" class="PersonLink" id="PERSON|#PersonID#|#LastName#, #FirstName#">#FirstName# #LastName#</a></td>
         <td valign="top">#qActivityCommitteeList.RoleName#</td>
@@ -108,7 +30,7 @@ $(document).ready(function() {
 <cfelse>
   <div class="alert alert-info">
     You have not added any committee members.<br />
-    Please click '<a class="btn"><i class="icon-plus"></i></a> on the right to begin.
+    Click <a class="btn btn-small js-add-person-link" href="javascript:void(0);"><i class="icon-plus"></i></a> above to add someone.
   </div>
 </cfif>
 </cfoutput>

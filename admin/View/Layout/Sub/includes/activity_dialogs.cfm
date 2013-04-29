@@ -28,6 +28,9 @@
       </div>
     </div>
   </div>
+  <div id="PersonDetail">
+    <iframe src="" width="840" height="500" frameborder="0" scrolling="auto" name="frameDetail" id="frameDetail"></iframe>
+  </div>
   <div id="CopyDialog" style="display:none;">
     <div style="padding:4px;">
         <input type="radio" name="CopyChoice" id="CopyChoice1" class="CopyChoice" value="1" checked="checked" /><label for="CopyChoice1"> Paste as new parent activity.</label><br />
@@ -54,9 +57,7 @@
   <div id="CreditsDialog"></div>
   <div id="email-cert-dialog"></div>
 
-  <div id="PersonDetail">
-    <iframe src="" width="840" height="500" frameborder="0" scrolling="auto" name="frameDetail" id="frameDetail"></iframe>
-  </div>
+  
 
   <div id="PhotoUpload" style="display:none;">
     <iframe width="440" height="110" scrolling="no" src="" frameborder="0" id="frmUpload"></iframe>

@@ -57,7 +57,7 @@
 
 <cfoutput>
 <div class="row-fluid">
-  <cfif Attributes.Fuseaction NEQ "Person.Home"><span style="padding:4px;"><a href="#myself#Person.Create?Instance=#Attributes.Instance#&Mode=Insert&ActivityID=#Attributes.ActivityID#">Create a person</a></span></cfif>
+  <cfif Attributes.Fuseaction NEQ "Person.Home"><span><a href="#myself#Person.Create?Instance=#Attributes.Instance#&Mode=Insert&ActivityID=#Attributes.ActivityID#" class="btn btn-small" style="position: absolute; z-index: 1; padding: 3px 13px; top: 90px; right: 0px;">New Person</a></span></cfif>
       
   <div class="search <cfif attributes.fuseaction EQ 'Person.Finder'> finder</cfif>">
     <div class="span6">
@@ -93,30 +93,20 @@
           <div class="ViewSection">
             <cfif isDefined("qPeople") AND qPeople.RecordCount GT 0>
                 <!--- SEARCH RESULTS --->
-                <cfif PeoplePager.getTotalNumberOfPages() GT 1><div><cfoutput>#PeoplePager.getRenderedHTML()#</cfoutput></div></cfif>
+                <h3>Search Results (#qPeople.RecordCount#)</h3>
                 
-                <table class="ViewSectionGrid table table-condensed table-bordered">
+                <cfif PeoplePager.getTotalNumberOfPages() GT 1><div style="row-fluid"><cfoutput>#PeoplePager.getRenderedHTML()#</cfoutput></div></cfif>
+                <table class="ViewSectionGrid table table-condensed">
                   <tbody>
                     <cfoutput query="qPeople" startrow="#PeoplePager.getStartRow()#" maxrows="#PeoplePager.getMaxRows()#">
                       <tr>
+                        <td class="span1"><a href="javascript:void(0);" class="js-person-add PersonAdder btn" id="#PersonID#|#LastName#, #FirstName# #MiddleName#"><i class="icon-plus"></i></a></td>
                         <td>
-                          <a href="javascript:void(0);" 
-                              class="PersonAdder btn" 
-                              id="#qPeople.PersonID#|#LastName#, #FirstName# #MiddleName#">
-                            <i class="icon-add"></i>
-                          </a>
-                        </td>
-                        <td>
-                          <a href="#myself#Person.Detail?PersonID=#PersonID#">
+                           <a href="#myself#person.detail?personid=#personid#" style="font-weight: normal; font-size: 12px; position: relative; line-height: 24px;">
                           #LastName#, #FirstName# #MiddleName# <span style="font-size:12px;color:##888;">(#DisplayName#)</span>
                           </a>
-                        </td>
-
-                        <td><cfif Email NEQ "">#Email#<cfelse>&nbsp;</cfif></td>
-                        <td><cfif Birthdate NEQ "">#DateFormat(Birthdate,"mm/dd/yyyy")#</cfif></td>
-                        <td class="details">
-                          <a href="#myself#Person.Detail?PersonID=#PersonID#">#LastName#, #FirstName# #MiddleName# <span style="font-size:12px;color:##888;">(#DisplayName#)</span></a>
-                          
+                          <cfif Email NEQ "">#Email#<cfelse>&nbsp;</cfif>
+                          <cfif Birthdate NEQ "">#DateFormat(Birthdate,"mm/dd/yyyy")#</cfif>
                         </td>
                       </tr>
                     </cfoutput>
@@ -132,13 +122,13 @@
                   FROM ce_History H
                   WHERE H.FromPersonID=<cfqueryparam value="#session.personid#" cfsqltype="cf_sql_integer" /> AND isNull(H.ToPersonID,0) <> 0
                   GROUP BY H.ToPersonID
-                  ) SELECT * FROM CTE_MostRecent M INNER JOIN ce_Person A  ON A.PersonID=M.ToPersonId
+                  ) SELECT TOP 7 * FROM CTE_MostRecent M INNER JOIN ce_Person A  ON A.PersonID=M.ToPersonId
                   WHERE A.DeletedFlag='N'
                   ORDER BY M.MaxCreated DESC
                 </cfquery>
                 <cfoutput>
                 <h3>Your Recent Persons</h3>
-                <table class="ViewSectionGrid table table-condensed table-bordered">
+                <table class="ViewSectionGrid table table-condensed">
                   <tbody>
                     <cfloop query="qList">
                       <tr>

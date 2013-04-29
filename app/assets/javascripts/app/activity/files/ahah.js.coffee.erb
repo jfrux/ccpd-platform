@@ -1,0 +1,175 @@
+###
+* ACTIVITY > FILES > AHAH
+###
+App.module "Activity.Files.Ahah", (Self, App, Backbone, Marionette, $) ->
+  @startWithParent = false
+  Parent = App.Activity.Files
+  nPersonID = null
+  sPersonName = null
+  
+  @on "before:start", ->
+    App.logInfo "starting: Activity.Files.#{Self.moduleName}"
+    return
+  @on "start", ->
+    $(document).ready ->
+      _init()
+      App.logInfo "started: Activity.Files.#{Self.moduleName}"
+    return
+  @on "stop", ->
+    $("#FilesContainer").empty()
+    App.logInfo "stopped: Activity.Files.#{Self.moduleName}"
+    return
+
+
+  CurrPersonID = null
+  _destroy = ->
+    # $(".js-cv-box").tooltip 'hide'
+    # $(".js-disclosure-box").tooltip 'hide'
+    #$("#FilesContainer *").unbind()
+
+    return
+  _init = (defaults) ->
+    $selectAll = $("#FilesContainer").find(".js-select-all")
+    $selectOne = $("#FilesContainer").find(".js-select-one")
+
+    $rows = $(".js-select-all-rows")
+
+    $rows.each ->
+      $row = $(this)
+      $dlLink = $row.find('.js-download-file-link')
+      $editLink = $row.find('.js-edit-file-link')
+      $checkBox = $row.find('.js-select-one')
+      $copyLink = $row.find('.js-copy-file-link')
+      $linkTextField = $row.find('.js-public-file-link')
+
+      $editLink.tooltip
+        placement: 'left'
+        html: 'true'
+        trigger: 'hover focus'
+        title: (e)->
+          $(this).attr('data-tooltip-title')
+        container: "body"
+      $dlLink.tooltip
+        placement: 'left'
+        html: 'true'
+        trigger: 'hover focus'
+        title: (e)->
+          $(this).attr('data-tooltip-title')
+        container: "body"
+
+      $copyLink.zclip
+        path:"<%= asset_path 'ZeroClipboard.swf' %>"
+        copy: ->
+          return $(this).data('clipboard-text')
+      $checkBox.on "click", ->
+        App.logDebug "selectOne Clicked"
+        if $(this).attr("checked")
+          nPersonID = $.Replace(@id, "Checked", "", "ALL")
+          Parent.addSelected
+            person: nPersonID
+          $row.find('td').css "background-color", "#FFD"
+        else
+          nPersonID = $.Replace(@id, "Checked", "", "ALL")
+          Parent.removeSelected
+            person: nPersonID
+          $row.find('td').css "background-color", "#FFF"
+        return
+      
+      console.log $copyLink
+    
+    $selectAll.on "click", ->
+      App.logDebug "selectAll Clicked"
+      if $selectAll.attr("checked")
+        $selectOne.each ->
+          $(this).attr "checked", true
+          nPersonID = $.Replace(@id, "Checked", "", "ALL")
+          Parent.addSelected
+            person: nPersonID
+          $(".js-select-all-rows").find('td').css "background-color", "#FFD"
+
+      else
+        $selectOne.each ->
+          $(this).attr "checked", false
+          nPersonID = $.Replace(@id, "Checked", "", "ALL")
+          Parent.removeSelected
+            person: nPersonID
+          $(".js-select-all-rows").find('td').css "background-color", "#FFF"
+      return
+
+    $("#PersonDetail").dialog
+      title: "Person Detail"
+      modal: true
+      autoOpen: false
+      height: 550
+      width: 855
+      resizable: false
+      dragStop: (ev, ui) ->
+
+      open: ->
+        $(this).find('iframe').attr "src", sMyself + "Person.Detail?PersonID=" + nPersonID + "&Mini=1"
+        return
+      close: ->
+        return
+      resizeStop: (ev, ui) ->
+
+    $(".PersonLink").on "click", (e) ->
+      $row = $(this).parents('.js-row')
+      nPersonID = $row.data('key')
+      sPersonName = $row.data('name')
+      $("#PersonDetail").dialog "open",
+      e.preventDefault()
+      return false
+
+    $(".UploadLink").click ->
+      $("#UploadDialog").dialog "open"
+      return
+
+    $(".PublishLink").on "click", ->
+      nFile = $.ListGetAt(@id, 3, "-")
+      nComponent = $.ListGetAt(@id, 2, "-")
+      sFileName = prompt("What is the display name of this component?")
+      $.ajax
+        url: sRootPath + "/_com/AJAX_Activity.cfc"
+        type:'post'
+        dataType:'json'
+        data:
+          method: "publishFile"
+          ActivityID: nActivity
+          FileID: nFile
+          FileName: sFileName
+          ComponentID: nComponent
+          returnFormat: "plain"
+        success: (data) ->
+          if data.STATUS
+            addMessage data.STATUSMSG, 250, 6000, 4000
+            Parent.refresh()
+          else
+            addError data.STATUSMSG, 250, 6000, 4000
+          return
+      return
+
+
+    $(".UnpublishLink").on "click", ->
+      nFile = $.ListGetAt(@id, 2, "-")
+      $.ajax
+        url: sRootPath + "/_com/AJAX_Activity.cfc"
+        type:'post'
+        dataType:'json'
+        data:
+          method: "UnpublishFile"
+          ActivityID: nActivity
+          FileID: nFile
+          returnFormat: "plain"
+        success: (data) ->
+          cleanData = $.Trim(data)
+          status = $.ListGetAt(cleanData, 1, "|")
+          statusMsg = $.ListGetAt(cleanData, 2, "|")
+          if status is "Success"
+            addMessage statusMsg, 250, 6000, 4000
+            Parent.refresh()
+          else
+            addError statusMsg, 250, 6000, 4000
+          return
+
+
+    return

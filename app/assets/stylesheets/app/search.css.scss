@@ -1,8 +1,23 @@
 @import "twitter/bootstrap/_mixins";
+$break-small: 768px;
+$break-large: 1024px;
+
+@mixin respond-to($media) {
+  @if $media == handhelds {
+    @media only screen and (max-width: $break-small) { @content; }
+  }
+  @else if $media == medium-screens {
+    @media only screen and (max-width: $break-small) { @content; }
+  }
+  @else if $media == wide-screens {
+    @media only screen and (min-width: $break-large) { @content; }
+  }
+}
+
+
 $borderColor: #d6d2d2 #dbd3d3 #d6d2d2 #dbd3d3;
 .search {
   position:relative;
-  margin-top:9px;
   @include clearfix();
 
   .titlebar {
@@ -35,7 +50,7 @@ $borderColor: #d6d2d2 #dbd3d3 #d6d2d2 #dbd3d3;
     border-width:1px;
     border-style:solid;
     border-color:$borderColor;
-    padding: 0 10px 10px 10px;
+    //padding: 0 10px 10px 10px;
     @include border-radius(5px);
     .content-title {
       >h3 {
@@ -51,28 +66,50 @@ $borderColor: #d6d2d2 #dbd3d3 #d6d2d2 #dbd3d3;
         color:#4f4646;
       }
     }
+    
+    > .ContentBody {
+      > .ViewSection {
+        > table {
+            margin-bottom:0;
+            tbody {
+              tr {
+                &:first-child {
+                  > td {
+                    border-top:0;
+                }
+              }
+            }
+          }
+        } 
+      }
+    }
+    
+
     table.profile-grid {
       margin-bottom:0px; 
       background-color:#FFF; 
     }
+    
     .pagination {
-      margin-left:auto;
-      margin-right:auto;
+      margin-left: 6px;
+      margin-right: 6px;
     }
     .ViewSection {
       h3 {
-        background-color: #E3E3E3;
-        border-bottom: 1px solid #D9D9D9;
-        border-top: 1px solid #D9D9D9;
+        background-color: #F0EDED;
+        border-bottom: 1px solid #D9D7D7;
+        border-radius: 5px 0 0 0;
+        color: #4F4646;
+        display: block;
         font-size: 13px;
         font-weight: bold;
-        line-height: 22px;
-        margin:0 -10px 5px -10px;
+        line-height: 24px;
+        //margin: 0 -9.5px 5px -10.5px;
         padding: 1px 6px;
       }
     }
     .content-inner {
-      margin: 0 10px;
+      margin: 0 0px;
     }
 
     
@@ -90,6 +127,10 @@ $borderColor: #d6d2d2 #dbd3d3 #d6d2d2 #dbd3d3;
     margin-top:0;
     position:relative;
 
+    @include respond-to(medium-screens) {     
+      margin-bottom:10px;
+    }
+
     > h3 {
       background-color: #F0EDED;
       border-bottom: 1px solid #D9D7D7;
@@ -99,7 +140,7 @@ $borderColor: #d6d2d2 #dbd3d3 #d6d2d2 #dbd3d3;
       font-size: 13px;
       font-weight: bold;
       line-height: 24px;
-      margin: 0 -10.5px 5px -9.5px;
+      margin: 0 -9.5px 5px -10.5px;
       padding: 2px 0 0 14px;
     }
 
@@ -111,6 +152,13 @@ $borderColor: #d6d2d2 #dbd3d3 #d6d2d2 #dbd3d3;
         padding-right: 10px;
         width: 74px;
         font-size:12px;
+      }
+      input[type="text"] {
+        @include respond-to(medium-screens) {     
+          float: left;
+          margin-right: 4px;
+          width: 20%; 
+        }
       }
       .controls {
       }

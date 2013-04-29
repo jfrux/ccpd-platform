@@ -35,8 +35,8 @@ $(document).ready(function (){
 		modal: true, 
 		autoOpen: false,
 		resizable: false,
-		height:185,
-		width:350,
+		height:375,
+		width:400,
 		overlay: { 
 		opacity: 0.5, 
 		background: "black" 
@@ -106,20 +106,25 @@ $(document).ready(function (){
         </cfif>
         
         <cfloop from="#StartDate#" to="#EndDate#" index="i">
-            <div style="font-size:15px; font-weight:bold; padding:8px 3px 3px 3px;">#DateFormat(i,'mmmm dd, yyyy')#</div>
+            <div style="font-size:15px; font-weight:bold; padding:8px 3px 3px 3px;">#DateFormat(i,'mmmm dd, yyyy')# </div>
             <cfset qItems = Application.Com.AgendaGateway.getByAttributes(ActivityID=Attributes.ActivityID,EventDate=i,OrderBy="StartTime,EndTime")>
             <cfif qItems.RecordCount GT 0>
-            <table width="500" cellspacing="1" cellpadding="2" border="0" class="ViewSectionGrid">
+            <table class="ViewSectionGrid table table-condensed table-bordered mbs">
                 <cfloop query="qItems">
                 <tr>
-                    <td width="120">#TimeFormat(qItems.StartTime,'h:mmTT')# - #TimeFormat(qItems.EndTime,'h:mmTT')#</td>
-                    <td>#qItems.Description#</td>
-                    <td align="right" width="50"><a href="javascript:void(0);" id="AgendaLink#qItems.AgendaID#" class="AgendaEditLink"><img src="#Application.Settings.RootPath#/_images/icons/Pencil.png" border="0" /></a> <a href="javascript:void(0);" id="AgendaDelete#qItems.AgendaID#" class="AgendaDeleteLink"><img src="#Application.Settings.RootPath#/_images/icons/Delete.png" border="0" /></a></td>
+                    <td width="120" style="vertical-align:middle; text-align:center;">#TimeFormat(qItems.StartTime,'h:mmTT')# - #TimeFormat(qItems.EndTime,'h:mmTT')#</td>
+                    <td style="vertical-align:middle;">#qItems.Description#</td>
+                    <td align="right" width="50">
+                    	<div class="btn-group">
+                    		<a href="javascript:void(0);" id="AgendaLink#qItems.AgendaID#" class="AgendaEditLink btn"><i class="icon-pencil"></i></a>
+                    		<a href="javascript:void(0);" id="AgendaDelete#qItems.AgendaID#" class="AgendaDeleteLink btn"><i class="icon-trash"></i></a>
+                    	</div>
+                    </td>
                 </tr>
                 </cfloop>
             </table>
             </cfif>
-			<div><a href="javascript:void(0);" id="#DateFormat(i,'mm-dd-yyyy')#" class="AddItemLink" style="text-decoration:none; font-size:15px;"><img src="#Application.Settings.RootPath#/_images/icons/Add.png" border="0" align="left" style="padding-right:4px;" />Add Items</a></div>
+            <a href="javascript:void(0);" id="#DateFormat(i,'mm-dd-yyyy')#" class="AddItemLink btn btn-small"><i class="icon-plus"></i> Add Event Time</a>
         </cfloop>
     </div>
 </div>

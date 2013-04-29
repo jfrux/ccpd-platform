@@ -29,10 +29,15 @@ $borderColor: #d6d2d2 #dbd3d3 #d6d2d2 #dbd3d3;
     .ContentTitle {
       font-size: 18px;
       font-weight: bold;
-      line-height: 36px;
+      line-height: 18px;
       margin-top: 6px;
+      margin-bottom:9px;
     }
     .action-buttons {
+      margin-bottom: 9px;
+      margin-right: 5px;
+      margin-top: 6px;
+      
       a.btn {
         height: 16px;
         line-height: 16px;
@@ -45,8 +50,7 @@ $borderColor: #d6d2d2 #dbd3d3 #d6d2d2 #dbd3d3;
           font-style:normal;
         }
       }
-      margin-right: 5px;
-      margin-top: 6px;
+          
     }
   }
   

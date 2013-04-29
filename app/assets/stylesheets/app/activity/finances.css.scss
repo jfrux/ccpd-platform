@@ -1,0 +1,73 @@
+.finance-table {
+  input,select {
+    margin-bottom:0;
+    padding:0;
+    height:26px;
+    line-height:26px;
+    font-size:11px;
+  }
+
+  .finance-ledger-input {
+    
+
+    .ledger-date-input {
+      width:100%;
+      text-align:center;
+    }
+    .ledger-desc-input {
+
+    }
+    .ledger-memo-input {
+
+    }
+    .ledger-type-input {
+      padding:4px 0;
+    }
+    .ledger-amount-input {
+      text-align:right;
+    }
+    input,select {
+      background-color:#EEE;
+      border:0;
+      //padding:0 0 0 4px;
+      width:100%;
+      line-height:30px;
+      box-shadow:none;
+    }
+  }
+  .finance-table-row {
+    td {
+      text-align:center;
+      vertical-align:middle;
+    }
+    .finance-table-row-amount {
+      text-align:right;
+    }
+  }
+
+  .finance-table-input {
+
+    .finance-input-amount {
+      text-align: right;
+    }
+
+    td {
+      padding:0 3px;
+      margin:0;
+      text-align:center;
+      vertical-align:middle;
+      background-color:#EEE;
+    }
+    select {
+      padding:4px 0;
+    }
+    input,select {
+      background-color:#EEE;
+      border:0;
+      //padding:0 0 0 4px;
+      width:100%;
+      line-height:30px;
+      box-shadow:none;
+    }
+  }
+}

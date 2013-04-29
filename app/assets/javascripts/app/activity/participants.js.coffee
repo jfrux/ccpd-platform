@@ -64,6 +64,8 @@ App.module "Activity.Participants", (Self, App, Backbone, Marionette, $) ->
     App.logInfo "Count is currently " + parseInt(selectedCount)
     App.logInfo "Updating Count by " + parseInt(nAmount)
     selectedCount = parseInt(selectedCount) + parseInt(nAmount)
+    if selectedCount < 0
+      selectedCount = 0
     App.logInfo "Count is now " + selectedCount
     $("#CheckedCount,.js-attendee-status-selected-count").html "" + selectedCount + ""
     if selectedCount > 0

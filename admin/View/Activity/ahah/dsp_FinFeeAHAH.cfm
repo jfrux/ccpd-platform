@@ -28,7 +28,7 @@
 					statusMsg = $.ListGetAt(cleanData,2,"|");
 					
 					if(status == 'Success') {
-						$.unblockUI();
+						//$.unblockUI();
 						updateFees();
 					} else {
 						<!--- ERROR OUTPUT --->
@@ -36,7 +36,7 @@
 							addError($.ListGetAt(cleanData,i,"|"),250,6000,4000);
 						};
 						
-						$.unblockUI();
+						//$.unblockUI();
 					}
 				});
 		} else {
@@ -49,14 +49,14 @@
 					
 					if(status == 'Success') {
 						updateFees();
-						$.unblockUI();
+						//$.unblockUI();
 					} else {
 						<!--- ERROR OUTPUT --->
 						for(i=1;i<=$.ListLen(cleanData,"|");i=i+1) {
 							addError($.ListGetAt(cleanData,i,"|"),250,6000,4000);
 						};
 						
-						$.unblockUI();
+						//$.unblockUI();
 					}
 				});
 		}
@@ -105,7 +105,7 @@
 			nId = this.id;
 			
 			if(confirm('Are you sure you would like to delete this fee?')) {
-				$.blockUI( '<h1>Deleting Fee...</h1>' );
+				//$.blockUI( '<h1>Deleting Fee...</h1>' );
 				
 				$.getJSON(sRootPath + "/_com/AJAX_Activity.cfc", { method: "deleteFee", FeeID: nId, ActivityID: nActivity, returnFormat: "plain" },
 				function(data) {
@@ -116,7 +116,7 @@
 						addError(data.STATUSMSG,250,6000,4000);
 					}
 					
-					$.unblockUI();
+					//$.unblockUI();
 				});
 			}
 		});

@@ -17,12 +17,21 @@
 	<cfif Attributes.Search NEQ "">
         <cfset qPeople = Application.Com.PersonGateway.getBySearch(SSN=Attributes.SSN,Birthdate=Attributes.Birthdate,FirstName=Attributes.FirstName,LastName=Attributes.LastName,UCID=Attributes.UCID,Email=Attributes.Email,DeletedFlag="N",OrderBy="P.LastName,P.FirstName")>
         <cfset PeoplePager = CreateObject("component","#Application.Settings.Com#Pagination").init()>
+        <!--- 
         <cfset PeoplePager.setQueryToPaginate(qPeople)>
         <cfset PeoplePager.setBaseLink("#myself##xfa.SearchSubmit#?Instance=#Attributes.Instance#&Search=1&SSN=#Attributes.SSN#&Birthdate=#Attributes.Birthdate#&FirstName=#Attributes.FirstName#&LastName=#Attributes.LastName#&UCID=#Attributes.UCID#&Email=#Attributes.Email#&ActivityID=#Attributes.ActivityID#") />
         <cfset PeoplePager.setItemsPerPage(9) />
         <cfset PeoplePager.setUrlPageIndicator("page") />
         <cfset PeoplePager.setShowNumericLinks(true) />
         <cfset PeoplePager.setClassName("green") />
+ --->
+        <cfset PeoplePager.setQueryToPaginate(qPeople)>
+        <cfset PeoplePager.setMissingNumbersHTML("<span>...</span>")>
+        <cfset PeoplePager.setBaseLink("#myself##xfa.SearchSubmit#?Instance=#Attributes.Instance#&Search=1&SSN=#Attributes.SSN#&Birthdate=#Attributes.Birthdate#&FirstName=#Attributes.FirstName#&LastName=#Attributes.LastName#&UCID=#Attributes.UCID#&Email=#Attributes.Email#&ActivityID=#Attributes.ActivityID#") />
+        <cfset PeoplePager.setItemsPerPage(7) />
+        <cfset PeoplePager.setUrlPageIndicator("page") />
+        <cfset PeoplePager.setShowNumericLinks(true) />
+        <cfset PeoplePager.setClassName("green span24") />
     <cfelse>
        <!--- <cfset qPeople = Application.Com.PersonGateway.getBySearch(Limit=1000,DeletedFlag="N",OrderBy="P.LastName,P.FirstName")>
         <cfset PeoplePager = CreateObject("component","#Application.Settings.Com#Pagination").init()>

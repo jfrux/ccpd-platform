@@ -1,6 +1,6 @@
 <cfoutput>
 <div class="btn-toolbar">
-  <div class="btn-group pull-left js-partic-actions">
+  <div class="btn-group pull-left js-selected-actions">
     <a class="btn btn-mini dropdown-toggle disabled" data-toggle="dropdown" href="##">SELECTED: <span id="label-status-selected" class="js-status-selected-count">0</span></a>
     <a class="btn btn-mini dropdown-toggle disabled" data-toggle="dropdown" href="##">
       Actions
@@ -18,7 +18,7 @@
     </ul>
   </div>
   <div class="btn-group">
-    <a title="Add Committee Member" class="btn btn-mini" id="CommitteeLink" href="javascript:void(0);"><i class="icon-plus"></i></a>
+    <a title="Add Committee Member" class="btn btn-mini js-add-person-link" id="CommitteeLink" href="javascript:void(0);"><i class="icon-plus"></i></a>
   </div>
 </div>
 </cfoutput>

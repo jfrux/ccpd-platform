@@ -115,7 +115,6 @@
     <fuseaction name="AgendaForm">
       <do action="mActivity.getAgendaItem" />
       <do action="vActivity.AgendaForm" contentvariable="Request.Page.Body" />
-      <do action="vLayout.Blank" />
     </fuseaction>
     <fuseaction name="Application">
       <do action="mActivity.getApplication" />
