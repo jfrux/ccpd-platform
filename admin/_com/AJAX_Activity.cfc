@@ -948,7 +948,12 @@
         <cfargument name="EndTime" required="yes">
         <cfargument name="Amount" required="yes">
       	
-        <cfset var Status = "Fail|Cannot access fee saving functionality for activity finances.">
+        <cfset var returnVar = createObject("component", "#Application.Settings.Com#returnData.buildStruct").init()>
+        
+        <cfcontent type="application/json" />
+        
+        <cfset returnVar.setStatus(false)>
+        <cfset returnVar.setStatusMsg("Cannot save fee for unknown reason.")>
         
         <cfset Status = Application.ActivityFinance.saveFee(
 							Arguments.FeeID,
@@ -960,7 +965,14 @@
 							Arguments.EndTime,
 							Arguments.Amount)>
         
-        <cfreturn Status />
+        <cfif listFirst(Status,"|") EQ "Success">
+            <cfset returnVar.setStatus(true) />
+            <cfset returnVar.setStatusMsg("Successfully saved fee!") />
+        <cfelse>
+            <cfset returnVar.setStatus(false) />
+            <cfset returnVar.setStatusMsg(listLast(Status,"|")) />
+        </cfif>
+        <cfreturn returnVar.getJson() />
     </cffunction>
     
     <cffunction name="saveLedger" hint="Saves ledger information." access="Remote" output="false" returntype="string">
@@ -1086,7 +1098,7 @@
         
         <cfset status.setStatus(false)>
         <cfset status.setStatusMsg("Cannot access the save function for activity finances.")>
-        
+
         <cfset Status = Application.ActivityFinance.saveSupport(
 							Arguments.SupportID,
 							Arguments.ActivityID,

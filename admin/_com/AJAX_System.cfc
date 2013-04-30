@@ -42,21 +42,20 @@
     </cffunction>
     
 	<cffunction name="saveSupporter" access="Remote" output="true" returntype="string">
-		<cfargument name="ActivityID" type="string" required="true">
-		<cfargument name="NewSupporterName" type="string" required="true">
-		<cfargument name="NewSupporterDescrip" type="string" required="true">
-        <cfargument name="original_name" type="string" required="true">
+		<cfargument name="name" type="string" required="true" />
+		<cfargument name="description" type="string" required="false" default="" />
+        <cfargument name="original_name" type="string" required="false" default="" />
       	
-        <cfset var Status = createObject("component","#Application.Settings.Com#returnData.buildStruct").init()>
+        <cfset var returnVar = createObject("component","#Application.Settings.Com#returnData.buildStruct").init()>
         
-        <!---<cfcontent type="text/javascript" />--->
+        <cfcontent type="application/json" />
         
-        <cfset status.setStatus(false)>
-        <cfset status.setStatusMsg("Cannot access save functionality for system preferences.")>
+        <cfset returnVar.setStatus(false)>
+        <cfset returnVar.setStatusMsg("Failed to create supporter.")>
         
-        <cfset status = Application.System.saveSupporter(Arguments.ActivityID,Arguments.NewSupporterName,Arguments.NewSupporterDescrip,arguments.original_name)>
+        <cfset returnVar = Application.System.saveSupporter(argumentCollection=arguments)>
         
-        <cfreturn status.getJSON() />
+        <cfreturn returnVar.getJSON() />
     </cffunction>
     
 	<cffunction name="updateCategoryLMS" hint="updates categories to system" access="Remote" output="true" returntype="string">

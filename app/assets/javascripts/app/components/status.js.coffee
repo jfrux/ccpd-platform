@@ -27,12 +27,14 @@ App.module "Components.Status", (Self, App, Backbone, Marionette, $) ->
       closeDuration: fadeout
       themeState: 'normal'
     return
+
   Self.addError = (message,fadein,fadeto,fadeout) ->
     App.logInfo "adding error message: '#{message}'"
-    $.jGrowl message
+    $.jGrowl message,
       header: 'ERROR!'
       life: fadeto
       openDuration: fadein
       closeDuration: fadeout
       themeState: 'error'
     return
+  return

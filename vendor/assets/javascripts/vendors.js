@@ -24,6 +24,7 @@
 *=require twitter/bootstrap/bootstrap-transition
 *=require twitter/bootstrap/bootstrap-typeahead
 *=require jquery/plugins/jquery.zclip
+*=require jquery/plugins/bootstrap-wysiwyg
 *=require jquery/plugins/jquery.maskedinput
 *=require jquery/plugins/jquery.hotkeys
 *=require jquery/plugins/jquery.blockui
@@ -41,5 +42,5 @@
 *=require jquery/plugins/jquery.scrollto
 *=require jquery/plugins/jquery.tipsy
 *=require jquery/plugins/jquery.periodicalupdater
-*=require tiny_mce/tiny_mce_src
+*=require ckeditor/ckeditor.js
 */

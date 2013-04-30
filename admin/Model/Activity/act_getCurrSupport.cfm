@@ -1,9 +1,10 @@
 <cfset SupportBean = CreateObject("component","#Application.Settings.Com#ActivityFinance.Support").Init(SupportID=Attributes.SupportID)>
-<cfset SupportBean = Application.Com.ActivitySupportDAO.Read(SupportBean)>
-
-<cfset Attributes.ActivityID = SupportBean.getActivityID()>
+<cfif attributes.supportid GT 0>
+  <cfset SupportBean = Application.Com.ActivitySupportDAO.Read(SupportBean)>
+</cfif>
 <cfset Attributes.Amount = SupportBean.getAmount()>
 <cfset Attributes.Supporter = SupportBean.getSupporterID()>
+<cfset Attributes.SupporterID = attributes.supporter>
 <cfset Attributes.SupportType = SupportBean.getSupportTypeID()>
 <cfset Attributes.ContractNum = SupportBean.getContractNum()>
 <cfset Attributes.BudgetRequested = SupportBean.getBudgetRequested()>

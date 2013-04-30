@@ -81,8 +81,8 @@
         "subEvents":[]
       },
       "activity.finfees": {
-        "label":"Fees",
-        "title":"Fees",
+        "label":"Fee Schedule",
+        "title":"Fee Schedule",
         "icon":"",
         "tooltip":"",
         "event":"activity.finfees",

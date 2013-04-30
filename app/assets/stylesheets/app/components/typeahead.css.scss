@@ -32,7 +32,7 @@
 	line-height:19px;
 }
 .uiTypeahead .selected .textInput {
-	//background-color: #E2E8F6;
+	background-color: #EEE;
 }
 
 .imageTypeahead .selected .textInput {
@@ -56,10 +56,10 @@
 }
 
 .uiClearableTypeahead .clear, .uiClearableTypeahead.uiTypeaheadDisabled .selected .clear {
-	display: none;
-	position: absolute;
-	right: 3px;
-	top: 2px;
+  display: none;
+  position: absolute;
+  right: -4px;
+  top: 8px;
 }
 
 label.uiCloseButton {
@@ -193,6 +193,25 @@ label.uiCloseButton {
 .uiTypeaheadView {
 	position:absolute;
 	z-index:5000;
+
+	.ui-menu-item {
+		a {
+	    border-radius: 0 0 0 0;
+	    display: block;
+	    font-weight: normal;
+	    line-height: 21px !important;
+	    min-height: 0;
+	    padding: 5px;
+	    text-decoration: none;
+			img {
+
+			}
+			div {
+				margin-left:25px;
+				line-height:18px;
+			}
+		}
+	}
 }
 .uiTypeaheadView .compact .splitpics, .uiTypeaheadView .compact img {
 	display: block;
@@ -222,10 +241,10 @@ label.uiCloseButton {
 .ui-autocomplete img {
 	background-color: #ECEFF5;
 	display: block;
-	height: 50px;
+	height: 20px;
 	left: 6px;
 	position: absolute;
-	width: 50px;
+	width: 20px;
 }
 
 .ui-autocomplete .text {

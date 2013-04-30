@@ -61,6 +61,7 @@
 <div id="PublishState">
     
 </div>
+<!---
 <!--- ADD NEW CATEGORY --->
 <cfif Attributes.Fuseaction EQ "Activity.PubCategory">
 <div style="clear:both;">
@@ -81,5 +82,7 @@
     OR <a href="#Myself#Admin.Specialties">Manage Specialties</a>
     </div>
 </div>
+
 </cfif>
+--->
 </cfoutput>

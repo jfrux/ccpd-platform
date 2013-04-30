@@ -64,8 +64,8 @@
   <fuseaction name="FacultyRight">
   <include template="toolbar/dsp_FacultyRight" />
   </fuseaction>
-  <fuseaction name="FinFeeRight">
-  <include template="toolbar/dsp_FinFeeRight" />
+  <fuseaction name="FinFeesRight">
+  <include template="toolbar/dsp_FinFeesRight" />
   </fuseaction>
   <fuseaction name="FinLedgerRight">
   <include template="toolbar/dsp_FinLedgerRight" />
@@ -366,9 +366,6 @@
     <include template="toolbar/dsp_FinBudgetRight" />
   </fuseaction>
   
-  <fuseaction name="FinFee">
-    <include template="dsp_FinFee" />
-  </fuseaction>
   
  
   
@@ -390,8 +387,12 @@
     <include template="ahah/dsp_FinSupportAHAH" />
   </fuseaction>
   
-  <fuseaction name="FinFeeAHAH">
-    <include template="ahah/dsp_FinFeeAHAH" />
+  <fuseaction name="FinFees">
+    <include template="dsp_FinFees" />
+  </fuseaction>
+
+  <fuseaction name="FinFeesAHAH">
+    <include template="ahah/dsp_FinFeesAHAH" />
   </fuseaction>
   
   

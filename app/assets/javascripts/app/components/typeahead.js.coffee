@@ -57,18 +57,19 @@
         success: (returnData) ->
           data = returnData.PAYLOAD
           data.label = data.name
-          data.value = data.categoryid
-          data.ITEM_ID = data.categoryid
+          data.value = data.id
+          data.ITEM_ID = data.id
           item_select data
           true
 
     item_select = (item) ->
+      #console.log(item);
       unless item.value is 0
         unless settings.clearOnSelect
           $hiddenInput.val item.value.toString()
           $hiddenInput.keyup()
           $input.val item.label
-          $img.attr "src", item.image
+          #$img.attr "src", item.image
           $wrap.addClass "selected"
           $hiddenInput.keyup()
           settings.onSelect item
@@ -136,6 +137,8 @@
     ).blur(->
       $input.blur()
     )
+
+    
     fieldName = $hiddenInput.attr("name")
     origWidth = $hiddenInput.width()
     $hiddenInput.has(".hide")
@@ -324,6 +327,8 @@
     $input
 
   $.uiTypeahead.clear = ->
+    clear_typeahead()
+    return
 
   $.uiTypeahead.defaults =
     ajaxSearchParams: null

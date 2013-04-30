@@ -36,7 +36,7 @@
             <cfset subkey = tab.subEvents[e] />
             <cfset subtab = attributes.settings.tabs[subkey] />
             <li class="<cfif isActive(attributes.current,subtab)>active</cfif>">
-              <a href="/admin/event/#subtab.event#?#attributes.type#id=#attributes.typeid#" data-pjax-title="#tab.title#" data-tooltip-title="#subtab.tooltip#">
+              <a href="/admin/event/#subtab.event#?#attributes.type#id=#attributes.typeid#" data-pjax-title="#subtab.title#" data-tooltip-title="#subtab.tooltip#">
                 <i class="fg-#subtab.icon#"></i> <span>#subtab.label#</span>
                 <cfif structkeyExists(subtab,'count')>
                   <span class="navItemCount pull-right">#subtab.count#</span>

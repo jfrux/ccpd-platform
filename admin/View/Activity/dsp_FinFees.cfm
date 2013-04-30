@@ -12,7 +12,7 @@
 	function updateFees(nId) {
 		$("#FeesLoading").show();
 		
-		$.post(sMyself + "Activity.FinFeesAHAH?ActivityID=" + nActivity + "&FeeID=" + nId, function(data) {
+		$.post(sMyself + "Activity.FinFeesAHAH?ActivityID=" + nActivity + "&feeid=" + nId, function(data) {
 			$("#FeesContainer").html(data);
 			$("#FeesLoading").hide();
 		});

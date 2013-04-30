@@ -61,6 +61,14 @@
         .controls {
           margin-left: 115px;
         }
+        .control-group-heading {
+          span {
+            font-size:13px;
+            color:#AAA;
+            font-style:italic;
+            line-height:30px;
+          }
+        }
         .control-group {
             margin-bottom: 0;
             padding-bottom: 5px;

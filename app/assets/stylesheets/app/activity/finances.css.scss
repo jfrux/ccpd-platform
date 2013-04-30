@@ -7,9 +7,15 @@
     font-size:11px;
   }
 
-  .finance-ledger-input {
-    
+  > thead {
+    > tr {
+      > th {
+        text-align:center;
+      }
+    }
+  }
 
+  .finance-ledger-input {
     .ledger-date-input {
       width:100%;
       text-align:center;
@@ -35,6 +41,28 @@
       box-shadow:none;
     }
   }
+
+  .finance-fee-col-name {
+    width:108px;
+  }
+  .finance-fee-col-startdate,
+  .finance-fee-col-enddate {
+    width:180px;
+  }
+  .finance-fee-col-amount {
+    width:50px;
+    overflow:hidden;
+  }
+  .finance-fee-col-options {
+
+  }
+
+  .finance-fee-input {
+    .finance-input-amount {
+      width:97px;
+    }
+  }
+
   .finance-table-row {
     td {
       text-align:center;
@@ -46,7 +74,23 @@
   }
 
   .finance-table-input {
-
+    td.finance-input-datetime {
+      white-space:nowrap;
+      input[type=text] {
+        //DATE FIELD
+        &:first-child {
+          width:63px;
+          text-align:center;
+          float:left;
+        }
+        //TIME FIELD
+        &:nth-child(2) {
+          width:48px;
+          text-align:center;
+          float:left;
+        }
+      }
+    }
     .finance-input-amount {
       text-align: right;
     }
@@ -67,7 +111,9 @@
       //padding:0 0 0 4px;
       width:100%;
       line-height:30px;
-      box-shadow:none;
+      @include border-radius(0);
+      @include box-shadow(none);
+      //@include box-shadow(0px 1px 3px #CCC inset);
     }
   }
 }

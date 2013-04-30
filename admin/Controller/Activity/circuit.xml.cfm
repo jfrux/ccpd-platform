@@ -243,20 +243,21 @@
       <do action="mActivity.getDocs" />
       <do action="vActivity.DocsAHAH" contentvariable="request.page.body" />
     </fuseaction>
+
     <fuseaction name="EditCurrSupport">
-      <do action="mActivity.getSupporters" />
       <do action="mActivity.getSupportTypes" />
       <do action="mActivity.saveCurrSupport" />
       <do action="mActivity.getCurrSupport" />
+      <do action="mActivity.getSupporter" />
       <do action="vActivity.EditCurrSupport" contentvariable="Request.Page.Body" />
-      <do action="vLayout.None" />
     </fuseaction>
+
     <fuseaction name="EditSupporter">
       <do action="mActivity.saveSupporter" />
       <do action="mActivity.getSupporter" />
       <do action="vActivity.EditSupporter" contentvariable="Request.Page.Body" />
-      <do action="vLayout.None" />
     </fuseaction>
+
     <fuseaction name="emailCert">
       <do action="vActivity.emailCert" contentvariable="Request.Page.Body" />
       <do action="vLayout.None" />
@@ -296,16 +297,17 @@
       <do action="mActivity.getFinBudgets" />
       <do action="vActivity.FinBudgetAHAH" contentvariable="request.page.body" />
     </fuseaction>
+
     <fuseaction name="FinFees">
       <set name="Request.Page.Breadcrumbs" value="Activities|Activity.Home,#ActivityTitleShort#|Activity.Detail?ActivityID=#Attributes.ActivityID#,Finances|Activity.Finances?ActivityID=#Attributes.ActivityID#,Fees|Activity.FinFees?ActivityID=#Attributes.ActivityID#" />
       <do action="mPage.ParseCrumbs" />
       <set name="Request.MultiFormTitle" value="Finances" />
-      
     </fuseaction>
+
     <fuseaction name="FinFeesAHAH">
       <do action="mActivity.getFinFees" />
       <do action="mActivity.getFinFee" />
-      <do action="vActivity.FinFeeAHAH" contentvariable="request.page.body" />
+      <do action="vActivity.FinFeesAHAH" contentvariable="request.page.body" />
     </fuseaction>
     <fuseaction name="FinLedger">
       <set name="Request.Page.Breadcrumbs" value="Activities|Activity.Home,#ActivityTitleShort#|Activity.Detail?ActivityID=#Attributes.ActivityID#,Finances|Activity.Finances?ActivityID=#Attributes.ActivityID#,General Ledger|Activity.FinLedger?ActivityID=#Attributes.ActivityID#" />

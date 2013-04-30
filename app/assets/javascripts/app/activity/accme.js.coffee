@@ -17,4 +17,5 @@ App.module "Activity.ACCME", (Self, App, Backbone, Marionette, $) ->
     return
 
   _init = (defaults) ->
-    #App.logInfo "init: accme"
+    FormState = App.Components.FormState
+    FormState.start(true)

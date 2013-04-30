@@ -346,7 +346,7 @@
 		<cfif isNumeric(NewCategoryID)>
 			<cfset aCategoryInfo = {
                 name = arguments.name,
-                categoryid = NewCategoryID
+                id = NewCategoryID
                 } />
       <cfset status.setData(aCategoryInfo)>
 		</cfif>

@@ -35,19 +35,29 @@ $(document).ready(function() {
 });
 </script>
 <cfoutput>
-<div class="MultiFormRight_SectSubTitle">Publish <cfif FillPercentage EQ 100><img src="#Application.Settings.RootPath#/_images/icons/<cfif Attributes.PublishFlag EQ "N">exclamation<cfelse>tick</cfif>.png" title="Publish Activity" /></cfif></div>
-<div class="MultiFormRight_SectBody">
-    <div id="PublishStateBar">
-        <div id="FillBar"></div>
-    </div>
-    <div id="PublishPercent"></div>
-    <div id="PublishElementList">
-    <cfloop from="1" to="#arrayLen(PublishElementList)#" index="i">
-        <cfif PublishElementList[i].Show>
-            <img src="#Application.Settings.RootPath#/_images/icons/#PublishElementList[i].Image#.png" /> <a href="#PublishElementList[i].Link#">#PublishElementList[i].Field#</a><br />
+<div class="btn-toolbar clearfix">
+  <div class="btn-group pull-right">
+    <a class="btn btn-mini btn-selected-actions dropdown-toggle" data-toggle="dropdown" href="##">
+      Progress
+      <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu">
+      <li class="nav-header">PUBLISH PROGRESS</li>
+      <li class="nav-header">
+        <div id="PublishStateBar" class="progress progress-info">
+          <div id="FillBar" class="bar"></div>
+        </div>
+      </li>
+      <cfloop from="1" to="#arrayLen(PublishElementList)#" index="i">
+        <cfset elem = PublishElementList[i] />
+        <cfif elem.Show>
+        <li><a href="#elem.Link#"><i <cfif elem.image EQ 'tick'>style="color:green;"<cfelse>style="color:red;"</cfif>class="<cfif elem.image EQ 'tick'>icon-ok-circle<cfelse>icon-exclamation-sign</cfif>"></i> #elem.Field#</a></li>
         </cfif>
-    </cfloop>
-    <div><input type="button" name="btnPublish" id="PublishActivity" value="Publish Activity" /></div>
-    </div>
+      </cfloop>
+    </ul>
+  </div>
+  <div class="btn-group pull-right">
+    <a class="btn btn-mini" id="PublishActivity"><i class="icon-globe"></i></a>
+  </div>
 </div>
 </cfoutput>

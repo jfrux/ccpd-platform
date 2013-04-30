@@ -12,6 +12,17 @@
     width:650px!important;
     z-index:1002;
   }
+
+  #PublishState {
+    .btn-toolbar {
+      .btn-group {
+        .progress {
+          margin-bottom:0;
+        }
+      }
+    }
+  }
+
   #ActivityStats {
     .stats-refresher {
       display:none;
