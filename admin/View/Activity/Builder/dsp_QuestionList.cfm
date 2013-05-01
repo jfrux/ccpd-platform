@@ -1,6 +1,6 @@
 <cfoutput>
-<link href="#Application.Settings.RootPath#/_styles/Assessment.css?version=3546" rel="stylesheet" type="text/css" />
-</cfoutput>
+<!--- <link href="#Application.Settings.RootPath#/_styles/Assessment.css?version=3546" rel="stylesheet" type="text/css" />
+ ---></cfoutput>
 <cfset QuestionNo = 1>
 
 <script>

@@ -1,9 +1,11 @@
 root = this
 
-root.App = new Backbone.Marionette.Application();
+root.App = new Backbone.Marionette.Application()
 
 _init = () ->
+  Backbone.history.start({pushState: true, root: "/admin/event/"})
   #console.log "test"
+
 
 App.addInitializer (options)->
   _init()

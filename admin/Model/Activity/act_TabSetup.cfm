@@ -148,7 +148,7 @@
         "label":"Builder",
         "title":"Builder Components",
         "tooltip":"",
-        "icon":"globe-green",
+        "icon":"",
         "event":"activity.pubbuilder",
         "hasToolbar":true,
         "subEvents":[]
@@ -157,7 +157,7 @@
         "label":"Categories",
         "title":"Categories",
         "tooltip":"",
-        "icon":"globe-green",
+        "icon":"",
         "event":"activity.pubcategory",
         "hasToolbar":true,
         "subEvents":[]
@@ -166,7 +166,7 @@
         "label":"Specialities",
         "title":"Specialty Areas",
         "tooltip":"",
-        "icon":"globe-green",
+        "icon":"",
         "event":"activity.pubspecialty",
         "hasToolbar":true,
         "subEvents":[]
@@ -175,7 +175,7 @@
         "label":"Sites",
         "title":"Sites to Publish To",
         "tooltip":"",
-        "icon":"globe-green",
+        "icon":"",
         "event":"activity.pubsites",
         "hasToolbar":true,
         "subEvents":[]

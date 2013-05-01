@@ -4,7 +4,7 @@
 App.Activity.ACCME.start();
 </script>
 <cfoutput>
-<form action="#Application.Settings.RootPath#/_com/AJAX_Activity.cfc" class="form-horizontal" method="post" name="frmEditActivity" id="EditForm">
+<form action="#Application.Settings.RootPath#/_com/AJAX_Activity.cfc" class="form-horizontal js-formstate" method="post" name="frmEditActivity">
   <input type="hidden" name="activityId" value="#attributes.activityId#" />
   <input type="hidden" value="saveACCMEInfo" name="Method" />
   <input type="hidden" value="plain" name="returnFormat" />

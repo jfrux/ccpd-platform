@@ -25,9 +25,21 @@ App.module "Components.FormState", (Self, App, Backbone, Marionette, $) ->
       App.logInfo "started: #{Self.moduleName}"
       return
     return
+  @on "stop", ->
+    App.logInfo "stopped: #{Self.moduleName}"
+    $form.unbind()
+    $form.empty()
+    $.each CKEDITOR.instances, (i,val) ->
+      if (CKEDITOR.instances[i]) 
+        CKEDITOR.instances[i].destroy()
 
+      return
+    #$form.remove()
+    
+    return
   _init = (IsSaved) ->
-    $form = $('#EditForm')
+    App.logDebug "binding formstate"
+    $form = $('.js-formstate')
     $el = $('<div class="ViewSectionButtons control-group">
             <div class="controls">
               <input type="submit" value="Save Now" name="btnSave" class="btn btn-primary js-btn-save" /> 
@@ -35,8 +47,8 @@ App.module "Components.FormState", (Self, App, Backbone, Marionette, $) ->
               <span class="SaveInfo js-save-info"></span>
             </div>
           </div>')
-    $changedFields = $('<input type="text" class="js-changed-fields hide" name="ChangedFields" value="Location" />')
-    $changedValues = $('<input type="text" class="js-changed-values hide" name="ChangedValues" value="asdf" />')
+    $changedFields = $('<input type="text" class="js-changed-fields hide" name="ChangedFields" value="" />')
+    $changedValues = $('<input type="text" class="js-changed-values hide" name="ChangedValues" value="" />')
     $saveButton = $el.find('.js-btn-save')
     $discardButton = $el.find('.js-btn-discard')
     $saveInfo = $el.find('.js-save-info');
@@ -50,7 +62,7 @@ App.module "Components.FormState", (Self, App, Backbone, Marionette, $) ->
     $form.find("input,textarea").keyup ->
       App.logInfo "formstate: input.keyup!"
       Self.Unsaved()
-      Self.AddChange $("label[for='" + @id + "']").html(), $(this).attr("value")
+      Self.AddChange $(this).attr('name'), $(this).attr("value")
       return
     $form.find("button").click ->
 
@@ -89,8 +101,56 @@ App.module "Components.FormState", (Self, App, Backbone, Marionette, $) ->
     $discardButton.click ->
       $saveButton.attr("disabled", true).val "Saved"
       IsSaved = true
+      $.each CKEDITOR.instances, (i,val) ->
+        #App.logDebug i
+        $elem = $("#" + i)
+        #App.logDebug $elem
+        fieldName = $elem.attr('name');
+        #App.logDebug fieldName
+        #App.logDebug editor
+        CKEDITOR.instances[i].setData $elem.val()
+        return
       Self.ClearChanges()
       $(this).hide()
+      return true
+
+    $form.find(".js-ckeditor").each ->
+      id = $(this).attr('id')
+      console.log id
+      CKEDITOR.replace id,
+        on:
+          blur: (evt) ->
+            $editor = $(@container.$)
+            $editor.find(".cke_top").addClass "hide"
+
+          focus: (evt) ->
+            $editor = $(@container.$)
+            $editor.find(".cke_top").removeClass "hide"
+
+          instanceReady: (evt) ->
+            $editor = $(@container.$)
+            $editor.find(".cke_top").addClass "hide"
+
+      
+
+    $.each CKEDITOR.instances, (i,val) ->
+      #App.logDebug i
+      $elem = $("#" + i)
+      #App.logDebug $elem
+      fieldName = $elem.attr('name');
+      #App.logDebug fieldName
+      #App.logDebug editor
+      CKEDITOR.instances[i].on "instanceReady", () ->
+        #Set keyup event
+        this.document.on "keyup", updateValue
+        #Set paste event
+        this.document.on "paste", updateValue
+
+        return
+      updateValue = ->
+        CKEDITOR.instances[i].updateElement();
+        $elem.trigger('keyup')
+        return
       return
 
     $form.submit ->
@@ -123,36 +183,27 @@ App.module "Components.FormState", (Self, App, Backbone, Marionette, $) ->
     question232 = $("#question232")
     TheLink = ""
     $(".PageStandard").hide()
-    $("#HeaderNav a,#HeaderSubNav a,#Breadcrumbs a,a.LeaveLink").bind "click", this, ->
-      TheLink = @href
-      unless IsSaved
-        $.extend $.blockUI.defaults.overlayCSS,
-          backgroundColor: "#000"
+    # $("#HeaderNav a,#HeaderSubNav a,#Breadcrumbs a,a.LeaveLink").bind "click", this, ->
+    #   TheLink = @href
+    #   unless IsSaved
+    #     #$.extend $.blockUI.defaults.overlayCSS,
+    #     #  backgroundColor: "#000"
 
-        $.blockUI
-          message: question232
-          width: "275px"
+    #     # $.blockUI
+    #     #   message: question232
+    #     #   width: "275px"
 
-        false
+    #     false
 
-    $("#yes").click ->
-      $.unblockUI()
-      window.location = TheLink
-      return
+    # $("#yes").click ->
+    #   #$.unblockUI()
+    #   window.location = TheLink
+    #   return
 
-    $("#no").click $.unblockUI
-    $("a.button").unbind "click"
-    return
-
-  Self.FCKeditor_OnComplete = (editorInstance) ->
-    if document.all
-      # IE
-      editorInstance.EditorDocument.attachEvent "onkeyup", Unsaved
-    else
-      # other browser
-      editorInstance.EditorDocument.addEventListener "keyup", Unsaved, true
-    return
-  Self.Unsaved = ->
+    # $("#no").click $.unblockUI
+    # $("a.button").unbind "click"
+    # return
+  Self.Unsaved = Unsaved = ->
     App.logInfo "formstate: Unsaved called!"
     App.logInfo "isSaved already? #{IsSaved}"
     if IsSaved
@@ -163,7 +214,7 @@ App.module "Components.FormState", (Self, App, Backbone, Marionette, $) ->
     IsSaved = false
     return
 
-  Self.AddChange = (sField, sValue) ->
+  Self.AddChange = AddChange = (sField, sValue) ->
     sValue = "%20"  if sValue is ""
     unless $.ListFind(ChangedFields, sField, "|")
       ChangedFields = $.ListAppend(ChangedFields, sField, "|")
@@ -176,7 +227,7 @@ App.module "Components.FormState", (Self, App, Backbone, Marionette, $) ->
     return
 
   # App.logInfo(ChangedFields + ' ' + ChangedValues);
-  Self.ClearChanges = ->
+  Self.ClearChanges = ClearChanges = ->
     ChangedFields = ""
     ChangedValues = ""
     $changedFields.val ""

@@ -1,0 +1,186 @@
+#BuildContainer {
+  h4 {
+    font-weight:bold;
+    font-size:13px;
+    border-bottom:1px solid #DDD;
+    margin-bottom:4px;
+  }
+  .Component {
+    padding: 5px;
+    margin: 1px;
+    height: 20px;
+    background-color: #FFF;
+
+    &.Selected {
+      background-color: #EEE;
+    }
+
+    &.PlaceHolder {
+      background-color: #FDFEDE;
+      height:20px;
+    }
+
+    &.HD1 {
+      background-color: #FFF;
+      div.ComponentDisplayName {
+        background-color: #FFF;
+        font-weight: bold;
+        padding-left: 24px;
+        font-size: 15px;
+      }
+    }
+    &.HD2 {
+      background-color: #FFF;
+      div.ComponentDisplayName {
+        background-color: #FFF;
+        font-weight: bold;
+        padding-left: 24px;
+        font-size: 13px;
+      }
+    }
+    &.ASEV div.ComponentDisplayName {
+      background-image: url(../_images/Icons/user_comment.png);
+    }
+    &.ASPR div.ComponentDisplayName {
+      background-image: url(../_images/Icons/application_side_contract.png);
+    }
+    &.ASPO div.ComponentDisplayName {
+      background-image: url(../_images/Icons/application_side_expand.png);
+    }
+    &.TX div.ComponentDisplayName {
+      background-image: url(../_images/Icons/font.png);
+    }
+    &.FD div.ComponentDisplayName {
+      background-image: url(../_images/Icons/disk.png);
+    }
+    &.FV div.ComponentDisplayName {
+      background-image: url(../_images/Icons/page.png);
+    }
+    &.ST div.ComponentDisplayName {
+      background-image: url(../_images/Icons/shield.png);
+    }
+    &.EC div.ComponentDisplayName {
+      background-image: url(../_images/Icons/world_link.png);
+    }
+    &.VID div.ComponentDisplayName {
+      background-image: url(../_images/Icons/television.png);
+    }
+    &.AUD div.ComponentDisplayName {
+      background-image: url(../_images/Icons/sound.png);
+    }
+    &.TA div.ComponentDisplayName {
+      background-image: url(../_images/Icons/key.png);
+    }
+    &.PAY div.ComponentDisplayName {
+      background-image: url(../_images/Icons/creditcards.png);
+    }
+    &.HD1 div.ComponentDisplayName {
+      background-image: url(../_images/Icons/text_heading_1.png);
+    }
+    &.HD2 div.ComponentDisplayName {
+      background-image: url(../_images/Icons/text_heading_2.png);
+    }
+    &.HD3 div.ComponentDisplayName {
+      background-image: url(../_images/Icons/text_heading_3.png);
+    }
+
+
+    .ComponentHandle {
+      width: 18px;
+      margin-right: 3px;
+      margin-top: 2px;
+      float: left;
+    }
+    .ComponentDisplayName {
+      float: left;
+      margin-top: 3px;
+      background-repeat: no-repeat;
+      background-position: 3px;
+      padding-left: 24px;
+    }
+    .ComponentOptions {
+      float: right;
+      margin-top: 3px;
+      margin-left: 4px;
+    }
+    .ComponentInfo {
+      float: left;
+      font-size: 10px;
+    }
+    
+  }
+
+}
+
+#ComponentList {
+  display:none;
+  .ComponentItem {
+    margin: 3px;
+    float: left;
+    width: 130px;
+    padding: 0px 0px 0px 30px;
+    background-position: 8px;
+    background-repeat: no-repeat;
+    a {
+      text-decoration: none;
+      display: block;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+  .ComponentDesc {
+    font-size: 10px;
+    color: #555;
+    padding-left: 24px;
+    display: none;
+  }
+  .ComponentItem {
+    &.ASEV {
+      background-image: url(../_images/Icons/user_comment.png);
+    }
+    &.ASPR {
+      background-image: url(../_images/Icons/application_side_contract.png);
+    }
+    &.ASPO {
+      background-image: url(../_images/Icons/application_side_expand.png);
+    }
+    &.TX {
+      background-image: url(../_images/Icons/font.png);
+    }
+    &.FD {
+      background-image: url(../_images/Icons/disk.png);
+    }
+    &.FV {
+      background-image: url(../_images/Icons/page.png);
+    }
+    &.ST {
+      background-image: url(../_images/Icons/shield.png);
+    }
+    &.EC {
+      background-image: url(../_images/Icons/world_link.png);
+    }
+    &.VID {
+      background-image: url(../_images/Icons/television.png);
+    }
+    &.AUD {
+      background-image: url(../_images/Icons/sound.png);
+    }
+    &.TA {
+      background-image: url(../_images/Icons/key.png);
+    }
+    &.PAY {
+      background-image: url(../_images/Icons/creditcards.png);
+    }
+    &.HD1 {
+      background-image: url(../_images/Icons/text_heading_1.png);
+    }
+    &.HD2 {
+      background-image: url(../_images/Icons/text_heading_2.png);
+    }
+    &.HD3 {
+      background-image: url(../_images/Icons/text_heading_3.png);
+    }
+  }  
+}
+

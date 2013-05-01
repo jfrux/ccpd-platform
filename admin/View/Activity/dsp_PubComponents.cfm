@@ -150,13 +150,13 @@ $(document).ready(function() {
 <div class="ViewSectionBlock" id="SortablesMATERIALS">
 <cfloop query="qCompSortableMATERIALS">
 	<div class="Component #qCompSortableMATERIALS.ComponentType#" id="Comp_#qCompSortableMATERIALS.PubComponentID#">
-		<div class="ComponentHandle"><img src="#Application.Settings.RootPath#/_images/icons/layers.png" /></div>
+		<div class="ComponentHandle"><a href="javascript://" class="btn btn-small"><i class="icon-reorder"></i></a></div>
 		<div class="ComponentDisplayName">&quot;#MidLimit(qCompSortableMATERIALS.DisplayName,50)#&quot;</div>
-		<div class="ComponentOptions">
-        	<a href="javascript:void(0);" class="ComponentEditLink" id="Edit|#qCompSortableMATERIALS.PubComponentID#|#Trim(qCompSortableMATERIALS.ComponentType)#" style="text-decoration:none;"><img src="#Application.Settings.RootPath#/_images/icons/pencil.png" align="absmiddle" style="padding-right:2px;" />Edit</a>
-			<cfif ListFind("5,11,12",qCompSortableMATERIALS.ComponentID,",")> <a href="javascript:void(0);" class="QuestionsLink" id="Questions|#qCompSortableMATERIALS.AssessmentID#" style="text-decoration:none;"><img src="#Application.Settings.RootPath#/_images/icons/application_form.png" align="absmiddle" style="padding-right:2px;" />Questions</a>(#qCompSortableMATERIALS.QuestionCount#)</cfif> 
-            <a href="javascript:void(0);" class="ComponentRemoveLink" id="Remove|#qCompSortableMATERIALS.PubComponentID#|#Trim(qCompSortableMATERIALS.ComponentType)#" style="text-decoration:none;"><img src="#Application.Settings.RootPath#/_images/icons/bin.png" align="absmiddle" style="padding-right:2px;" />Remove</a>
-        </div>
+		<div class="ComponentOptions btn-group pull-right">
+		<a href="javascript:void(0);" class="ComponentEditLink btn btn-small" id="Edit|#qCompSortableMATERIALS.PubComponentID#|#Trim(qCompSortableMATERIALS.ComponentType)#" style="text-decoration:none;"><i class="icon-pencil"></i></a>
+		<cfif ListFind("5,11,12",qCompSortableMATERIALS.ComponentID,",")> <a href="javascript:void(0);" class="QuestionsLink btn btn-small" id="Questions|#qCompSortableMATERIALS.AssessmentID#" style="text-decoration:none;"><i class="icon-list"></i> (#qCompSortableMATERIALS.QuestionCount#)</a></cfif> 
+		<a href="javascript:void(0);" class="ComponentRemoveLink btn btn-small" id="Remove|#qCompSortableMATERIALS.PubComponentID#|#Trim(qCompSortableMATERIALS.ComponentType)#" style="text-decoration:none;"><i class="icon-trash"></i></a>
+		</div>
 	</div>
 </cfloop>
 </div>
@@ -166,29 +166,31 @@ $(document).ready(function() {
 <div class="ViewSectionBlock" id="SortablesASSESS">
 <cfloop query="qCompSortableASSESS">
 	<div class="Component #qCompSortableASSESS.ComponentType#" id="Comp_#qCompSortableASSESS.PubComponentID#">
-		<div class="ComponentHandle"><img src="#Application.Settings.RootPath#/_images/icons/layers.png" /></div>
+		<div class="ComponentHandle"><a href="javascript://" class="btn btn-small"><i class="icon-reorder"></i></a></div>
 		<div class="ComponentDisplayName">&quot;#MidLimit(qCompSortableASSESS.DisplayName,50)#&quot;</div>
-		<div class="ComponentOptions">
-        	<a href="javascript:void(0);" class="ComponentEditLink" id="Edit|#qCompSortableASSESS.PubComponentID#|#Trim(qCompSortableASSESS.ComponentType)#" style="text-decoration:none;"><img src="#Application.Settings.RootPath#/_images/icons/pencil.png" align="absmiddle" style="padding-right:2px;" />Edit</a>&nbsp;
-			<cfif ListFind("5,11,12",qCompSortableASSESS.ComponentID,",")>
-            	<a href="javascript:void(0);" class="QuestionsLink" id="Questions|#qCompSortableASSESS.AssessmentID#" style="text-decoration:none;"><img src="#Application.Settings.RootPath#/_images/icons/application_form.png" align="absmiddle" style="padding-right:2px;" />Questions</a>(#qCompSortableASSESS.QuestionCount#)&nbsp;
-			</cfif>
-            <a href="javascript:void(0);" class="ComponentRemoveLink" id="Remove|#qCompSortableASSESS.PubComponentID#|#Trim(qCompSortableASSESS.ComponentType)#" style="text-decoration:none;"><img src="#Application.Settings.RootPath#/_images/icons/bin.png" align="absmiddle" style="padding-right:2px;" />Remove</a>
-        </div>
+		<div class="ComponentOptions btn-group pull-right">
+		<a href="javascript:void(0);" class="ComponentEditLink btn btn-small" id="Edit|#qCompSortableMATERIALS.PubComponentID#|#Trim(qCompSortableASSESS.ComponentType)#" style="text-decoration:none;"><i class="icon-pencil"></i></a>
+		<cfif ListFind("5,11,12",qCompSortableASSESS.ComponentID,",")> <a href="javascript:void(0);" class="QuestionsLink btn btn-small" id="Questions|#qCompSortableASSESS.AssessmentID#" style="text-decoration:none;"><i class="icon-list"></i></a></cfif> 
+		<a href="javascript:void(0);" class="ComponentRemoveLink btn btn-small" id="Remove|#qCompSortableASSESS.PubComponentID#|#Trim(qCompSortableASSESS.ComponentType)#" style="text-decoration:none;"><i class="icon-trash"></i></a>
+		</div>
 	</div>
 </cfloop>
 </div>
 
 
 
-<h4>Hidden / Non-Sortable</h4>
+<!--- <h4>Hidden / Non-Sortable</h4>
 <div class="ViewSectionBlock" id="NonSortables">
 <cfloop query="qCompNonSort">
 	<div class="Component #qCompNonSort.ComponentType#">
 		<div class="ComponentHandle"><img src="#Application.Settings.RootPath#/_images/icons/lock.png" /></div>
 		<div class="ComponentDisplayName">&quot;#qCompNonSort.DisplayName#&quot;</div>
-		<div class="ComponentOptions"><a href="javascript:void(0);" class="ComponentRemoveLink" id="Remove|#qCompNonSort.PubComponentID#|#Trim(qCompNonSort.ComponentType)#">Remove</a></div>
+		<div class="ComponentOptions btn-group pull-right">
+		<a href="javascript:void(0);" class="ComponentEditLink btn btn-small" id="Edit|#qCompSortableMATERIALS.PubComponentID#|#Trim(qCompSortableASSESS.ComponentType)#" style="text-decoration:none;"><i class="icon-pencil"></i></a>
+		<cfif ListFind("5,11,12",qCompSortableASSESS.ComponentID,",")> <a href="javascript:void(0);" class="QuestionsLink btn btn-small" id="Questions|#qCompSortableASSESS.AssessmentID#" style="text-decoration:none;"><i class="icon-list"></i></a></cfif> 
+		<a href="javascript:void(0);" class="ComponentRemoveLink btn btn-small" id="Remove|#qCompSortableASSESS.PubComponentID#|#Trim(qCompSortableASSESS.ComponentType)#" style="text-decoration:none;"><i class="icon-trash"></i></a>
+		</div>
 	</div>
 </cfloop>
-</div>
+</div> --->
 </cfoutput>

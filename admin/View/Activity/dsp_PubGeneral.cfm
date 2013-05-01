@@ -31,47 +31,9 @@
 //      });
 //     }
 // });
+App.Activity.Publish.start();
 
 $(document).ready(function() {
-  //CKEDITOR.replace("");
-  CKEDITOR.replace( 'js-overview-input',
-  {
-    on:
-     {
-        blur: function( evt ) {
-          var $editor = $(this.container.$);
-          $editor.find('.cke_top').addClass('hide');
-        },
-        focus: function( evt ) {
-          var $editor = $(this.container.$);
-          $editor.find('.cke_top').removeClass('hide');
-        },
-        instanceReady : function ( evt )
-        {
-           var $editor = $(this.container.$);
-            $editor.find('.cke_top').addClass('hide');
-        }
-     }
-  });
-  CKEDITOR.replace("js-objectives-input",
-    {
-      on:
-       {
-          blur: function( evt ) {
-            var $editor = $(this.container.$);
-            $editor.find('.cke_top').addClass('hide');
-          },
-          focus: function( evt ) {
-            var $editor = $(this.container.$);
-            $editor.find('.cke_top').removeClass('hide');
-          },
-          instanceReady : function ( evt )
-          {
-             var $editor = $(this.container.$);
-              $editor.find('.cke_top').addClass('hide');
-          }
-       }
-    });
 
   $(".TermsBox").click(function() {
     if($(this).val() == 'Y') {
@@ -103,7 +65,7 @@ $(document).ready(function() {
 </script>
 <cfoutput>
 <div class="ViewSection">
-  <form action="#Application.Settings.RootPath#/_com/AJAX_Activity.cfc" method="post" class="form-horizontal" name="frmPubGeneral" id="EditForm">
+  <form action="#Application.Settings.RootPath#/_com/AJAX_Activity.cfc" method="post" class="form-horizontal js-formstate" name="frmPubGeneral" id="EditForm">
 
       <input type="hidden" name="method" value="savePubGeneral" />
       <input type="hidden" name="ActivityID" value="#Attributes.ActivityID#" />
@@ -112,13 +74,13 @@ $(document).ready(function() {
     <div class="control-group">
       <label class="control-label" for="Overview">Overview</label></td>
       <div class="controls">
-        <textarea name="Overview" id="js-overview-input">#Attributes.Overview#</textarea> 
+        <textarea name="Overview" id="js-overview-input" class="js-ckeditor">#Attributes.Overview#</textarea> 
       </div>
     </div>
     <div class="control-group">
       <label class="control-label" for="Objectives">Objectives</label>
       <div class="controls">
-        <textarea name="Objectives" id="js-objectives-input">#Attributes.Objectives#</textarea>
+        <textarea name="Objectives" id="js-objectives-input" class="js-ckeditor">#Attributes.Objectives#</textarea>
       </div>
     </div>
     <div class="control-group">

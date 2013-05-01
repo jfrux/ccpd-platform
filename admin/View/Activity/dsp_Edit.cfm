@@ -55,15 +55,12 @@ App.module("Activity.GeneralInfo").start();
 <cfoutput>
 <div class="ViewContainer">
 <div class="ViewSection">
-	<form action="#Application.Settings.RootPath#/_com/AJAX_Activity.cfc" method="post" class="form-horizontal" name="frmEditActivity" id="EditForm">
+	<form action="#Application.Settings.RootPath#/_com/AJAX_Activity.cfc" method="post" class="form-horizontal js-formstate" name="frmEditActivity">
     	<!--- ADDED Attributes.SessionType HIDDEN FIELD FOR SAVING PURPOSES [Attributes.SessionType must be passed to save StartDate/EndDate] --->
 			<input type="hidden" value="saveActivity" name="Method" />
 			<input type="hidden" value="plain" name="returnFormat" />
 			<input type="hidden" value="#Attributes.ActivityID#" name="ActivityID" />
 			<input type="hidden" value="#Attributes.SessionType#" name="SessionType" />
-			<input type="hidden" value="" name="ChangedFields" id="ChangedFields" />
-			<input type="hidden" value="" name="ChangedValues" id="ChangedValues" />
-		
 			<div class="control-group">
 				<label class="control-label" for="Title">Title</label>
 				<div class="controls">

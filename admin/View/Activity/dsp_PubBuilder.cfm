@@ -478,10 +478,8 @@ $(document).ready(function() {
 </script>
 
 <cfoutput>
-<link href="#Application.Settings.RootPath#/_styles/Builder.css" rel="stylesheet" type="text/css" />
 <div class="ViewSection">
-	<h3>Builder</h3>
-	<div class="ViewSectionButtons"><input type="button" value="Add Component" name="btnAdd" id="btnAdd" /> <input type="button" value="Preview" name="btnPreview" id="btnPreview" /><span class="SaveInfo" id="SaveInfo"></span></div>
+	<div class="ViewSectionButtons btn-group"><a href="javascript://" class="btn" id="btnAdd" data-tooltip-title="Add Component"><i class="icon-plus"></i></a><a href="javascript://"  id="btnPreview" class="btn" data-tooltip-title="Preview Page"><i class="icon-eye-open"></i></a></div>
 	<div id="BuildContainer"></div>
 	<div id="BuildLoading" class="Loading"><img src="/admin/_images/ajax-loader.gif" />
 	<div>Please Wait</div></div>

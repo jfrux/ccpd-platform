@@ -105,21 +105,7 @@
     </fuseaction>
 
   <fuseaction name="Agenda">
-    <set name="Request.Page.Breadcrumbs" value="Activities|Activity.Home,#ActivityTitleShort#|Activity.Detail?ActivityID=#Attributes.ActivityID#,Other|Activity.Other?ActivityID=#Attributes.ActivityID#,Agenda|Activity.Agenda?ActivityID=#Attributes.ActivityID#" />
-    <do action="mPage.ParseCrumbs" />
-
-    <do action="mActivity.TabControl" />
-
-    <set name="Request.Page.Title" value="#ActivityTitleShort#" />
-
-    <set name="Request.Page.Breadcrumbs" value="Activities|Activity.Home,#ActivityTitleShort#|Activity.Detail?ActivityID=#Attributes.ActivityID#,Other|Activity.Other?ActivityID=#Attributes.ActivityID#,Agenda|Activity.Agenda?ActivityID=#Attributes.ActivityID#" />
-    <do action="mPage.ParseCrumbs" />
-
-    <do action="vActivity.Agenda" contentvariable="Request.MultiFormContent" />
-    <do action="vActivity.AgendaRight" contentvariable="Request.MultiFormRight" />
-    <do action="vLayout.Sub_Activity" contentvariable="Request.Page.Body" />
-
-    <do action="vLayout.Default" />
+    <do action="vActivity.Agenda" contentvariable="request.page.body" />
 	</fuseaction>
 
 	<fuseaction name="EmailLogs">
@@ -139,10 +125,12 @@
     <fuseaction name="AgendaAHAH">
       <do action="vActivity.AgendaAHAH" contentvariable="request.page.body" />
     </fuseaction>
+
     <fuseaction name="AgendaForm">
       <do action="mActivity.getAgendaItem" />
       <do action="vActivity.AgendaForm" contentvariable="Request.Page.Body" />
     </fuseaction>
+
     <fuseaction name="Application">
       <do action="mActivity.getApplication" />
       <set name="Request.Page.Breadcrumbs" value="Activities|Activity.Home,#ActivityTitleShort#|Activity.Detail?ActivityID=#Attributes.ActivityID#,Other|Activity.Other?ActivityID=#Attributes.ActivityID#,Application|Activity.Application?ActivityID=#Attributes.ActivityID#" />
@@ -512,12 +500,12 @@
     <fuseaction name="BuilderQ">
       <do action="mAssessment.getQuestion" />
       <do action="mAssessment.getDetail" />
-      <do action="vActivity.BuilderQ" />
+      <do action="vActivity.BuilderQ" contentvariable="request.page.body" />
     </fuseaction>
     <fuseaction name="BuilderQList">
       <do action="mAssessment.getQuestions" />
       <do action="mAssessment.getDetail" />
-      <do action="vActivity.BuilderQList" />
+      <do action="vActivity.BuilderQList" contentvariable="request.page.body" />
     </fuseaction>
     <fuseaction name="BuilderASPR">
       <do action="mActivity.getPubComponent" />

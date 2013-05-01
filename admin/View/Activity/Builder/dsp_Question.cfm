@@ -17,8 +17,8 @@
 <cfparam name="Attributes.RequiredFlag" default="N" />
 <cfparam name="Attributes.CorrectField" default="VC1" />
 <cfoutput>
-<link href="#Application.Settings.RootPath#/_styles/Assessment.css" rel="stylesheet" type="text/css" />
-
+<!--- <link href="#Application.Settings.RootPath#/_styles/Assessment.css" rel="stylesheet" type="text/css" />
+ --->
 <!--- Query Question Types --->
 <cfset qTypes = Application.Com.QuestionTypeGateway.getByAttributes(DeletedFlag='N',OrderBy="Name")>
 

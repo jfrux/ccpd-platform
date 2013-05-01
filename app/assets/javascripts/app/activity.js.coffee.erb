@@ -4,7 +4,9 @@
 App.module "Activity",
   startWithParent: false
   define: (Self, App, Backbone, Marionette, $) ->
-    activityContainer = null
+    App.addRegions
+      profileRegion: ".profile"
+ 
     $profile = null
     $projectBar = null
     $contentArea = null
@@ -56,8 +58,11 @@ App.module "Activity",
       $statusBox.addClass('activity-status-' + status)
     
     Self._init = (settings) ->
+      
       Self.data = settings
-
+      # Self.content = new Backbone.Marionette.Region({
+      #   el: ".js-profile-content"
+      # });
       $profile = $(".profile")
       $infoBar = $(".js-infobar")
       $projectBar = $(".js-projectbar")
@@ -78,6 +83,7 @@ App.module "Activity",
         #App.logInfo arguments
 
       $(document).on 'pjax:complete',(xhr, options, textStatus) ->
+
         #App.logInfo xhr
         # App.logInfo textStatus
         # App.logInfo options
@@ -89,7 +95,11 @@ App.module "Activity",
         $contentTitle.text($pageTitle)
 
         $parent = $clickedLink.parent()
+        console.log($parent)
+        $parent.find('.active').removeClass('active')
+        #$parent.find('.subnav').removeClass('hide');
         $parent.siblings().removeClass('active')
+        $clickedLink.children().removeClass('active')
         $parent.addClass('active')
         return
 
