@@ -33,8 +33,46 @@
 // });
 
 $(document).ready(function() {
-  CKEDITOR.replace("js-overview-input");
-  CKEDITOR.replace("js-objectives-input");
+  //CKEDITOR.replace("");
+  CKEDITOR.replace( 'js-overview-input',
+  {
+    on:
+     {
+        blur: function( evt ) {
+          var $editor = $(this.container.$);
+          $editor.find('.cke_top').addClass('hide');
+        },
+        focus: function( evt ) {
+          var $editor = $(this.container.$);
+          $editor.find('.cke_top').removeClass('hide');
+        },
+        instanceReady : function ( evt )
+        {
+           var $editor = $(this.container.$);
+            $editor.find('.cke_top').addClass('hide');
+        }
+     }
+  });
+  CKEDITOR.replace("js-objectives-input",
+    {
+      on:
+       {
+          blur: function( evt ) {
+            var $editor = $(this.container.$);
+            $editor.find('.cke_top').addClass('hide');
+          },
+          focus: function( evt ) {
+            var $editor = $(this.container.$);
+            $editor.find('.cke_top').removeClass('hide');
+          },
+          instanceReady : function ( evt )
+          {
+             var $editor = $(this.container.$);
+              $editor.find('.cke_top').addClass('hide');
+          }
+       }
+    });
+
   $(".TermsBox").click(function() {
     if($(this).val() == 'Y') {
       $("#TermsContainer").show();

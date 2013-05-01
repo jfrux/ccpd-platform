@@ -8,7 +8,6 @@
 @import "app/header";
 @import "app/dialogs";
 @import "app/search";
-@import "app/wysiwyg";
 @import "app/profile";
 @import "app/profile/content";
 @import "app/profile/infobar";
@@ -19,6 +18,7 @@
 @import "app/activity";
 @import "app/activity/faculty";
 @import "app/activity/finances";
+@import "app/components/wysiwyg";
 @import "app/components/status";
 @import "app/components/typeahead";
 @import "app/components/tokenizer";
