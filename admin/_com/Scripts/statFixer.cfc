@@ -2,7 +2,7 @@
 	<cffunction name="Run" output="no" access="remote" returntype="string" returnformat="plain">
 		<cfargument name="ActivityID" type="numeric" required="no" default="0" />
 		<cfargument name="mode" type="string" required="no" default="auto">
-		
+		<cfsetting requesttimeout="240" />
 		<cfset var nUpdatedBy = 1 />
 		<cfset var qSelector = "" />
 		<cfset var qUpdater = "" />
@@ -12,7 +12,7 @@
 		
 		<cfset returnData.setStatus(false) />
 		<cfset returnData.setStatusMsg('failed for unknown reason') />
-		
+
 		<cfswitch expression="#arguments.mode#">
 			<cfcase value="auto">
 				<cfset nUpdatedBy = 1 />
@@ -254,7 +254,6 @@
 		
 		<cfloop query="qSelector">
 			#qSelector.activityId#,
-			<cftry>
 			<cfquery name="qUpdater" datasource="#Application.Settings.DSN#">
 				UPDATE ce_Activity
 				SET 
@@ -270,15 +269,16 @@
 				WHERE ActivityID=#qSelector.ActivityID#
 			</cfquery>
 			<cfset recordsUpdated.add(QueryToStruct(qSelector,qSelector.currentrow)) />
-			<cfcatch>
-			<cfdump var="#qSelector.activityId#"><cfabort>
-			</cfcatch>
-			</cftry>
+			<cfset Application.History.Add(
+		          HistoryStyleID=114,
+		          FromPersonID=1,
+		          ToActivityID=qSelector.activityId
+		    ) />
 			<cfif qSelector.parentActivityId GT 0>
 				<cfset run(qSelector.parentActivityId) />
 			</cfif>
 		</cfloop>
-		
+
 		<cfset returnData.setStatus(true) />
 		<cfset returnData.setStatusMsg('Stats are up to date!') />
 		<cfset returnData.setPayload(recordsUpdated) />

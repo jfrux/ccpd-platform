@@ -714,13 +714,17 @@
     </cffunction>
 	
     <cffunction name="saveAttendee" access="Remote" output="false" returntype="string">
-		<cfargument name="ActivityID" required="yes" type="string">
-		<cfargument name="PersonID" required="yes" type="string">
+		<cfargument name="ActivityID" required="yes" type="numeric">
+		<cfargument name="PersonID" required="yes" type="numeric">
 		<cfargument name="MDFlag" required="no" type="string" default="N" />
         
         <cfset var Status = "Fail|Cannot access attendee save functionality.">
         
-        <cfset Status = Application.ActivityAttendee.saveAttendee(Arguments.ActivityID,Arguments.PersonID,Arguments.MDFlag)>
+        <cfset Status = Application.ActivityAttendee.saveAttendee(
+            activityId=Arguments.ActivityID,
+            personId=Arguments.PersonID,
+            mdFlag=Arguments.MDFlag
+        )>
         
         <cfreturn Status />
     </cffunction>

@@ -149,16 +149,16 @@
   </fuseaction>
   
   
-    <fuseaction name="Application">
+  <fuseaction name="Application">
     <include template="dsp_Application" />
   </fuseaction>
   
     
-    <fuseaction name="Agenda">
+  <fuseaction name="Agenda">
     <include template="dsp_Agenda" />
   </fuseaction>
     
-    <fuseaction name="AgendaAHAH">
+  <fuseaction name="AgendaAHAH">
     <include template="ahah/dsp_AgendaAHAH" />
   </fuseaction>
   
@@ -340,7 +340,223 @@
 
   <fuseaction name="history">
       <include template="dsp_History" />
-    </fuseaction>
+	</fuseaction>
+
+
+    
+  <fuseaction name="AgendaAHAH">
+		<include template="dsp_AgendaAHAH" />
+	</fuseaction>
+	
+	<fuseaction name="AgendaForm">
+		<include template="dsp_AgendaForm" />
+	</fuseaction>
+	
+	<fuseaction name="AgendaRight">
+		<include template="dsp_AgendaRight" />
+	</fuseaction>
+	<fuseaction name="EmailLogs">
+		<include template="dsp_EmailLogs" />
+	</fuseaction>
+	<fuseaction name="EmailLogsRight">
+		<include template="dsp_EmailLogsRight" />
+	</fuseaction>
+	<fuseaction name="BuilderFileUploader">
+		<include template="Builder\dsp_FileUpload" />
+	</fuseaction>
+	
+	<fuseaction name="BuilderTX">
+		<include template="Builder\dsp_TX" />
+	</fuseaction>
+	
+	<fuseaction name="BuilderASEV">
+		<include template="Builder\dsp_ASEV" />
+	</fuseaction>
+	
+	<fuseaction name="BuilderASPR">
+		<include template="Builder\dsp_ASPR" />
+	</fuseaction>
+	
+	<fuseaction name="BuilderASPO">
+		<include template="Builder\dsp_ASPO" />
+	</fuseaction>
+	
+	<fuseaction name="BuilderAUD">
+		<include template="Builder\dsp_AUD" />
+	</fuseaction>
+	
+	<fuseaction name="BuilderFD">
+		<include template="Builder\dsp_FD" />
+	</fuseaction>
+	
+	<fuseaction name="BuilderFV">
+		<include template="Builder\dsp_FV" />
+	</fuseaction>
+	
+	<fuseaction name="BuilderHD1">
+		<include template="Builder\dsp_HD1" />
+	</fuseaction>
+	
+	<fuseaction name="BuilderHD2">
+		<include template="Builder\dsp_HD2" />
+	</fuseaction>
+	
+	<fuseaction name="BuilderHD3">
+		<include template="Builder\dsp_HD3" />
+	</fuseaction>
+	
+	<fuseaction name="BuilderEC">
+		<include template="Builder\dsp_EC" />
+	</fuseaction>
+	
+	<fuseaction name="BuilderST">
+		<include template="Builder\dsp_ST" />
+	</fuseaction>
+	
+	<fuseaction name="BuilderVID">
+		<include template="Builder\dsp_VID" />
+	</fuseaction>
+	
+	<fuseaction name="BuilderPAY">
+		<include template="Builder\dsp_PAY" />
+	</fuseaction>
+	
+	<fuseaction name="BuilderTA">
+		<include template="Builder\dsp_TA" />
+	</fuseaction>
+	
+	<fuseaction name="BuilderQList">
+		<include template="Builder\dsp_QuestionList" />
+	</fuseaction>
+	
+	<fuseaction name="BuilderQ">
+		<include template="Builder\dsp_Question" />
+	</fuseaction>
+    
+	<fuseaction name="CalendarRight">
+		<include template="dsp_CalendarRight" />
+	</fuseaction>
+	
+	<fuseaction name="CDCInfo">
+		<include template="dsp_CDCInfo" />
+	</fuseaction>
+	
+	<fuseaction name="CDCInfoRight">
+		<include template="dsp_CDCInfoRight" />
+	</fuseaction>
+	
+	<fuseaction name="Committee">
+		<include template="dsp_Committee" />
+	</fuseaction>
+	
+	<fuseaction name="CommitteeAHAH">
+		<include template="dsp_CommitteeAHAH" />
+	</fuseaction>
+	
+	<fuseaction name="CommitteeRight">
+		<include template="dsp_CommitteeRight" />
+	</fuseaction>
+	
+	<fuseaction name="Create">
+		<include template="dsp_Create" />
+	</fuseaction>
+	
+	<fuseaction name="CreateRight">
+		<include template="dsp_CreateRight" />
+	</fuseaction>
+	
+	<fuseaction name="CreateAttendance">
+		<include template="dsp_CreateAttendance" />
+	</fuseaction>
+	
+	<fuseaction name="CreateAttendanceRight">
+		<include template="dsp_CreateAttendanceRight" />
+	</fuseaction>
+	
+	<fuseaction name="CreateCommittee">
+		<include template="dsp_CreateCommittee" />
+	</fuseaction>
+	
+	<fuseaction name="CreateContrib">
+		<include template="dsp_CreateContrib" />
+	</fuseaction>
+	
+	<fuseaction name="CreateSection">
+		<include template="dsp_CreateSection" />
+	</fuseaction>
+	
+	<fuseaction name="Credits">
+		<include template="dsp_Credits" />
+	</fuseaction>
+	
+	<fuseaction name="Container">
+		<include template="dsp_Container" />
+	</fuseaction>
+	
+	<fuseaction name="CreditsRight">
+		<include template="dsp_CreditsRight" />
+	</fuseaction>
+	
+	<fuseaction name="DeleteEvent">
+		<include template="dsp_Delete" />
+	</fuseaction>
+	
+	<fuseaction name="Docs">
+		<include template="dsp_Docs" />
+	</fuseaction>
+	
+	<fuseaction name="DocsRight">
+		<include template="dsp_DocsRight" />
+	</fuseaction>
+	
+	<fuseaction name="DocsAHAH">
+		<include template="dsp_DocsAHAH" />
+	</fuseaction>
+	
+	<fuseaction name="Edit">
+		<include template="dsp_Edit" />
+	</fuseaction>
+	
+	<fuseaction name="EditCurrSupport">
+		<include template="dsp_EditCurrSupport" />
+	</fuseaction>
+	
+	<fuseaction name="EditRight">
+		<include template="dsp_EditRight" />
+	</fuseaction>
+	
+	<fuseaction name="EditForm">
+		<include template="dsp_Form" />
+	</fuseaction>
+	
+	<fuseaction name="EditSupporter">
+		<include template="dsp_EditSupporter" />
+	</fuseaction>
+	
+	<fuseaction name="EditSection">
+		<include template="dsp_EditSection" />
+	</fuseaction>
+	
+	<fuseaction name="emailCert">
+		<include template="dsp_emailCert" />
+	</fuseaction>
+	
+	<fuseaction name="EventRight">
+		<include template="dsp_EventRight" />
+	</fuseaction>
+	
+	<fuseaction name="Faculty">
+		<include template="dsp_Faculty" />
+	</fuseaction>
+	
+	<fuseaction name="FacultyAHAH">
+		<include template="dsp_FacultyAHAH" />
+	</fuseaction>
+	
+	<fuseaction name="FacultyRight">
+		<include template="dsp_FacultyRight" />
+	</fuseaction>
+
   
     <fuseaction name="FileUpload">
       <include template="dsp_FileUpload" />

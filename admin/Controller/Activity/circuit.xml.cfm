@@ -104,11 +104,38 @@
       <do action="vActivity.AdjustCredits" />
     </fuseaction>
 
-    <fuseaction name="Agenda">
-      <set name="Request.Page.Breadcrumbs" value="Activities|Activity.Home,#ActivityTitleShort#|Activity.Detail?ActivityID=#Attributes.ActivityID#,Other|Activity.Other?ActivityID=#Attributes.ActivityID#,Agenda|Activity.Agenda?ActivityID=#Attributes.ActivityID#" />
-      <do action="mPage.ParseCrumbs" />
+  <fuseaction name="Agenda">
+    <set name="Request.Page.Breadcrumbs" value="Activities|Activity.Home,#ActivityTitleShort#|Activity.Detail?ActivityID=#Attributes.ActivityID#,Other|Activity.Other?ActivityID=#Attributes.ActivityID#,Agenda|Activity.Agenda?ActivityID=#Attributes.ActivityID#" />
+    <do action="mPage.ParseCrumbs" />
 
-    </fuseaction>
+    <do action="mActivity.TabControl" />
+
+    <set name="Request.Page.Title" value="#ActivityTitleShort#" />
+
+    <set name="Request.Page.Breadcrumbs" value="Activities|Activity.Home,#ActivityTitleShort#|Activity.Detail?ActivityID=#Attributes.ActivityID#,Other|Activity.Other?ActivityID=#Attributes.ActivityID#,Agenda|Activity.Agenda?ActivityID=#Attributes.ActivityID#" />
+    <do action="mPage.ParseCrumbs" />
+
+    <do action="vActivity.Agenda" contentvariable="Request.MultiFormContent" />
+    <do action="vActivity.AgendaRight" contentvariable="Request.MultiFormRight" />
+    <do action="vLayout.Sub_Activity" contentvariable="Request.Page.Body" />
+
+    <do action="vLayout.Default" />
+	</fuseaction>
+
+	<fuseaction name="EmailLogs">
+		<do action="mActivity.TabControl" />
+							
+		<set name="Request.Page.Title" value="#ActivityTitleShort#" />
+        
+		<set name="Request.Page.Breadcrumbs" value="Activities|Activity.Home,#ActivityTitleShort#|Activity.Detail?ActivityID=#Attributes.ActivityID#,Other|Activity.Other?ActivityID=#Attributes.ActivityID#,Email Logs|Activity.EmailLogs?ActivityID=#Attributes.ActivityID#" />
+		<do action="mPage.ParseCrumbs" />
+		<do action="mActivity.getEmailLogs" />
+		<do action="vActivity.EmailLogs" contentvariable="Request.MultiFormContent" />
+    <do action="vActivity.EmailLogsRight" contentvariable="Request.MultiFormRight" />
+		<do action="vLayout.Sub_Activity" contentvariable="Request.Page.Body" />
+    <do action="vLayout.Default" />
+	</fuseaction>
+
     <fuseaction name="AgendaAHAH">
       <do action="vActivity.AgendaAHAH" contentvariable="request.page.body" />
     </fuseaction>

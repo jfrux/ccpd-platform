@@ -212,7 +212,31 @@
     
     <cfif arguments.emailStyleId EQ 5 AND arguments.toAttendeeId GT 0>
       <cflog text="EMAIL SEND ATTEMPT TO Attendee: #arguments.ToAttendeeId# (#ToPerson.Email#)" file="ccpd-attendee-emails" type="information">
-      
+      <cfquery name="qInsert" datasource="#application.settings.dsn#">
+        INSERT INTO email_logs (
+          subject,
+          activity_id,
+          attendee_id,
+          user_id,
+          status,
+          opens,
+          clicks,
+          email,
+          created_at,
+          updated_at
+        ) VALUES (
+          <cfqueryparam value="#EmailSubject#" cfsqltype="cf_sql_varchar" />,
+          <cfqueryparam value="#arguments.ToActivityId#" cfsqltype="cf_sql_integer" />,
+          <cfqueryparam value="#arguments.ToAttendeeId#" cfsqltype="cf_sql_integer" />,
+          <cfqueryparam value="#arguments.ToPersonId#" cfsqltype="cf_sql_integer" />,
+          <cfqueryparam value="pending" cfsqltype="cf_sql_varchar" />,
+          <cfqueryparam value="0" cfsqltype="cf_sql_varchar" />,
+          <cfqueryparam value="0" cfsqltype="cf_sql_varchar" />,
+          <cfqueryparam value="#arguments.toEmailAddress#" cfsqltype="cf_sql_varchar" />,
+          <cfqueryparam value="#now()#" cfsqltype="cf_sql_timestamp" />,
+          <cfqueryparam value="#now()#" cfsqltype="cf_sql_timestamp" />
+        )
+      </cfquery>
       <cfquery name="updateEmailSent" datasource="#application.settings.dsn#">
         UPDATE attendees
         SET emailSentFlag=1

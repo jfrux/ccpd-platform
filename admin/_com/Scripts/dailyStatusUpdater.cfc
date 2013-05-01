@@ -5,6 +5,8 @@
     <cfcontent type="text/javascript" />
     <cfset var returnData = createobject("component","_com.returnData.buildStruct").init() />
     <cfset var recordsUpdated = [] />
+    <cfset var peopleCompleted = [] />
+    <cfset var activitiesUpdated = [] />
     <cfset returnData.setStatus(false) />
     <cfset returnData.setStatusMsg('failed for unknown reason') />
 
@@ -25,7 +27,9 @@
         Attendee.payorderno, 
         Attendee.paymentdate, 
         Attendee.registerdate,
-        Attendee.completedate, 
+        Attendee.completedate,
+        dbo.fnGetBeginOfDay(Activity.startdate) As StartDate, 
+        dbo.fnGetEndOfDay(Activity.enddate) AS EndDate,
         Attendee.termdate, 
         Attendee.firstname, 
         Attendee.middlename, 
@@ -53,53 +57,32 @@
         Attendee.updatedby, 
         Attendee.deleted, 
         Attendee.deletedflag, 
-        Attendee.geonameid, 
-        Activity.startdate, 
-        Activity.enddate + '23:59:59' AS EndDate,
-        Person.email AS Expr1
+        Attendee.geonameid
       FROM         
         attendees AS Attendee 
       LEFT OUTER JOIN
         users AS Person ON Person.personid = Attendee.personid 
-      LEFT OUTER JOIN
+      INNER JOIN
         activities AS Activity ON Activity.activityid = Attendee.activityid
-      WHERE     
-          (Attendee.attendeeid IN
-            ( SELECT 
-                Att.attendeeid
-              FROM  
-                attendees AS Att 
-              INNER JOIN
-                activities AS A ON Att.activityid = A.activityid
-              WHERE
-                (A.statusid IN (1, 2, 3)) AND 
-                (A.activitytypeid <> 2) AND 
-                (A.deletedflag = 'N') AND 
-                (A.enddate < GETDATE())
-            )
-          )
-        AND 
-          (Attendee.deletedflag = 'N') AND 
-          (Attendee.statusid <> 1) AND 
-          (Attendee.created > '1/1/2008 00:00:00') 
-        OR
-          (Attendee.attendeeid IN
-            (SELECT     Att.attendeeid
-              FROM
-              attendees AS Att 
-              INNER JOIN
-              activities AS A ON Att.activityid = A.activityid
-              WHERE      
-              (A.statusid IN (1, 2, 3)) AND 
-              (A.activitytypeid <> 2) AND 
-              (A.deletedflag = 'N') AND 
-              (A.enddate < GETDATE()))
-          ) 
-        AND 
-          (Attendee.deletedflag = 'N') AND 
-          (Attendee.statusid = 1) AND 
-          (Attendee.created > '1/1/2008 00:00:00') AND 
-          (Attendee.completedate NOT BETWEEN dbo.fngetBeginOfDay(Activity.startdate) AND dbo.fngetEndOfDay(Activity.enddate))
+      WHERE
+      (
+        Activity.deletedflag='N' AND
+        Activity.statusid IN (1,2,3) AND
+        Activity.endDate < GETDATE() AND
+        Activity.activitytypeid <> 2 AND
+        Attendee.statusid <> 1 AND 
+        Attendee.created > '1/1/2008 00:00:00'
+      )
+      OR
+      (
+        Activity.deletedflag='N' AND
+        Activity.statusid IN (1,2,3) AND
+        Activity.endDate < GETDATE() AND
+        Activity.activitytypeid <> 2 AND
+        Attendee.created > '1/1/2008 00:00:00' AND
+        Attendee.statusid = 1 AND
+        Attendee.completedate NOT BETWEEN dbo.fngetBeginOfDay(Activity.startdate) AND dbo.fngetEndOfDay(Activity.enddate)
+      )
       ORDER BY Attendee.activityid
     </cfquery>
     
@@ -117,12 +100,24 @@
       </cfquery>
       
       <cfset recordsUpdated.add(QueryToStruct(qUpdater,qUpdater.currentRow)) />
+      <cfset activitiesUpdated.add(qUpdater.activityid) />
     </cfloop>
 
     <cfset returnData.setStatus(true) />
     <cfset returnData.setStatusMsg("Successfully updated statuses.") />
     <cfset returnData.setPayload(recordsUpdated) />
 
+    <cfif arrayLen(activitiesUpdated) GT 0>
+      <cfloop from="1" to="#arrayLen(activitiesUpdated)#" index="i">
+        <cfset updatedActivityId = activitiesUpdated[i] />
+        <cfset Application.History.Add(
+              HistoryStyleID=113,
+              FromPersonID=1,
+              ToActivityID=updatedActivityId
+        ) />
+        <cfset application.activity.refresh(updatedActivityId) />
+      </cfloop>
+    </cfif>
     <cflog text="Status Updater ran successfully." file="ccpd_script_log">
     <cfreturn returnData.getJson() />
   </cffunction>

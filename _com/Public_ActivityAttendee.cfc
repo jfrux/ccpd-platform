@@ -356,8 +356,7 @@
             
             <!--- UPDATE ATTENDEE RECORDS --->
             <cfquery name="qRemoveAll" datasource="#Application.Settings.DSN#">
-                UPDATE ce_Attendee
-                SET DeletedFlag = <cfqueryparam value="Y" cfsqltype="cf_sql_char" />
+                DELETE FROM ce_Attendee
                 WHERE ActivityID = <cfqueryparam value="#Arguments.ActivityID#" CFSQLType="cf_sql_integer" />
             </cfquery>
             
@@ -398,56 +397,51 @@
   <cffunction name="removeChecked" access="Public" output="true" returntype="struct">
     <cfargument name="AttendeeList" required="false" type="string" default="">
     <cfargument name="ActivityID" required="true" type="string">
-        
-        <cfset var status = createObject("component", "#Application.Settings.Com#returnData.buildStruct").init()>
-        
-        <cfset status.setStatus(false)>
-        <cfset status.setStatusMsg("Cannot selected attendees for unknown reasons.")>
-    
+
+    <cfset var status = createObject("component", "#Application.Settings.Com#returnData.buildStruct").init()>
+
+    <cfset status.setStatus(false)>
+    <cfset status.setStatusMsg("Cannot selected attendees for unknown reasons.")>
+
     <!--- Check to make sure the Argument vars are not blank --->
     <cfif Arguments.AttendeeList EQ "" OR Arguments.ActivityID EQ "">
-          <cfset status.setStatusMsg("More information is required to remove the selected members.")>
-            <cfreturn status />
-            <cfabort>
+      <cfset status.setStatusMsg("More information is required to remove the selected members.")>
+      <cfreturn status />
+      <cfabort>
     </cfif>
-    
-    <cfset AddCount = 0>
-        <cfset CurrDateTime = DateFormat(Now(),"MM/DD/YYYY") & " " & TimeFormat(Now(),"hh:mm:ssTT")>
-            
+
+    <cfset deletedCount = 0>
+    <cfset CurrDateTime = DateFormat(Now(),"MM/DD/YYYY") & " " & TimeFormat(Now(),"hh:mm:ssTT")>
+
     <!--- ACTIVITY DETAIL --->
-        <cfset ActivityBean = CreateObject("component","#Application.Settings.Com#Activity.Activity").init(ActivityID=Arguments.ActivityID)>
-        <cfset ActivityBean = Application.Com.ActivityDAO.read(ActivityBean)>
-        
-        <Cfset personList = "">
-        
-        <cfloop list="#Arguments.AttendeeList#" index="attendeeId">
-            <!--- ATTENDEE DETAIL --->
-            <cfset AttendeeBean = CreateObject("component","#Application.Settings.Com#Attendee.Attendee").init(ActivityID=Arguments.ActivityID)>
-            <cfset AttendeeBean.setAttendeeId(attendeeId) />
-            <cfset AttendeeBean = Application.Com.AttendeeDAO.read(AttendeeBean)>
-            
-            <!--- UPDATE PERSON LIST --->
-            <cfset personList = listAppend(personList, attendeeBean.getPersonId(), ",")>
-            
-            <cfset AttendeeBean.setDeletedFlag("Y")>
-            <cfset AttendeeBean.setDeleted(now())>
-            
-            <!--- DELETE ATTENDEECREDIT RECORDS --->
-            <cfquery name="qDeleteAttendeeCredits" datasource="#Application.Settings.DSN#">
-                DELETE FROM ce_AttendeeCredit
-                WHERE AttendeeID = <cfqueryparam value="#AttendeeBean.getAttendeeID()#" cfsqltype="cf_sql_integer" />
-            </cfquery>
-            
-            <cfset Application.Com.AttendeeDAO.update(AttendeeBean)>
-            
-            <!--- Count the total records being deleted --->
-            <cfset AddCount++>
-        </cfloop>
+    <cfset ActivityBean = CreateObject("component","#Application.Settings.Com#Activity.Activity").init(ActivityID=Arguments.ActivityID)>
+    <cfset ActivityBean = Application.Com.ActivityDAO.read(ActivityBean)>
+
+    <Cfset personList = "">
+
+    <cfloop list="#Arguments.AttendeeList#" index="attendeeId">
+      <!--- ATTENDEE DETAIL --->
+      
+
+      <!--- DELETE ATTENDEECREDIT RECORDS --->
+      <cfquery name="qDeleteAttendeeCredits" datasource="#Application.Settings.DSN#">
+      DELETE FROM ce_AttendeeCredit
+      WHERE AttendeeID = <cfqueryparam value="#attendeeId#" cfsqltype="cf_sql_integer" />
+      </cfquery>
+
+      <cfquery name="qDeleteAttendeeCredits" datasource="#Application.Settings.DSN#">
+      DELETE FROM ce_Attendee
+      WHERE AttendeeID = <cfqueryparam value="#attendeeId#" cfsqltype="cf_sql_integer" />
+      </cfquery>
+
+      <!--- Count the total records being deleted --->
+      <cfset deletedCount++>
+    </cfloop>
     
-    <cfset createObject("component", "admin._com.scripts.statFixer").run(activityId=arguments.activityId,mode='manual')>
-            
+    <!--- <cfset createObject("component", "admin._com.scripts.statFixer").run(activityId=arguments.activityId,mode='manual')>
+     --->        
     <!--- ACTIVITY ACTION UPDATER --->
-        <cfif AddCount EQ 1>
+        <cfif deletedCount EQ 1>
             <cfset status.setStatus(true)>
             <cfset status.setStatusMsg("1 attendee has been removed.")>
             
@@ -457,9 +451,9 @@
                         FromPersonID=Session.PersonID,
                         ToPersonID=PersonList,
                         ToActivityID=Arguments.ActivityID)>
-        <cfelseif AddCount GT 1>
+        <cfelseif deletedCount GT 1>
             <cfset status.setStatus(true)>
-            <cfset status.setStatusMsg(AddCount & " attendees have been removed.")>
+            <cfset status.setStatusMsg(deletedCount & " attendees have been removed.")>
             
             <cfquery name="PersonInfo" datasource="#Application.Settings.DSN#">
                 SELECT DisplayName
@@ -591,8 +585,9 @@
     </cffunction>
   
     <cffunction name="saveAttendee" access="Public" output="true" returntype="string">
+      <cfargument name="attendeeid" required="no" type="numeric" default="0">
       <cfargument name="ActivityID" required="yes" type="string">
-      <cfargument name="PersonID" required="no" type="string" default="0">
+      <cfargument name="PersonID" required="no" type="numeric" default="0">
       <cfargument name="firstName" type="string" required="no" default="">
       <cfargument name="middleName" type="string" required="no" default="">
       <cfargument name="lastName" type="string" required="no" default="">
@@ -628,35 +623,38 @@
       
       <cfif Status EQ "">
         <!--- CREATE ATTENDEE BEAN --->
-        <cfset AttendeeBean = CreateObject("component","#Application.Settings.Com#Attendee.Attendee").Init(PersonID=Arguments.PersonID,ActivityID=Arguments.ActivityID)>
+        <cfset AttendeeBean = CreateObject("component","#Application.Settings.Com#Attendee.Attendee").Init(attendeeId=arguments.attendeeId)>
           
         <!--- CHECK IF ATTENDEE EXISTS --->
         <cfif arguments.personId GT 0>
-          <cfset AttendeeExists = Application.Com.AttendeeDAO.Exists(AttendeeBean)>
-          <cfif AttendeeExists>
-            <cfset AttendeeBean = Application.Com.AttendeeDAO.Read(AttendeeBean)>
-            
-            <cfif AttendeeBean.getDeletedFlag() EQ "N">
-              <cfset Status = "Fail|Attendee already exists.">
-              <cfreturn Status />
-              <cfabort>
-            </cfif>
-          </cfif>
-        <cfelse>
-           <cfif arguments.personId EQ 0 AND len(arguments.email) GT 0>
-            <cfquery name="qCheckByEmail" datasource="#application.settings.dsn#">
-              SELECT count(attendeeId) As foundCount FROM ce_attendee
-              WHERE email=<cfqueryparam value="#arguments.email#" cfsqltype="cf_sql_varchar" /> AND deletedFlag='N'
+            <cfquery name="qCheckByPersonId" datasource="#application.settings.dsn#">
+            SELECT count(attendeeId) As foundCount FROM ce_attendee
+            WHERE 
+              personId=<cfqueryparam value="#arguments.personId#" cfsqltype="cf_sql_integer" /> AND 
+              activityId=<cfqueryparam value="#arguments.activityid#" cfsqltype="cf_sql_integer" /> AND
+              deletedFlag='N'
             </cfquery>
-            
-            <cfif qCheckByEmail.foundCount GT 0>
+            <cfif qCheckByPersonId.foundCount GT 0>
               <cfset Status = "Fail|Attendee already exists.">
               <cfreturn Status />
-              <cfabort>
             </cfif>
-           </cfif>
+        <cfelseif arguments.personId EQ 0 AND len(arguments.email) GT 0>
+          <cfquery name="qCheckByEmail" datasource="#application.settings.dsn#">
+            SELECT count(attendeeId) As foundCount FROM ce_attendee
+            WHERE 
+            email=<cfqueryparam value="#trim(arguments.email)#" cfsqltype="cf_sql_varchar" /> AND 
+            activityId=<cfqueryparam value="#arguments.activityid#" cfsqltype="cf_sql_integer" /> AND
+            deletedFlag='N'
+          </cfquery>
+
+          <cfif qCheckByEmail.foundCount GT 0>
+            <cfset Status = "Fail|Attendee already exists.">
+            <cfreturn Status />
+          </cfif>
         </cfif>
-                
+
+        <cfset AttendeeBean = CreateObject("component","#Application.Settings.Com#Attendee.Attendee").Init(PersonID=Arguments.PersonID,ActivityID=Arguments.ActivityID)>
+         
         <!--- SET MDFLAG --->
         <!--- CHECK IF PERSON HAS A RECORD --->
         <cfif arguments.personId GT 0>
@@ -712,7 +710,12 @@
         <cfset AttendeeBean.setCreatedBy(Session.Person.getPersonID())>
         
         <!--- CHECK IF NUMERIC --->
-        <cfset AttendeeSaved = Application.Com.AttendeeDAO.Save(AttendeeBean)>
+        <cfif arguments.attendeeId GT 0>
+          <cfset AttendeeSaved = Application.Com.AttendeeDAO.Save(AttendeeBean)>  
+        <cfelse>
+          <cfset AttendeeSaved = Application.Com.AttendeeDAO.create(attendeeBean) />
+        </cfif>
+        
         
         <cfif isNumeric(AttendeeSaved)>
           <cfset AttendeeBean.setAttendeeID(AttendeeSaved)>
