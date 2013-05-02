@@ -65,7 +65,7 @@ $(document).ready(function() {
 </script>
 <cfoutput>
 <div class="ViewSection">
-  <form action="#Application.Settings.RootPath#/_com/AJAX_Activity.cfc" method="post" class="form-horizontal js-formstate" name="frmPubGeneral" id="EditForm">
+  <form action="#Application.Settings.RootPath#/_com/AJAX_Activity.cfc" method="post" class="form-horizontal formstate js-formstate js-form-publish" name="frmPubGeneral" id="EditForm">
 
       <input type="hidden" name="method" value="savePubGeneral" />
       <input type="hidden" name="ActivityID" value="#Attributes.ActivityID#" />

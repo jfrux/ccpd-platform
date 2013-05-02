@@ -66,7 +66,7 @@ function setSpecialtyStyle(SpecialtyStatus, ContainerID) {
 </script>
 
 <cfoutput>
-<form name="frmSpecialties" id="EditForm" method="post" action="#Application.Settings.RootPath#/_com/AJAX_Activity.cfc">
+<form name="frmSpecialties" class="formstate js-formstate" method="post" action="#Application.Settings.RootPath#/_com/AJAX_Activity.cfc">
 <input type="hidden" value="saveSpecialties" name="method" id="method" />
 <input type="hidden" value="plain" name="returnformat" />
 <input type="hidden" value="#Attributes.ActivityID#" name="ActivityID" />

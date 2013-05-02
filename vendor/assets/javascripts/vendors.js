@@ -10,6 +10,7 @@
 *=require underscore
 *=require backbone
 *=require backbone.marionette
+*=require stapes
 *=require twitter/bootstrap/bootstrap-tooltip
 *=require twitter/bootstrap/bootstrap-affix
 *=require twitter/bootstrap/bootstrap-alert

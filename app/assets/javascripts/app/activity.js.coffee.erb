@@ -41,11 +41,13 @@ App.module "Activity",
     Self.on "linkbar.click", (link) ->
       App.logDebug "clicked: #{link.attr('data-pjax-title')}"
       excludedModules = "Folders,Stats".split(',')
-
       $.each Self.submodules, (i,module) ->
         if excludedModules.indexOf(i) == -1
           module.stop()
         return
+      #$(".content-inner *").off()
+      $(".content-inner").empty();
+      return
 
     Self.on "status.changeStart", (status) ->
       App.logDebug "statusChange Started!"
@@ -58,7 +60,6 @@ App.module "Activity",
       $statusBox.addClass('activity-status-' + status)
     
     Self._init = (settings) ->
-      
       Self.data = settings
       # Self.content = new Backbone.Marionette.Region({
       #   el: ".js-profile-content"
@@ -78,9 +79,16 @@ App.module "Activity",
       $statusBox.append($statusIcon)
       #Self.Folders.start(settings.folders)
 
-      $(document).pjax('.js-profile-menu > div > div > ul a', '.content-inner')
-      $(document).on 'pjax:send', ->
-        #App.logInfo arguments
+      $(document).on 'click', '.js-profile-menu > div > div > ul a', (event) ->
+        container = $(this).data('pjax-container')
+        $(".content-inner").wrapInner("<div id='#{container.replace('#','')}'></div>")
+        $.pjax.click(event, {container: container})
+        return
+
+      $(document).on 'pjax:send',(xhr,options) ->
+        
+        
+        return
 
       $(document).on 'pjax:complete',(xhr, options, textStatus) ->
 
@@ -88,7 +96,7 @@ App.module "Activity",
         # App.logInfo textStatus
         # App.logInfo options
         $clickedLink = $(xhr.relatedTarget)
-        $pageTitle = $clickedLink.attr('data-pjax-title')
+        $pageTitle = $clickedLink.data('pjax-title')
         #App.logInfo($clickedLink)
         $contentArea = $(xhr.target)
         $contentTitle = $contentArea.parents('.js-profile-content').find('.content-title > h3')

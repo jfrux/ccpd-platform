@@ -84,10 +84,9 @@
       <do action="vActivity.Import" />
     </fuseaction>
 
+
     <!-- //END AHAH pages -->
     <fuseaction name="ACCME">
-      <set name="Request.Page.Breadcrumbs" value="Activities|Activity.Home,#ActivityTitleShort#|Activity.Detail?ActivityID=#Attributes.ActivityID#,ACCME Information|Activity.accme?ActivityID=#Attributes.ActivityID#" />
-      <do action="mPage.ParseCrumbs" />
       <do action="mActivity.getOther" />
     </fuseaction>
 
@@ -105,7 +104,7 @@
     </fuseaction>
 
   <fuseaction name="Agenda">
-    <do action="vActivity.Agenda" contentvariable="request.page.body" />
+   
 	</fuseaction>
 
 	<fuseaction name="EmailLogs">

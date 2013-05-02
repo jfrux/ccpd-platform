@@ -72,7 +72,6 @@ App.module "Activity.Participants", (Self, App, Backbone, Marionette, $) ->
       $(".js-partic-actions").find(".btn").removeClass "disabled"
     else
       $(".js-partic-actions").find(".btn").addClass "disabled"
-
     return
 
   addSelectedAttendee = (params) ->
@@ -119,35 +118,43 @@ App.module "Activity.Participants", (Self, App, Backbone, Marionette, $) ->
 
   updateStatusDate = ($Attendee, $Type) ->
     unless $Type is ""
-      $.post sRootPath + "/_com/AJAX_Activity.cfc",
-        method: "getAttendeeDate"
-        AttendeeId: $Attendee
-        type: $Type
-        returnFormat: "plain"
-      , (data) ->
-        cleanData = $.Trim(data)
-        $("#datefill-" + $Attendee).html cleanData
-        $("#editdatelink-" + $Attendee).show()
-
+      $.ajax
+        url: sRootPath + "/_com/AJAX_Activity.cfc"
+        type:'post'
+        data:
+          method: "getAttendeeDate"
+          AttendeeId: $Attendee
+          type: $Type
+          returnFormat: "plain"
+        success: (data) ->
+          cleanData = $.Trim(data)
+          $("#datefill-" + $Attendee).html cleanData
+          $("#editdatelink-" + $Attendee).show()
     else
       $("#datefill-" + $Attendee).html ""
       $("#editdatelink-" + $Attendee).hide()
-  resetAttendee = (nA, nP, sP) ->
-    $.getJSON sRootPath + "/_com/AJAX_Activity.cfc",
-      method: "resetAttendee"
-      attendeeId: nP
-      ActivityID: nA
-      PaymentFlag: sP
-      returnFormat: "plain"
-    , (data) ->
-      if data.STATUS
-        addMessage data.STATUSMSG, 250, 6000, 4000
-        updateActions()
-        updateStats()
-        updateRegistrants()
-      else
-        addError data.STATUSMSG, 250, 6000, 4000
+    return
 
+  resetAttendee = (nA, nP, sP) ->
+    $.ajax
+      url: sRootPath + "/_com/AJAX_Activity.cfc"
+      data:
+        method: "resetAttendee"
+        attendeeId: nP
+        ActivityID: nA
+        PaymentFlag: sP
+        returnFormat: "plain"
+      success: (data) ->
+        if data.STATUS
+          addMessage data.STATUSMSG, 250, 6000, 4000
+          updateActions()
+          updateStats()
+          updateRegistrants()
+        else
+          addError data.STATUSMSG, 250, 6000, 4000
+        return
+    return
+    
   checkmarkMember = (params) ->
     
     #if(settings.person && settings.person > 0) {
@@ -163,38 +170,41 @@ App.module "Activity.Participants", (Self, App, Backbone, Marionette, $) ->
 
   updateRegistrants = (nPage, nStatus) ->
     $("#RegistrantsLoading").show()
-    $.get sMyself + "Activity.AttendeesAHAH",
-      ActivityID: nActivity
-      status: nStatus
-      page: nPage
-    , (data) ->
-      $("#RegistrantsContainer").html data
-      $("#RegistrantsLoading").hide()
-      $(".AllAttendees").unbind()
-      $(".AllAttendees").isPerson()
+    $.ajax
+      url:sMyself + "Activity.AttendeesAHAH"
+      type:'get',
+      data:
+        ActivityID: nActivity
+        status: nStatus
+        page: nPage
+      success: (data) ->
+        $("#RegistrantsContainer").html data
+        $("#RegistrantsLoading").hide()
+        $(".AllAttendees").unbind()
+        $(".AllAttendees").isPerson()
       
-      # CHECK IF ATTENDEE HAS BEEN MARKED AS SELECTED 
-      $(".AllAttendees").each ->
-        $row = $(this)
-        $checkBox = $row.find(".MemberCheckbox")
-        nPerson = $row.find(".personId").val()
-        nAttendee = $row.find(".attendeeId").val()
-        $checkBox.click ->
-          if $(this).attr("checked")
-            $("#attendeeRow-" + nAttendee).css "background-color", "#FFD"
-            
-            # ADD CURRENT MEMBER TO SELECTEDMEMBERS LIST
-            addSelectedAttendee
-              person: nPerson
-              attendee: nAttendee
+        # CHECK IF ATTENDEE HAS BEEN MARKED AS SELECTED 
+        $(".AllAttendees").each ->
+          $row = $(this)
+          $checkBox = $row.find(".MemberCheckbox")
+          nPerson = $row.find(".personId").val()
+          nAttendee = $row.find(".attendeeId").val()
+          $checkBox.click ->
+            if $(this).attr("checked")
+              $("#attendeeRow-" + nAttendee).css "background-color", "#FFD"
+              
+              # ADD CURRENT MEMBER TO SELECTEDMEMBERS LIST
+              addSelectedAttendee
+                person: nPerson
+                attendee: nAttendee
 
-          else
-            $("#attendeeRow-" + nAttendee).css "background-color", "#FFF"
-            
-            # REMOVE CURRENT MEMBER FROM SELECTEDMEMBERS LIST
-            removeSelectedPerson
-              person: nPerson
-              attendee: nAttendee
+            else
+              $("#attendeeRow-" + nAttendee).css "background-color", "#FFF"
+              
+              # REMOVE CURRENT MEMBER FROM SELECTEDMEMBERS LIST
+              removeSelectedPerson
+                person: nPerson
+                attendee: nAttendee
 
   Self.bind = () ->
     App.logInfo("binding records")

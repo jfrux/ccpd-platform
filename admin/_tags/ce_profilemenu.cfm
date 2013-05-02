@@ -22,7 +22,11 @@
       <cfset tab = attributes.settings.tabs[key] />
 
       <li class="<cfif isActive(attributes.current,tab)>active</cfif>">
-        <a href="/admin/event/#tab.event#?#attributes.type#id=#attributes.typeid#" data-pjax-title="#tab.title#" data-tooltip-title="#tab.tooltip#">
+        <a href="/admin/event/#tab.event#?#attributes.type#id=#attributes.typeid#" 
+          data-js-namespace="js-#replace(tab.event,'.','-')#" 
+          data-pjax-container="##js-#replace(tab.event,'.','-')#" 
+          data-pjax-title="#tab.title#" 
+          data-tooltip-title="#tab.tooltip#">
           <i class="fg-#tab.icon#"></i> <span>#tab.label#</span>
           <cfif structkeyExists(tab,'count')>
             <span class="navItemCount pull-right">#tab.count#</span>
@@ -37,7 +41,9 @@
             <li class="<cfif isActive(attributes.current,subtab)>active</cfif>">
               <a href="/admin/event/#subtab.event#?#attributes.type#id=#attributes.typeid#" 
                   data-pjax-title="#subtab.title#" 
-                  data-tooltip-title="#subtab.tooltip#">
+                  data-tooltip-title="#subtab.tooltip#"
+                  data-js-namespace="js-#replace(tab.event,'.','-')#" 
+                  data-pjax-container="##js-#replace(tab.event,'.','-')#">
                 <i class="fg-#subtab.icon#"></i> <span>#subtab.label#</span>
                 <cfif structkeyExists(subtab,'count')>
                   <span class="navItemCount pull-right">#subtab.count#</span>

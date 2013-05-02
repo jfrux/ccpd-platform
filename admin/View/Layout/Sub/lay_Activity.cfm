@@ -121,6 +121,7 @@ App.module('Activity').start({
               </div>
             </div>
             <div class="MultiFormContent content-inner">
+              <div id="js-#replace(request.tabSettings.tabs[lcase(attributes.fuseaction)].event,'.','-')#">
               <cfif structKeyExists(variables,'multiformright')>
                 <div class="toolbar">
                   #multiformright#
@@ -129,6 +130,7 @@ App.module('Activity').start({
               <cfif structKeyExists(variables,'multiformcontent')>
                 #multiformcontent#
               </cfif>
+              </div>
             </div>
           </div>
           <div class="span6 js-infobar-outer">

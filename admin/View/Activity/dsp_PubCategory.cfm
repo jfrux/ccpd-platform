@@ -14,7 +14,6 @@ function updateCategories() {
 </script>
 
 <div class="ViewSection">
-	<h3>Categories</h3>
 	<div id="CategoriesContainer"></div>
 	<div id="CategoriesLoading" class="Loading"><img src="/admin/_images/ajax-loader.gif" />
 	<div>Please Wait</div></div>

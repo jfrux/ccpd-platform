@@ -16,7 +16,8 @@ App.module "Activity.GeneralInfo", (Self, App, Backbone, Marionette, $) ->
     return
   @on "stop", ->
     App.logInfo "stopped: #{Self.moduleName}"
-    FormState.stop()
+    #FormState.stop()
+    FormState = null
     return
 
   updateStateProvince = (countryId) ->
@@ -51,11 +52,13 @@ App.module "Activity.GeneralInfo", (Self, App, Backbone, Marionette, $) ->
     updateStateProvince parseInt($("#Country").val())
 
   _init = () ->
-    $(".linkbar a").one "click",->
-      Self.stop()
-      return true
-    FormState = App.Components.FormState
-    FormState.start(true)
+    # $(".linkbar a").one "click",->
+    #   Self.stop()
+    #   return true
+    FormState = new App.Components.FormState
+      el:'#js-activity-detail .js-formstate'
+      saved: true
+      
     #App.logInfo "init: generalinfo
     #            \nactivity type: #{nActivityType}
     #            \nsession type: #{sSessionType}
@@ -95,12 +98,13 @@ App.module "Activity.GeneralInfo", (Self, App, Backbone, Marionette, $) ->
       $this = $(this)
       if $this.hasClass("js-sponsorship-J")
         FormState.Unsaved()
-        FormState.AddChange $("#SponsorshipJ").attr("name"), "SponsorshipJ"
+        FormState.AddChange "Sponsorship", "J"
+        FormState.AddChange "Sponsor", $("#Sponsor").val()
         $("#Sponsorship").val "J"
         $("#JointlyTextFld").removeClass "hide"
       else
         FormState.Unsaved()
-        FormState.AddChange $("#SponsorshipD").attr("name"), "SponsorshipD"
+        FormState.AddChange "Sponsorship", "D"
         $("#Sponsorship").val "D"
         $("#JointlyTextFld").addClass "hide"
       e.preventDefault()

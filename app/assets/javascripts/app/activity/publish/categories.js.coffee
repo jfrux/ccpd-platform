@@ -1,8 +1,9 @@
 ###!
-* ACTIVITY > ACCME
+* ACTIVITY > PUBLISH > CATEGORIES
 ###
-App.module "Activity.ACCME", (Self, App, Backbone, Marionette, $) ->
+App.module "Activity.Publish.Categories", (Self, App, Backbone, Marionette, $) ->
   @startWithParent = false
+  FormState = null
   
   @on "before:start", ->
     App.logInfo "starting: #{Self.moduleName}"
@@ -14,9 +15,10 @@ App.module "Activity.ACCME", (Self, App, Backbone, Marionette, $) ->
     return
   @on "stop", ->
     App.logInfo "stopped: #{Self.moduleName}"
+    #FormState.stop();
     return
 
   _init = (defaults) ->
     FormState = new App.Components.FormState
-      el:'#js-activity-accme .js-formstate'
+      el:'#js-activity-pubcategory .js-formstate'
       saved: true

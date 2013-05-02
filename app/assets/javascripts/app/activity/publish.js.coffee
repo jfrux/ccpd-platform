@@ -15,9 +15,10 @@ App.module "Activity.Publish", (Self, App, Backbone, Marionette, $) ->
     return
   @on "stop", ->
     App.logInfo "stopped: #{Self.moduleName}"
-    FormState.stop();
+    #FormState.stop();
     return
 
   _init = (defaults) ->
-    FormState = App.Components.FormState
-    FormState.start(true)
+    FormState = new App.Components.FormState
+      el:'.js-form-publish'
+      saved: true

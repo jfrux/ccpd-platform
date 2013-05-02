@@ -55,7 +55,7 @@ App.module("Activity.GeneralInfo").start();
 <cfoutput>
 <div class="ViewContainer">
 <div class="ViewSection">
-	<form action="#Application.Settings.RootPath#/_com/AJAX_Activity.cfc" method="post" class="form-horizontal js-formstate" name="frmEditActivity">
+	<form action="#Application.Settings.RootPath#/_com/AJAX_Activity.cfc" method="post" class="form-horizontal formstate js-formstate js-form-generalinfo" name="frmEditActivity">
     	<!--- ADDED Attributes.SessionType HIDDEN FIELD FOR SAVING PURPOSES [Attributes.SessionType must be passed to save StartDate/EndDate] --->
 			<input type="hidden" value="saveActivity" name="Method" />
 			<input type="hidden" value="plain" name="returnFormat" />

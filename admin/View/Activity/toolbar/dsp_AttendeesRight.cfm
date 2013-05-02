@@ -43,7 +43,7 @@
     </ul>
   </div>
   <div class="btn-group">
-    <a title="Add Individual Participant(s)" class="btn btn-mini" id="AttendeeLink" href="javascript:void(0);"><i class="icon-plus"></i></a>
+    <a title="Add Individual Participant(s)" class="btn btn-mini js-add-person-link" id="AttendeeLink" href="javascript:void(0);"><i class="icon-plus"></i></a>
     <a title="Batch Import Participants" class="btn btn-mini batchLink" href="javascript:;"><i class="icon-upload"></i></a>
   </div>
   <div class="btn-group">

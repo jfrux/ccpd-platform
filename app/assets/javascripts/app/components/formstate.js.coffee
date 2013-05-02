@@ -1,72 +1,88 @@
 ###!
 * FORM STATE MANAGEMENT
 ###
-
-App.module "Components.FormState", (Self, App, Backbone, Marionette, $) ->
-  @startWithParent = false
-  $el = null
-  $form = null
-  $saveButton = null
-  $discardButton = null
-  $saveInfo = null
-  IsSaved = true
-  isPublishArea = false # USED TO DETERMINE IF PUBLISH BAR IS UPDATED
-  ChangedFields = ""
-  ChangedValues = ""
-  $changedFields = null
-  $changedValues = null
-
-  @on "before:start", ->
-    App.logInfo "starting: #{Self.moduleName}"
-
-  @on "start", (IsSaved) ->
-    $(document).ready ()->
-      _init(IsSaved)
-      App.logInfo "started: #{Self.moduleName}"
-      return
-    return
-  @on "stop", ->
-    App.logInfo "stopped: #{Self.moduleName}"
-    $form.unbind()
-    $form.empty()
-    $.each CKEDITOR.instances, (i,val) ->
-      if (CKEDITOR.instances[i]) 
-        CKEDITOR.instances[i].destroy()
-
-      return
-    #$form.remove()
+class App.Components.FormState
+  constructor: (settings) ->
+    App.logInfo "New FormState: #{settings.el}"
+    Self = @
+    Self = _.extend(Self,Backbone.Events)
+    $form = $(settings.el)
+    $toolbar = $('<div class="toolbar btn-toolbar test"></div>')
+    $toolbar.prependTo($form.parents('.content-inner :first'))
     
-    return
-  _init = (IsSaved) ->
-    App.logDebug "binding formstate"
-    $form = $('.js-formstate')
-    $el = $('<div class="ViewSectionButtons control-group">
-            <div class="controls">
-              <input type="submit" value="Save Now" name="btnSave" class="btn btn-primary js-btn-save" /> 
-              <input style="display:none;" type="reset" value="Discard" name="btnDiscard" class="btn js-btn-discard" /> 
-              <span class="SaveInfo js-save-info"></span>
-            </div>
-          </div>')
+    $actions = $('<div class="ViewSectionButtons btn-group"></div>')
+    $saveInfo = $('<div class="SaveInfo js-save-info"></div>')
+    $saveButton = $('<a href="javascript://" class="btn btn-mini js-btn-save">Save Now</a>')
+    $discardButton = $('<a class="btn btn-mini js-btn-discard">Cancel</a>')
+    $saveButton.appendTo($actions)
+    $inputs = $form.find(':input')
+    $ckeditors = $form.find(".js-ckeditor")
+    $saveInfo.appendTo($toolbar)
+    console.log($saveInfo)
+    $actions.appendTo($toolbar)
+    $toolbar.removeClass('hide')
     $changedFields = $('<input type="text" class="js-changed-fields hide" name="ChangedFields" value="" />')
     $changedValues = $('<input type="text" class="js-changed-values hide" name="ChangedValues" value="" />')
-    $saveButton = $el.find('.js-btn-save')
-    $discardButton = $el.find('.js-btn-discard')
-    $saveInfo = $el.find('.js-save-info');
-    $form.append($el)
+    $form.append($changedFields)
+    $form.append($changedValues)
+    #$form.append($actions)
+    #console.log $inputs
+    
+    @config = config =
+      "buttons":
+        "save":"Save Now"
+        "saved":"Saved"
+        "saving":"Saving..."
 
-    $saveButton.val("Saved").attr('disabled',true);
-    $saveInfo.text("Last saved " + lastSavedDate);
+    @on "reset",->
+      App.logInfo "formstate: reset!"
+
+      return
+
+    @on "save",->
+      App.logInfo "formstate: saved!"
+      d = new Date()
+      
+      setInitialState()
+      disableSave()
+      $saveInfo.text "Last saved at " + d.getHours() + ":" + d.getMinutes() + " "
+      Self.ClearChanges()
+      IsSaved = true
+      addMessage "Information saved!", 250, 6000, 4000
+      return
+
+    @on "ready",->
+      App.logInfo "formstate: Ready!"
+      return
+
+    @on "change", (eventName,changePair) ->
+      App.logInfo "formstate: change: #{eventName}"
+
+      if isDirty()
+        Self.AddChange changePair.field, changePair.value
+        Unsaved()
+      else
+        resetForm()
+      return
+
+    IsSaved = settings.saved || true
+    isPublishArea = false # USED TO DETERMINE IF PUBLISH BAR IS UPDATED
+
+    ChangedFields = ""
+    ChangedValues = ""
+
+    $saveInfo.html("Last saved " + lastSavedDate);
+
     $form.append($changedFields)
     $form.append($changedValues)
 
     $form.find("input,textarea").keyup ->
-      App.logInfo "formstate: input.keyup!"
-      Self.Unsaved()
-      Self.AddChange $(this).attr('name'), $(this).attr("value")
+      change = 
+        'field':$(this).attr('name')
+        'value':$(this).val()
+      
+      Self.trigger('change','input.keyup!',change)
       return
-    $form.find("button").click ->
-
-      return false
 
     $form.find(".DatePicker").datepicker
       showOn: "button"
@@ -76,81 +92,71 @@ App.module "Components.FormState", (Self, App, Backbone, Marionette, $) ->
       changeMonth: true
       changeYear: true
       onSelect: ->
-        Self.Unsaved()
-        Self.AddChange $("label[for='" + @id + "']").html(), $(this).val()
+        change = 
+          'field':$(this).attr('name')
+          'value':$(this).val()
+        
+        Self.trigger('change','date.chosen!',change)
+        return
 
     $form.find("select").on "change", ->
-      App.logInfo "formstate: select.change!"
-      if @id isnt "AuthLevel" and @id isnt "StatusChanger" and @id isnt "CatAdder"
-        Self.Unsaved()
-        Self.AddChange $("label[for='" + @id + "']").html(), $(this).selectedTexts()
+      change = 
+        'field':$(this).attr('name')
+        'value':$(this).selectedTexts()
+      
+      Self.trigger('change','select.change!',change)
       return
 
     $form.find("input[type='checkbox']").on "change", ->
-      App.logInfo "formstate: checkbox.check!"
-      Self.Unsaved()
-      Self.AddChange $(this).attr("name"), $(this).attr("id")
+      change = 
+        'field':$(this).attr('name')
+        'value':$(this).val()
+      
+      Self.trigger('change','checkbox.checked!',change)
       return
 
     $form.find("input[type='radio']").on "click", ->
-      App.logInfo "formstate: radio.click!"
-      Self.Unsaved()
-      AddChange $(this).attr("name"), $("label[for='" + @id + "']").html()
+      change = 
+        'field':$(this).attr('name')
+        'value':$(this).val()
+      
+      Self.trigger('change','radio.checked!',change)
       return
 
     $discardButton.click ->
-      $saveButton.attr("disabled", true).val "Saved"
-      IsSaved = true
-      $.each CKEDITOR.instances, (i,val) ->
-        #App.logDebug i
-        $elem = $("#" + i)
-        #App.logDebug $elem
-        fieldName = $elem.attr('name');
-        #App.logDebug fieldName
-        #App.logDebug editor
-        CKEDITOR.instances[i].setData $elem.val()
-        return
-      Self.ClearChanges()
-      $(this).hide()
+      resetForm()
       return true
 
-    $form.find(".js-ckeditor").each ->
-      id = $(this).attr('id')
-      console.log id
+    Self.setupCKEDITOR = setupCKEDITOR = ($input) ->
+      $elem = $input
+      id = $elem.attr('id')
+
       CKEDITOR.replace id,
         on:
           blur: (evt) ->
             $editor = $(@container.$)
-            $editor.find(".cke_top").addClass "hide"
+            #$editor.find(".cke_top").addClass "hide"
+            $editor.find(".cke_top").css 'display':''
 
           focus: (evt) ->
             $editor = $(@container.$)
-            $editor.find(".cke_top").removeClass "hide"
+            $editor.find(".cke_top").css 'display':'block'
 
           instanceReady: (evt) ->
             $editor = $(@container.$)
-            $editor.find(".cke_top").addClass "hide"
-
-      
-
-    $.each CKEDITOR.instances, (i,val) ->
-      #App.logDebug i
-      $elem = $("#" + i)
-      #App.logDebug $elem
-      fieldName = $elem.attr('name');
-      #App.logDebug fieldName
-      #App.logDebug editor
-      CKEDITOR.instances[i].on "instanceReady", () ->
-        #Set keyup event
-        this.document.on "keyup", updateValue
-        #Set paste event
-        this.document.on "paste", updateValue
-
-        return
+            #$editor.find(".cke_top").addClass "hide"
+            #Set keyup event
+            @document.on "keyup", updateValue
+            #Set paste event
+            @document.on "paste", updateValue
       updateValue = ->
-        CKEDITOR.instances[i].updateElement();
+        CKEDITOR.instances[id].updateElement();
         $elem.trigger('keyup')
         return
+    $ckeditors.each ->
+      setupCKEDITOR($(this))
+      #console.log id
+      
       return
 
     $form.submit ->
@@ -158,82 +164,127 @@ App.module "Components.FormState", (Self, App, Backbone, Marionette, $) ->
         type: "post"
         dataType: "json"
         beforeSubmit: ->
-          $saveButton.val("Saving...").attr "disabled", true
+          $saveButton.text(config.buttons.saving).removeClass('btn-primary').addClass('disabled').attr "disabled", true
           return
         success: (responseText, statusText) ->
-          d = new Date()
-          if responseText.STATUS is "false"
+          if !responseText.STATUS
             $.each responseText.ERRORS, (i, item) ->
               addError item.MESSAGE, 250, 6000, 4000
 
-            $saveButton.val("Save Now").attr "disabled", false
+            $saveButton.text(config.buttons.save).removeClass('disabled').attr "disabled", false
             IsSaved = false
           else
-            $saveButton.val("Saved").attr "disabled", true
-            $discardButton.hide()
-            $saveInfo.text "Last saved at " + d.getHours() + ":" + d.getMinutes() + " "
-            #updatePublishState() if isPublishArea
-            #App.Activity.updateAll()
-            Self.ClearChanges()
-            IsSaved = true
-            addMessage "Activity Details saved!", 250, 6000, 4000
+            Self.trigger('save')
+
           return
       false
 
-    question232 = $("#question232")
-    TheLink = ""
-    $(".PageStandard").hide()
-    # $("#HeaderNav a,#HeaderSubNav a,#Breadcrumbs a,a.LeaveLink").bind "click", this, ->
-    #   TheLink = @href
-    #   unless IsSaved
-    #     #$.extend $.blockUI.defaults.overlayCSS,
-    #     #  backgroundColor: "#000"
+    Self.isDirty = isDirty = ->
+      _.some $inputs, (i) ->
+        input = $(i);
 
-    #     # $.blockUI
-    #     #   message: question232
-    #     #   width: "275px"
+        if input.val() != input.data('initialState')
+          true
+        else
+          false
+        
 
-    #     false
+    Self.resetForm = resetForm = ->
+      IsSaved = true
+      
+      $ckeditors.each ->
+        $elem = $(this)
+        id = $elem.attr('id')
+        CKEDITOR.instances[id].destroy()
 
-    # $("#yes").click ->
-    #   #$.unblockUI()
-    #   window.location = TheLink
-    #   return
+        setupCKEDITOR($elem)
+        return
+      # $.each CKEDITOR.instances, (i,val) ->
+      #   #App.logDebug i
+      #   $elem = $("#" + i)
+      #   #App.logDebug $elem
+      #   fieldName = $elem.attr('name');
+      #   #App.logDebug fieldName
+      #   #App.logDebug editor
+      #   CKEDITOR.instances[i].setData $elem.val()
+      #   return
 
-    # $("#no").click $.unblockUI
-    # $("a.button").unbind "click"
-    # return
-  Self.Unsaved = Unsaved = ->
-    App.logInfo "formstate: Unsaved called!"
-    App.logInfo "isSaved already? #{IsSaved}"
-    if IsSaved
-      $saveButton.attr("disabled", false).val "Save Now"
-      $discardButton.show()
+      Self.ClearChanges()
+
+      $inputs.each (i, elem) ->
+        input = $(elem);
+        input.val input.data('initialState')
+        return
+
+      disableSave()
+      $discardButton.detach()
+
+      Self.trigger('reset')
+      return
+
+    Self.disableSave = disableSave = ->
+      $saveButton
+        .removeClass('btn-primary')
+        .attr("disabled", true)
+        .addClass('disabled')
+        .text(config.buttons.saved)
+        .off()
+      $discardButton.detach()
+      return
+
+    Self.enableSave = enableSave = ->
+      $saveButton
+        .attr("disabled", false)
+        .removeClass('disabled')
+        .text(config.buttons.save)
+        .addClass('btn-primary')
+        .on "click",(e) ->
+          $form.submit()
+          e.preventDefault()
+          return
+      $discardButton.appendTo($actions)
+      return
+
+    Self.Unsaved = Unsaved = ->
+      #App.logInfo "formstate: Unsaved!"
+      #App.logInfo "isSaved already? #{IsSaved}"
+      if IsSaved
+        enableSave()
+      App.logInfo "formstate: dirty: #{Self.isDirty()}"
+      IsSaved = false
+      return
+
+    Self.AddChange = AddChange = (sField, sValue) ->
+      sValue = "%20"  if sValue is ""
+      unless $.ListFind(ChangedFields, sField, "|")
+        ChangedFields = $.ListAppend(ChangedFields, sField, "|")
+        ChangedValues = $.ListAppend(ChangedValues, sValue, "|")
+      else
+        nLocation = $.ListFind(ChangedFields, sField, "|")
+        ChangedValues = $.ListSetAt(ChangedValues, nLocation, sValue, "|")
+      $changedFields.val ChangedFields
+      $changedValues.val ChangedValues
+      return
+
+    # App.logInfo(ChangedFields + ' ' + ChangedValues);
+    Self.ClearChanges = ClearChanges = ->
+      ChangedFields = ""
+      ChangedValues = ""
+      $changedFields.val ""
+      $changedValues.val ""
+      IsSaved = true
+      return
+
+    Self.setInitialState = setInitialState = ->
+      $inputs.each (i, elem) ->
+        input = $(elem);
+        input.data('initialState', input.val());
+      return
+
     
-    #AutoSave();
-    IsSaved = false
-    return
+    disableSave()
+    #setup initial state
+    setInitialState()
+    Self.trigger('ready')
 
-  Self.AddChange = AddChange = (sField, sValue) ->
-    sValue = "%20"  if sValue is ""
-    unless $.ListFind(ChangedFields, sField, "|")
-      ChangedFields = $.ListAppend(ChangedFields, sField, "|")
-      ChangedValues = $.ListAppend(ChangedValues, sValue, "|")
-    else
-      nLocation = $.ListFind(ChangedFields, sField, "|")
-      ChangedValues = $.ListSetAt(ChangedValues, nLocation, sValue, "|")
-    $changedFields.val ChangedFields
-    $changedValues.val ChangedValues
-    return
-
-  # App.logInfo(ChangedFields + ' ' + ChangedValues);
-  Self.ClearChanges = ClearChanges = ->
-    ChangedFields = ""
-    ChangedValues = ""
-    $changedFields.val ""
-    $changedValues.val ""
-    IsSaved = true
-    return
-
-  pub =
-    init: _init
+    return Self

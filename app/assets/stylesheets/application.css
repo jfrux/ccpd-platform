@@ -1,7 +1,8 @@
 /*
 *=require_self
 *=require bootstrap_and_overrides
-*=require jquery/jquery-ui-1.10.1.custom
+*=require jquery/jquery.ui.base.css
+*=require jquery/jquery.ui.theme.css
 *=require base
 */
 
