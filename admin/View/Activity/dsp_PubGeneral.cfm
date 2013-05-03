@@ -32,6 +32,7 @@
 //     }
 // });
 App.Activity.Publish.start();
+App.Activity.Publish.General.start();
 
 $(document).ready(function() {
 

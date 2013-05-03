@@ -1,8 +1,7 @@
 a {
   color:#555;
-
-  &:hover {
-    color:#FF0000;
+  &:hover,&:active {
+    color:#E00122;
   }
 }
 

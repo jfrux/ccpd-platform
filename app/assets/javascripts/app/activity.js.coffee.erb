@@ -38,15 +38,22 @@ App.module "Activity",
       App.logInfo "stopped: #{Self.moduleName}"
       return
     
-    Self.on "linkbar.click", (link) ->
-      App.logDebug "clicked: #{link.attr('data-pjax-title')}"
+    Self.on "linkbar.click", (link,e) ->
       excludedModules = "Folders,Stats".split(',')
+      
       $.each Self.submodules, (i,module) ->
         if excludedModules.indexOf(i) == -1
           module.stop()
         return
-      #$(".content-inner *").off()
-      $(".content-inner").empty();
+      App.logDebug link.data('pjax-container')
+      App.logDebug link
+      container = link.data('pjax-container')
+      App.logDebug container
+      $(".content-inner").wrapInner("<div id='#{container.replace('#','')}'></div>")
+      $.pjax.click(e, {container: container})
+      App.logDebug "clicked: #{link.attr('data-pjax-title')}"
+      
+      
       return
 
     Self.on "status.changeStart", (status) ->
@@ -77,17 +84,12 @@ App.module "Activity",
       $statusChanger = $statusBox.find('select')
       $statusIcon = $("<i></i>").addClass('fg-exclamation-circle')
       $statusBox.append($statusIcon)
-      #Self.Folders.start(settings.folders)
-
-      $(document).on 'click', '.js-profile-menu > div > div > ul a', (event) ->
-        container = $(this).data('pjax-container')
-        $(".content-inner").wrapInner("<div id='#{container.replace('#','')}'></div>")
-        $.pjax.click(event, {container: container})
-        return
 
       $(document).on 'pjax:send',(xhr,options) ->
-        
-        
+        return
+      
+      $(document).on 'pjax:timeout', (e) ->
+        e.preventDefault()
         return
 
       $(document).on 'pjax:complete',(xhr, options, textStatus) ->
@@ -135,10 +137,9 @@ App.module "Activity",
         trigger:'hover focus'
         container: 'body'
       
-      $menuLinks.on "click", ->
+      $menuLinks.on "click", (e) ->
         $link = $(this)
-
-        Self.trigger('linkbar.click',$link)
+        Self.trigger('linkbar.click',$link,e)
         return
 
       $menuLinks.tooltip

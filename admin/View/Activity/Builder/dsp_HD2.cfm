@@ -10,16 +10,14 @@ $(document).ready(function() {
 </script>
 
 <cfoutput>
-<form name="frmComp" id="frmComp" action="#Application.Settings.RootPath#/_com/ajax_Builder.cfc" method="post">
+<form class="form-horizontal js-component-form" name="frmComp" id="frmComp" action="#Application.Settings.RootPath#/_com/ajax_Builder.cfc" method="post">
 <input type="hidden" name="PubComponentID" value="#Attributes.PubComponentID#" />
 <input type="hidden" name="method" value="SaveComponent" />
 <input type="hidden" name="ActivityID" value="#Attributes.ActivityID#" />
 <input type="hidden" name="ComponentID" value="17" />
 <input type="hidden" name="returnformat" value="plain" />
-<table width="100%" cellspacing="1" cellpadding="3">
-	<tr>
-		<td class="FieldInput"><input type="text" name="DisplayName" id="DisplayName" value="#Attributes.DisplayName#" style="width:440px;" /></td>
-	</tr>
-</table>
+<div class="control-group">
+		<div class="controls"><input type="text" name="DisplayName" id="DisplayName" value="#Attributes.DisplayName#" style="width:440px;" /></div>
+</div>
 </form>
 </cfoutput>

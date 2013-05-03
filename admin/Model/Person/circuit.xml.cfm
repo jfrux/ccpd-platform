@@ -68,9 +68,7 @@
 	</fuseaction>
 	
 	<fuseaction name="TabControl">
-		<set name="Request.MultiFormQS" value="?PersonID=#Attributes.PersonID#" />
-		<set name="Request.MultiFormLabels" value="General,Emails,Locations,Preferences,Activities,History" />
-		<set name="Request.MultiFormFuseactions" value="person.detail,person.email,person.address,person.preferences,person.activities,person.history" />
+		<include template="act_TabSetup" />
 	</fuseaction>
 	
 </circuit>

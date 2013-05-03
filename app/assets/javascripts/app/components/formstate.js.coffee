@@ -107,10 +107,15 @@ class App.Components.FormState
       Self.trigger('change','select.change!',change)
       return
 
-    $form.find("input[type='checkbox']").on "change", ->
+    $form.find("input[type='checkbox']").on "click", ->
+      $this = $(this)
+      value = '';
+      if $this.attr('checked')
+        value = $this.data('initialState')
+
       change = 
         'field':$(this).attr('name')
-        'value':$(this).val()
+        'value':value
       
       Self.trigger('change','checkbox.checked!',change)
       return
@@ -278,7 +283,13 @@ class App.Components.FormState
     Self.setInitialState = setInitialState = ->
       $inputs.each (i, elem) ->
         input = $(elem);
-        input.data('initialState', input.val());
+        value = input.val();
+        if input.attr('type') == 'checkbox'
+          if input.attr('checked')
+            value = true
+          else
+            value = false
+        input.data('initialState', value);
       return
 
     

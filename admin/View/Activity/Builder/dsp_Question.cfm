@@ -196,7 +196,7 @@ function setType(nTypeID) {
 }
 </script>
 <h3>#qDetails.Name# Question</h3>
-<form action="#Application.Settings.RootPath#/_com/AJAX_Builder.cfc" method="post" id="frmComp" name="frmComp">
+<form class="form-horizontal js-component-form" action="#Application.Settings.RootPath#/_com/AJAX_Builder.cfc" method="post" id="frmComp" name="frmComp">
  <input type="hidden" name="method" value="SaveQuestion" />
  <input type="hidden" name="AssessmentID" value="#Attributes.AssessmentID#" />
  <input type="hidden" name="QuestionID" value="<Cfif Attributes.QuestionMode EQ "Add">0<cfelse>#Attributes.QuestionID#</cfif>" />
@@ -211,17 +211,15 @@ function setType(nTypeID) {
 				</cfloop>
 			</select>
 		</td>
-	</tr>	
-	<tr>
+	</div>
+<div class="control-group">
 		<td class="FieldLabel2" colspan="2" id="LabelTextField">Label</td>
-	</tr>
-	<tr>
+	</div>
+<div class="control-group">
 		<td class="FieldInput2" colspan="2">
 			<textarea name="LabelText" id="LabelText" style="width:450px;height:50px;">#Attributes.LabelText#</textarea>
 			<div><a link="javascript:void(0);" id="AddDetailsLink" style="cursor:pointer;">Add additional details...</a></div>
-		</td>
-	</tr>
-</table>
+		</div>
 <table width="100%" cellspacing="1" border="0" cellpadding="2" class="FormFields">
 	<tr class="Details" style="display:none;">
 		<td class="FieldLabel2" colspan="2">Details</td>
@@ -229,9 +227,7 @@ function setType(nTypeID) {
 	<tr class="Details" style="display:none;">
 		<td class="FieldInput2" colspan="2">
 			<textarea name="DetailText" id="DetailText" style="width:450px;height:100px;">#Attributes.DetailText#</textarea>
-		</td>
-	</tr>
-</table>
+		</div>
 <table width="100%" cellspacing="1" border="0" cellpadding="2">
 	<tr style="display: block;">
 		<td class="FieldLabel2" style="width:150px;">Manually Sort?</td>
@@ -295,9 +291,7 @@ function setType(nTypeID) {
 			<div class="CorrectAnswer" style="display:none;"><input type="radio" name="CorrectField" id="CorrectVC5" value="VC5" /><label for="CorrectVC5">Mark As Correct</label></div>
 			<textarea name="VC5" id="VC5" style="width:450px;height:50px;">#Attributes.VC5#</textarea>
 			<div><a link="javascript:void(0);" id="AddOptionsLink" style="cursor:pointer;">Add additional options...</a></div>
-		</td>
-	</tr>
-</table>
+		</div>
 <table width="100%" cellspacing="1" border="0" cellpadding="2" class="FormFields">
 	<tr class="MoreOptions" style="display:none;">
 		<td class="FieldLabel2" colspan="2">Option F</td>
@@ -342,8 +336,6 @@ function setType(nTypeID) {
 		<td class="FieldInput2" colspan="2">
 			<div class="CorrectAnswer" style="display:none;"><input type="radio" name="CorrectField" id="CorrectVC10" value="VC10" /><label for="CorrectVC10">Mark As Correct</label></div>
 			<textarea name="VC10" id="VC10" style="width:450px;height:50px;">#Attributes.VC10#</textarea>
-		</td>
-	</tr>
-</table>
+		</div>
 </form>
 </cfoutput>

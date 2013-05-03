@@ -9,8 +9,8 @@ $(document).ready(function() {
 		title:"Upload File",
 		modal: true, 
 		autoOpen: false,
-		height:150,
-		width:285,
+		height:225,
+		width:325,
 		resizable: false,
 		buttons: { 
 			Save:function() {
@@ -60,6 +60,6 @@ $(document).ready(function() {
 <cfif isNumeric(Attributes.FileID) AND Attributes.FileID GT 0>
 	<div style="height:5px;"></div><a href="#myself#File.Download?Mode=Activity&ModeID=#Attributes.ActivityID#&ID=#Attributes.FileID#" id="FileDownloadLink" style="text-decoration:none;font-size:12px;padding:3px;"><img src="#Application.Settings.RootPath#/_images/icons/disk.png" align="absmiddle" style="padding-right:2px;" />#FileBean.getFileName()#</a><div style="height:5px;"></div><a href="javascript:void(0);" id="FileUploadLink" style="text-decoration:none;font-size:12px;padding:3px;"><img src="#Application.Settings.RootPath#/_images/icons/ActionFIU.png" align="absmiddle" style="padding-right:2px;" />Upload New</a>
 <cfelse>
-	<a href="javascript:void(0);" id="FileUploadLink" style="text-decoration:none;font-size:12px; padding:3px;"><img src="#Application.Settings.RootPath#/_images/icons/ActionFIU.png" align="absmiddle" style="padding-right:2px;" />Upload Now</a>
+	<a href="javascript:void(0);" id="FileUploadLink" class="btn"><i class="icon-upload-alt"></i> Upload Now</a>
 </cfif>
 </cfoutput>

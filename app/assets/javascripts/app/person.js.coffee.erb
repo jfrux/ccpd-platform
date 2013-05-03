@@ -1,0 +1,318 @@
+###!
+* PERSON
+###
+App.module "Person",
+  startWithParent: false
+  define: (Self, App, Backbone, Marionette, $) ->
+    cShowInfobar = null
+    $profile = null
+    $projectBar = null
+    $contentArea = null
+    $infoBar = null
+    $infoBarToggler = null
+    $contentToggleSpan = null
+    $infoBarToggleSpan = null
+    $statusChanger = null
+    $statusIcon = null
+    $statusBox = null
+    $menuBar = null
+    defaultFolders = null
+    statusIcons =
+      "0":"exclamation-circle"
+      "1":"light-bulb"
+      "2":"hourglass"
+      "3":"light-bulb-off"
+      "4":"cross"
+
+    Self.on "before:start", ->
+      App.logInfo "starting: #{Self.moduleName}"
+      return
+    Self.on "start", (options) ->
+      $(document).ready ->
+        _init(options)
+        App.logInfo "started: #{Self.moduleName}"
+      return
+    Self.on "stop", ->
+      App.logInfo "stopped: #{Self.moduleName}"
+      return
+    
+    Self.on "linkbar.click", (link,e) ->
+      excludedModules = "Folders,Stats".split(',')
+      
+      $.each Self.submodules, (i,module) ->
+        if excludedModules.indexOf(i) == -1
+          module.stop()
+        return
+      App.logDebug link.data('pjax-container')
+      App.logDebug link
+      container = link.data('pjax-container')
+      App.logDebug container
+      $(".content-inner").wrapInner("<div id='#{container.replace('#','')}'></div>")
+      $.pjax.click(e, {container: container})
+      App.logDebug "clicked: #{link.attr('data-pjax-title')}"
+      
+      
+      return
+
+    Self.on "status.changeStart", (status) ->
+      App.logDebug "statusChange Started!"
+      $statusChanger.addClass('disabled')
+    Self.on "status.changeEnd", (status) ->
+      App.logDebug "statusChange Ended!"
+      $statusChanger.removeClass('disabled')
+      addMessage "Status changed successfully!", 250, 6000, 4000
+      $statusIcon.attr('class','').addClass('fg-' + statusIcons[status])
+      $statusBox.addClass('activity-status-' + status)
+    
+    Self._init = _init = (settings) ->
+      Self.data = settings
+      # Self.content = new Backbone.Marionette.Region({
+      #   el: ".js-profile-content"
+      # });
+      $profile = $(".profile")
+      $infoBar = $(".js-infobar")
+      $projectBar = $(".js-projectbar")
+      $menuBar = $(".js-profile-menu > div > div > ul")
+      $contentArea = $(".js-profile-content")
+      $infoBarToggler = $(".js-toggle-infobar")
+      $contentToggleSpan = $(".js-content-toggle")
+      $infoBarToggleSpan = $(".js-infobar-outer")
+      $menuLinks = $menuBar.find('a')
+      $statusBox = $(".js-activity-status")
+      $statusChanger = $statusBox.find('select')
+      $statusIcon = $("<i></i>").addClass('fg-exclamation-circle')
+      $statusBox.append($statusIcon)
+
+      $(document).on 'pjax:send',(xhr,options) ->
+        return
+      
+      $(document).on 'pjax:timeout', (e) ->
+        e.preventDefault()
+        return
+
+      $(document).on 'pjax:complete',(xhr, options, textStatus) ->
+        $clickedLink = $(xhr.relatedTarget)
+        $pageTitle = $clickedLink.data('pjax-title')
+        #App.logInfo($clickedLink)
+        $contentArea = $(xhr.target)
+        $contentTitle = $contentArea.parents('.js-profile-content').find('.content-title > h3')
+        $contentTitle.text($pageTitle)
+
+        $parent = $clickedLink.parent()
+        console.log($parent)
+        $parent.find('.active').removeClass('active')
+        #$parent.find('.subnav').removeClass('hide');
+        $parent.siblings().removeClass('active')
+        $clickedLink.children().removeClass('active')
+        $parent.addClass('active')
+        return
+
+
+      $infoBarToggler.on "click",(e) ->
+        #App.logInfo(e);
+        $btn = $(this)
+        if $btn.hasClass('active')
+          hideInfobar()
+        else
+          showInfobar()
+        return
+
+      if cShowInfobar
+        showInfobar()
+      else
+        hideInfobar()
+
+      $(".ContentTitle span").tooltip
+        placement: 'bottom'
+        trigger:'hover focus'
+        container: 'body'
+      
+      $menuLinks.on "click", (e) ->
+        $link = $(this)
+        Self.trigger('linkbar.click',$link,e)
+        return
+
+      $menuLinks.tooltip
+        placement: 'right'
+        html: 'true'
+        trigger: 'hover focus'
+        title: (e)->
+          $(this).attr('data-tooltip-title')
+        container: 'body'
+      
+      $(".action-buttons a.btn, .action-buttons button.btn").tooltip
+        placement: 'bottom'
+        trigger: 'hover focus'
+        container: 'body'
+      
+
+      # STATUS CHANGER 
+      $statusChanger.change ->
+        Self.trigger('status.changeStart')
+        nStatus = $(this).val()
+        if nStatus is ""
+          addError "You must select a status.", 250, 6000, 4000
+          return false
+
+        setStatus nStatus
+        return
+
+      $statusIcon.attr('class','').addClass('fg-' + statusIcons[$statusChanger.val()])
+      # // END STATUS CHANGER 
+      
+      # DIALOG WINDOWS
+      updateAll()
+
+      # Authority Level Changer 
+      $("#AuthLevel").change ->
+        $.getJSON sRootPath + "/_com/AJAX_Person.cfc",
+          method: "setAuthLevel"
+          AccountID: nAccount
+          AuthorityID: $(this).val()
+          returnFormat: "plain"
+        , (data) ->
+          if data.STATUS
+            addMessage data.STATUSMSG, 250, 6000, 4000
+          else
+            addError data.STATUSMSG, 250, 6000, 4000
+
+
+
+      # Status Changer 
+      $("#StatusChanger").change ->
+        $.getJSON sRootPath + "/_com/AJAX_Person.cfc",
+          method: "setStatus"
+          PersonID: nPerson
+          StatusID: $(this).val()
+          returnFormat: "plain"
+        , (data) ->
+          if data.STATUS
+            addMessage data.STATUSMSG, 250, 6000, 4000
+          else
+            addError data.STATUSMSG, 250, 6000, 4000
+
+      # CREDENTIALS DIALOG 
+      $("#CredentialsContainer").dialog
+        title: "Credentials"
+        modal: false
+        autoOpen: false
+        height: 200
+        width: 370
+        position: [100, 100]
+        resizable: false
+        buttons:
+          Save: ->
+            sPass = $("#NewPassword").val()
+            sConPass = $("#ConfirmPassword").val()
+            $.getJSON sRootPath + "/_com/AJAX_Person.cfc",
+              method: "saveCredentials"
+              PersonID: nPerson
+              Pass: sPass
+              ConPass: sConPass
+            , (data) ->
+              if data.STATUS
+                addMessage data.STATUSMSG, 250, 6000, 4000
+                $("#CredentialsContainer").dialog "close"
+                $("#NewPassword").val ""
+                $("#ConfirmPassword").val ""
+              else
+                if $.ArrayLen(data.ERRORS) > 0
+                  $.each data.ERRORS, (i, item) ->
+                    addError item.MESSAGE, 250, 6000, 4000
+
+                else
+                  addError data.STATUSMSG, 250, 6000, 4000
+
+
+          Close: ->
+            $("#CredentialsContainer").dialog "close"
+            $("#CredentialsContainer").html ""
+
+        open: ->
+          $.post sMyself + "Person.Credentials",
+            PersonID: nPerson
+          , (data) ->
+            $("#CredentialsContainer").html data
+
+          $("#CredentialsDialogLink").fadeOut()
+
+        close: ->
+          $("#CredentialsDialogLink").fadeIn()
+
+      $("#CredentialsDialogLink").click ->
+        $("#CredentialsContainer").dialog "open"
+
+
+      # // END CREDENTIALS DIALOG 
+
+      # START DELETE PERSON 
+      $("#DeletePersonLink").click ->
+        sReason = prompt("Do you really want to delete " + sPersonName + "?  What is the reason?", "")
+        if sReason? and sReason isnt ""
+          $.getJSON sRootPath + "/_com/AJAX_Person.cfc",
+            method: "deletePerson"
+            PersonID: nPerson
+            Reason: sReason
+            returnFormat: "plain"
+          , (data) ->
+            if data.STATUS
+              window.location = sMyself + "Person.Home?Message=" + data.STATUSMSG
+            else
+              addError data.STATUSMSG, 250, 6000, 4000
+
+        else
+          addError "Please provide a reason.", 250, 6000, 4000
+        return
+      # END DELETE PERSON 
+      return
+
+    showInfobar = ->
+      $spanDiv = $infoBar.parent()
+      $.cookie 'USER_ACTSHOWINFOBAR', 'true',
+        path: '/'
+      $infoBarToggler.find('i').attr('class','fg-application-sidebar-expand')
+      $infoBarToggler.addClass('active')
+      $infoBar.removeClass('hide')
+      $profile.removeClass('infobar-inactive').addClass('infobar-active')
+      $contentToggleSpan.removeClass('span24').addClass('span18')
+      $infoBarToggleSpan.addClass('span6')
+      return
+
+    hideInfobar = ->    
+      $infoBarToggler.removeClass('active')
+      $.cookie 'USER_ACTSHOWINFOBAR', 'false',
+        path: '/'
+      $spanDiv = $infoBar.parent()    
+      $infoBarToggler.find('i').attr('class','fg-application-sidebar-collapse')
+      $profile.removeClass('infobar-active').addClass('infobar-inactive')
+      $contentToggleSpan.removeClass('span18').addClass('span24')
+      $infoBar.addClass('hide')
+      $infoBarToggleSpan.removeClass('span6')
+      return
+
+
+    setStatus = Self.setStatus = (status) ->
+      $.ajax
+        url: sRootPath + "/_com/AJAX_Activity.cfc"
+        type:'post'
+        data:
+          method: "updateActivityStatus"
+          ActivityID: nActivity
+          StatusID: status
+          returnFormat: "plain"
+        success: (data) ->
+          cleanData = $.trim(data)
+          #updateActions()
+          #updatePublishState()  if $.ListFind("Activity.Publish,Activity.PubGeneral,Activity.PubSites,Activity.PubBuilder,Activity.PubCategory,Activity.PubSpecialty", fuseaction)
+          Self.trigger('status.changeEnd',status)
+          return
+      return
+
+    updateAll = ->
+      return
+    updateActions = ->
+      return
+    updateAccountID = (sAccountID) ->
+      $("#AccountID").html sAccountID
+      return
+    return

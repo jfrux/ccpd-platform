@@ -19,8 +19,8 @@
   <fuseaction name="ACCMERight">
     <include template="toolbar/dsp_ACCMERight" />
   </fuseaction>
-  <fuseaction name="ActionsRight">
-    <include template="toolbar/dsp_ActionsRight" />
+  <fuseaction name="HistoryRight">
+    <include template="toolbar/dsp_HistoryRight" />
   </fuseaction>
   <fuseaction name="AttendeesRight">
     <include template="toolbar/dsp_AttendeesRight" />

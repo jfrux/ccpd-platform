@@ -1,10 +1,40 @@
 .notes {
+  margin-top:6px;
+
+  .posts-list {
+    padding:0 5px;
+
+    .divider {
+      hr {
+        margin:9px 0 5px 0;
+      }
+    }
+    .post-item {
+      .post-author {
+        a { font-weight:bold; }
+      }
+
+      .post-body {
+        line-height:12px;
+        margin:4px 0 6px 0;
+      }
+
+      .post-meta {
+        font-size:12px;
+        color:#AAA;
+      }
+    } 
+  }
   .post-row {
     .well {
       margin:0;
     }
   }
   .note-adder {
+    .well {
+      margin:0;
+
+    }
     form {
       margin:0;
     }

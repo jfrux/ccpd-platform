@@ -5,7 +5,7 @@ $(document).ready(function() {
 var activityid = <cfoutput>#attributes.activityid#</cfoutput>;
 var lister = new historyList({
 		mode:"activityTo",
-		appendto:$(".ViewSection"),
+		appendto:$(".js-history"),
 		data:{
 			activityto:activityid,
 			startrow:1,
@@ -31,6 +31,7 @@ lister.getList(true);
 </script>
 
 <div class="ViewSection">
-<h3>History</h3>
+	<div class="history-list js-history">
 
+	</div>	
 </div>

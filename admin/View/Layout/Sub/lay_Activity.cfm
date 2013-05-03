@@ -103,7 +103,7 @@ App.module('Activity').start({
                 <a href="javascript:void(0);" class="btn" title="Delete Activity" id="DeleteActivityLink"><i class="icon-trash"></i></a>
               </div>
               <div class="btn-group">
-                <a class="btn js-toggle-infobar" title="Toggle Infobar"><i class="icon-info"></i></button></a>
+                <a class="btn js-toggle-infobar" title="Toggle Infobar"><i class="icon-info"></i></a>
               </div>
             </div>
           </div>

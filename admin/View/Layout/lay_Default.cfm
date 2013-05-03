@@ -44,30 +44,11 @@
         <div id="Content">
           #request.page.body#
         </div>
-
-    <!---     <div id="SessionTimeout" style="display:none; padding:5px; cursor: default;text-align:center;"> 
-           <p style="font-size:14px;"><strong>SESSION ENDED</strong></p>
-          <p>Your session has expired, you will now be redirected to Login.</p>
-          <input type="button" id="SessionOkay" value="Okay" style="width:50px;" /> 
-        </div>
-        <div id="question232" style="display:none; padding:5px; cursor: default;text-align:center;"> 
-           <p style="font-size:14px;"><strong>You have unsaved changes...</strong></p>
-          <p>Are you sure you wish to navigate away from this page?</p>
-          <input type="button" id="yes" value="Yes" style="width:50px;" /> 
-          <input type="button" id="no" value="No" style="width:50px;" /> 
-        </div>
-
-        <div id="StatusBar">
-          <div style="display:none;" class="PageStandard" id="StatusBox0">
-            
+        <div class="footer">
+          <div class="footer-inner">
+            Copyright &copy;#year(now())# University of Cincinnati. All Rights Reserved.
           </div>
         </div>
-        
-        <div id="ajax-issue">
-          <div id="ajax-issue-title"></div>
-          <div id="ajax-issue-details"></div>
-          <div id="ajax-issue-buttons"><input type="button" name="ajax-issue-button" id="ajax-issue-button" value="Okay" class="button" /></div>
-        </div> --->
       </div>
     </cfoutput>
     </div>

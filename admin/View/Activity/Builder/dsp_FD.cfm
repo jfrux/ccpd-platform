@@ -19,27 +19,24 @@ $(document).ready(function() {
 </script>
 
 <cfoutput>
-<form name="frmComp" id="frmComp" action="#Application.Settings.RootPath#/_com/ajax_Builder.cfc" method="post">
+<form class="form-horizontal js-component-form" name="frmComp" id="frmComp" action="#Application.Settings.RootPath#/_com/ajax_Builder.cfc" method="post">
 <input type="hidden" name="PubComponentID" value="#Attributes.PubComponentID#" />
 <input type="hidden" name="method" value="SaveComponent" />
 <input type="hidden" name="ActivityID" value="#Attributes.ActivityID#" />
 <input type="hidden" name="ComponentID" value="3" />
 <input type="hidden" name="returnformat" value="plain" />
-<table width="100%" cellspacing="1" cellpadding="3">
-	<tr>
-		<td nowrap="nowrap" class="FieldLabel">Caption</td>
-		<td class="FieldInput"><input type="text" name="DisplayName" id="DisplayName" value="#Attributes.DisplayName#" /></td>
-	</tr>
-	<tr>
-		<td nowrap="nowrap" class="FieldLabel" valign="top">Description</td>
-		<td class="FieldInput"><textarea name="Description" id="Description" style="width:440px;height:225px;">#Attributes.Description#</textarea></td>
-	</tr>
-	<tr>
-		<td nowrap="nowrap" class="FieldLabel" valign="top">File</td>
-		<td class="FieldInput">
+<div class="control-group">
+		<label class="control-label">Caption</label>
+		<div class="controls"><input type="text" name="DisplayName" id="DisplayName" value="#Attributes.DisplayName#" /></div>
+	</div>
+<div class="control-group">
+		<label class="control-label">Description</label>
+		<div class="controls"><textarea name="Description" id="Description">#Attributes.Description#</textarea></div>
+	</div>
+<div class="control-group">
+		<label class="control-label">File</label>
+		<div class="controls">
 			<div id="FileForm"></div>
-		</td>
-	</tr>
-</table>
+		</div>
 </form>
 </cfoutput>

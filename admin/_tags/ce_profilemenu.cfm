@@ -42,8 +42,8 @@
               <a href="/admin/event/#subtab.event#?#attributes.type#id=#attributes.typeid#" 
                   data-pjax-title="#subtab.title#" 
                   data-tooltip-title="#subtab.tooltip#"
-                  data-js-namespace="js-#replace(tab.event,'.','-')#" 
-                  data-pjax-container="##js-#replace(tab.event,'.','-')#">
+                  data-js-namespace="js-#replace(subtab.event,'.','-')#" 
+                  data-pjax-container="##js-#replace(subtab.event,'.','-')#">
                 <i class="fg-#subtab.icon#"></i> <span>#subtab.label#</span>
                 <cfif structkeyExists(subtab,'count')>
                   <span class="navItemCount pull-right">#subtab.count#</span>

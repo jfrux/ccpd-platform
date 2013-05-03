@@ -290,6 +290,46 @@
 		
 		<cfreturn ResponseText>
 	</cffunction>
+
+    <cffunction name="saveSpecialtiesLMS" access="Public" output="true" returntype="string">
+        <cfargument name="ActivityID" default="" type="string" required="yes">
+        <cfargument name="Specialties" default="" type="string" required="yes">
+                
+        <cfset var ResponseText = "success">
+        <cfset var sErrors = "">
+        <cfset var i = 0>
+        
+        <cfset ActivityBean = CreateObject("component","#Application.Settings.Com#Activity.Activity").Init(Arguments.ActivityID)>
+        <cfset ActivityExists = Application.Com.ActivityDAO.Exists(ActivityBean)>
+        
+        <cfset ActivityBean = Application.Com.ActivityDAO.read(ActivityBean)>
+               
+        <cfif sErrors EQ "">
+            <!--- CLEAR ALL PREVIOUS Specialties FOR CURRENT ACTIVITY --->
+            <cfquery name="qDeleteSpecialties" datasource="#Application.Settings.DSN#">
+                DELETE 
+                FROM activity_specialtylms
+                WHERE activityid = <cfqueryparam value="#Arguments.ActivityID#" cfsqltype="cf_sql_integer" />
+            </cfquery>
+        
+            <!--- CREATE RECORDS FOR SELECTED Specialties --->
+            <cfloop list="#Arguments.specialties#" index="CurrSpecialtyID">
+                <cfset SpecialtyBean = CreateObject("component","#Application.Settings.Com#ActivitySpecialtyLMS.ActivitySpecialtyLMS").Init(ActivityID=Arguments.ActivityID,SpecialtyID=CurrSpecialtyID,CreatedBy=Session.Person.getPersonID(),Created=Now())>
+                <cfset SpecialtyBean = Application.Com.ActivitySpecialtyDAO.Create(SpecialtyBean)>
+            </cfloop>
+            
+            <cfset Application.History.Add(
+                        HistoryStyleID=72,
+                        FromPersonID=Session.PersonID,
+                        ToActivityID=Arguments.ActivityID)>
+        
+            <cfset ResponseText = "success">
+        <cfelse>
+            <cfset ResponseText = sErrors>
+        </cfif>
+        
+        <cfreturn ResponseText>
+    </cffunction>
     
 	<cffunction name="saveComment" access="remote" output="true" returntype="string">
 		<cfargument name="ActivityID" type="string" required="true">

@@ -36,7 +36,6 @@ lister.getList(true);
 </script>
 
 <div class="ViewSection">
-<h3>History</h3>
 <div class="history-filter">
 	<ul>
 		<li id="history-personAll" class="current"><a href="">All History</a></li>

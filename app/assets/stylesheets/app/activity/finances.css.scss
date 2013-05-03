@@ -11,6 +11,9 @@
     > tr {
       > th {
         text-align:center;
+        > a {
+          color:#555;
+        }
       }
     }
   }
@@ -62,7 +65,6 @@
       width:97px;
     }
   }
-
   .finance-table-row {
     td {
       text-align:center;

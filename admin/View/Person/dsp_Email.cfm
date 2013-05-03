@@ -204,7 +204,6 @@ $(document).ready(function() {
 </script>
 
 <div class="ViewSection">
-	<h3>Email Addresses</h3>
 	<div id="EmailContainer"></div>
 	<div id="EmailLoading" class="Loading"><img src="<cfoutput>#Application.Settings.RootPath#</cfoutput>/_images/ajax-loader.gif" />
 	<div>Please Wait</div>

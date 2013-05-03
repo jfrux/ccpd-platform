@@ -1,4 +1,7 @@
 @import "twitter/bootstrap/_mixins";
+.dialog {
+  display:none;
+}
 .ui-dialog-content {
   form {
     .control-label {

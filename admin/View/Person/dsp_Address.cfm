@@ -111,7 +111,6 @@ $(document).ready(function() {
 </script>
 
 <div class="ViewSection">
-	<h3>Contact Details</h3>
 	<div id="AddressesContainer"></div>
 	<div id="AddressesLoading" class="Loading"><img src="<cfoutput>#Application.Settings.RootPath#</cfoutput>/_images/ajax-loader.gif" />
 	<div>Please Wait</div>

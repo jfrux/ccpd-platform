@@ -910,14 +910,43 @@
     </cffunction>
     
 	<cffunction name="saveCategoriesLMS" access="Remote" output="false" returntype="string">
-		<cfargument name="ActivityID" default="" type="string" required="yes">
-        <cfargument name="Site" default="" type="string" required="yes">
+		<cfargument name="activityid" default="" type="string" required="yes">
+        <cfargument name="category" default="" type="string" required="yes">
       	
-        <cfset var Status = "fail">
+        <cfset var status = "fail">
+        <cfset var returnVar = createObject("component", "#Application.Settings.Com#returnData.buildStruct").init()>
         
-        <cfset Status = Application.ActivityPublish.saveCategoriesLMS(Arguments.ActivityID,Arguments.Site)>
+        <cfcontent type="text/javascript" />
         
-        <cfreturn Status />
+        <cfset returnVar.setStatus(false)>
+        <cfset returnVar.setStatusMsg("Cannot access budget save functionality for activity finances.")>
+
+        <cfset status = Application.ActivityPublish.saveCategoriesLMS(arguments.ActivityID,arguments.category)>
+        <cfif status EQ "success">
+            <cfset returnVar.setStatus(true) />
+            <cfset returnVar.setStatusMsg("Categories have been saved.") />
+        </cfif>
+        <cfreturn returnVar.getJSON() />
+    </cffunction>
+
+    <cffunction name="saveSpecialtiesLMS" access="Remote" output="false" returntype="string">
+        <cfargument name="activityid" default="" type="string" required="yes">
+        <cfargument name="specialties" default="" type="string" required="yes">
+        
+        <cfset var status = "fail">
+        <cfset var returnVar = createObject("component", "#Application.Settings.Com#returnData.buildStruct").init()>
+        
+        <cfcontent type="text/javascript" />
+        
+        <cfset returnVar.setStatus(false)>
+        <cfset returnVar.setStatusMsg("Cannot access budget save functionality for activity finances.")>
+
+        <cfset status = Application.ActivityPublish.saveSpecialtiesLMS(arguments.ActivityID,arguments.specialties)>
+        <cfif status EQ "success">
+            <cfset returnVar.setStatus(true) />
+            <cfset returnVar.setStatusMsg("Categories have been saved.") />
+        </cfif>
+        <cfreturn returnVar.getJSON() />
     </cffunction>
     
 	<cffunction name="saveCommitteeMember" access="Remote" output="false" returntype="string">
@@ -1002,7 +1031,7 @@
         <cfreturn status.getJSON() />
     </cffunction>
 
-	<cffunction name="saveNote" access="Remote" output="false" returntype="string">
+	<cffunction name="saveNote" access="remote" output="false" returntype="string">
 		<cfargument name="ActivityID" required="true" type="string">
 		<cfargument name="NoteBody" required="true" type="string">
 		<cfargument name="NoteID" required="false" default="0">
@@ -1201,7 +1230,7 @@
         
         <cfreturn status.getJSON() />
     </cffunction>
-    
+
     <cffunction name="updateMaxRegistrants" access="Remote" output="false" returntype="any">
     	<cfargument name="ActivityID" type="string" required="true" />
         <cfargument name="MaxRegistrants" type="string" required="true" />

@@ -15,6 +15,10 @@ $(document).ready(function() {
 		changeYear: true
 
 	});
+
+  $('.dropdown-menu table *, .dropdown-menu #GetTranscript').click(function(e) {
+      e.stopPropagation();
+  });
 });
 
 function moveActivities() {
@@ -33,27 +37,29 @@ function moveActivities() {
 }
 </script>
 <cfoutput>
-<div class="MultiFormRight_SectTitle">What can I do?</div>
-<div class="MultiFormRight_LinkList">
+<div class="toolbar btn-toolbar">
+  <div class="btn-group">
+    <a href="javascript://" id="addEmailAddress" class="btn btn-mini"><i class="icon-road"></i></a>
+  </div>
+  <div class="btn-group">
+    <a class="btn btn-mini btn-transcript dropdown-toggle" data-toggle="dropdown" href="##">
+      Transcript
+      <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu">
+      <li class="nav-header">
+        <table>
+          <tr>
+            <td><input type="text" id="date1" name="StartDate" style="width:80px;" /></td>
+          </tr>
+          <tr>
+            <td><input type="text" id="date2" name="EndDate" style="width:80px;" /></td>
+          </tr>
+        </table>
+        <a href="javascript://" id="GetTranscript" title="This link provides a copy of the person's transcript." class="btn"><i class="icon-"></i> Generate</a>
+      </li>
+    </ul>
+  </div>
 </div>
-<div class="MultiFormRight_SectSubTitle">Transcript Options</div>
-<div class="MultiFormRight_LinkList">
-	<table>
-    	<tr>
-        	<td><input type="text" id="date1" name="StartDate" style="width:80px;" /></td>
-        </tr>
-    	<tr>
-        	<td><input type="text" id="date2" name="EndDate" style="width:80px;" /></td>
-        </tr>
-    </table>
-	<a href="javascript://" id="GetTranscript" title="This link provides a copy of the person's transcript."><img src="#Application.Settings.RootPath#/_images/icons/page.png" border="0" align="absmiddle" /> Print Transcript</a>
-</div>
-<div class="MultiFormRight_SectSubTitle">Activity Options</div>
-<div class="MultiFormRight_LinkList">
-	<table>
-    	<tr>
-        	<td><cf_cePersonFinder Instance="MoveActivities" DefaultName="Move Activities" DefaultID="" AddPersonFunc="moveActivities();"></td>
-        </tr>
-    </table>
-</div>
+<cf_cePersonFinder Instance="MoveActivities" DefaultName="Move Activities" DefaultID="" AddPersonFunc="moveActivities();">
 </cfoutput>

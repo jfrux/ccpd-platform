@@ -11,6 +11,27 @@
 form.formstate {
   margin:6px 0 20px;
 
+  .grid-list-item {
+    border-width: 1px 1px 1px 1px;
+    border-style: solid;
+    border-color: #EEE transparent transparent transparent;
+    cursor: default;
+    margin: 0  0 ;
+    padding: 4px 10px 4px 13px;
+    
+    &.is-checked {
+      border:1px solid #EEE;
+      background-color:#F7F7F7;
+    }
+    
+    .radio,.checkbox {
+      min-height:auto;
+    }
+
+    label {
+      margin:0;
+    }
+  }
   .cke_top {
     display:none;
   }

@@ -6,16 +6,17 @@ App.module "Activity.Publish.Specialties", (Self, App, Backbone, Marionette, $) 
   FormState = null
   
   @on "before:start", ->
-    App.logInfo "starting: #{Self.moduleName}"
+    App.logInfo "starting: Publish.#{Self.moduleName}"
     return
   @on "start", ->
     $(document).ready ->
       _init()
-      App.logInfo "started: #{Self.moduleName}"
+      App.logInfo "started: Publish.#{Self.moduleName}"
     return
   @on "stop", ->
-    App.logInfo "stopped: #{Self.moduleName}"
+    App.logInfo "stopped: Publish.#{Self.moduleName}"
     #FormState.stop();
+    FormState = null
     return
 
   _init = (defaults) ->

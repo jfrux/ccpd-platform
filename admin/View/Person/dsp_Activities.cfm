@@ -15,9 +15,8 @@ $(document).ready(function() {
 });
 </script>
 <div class="ViewSection">
-	<h3>Activities</h3>
 <input type="hidden" name="PersonID" value="<cfoutput>#Attributes.personID#</cfoutput>" />
-<table width="100%" border="0" cellpadding="3" cellspacing="0" class="ViewSectionGrid">
+<table class="table table-condensed table-bordered">
 	<thead>
 		<tr>
 			<th>Title</th>

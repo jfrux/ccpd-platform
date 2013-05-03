@@ -1,12 +1,12 @@
 <cfif ParentBean.getSessionType() EQ "M">
-  <div id="ActivityList" style="display:none;">
+  <div id="ActivityList" class="dialog">
     
   </div>
   </cfif>
   
-  <div id="OverviewList" style="display:none;">
+  <div id="OverviewList" class="dialog">
   </div>
-  <div id="MoveDialog" style="display:none;">
+  <div id="MoveDialog" class="dialog">
     <div style="padding:4px;">
       <cfquery name="qMultiSessions" datasource="#Application.Settings.DSN#">
         SELECT ActivityID,Title,ReleaseDate FROM ce_Activity WHERE SessionType='M' AND ParentActivityID IS NULL AND DeletedFlag='N'
@@ -28,10 +28,10 @@
       </div>
     </div>
   </div>
-  <div id="PersonDetail">
+  <div id="PersonDetail" class="dialog">
     <iframe src="" width="840" height="500" frameborder="0" scrolling="auto" name="frameDetail" id="frameDetail"></iframe>
   </div>
-  <div id="CopyDialog" style="display:none;">
+  <div id="CopyDialog" class="dialog">
     <div style="padding:4px;">
         <input type="radio" name="CopyChoice" id="CopyChoice1" class="CopyChoice" value="1" checked="checked" /><label for="CopyChoice1"> Paste as new parent activity.</label><br />
         <input type="radio" name="CopyChoice" id="CopyChoice2" class="CopyChoice"  value="2"<cfif ActivityBean.getSessionType() EQ "S"> disabled="disabled"</cfif> /><label for="CopyChoice2"> Paste as new session within this activity.</label><br />
@@ -54,15 +54,15 @@
         </div>
     </div>
   </div>
-  <div id="CreditsDialog"></div>
-  <div id="email-cert-dialog"></div>
+  <div id="CreditsDialog" class="dialog"></div>
+  <div id="email-cert-dialog" class="dialog"></div>
 
   
 
-  <div id="PhotoUpload" style="display:none;">
+  <div id="PhotoUpload" class="dialog">
     <iframe width="440" height="110" scrolling="no" src="" frameborder="0" id="frmUpload"></iframe>
   </div>
   
-  <div id="DisableActivity">
+  <div id="DisableActivity" class="dialog">
   &nbsp;
   </div>

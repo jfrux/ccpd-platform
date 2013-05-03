@@ -14,7 +14,6 @@
 </script>
 
 <div class="ViewSection">
-	<h3>Preferences</h3>
 	<div id="PreferencesContainer"></div>
 	<div id="PreferencesLoading" class="Loading"><img src="/admin/_images/ajax-loader.gif" />
 	<div>Please Wait</div></div>

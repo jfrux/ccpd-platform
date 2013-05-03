@@ -3,7 +3,7 @@
 ###
 App.module "Activity.Publish", (Self, App, Backbone, Marionette, $) ->
   @startWithParent = false
-  FormState = null
+  #FormState = null
   
   @on "before:start", ->
     App.logInfo "starting: #{Self.moduleName}"
@@ -15,10 +15,12 @@ App.module "Activity.Publish", (Self, App, Backbone, Marionette, $) ->
     return
   @on "stop", ->
     App.logInfo "stopped: #{Self.moduleName}"
+    $.each Self.submodules, (i,module) ->
+      module.stop()
+      return
     #FormState.stop();
     return
 
   _init = (defaults) ->
-    FormState = new App.Components.FormState
-      el:'.js-form-publish'
-      saved: true
+
+    return

@@ -3,102 +3,83 @@
 <!-- Person -->
 <circuit access="public">
   <prefuseaction callsuper="true">
-  <set name="Request.NavItem" value="3" />
-  <if condition="isDefined('Attributes.PersonID')">
-    <true>
-      <if condition="Attributes.Fuseaction NEQ 'Person.Detail'">
-        <true>
-          <do action="mPerson.getPerson" />
-        </true>
-      </if>
-      <set name="Request.ActionsLimit" value="4" />
-      <do action="mPerson.getActions" />
-    </true>
-  </if>
+    <set name="Request.NavItem" value="2" />
+    
+    <if condition="structKeyExists(attributes,'personid')">
+      <true>
+        <set name="Request.MultiFormEditLabel" value="Edit this activity" />
+        <do action="mPerson.getPerson" />
+        <do action="mPerson.TabControl" />
+        <set name="Request.ActionsLimit" value="4" />
+        <set name="Request.Page.Title" value="#PersonBean.getCertname()#" />
+        <set name="request.page.action" value="#listLast(attributes.fuseaction,'.')#" />
+        <set name="Request.MultiFormEditLink" value="#myself#person.detail?personid=#Attributes.personid#" />
+      </true>
+    </if>
   </prefuseaction>
-  
-  <fuseaction name="Actions">
-    <set name="Request.Page.Title" value="#Attributes.FirstName# #Attributes.LastName#" />
-    
-    <set name="Request.Page.Breadcrumbs" value="People|Person.Home,#Attributes.FirstName# #Attributes.LastName#|Person.Detail?PersonID=#Attributes.PersonID#,Actions|Person.Actions?PersonID=#Attributes.PersonID#" />
-    <do action="mPage.ParseCrumbs" />
-    <do action="mPerson.TabControl" />
-    
-    <do action="mPerson.getAllActions" />
-    <do action="vPerson.Actions" contentvariable="Request.MultiFormContent" />
-        <do action="vPerson.ActionsRight" contentvariable="Request.MultiFormRight" />
-    <if condition="#isDefined('url.Mini')#">
+  <postfuseaction>
+    <if condition="#structKeyExists(attributes,'personid')# AND attributes.personid GT 0">
       <true>
-        <do action="vLayout.Sub_PersonMini" contentvariable="Request.Page.body" />
-        <do action="vLayout.None" />
+        <do action="mPerson.getPerson" />
       </true>
-      <false>
-        <do action="vLayout.Sub_Person" contentvariable="Request.Page.body" />
-        <do action="vLayout.Default" />
+    </if>
+    <if condition="isPjax()">
+      <true>
+        <if condition="#structKeyExists(attributes,'personid')# AND attributes.personid GT 0">
+          <true>
+            <if condition="#request.currentTab.hasToolbar#">
+              <true>
+                <invoke object="myFusebox" 
+                        methodcall="do('vPerson.#request.page.action#right','multiformright')" />
+              </true>
+            </if>
+            <invoke object="myFusebox" 
+                    methodcall="do('vPerson.#request.page.action#','multiformcontent')" />
+          </true>
+        </if>
+        <do action="vLayout.Blank" />
+      </true>
+       <false>
+          <if condition="isAjax()">
+            <true>
+              <do action="vLayout.Blank" />
+            </true>
+            <false>
+                <if condition="#structKeyExists(attributes,'personid')# AND attributes.personid GT 0">
+                  <true>
+                    <if condition="#request.currentTab.hasToolbar#">
+                      <true>
+                        <invoke object="myFusebox" 
+                                methodcall="do('vPerson.#request.page.action#right','multiformright')" />
+                      </true>
+                    </if>
+                    <invoke object="myFusebox" 
+                            methodcall="do('vPerson.#request.page.action#','multiformcontent')" />
+                    <do action="vLayout.Sub_Person" contentvariable="request.page.body" />
+                  </true>
+                </if>
+               
+               <do action="vLayout.Default" />
+            </false>
+          </if>
       </false>
     </if>
-  </fuseaction>
-    
-  <fuseaction name="ActionsShort">
-    <do action="vPerson.ActionsShort" />
-  </fuseaction>
-  
+  </postfuseaction>
+
   <fuseaction name="Activities">
-    <do action="mPerson.getPerson" />
     <do action="mPerson.getActivities" />
-    <do action="mPerson.TabControl" />
-        
-    <set name="Request.Page.Title" value="#Attributes.FirstName# #Attributes.LastName#" />
-        <set name="Request.Page.Breadcrumbs" value="People|Person.Home,#Attributes.FirstName# #Attributes.LastName#|Person.Detail?PersonID=#Attributes.PersonID#,Activities|Person.Activities?PersonID=#Attributes.PersonID#" />
-        
-    <do action="mPage.ParseCrumbs" />
-            
-    <set name="Request.MultiFormTitle" value="Registered Activities" />
-    
-    <do action="vPerson.Activities" contentvariable="Request.MultiFormContent" />
-        <do action="vPerson.ActivitiesRight" contentvariable="Request.MultiFormRight" />
-        <if condition="#isDefined('url.Mini')#">
-      <true>
-        <do action="vLayout.Sub_PersonMini" contentvariable="Request.Page.body" />
-        <do action="vLayout.None" />
-      </true>
-      <false>
-        <do action="vLayout.Sub_Person" contentvariable="Request.Page.body" />
-        <do action="vLayout.Default" />
-      </false>
-    </if>
   </fuseaction>
   
   <fuseaction name="Address">
-    <do action="mPerson.TabControl" />
-        
-    <set name="Request.Page.Title" value="#Attributes.FirstName# #Attributes.LastName#" />
-        <set name="Request.Page.Breadcrumbs" value="People|Person.Home,#Attributes.FirstName# #Attributes.LastName#|Person.Detail?PersonID=#Attributes.PersonID#,Address Info|Person.Address?PersonID=#Attributes.PersonID#" />
-        
-    <do action="mPage.ParseCrumbs" />
-            
-    <set name="Request.MultiFormTitle" value="Address Info" />
     
-    <do action="vPerson.Address" contentvariable="Request.MultiFormContent" />
-        <do action="vPerson.AddressRight" contentvariable="Request.MultiFormRight" />
-        <if condition="#isDefined('url.Mini')#">
-      <true>
-        <do action="vLayout.Sub_PersonMini" contentvariable="Request.Page.body" />
-        <do action="vLayout.None" />
-      </true>
-      <false>
-        <do action="vLayout.Sub_Person" contentvariable="Request.Page.body" />
-        <do action="vLayout.Default" />
-      </false>
-    </if>
   </fuseaction>
   
   <fuseaction name="AddressAHAH">
     <do action="mPerson.getAddresses" />
-    <do action="vPerson.AddressAHAH" />
+    <do action="vPerson.AddressAHAH" contentvariable="request.page.body" />
   </fuseaction>
   
-    <fuseaction name="Create">
+  <fuseaction name="Create">
     <do action="mPerson.Create" />
 
     <set name="Request.Page.Title" value="Create Person" />
@@ -121,110 +102,28 @@
       </case>
     </switch>
   </fuseaction>
-    
-    <fuseaction name="Credentials">
-      <do action="mPerson.getCredentials" />
-      <do action="vPerson.Credentials" />
-    </fuseaction>
   
+  <fuseaction name="Credentials">
+    <do action="mPerson.getCredentials" />
+  </fuseaction>
+
   <fuseaction name="Detail">
-    <do action="mPerson.getPerson" />
-    <do action="mPerson.TabControl" />
-        
-    <set name="Request.Page.Title" value="#Attributes.FirstName# #Attributes.LastName#" />
-        <set name="Request.Page.Breadcrumbs" value="People|Person.Home,#Attributes.FirstName# #Attributes.LastName#|Person.Detail?PersonID=#Attributes.PersonID#,Edit General Info|Person.Detail?PersonID=#Attributes.PersonID#" />
-        
-    <do action="mPage.ParseCrumbs" />
-    
     <xfa name="FrmSubmit" value="Person.Detail" />
-            
-    <set name="Request.MultiFormTitle" value="General Info" />
-    
-    <do action="vPerson.Edit" contentvariable="Request.MultiFormContent" />
-        <do action="vPerson.EditRight" contentvariable="Request.MultiFormRight" />
-    
-    <if condition="#isDefined('url.Mini')#">
-      <true>
-        <do action="vLayout.Sub_PersonMini" contentvariable="Request.Page.body" />
-        <do action="vLayout.None" />
-      </true>
-      <false>
-        <do action="vLayout.Sub_Person" contentvariable="Request.Page.body" />
-        <do action="vLayout.Default" />
-      </false>
-    </if>
-    
-    
-  </fuseaction>
-  
-  <fuseaction name="Docs">
-    <do action="mPerson.TabControl" />
-        
-    <set name="Request.Page.Title" value="#Attributes.FirstName# #Attributes.LastName#" />
-        <set name="Request.Page.Breadcrumbs" value="People|Person.Home,#Attributes.FirstName# #Attributes.LastName#|Person.Detail?PersonID=#Attributes.PersonID#,Documents|Person.Docs?PersonID=#Attributes.PersonID#" />
-        
-    <do action="mPage.ParseCrumbs" />
-            
-    <set name="Request.MultiFormTitle" value="Other Info" />
-    
-    <do action="vPerson.Docs" contentvariable="Request.MultiFormContent" />
-        <do action="vPerson.DocsRight" contentvariable="Request.MultiFormRight" />
-       <if condition="#isDefined('url.Mini')#">
-        <true>
-          <do action="vLayout.Sub_PersonMini" contentvariable="Request.Page.body" />
-          <do action="vLayout.None" />
-        </true>
-        <false>
-          <do action="vLayout.Sub_Person" contentvariable="Request.Page.body" />
-          <do action="vLayout.Default" />
-        </false>
-      </if>
-  </fuseaction>
-  
-  <fuseaction name="DocsAHAH">
-    <do action="mPerson.getDocs" />
-    <do action="vPerson.DocsAHAH" />
   </fuseaction>
   
   <fuseaction name="EditAddress">
-    <do action="mPerson.getPerson" />
     <do action="mPerson.getAddress" />
     
     <xfa name="FrmSubmit" value="Person.EditAddress" />
-    
-    <do action="vPerson.EditAddress" contentvariable="Request.Page.Body" />
-        <do action="vLayout.Blank" />
   </fuseaction>
+
+  <fuseaction name="Email">
     
-    <fuseaction name="Email">
-    <do action="mPerson.getPerson" />
-        
-    <do action="mPerson.TabControl" />
-        
-    <set name="Request.Page.Title" value="#Attributes.FirstName# #Attributes.LastName#" />
-        <set name="Request.Page.Breadcrumbs" value="People|Person.Home,#Attributes.FirstName# #Attributes.LastName#|Person.Detail?PersonID=#Attributes.PersonID#,Emails|Person.Email?PersonID=#Attributes.PersonID#" />
-        
-    <do action="mPage.ParseCrumbs" />
-            
-    <set name="Request.MultiFormTitle" value="Emails" />
-    
-    <do action="vPerson.Email" contentvariable="Request.MultiFormContent" />
-        <do action="vPerson.EmailRight" contentvariable="Request.MultiFormRight" />
-        <if condition="#isDefined('url.Mini')#">
-      <true>
-        <do action="vLayout.Sub_PersonMini" contentvariable="Request.Page.body" />
-        <do action="vLayout.None" />
-      </true>
-      <false>
-        <do action="vLayout.Sub_Person" contentvariable="Request.Page.body" />
-        <do action="vLayout.Default" />
-      </false>
-    </if>
-    </fuseaction>
+  </fuseaction>
   
   <fuseaction name="EmailAHAH">
     <do action="mPerson.getEmails" />
-    <do action="vPerson.EmailAHAH" />
+    <do action="vPerson.EmailAHAH" contentvariable="request.page.body" />
   </fuseaction>
   
   <fuseaction name="Home">
@@ -258,17 +157,6 @@
   
   <fuseaction name="Notes">
     <do action="mPerson.getNotes" />
-    
-    <set name="Request.Page.Title" value="#Attributes.PersonID#" />
-        
-    <set name="Request.Page.Breadcrumbs" value="People|Person.Home,#Attributes.FirstName# #Attributes.LastName#|Person.Detail?PersonID=#Attributes.PersonID#,Notes|Person.Notes?PersonID=#Attributes.PersonID#" />
-    <do action="mPage.ParseCrumbs" />
-    
-    <set name="Request.MultiFormTitle" value="Notes" />
-    
-    <do action="vPerson.Notes" contentvariable="Request.Page.Body" />
-        
-    <do action="vLayout.None" />
   </fuseaction>
   
   <fuseaction name="PhotoUpload">
@@ -278,68 +166,19 @@
   </fuseaction>
   
   <fuseaction name="Preferences">
-    <do action="mPerson.getPerson" />
-    <do action="mPerson.TabControl" />
-        
-    <set name="Request.Page.Title" value="#Attributes.FirstName# #Attributes.LastName#" />
-        <set name="Request.Page.Breadcrumbs" value="People|Person.Home,#Attributes.FirstName# #Attributes.LastName#|Person.Detail?PersonID=#Attributes.PersonID#,Preferences|Person.Preferences?PersonID=#Attributes.PersonID#" />
-        
-    <do action="mPage.ParseCrumbs" />
-            
-    <set name="Request.MultiFormTitle" value="Education Info" />
     
-    <do action="vPerson.Preferences" contentvariable="Request.MultiFormContent" />
-        <do action="vPerson.PreferencesRight" contentvariable="Request.MultiFormRight" />
-        <if condition="#isDefined('url.Mini')#">
-      <true>
-        <do action="vLayout.Sub_PersonMini" contentvariable="Request.Page.body" />
-        <do action="vLayout.None" />
-      </true>
-      <false>
-        <do action="vLayout.Sub_Person" contentvariable="Request.Page.body" />
-        <do action="vLayout.Default" />
-      </false>
-    </if>
   </fuseaction>
   
   <fuseaction name="PreferencesAHAH">
     <do action="mPerson.getPersonDegree" />
-    <do action="vPerson.PreferencesAHAH" />
+    <do action="vPerson.PreferencesAHAH" contentvariable="request.page.body" />
   </fuseaction>
   
   <fuseaction name="history">
     
-    <do action="mPerson.TabControl" />
-    <do action="vPerson.history" contentvariable="Request.MultiFormContent" />
-    
-    <set name="Request.Page.Title" value="#Attributes.FirstName# #Attributes.LastName#" />
-        <set name="Request.Page.Breadcrumbs" value="People|Person.Home,#Attributes.FirstName# #Attributes.LastName#|Person.Detail?PersonID=#Attributes.PersonID#,Preferences|Person.Preferences?PersonID=#Attributes.PersonID#" />
-        
-    <do action="mPage.ParseCrumbs" />
-            
-    <set name="Request.MultiFormTitle" value="History" />
-       <if condition="#isDefined('url.Mini')#">
-        <true>
-          <do action="vLayout.Sub_PersonMini" contentvariable="Request.Page.body" />
-          <do action="vLayout.None" />
-        </true>
-        <false>
-          <do action="vLayout.Sub_Person" contentvariable="Request.Page.body" />
-          <do action="vLayout.Default" />
-        </false>
-      </if>
   </fuseaction>
   
   <fuseaction name="vCard">
-    <do action="mPerson.getPerson" />
     <do action="mPerson.getAddresses" />
-        
-    <set name="Request.Page.Title" value="#Attributes.FirstName# #Attributes.LastName#" />
-        <set name="Request.Page.Breadcrumbs" value="People|Person.Home,#Attributes.FirstName# #Attributes.LastName#|Person.Detail?PersonID=#Attributes.PersonID#,Other Info|Person.Other?PersonID=#Attributes.PersonID#" />
-        
-    <do action="mPage.ParseCrumbs" />
-        <do action="vPerson.vCard" contentvariable="Request.Page.body" />
-    
-    <do action="vLayout.Blank" />
   </fuseaction>
 </circuit>

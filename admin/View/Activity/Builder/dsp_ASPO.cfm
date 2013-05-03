@@ -54,45 +54,43 @@ $(document).ready(function() {
 </script>
 
 <cfoutput>
-<form action="#Application.Settings.RootPath#/_com/AJAX_Builder.cfc" method="post" id="frmComp-#Attributes.PubComponentID#" name="frmComp-#Attributes.PubComponentID#">
+<form class="form-horizontal js-component-form" action="#Application.Settings.RootPath#/_com/AJAX_Builder.cfc" method="post" id="frmComp-#Attributes.PubComponentID#" name="frmComp-#Attributes.PubComponentID#">
 	<input type="hidden" name="PubComponentID" value="#Attributes.PubComponentID#" />
 	<input type="hidden" name="method" value="saveComponent" />
 	<input type="hidden" name="ActivityID" value="#Attributes.ActivityID#" />
 	<input type="hidden" name="ComponentID" value="11" />
 	<input type="hidden" name="returnformat" value="plain" />
 	<input type="hidden" name="AssessmentID" value="#Attributes.AssessmentID#" />
-<table width="100%" cellspacing="1" border="0" cellpadding="2">
-	<tr>
-		<td class="FieldLabel" valign="top" width="150">Heading</td>
-		<td class="FieldInput">
-			<input type="text" name="DisplayName" id="DisplayName" value="#Attributes.DisplayName#" style="width:440px;" />
-		</td>
-	</tr>
-	<tr class="Details">
-		<td class="FieldLabel" valign="top" width="150">Description</td>
-		<td class="FieldInput">
-			<textarea name="Description" id="Description" style="width:440px;height:225px;">#Attributes.Description#</textarea>
-		</td>
-	</tr>
-	<tr class="RequiredFlag">
-		<td class="FieldLabel">Required?</td>
-		<td class="FieldInput">
-			<input type="radio" name="RequiredFlag" id="RequiredYes" value="Y"<cfif Attributes.RequiredFlag EQ "Y"> checked</cfif> /> Yes <input type="radio" name="RequiredFlag" id="RequiredNo" value="N"<cfif Attributes.RequiredFlag EQ "N"> checked</cfif> /> No
-		</td>
-	</tr>
-	<tr>
-		<td class="FieldLabel" nowrap="nowrap">Passing Score</td>
-		<td class="FieldInput">
-			<input type="text" name="PassingScore" id="PassingScore" value="#Attributes.PassingScore#" style="width:50px;" />%
-		</td>
-	</tr>
-	<tr>
-		<td class="FieldLabel" nowrap="nowrap">Max Attempts</td>
-		<td class="FieldInput">
-			<input type="text" name="MaxAttempts" id="MaxAttempts" value="#Attributes.MaxAttempts#" style="width:50px;" />
-		</td>
-	</tr>
-</table>
+	<div class="control-group">
+			<label class="control-label">Heading</label>
+			<div class="controls">
+				<input type="text" name="DisplayName" id="DisplayName" value="#Attributes.DisplayName#" style="width:440px;" />
+			</div>
+		</div>
+		<div class="control-group Details">
+			<label class="control-label">Description</label>
+			<div class="controls">
+				<textarea name="Description" id="Description">#Attributes.Description#</textarea>
+			</div>
+		</div>
+		<div class="control-group RequiredFlag">
+			<label class="control-label">Required?</label>
+			<div class="controls">
+				<input type="radio" name="RequiredFlag" id="RequiredYes" value="Y"<cfif Attributes.RequiredFlag EQ "Y"> checked</cfif> /> Yes <input type="radio" name="RequiredFlag" id="RequiredNo" value="N"<cfif Attributes.RequiredFlag EQ "N"> checked</cfif> /> No
+			</div>
+		</div>
+	<div class="control-group">
+			<label class="control-label">Passing Score</label>
+			<div class="controls">
+				<input type="text" name="PassingScore" id="PassingScore" value="#Attributes.PassingScore#" style="width:50px;" />%
+			</div>
+		</div>
+	<div class="control-group">
+			<label class="control-label">Max Attempts</label>
+			<div class="controls">
+				<input type="text" name="MaxAttempts" id="MaxAttempts" value="#Attributes.MaxAttempts#" style="width:50px;" />
+			</div>
+	</div>
 <cfif Attributes.AssessmentID EQ 0>
 <hr />
 OR Choose a template

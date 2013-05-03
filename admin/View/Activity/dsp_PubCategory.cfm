@@ -1,20 +1,55 @@
-<script>
-$(document).ready(function() {
-	updateCategories();
-});
+<cfinclude template="#Application.Settings.RootPath#/View/Includes/SaveJS.cfm" />
 
-// REFRESH AHAH PAGE
-function updateCategories() {
-	$("#CategoriesLoading").show();
-	$.post(sMyself + "Activity.PubCategoryAHAH", { ActivityID: nActivity }, function(data) {
-		$("#CategoriesContainer").html(data);
-		$("#CategoriesLoading").hide();
-	});
-}
+<script>
+App.Activity.Publish.start();
+App.Activity.Publish.Categories.start()
+<cfoutput>
+// CREATE Category ARRAYS
+aActivityCategoryList = $.ListToArray("#ActivityCategoryList#","|");
+aCategoryList = $.ListToArray("#CategoryList#","|");
+</cfoutput>
+
+$(document).ready(function() {
+  // PAGE WIDE EDITING VARS
+  nCurrEditID = 0;
+  sCurrEditName = "";
+  
+  // Categories STYLE CHANGES
+  $(".FieldInput").on("click", function() {
+    $this = $(this);
+    $itemRow = $this.parents('.grid-list-item');
+    if($this.attr('checked')) {
+      $itemRow.addClass('is-checked');
+    } else {
+      $itemRow.removeClass('is-checked');
+    }
+  });
+});
 </script>
 
-<div class="ViewSection">
-	<div id="CategoriesContainer"></div>
-	<div id="CategoriesLoading" class="Loading"><img src="/admin/_images/ajax-loader.gif" />
-	<div>Please Wait</div></div>
-</div>
+<cfoutput>
+<!--- CREATE TABLE CELL COUNTER --->
+<cfset CellCount = 0>
+<form name="frmCategories" class="formstate js-formstate form-horizontal" method="post" action="#Application.Settings.RootPath#/_com/AJAX_Activity.cfc">
+  <input type="hidden" value="saveCategoriesLMS" name="method" id="method" />
+  <input type="hidden" value="plain" name="returnformat" />
+  <input type="hidden" value="#Attributes.ActivityID#" name="ActivityID" />
+  
+  <cfloop query="qCategories">
+    <cfset rowClass = '' />
+    <cfset checkAttr = '' />
+    <cfif ListFind(ActivityCategoryList, qCategories.CategoryID, "|")>
+      <cfset rowClass = ' is-checked' />
+      <cfset checkAttr = ' checked="checked"' />
+    </cfif>
+  <div class="grid-list-item#rowClass#" id="category_#qCategories.CategoryID#Container">
+    <span id="CategoryContainer#qCategories.CategoryID#">
+    <label for="category_#qCategories.CategoryID#" class="checkbox">
+      <input type="checkbox" name="category" id="category_#qCategories.CategoryID#" value="#qCategories.CategoryID#" class="FieldInput"#checkAttr#/>
+      #qCategories.Name#
+    </label>
+    </span>
+  </div>
+  </cfloop>
+</form>
+</cfoutput>

@@ -428,13 +428,14 @@
       <do action="mPage.ParseCrumbs" />
       
     </fuseaction>
+    
     <fuseaction name="PubGeneral">
       <do action="mActivity.getPubGeneral" />
       <set name="Attributes.ThisUpdated" value="#ActivityPubGeneral.getUpdated()#" />
       <set name="Request.Page.Breadcrumbs" value="Activities|Activity.Home,#ActivityTitleShort#|Activity.Detail?ActivityID=#Attributes.ActivityID#,Publish|Activity.Publish?ActivityID=#Attributes.ActivityID#,General|Activity.PubGeneral?ActivityID=#Attributes.ActivityID#" />
       <do action="mPage.ParseCrumbs" />
-      
     </fuseaction>
+
     <fuseaction name="PubComponents">
       <do action="mActivity.getPubComponents" />
       <do action="vActivity.PubComponents" />
@@ -445,15 +446,10 @@
       <do action="mPage.ParseCrumbs" />
     </fuseaction>
     <fuseaction name="PubSpecialty">
-      <set name="Request.Page.Breadcrumbs" value="Activities|Activity.Home,#ActivityTitleShort#|Activity.Detail?ActivityID=#Attributes.ActivityID#,Publish|Activity.Publish?ActivityID=#Attributes.ActivityID#,Specialties|Activity.PubSpecialty?ActivityID=#Attributes.ActivityID#" />
-      <do action="mPage.ParseCrumbs" />
-      
-    </fuseaction>
-    <fuseaction name="PubSpecialtyAHAH">
       <do action="mActivity.getSpecialties" />
       <do action="mActivity.getActivitySpecialties" />
-      <do action="vActivity.PubSpecialtyAHAH" contentvariable="request.page.body" />
     </fuseaction>
+    
     <fuseaction name="PublishBar">
       <do action="mActivity.getActivity" />
       <do action="mActivity.getPubGeneral" />
@@ -461,15 +457,10 @@
       <do action="vActivity.PublishBar" />
     </fuseaction>
     <fuseaction name="PubCategory">
-      <set name="Request.Page.Breadcrumbs" value="Activities|Activity.Home,#ActivityTitleShort#|Activity.Detail?ActivityID=#Attributes.ActivityID#,Publish|Activity.Publish?ActivityID=#Attributes.ActivityID#,Categories|Activity.PubCategory?ActivityID=#Attributes.ActivityID#" />
-      <do action="mPage.ParseCrumbs" />
-      
-    </fuseaction>
-    <fuseaction name="PubCategoryAHAH">
       <do action="mActivity.getCategories" />
       <do action="mActivity.getActivityCategories" />
-      <do action="vActivity.PubCategoryAHAH" contentvariable="request.page.body" />
     </fuseaction>
+    
     <fuseaction name="PubBuilder">
       <do action="mActivity.getComponents" />
       <set name="Request.Page.Breadcrumbs" value="Activities|Activity.Home,#ActivityTitleShort#|Activity.Detail?ActivityID=#Attributes.ActivityID#,Publish|Activity.Publish?ActivityID=#Attributes.ActivityID#,Builder|Activity.PubBuilder?ActivityID=#Attributes.ActivityID#" />
