@@ -30,6 +30,7 @@
 *=require jquery/plugins/jquery.hotkeys
 *=require jquery/plugins/jquery.blockui
 *=require jquery/plugins/jquery.selectboxes
+*=require jquery/plugins/jquery.autosize
 *=require jquery/plugins/jquery.cookie
 *=require jquery/plugins/jquery.tools
 *=require jquery/plugins/jquery.cfjs

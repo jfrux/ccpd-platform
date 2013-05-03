@@ -1,0 +1,41 @@
+.notes {
+  .post-row {
+    .well {
+      margin:0;
+    }
+  }
+  .note-adder {
+    form {
+      margin:0;
+    }
+    .dummy-note-body {
+      margin:0;
+    }
+
+    .note-actions {
+      display:none;
+    }
+    textarea.note-body {
+      display:none;
+    }  
+    &.focused {
+      .note-actions {
+
+      }
+    }
+    &.activated {
+      .dummy-note-body {
+        display:none;
+      }
+
+      .note-actions {
+        display:block;
+      }
+
+      textarea.note-body {
+        display:block;
+      }
+    }
+  }
+  
+}
