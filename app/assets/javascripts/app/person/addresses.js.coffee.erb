@@ -1,0 +1,235 @@
+###
+* PERSON > ADDRESSES
+###
+App.module "Person.Addresses", (Self, App, Backbone, Marionette, $) ->
+  @startWithParent = false
+
+  $base = null
+  $ahahContainer = null
+  $ahahLoading = null
+  $editDialog = null
+  $addLink = null
+  $addressForm = null
+
+  @on "before:start", ->
+    App.logInfo "starting: Person.#{Self.moduleName}"
+    return
+
+  @on "start", ->
+    $(document).ready ->
+      $base = $("#js-person-address")
+      _init()
+      App.logInfo "started: Person.#{Self.moduleName}"
+    return
+
+  @on "stop", ->
+    App.logInfo "stopped: Person.#{Self.moduleName}"
+    return
+
+  @on "address:save",(response) ->
+    $editDialog.dialog("close")
+    if response.STATUS
+      addMessage response.STATUSMSG, 250, 6000, 4000
+      refresh()
+    else
+      addError response.STATUSMSG, 250, 6000, 4000
+    return
+
+  @on "form:loaded",(markup) ->
+    App.logDebug "Address Form LOADED"
+    $markup = $(markup)
+    $addressForm = $markup
+    $countryField = $addressForm.find("#editaddress-country")
+    $canada = $addressForm.find(".canada")
+    $usa = $addressForm.find(".unitedstates")
+    
+    updateStateProvince = (sCountry) ->
+      if sCountry is "United States of America"
+        $canada.hide()
+        $usa.show()
+      else if sCountry is "Canada"
+        $usa.hide()
+        $canada.show()
+      else
+        $usa.hide()
+        $canada.hide()
+      return
+
+    updateStateProvince $countryField.val()
+
+    $countryField.change ->
+      updateStateProvince $(this).val()
+      return
+    
+    $addressForm.on "submit", ->
+      $(this).ajaxSubmit
+        url:sRootPath + "/_com/AJAX_Person.cfc"
+        type:'post'
+        dataType:'json'
+        success: (data) ->
+          Self.trigger 'address:save',data
+      return false
+    
+    $editDialog.html $addressForm
+    $editDialog.dialog
+      title: "Address Information"
+      modal: true
+      autoOpen: false
+      height: 450
+      width: 600
+      draggable:false
+      resizable: false
+      buttons:
+        Save: ->
+          $addressForm.submit()
+          return
+        Cancel: ->
+          $(this).dialog "close"
+          return
+      open: ->
+        return
+      close: ->
+        $(this).html ""
+        return
+    Self.trigger "form:ready"
+    return
+
+  @on "form:ready",() ->
+    App.logDebug "Address Form is Ready!"
+    $editDialog.dialog "open"
+    return
+
+  @on "ahah:ready", (markup) ->
+    $ahahContainer.html markup
+    $ahahLoading.hide()
+
+    $ahahContainer.find(".js-list-row").each ->
+      $row = $(this)
+      address_id = $row.data('key')
+      $tooltips = $row.find('[data-tooltip-title]')
+
+      $edit = $row.find('.address-edit')
+      $delete = $row.find('.address-delete')
+      $primary = $row.find('.address-makeprimary')
+      countryCode = $row.find(".js-country-code")
+      $phones = $row.find(".js-phonenumber")
+      if !countryCode
+        countryCode = 'US'
+        
+      $phones.each ->
+        $(this).text(formatInternational(countryCode, $(this).text());)
+
+      $primary.on "click", ->
+        makePrimary address_id
+        return
+
+      $edit.on "click", ->
+        editAddress address_id
+        return
+
+      $delete.on "click", ->
+        ConfirmDelete = confirm("Are you sure you want to delete this address?")
+        if ConfirmDelete
+          deleteAddress address_id
+        return
+
+      # TOOLTIPS
+      $tooltips.tooltip
+        placement: 'top'
+        html: 'true'
+        trigger: 'hover focus'
+        title: (e)->
+          $(this).attr('data-tooltip-title')
+        container: $ahahContainer
+      
+      
+      $row.hover ->
+        $(this).addClass('hovered')
+      , ->
+        $(this).removeClass('hovered')
+      return
+    return
+
+  _init = () ->
+    $.getScript '<%=asset_path('PhoneFormat.js')%>',(script,textStatus,xhr) ->
+      Self.trigger("phonescript:loaded")
+      return
+
+    Self.on "phonescript:loaded", ->
+      $ahahContainer = $base.find("#AddressesContainer")
+      $ahahLoading = $base.find("#AddressesLoading")
+      $editDialog = $('<div id="address-info"></div>')
+      $editDialog.appendTo('body')
+      $addLink = $base.find(".address-add")
+
+      refresh()
+
+      $addLink.on "click", ->
+        newAddress()
+    return
+
+  makePrimary = Self.makePrimary = (address_id) ->
+    $.ajax
+      url:"/admin/_com/AJAX_Person.cfc"
+      dataType:'json'
+      type:'post'
+      data:
+        method:'setPrimaryAddress'
+        returnformat:'plain'
+        person_id:nPerson
+        address_id:address_id
+      success: (data) ->
+        if data.STATUS
+          refresh()
+          addMessage data.STATUSMSG
+        else
+          addError data.STATUSMSG
+
+        return
+
+  editAddress = Self.editAddress = (address_id) ->
+    loadForm address_id
+
+  deleteAddress = Self.editAddress = (address_id) ->
+    $.ajax
+      url: sRootPath + "/_com/AJAX_Person.cfc"
+      dataType:'json'
+      type:'post'
+      data:
+        method: "deleteAddress"
+        PersonID: nPerson
+        AddressID: address_id
+        returnFormat: "plain"
+      success: (data) ->
+        if data.STATUS
+          addMessage data.STATUSMSG, 250, 6000, 4000
+          refresh()
+        else
+          addError data.STATUSMSG, 250, 6000, 4000
+        return
+
+  newAddress = Self.newAddress = ->
+    loadForm 0
+
+  loadForm = Self.loadForm = (address_id) ->
+    $.ajax
+      url: sMyself + "Person.EditAddress"
+      dataType:'html'
+      type:'get'
+      data:
+        PersonID: nPerson
+        AddressID: address_id
+      success: (data,text,xhr) ->
+        markup = $.trim(data)
+        Self.trigger 'form:loaded',markup
+        return
+
+  refresh = Self.refresh = ->
+    $.ajax
+      url:sMyself + "Person.AddressAHAH"
+      type:'get'
+      dataType:'html'
+      data:
+        PersonID: nPerson
+      success: (data) ->
+        Self.trigger "ahah:ready",data

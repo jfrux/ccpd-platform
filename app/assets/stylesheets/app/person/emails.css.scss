@@ -1,0 +1,33 @@
+
+#js-person-email {
+  .listinator {
+    .list-row {
+      &.is-verified {
+
+      }
+
+      &.is-allow-login {
+        .allow-login-icon {
+          color:green;
+        }
+      }
+
+      &.is-primary {
+        .primary-icon {
+          color:green;
+        }
+      }
+
+      .email-address {
+        padding:0 0 0 5px;
+        a {
+          display:block;
+        }
+      }
+    }
+  }
+
+  .email-form {
+    display:none;
+  }
+}

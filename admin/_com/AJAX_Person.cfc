@@ -196,7 +196,8 @@
         <cfargument name="City" type="string" required="yes">
         <cfargument name="State" type="string" required="yes">
         <cfargument name="Province" type="string" required="yes">
-        <cfargument name="Country" type="string" required="yes">
+        <cfargument name="country" type="string" required="no" default="">
+        <cfargument name="countryid" type="numeric" required="no" default="0">
         <cfargument name="Zipcode" type="string" required="yes">
         <cfargument name="Phone1" type="string" required="yes">
         <cfargument name="Phone1ext" type="string" required="yes">
@@ -207,29 +208,10 @@
         
         <cfset var Status = createObject("component", "#Application.Settings.Com#returnData.buildStruct").init()>
         
-        <cfcontent type="text/javascript" />
-        
         <cfset status.setStatus(false)>
         <cfset status.setStatusMsg("Cannot access save function for address information.")>
         
-        <cfset status = Application.Person.saveAddress(
-							addressId = Arguments.AddressID,
-							personId = arguments.PersonID,
-							AddressTypeID = Arguments.AddressTypeID,
-							PrimaryFlag = Arguments.PrimaryFlag,
-							Address1 = Arguments.Address1,
-							Address2 = Arguments.Address2,
-							city = Arguments.City,
-							state = Arguments.State,
-							province = Arguments.Province,
-							country = Arguments.Country,
-                            zipcode = Arguments.Zipcode,
-							phone1 = Arguments.Phone1,
-							phone1ext = Arguments.Phone1ext,
-							phone2 = Arguments.Phone2,
-							phone2ext = Arguments.Phone2ext,
-							phone3 = Arguments.Phone3,
-							phone3ext = Arguments.Phone3ext)>
+        <cfset status = Application.Person.saveAddress(argumentCollection=arguments)>
         
         <cfreturn status.getJSON() />
     </cffunction>
@@ -355,7 +337,22 @@
         
         <cfreturn Status.getJSON() />
     </cffunction>
-    
+
+    <cffunction name="setPrimaryAddress" access="Remote" output="false" returnformat="plain">
+        <cfargument name="address_id" type="numeric" required="yes" />
+        <cfargument name="person_id" type="numeric" required="yes" />
+        
+        <cfset var status = createObject("component","#Application.Settings.Com#returnData.buildStruct").init()>
+        
+        <cfcontent type="text/javascript">
+        
+        <cfset status.setStatus(false)>
+        <cfset status.setStatusMsg("Cannot access save function for person information.")>
+        
+        <cfset Status = application.person.setPrimaryAddress(argumentCollection=arguments) />
+        
+        <cfreturn Status.getJSON() />
+    </cffunction>
     <cffunction name="savePersonSpecialties" access="remote" output="false" description="Saves specialties for provided person." returnFormat="plain">
     	<cfargument name="PersonID" type="numeric" required="yes">
         <cfargument name="Specialties" type="string" required="yes">
@@ -416,6 +413,37 @@
         
         <cfset status = Application.Person.setPrimaryEmail(email_id=Arguments.email_id,person_id=arguments.person_id)>
         
+        <cfreturn status.getJSON() />
+    </cffunction>
+
+    <cffunction name="setAllowLogin" access="remote" output="false" description="Set Allow Login for Email" returntype="string">
+        <cfargument name="email_id" type="numeric" required="yes" />
+        <cfargument name="value" type="numeric" required="yes" />
+        
+        <cfset var Status = createObject("component","#Application.Settings.Com#returnData.buildStruct").init()>
+        
+        <cfcontent type="text/javascript" />
+        
+        <cfset status.setStatus(false)>
+        <cfset status.setStatusMsg("Failed to save 'Allow Login' due to unknown reason.")>
+        
+        <cfquery name="qEmail" datasource="#application.settings.dsn#">
+            SELECT email_address FROM user_emails
+            WHERE email_id=<cfqueryparam value="#arguments.email_id#" cfsqltype="cf_sql_integer" />   
+        </cfquery>
+        <cfquery name="qSaveLogin" datasource="#application.settings.dsn#">
+            UPDATE user_emails
+            SET allow_login = <cfqueryparam value="#arguments.value#" cfsqltype="cf_sql_integer" />
+            WHERE email_id = <cfqueryparam value="#arguments.email_id#" cfsqltype="cf_sql_integer" />    
+        </cfquery>
+
+        <cfif arguments.value EQ 1>
+            <cfset statusMsg = "Successfully ENABLED '#qEmail.email_address#' for authentication." />
+        <cfelse>
+            <cfset statusMsg = "Successfully DISABLED '#qEmail.email_address#' for authentication." />
+        </cfif>
+        <cfset status.setStatus(true) />
+        <cfset status.setStatusMsg(statusMsg) />
         <cfreturn status.getJSON() />
     </cffunction>
 	

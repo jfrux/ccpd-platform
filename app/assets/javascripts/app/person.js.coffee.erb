@@ -43,22 +43,19 @@ App.module "Person",
         if excludedModules.indexOf(i) == -1
           module.stop()
         return
-      App.logDebug link.data('pjax-container')
-      App.logDebug link
+
       container = link.data('pjax-container')
-      App.logDebug container
+
       $(".content-inner").wrapInner("<div id='#{container.replace('#','')}'></div>")
       $.pjax.click(e, {container: container})
-      App.logDebug "clicked: #{link.attr('data-pjax-title')}"
-      
       
       return
 
     Self.on "status.changeStart", (status) ->
-      App.logDebug "statusChange Started!"
       $statusChanger.addClass('disabled')
+      return
+
     Self.on "status.changeEnd", (status) ->
-      App.logDebug "statusChange Ended!"
       $statusChanger.removeClass('disabled')
       addMessage "Status changed successfully!", 250, 6000, 4000
       $statusIcon.attr('class','').addClass('fg-' + statusIcons[status])
@@ -93,15 +90,12 @@ App.module "Person",
       $(document).on 'pjax:complete',(xhr, options, textStatus) ->
         $clickedLink = $(xhr.relatedTarget)
         $pageTitle = $clickedLink.data('pjax-title')
-        #App.logInfo($clickedLink)
         $contentArea = $(xhr.target)
         $contentTitle = $contentArea.parents('.js-profile-content').find('.content-title > h3')
         $contentTitle.text($pageTitle)
 
         $parent = $clickedLink.parent()
-        console.log($parent)
         $parent.find('.active').removeClass('active')
-        #$parent.find('.subnav').removeClass('hide');
         $parent.siblings().removeClass('active')
         $clickedLink.children().removeClass('active')
         $parent.addClass('active')
@@ -109,7 +103,6 @@ App.module "Person",
 
 
       $infoBarToggler.on "click",(e) ->
-        #App.logInfo(e);
         $btn = $(this)
         if $btn.hasClass('active')
           hideInfobar()
@@ -268,7 +261,7 @@ App.module "Person",
 
     showInfobar = ->
       $spanDiv = $infoBar.parent()
-      $.cookie 'USER_ACTSHOWINFOBAR', 'true',
+      $.cookie 'USER_SHOWINFOBAR', 'true',
         path: '/'
       $infoBarToggler.find('i').attr('class','fg-application-sidebar-expand')
       $infoBarToggler.addClass('active')
@@ -278,9 +271,9 @@ App.module "Person",
       $infoBarToggleSpan.addClass('span6')
       return
 
-    hideInfobar = ->    
+    hideInfobar = ->
       $infoBarToggler.removeClass('active')
-      $.cookie 'USER_ACTSHOWINFOBAR', 'false',
+      $.cookie 'USER_SHOWINFOBAR', 'false',
         path: '/'
       $spanDiv = $infoBar.parent()    
       $infoBarToggler.find('i').attr('class','fg-application-sidebar-collapse')
@@ -302,8 +295,6 @@ App.module "Person",
           returnFormat: "plain"
         success: (data) ->
           cleanData = $.trim(data)
-          #updateActions()
-          #updatePublishState()  if $.ListFind("Activity.Publish,Activity.PubGeneral,Activity.PubSites,Activity.PubBuilder,Activity.PubCategory,Activity.PubSpecialty", fuseaction)
           Self.trigger('status.changeEnd',status)
           return
       return

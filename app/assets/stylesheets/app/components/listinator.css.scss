@@ -1,0 +1,68 @@
+@import "twitter/bootstrap/_mixins";
+.listinator {
+  .list-row {
+    border-bottom:1px solid #EEE;
+    @include clearfix();
+    margin:0 0 4px 0;
+    padding:4px;
+    line-height:28px;
+    cursor:default;
+    
+    &:hover {
+      background-color:#F7F7F7;
+    }
+
+    .row-status {
+      display:block;
+      font-size:14px;
+      line-height:30px;
+      padding-top:3px;
+      ul {
+        list-style:none;
+        margin:0;
+        padding:0;
+
+        li {
+          border-color: transparent;
+          border-style: solid;
+          border-width: 1px;
+          float: left;
+          height: 14px;
+          line-height: 13px;
+          margin-left: -1px;
+          padding: 4px 12px;
+          text-align: center;
+          width: 15px;
+          
+          i {
+            display: inline;
+          }
+
+          &:first-child {
+            margin-left:0;
+          }
+          &:last-child {
+
+          }
+        }
+      }
+    }
+    .row-actions {
+      display:none;
+      .btn {
+        height: 14px;
+        width: 15px;
+      }
+    }
+
+    &.hovered {
+      .row-status {
+        display:none;
+      }
+      .row-actions {
+        display:block;
+      }
+    }
+  }
+  
+}

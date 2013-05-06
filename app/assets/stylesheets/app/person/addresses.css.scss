@@ -1,0 +1,18 @@
+@import "twitter/bootstrap/_mixins";
+#js-person-address {
+  .listinator {
+    .list-row {
+      .address-type {
+        width:50px;
+        text-align:center;
+        margin-right:4px;
+      }
+      &.is-primary {
+        .address-makeprimary {
+          color:green;
+        }
+      }
+
+    }
+  }
+}

@@ -44,5 +44,5 @@
 *=require jquery/plugins/jquery.scrollto
 *=require jquery/plugins/jquery.tipsy
 *=require jquery/plugins/jquery.periodicalupdater
-*=require ckeditor/ckeditor.js
+*=require ckeditor/ckeditor
 */

@@ -115,6 +115,8 @@
     <do action="mPerson.getAddress" />
     
     <xfa name="FrmSubmit" value="Person.EditAddress" />
+
+    <do action="vPerson.EditAddress" contentvariable="request.page.body" />
   </fuseaction>
 
   <fuseaction name="Email">

@@ -1,4 +1,5 @@
 <script>
+App.Person.Preferences.start();
 	function updatePreferences() {
 		$("#PreferencesLoading").show();
 		$.post(sMyself + "Person.PreferencesAHAH", { PersonID: nPerson },

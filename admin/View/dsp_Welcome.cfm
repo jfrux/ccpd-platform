@@ -38,8 +38,8 @@ $(document).ready(function() {
 		lister.getList(true);
 		
 		$(".ViewSection h3").text(label);
-		$parent.siblings('.current').removeClass('current');
-		$parent.addClass('current');
+		$parent.siblings('.active').removeClass('active');
+		$parent.addClass('active');
 		return false;
 	});
 	
@@ -52,8 +52,8 @@ setInterval("getListAuto()",5000);
 	<div class="ViewSection">
 		<h3>All History</h3>
 		<div class="history-filter">
-		<ul>
-			<li id="history-all" class="current"><a href="/admin/">All History</a></li>
+		<ul class="nav">
+			<li id="history-all" class="active"><a href="/admin/">All History</a></li>
 			<li id="history-personFrom"><a href="/admin/">My Actions</a></li>
 			<li id="history-personTo"><a href="/admin/">Personal History</a></li>
 		</ul>

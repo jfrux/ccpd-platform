@@ -1,5 +1,5 @@
 <script>
-
+App.Person.History.start();
 $(document).ready(function() {
 
 var personId = <cfoutput>#attributes.personid#</cfoutput>;

@@ -26,7 +26,10 @@
 @import "app/activity/finances";
 @import "app/activity/builder";
 @import "app/activity/assessment";
+@import "app/person/addresses";
+@import "app/person/emails";
 @import "app/layout";
+@import "app/components/listinator";
 @import "app/components/wysiwyg";
 @import "app/components/status";
 @import "app/components/typeahead";

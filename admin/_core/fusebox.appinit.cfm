@@ -17,6 +17,7 @@
 <!--- APP SETTINGS --->
 <cfset Application.Settings = StructNew() />
 <cfset Application.settings.bugLogServer = "http://bugs.swodev.com" />
+
 <cfswitch expression="#CGI.SERVER_NAME#">
 	<!--- PRODUCTION --->
 	<cfcase value="ccpd.uc.edu">
@@ -88,7 +89,12 @@
 		<cfset application.settings.javaloaderKey = "JAVALOADER-CCPD-PROD-15313">
 	</cfcase>
 </cfswitch>
-		
+<cfset application.wheels = {
+	showErrorInformation: true,
+	functions: {},
+	urlRewriting:false,
+	webPath: application.settings.rootpath
+} />
 <cfset Application.BugLog = CreateObject("component","#Application.Settings.Com#bugLogService").init(
 bugLogListener="http://bugs.swodev.com/listeners/bugLogListenerREST.cfm",
 bugEmailRecipients="rountrjf@ucmail.uc.edu,slamkajs@ucmail.uc.edu",

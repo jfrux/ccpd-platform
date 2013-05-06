@@ -18,6 +18,7 @@
 		<cfargument name="State" type="string" required="false" default="" />
 		<cfargument name="Province" type="string" required="false" default="" />
 		<cfargument name="Country" type="string" required="false" default="" />
+		<cfargument name="CountryId" type="numeric" required="false" default=0 />
 		<cfargument name="ZipCode" type="string" required="false" default="" />
 		<cfargument name="GeonameId" type="string" required="false" default="" />
 		<cfargument name="Phone1" type="string" required="false" default="" />
@@ -42,6 +43,7 @@
 		<cfset setState(arguments.State) />
 		<cfset setProvince(arguments.Province) />
 		<cfset setCountry(arguments.Country) />
+		<cfset setCountryId(arguments.Countryid) />
 		<cfset setZipCode(arguments.ZipCode) />
 		<cfset setPhone1(arguments.Phone1) />
 		<cfset setPhone1ext(arguments.Phone1ext) />
@@ -293,6 +295,14 @@
 	</cffunction>
 	<cffunction name="getGeonameId" access="public" returntype="string" output="false">
 		<cfreturn variables.instance.GeonameId />
+	</cffunction>
+
+	<cffunction name="setCountryId" access="public" returntype="void" output="false">
+		<cfargument name="CountryId" type="numeric" required="true" />
+		<cfset variables.instance.CountryId = arguments.CountryId />
+	</cffunction>
+	<cffunction name="getCountryId" access="public" returntype="numeric" output="false">
+		<cfreturn variables.instance.CountryId />
 	</cffunction>
 	
 	<cffunction name="setAddressID" access="public" returntype="void" output="false">

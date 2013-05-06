@@ -1,101 +1,78 @@
-<script>
-$(document).ready(function() {
-	$(".address-edit").bind("click", this, function() {
-		var nAddress = $.ListGetAt(this.id, 3, "-");
-		
-		$.post(sMyself + "Person.EditAddress", { PersonID: nPerson, AddressID: nAddress },
-			function(data) {
-			$("#address-info").html(data);
-				
-		});
-		
-		$("#address-info").dialog("open");
-	});
-	
-	$(".address-delete").bind("click", this, function() {
-		var nAddress = $.ListGetAt(this.id, 3, "-");
-		var ConfirmDelete = confirm("Are you sure you want to delete this address?");
-		
-		if(ConfirmDelete) {
-			$.getJSON(sRootPath + "/_com/AJAX_Person.cfc", { method: "deleteAddress", PersonID: nPerson, AddressID: nAddress, returnFormat: "plain" },
-				function(data) {							
-					if(data.STATUS) {
-						addMessage(data.STATUSMSG,250,6000,4000);
-						updateAddresses();
-					} else {
-						addError(data.STATUSMSG,250,6000,4000);
-					}
-			});
-		}
-	});
-});
-</script>
 <cfoutput>
-<table width="100%" border="0" cellpadding="0" cellspacing="0" class="ViewSectionGrid">
-	<tbody>
-		<cfif AddressList.RecordCount NEQ 0>
-			<cfloop query="AddressList">
-				<tr>
-					<td>
-                        #AddressTypeName#
-                        <cfif Attributes.PrimaryAddressID EQ AddressList.AddressID><br /><em style="color:##555; font-size:10px;">Primary</em></cfif>
-                    </td>
-					<td>
-                        <strong>#Address1#</strong><br />
-                        <cfif Address2 NEQ "">#Address2#<br /></cfif>
-                        <cfif AddressList.Country NEQ "United States of America" AND len(trim(AddressList.Country)) GT 0>
-                            <cfif City NEQ "">#City#</cfif><cfif AddressList.City NEQ "" And AddressList.Province NEQ "">, </cfif><cfif AddressList.Province NEQ "">#Province#</cfif><br />
-                            #Country#<cfif Zipcode NEQ ""> #Zipcode#</cfif><br />
-                        <cfelseif AddressList.Province NEQ "">
-                            <cfif City NEQ "">#City#, </cfif>#Province#
-                            #Country#<br /><cfif Zipcode NEQ "">, #Zipcode#</cfif><br />
-                        <cfelse>
-                            <cfif City NEQ "">#City#, </cfif>#State#<cfif Zipcode NEQ "">, #Zipcode#</cfif><br />
-                        </cfif>
-					</td>
-					<td>
-                    	<cfif Phone1 NEQ "">
-                            <cfif len(phone1) EQ 10>
-                            	P1: (#Left(Phone1, 3)#) #Mid(Phone1, 4, 3)# - #Mid(Phone1, 7, 4)#
-                            <cfelse>
-                            	P1: #Phone1#
-                            </cfif>
-                            <cfif Phone1ext NEQ "">
-                            x#Phone1Ext#
-                            </cfif>
-                        </cfif>
-                        <cfif Phone2 NEQ "">
-                            <cfif len(phone2) EQ 10>
-                            	<br />P2: (#Left(Phone2, 3)#) #Mid(Phone2, 4, 3)# - #Mid(Phone2, 7, 4)#
-                            <cfelse>
-                            	<br />P2: #Phone2#
-                            </cfif>
-                            <cfif Phone2ext NEQ "">
-                            x#Phone2Ext#
-                            </cfif>
-                        </cfif>
-                        <cfif Phone3 NEQ "">
-                            <cfif len(phone3) EQ 10>
-                            	<br />F: (#Left(Phone3, 3)#) #Mid(Phone3, 4, 3)# - #Mid(Phone3, 7, 4)#
-                            <cfelse>
-                            	<br />F: #Phone3#
-							</cfif>
-                            <cfif Phone3ext NEQ "">
-                            x#Phone3Ext#
-                            </cfif>
-                        </cfif>
-					</td>
-					<td>
-                    	<a href="javascript://" class="address-edit" id="address-edit-#AddressID#">Edit this address</a><br />
-                        <a href="javascript://" class="address-delete" id="address-delete-#AddressID#">Delete this address</a>
-                    </td>
-				</tr>
+<div class="address-list listinator">
+  <cfif AddressList.RecordCount NEQ 0>
+  <cfloop query="AddressList">
+    <cfif Attributes.PrimaryAddressID EQ AddressList.AddressID>
+      <cfset isPrimary = true />
+    <cfelse>
+      <cfset isPrimary = false />
+    </cfif>
+
+    <div class="address-row list-row js-list-row<cfif isPrimary> is-primary</cfif>" data-key="#addresslist.addressid#">
+      <div class="address span16">
+        <span class="label address-type">#trim(replace(AddressTypeName,'address',''))#</span>
+        #Address1#
+        <cfif Address2 NEQ "">#Address2#</cfif>
+
+        <cfif AddressList.country_iso NEQ "US" AND len(trim(AddressList.country_iso)) GT 0>
+          <cfif AddressList.City NEQ "" And AddressList.Province NEQ "">, </cfif><cfif AddressList.Province NEQ "">#Province#</cfif>
+          <span class="js-country-code">#country_iso#</span><cfif Zipcode NEQ ""> #Zipcode#</cfif>
+        <cfelseif AddressList.Province NEQ "">
+          <cfif City NEQ "">#City#, </cfif>#Province#
+          <span class="js-country-code">#country_iso#</span><br /><cfif Zipcode NEQ "">, #Zipcode#</cfif>
+        <cfelse>
+          <cfif City NEQ "">#City#, </cfif>#State#<cfif Zipcode NEQ "">, #Zipcode#</cfif> <span class="js-country-code">#country_iso#</span><br />
+        </cfif>
+
+        <cfloop from="1" to="3" index="i">
+          #phoneOutput(evaluate("phone#i#"),evaluate("phone#i#ext"))#
+        </cfloop>
+      </div>
+      <div class="row-status span8">
+        <ul class="status-group">
+          <li>
+            <i></i>
+          </li>
+          <li class="address-makeprimary">
+            <i class="icon-star"></i>
+          </li>
+          <li>
+            <i></i>
+          </li>
+        </ul>
+      </div>
+      <div class="row-actions span8">
+        <div class="btn-group">
+          <a href="javascript://" class="address-edit btn" data-tooltip-title="Edit Address"><i class="icon-pencil"></i></a>
+          <a href="javascript://" class="address-makeprimary<cfif isPrimary> disabled</cfif> btn" data-tooltip-title="<cfif isPrimary>This is the primary address.<cfelse>Mark address as primary</cfif>"><i class="icon-star"></i></a>
+        </div>
+        <div class="btn-group">
+          <a href="javascript://" class="address-delete btn" data-tooltip-title="Delete Address"><i class="icon-trash"></i></a>
+        </div>
+      </div>
+    </div>
 			</cfloop>
 		<cfelse>
-			<tr>
-				<td colspan="9">There are no address records for #Attributes.FirstName# #Attributes.LastName#.  <a href="javascript://" class="address-add">Click here</a> to add one.</td>
-			</tr>
+			There are no address records for #Attributes.FirstName# #Attributes.LastName#.  <a href="javascript://" class="address-add">Click here</a> to add one.
 		</cfif>
-	</tbody>
-</table>
+</div>
+<cffunction name="phoneOutput" returntype="string">
+  <cfargument name="phone" type="string" required="no" default="" />
+  <cfargument name="phoneext" type="string" required="no" default="" />
+  
+  <cfset returnVar = "" />
+  <cfif phone NEQ "">
+    <cfset returnVar = phone />
+  </cfif>
+  <cfset returnVar = '<span class="js-phonenumber">#returnVar#</span>' />
+
+
+  <cfif phoneext NEQ "">
+    <cfset returnVar &= '<span class="js-phoneext">x#phoneext#</span>' />
+  </cfif>
+
+  <cfset returnVar = '<div class="js-phone">#returnVar#</div>' />
+
+  <cfreturn returnVar />
+</cffunction>
 </cfoutput>

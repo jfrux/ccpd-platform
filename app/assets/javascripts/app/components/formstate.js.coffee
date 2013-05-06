@@ -18,7 +18,6 @@ class App.Components.FormState
     $inputs = $form.find(':input')
     $ckeditors = $form.find(".js-ckeditor")
     $saveInfo.appendTo($toolbar)
-    console.log($saveInfo)
     $actions.appendTo($toolbar)
     $toolbar.removeClass('hide')
     $changedFields = $('<input type="text" class="js-changed-fields hide" name="ChangedFields" value="" />')

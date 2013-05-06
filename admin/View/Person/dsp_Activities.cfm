@@ -1,5 +1,7 @@
 <cfoutput>
 <script>
+App.Person.Activities.start();
+
 $(document).ready(function() {
 	$("##GetTranscript").bind("click", function() {
 		if($("##date1").val() != "" && $("##date2").val() != "") {
