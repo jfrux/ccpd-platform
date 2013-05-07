@@ -2,8 +2,22 @@
 .dialog {
   display:none;
 }
-.ui-dialog-content {
+.modal-body {
+    max-height: 400px;
+    overflow-y: visible;
+    padding: 15px;
+    position: relative;
+}
+.ui-dialog-content,.modal-body {
   form {
+    .control-group-heading {
+      span.text {
+          font-size:13px;
+          color:#AAA;
+          font-style:italic;
+          line-height:30px;
+      }
+    }
     .control-label {
       color: #666666;
       font-weight: bold;
@@ -13,7 +27,14 @@
     }
     .controls {
       margin-left: 115px;
+      span.text {
+        line-height:30px;
+        color:#999;
 
+        a {
+          color:#999;
+        }
+      }
       .input-prepend {
         input {
           @include border-radius(0px 3px 3px 0px);

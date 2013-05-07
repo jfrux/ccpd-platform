@@ -1,4 +1,4 @@
-/* -*- Mode: Java; tab-width: 2; indent-tabs-mode: nil; c-basic-offset: 2 -*- */
+﻿/* -*- Mode: Java; tab-width: 2; indent-tabs-mode: nil; c-basic-offset: 2 -*- */
 /* vim: set shiftwidth=2 tabstop=2 autoindent cindent expandtab: */
 
 var PhoneNumber = (function (dataBase) {
@@ -297,6 +297,8 @@ var PhoneNumber = (function (dataBase) {
       for (var n = 0; n < entry.length; ++n) {
         if (typeof entry[n] == "string")
           entry[n] = ParseMetaData(countryCode, entry[n]);
+        if (n > 0)
+          entry[n].formats = entry[0].formats;
         ret = ParseNationalNumber(number, entry[n])
         if (ret)
           return ret;

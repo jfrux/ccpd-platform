@@ -194,7 +194,8 @@
         <cfargument name="Address1" type="string" required="yes">
         <cfargument name="Address2" type="string" required="yes">
         <cfargument name="City" type="string" required="yes">
-        <cfargument name="State" type="string" required="yes">
+        <cfargument name="State" type="string" required="no" default="">
+        <cfargument name="stateid" type="numeric" required="no" default="0">
         <cfargument name="Province" type="string" required="yes">
         <cfargument name="country" type="string" required="no" default="">
         <cfargument name="countryid" type="numeric" required="no" default="0">

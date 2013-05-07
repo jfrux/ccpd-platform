@@ -13,6 +13,7 @@
     <cfset Attributes.Address2 = AddressBean.getAddress2()>
     <cfset Attributes.City = AddressBean.getCity()>
     <cfset Attributes.State = AddressBean.getState()>
+    <cfset Attributes.StateId = AddressBean.getStateId()>
     <cfset Attributes.Country = AddressBean.getCountry()>
     <cfset Attributes.CountryId = AddressBean.getCountryId()>
     <cfset Attributes.Province = AddressBean.getProvince()>
@@ -31,6 +32,7 @@
     <cfset Attributes.Address2 = "">
     <cfset Attributes.City = "">
     <cfset Attributes.State = "">
+    <cfset Attributes.StateId = 0>
     <cfset Attributes.Country = "">
     <cfset Attributes.CountryId = "0">
     <cfset Attributes.Province = "">

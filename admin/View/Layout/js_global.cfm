@@ -7,6 +7,8 @@ var user = {
   lastName: '#session.person.getLastName()#',
   email: '#session.person.getEmail()#'
 };
+
+App.config = new App.Models.Config(#serializeJson(application.settings)#);
 </cfif>
 
 var loggedIn = false;
@@ -17,7 +19,6 @@ currPersonId = <cfif isDefined("session.personId") AND len(trim(session.personId
 </cfif>
 
 $(document).ready(function() {
-
   //  $("##ajax-issue-button").click(function() {
   //    $("##ajax-issue").hide();
   //  });

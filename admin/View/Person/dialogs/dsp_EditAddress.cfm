@@ -47,13 +47,19 @@
     </div>
   </div>
   <div class="control-group">
+    <label class="control-label" for="editaddress-address2">Location</label>
+    <div class="controls">
+        <input id="editaddress-geonameid" class="js-typeahead-city" placeholder="City, State, Region, etc." name="geonameid" type="text" value="" tabindex="4" />
+    </div>
+  </div>
+  <div class="control-group">
     <label class="control-label" for="editaddress-city">Location</label>
     <div class="controls">
       <input id="editaddress-city" name="city" class="input-small" type="text" placeholder="City" value="#Attributes.City#" tabindex="5"  />
-      <select id="editaddress-state" class="input-small unitedstates" name="state" tabindex="6">
+      <select id="editaddress-state" class="input-small unitedstates" name="stateid" tabindex="6">
         <option value="">Select one...</option>
         <cfloop query="Application.List.States">
-        <option value="#Application.List.States.Code#"<cfif Attributes.State EQ Application.List.States.Code> Selected</cfif>>#Name#</option>
+        <option value="#Application.List.States.stateid#"<cfif Attributes.stateid EQ Application.List.States.stateid> selected</cfif>>#Name#</option>
         </cfloop>
       </select>
       <input id="editaddress-province" class="canada input-small" name="Province" placeholder="Province" type="text" value="#Attributes.Province#" tabindex="9" />
@@ -86,7 +92,7 @@
         <span class="add-on">Ext.</span>
         <input type="text" id="editaddress-phone1ext" name="phone1ext" class="input-small" value="#Attributes.Phone1ext#" tabindex="11" />
       </div>
-      <label class="checkbox" for="editaddress-phone1mask"><input type="checkbox" id="editaddress-phone1mask" class="phoneMask" /> International?</label>
+      <label class="checkbox hide" for="editaddress-phone1mask"><input type="checkbox" id="editaddress-phone1mask" class="phoneMask" /> International?</label>
     </div>
   </div>
   <div class="control-group">
@@ -97,7 +103,7 @@
         <span class="add-on">Ext.</span>
         <input type="text" id="editaddress-phone2ext" name="phone2ext" class="input-small" value="#Attributes.Phone2ext#" tabindex="12" />
       </div>
-      <label class="checkbox" for="editaddress-phone2mask"><input type="checkbox" id="editaddress-phone2mask" class="phoneMask" /> International?</label>
+      <label class="checkbox hide" for="editaddress-phone2mask"><input type="checkbox" id="editaddress-phone2mask" class="phoneMask" /> International?</label>
     </div>
   </div>
   <div class="control-group">
@@ -108,7 +114,7 @@
         <span class="add-on">Ext.</span>
         <input type="text" id="editaddress-phone3ext" name="phone3ext" class="input-small" value="#attributes.phone3ext#" tabindex="12" />
       </div>
-      <label class="checkbox" for="editaddress-phone3mask"><input type="checkbox" id="editaddress-phone3mask" class="phoneMask" /> International?</label>
+      <label class="checkbox hide" for="editaddress-phone3mask"><input type="checkbox" id="editaddress-phone3mask" class="phoneMask" /> International?</label>
     </div>
   </div>
   <input type="submit" value="Submit Form" class="hide" />

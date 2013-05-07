@@ -16,6 +16,7 @@
 		<cfargument name="Address2" type="string" required="false" default="" />
 		<cfargument name="City" type="string" required="false" default="" />
 		<cfargument name="State" type="string" required="false" default="" />
+		<cfargument name="StateId" type="numeric" required="false" default=0 />
 		<cfargument name="Province" type="string" required="false" default="" />
 		<cfargument name="Country" type="string" required="false" default="" />
 		<cfargument name="CountryId" type="numeric" required="false" default=0 />
@@ -41,6 +42,7 @@
 		<cfset setCity(arguments.City) />
 		<cfset setGeonameid(arguments.geonameid) />
 		<cfset setState(arguments.State) />
+		<cfset setStateId(arguments.StateId) />
 		<cfset setProvince(arguments.Province) />
 		<cfset setCountry(arguments.Country) />
 		<cfset setCountryId(arguments.Countryid) />
@@ -303,6 +305,14 @@
 	</cffunction>
 	<cffunction name="getCountryId" access="public" returntype="numeric" output="false">
 		<cfreturn variables.instance.CountryId />
+	</cffunction>
+
+	<cffunction name="setStateId" access="public" returntype="void" output="false">
+		<cfargument name="StateId" type="numeric" required="true" />
+		<cfset variables.instance.StateId = arguments.StateId />
+	</cffunction>
+	<cffunction name="getStateId" access="public" returntype="numeric" output="false">
+		<cfreturn variables.instance.StateId />
 	</cffunction>
 	
 	<cffunction name="setAddressID" access="public" returntype="void" output="false">

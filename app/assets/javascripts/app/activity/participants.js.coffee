@@ -378,11 +378,12 @@ App.module "Activity.Participants", (Self, App, Backbone, Marionette, $) ->
   #   return
 
   _init = () ->
-    $(".linkbar a").one "click",->
-      Self.stop()
-      return true
-    App.logInfo('init: participants');
-
+    $base = $("#js-activity-attendees")
+    $addlAttendeesMenu = $base.find(".js-addl-attendees-menu")
+    
+    $addlAttendeesMenu.find('form').on "click",(e) ->
+      e.stopPropagation();
+      return
     #App.logInfo CookieAttendeeStatus
     if parseInt(CookieAttendeeStatus) > 0
       statusText = $("#attendees-" + CookieAttendeeStatus).text()

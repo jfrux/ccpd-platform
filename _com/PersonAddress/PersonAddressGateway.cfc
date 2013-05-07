@@ -154,7 +154,9 @@
         PA.address2, 
         PA.city, 
         PA.state, 
-        PA.stateid, 
+        PA.stateid,
+        S.name As state_name,
+        S.code As state_code,
         PA.province, 
         PA.country, 
         PA.countryid, 
@@ -175,6 +177,8 @@
         user_addresses As PA 
       LEFT OUTER JOIN 
         sys_countries C ON C.id = PA.countryid
+      LEFT OUTER JOIN 
+        sys_states S ON S.stateid = PA.stateid
       LEFT OUTER JOIN 
         sys_addresstypes As AT ON AT.addresstypeid = PA.addresstypeid
       WHERE 

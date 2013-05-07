@@ -43,11 +43,26 @@ App.module "Person.Addresses", (Self, App, Backbone, Marionette, $) ->
     $canada = $addressForm.find(".canada")
     $usa = $addressForm.find(".unitedstates")
     
-    updateStateProvince = (sCountry) ->
-      if sCountry is "United States of America"
+    $locationField = $addressForm.find(".js-typeahead-city")
+
+    $locationField.uiTypeahead
+        showImage: false
+        allowAdd: false
+        # ajaxAddURL: "/admin/_com/AJAX_System.cfc"
+        # ajaxAddParams:
+        #   method: "saveSupporter"
+        #   returnformat: "plain"
+        ajaxSearchURL: "/admin/_com/ajax/typeahead.cfc"
+        ajaxSearchParams:
+          method: "search"
+          type: "city"
+
+    updateStateProvince = (country_id) ->
+      App.logDebug "country: #{country_id}" 
+      if parseInt(country_id) is 230
         $canada.hide()
         $usa.show()
-      else if sCountry is "Canada"
+      else if parseInt(country_id) is 39
         $usa.hide()
         $canada.show()
       else
@@ -117,7 +132,13 @@ App.module "Person.Addresses", (Self, App, Backbone, Marionette, $) ->
         countryCode = 'US'
         
       $phones.each ->
-        $(this).text(formatInternational(countryCode, $(this).text());)
+        $phoneSpace = $(this)
+        phoneNumber = $phoneSpace.text()
+        formattedPhone = PhoneNumber.Parse(phoneNumber)
+        console.log phoneNumber
+        console.log formattedPhone
+        #$phoneSpace.html(formattedPhone)
+        return
 
       $primary.on "click", ->
         makePrimary address_id
@@ -151,22 +172,16 @@ App.module "Person.Addresses", (Self, App, Backbone, Marionette, $) ->
     return
 
   _init = () ->
-    $.getScript '<%=asset_path('PhoneFormat.js')%>',(script,textStatus,xhr) ->
-      Self.trigger("phonescript:loaded")
-      return
+    $ahahContainer = $base.find("#AddressesContainer")
+    $ahahLoading = $base.find("#AddressesLoading")
+    $editDialog = $('<div id="address-info"></div>')
+    $editDialog.appendTo('body')
+    $addLink = $base.find(".address-add")
 
-    Self.on "phonescript:loaded", ->
-      $ahahContainer = $base.find("#AddressesContainer")
-      $ahahLoading = $base.find("#AddressesLoading")
-      $editDialog = $('<div id="address-info"></div>')
-      $editDialog.appendTo('body')
-      $addLink = $base.find(".address-add")
+    refresh()
 
-      refresh()
-
-      $addLink.on "click", ->
-        newAddress()
-    return
+    $addLink.on "click", ->
+      newAddress()
 
   makePrimary = Self.makePrimary = (address_id) ->
     $.ajax

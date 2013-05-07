@@ -10,10 +10,6 @@
     <include template="dsp_ActionsRight" />
   </fuseaction>
 
-  <fuseaction name="ActionsShort">
-    <include template="dsp_ActionsShort" />
-  </fuseaction>
-
   <fuseaction name="Activities">
     <include template="dsp_Activities" />
   </fuseaction>
@@ -23,11 +19,7 @@
   </fuseaction>
 
   <fuseaction name="CreatePerson">
-    <include template="dsp_CreatePerson" />
-  </fuseaction>
-
-  <fuseaction name="Credentials">
-    <include template="dsp_Credentials" />
+    <include template="dsp_New" />
   </fuseaction>
 
   <fuseaction name="Docs">
@@ -36,10 +28,6 @@
 
   <fuseaction name="Detail">
     <include template="dsp_Edit" />
-  </fuseaction>
-
-  <fuseaction name="EditAddress">
-    <include template="dsp_EditAddress" />
   </fuseaction>
 
   <fuseaction name="Email">
@@ -66,14 +54,24 @@
     <include template="dsp_Preferences" />
   </fuseaction>
 
-  <fuseaction name="VCard">
-    <include template="dsp_VCard" />
-  </fuseaction>
 
   <fuseaction name="Search">
     <include template="dsp_Search" />
   </fuseaction>
 
+  <!-- DIALOG SCREENS -->
+  <fuseaction name="Credentials">
+    <include template="dialogs/dsp_Credentials" />
+  </fuseaction>
+
+  <fuseaction name="VCard">
+    <include template="dialogs/dsp_VCard" />
+  </fuseaction>
+
+  <fuseaction name="EditAddress">
+    <include template="dialogs/dsp_EditAddress" />
+  </fuseaction>
+  
   <!-- AHAH PAGES -->
   <fuseaction name="AddressAHAH">
     <include template="ahah/dsp_AddressAHAH" />

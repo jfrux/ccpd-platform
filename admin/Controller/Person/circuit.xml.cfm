@@ -105,6 +105,7 @@
   
   <fuseaction name="Credentials">
     <do action="mPerson.getCredentials" />
+    <do action="vPerson.credentials" contentvariable="request.page.body" />
   </fuseaction>
 
   <fuseaction name="Detail">
@@ -168,12 +169,7 @@
   </fuseaction>
   
   <fuseaction name="Preferences">
-    
-  </fuseaction>
-  
-  <fuseaction name="PreferencesAHAH">
     <do action="mPerson.getPersonDegree" />
-    <do action="vPerson.PreferencesAHAH" contentvariable="request.page.body" />
   </fuseaction>
   
   <fuseaction name="history">

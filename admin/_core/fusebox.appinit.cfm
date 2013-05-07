@@ -15,85 +15,85 @@
 --->
 
 <!--- APP SETTINGS --->
-<cfset Application.Settings = StructNew() />
-<cfset Application.settings.bugLogServer = "http://bugs.swodev.com" />
-
+<cfset application['settings'] = StructNew() />
+<cfset application.settings['bugLogServer'] = "http://bugs.swodev.com" />
+<cfset $_settings = application.settings />
 <cfswitch expression="#CGI.SERVER_NAME#">
 	<!--- PRODUCTION --->
 	<cfcase value="ccpd.uc.edu">
-		<cfset Application.Settings.assetsUrl = "http://www.getmycme.com/assets">
-		<cfset Application.Settings.apiUrl = "http://www.getmycme.com">
-		<cfset Application.Settings.DSN = "CCPD_PROD">
-		<cfset Application.Settings.AppName = "CCPD Admin 2.0" /> <!--- appears on Window Titles, etc. --->
-		<cfset Application.Settings.RootPath = "/admin" /> <!--- HTTP path for images, and links --->
-		<cfset Application.Settings.ComPath = "/_com" /> <!--- Master CFC ColdFusion Mapping --->
-		<cfset Application.Settings.AppPath = "/admin" /> <!--- ColdFusion Mapping --->
-		<cfset Application.Settings.Com = "_com." />
-		<cfset Application.Settings.Com2 = "admin._com." />
-		<cfset Application.Settings.AdminEmails = "rountrjf@ucmail.uc.edu,slamkajs@ucmail.uc.edu" />
-		<cfset Application.Settings.WebURL = "https://ccpd.uc.edu/admin/" />
-		<cfset Application.Settings.LMSURL = "https://ccpd.uc.edu/" />
-		<cfset Application.Settings.CDCURL = "http://cme.uc.edu/stdptc" />
-		<cfset application.settings.javaloaderKey = "JAVALOADER-CCPD-PROD-15313">
+		<cfset $_settings['assetsUrl'] = "http://www.getmycme.com/assets">
+		<cfset $_settings['apiUrl'] = "http://www.getmycme.com">
+		<cfset $_settings['dsn'] = "CCPD_PROD">
+		<cfset $_settings['appName'] = "CCPD Admin 2.0" /> <!--- appears on Window Titles, etc. --->
+		<cfset $_settings['rootPath'] = "/admin" /> <!--- HTTP path for images, and links --->
+		<cfset $_settings['comPath'] = "/_com" /> <!--- Master CFC ColdFusion Mapping --->
+		<cfset $_settings['appPath'] = "/admin" /> <!--- ColdFusion Mapping --->
+		<cfset $_settings['com'] = "_com." />
+		<cfset $_settings['com2'] = "admin._com." />
+		<cfset $_settings['AdminEmails'] = "rountrjf@ucmail.uc.edu,slamkajs@ucmail.uc.edu" />
+		<cfset $_settings['WebURL'] = "https://ccpd.uc.edu/admin/" />
+		<cfset $_settings['LMSURL'] = "https://ccpd.uc.edu/" />
+		<cfset $_settings['CDCURL'] = "http://cme.uc.edu/stdptc" />
+		<cfset $_settings['javaloaderKey'] = "JAVALOADER-CCPD-PROD-15313">
 	</cfcase>
 	
 	<cfcase value="test.ccpd.uc.edu">
-		<cfset Application.Settings.assetsUrl = "http://localhost:3000/assets">
-		<cfset Application.Settings.apiUrl = "http://localhost:3000">
-		<cfset Application.Settings.DSN = "CCPD_RAILS">
-		<cfset Application.Settings.AppName = "CCPD Admin 2.0" /> <!--- appears on Window Titles, etc. --->
-		<cfset Application.Settings.RootPath = "/admin" /> <!--- HTTP path for images, and links --->
-		<cfset Application.Settings.ComPath = "/_com" /> <!--- Master CFC ColdFusion Mapping --->
-		<cfset Application.Settings.AppPath = "/admin" /> <!--- ColdFusion Mapping --->
-		<cfset Application.Settings.Com = "_com." />
-		<cfset Application.Settings.Com2 = "admin._com." />
-		<cfset Application.Settings.AdminEmails = "rountrjf@ucmail.uc.edu,slamkajs@ucmail.uc.edu" />
-		<cfset Application.Settings.WebURL = "https://test.uc.edu/admin/" />
-		<cfset Application.Settings.LMSURL = "https://test.uc.edu/" />
-		<cfset Application.Settings.CDCURL = "http://cme.uc.edu/stdptc" />
-		<cfset application.settings.javaloaderKey = "JAVALOADER-CCPD-PROD-15313">
+		<cfset $_settings['assetsUrl'] = "http://localhost:3000/assets">
+		<cfset $_settings['apiUrl'] = "http://localhost:3000">
+		<cfset $_settings['dsn'] = "CCPD_RAILS">
+		<cfset $_settings['appName'] = "CCPD Admin 2.0" /> <!--- appears on Window Titles, etc. --->
+		<cfset $_settings['rootPath'] = "/admin" /> <!--- HTTP path for images, and links --->
+		<cfset $_settings['comPath'] = "/_com" /> <!--- Master CFC ColdFusion Mapping --->
+		<cfset $_settings['appPath'] = "/admin" /> <!--- ColdFusion Mapping --->
+		<cfset $_settings['Com'] = "_com." />
+		<cfset $_settings['Com2'] = "admin._com." />
+		<cfset $_settings['AdminEmails'] = "rountrjf@ucmail.uc.edu,slamkajs@ucmail.uc.edu" />
+		<cfset $_settings['WebURL'] = "https://test.uc.edu/admin/" />
+		<cfset $_settings['LMSURL'] = "https://test.uc.edu/" />
+		<cfset $_settings['CDCURL'] = "http://cme.uc.edu/stdptc" />
+		<cfset $_settings['javaloaderKey'] = "JAVALOADER-CCPD-PROD-15313">
 	</cfcase>
 
 	<cfcase value="localhost">
-		<cfset Application.Settings.assetsUrl = "http://localhost:9292/">
-		<cfset Application.Settings.apiUrl = "http://localhost:3000">
-		<cfset Application.Settings.DSN = "CCPD_CLONE">
-		<cfset Application.Settings.AppName = "CCPD Admin 2.0" /> <!--- appears on Window Titles, etc. --->
-		<cfset Application.Settings.RootPath = "/admin" /> <!--- HTTP path for images, and links --->
-		<cfset Application.Settings.ComPath = "/_com" /> <!--- Master CFC ColdFusion Mapping --->
-		<cfset Application.Settings.AppPath = "/admin" /> <!--- ColdFusion Mapping --->
-		<cfset Application.Settings.Com = "_com." />
-		<cfset Application.Settings.Com2 = "admin._com." />
-		<cfset Application.Settings.AdminEmails = "rountrjf@ucmail.uc.edu,slamkajs@ucmail.uc.edu" />
-		<cfset Application.Settings.WebURL = "https://test.uc.edu/admin/" />
-		<cfset Application.Settings.LMSURL = "https://test.uc.edu/" />
-		<cfset Application.Settings.CDCURL = "http://cme.uc.edu/stdptc" />
-		<cfset application.settings.javaloaderKey = "JAVALOADER-CCPD-PROD-15313">
+		<cfset $_settings['assetsUrl'] = "http://localhost:9292/">
+		<cfset $_settings['apiUrl'] = "http://localhost:3001">
+		<cfset $_settings['dsn'] = "CCPD_CLONE">
+		<cfset $_settings['appName'] = "CCPD Admin 2.0" /> <!--- appears on Window Titles, etc. --->
+		<cfset $_settings['rootPath'] = "/admin" /> <!--- HTTP path for images, and links --->
+		<cfset $_settings['comPath'] = "/_com" /> <!--- Master CFC ColdFusion Mapping --->
+		<cfset $_settings['appPath'] = "/admin" /> <!--- ColdFusion Mapping --->
+		<cfset $_settings['Com'] = "_com." />
+		<cfset $_settings['Com2'] = "admin._com." />
+		<cfset $_settings['AdminEmails'] = "rountrjf@ucmail.uc.edu,slamkajs@ucmail.uc.edu" />
+		<cfset $_settings['WebURL'] = "https://test.uc.edu/admin/" />
+		<cfset $_settings['LMSURL'] = "https://test.uc.edu/" />
+		<cfset $_settings['CDCURL'] = "http://cme.uc.edu/stdptc" />
+		<cfset $_settings['javaloaderKey'] = "JAVALOADER-CCPD-PROD-15313">
 	</cfcase>
 
 	<cfcase value="v2.ccpd.uc.edu">
-		<cfset Application.Settings.assetsUrl = "http://localhost:3000/assets">
-		<cfset Application.Settings.apiUrl = "http://localhost:3000">
+		<cfset $_settings['assetsUrl'] = "http://localhost:3000/assets">
+		<cfset $_settings['apiUrl'] = "http://localhost:3000">
 		
-		<cfset Application.Settings.DSN = "CCPD_CLONE">
-		<cfset Application.Settings.AppName = "CCPD Admin 2.0" /> <!--- appears on Window Titles, etc. --->
-		<cfset Application.Settings.RootPath = "/admin" /> <!--- HTTP path for images, and links --->
-		<cfset Application.Settings.ComPath = "/_com" /> <!--- Master CFC ColdFusion Mapping --->
-		<cfset Application.Settings.AppPath = "/admin" /> <!--- ColdFusion Mapping --->
-		<cfset Application.Settings.Com = "_com." />
-		<cfset Application.Settings.Com2 = "admin._com." />
-		<cfset Application.Settings.AdminEmails = "rountrjf@ucmail.uc.edu,slamkajs@ucmail.uc.edu" />
-		<cfset Application.Settings.WebURL = "https://test.uc.edu/admin/" />
-		<cfset Application.Settings.LMSURL = "https://test.uc.edu/" />
-		<cfset Application.Settings.CDCURL = "http://cme.uc.edu/stdptc" />
-		<cfset application.settings.javaloaderKey = "JAVALOADER-CCPD-PROD-15313">
+		<cfset $_settings['dsn'] = "CCPD_CLONE">
+		<cfset $_settings['appName'] = "CCPD Admin 2.0" /> <!--- appears on Window Titles, etc. --->
+		<cfset $_settings['rootPath'] = "/admin" /> <!--- HTTP path for images, and links --->
+		<cfset $_settings['comPath'] = "/_com" /> <!--- Master CFC ColdFusion Mapping --->
+		<cfset $_settings['appPath'] = "/admin" /> <!--- ColdFusion Mapping --->
+		<cfset $_settings['Com'] = "_com." />
+		<cfset $_settings['Com2'] = "admin._com." />
+		<cfset $_settings['AdminEmails'] = "rountrjf@ucmail.uc.edu,slamkajs@ucmail.uc.edu" />
+		<cfset $_settings['WebURL'] = "https://test.uc.edu/admin/" />
+		<cfset $_settings['LMSURL'] = "https://test.uc.edu/" />
+		<cfset $_settings['CDCURL'] = "http://cme.uc.edu/stdptc" />
+		<cfset $_settings['javaloaderKey'] = "JAVALOADER-CCPD-PROD-15313">
 	</cfcase>
 </cfswitch>
 <cfset application.wheels = {
 	showErrorInformation: true,
 	functions: {},
 	urlRewriting:false,
-	webPath: application.settings.rootpath
+	webPath: application.settings.rootPath
 } />
 <cfset Application.BugLog = CreateObject("component","#Application.Settings.Com#bugLogService").init(
 bugLogListener="http://bugs.swodev.com/listeners/bugLogListenerREST.cfm",
@@ -116,7 +116,7 @@ bugSenderEmail="rountrjf@ucmail.uc.edu")>
 <cfset application.search = createObject("component","_com.typeahead.search").init(application.settings.dsn) />
 
 <!--- COMPONENTS --->
-<cfset Application.Com.AccountDAO = CreateObject("component","#Application.Settings.Com#Account.AccountDAO").Init(Application.Settings.DSN)>
+<cfset Application.Com.AccountDAO = CreateObject("component","#Application.Settings.Com#Account.AccountDAO").Init(Application.Settings.dsn)>
 <cfset Application.Com.AccountGateway = CreateObject("component","#Application.Settings.Com#Account.AccountGateway").Init(Application.Settings.DSN)>
 
 <cfset Application.Com.ActionDAO = CreateObject("component","#Application.Settings.Com#Action.ActionDAO").Init(Application.Settings.DSN)>
@@ -405,9 +405,6 @@ bugSenderEmail="rountrjf@ucmail.uc.edu")>
 <cfset Application.List.PrinEmp = Application.Com.PrinEmpGateway.getByAttributes(OrderBy='Name')>
 
 <cfset Application.List.StepStatus = Application.Com.StepStatusGateway.getByAttributes(OrderBy='Name')>
-
-<!--- HTML --->
-<cfset Application.RenderPod = CreateObject("component","#Application.Settings.Com#RenderPod").init()>
 
 <!--- CACHED APPLICATION QUERIES --->
 <cfset Application.List.AddressTypes = Application.Com.AddressTypeGateway.getByAttributes(OrderBy='Description')>

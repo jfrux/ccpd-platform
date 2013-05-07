@@ -493,7 +493,8 @@
     <cfargument name="Address1" type="string" required="yes">
     <cfargument name="Address2" type="string" required="yes">
     <cfargument name="City" type="string" required="yes">
-    <cfargument name="State" type="string" required="yes">
+    <cfargument name="State" type="string" required="false" default="">
+    <cfargument name="StateId" type="numeric" required="no" default="0">
     <cfargument name="Province" type="string" required="yes">
     <cfargument name="Country" type="string" required="no" default="">
     <cfargument name="countryid" type="numeric" required="no" default="0">
@@ -552,6 +553,7 @@
       <cfset PersonAddressBean.setState("")>
     </cfif>
     
+    <cfset PersonAddressBean.setStateId(Arguments.StateId)>
     <cfset PersonAddressBean.setZipcode(Arguments.Zipcode)>
     <cfset PersonAddressBean.setPersonID(Arguments.PersonID)>
     <cfset PersonAddressBean.setPhone1(Application.UDF.stripAllBut(Arguments.Phone1,"1234567890"))>

@@ -47,15 +47,18 @@
     <a title="Batch Import Participants" class="btn btn-mini batchLink" href="javascript:;"><i class="icon-upload"></i></a>
   </div>
   <div class="btn-group">
-    <a class="btn btn-mini dropdown-toggle" href="##" data-toggle="dropdown"><i class="icon-cog"></i> <strong class="caret"></strong></a>
-    <div class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
-      <form>
-      <label>Addl. Partic.
-      <input type="text" name="AddlAttendees" id="AddlAttendees" value="#Attributes.AddlAttendees#" style="width: 50px;" />
-      </label>
-      <label class="hide">Max.
-      <input type="text" name="MaxRegistrants" id="MaxRegistrants" value="#Attributes.MaxRegistrants#" style="width: 50px;" />
-      </label>
+    <a class="btn btn-mini dropdown-toggle js-addl-attendees-menu" href="##" data-toggle="dropdown"><i class="icon-cog"></i> <strong class="caret"></strong></a>
+    <div class="dropdown-menu " style="padding: 15px; padding-bottom: 0px;">
+      <form class="form-horizontal">
+        <div class="control-group">
+          <label class="control-label">Addl. Partic.</label>
+          <div class="controls">
+            <input type="text" name="AddlAttendees" id="AddlAttendees" value="#Attributes.AddlAttendees#" style="width: 50px;" />
+          </div>
+        </div>
+        <label class="hide">Max.
+        <input type="text" name="MaxRegistrants" id="MaxRegistrants" value="#Attributes.MaxRegistrants#" style="width: 50px;" />
+        </label>
       </form>
     </div>
   </div>

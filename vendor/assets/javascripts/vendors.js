@@ -2,6 +2,7 @@
 * CCPD Vendor Bundle
 * 
 *=require_self
+*=require date
 *=require buglog/bugLogClient
 *=require jquery/jquery
 *=require jquery/jquery-migrate
@@ -10,7 +11,6 @@
 *=require underscore
 *=require backbone
 *=require backbone.marionette
-*=require stapes
 *=require twitter/bootstrap/bootstrap-tooltip
 *=require twitter/bootstrap/bootstrap-affix
 *=require twitter/bootstrap/bootstrap-alert

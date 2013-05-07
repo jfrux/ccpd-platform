@@ -13,6 +13,8 @@
 #=require_tree "./app/person/"
 #=require_tree "./app/activity/"
 #=require app/profile
+#=require app/model
+#=require app/configuration
 #=require app/components/util
 #=require app/components/status
 #=require app/components/actionmenu

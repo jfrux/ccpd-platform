@@ -57,7 +57,7 @@ App.Person.start({
             <div class="action-buttons pull-right">
               <div class="btn-group">
                 <a class="btn" id="CredentialsDialogLink" href="javascript:void(0);" data-tooltip-title="Login Credentials"><i class="icon-lock"></i></a>
-                <a class="btn" href="#Myself#Person.VCard?PersonID=#Attributes.PersonID#" data-tooltip-title="Download vCard"><i class="icon-card"></i></a>
+                <a class="btn" href="#Myself#Person.VCard?PersonID=#Attributes.PersonID#" data-tooltip-title="Download vCard"><i class="icon-info-sign"></i></a>
               </div>
               <div class="btn-group">
                 <a class="btn js-toggle-infobar" title="Toggle Infobar"><i class="icon-info"></i></a>
@@ -96,21 +96,16 @@ App.Person.start({
           
             	<cfif Session.Account.getAuthorityID() EQ 3>
                 <div id="Authority">
-                    <h3><i class="fg fg-fruit"></i> Authority Level</h3>
+                    <h3><i class="fg fg-lock"></i> Authority Level</h3>
                     <div class="box">
-              
-                            <td>Level</td>
-                            <td>
-                                <cfset qAuthLevels = Application.List.AuthLevels>
-                                <select name="AuthLevel" id="AuthLevel" style="width:95px;">
-                                	<option value="0">None</option>
-                                	<cfloop query="qAuthLevels">
-                                    <option value="#Trim(qAuthLevels.AuthID)#"<cfif Attributes.AuthorityID EQ qAuthLevels.AuthID> SELECTED</cfif>>#qAuthLevels.Name#</option>
-                                    </cfloop>
-                                </select>
-                            </td>
-                        </tr>
-                    </table>
+                      <cfset qAuthLevels = Application.List.AuthLevels>
+                      <select name="AuthLevel" id="AuthLevel" class="span24">
+                      	<option value="0">None</option>
+                      	<cfloop query="qAuthLevels">
+                          <option value="#Trim(qAuthLevels.AuthID)#"<cfif Attributes.AuthorityID EQ qAuthLevels.AuthID> SELECTED</cfif>>#qAuthLevels.Name#</option>
+                          </cfloop>
+                      </select>
+                    </div>
                 </div>
                 </cfif>
                 <div id="Status">
@@ -133,14 +128,7 @@ App.Person.start({
       </div>
     </div>
   </div>
-    
-    <div id="PersonDialogs">
-        
-    </div>
-    <div id="NotesList" style="display:none;">
-        <iframe width="360" height="380" src="" id="frmNotes" frameborder="0" name="frmNotes"></iframe>
-    </div>
-    <div id="CredentialsContainer" style="display: none;">
-    </div>
+  <div id="CredentialsContainer" style="display: none;">
+  </div>
 </cfif>
 </cfoutput>

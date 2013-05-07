@@ -24,9 +24,9 @@
           <cfif City NEQ "">#City#, </cfif>#State#<cfif Zipcode NEQ "">, #Zipcode#</cfif> <span class="js-country-code">#country_iso#</span><br />
         </cfif>
 
-        <cfloop from="1" to="3" index="i">
+        <!--- <cfloop from="1" to="3" index="i">
           #phoneOutput(evaluate("phone#i#"),evaluate("phone#i#ext"))#
-        </cfloop>
+        </cfloop> --->
       </div>
       <div class="row-status span8">
         <ul class="status-group">
