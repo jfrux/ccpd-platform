@@ -1,4 +1,4 @@
-<cfcomponent hint="Faculty/Committed [Attendee Functions are kept in ActivityAttendee.CFC]">
+<cfcomponent extends="public" hint="Faculty/Committed [Attendee Functions are kept in ActivityAttendee.CFC]">
 	<cffunction name="init" access="public" output="no" returntype="_com.Public_ActivityPeople">
 		<cfreturn this />
 	</cffunction>

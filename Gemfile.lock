@@ -31,6 +31,11 @@ GEM
       execjs
     coffee-script-source (1.6.2)
     daemons (1.1.9)
+    eco (1.0.0)
+      coffee-script
+      eco-source
+      execjs
+    eco-source (1.1.0.rc.1)
     eventmachine (1.0.3)
     execjs (1.4.0)
       multi_json (~> 1.0)
@@ -78,6 +83,7 @@ PLATFORMS
 DEPENDENCIES
   chunky_png
   coffee-script
+  eco
   rmagick
   sass
   sinatra

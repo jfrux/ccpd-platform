@@ -1,5 +1,13 @@
-<cfcomponent displayname="history ajax">
-	<cffunction name="list" access="remote" output="no" returnformat="plain" returntype="string">
+<cfcomponent extends="ajax" displayname="history ajax">
+	<cffunction name="init" access="public" output="false" returntype="admin._com.ajax_history">
+    
+    <cfset SUPER.init({
+      model: 'history'
+    }) />
+
+    <cfreturn this />
+  </cffunction>
+	<cffunction name="list" access="remote" output="no" returnformat="plain">
 		<cfargument name="personFrom" type="string" required="no" default="0" />
 		<cfargument name="personTo" type="string" required="no" default="0" />
 		<cfargument name="activityTo" type="string" required="no" default="0" />
@@ -24,7 +32,8 @@
 							maxrows=arguments.maxrows,
 							startFromTime=currStartTime
 						))>
-		<cfcontent type="text/javascript">
+
+		<cfcontent type="application/json">
 		<cfset returnVar.setData(history)>
 		<cfset returnVar.setStatus(true)>
 		<cfset returnVar.setStatusMsg("list prepared successfully.")>

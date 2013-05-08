@@ -3,6 +3,7 @@ group :development do
 	gem 'sinatra'
 	gem 'sprockets'
 	gem 'sass'
+  gem 'eco'
 	gem 'thin'
 	gem 'sinatra-sprockets', :git => 'https://github.com/joshuairl/sinatra-sprockets.git'
 	gem 'sprockets-sass'

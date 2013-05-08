@@ -79,8 +79,4 @@
 <cfinclude template="/_com/_UDF/HTMLSafe.cfm" />
 <cfinclude template="/_com/_UDF/midLimit.cfm" />
 <cfinclude template="#Application.Settings.AppPath#/Model/Page/act_Access.cfm" />
-
-<cfinclude template="/lib/wheels/global/public.cfm" />
-<cfinclude template="/lib/wheels/global/internal.cfm" />
-<cfinclude template="/lib/wheels/view/functions.cfm" />
 </cfsilent>

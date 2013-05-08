@@ -1,4 +1,12 @@
-<cfcomponent>
+<cfcomponent extends="ajax">
+    <cffunction name="init" access="public" output="false" returntype="admin._com.ajax_activity">
+    
+    <cfset SUPER.init({
+      model: 'activity'
+    }) />
+
+    <cfreturn this />
+  </cffunction>
 	<cffunction name="fixAttendees" hint="Used to fix activity dates for attendees." access="remote">
     	<cfquery name="qAttendees" datasource="#application.settings.dsn#">
         	SELECT *

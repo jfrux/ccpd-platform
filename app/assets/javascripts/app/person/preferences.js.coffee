@@ -7,7 +7,7 @@ App.module "Person.Preferences", (Self, App, Backbone, Marionette, $) ->
   FormState = null
   $base = null
   $specialtiesList = null
-
+  nDegree = null
   @on "before:start", ->
     App.logInfo "starting: Person.#{Self.moduleName}"
     return

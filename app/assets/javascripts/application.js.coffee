@@ -14,6 +14,7 @@
 #=require_tree "./app/activity/"
 #=require app/profile
 #=require app/model
+#=require app/cookie
 #=require app/configuration
 #=require app/components/util
 #=require app/components/status

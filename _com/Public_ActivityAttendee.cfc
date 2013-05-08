@@ -1,4 +1,4 @@
-<cfcomponent hint="Attendee Functions [Faculty/Committee functions are kept in ActivityPeople.CFC]">
+<cfcomponent extends="public" hint="Attendee Functions [Faculty/Committee functions are kept in ActivityPeople.CFC]">
   <cfinclude template="#Application.Settings.ComPath#/_UDF/isMD.cfm" />
     
   <cffunction name="init" access="public" output="no" returntype="_com.Public_ActivityAttendee">

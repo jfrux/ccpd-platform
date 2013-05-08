@@ -1,0 +1,45 @@
+form {
+  .controls {
+    span.help-block {
+      display:inline-block;
+    }
+  }
+  .input-suggestions {
+    > h4 {
+      font-weight:bold;
+      font-size:11px;
+    }
+
+    > .suggest-list {
+      $suggestBG: #CCC;
+      $suggestBGHover: darken($suggestBG,10%);
+      $suggestBorder: darken($suggestBG,20%);
+      $suggestBorderHover: darken($suggestBG,35%);
+      $suggestText: $gray;
+      $suggestTextHover: $white;
+
+      > .item {
+        line-height:30px;
+        display:inline-block;
+        > a {
+            outline:none;
+            background-color: $suggestBG;
+            border-color: $suggestBorder;
+            @include border-radius(4px);
+            border-style: solid;
+            border-width: 1px;
+            color: $suggestText;
+            margin: 0 4px 0 0;
+            padding: 4px 9px;
+            text-decoration:none;
+
+            &:hover {
+              color:$suggestTextHover;
+              border-color:$suggestBorderHover;
+              background-color: $suggestBGHover;
+            }
+        }
+      }
+    }
+  }
+}

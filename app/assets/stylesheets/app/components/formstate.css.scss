@@ -11,6 +11,36 @@
 form.formstate {
   margin:6px 0 20px;
 
+  .control-groupset {
+    margin: 0 0 5px 0;
+    > .groupset-title {
+      background-color: #F7F7F7;
+      border-top: 1px solid #EEEEEE;
+      font-size: 14px;
+      font-weight: bold;
+      line-height: 26px;
+      margin: 0 0 8px;
+      padding: 0 9px;
+    }
+
+    > .control-group {
+      display:none;
+    }
+
+    > .groupset-link {
+      display:block;
+    }
+
+    &.activated {
+      > .control-group {
+        display:block;
+      }
+      > .groupset-link {
+        display:none;
+      }
+    }
+  }
+
   .grid-list-item {
     border-width: 1px 1px 1px 1px;
     border-style: solid;

@@ -21,7 +21,6 @@
 --->
 <cfset self = myFusebox.getSelf() />
 <cfset myself = "/admin/event/" />
-
 <cfset request.self = myFusebox.getSelf() />
 <cfset request.myself = myself />
 <cfset request.isException = false />
@@ -40,6 +39,7 @@
 		<cfset request.isException  = true />
 	</cfif>
 </cfloop>
+
 
 <cffunction name="isAjax">
 	<cfset headers = GetHttpRequestData().headers>
@@ -63,4 +63,6 @@
 WE ARE PREPARING FOR A MIGRATION.<br />
 The service should be back up shortly.<br />
 <cfabort>--->
+<cfinclude template="/lib/fusebox-addons/helpers.cfm" />
+<cfset params = $paramParser() />
 <cfinclude template="/admin/Model/Page/act_Access.cfm" />

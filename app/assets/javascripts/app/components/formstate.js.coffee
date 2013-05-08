@@ -2,14 +2,14 @@
 * FORM STATE MANAGEMENT
 ###
 class App.Components.FormState
-  constructor: (settings) ->
+  constructor: (@settings) ->
     App.logInfo "New FormState: #{settings.el}"
     Self = @
     Self = _.extend(Self,Backbone.Events)
-    $form = $(settings.el)
+    $form = $(@settings.el)
     $toolbar = $('<div class="toolbar btn-toolbar test"></div>')
     $toolbar.prependTo($form.parents('.content-inner :first'))
-    
+
     $actions = $('<div class="ViewSectionButtons btn-group"></div>')
     $saveInfo = $('<div class="SaveInfo js-save-info"></div>')
     $saveButton = $('<a href="javascript://" class="btn btn-mini js-btn-save">Save Now</a>')
@@ -20,13 +20,58 @@ class App.Components.FormState
     $saveInfo.appendTo($toolbar)
     $actions.appendTo($toolbar)
     $toolbar.removeClass('hide')
+    $tooltips = $inputs.filter('[data-tooltip-title]')
+    console.log $tooltips
     $changedFields = $('<input type="text" class="js-changed-fields hide" name="ChangedFields" value="" />')
     $changedValues = $('<input type="text" class="js-changed-values hide" name="ChangedValues" value="" />')
     $form.append($changedFields)
     $form.append($changedValues)
-    #$form.append($actions)
-    #console.log $inputs
-    
+    $form.addClass('js-formstate formstate')
+    ###!
+    GROUPSETS SETUP / BINDING
+    ###
+    $groupsets = $form.find(".control-groupset")
+    $groupsets.each ->
+      $groupset = $(this)
+      $groupsetTitle = $groupset.find('.groupset-title')
+      $groupsetLink = $('<a></a>')
+      
+      $groupset.activate = ->
+        $groupset.addClass('activated')
+        return
+      
+      $groupset.deactivate = ->
+        $groupset.removeClass('activated')
+        return
+
+      config = _.defaults $groupset.data(),
+        'triggerText':"Edit #{$groupsetTitle.text()}" || "Edit"
+        'defaultState':1
+      
+      $groupsetLink
+        .attr('href','#')
+        .addClass('js-groupset-link groupset-link')
+        .text(config.triggerText)
+        .appendTo($groupset)
+        .on("click",->
+          $groupset.activate()
+          return
+        )
+      
+      if config.defaultState
+        $groupset.addClass('activated')
+      else
+        $groupset.removeClass('activated')
+      return
+
+    ###!
+    TAB INDEX OVERRIDES
+    ###
+    $inputs.each (i,el) ->
+      $el = $(el)
+      $el.attr('tabindex',i+1)
+      return
+
     @config = config =
       "buttons":
         "save":"Save Now"
@@ -36,6 +81,10 @@ class App.Components.FormState
     @on "reset",->
       App.logInfo "formstate: reset!"
 
+      return
+
+    @on "beforeSave",->
+      App.logInfo "formstate: beforeSave!"
       return
 
     @on "save",->
@@ -64,12 +113,19 @@ class App.Components.FormState
         resetForm()
       return
 
-    IsSaved = settings.saved || true
+    IsSaved = @settings.saved || true
     isPublishArea = false # USED TO DETERMINE IF PUBLISH BAR IS UPDATED
 
     ChangedFields = ""
     ChangedValues = ""
 
+    $tooltips.tooltip
+      placement: 'right'
+      html: 'true'
+      trigger: 'hover focus'
+      title: (e)->
+        $(this).attr('data-tooltip-title')
+      container: 'body'
     $saveInfo.html("Last saved " + lastSavedDate);
 
     $form.append($changedFields)
@@ -243,6 +299,7 @@ class App.Components.FormState
         .text(config.buttons.save)
         .addClass('btn-primary')
         .on "click",(e) ->
+          Self.trigger("beforeSave")
           $form.submit()
           e.preventDefault()
           return
@@ -291,6 +348,13 @@ class App.Components.FormState
         input.data('initialState', value);
       return
 
+    Self.activateAllGroupsets = showAllGroupsets = ->
+      $groupsets.each ->
+        $(this).addClass('activated')
+    
+    Self.deactivateAllGroupsets = showAllGroupsets = ->
+      $groupsets.each ->
+        $(this).removeClass('activated')
     
     disableSave()
     #setup initial state

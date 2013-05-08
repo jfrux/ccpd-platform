@@ -1,7 +1,11 @@
-<cfcomponent displayname="Person">
+<cfcomponent extends="public" displayname="Person">
   <cfinclude template="#Application.Settings.ComPath#/_UDF/isEmail.cfm" />
   
-  <cffunction name="init" access="public" output="no" returntype="_com.Public_Person">
+  <cffunction name="init" access="public" output="false" returntype="_com.public_person">
+    <cfargument name="settings" required="false" type="struct" default="#structNew()#" />
+    
+    <cfset SUPER.init(settings) />
+
     <cfreturn this />
   </cffunction>
   
@@ -883,7 +887,6 @@
     <cfargument name="MiddleName" type="string" required="yes">
     <cfargument name="LastName" type="string" required="yes">
     <cfargument name="CertName" type="string" required="no" default="">
-    <cfargument name="CertNameCustom" type="string" required="yes">
     <cfargument name="DisplayName" type="string" required="yes">
     <cfargument name="Suffix" type="string" required="yes">
     <cfargument name="Email" type="string" required="yes">
@@ -986,9 +989,7 @@
     
     <!--- FILL DISPLAY NAME Field --->
     <cfif Arguments.CertName NEQ "">
-      <cfset PersonBean.setCertName(Arguments.CertName)> 
-    <cfelseif Arguments.CertName EQ "" AND Arguments.CertNameCustom NEQ "">
-      <cfset PersonBean.setCertName(Arguments.CertNameCustom)> 
+      <cfset PersonBean.setCertName(Arguments.CertName)>
     </cfif>
     
     <!--- FILL CERT NAME FIELD --->

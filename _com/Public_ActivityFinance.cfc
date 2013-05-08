@@ -1,4 +1,4 @@
-<cfcomponent>
+<cfcomponent extends="public">
   <cffunction name="init" access="public" output="no" returntype="_com.Public_ActivityFinance">
     <cfreturn this />
   </cffunction>

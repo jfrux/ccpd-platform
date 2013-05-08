@@ -16,6 +16,7 @@
 
 <!--- APP SETTINGS --->
 <cfset application['settings'] = StructNew() />
+<cfset application['apiCache'] = {} />
 <cfset application.settings['bugLogServer'] = "http://bugs.swodev.com" />
 <cfset $_settings = application.settings />
 <cfswitch expression="#CGI.SERVER_NAME#">
@@ -89,12 +90,9 @@
 		<cfset $_settings['javaloaderKey'] = "JAVALOADER-CCPD-PROD-15313">
 	</cfcase>
 </cfswitch>
-<cfset application.wheels = {
-	showErrorInformation: true,
-	functions: {},
-	urlRewriting:false,
-	webPath: application.settings.rootPath
-} />
+
+<cfset request.cgi = CGI />
+
 <cfset Application.BugLog = CreateObject("component","#Application.Settings.Com#bugLogService").init(
 bugLogListener="http://bugs.swodev.com/listeners/bugLogListenerREST.cfm",
 bugEmailRecipients="rountrjf@ucmail.uc.edu,slamkajs@ucmail.uc.edu",

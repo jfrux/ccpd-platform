@@ -1,4 +1,4 @@
-<cfcomponent displayname="list ajax">
+<cfcomponent extends="ajax" displayname="list ajax">
 	<cffunction name="activities" access="remote" output="no" returnformat="plain" returntype="string">
 		<cfargument name="sortby" type="string" required="no" default="recent" />
 		<cfargument name="person" type="numeric" required="no" default="0" />

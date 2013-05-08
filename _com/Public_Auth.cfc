@@ -1,4 +1,4 @@
-<cfcomponent>
+<cfcomponent extends="public">
 	<cfinclude template="#Application.Settings.ComPath#/_UDF/isEmail.cfm" />
     
 	<cffunction name="init" access="public" output="no" returntype="_com.Public_Auth">
