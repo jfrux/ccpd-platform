@@ -17,8 +17,8 @@ App.Person.Notes.start();
       </form>
     </div>
   </div>
-  <cfif qPersonNotes.RecordCount GT 0>
   <div class="posts-list">
+  <cfif qPersonNotes.RecordCount GT 0>
     <cfloop query="qPersonNotes">
       <div class="divider">
         <hr>
@@ -33,15 +33,15 @@ App.Person.Notes.start();
           </div>
           <div class="post-meta">
             <i class="icon-calendar"></i> #DateFormat(qPersonNotes.Created,"MMM DD, YYYY")# at #TimeFormat(qPersonNotes.Created,"h:mm TT")#
-            <a href="javascript://"><i class="icon-trash"></i></a>
+            <a href="javascript://" class="js-notedelete"><i class="icon-trash"></i></a>
           </div>
         </div>
       </div>
       
     </cfloop>
-  </div>
   <cfelse>
-    <p>No Notes Exist</p>
+    
   </cfif>
+  </div>
 </div>
 </cfoutput>

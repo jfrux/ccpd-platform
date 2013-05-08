@@ -837,47 +837,63 @@
   </cffunction>
 
   <cffunction name="saveNote" access="public" output="no" returntype="struct">
-    <cfargument name="PersonID" required="true" type="string">
+    <cfargument name="personID" required="true" type="string">
     <cfargument name="NoteBody" required="true" type="string">
     <cfargument name="NoteID" required="false" default="0">
-    
-    <cfset var status = createObject("component","#Application.Settings.Com#returnData.buildStruct").init()>
+    <cfset var Status = createObject("component","#Application.Settings.Com#returnData.buildStruct").init()>
+    <cfset var payLoad = {
+        body: "",
+        author:{
+          id: 0,
+          name: ""
+        },
+        timestamp: now()
+      } />
     <cfset status.setStatus(false)>
-    <cfset status.setStatusMsg("More Information is needed to add this note.")>
-    
-    <cfif Arguments.NoteBody EQ "">
+    <cfset status.setStatusMsg("Cannot save person note for unknown reasons.")>
+
+    <cfif arguments.noteBody EQ "">
+      <cfset status.setStatusMsg("More Information is needed to add this note.")>
       <cfreturn status />
-      <cfabort>
     </cfif>
-    
-    <cfset PersonBean = CreateObject("component","#Application.Settings.Com#Person.Person").init(PersonID=Arguments.PersonID)>
-    <cfset PersonBean = Application.Com.PersonDAO.read(PersonBean)>
-    
-    <cfset PersonNoteBean = CreateObject("component","#Application.Settings.Com#PersonNote.PersonNote").Init(NoteID=Arguments.NoteID,PersonID=Arguments.PersonID,Body=Arguments.NoteBody,CreatedBy=Session.PersonID)>
-    
-    <cfset aErrors = PersonNoteBean.Validate()>
-    <!--- Fill Request.Status.Errors --->
-    <cfloop from="1" to="#ArrayLen(aErrors)#" index="i">
-      <cfset Request.Status.Errors = ListAppend(Request.Status.Errors,aErrors[i].Message,"|")>
+
+    <cfset personBean = createObject("component","#application.settings.com#person.person").init(personId=arguments.personId)>
+    <cfset personBean = application.com.personDao.read(personBean)>
+    <cfset personNoteBean = createObject("component","#application.settings.com#personNote.personNote").init(noteId=arguments.noteId,personId=arguments.personId,body=arguments.noteBody,createdBy=session.person.getPersonId())>
+    <cfset aErrors = personNoteBean.Validate()>
+
+    <cfloop from="1" to="#arrayLen(aErrors)#" index="i">
+      <cfset status.addError(aErrors[i].field,aErrors[i].Message)>
     </cfloop>
-    
-    <cfif NOT arrayLen(status.getErrors())>
+
+    <cfif arrayLen(status.getErrors()) EQ 0>
+      <cfset noteSaved = Application.Com.personNoteDAO.Save(personNoteBean)>
       
-        <cfset PersonNoteBean = Application.Com.PersonNoteDAO.Save(PersonNoteBean)>
-        
-        <cfset Application.History.Add(
-              HistoryStyleID=70,
-              FromPersonID=Session.PersonID,
-              ToPersonID=Arguments.PersonID,
-              ToContent=Arguments.NoteBody)>
-        
-        <cfset status.setStatus(true)>
-        <cfset status.setStatusMsg("The note has been added properly.")>
-        
-        
+      <cfset personNoteBean.setNoteId(noteSaved) />
+      <cfset personNoteBean = Application.com.personNoteDAO.read(personNoteBean) />
+      
+      <cfset payLoad = {
+        id: personNoteBean.getNoteId(),
+        body: personNoteBean.getBody(),
+        author:{
+          id: session.personid,
+          name: session.person.getCertName()
+        },
+        timestamp: personNoteBean.getCreated()
+      } />
+
+      <cfset status.setPayload(payLoad) />
+      <!--- ADD HISTORY ITEM --->
+      <cfset application.history.add(
+          historyStyleID=48,
+          fromPersonID=session.personId,
+          topersonID=arguments.personId,
+          toContent=arguments.noteBody
+        )>
+      <cfset status.setStatus(true)>
+      <cfset status.setStatusMsg("The note has been added.")>
     </cfif>
-    
-    <cfreturn Status />
+    <cfreturn status />
   </cffunction>
   
   <cffunction name="savePerson" access="Public" output="false" returntype="struct">

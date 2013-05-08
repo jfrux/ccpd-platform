@@ -4,6 +4,7 @@
 App.module "Person.Notes", (Self, App, Backbone, Marionette, $) ->
   @startWithParent = false
   $noteContent = null
+  $notes = null
   $notebox = null
   $notebody = null
   $notelist = null
@@ -22,7 +23,7 @@ App.module "Person.Notes", (Self, App, Backbone, Marionette, $) ->
                     </div>
                     <div class="post-meta">
                       <i class="icon-calendar"></i> <%=timestamp%>
-                      <a href="javascript://"><i class="icon-trash"></i></a>
+                      <a href="javascript://" class="js-notedelete"><i class="icon-trash"></i></a>
                     </div>
                   </div>
                 </div>'
@@ -42,6 +43,12 @@ App.module "Person.Notes", (Self, App, Backbone, Marionette, $) ->
     App.logInfo "stopped: Person.#{Self.moduleName}"
     return
 
+  @on "noteDeleted", (n) ->
+    App.logInfo "Deleted Note: #{n}"
+    $deleteNote = $notes.filter("[data-key='" + n + "']")
+    $deleteNote.prev().remove();
+    $deleteNote.remove();
+    return
   Self.resetForm = resetForm = ->
     $notebody.val('')
     $notebody.blur()
@@ -52,6 +59,7 @@ App.module "Person.Notes", (Self, App, Backbone, Marionette, $) ->
     $notebox = $noteContent.find(".js-notebox")
     $notebody = $noteContent.find(".js-note-body")
     $notelist = $noteContent.find(".posts-list");
+    $notes = $notelist.find('.post-item')
     $notedummy = $noteContent.find(".js-dummynote")
     $noteAddBtn = $noteContent.find(".js-note-actions .addNote")
     App.logDebug $notelist
@@ -93,30 +101,50 @@ App.module "Person.Notes", (Self, App, Backbone, Marionette, $) ->
           if data.STATUS
             addMessage data.STATUSMSG, 250, 2500, 2500
             payLoad = data.PAYLOAD;
-            $notelist.prepend note(payLoad)
+            $newNoteRow = $(note(payLoad))
+            $newNote = $newNoteRow.find('.post-item')
+            $newNote.find(".js-notedelete").on "click",->
+              deleteNote $newNote
+              return
+            $notelist.prepend $newNoteRow
             resetForm()
           #window.location = sMyself + "Person.Notes?PersonID=" + nPerson;
           else
             addError data.STATUSMSG, 250, 2500, 2500
       e.preventDefault()
 
-    $("a.DeleteNote").on "click", (e) ->
-      if confirm("Are you sure you want to delete this note?")
-        #$.blockUI({message: '<h2>Deleting note...</h2>'});
-        nNoteID = $.Replace(@id, "Note", "")
-        
-        #DELETE AJAX NOTES
-        $.getJSON sRootPath + "/_com/AJAX_Person.cfc",
+    $notes.each ->
+      $note = $(this)
+      $noteDelete = $note.find('.js-notedelete')
+      $noteRow = $note.parents('.post-row')
+      $noteDivider = $noteRow.prev()
+      note_id = $noteRow.data('key')
+      $noteDelete.on "click", (e) ->
+        deleteNote $note
+        e.preventDefault()
+    return
+
+  deleteNote = ($el) ->
+    $note = $el
+    $row = $el.parents('.post-row')
+    console.log $note
+    console.log $row
+    note_id = $row.data('key')
+    if confirm("Are you sure you want to delete this note?")
+      #DELETE AJAX NOTE
+      $.ajax 
+        url:sRootPath + "/_com/AJAX_Person.cfc"
+        dataType:'json'
+        type:'post'
+        data:
           method: "deleteNote"
-          NoteID: nNoteID
+          noteid: note_id
           returnFormat: "plain"
-        , (data) ->
+        success:(data) ->
           if data.STATUS
+            $row.prev().remove()
+            $row.remove()
             parent.addMessage data.STATUSMSG, 250, 2500, 2500
-            $("#Note" + nNoteID).hide()
-          
-          #$.unblockUI();
           else
             parent.addError data.STATUSMSG, 250, 2500, 2500
-      e.preventDefault()
-    return
+          return

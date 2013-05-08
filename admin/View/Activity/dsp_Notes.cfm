@@ -33,7 +33,7 @@ App.Activity.Notes.start();
           </div>
           <div class="post-meta">
             <i class="icon-calendar"></i> #DateFormat(qActivityNotes.Created,"MMM DD, YYYY")# at #TimeFormat(qActivityNotes.Created,"h:mm TT")#
-            <a href="javascript://"><i class="icon-trash"></i></a>
+            <a href="javascript://" class="js-notedelete"><i class="icon-trash"></i></a>
           </div>
         </div>
       </div>

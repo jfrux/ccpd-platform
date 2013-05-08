@@ -61,23 +61,23 @@ App.module "Person.Preferences", (Self, App, Backbone, Marionette, $) ->
       nSpecialty = $.ListGetAt(@id, 2, "-")
       updateSpecialtyOption nSpecialty
 
-    $(".degreeid").on "click", ->
-      nDegree = $.ListGetAt(@id, 2, "-")
-      $.ajax 
-        url:sRootPath + "/_com/AJAX_Person.cfc"
-        data:
-          method: "saveDegree"
-          PersonID: nPerson
-          DegreeID: nDegree
-          returnFormat: "plain"
-        success: (data) ->
-          if data.STATUS
-            updateDegreeOption nDegree
-            addMessage data.STATUSMSG, 250, 6000, 4000
-          else
-            addError data.STATUSMSG, 250, 6000, 4000
-          return
-      return
+    # $(".degreeid").on "click", ->
+    #   nDegree = $.ListGetAt(@id, 2, "-")
+    #   $.ajax 
+    #     url:sRootPath + "/_com/AJAX_Person.cfc"
+    #     data:
+    #       method: "saveDegree"
+    #       PersonID: nPerson
+    #       DegreeID: nDegree
+    #       returnFormat: "plain"
+    #     success: (data) ->
+    #       if data.STATUS
+    #         updateDegreeOption nDegree
+    #         addMessage data.STATUSMSG, 250, 6000, 4000
+    #       else
+    #         addError data.STATUSMSG, 250, 6000, 4000
+    #       return
+    #   return
     return
   # GATHERS PERSON SPECIALTIES
   getPersonSpecialties = (nPerson) ->
