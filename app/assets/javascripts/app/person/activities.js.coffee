@@ -77,9 +77,9 @@ App.module "Person.Activities", (Self, App, Backbone, Marionette, $) ->
             method: "search"
             type: "person"
           defaultValue:
-            id: App.Person.data.id
-            label: App.Person.data.name
-            value: App.Person.data.id
+            id: App.Person.model.get('id')
+            label: App.Person.model.get('name')
+            value: App.Person.model.get('id')
     $moveToInput.uiTypeahead
           showImage: false
           allowAdd: false
@@ -120,7 +120,6 @@ App.module "Person.Activities", (Self, App, Backbone, Marionette, $) ->
     $transcriptMenu.next().find("form").on "click", (e) ->
       e.stopPropagation()
 
-      
       return
 
     #sets up jqui datepicker

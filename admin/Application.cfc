@@ -63,10 +63,16 @@
     <cfargument name="methodArguments" type="struct" required="true" hint="I am the argument collection sent by the user." />
 
     <cfif !structKeyExists(application.apiCache, arguments.component)>
-      <cfset application.apiCache[arguments.component] = createObject("component",arguments.component).init()/>
+      <cfset application.apiCache[arguments.component] = createObject("component",arguments.component)/>
     </cfif>
 
     <cfset local.cfc = application.apiCache[arguments.component] />
+    
+    <cfif structKeyExists(application.apiCache[arguments.component],'init')>
+      <cfset local.cfc = application.apiCache[arguments.component].init() />
+    <cfelse>
+      <cfset local.cfc = application.apiCache[arguments.component] />
+    </cfif>
     
     <cfinclude template="/lib/fusebox-addons/helpers.cfm" />
     <cfset params = $paramParser() />

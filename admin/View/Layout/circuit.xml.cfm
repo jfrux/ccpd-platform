@@ -46,4 +46,7 @@
 	<fuseaction name="Sub_List">
 		<include template="Sub\lay_List" />
 	</fuseaction>
+	<fuseaction name="Sub_User">
+		<include template="Sub\lay_User" />
+	</fuseaction>
 </circuit>

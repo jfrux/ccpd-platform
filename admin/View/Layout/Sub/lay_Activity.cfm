@@ -49,7 +49,13 @@ var cActShowInfobar = $.cookie("USER_ACTSHOWINFOBAR");
 
 App.module('Activity').start({
   'id':nActivity,
-  'folders':defaultFolders
+  'folders':defaultFolders,
+  'model':{
+    id:nActivity,
+    title:sActivityTitle,
+    type:nActivityType,
+    grouping:nGrouping
+  }
 });
 </script>
 

@@ -27,11 +27,13 @@ App.module "Person",
     Self.on "before:start", ->
       App.logInfo "starting: #{Self.moduleName}"
       return
+
     Self.on "start", (options) ->
       $(document).ready ->
         _init(options)
         App.logInfo "started: #{Self.moduleName}"
       return
+
     Self.on "stop", ->
       App.logInfo "stopped: #{Self.moduleName}"
       return
@@ -62,7 +64,8 @@ App.module "Person",
       $statusBox.addClass('activity-status-' + status)
     
     Self._init = _init = (settings) ->
-      Self.data = settings
+      Self.model = new App.Models.Person(settings.model)
+      
       $profile = $(".profile")
       $infoBar = $(".js-infobar")
       $projectBar = $(".js-projectbar")

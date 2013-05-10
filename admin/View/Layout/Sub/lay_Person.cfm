@@ -16,9 +16,11 @@ nAccount = #Attributes.AccountID#;
 </cfoutput>
 
 App.Person.start({
-  'id':nPerson,
-  'account_id':nAccount,
-  'name':sPersonName
+  model:{
+    'id':nPerson,
+    'account_id':nAccount,
+    'name':sPersonName
+  }
 });
 </script>
 
@@ -57,7 +59,7 @@ App.Person.start({
             <div class="action-buttons pull-right">
               <div class="btn-group">
                 <a class="btn" id="CredentialsDialogLink" href="javascript:void(0);" data-tooltip-title="Login Credentials"><i class="icon-lock"></i></a>
-                <a class="btn" href="#Myself#Person.VCard?PersonID=#Attributes.PersonID#" data-tooltip-title="Download vCard"><i class="icon-info-sign"></i></a>
+                <!--- <a class="btn" href="#Myself#Person.VCard?PersonID=#Attributes.PersonID#" data-tooltip-title="Download vCard"><i class="icon-info-sign"></i></a> --->
               </div>
               <div class="btn-group">
                 <a class="btn js-toggle-infobar" title="Toggle Infobar"><i class="icon-info"></i></a>

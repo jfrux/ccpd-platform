@@ -3,7 +3,7 @@
 ###
 class App.Components.FormState
   constructor: (@settings) ->
-    App.logInfo "New FormState: #{settings.el}"
+    App.logInfo "New FormState: #{@settings.el}"
     Self = @
     Self = _.extend(Self,Backbone.Events)
     $form = $(@settings.el)
@@ -27,6 +27,7 @@ class App.Components.FormState
     $form.append($changedFields)
     $form.append($changedValues)
     $form.addClass('js-formstate formstate')
+
     ###!
     GROUPSETS SETUP / BINDING
     ###

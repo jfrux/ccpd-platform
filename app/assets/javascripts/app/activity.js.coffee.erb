@@ -52,13 +52,12 @@ App.module "Activity",
       $(".content-inner").wrapInner("<div id='#{container.replace('#','')}'></div>")
       $.pjax.click(e, {container: container})
       App.logDebug "clicked: #{link.attr('data-pjax-title')}"
-      
-      
       return
 
     Self.on "status.changeStart", (status) ->
       App.logDebug "statusChange Started!"
       $statusChanger.addClass('disabled')
+
     Self.on "status.changeEnd", (status) ->
       App.logDebug "statusChange Ended!"
       $statusChanger.removeClass('disabled')
@@ -67,10 +66,8 @@ App.module "Activity",
       $statusBox.addClass('activity-status-' + status)
     
     Self._init = (settings) ->
+      Self.model = new App.Models.Activity(settings.model)
       Self.data = settings
-      # Self.content = new Backbone.Marionette.Region({
-      #   el: ".js-profile-content"
-      # });
       $profile = $(".profile")
       $infoBar = $(".js-infobar")
       $projectBar = $(".js-projectbar")
@@ -93,13 +90,8 @@ App.module "Activity",
         return
 
       $(document).on 'pjax:complete',(xhr, options, textStatus) ->
-
-        #App.logInfo xhr
-        # App.logInfo textStatus
-        # App.logInfo options
         $clickedLink = $(xhr.relatedTarget)
         $pageTitle = $clickedLink.data('pjax-title')
-        #App.logInfo($clickedLink)
         $contentArea = $(xhr.target)
         $contentTitle = $contentArea.parents('.js-profile-content').find('.content-title > h3')
         $contentTitle.text($pageTitle)
@@ -107,7 +99,6 @@ App.module "Activity",
         $parent = $clickedLink.parent()
         console.log($parent)
         $parent.find('.active').removeClass('active')
-        #$parent.find('.subnav').removeClass('hide');
         $parent.siblings().removeClass('active')
         $clickedLink.children().removeClass('active')
         $parent.addClass('active')
@@ -115,17 +106,12 @@ App.module "Activity",
 
 
       $infoBarToggler.on "click",(e) ->
-        #App.logInfo(e);
         $btn = $(this)
         if $btn.hasClass('active')
           hideInfobar()
         else
           showInfobar()
         return
-      #updateActions();
-      # updateContainers()
-      # updateStats()
-      #updateNoteCount()
 
       if cActShowInfobar
         showInfobar()

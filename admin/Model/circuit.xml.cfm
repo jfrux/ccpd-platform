@@ -19,4 +19,8 @@
 		<include template="act_doSearch" />
 	</fuseaction>
 	
+	<fuseaction name="TabControl">
+		<include template="act_tabSetup" />
+	</fuseaction>
+	
 </circuit>

@@ -56,9 +56,9 @@ App.Person.GeneralInfo.start();
       </div>
     </div>
   </div>
-  <div class="control-groupset" data-trigger-text="Customize name display" data-default-state="0">
+  <div class="control-groupset" data-trigger-text="Customize name display" data-default-state="1">
     <div class="groupset-title">
-      How should we display your name?
+      How should we display this name?
     </div>
     <div class="control-group">
       <label class="control-label" for="displayname">Display Name</label>

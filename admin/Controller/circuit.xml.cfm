@@ -4,21 +4,23 @@
 <circuit access="public" xmlns:cs="coldspring/">
     
 	<fuseaction name="Welcome">
-		<set name="Request.NavItem" value="1" />
-		<do action="mMain.Welcome" />
-        <set name="Request.Page.Title" value="CE Dashboard" />
-        <do action="vMain.Welcome" contentvariable="Request.Page.Body" />
-        <set name="Request.Page.Breadcrumbs" value="" />
-        <do action="mPage.ParseCrumbs" />
-        <do action="vLayout.Default" />
+    <set name="Request.NavItem" value="1" />
+    <do action="mMain.TabControl" />
+    <do action="mMain.Welcome" />
+    <set name="Request.Page.Title" value="CE Dashboard" />
+    <do action="vMain.Welcome" contentvariable="multiformcontent" />
+    <set name="Request.Page.Breadcrumbs" value="" />
+    <do action="mPage.ParseCrumbs" />
+    <do action="vLayout.Sub_User" contentvariable="request.page.body" />
+    <do action="vLayout.Default" />
 	</fuseaction>
-    
-    <fuseaction name="Login">
-        <set name="Request.Page.Title" value="Login" />
-		<xfa name="Authenticate" value="Main.doLogin" />
-        <do action="vMain.Login" contentvariable="Request.Page.Body" />
-        <do action="vLayout.None" />
-    </fuseaction>
+  
+  <fuseaction name="Login">
+    <set name="Request.Page.Title" value="Login" />
+    <xfa name="Authenticate" value="Main.doLogin" />
+    <do action="vMain.Login" contentvariable="Request.Page.Body" />
+    <do action="vLayout.None" />
+  </fuseaction>
 	
 	<fuseaction name="doLogin">
 		<do action="mMain.doLogin" />
