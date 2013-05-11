@@ -29,22 +29,25 @@ class App.Components.NewsFeed
     ###
     @$filters = $(filterHtml)
     filterTemplate = _.template('<a href="" class="btn" data-mode="<%= filter%>"><%= label%></a>')
-
+    console.log @settings.modes
     #LOOP OVER PROVIDED MODES AND GET CONFIG INFO FROM FILTERTYPES
     _.each @settings.modes,(mode,key) ->
+      console.log "#{mode},#{key}"
       filterContext = Self.filterTypes[Self.settings.hub][mode]
+      console.log filterContext
       $filter = $(filterTemplate(filterContext))
+      Self.$filters.append($filter)
       
-      Self.$filters.append($filter);
       $filter.on "click", (e) ->
         $link = $(this)
         mode = $link.data("mode")
         label = $link.text()
-        lister.setMode mode
-        lister.getList true
+        Self.lister.setMode mode
+        Self.lister.getList true
         $link.siblings(".active").removeClass "active"
         $link.addClass "active"
         e.preventDefault()
+      return true
 
     @$filters.appendTo @$container
     @$list.appendTo @$container
@@ -100,17 +103,20 @@ class App.Components.NewsFeed
       maxrows:25
     },@settings.queryParams)
     
-    lister = new ListerView
+    @lister = new ListerView
       mode: @settings.defaultMode
       appendto: @$list
       data: listerParams  
+
     #returns
 
     ###
     START THE LIST
     ###
-    lister.getList true
-    return
+    @lister.getList true
+    return {
+      lister: Self.lister
+    }
   
   filterTypes:
     person:
@@ -118,15 +124,22 @@ class App.Components.NewsFeed
         "label":'All'
         "filter":'personAll'
       "personTo":
-        "label":'To Me'
+        "label":'To Person'
         "filter":'personTo'
       "personFrom":
-        "label":'By Me'
+        "label":'By Person'
         "filter":'personFrom'
     activity:
       "activityAll":
         "label":'All'
         "filter":'activityTo'
+    user:
+      "personTo":
+        "label":'To Me'
+        "filter":'personTo'
+      "personFrom":
+        "label":'By Me'
+        "filter":'personFrom'
 
   itemTemplate: _.template('<div class="history-item" id="history-item-<%=row.HISTORYID%>">
                               <div class="history-line">

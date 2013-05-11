@@ -21,8 +21,9 @@
 #=require app/user
 #=require app/activity
 #=require app/person
-#=require_tree "./app/person/"
+#=require_tree "./app/user/"
 #=require_tree "./app/activity/"
+#=require_tree "./app/person/"
 #=require app/cookie
 #=require app/configuration
 #=require app/components/util
