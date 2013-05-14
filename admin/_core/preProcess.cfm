@@ -53,7 +53,10 @@
 </cfif>
 
 <cfset LastPageIgnore = "Main.doLogin,Main.Login,Main.doLogout,Person.Finder,Process.AddToQueue,Activity.Notes,Person.PhotoUpload,Activity.Container,Activity.Overview,Assessment.Create,Assessment.Edit,Assessment.Questions,Assessment.QuestionCreate,Assessment.QuestionEdit,Activity.FacultyAHAH,Activity.AttendeesAHAH,Activity.CommitteeAHAH,Activity.ActionsShort,Activity.Stats,Report.ACCMEDetailAHAH,Report.ACCMESummaryAHAH,Report.CMECert,Public.CMECert,Activity.BuildTX,Activity.BuildEC,Activity.BuildHD1,Activity.BuildHD2,Activity.BuildHD3,Activity.BuildFD,Activity.BuildFV,Activity.BuildEC,Activity.BuildASEV,Activity.BuildASPO,Activity.BuildAUD,Activity.BuildVID,Activity.BuildPAY,Activity.BuildST,Activity.BuildTA,Activity.PubComponents,Activity.DocsAHAH,Activity.ActivityList,Activity.BuilderTX,Report.CDCAttendanceAHAH,Report.CDCEvalAHAH,Report.CDCPIFAHAH,Activity.BuilderFileUploader,Public.FileView,Activity.FinFeesAHAH,Activity.BuilderQ,Admin.CommentsAHAH,Public.FileView,Person.Create,Activity.PublishBar" />
-
+<cfparam name="params.controller" default="#listFirst(attributes.fuseaction,'.')#">
+<cfparam name="params.action" default="#listLast(attributes.fuseaction,'.')#">
+<cfparam name="params.event" default="#params.controller#-#params.action#">
+<cfparam name="params.path" default="/admin/event/#params.controller#.#params.action#">
 <!---<cfif Compare(cgi.SERVER_PORT,443) AND CGI.SERVER_NAME EQ "ccpd.uc.edu"> 
 	<cflocation url="https://#cgi.server_name##cgi.path_info#?#cgi.query_string#" addtoken="false"/> 
 </cfif>--->

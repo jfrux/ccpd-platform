@@ -1,7 +1,9 @@
 <cfscript>
 request.tabSettings = {
   "tabsSort":[
-    "main.welcome"
+    "main.welcome",
+    "person.home",
+    "activity.home"
   ],
   "tabs": {
     "main.welcome": {
@@ -12,7 +14,25 @@ request.tabSettings = {
       "event":"main.welcome",
       "hasToolbar":false,
       "subEvents":[]
-    }
+    },
+      "person.home": {
+        "label":"People",
+        "title":"People",
+        "tooltip":"",
+        "icon":"users",
+        "event":"person.home",
+        "hasToolbar":false,
+        "subEvents":[]
+      },
+      "activity.home": {
+        "label":"Activities",
+        "title":"Activities",
+        "tooltip":"",
+        "icon":"book",
+        "event":"activity.home",
+        "hasToolbar":false,
+        "subEvents":[]
+      }
   }
 };
 

@@ -11,7 +11,7 @@
         <do action="mPerson.getPerson" />
         <do action="mPerson.TabControl" />
         <set name="Request.ActionsLimit" value="4" />
-        <set name="Request.Page.Title" value="#PersonBean.getCertname()#" />
+        <set name="request.page.title" value="#PersonBean.getCertname()#" />
         <set name="request.page.action" value="#listLast(attributes.fuseaction,'.')#" />
         <set name="Request.MultiFormEditLink" value="#myself#person.detail?personid=#Attributes.personid#" />
       </true>
@@ -81,14 +81,10 @@
   
   <fuseaction name="Create">
     <do action="mPerson.Create" />
-
-    <set name="Request.Page.Title" value="Create Person" />
-        <set name="Request.Page.Breadcrumbs" value="People|Person.Home,Create Person|Person.Create" />
-
-    <do action="mPage.ParseCrumbs" />
-    
+    <set name="request.page.title" value="Create Person" />
+  
     <xfa name="FrmSubmit" value="Person.Create" />
-    
+
     <switch expression="#Attributes.Mode#">
       <case value="Default">
         <do action="vPerson.CreateRight" contentvariable="Request.MultiFormRight" />
@@ -98,7 +94,6 @@
       </case>
       <case value="Insert">
         <do action="vPerson.CreatePerson" contentvariable="Request.Page.Body" />
-        <do action="vLayout.None" />
       </case>
     </switch>
   </fuseaction>
@@ -132,29 +127,18 @@
   <fuseaction name="Home">
     <xfa name="SearchSubmit" value="Person.Home" />
     <do action="mPerson.Search" />
-        
-    <set name="Request.Page.Title" value="Search People" />
-        <set name="Request.Page.Breadcrumbs" value="People|Person.Home" />
-        
-    <do action="mPage.ParseCrumbs" />
-    
+    <do action="mMain.TabControl" />
+    <set name="request.page.title" value="Search People" />
     <xfa name="FrmSubmit" value="person.home" />
-    <do action="vPerson.Search" contentvariable="Request.Page.Body" />
-        <do action="vLayout.Default" />
+    <do action="vPerson.Search" contentvariable="multiformcontent" />
+    <do action="vLayout.Sub_User" contentvariable="request.page.body" />
   </fuseaction>
   
   <fuseaction name="Finder">
     <xfa name="SearchSubmit" value="Person.Finder" />
     <do action="mPerson.Search" />
-        
-    <set name="Request.Page.Title" value="Search People" />
-        <set name="Request.Page.Breadcrumbs" value="People|Person.Home" />
-        
-    <do action="mPage.ParseCrumbs" />
-    
-    <xfa name="FrmSubmit" value="Person.Home" />
+    <set name="request.page.title" value="Search People" /><xfa name="FrmSubmit" value="Person.Home" />
     <do action="vPerson.Search" contentvariable="Request.Page.Body" />
-        
     <do action="vLayout.None" />
   </fuseaction>
   

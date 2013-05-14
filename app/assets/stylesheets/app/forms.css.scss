@@ -1,4 +1,8 @@
 form {
+  .btn [class^="icon-"], .btn [class*=" icon-"], .nav [class^="icon-"], .nav [class*=" icon-"] {
+      display: inline;
+      line-height: 20px;
+  }
   .controls {
     span.help-block {
       display:inline-block;

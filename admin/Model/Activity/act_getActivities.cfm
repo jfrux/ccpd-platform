@@ -6,6 +6,7 @@
 <cfparam name="Attributes.CreatedBy" default="0">
 <cfparam name="Attributes.UpdatedBy" default="0">
 <cfparam name="Attributes.Search" default="">
+<cfparam name="Attributes.q" default="">
 <cfparam name="url.GroupingID" default="0">
 <cfparam name="url.Clear" default="0">
 

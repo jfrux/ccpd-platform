@@ -3,9 +3,7 @@
   <!-- Activity -->
   <circuit access="public">
     <prefuseaction callsuper="true">
-      <set name="Request.NavItem" value="2" />
-      
-      <if condition="isDefined('Attributes.ActivityID')">
+      <set name="Request.NavItem" value="2" /><if condition="isDefined('Attributes.ActivityID')">
         <true>
           <set name="Request.MultiFormEditLabel" value="Edit this activity" />
           <do action="mActivity.getActivity" />
@@ -90,10 +88,7 @@
       <do action="mActivity.getOther" />
     </fuseaction>
 
-    <fuseaction name="Actions">
-      <set name="Request.Page.Breadcrumbs" value="Activities|Activity.Home,#ActivityTitleShort#|Activity.Detail?ActivityID=#Attributes.ActivityID#,Actions|Activity.actions?ActivityID=#Attributes.ActivityID#" />
-      <do action="mPage.ParseCrumbs" />
-      <do action="mActivity.getAllActions" />
+    <fuseaction name="Actions"><do action="mActivity.getAllActions" />
 
     </fuseaction>
 
@@ -112,12 +107,11 @@
 							
 		<set name="Request.Page.Title" value="#ActivityTitleShort#" />
         
-		<set name="Request.Page.Breadcrumbs" value="Activities|Activity.Home,#ActivityTitleShort#|Activity.Detail?ActivityID=#Attributes.ActivityID#,Other|Activity.Other?ActivityID=#Attributes.ActivityID#,Email Logs|Activity.EmailLogs?ActivityID=#Attributes.ActivityID#" />
-		<do action="mPage.ParseCrumbs" />
+		
 		<do action="mActivity.getEmailLogs" />
 		<do action="vActivity.EmailLogs" contentvariable="Request.MultiFormContent" />
     <do action="vActivity.EmailLogsRight" contentvariable="Request.MultiFormRight" />
-		<do action="vLayout.Sub_Activity" contentvariable="Request.Page.Body" />
+		<do action="vLayout.Sub_Activity" contentvariable="request.page.body" />
     <do action="vLayout.Default" />
 	</fuseaction>
 
@@ -127,27 +121,23 @@
 
     <fuseaction name="AgendaForm">
       <do action="mActivity.getAgendaItem" />
-      <do action="vActivity.AgendaForm" contentvariable="Request.Page.Body" />
+      <do action="vActivity.AgendaForm" contentvariable="request.page.body" />
     </fuseaction>
 
     <fuseaction name="Application">
       <do action="mActivity.getApplication" />
-      <set name="Request.Page.Breadcrumbs" value="Activities|Activity.Home,#ActivityTitleShort#|Activity.Detail?ActivityID=#Attributes.ActivityID#,Other|Activity.Other?ActivityID=#Attributes.ActivityID#,Application|Activity.Application?ActivityID=#Attributes.ActivityID#" />
-      <do action="mPage.ParseCrumbs" />
+      
     </fuseaction>
     <fuseaction name="Assessment">
       <do action="mActivity.getAssessments" />
       <do action="mActivity.getAssessResult" />
       <do action="vActivity.Assessment" />
     </fuseaction>
-    <fuseaction name="Assessments">
-      <do action="mActivity.getAssessments" />
-      <set name="Request.Page.Breadcrumbs" value="Activities|Activity.Home,#ActivityTitleShort#|Activity.Detail?ActivityID=#Attributes.ActivityID#,Assessments|Activity.Assessments?ActivityID=#Attributes.ActivityID#" />
-      <do action="mPage.ParseCrumbs" />
-      <set name="Request.MultiFormTitle" value="Assessments" />
 
-      
+    <fuseaction name="Assessments">
+      <do action="mActivity.getAssessments" /><set name="Request.MultiFormTitle" value="Assessments" />
     </fuseaction>
+
     <fuseaction name="AssessmentsAHAH">
       <do action="mActivity.getAssessments" />
       <do action="vActivity.AssessmentsAHAH" contentvariable="request.page.body" />
@@ -156,10 +146,7 @@
     <fuseaction name="AttendeeCDC">
       <do action="mPerson.getPerson" />
       <do action="mActivity.getAttendeeCDC" />
-      <do action="mActivity.saveAttendeeCDC" />
-      <set name="Request.Page.Breadcrumbs" value="Activities|Activity.Home,#ActivityTitleShort#|Activity.Detail?ActivityID=#Attributes.ActivityID#,Needs Assessment|Activity.Needs?ActivityID=#Attributes.ActivityID#" />
-      <do action="mPage.ParseCrumbs" />
-      <set name="Request.MultiFormTitle" value="Needs Assessment" />
+      <do action="mActivity.saveAttendeeCDC" /><set name="Request.MultiFormTitle" value="Needs Assessment" />
       <do action="vActivity.AttendeeCDC" />
     </fuseaction>
 
@@ -172,84 +159,66 @@
     <fuseaction name="Attendees">
       <do action="mActivity.getAttendees" />
       <do action="mActivity.getCredits" />
-      <do action="mActivity.getAttendeeStatuses" />
-      
-      <set name="Request.Page.Breadcrumbs" 
-           value="Activities|Activity.Home,#ActivityTitleShort#|Activity.Detail?ActivityID=#Attributes.ActivityID#,Attendees|Activity.Attendees?ActivityID=#Attributes.ActivityID#" />
-      
-      <do action="mPage.ParseCrumbs" />
-      
-      <set name="Request.MultiFormTitle" value="Needs Assessment" />
-
-
-          
+      <do action="mActivity.getAttendeeStatuses" />     value="Activities|Activity.Home,#ActivityTitleShort#|Activity.Detail?ActivityID=#Attributes.ActivityID#,Attendees|Activity.Attendees?ActivityID=#Attributes.ActivityID#" />
+      <set name="Request.MultiFormTitle" value="Needs Assessment" /> 
     </fuseaction>
+
     <fuseaction name="AttendeesAHAH">
       <do action="mActivity.getAttendees" />
       <do action="mActivity.getCredits" />
       <do action="vActivity.AttendeesAHAH" contentvariable="request.page.body" />
     </fuseaction>
+
     <fuseaction name="Attendees2">
       <do action="mActivity.getAttendees" />
       <do action="mActivity.getCredits" />
       <do action="mActivity.getAttendeeStatuses" />
-      <set name="Request.Page.Breadcrumbs" value="Activities|Activity.Home,#ActivityTitleShort#|Activity.Detail?ActivityID=#Attributes.ActivityID#,Attendees|Activity.Attendees?ActivityID=#Attributes.ActivityID#" />
-      <do action="mPage.ParseCrumbs" />
       <set name="Request.MultiFormTitle" value="Needs Assessment" />
-      
     </fuseaction>
+    
     <fuseaction name="Attendees2AHAH">
       <do action="mActivity.getAttendees" />
       <do action="mActivity.getCredits" />
       <do action="vActivity.Attendees2AHAH" contentvariable="request.page.body" />
     </fuseaction>
+    
     <fuseaction name="CDCInfo">
       <do action="mActivity.saveCDCInfo" />
       <do action="mActivity.getCDCInfo" />
-      <set name="Request.Page.Breadcrumbs" value="Activities|Activity.Home,#ActivityTitleShort#|Activity.Detail?ActivityID=#Attributes.ActivityID#,Other|Activity.Other?ActivityID=#Attributes.ActivityID#,CDC Info|Activity.CDCInfo?ActivityID=#Attributes.ActivityID#" />
-      <do action="mPage.ParseCrumbs" />
-      
     </fuseaction>
+    
     <fuseaction name="Committee">
       <do action="mActivity.getRoles" />
       <do action="mActivity.getActivityCommittee" />
-      <set name="Request.Page.Breadcrumbs" value="Activities|Activity.Home,#ActivityTitleShort#|Activity.Detail?ActivityID=#Attributes.ActivityID#,Committee|Activity.Committee?ActivityID=#Attributes.ActivityID#" />
-      <do action="mPage.ParseCrumbs" />
       <set name="Request.MultiFormTitle" value="Planning Committee Members" />
-      
     </fuseaction>
+    
     <fuseaction name="CommitteeAHAH">
       <do action="mActivity.getActivityCommittee" />
       <do action="vActivity.CommitteeAHAH" contentvariable="request.page.body" />
     </fuseaction>
+
     <fuseaction name="Create">
       <do action="mActivity.getActivityTypes" />
       <do action="mActivity.getLiveGroupings" />
       <do action="mActivity.getEMGroupings" />
       <do action="mActivity.createActivity" />
       <set name="Request.Page.Title" value="Create Activity" />
-      <set name="Request.Page.Breadcrumbs" value="Activities|Activity.Home,Unsaved Activity|Activity.Create" />
-      <do action="mPage.ParseCrumbs" />
-      <do action="vLayout.Sub_MultiForm" contentvariable="Request.Page.Body" />
-      
     </fuseaction>
     <fuseaction name="Credits">
       <do action="mActivity.saveCredits" />
       <do action="mActivity.getCredits" />
-      <set name="Request.Page.Breadcrumbs" value="Activities|Activity.Home,#ActivityTitleShort#|Activity.Detail?ActivityID=#Attributes.ActivityID#,Credits|Activity.Credits?ActivityID=#Attributes.ActivityID#" />
-      <do action="mPage.ParseCrumbs" />
+      
       <set name="Request.MultiFormTitle" value="Credit &amp; Points" />
       
     </fuseaction>
     <fuseaction name="Detail">
-      <set name="Request.Page.Breadcrumbs" value="Activities|Activity.Home,#ActivityTitleShort#|Activity.Detail?ActivityID=#Attributes.ActivityID#" />
-      <do action="mPage.ParseCrumbs" />
+      
     </fuseaction>
     <fuseaction name="Docs">
       <do action="mActivity.getDocTypes" />
       <do action="mActivity.getDocs" />
-      <set name="Request.Page.Breadcrumbs" value="Activities|Activity.Home,#ActivityTitleShort#|Activity.Detail?ActivityID=#Attributes.ActivityID#,Documents|Activity.Docs?ActivityID=#Attributes.ActivityID#" />
-      <do action="mPage.ParseCrumbs" />
+      
       <set name="Request.MultiFormTitle" value="Documents &amp; Materials" />
       
     </fuseaction>
@@ -263,23 +232,22 @@
       <do action="mActivity.saveCurrSupport" />
       <do action="mActivity.getCurrSupport" />
       <do action="mActivity.getSupporter" />
-      <do action="vActivity.EditCurrSupport" contentvariable="Request.Page.Body" />
+      <do action="vActivity.EditCurrSupport" contentvariable="request.page.body" />
     </fuseaction>
 
     <fuseaction name="EditSupporter">
       <do action="mActivity.saveSupporter" />
       <do action="mActivity.getSupporter" />
-      <do action="vActivity.EditSupporter" contentvariable="Request.Page.Body" />
+      <do action="vActivity.EditSupporter" contentvariable="request.page.body" />
     </fuseaction>
 
     <fuseaction name="emailCert">
-      <do action="vActivity.emailCert" contentvariable="Request.Page.Body" />
+      <do action="vActivity.emailCert" contentvariable="request.page.body" />
       <do action="vLayout.None" />
     </fuseaction>
     <fuseaction name="Faculty">
       <do action="mActivity.getRoles" />
-      <set name="Request.Page.Breadcrumbs" value="Activities|Activity.Home,#ActivityTitleShort#|Activity.Detail?ActivityID=#Attributes.ActivityID#,Faculty|Activity.Faculty?ActivityID=#Attributes.ActivityID#" />
-      <do action="mPage.ParseCrumbs" />
+      
       <set name="Request.MultiFormTitle" value="Faculty" />
       
     </fuseaction>
@@ -294,15 +262,13 @@
     </fuseaction>
     <fuseaction name="Finances">
       <do action="mActivity.getFinOverview" />
-      <set name="Request.Page.Breadcrumbs" value="Activities|Activity.Home,#ActivityTitleShort#|Activity.Detail?ActivityID=#Attributes.ActivityID#,Finances|Activity.Finances?ActivityID=#Attributes.ActivityID#" />
-      <do action="mPage.ParseCrumbs" />
+      
       <set name="Request.MultiFormTitle" value="Finances" />
       
     </fuseaction>
     <fuseaction name="FinBudget">
       <do action="mActivity.saveFinBudget" />
-      <set name="Request.Page.Breadcrumbs" value="Activities|Activity.Home,#ActivityTitleShort#|Activity.Detail?ActivityID=#Attributes.ActivityID#,Finances|Activity.Finances?ActivityID=#Attributes.ActivityID#,Budget|Activity.FinBudget?ActivityID=#Attributes.ActivityID#" />
-      <do action="mPage.ParseCrumbs" />
+      
       <set name="Request.MultiFormTitle" value="Finances" />
       
     </fuseaction>
@@ -312,10 +278,7 @@
       <do action="vActivity.FinBudgetAHAH" contentvariable="request.page.body" />
     </fuseaction>
 
-    <fuseaction name="FinFees">
-      <set name="Request.Page.Breadcrumbs" value="Activities|Activity.Home,#ActivityTitleShort#|Activity.Detail?ActivityID=#Attributes.ActivityID#,Finances|Activity.Finances?ActivityID=#Attributes.ActivityID#,Fees|Activity.FinFees?ActivityID=#Attributes.ActivityID#" />
-      <do action="mPage.ParseCrumbs" />
-      <set name="Request.MultiFormTitle" value="Finances" />
+    <fuseaction name="FinFees"><set name="Request.MultiFormTitle" value="Finances" />
     </fuseaction>
 
     <fuseaction name="FinFeesAHAH">
@@ -323,10 +286,7 @@
       <do action="mActivity.getFinFee" />
       <do action="vActivity.FinFeesAHAH" contentvariable="request.page.body" />
     </fuseaction>
-    <fuseaction name="FinLedger">
-      <set name="Request.Page.Breadcrumbs" value="Activities|Activity.Home,#ActivityTitleShort#|Activity.Detail?ActivityID=#Attributes.ActivityID#,Finances|Activity.Finances?ActivityID=#Attributes.ActivityID#,General Ledger|Activity.FinLedger?ActivityID=#Attributes.ActivityID#" />
-      <do action="mPage.ParseCrumbs" />
-      <set name="Request.MultiFormTitle" value="Finances" />
+    <fuseaction name="FinLedger"><set name="Request.MultiFormTitle" value="Finances" />
       
     </fuseaction>
     <fuseaction name="FinLedgerAHAH">
@@ -337,20 +297,14 @@
     <fuseaction name="FinSupport">
       <do action="mActivity.getFinSupporters" />
       <do action="mActivity.getSupporters" />
-      <do action="mActivity.getSupportTypes" />
-      <set name="Request.Page.Breadcrumbs" value="Activities|Activity.Home,#ActivityTitleShort#|Activity.Detail?ActivityID=#Attributes.ActivityID#,Finances|Activity.Finances?ActivityID=#Attributes.ActivityID#,Supporters|Activity.FinSupport?ActivityID=#Attributes.ActivityID#" />
-      <do action="mPage.ParseCrumbs" />
-      <set name="Request.MultiFormTitle" value="Finances" />
+      <do action="mActivity.getSupportTypes" /><set name="Request.MultiFormTitle" value="Finances" />
       
     </fuseaction>
     <fuseaction name="FinSupportAHAH">
       <do action="mActivity.getFinSupporters" />
       <do action="vActivity.FinSupportAHAH" contentvariable="request.page.body" />
     </fuseaction>
-    <fuseaction name="History">
-      <set name="Request.Page.Breadcrumbs" value="Activities|Activity.Home,#ActivityTitleShort#|Activity.Detail?ActivityID=#Attributes.ActivityID#,Credits|Activity.Credits?ActivityID=#Attributes.ActivityID#" />
-      <do action="mPage.ParseCrumbs" />
-      <set name="Request.MultiFormTitle" value="History" />
+    <fuseaction name="History"><set name="Request.MultiFormTitle" value="History" />
       
     </fuseaction>
     <fuseaction name="home">
@@ -358,46 +312,31 @@
       <do action="mActivity.getActivityTypes" />
       <do action="mActivity.getLiveGroupings" />
       <do action="mActivity.getEMGroupings" />
-      <set name="Request.Page.Title" value="Activities" />
-      <set name="Request.Page.Breadcrumbs" value="Activities|Activity.Home" />
-      <do action="mPage.ParseCrumbs" />
-      <do action="vActivity.List" contentvariable="Request.Page.Body" />
+      <do action="mMain.TabControl" />
+      <set name="Request.Page.Title" value="Activities" /><do action="vActivity.searchFilters" contentvariable="multiformright" />
+      <do action="vActivity.search" contentvariable="multiformcontent" />
+      <do action="vLayout.sub_user" contentvariable="request.page.body" />
       
     </fuseaction>
     <fuseaction name="home2">
-      <set name="Request.Page.Title" value="Activities" />
-      <set name="Request.Page.Breadcrumbs" value="Activities|Activity.Home" />
-      <do action="mPage.ParseCrumbs" />
-      <do action="vActivity.Home" contentvariable="Request.Page.Body" />
+      <set name="Request.Page.Title" value="Activities" /><do action="vActivity.Home" contentvariable="request.page.body" />
       
     </fuseaction>
     <fuseaction name="Meals">
-      <set name="Request.Page.Breadcrumbs" value="Activities|Activity.Home,#ActivityTitleShort#|Activity.Detail?ActivityID=#Attributes.ActivityID#,Other|Activity.Other?ActivityID=#Attributes.ActivityID#,Meals|Activity.Meals?ActivityID=#Attributes.ActivityID#" />
-      <do action="mPage.ParseCrumbs" />
-      
     </fuseaction>
     <fuseaction name="NoteCreate">
-      <do action="mActivity.saveNote" />
-      <set name="Request.Page.Breadcrumbs" value="Activities|Activity.Home,#ActivityTitleShort#|Activity.Detail?ActivityID=#Attributes.ActivityID#,Notes|Activity.Notes?ActivityID=#Attributes.ActivityID#,New Note|Activity.CreateNote+ActivitiesectionID=2" />
-      <do action="mPage.ParseCrumbs" />
-      <set name="Request.MultiFormTitle" value="Create A Activity Note" />
-      <do action="vLayout.Sub_MultiForm" contentvariable="Request.Page.Body" />
+      <do action="mActivity.saveNote" /><set name="Request.MultiFormTitle" value="Create A Activity Note" />
+      <do action="vLayout.Sub_MultiForm" contentvariable="request.page.body" />
       
     </fuseaction>
     <fuseaction name="NoteDelete">
       <do action="mActivity.deleteNote" />
     </fuseaction>
     <fuseaction name="Notes">
-      <do action="mActivity.getNotes" />
-      <set name="Request.Page.Breadcrumbs" value="Activities|Activity.Home,#ActivityTitleShort#|Activity.Detail?ActivityID=#Attributes.ActivityID#,Notes|Activity.Notes?ActivityID=#Attributes.ActivityID#" />
-      <do action="mPage.ParseCrumbs" />
-      <set name="Request.MultiFormTitle" value="Notes" />
+      <do action="mActivity.getNotes" /><set name="Request.MultiFormTitle" value="Notes" />
       
     </fuseaction>
     <fuseaction name="Other">
-      <set name="Request.Page.Breadcrumbs" value="Activities|Activity.Home,#ActivityTitleShort#|Activity.Detail?ActivityID=#Attributes.ActivityID#,Other|Activity.Other?ActivityID=#Attributes.ActivityID#" />
-      <do action="mPage.ParseCrumbs" />
-      
     </fuseaction>
     <fuseaction name="Overview">
       <do action="mActivity.getActivityTypes" />
@@ -415,25 +354,18 @@
       <do action="vActivity.Overview" />
     </fuseaction>
     <fuseaction name="PubPrereqs">
-      <set name="Request.Page.Breadcrumbs" value="Activities|Activity.Home,#ActivityTitleShort#|Activity.Detail?ActivityID=#Attributes.ActivityID#,Publish|Activity.Publish?ActivityID=#Attributes.ActivityID#,Prerequisites|Activity.PubPrereqs?ActivityID=#Attributes.ActivityID#" />
-      <do action="mPage.ParseCrumbs" />
-      
     </fuseaction>
     <fuseaction name="PubPrereqsAHAH">
       <do action="mActivity.getPrereqs" />
       <do action="vActivity.PubPrereqsAHAH" contentvariable="request.page.body" />
     </fuseaction>
     <fuseaction name="Publish">
-      <set name="Request.Page.Breadcrumbs" value="Activities|Activity.Home,#ActivityTitleShort#|Activity.Detail?ActivityID=#Attributes.ActivityID#,Publish|Activity.Publish?ActivityID=#Attributes.ActivityID#" />
-      <do action="mPage.ParseCrumbs" />
-      
     </fuseaction>
     
     <fuseaction name="PubGeneral">
       <do action="mActivity.getPubGeneral" />
       <set name="Attributes.ThisUpdated" value="#ActivityPubGeneral.getUpdated()#" />
-      <set name="Request.Page.Breadcrumbs" value="Activities|Activity.Home,#ActivityTitleShort#|Activity.Detail?ActivityID=#Attributes.ActivityID#,Publish|Activity.Publish?ActivityID=#Attributes.ActivityID#,General|Activity.PubGeneral?ActivityID=#Attributes.ActivityID#" />
-      <do action="mPage.ParseCrumbs" />
+      
     </fuseaction>
 
     <fuseaction name="PubComponents">
@@ -442,8 +374,7 @@
     </fuseaction>
     <fuseaction name="PubSites">
       <do action="mActivity.getActivityPubSites" />
-      <set name="Request.Page.Breadcrumbs" value="Activities|Activity.Home,#ActivityTitleShort#|Activity.Detail?ActivityID=#Attributes.ActivityID#,Publish|Activity.Publish?ActivityID=#Attributes.ActivityID#,Sites|Activity.PubSites?ActivityID=#Attributes.ActivityID#" />
-      <do action="mPage.ParseCrumbs" />
+      
     </fuseaction>
     <fuseaction name="PubSpecialty">
       <do action="mActivity.getSpecialties" />
@@ -463,14 +394,8 @@
     
     <fuseaction name="PubBuilder">
       <do action="mActivity.getComponents" />
-      <set name="Request.Page.Breadcrumbs" value="Activities|Activity.Home,#ActivityTitleShort#|Activity.Detail?ActivityID=#Attributes.ActivityID#,Publish|Activity.Publish?ActivityID=#Attributes.ActivityID#,Builder|Activity.PubBuilder?ActivityID=#Attributes.ActivityID#" />
-      <do action="mPage.ParseCrumbs" />
-      
     </fuseaction>
-    <fuseaction name="Reports">
-      <set name="Request.Page.Breadcrumbs" value="Activities|Activity.Home,#ActivityTitleShort#|Activity.Detail?ActivityID=#Attributes.ActivityID#,Reports|Activity.Reports" />
-      <do action="mPage.ParseCrumbs" />
-      <set name="Request.MultiFormTitle" value="Needs Assessment" />
+    <fuseaction name="Reports"><set name="Request.MultiFormTitle" value="Needs Assessment" />
       
     </fuseaction>
     <fuseaction name="BuilderFileUploader">

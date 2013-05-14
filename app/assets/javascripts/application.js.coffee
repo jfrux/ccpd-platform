@@ -7,6 +7,7 @@
 #=require app/components
 #=require app/components/prettydate
 #=require app/components/debug
+#=require app/components/search
 #=require app/components/personfinder
 #=require app/components/formstate
 

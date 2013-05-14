@@ -82,6 +82,11 @@
   <fuseaction name="ReportsRight">
     <include template="toolbar/dsp_ReportsRight" />
   </fuseaction>
+
+  <fuseaction name="SearchFilters">
+    <include template="toolbar/dsp_searchFilters" />
+  </fuseaction>
+
   <!--//END TOOLBARS -->
   <fuseaction name="ActionsShort">
     <include template="dsp_ActionsShort" />
@@ -298,6 +303,9 @@
   </fuseaction>
   <fuseaction name="FormListSection">
     <include template="dsp_FormListSection" />
+  </fuseaction>
+  <fuseaction name="search">
+    <include template="dsp_search" />
   </fuseaction>
   <fuseaction name="List">
     <include template="dsp_List" />

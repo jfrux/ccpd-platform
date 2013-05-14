@@ -15,7 +15,7 @@
   </script>
 </head>
 
-<body class="tabs tab#Request.NavItem#">
+<body class="#params.controller# #params.action# #params.event# tabs tab#Request.NavItem#">
   <div class="body-inner container-fluid">
       <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="navbar-inner">
@@ -55,5 +55,7 @@
     <script>
     App.Components.Status.start();
     </script>
+    <cfdump label="PARAMS" var="#params#" />
+    <cfdump label="ATTRIBUTES" var="#attributes#" />
   </body>
 </html>

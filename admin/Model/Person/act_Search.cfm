@@ -1,54 +1,38 @@
-<cfparam name="Attributes.SSN" default="">
-<cfparam name="Attributes.Birthdate" default="">
-<cfparam name="Attributes.FirstName" default="">
-<cfparam name="Attributes.LastName" default="">
-<cfparam name="Attributes.Email" default="">
-<cfparam name="Attributes.UCID" default="">
-<cfparam name="Attributes.ActivityID" default="">
-<cfparam name="Attributes.Instance" default="">
-<cfparam name="Attributes.Search" default="">
-<cfparam name="Attributes.Message" default="">
+<cfparam name="attributes.ssn" default="">
+<cfparam name="attributes.birthdate" default="">
+<cfparam name="attributes.q" default="">
+<cfparam name="attributes.firstname" default="">
+<cfparam name="attributes.lastname" default="">
+<cfparam name="attributes.email" default="">
+<cfparam name="attributes.ucid" default="">
+<cfparam name="attributes.activityid" default="">
+<cfparam name="attributes.instance" default="">
+<cfparam name="attributes.search" default="">
+<cfparam name="attributes.message" default="">
 
-<cfif Attributes.Search NEQ "" AND Attributes.SSN EQ "" AND Attributes.FirstName EQ "" AND Attributes.LastName EQ "" AND Attributes.Email EQ "" AND Attributes.UCID EQ "" AND Attributes.Birthdate EQ "">
+<cfif attributes.search NEQ "" AND attributes.ssn EQ "" AND attributes.firstname EQ "" AND attributes.lastname EQ "" AND attributes.email EQ "" AND attributes.ucid EQ "" AND attributes.birthdate EQ "">
 	<cfset Request.Status.Errors = "You must specify search criteria before searching...">
 </cfif>
 
 <cfif Request.Status.Errors EQ "">
-	<cfif Attributes.Search NEQ "">
-        <cfset qPeople = Application.Com.PersonGateway.getBySearch(SSN=Attributes.SSN,Birthdate=Attributes.Birthdate,FirstName=Attributes.FirstName,LastName=Attributes.LastName,UCID=Attributes.UCID,Email=Attributes.Email,DeletedFlag="N",OrderBy="P.LastName,P.FirstName")>
+	<cfif attributes.search NEQ "">
+        <cfset qPeople = Application.Com.PersonGateway.getBysearch(ssn=attributes.ssn,birthdate=attributes.birthdate,firstname=attributes.firstname,lastname=attributes.lastname,ucid=attributes.ucid,email=attributes.email,DeletedFlag="N",OrderBy="P.lastname,P.firstname")>
         <cfset PeoplePager = CreateObject("component","#Application.Settings.Com#Pagination").init()>
-        <!--- 
-        <cfset PeoplePager.setQueryToPaginate(qPeople)>
-        <cfset PeoplePager.setBaseLink("#myself##xfa.SearchSubmit#?Instance=#Attributes.Instance#&Search=1&SSN=#Attributes.SSN#&Birthdate=#Attributes.Birthdate#&FirstName=#Attributes.FirstName#&LastName=#Attributes.LastName#&UCID=#Attributes.UCID#&Email=#Attributes.Email#&ActivityID=#Attributes.ActivityID#") />
-        <cfset PeoplePager.setItemsPerPage(9) />
-        <cfset PeoplePager.setUrlPageIndicator("page") />
-        <cfset PeoplePager.setShowNumericLinks(true) />
-        <cfset PeoplePager.setClassName("green") />
- --->
         <cfset PeoplePager.setQueryToPaginate(qPeople)>
         <cfset PeoplePager.setMissingNumbersHTML("<span>...</span>")>
-        <cfset PeoplePager.setBaseLink("#myself##xfa.SearchSubmit#?Instance=#Attributes.Instance#&Search=1&SSN=#Attributes.SSN#&Birthdate=#Attributes.Birthdate#&FirstName=#Attributes.FirstName#&LastName=#Attributes.LastName#&UCID=#Attributes.UCID#&Email=#Attributes.Email#&ActivityID=#Attributes.ActivityID#") />
+        <cfset PeoplePager.setBaseLink("#myself##xfa.searchSubmit#?instance=#attributes.instance#&search=1&ssn=#attributes.ssn#&birthdate=#attributes.birthdate#&firstname=#attributes.firstname#&lastname=#attributes.lastname#&ucid=#attributes.ucid#&email=#attributes.email#&activityid=#attributes.activityid#") />
         <cfset PeoplePager.setItemsPerPage(7) />
         <cfset PeoplePager.setUrlPageIndicator("page") />
         <cfset PeoplePager.setShowNumericLinks(true) />
         <cfset PeoplePager.setClassName("green span24") />
-    <cfelse>
-       <!--- <cfset qPeople = Application.Com.PersonGateway.getBySearch(Limit=1000,DeletedFlag="N",OrderBy="P.LastName,P.FirstName")>
-        <cfset PeoplePager = CreateObject("component","#Application.Settings.Com#Pagination").init()>
-        <cfset PeoplePager.setQueryToPaginate(qPeople)>
-        <cfset PeoplePager.setBaseLink("#myself##xfa.SearchSubmit#?Instance=#Attributes.Instance#&ActivityID=#Attributes.ActivityID#") />
-        <cfset PeoplePager.setItemsPerPage(9) />
-        <cfset PeoplePager.setUrlPageIndicator("page") />
-        <cfset PeoplePager.setShowNumericLinks(true) />
-        <cfset PeoplePager.setClassName("green") />--->
     </cfif>
 </cfif>
 
 <!--- CHECKS IF A PERSON WAS JUST CREATED // CLEARS VARIABLES SO THE SEARCH FIELDS DO NOT FILL IN WITH CREATED PERSON'S INFO | ADDED BY JS 11/19/2010 --->
-<cfif Attributes.Message NEQ "">
-	<cfset attributes.FirstName = "">
-	<cfset attributes.LastName = "">
-	<cfset attributes.Birthdate = "">
-	<cfset attributes.SSN = "">
-	<cfset attributes.Email = "">
+<cfif attributes.message NEQ "">
+	<cfset attributes.firstname = "">
+	<cfset attributes.lastname = "">
+	<cfset attributes.birthdate = "">
+	<cfset attributes.ssn = "">
+	<cfset attributes.email = "">
 </cfif>

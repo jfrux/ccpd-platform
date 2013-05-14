@@ -32,34 +32,17 @@
 		var sTitle = "#Attributes.Title#";
 		</cfoutput>
 		$(document).ready(function() {
-			$("#ReleaseDate").mask("99/99/9999");
-	
 			
-			$("#Title").unbind("keydown");
-			
-			$("#Title").autocomplete(sRootPath + '/_com/AJAX_Activity.cfc?method=AutoComplete&returnformat=plain');
-			
-			
-			$('.ActivityListing h3 a').each(function() { 
-				$.highlight(this, sTitle);
-			});
-			
-			$("#Title").focus();
-			
-			setActivityType($("#ActivityTypeID").val());
-			
-			
-			$("#ActivityTypeID").bind("change", this, function() {
-				setActivityType($(this).val());
-			});
 		});
 		
 		<cfoutput>
-		var LiveOptions = "<option value=\"0\">Any Grouping</option>" + <cfloop query="qLiveGroupings">"<option value=\"#qLiveGroupings.GroupingID#\"<cfif qLiveGroupings.GroupingID EQ Attributes.GroupingID> SELECTED</cfif>>#qLiveGroupings.Name#</option>"<cfif qLiveGroupings.RecordCount NEQ qLiveGroupings.CurrentRow> + </cfif></cfloop>;
-		var EMOptions = "<option value=\"0\">Any Grouping</option>" + <cfloop query="qEMGroupings">"<option value=\"#qEMGroupings.GroupingID#\"<cfif qEMGroupings.GroupingID EQ Attributes.GroupingID> SELECTED</cfif>>#qEMGroupings.Name#</option>"<cfif qEMGroupings.RecordCount NEQ qEMGroupings.CurrentRow> + </cfif></cfloop>;
-		var NoOptions = "<option value=\"0\">Any Grouping</option>";
+		var searchSettings = {};
+		searchSettings.liveOptions = "<option value=\"0\">Any Grouping</option>" + <cfloop query="qLiveGroupings">"<option value=\"#qLiveGroupings.GroupingID#\"<cfif qLiveGroupings.GroupingID EQ Attributes.GroupingID> SELECTED</cfif>>#qLiveGroupings.Name#</option>"<cfif qLiveGroupings.RecordCount NEQ qLiveGroupings.CurrentRow> + </cfif></cfloop>;
+		searchSettings.EMOptions = "<option value=\"0\">Any Grouping</option>" + <cfloop query="qEMGroupings">"<option value=\"#qEMGroupings.GroupingID#\"<cfif qEMGroupings.GroupingID EQ Attributes.GroupingID> SELECTED</cfif>>#qEMGroupings.Name#</option>"<cfif qEMGroupings.RecordCount NEQ qEMGroupings.CurrentRow> + </cfif></cfloop>;
+		searchSettings.NoOptions = "<option value=\"0\">Any Grouping</option>";
 		</cfoutput>
 		
+		App.Activity.Search.start(searchSettings);
 		function setActivityType(nActivity) {
 			if(nActivity == 1) {
 				$("#Grouping").html(LiveOptions);
