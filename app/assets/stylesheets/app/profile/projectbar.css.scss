@@ -19,6 +19,35 @@
 
       }
 
+      .profile-picture {
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+        background-size: auto auto;
+        min-height: 125px;
+      }
+
+      .profile-userbox {
+        @include clearfix();
+        padding:10px;
+        .userbox-image {
+          background-position: 50% 50%;
+          background-repeat: no-repeat;
+          background-size: auto auto;
+          float:left;
+          height:50px;
+          width:50px;
+        }
+        .userbox-details {
+          margin-left:62px;
+          .userbox-link-profile {
+            font-weight:bold;
+          }
+          .userbox-link-editprofile {
+            font-weight:normal;
+          }
+        }
+      }
+
       .thumbnail {
         background-color: #FFFFFF;
         @include border-radius(4px);

@@ -84,7 +84,7 @@
   </fuseaction>
 
   <fuseaction name="SearchFilters">
-    <include template="toolbar/dsp_searchFilters" />
+    <include template="infobar/dsp_searchFilters" />
   </fuseaction>
 
   <!--//END TOOLBARS -->

@@ -10,6 +10,13 @@
 <cfparam name="url.GroupingID" default="0">
 <cfparam name="url.Clear" default="0">
 
+<cfset statusIcons = {
+	"1":"status",
+	"2":"status-away",
+	"3":"status-offline",
+	"4":"status-busy"
+} />
+
 <cfif NOT isDefined("Cookie.USER_FindActivityTypeID") OR url.Clear EQ 1>
 	<cfcookie name="USER_FindActivityTypeID" value="0">
 	<cfcookie name="USER_FindGroupingID" value="0">
@@ -46,9 +53,6 @@
 	<cfset Attributes.Page = Cookie.USER_FindPage>
 </cfif>
 
-<cfif Attributes.Search NEQ "" AND Attributes.CategoryID EQ 0 AND Attributes.ActivityTypeID EQ 0 AND Attributes.Title EQ "" AND Attributes.StartDate EQ "" AND Attributes.CreatedBy EQ 0 AND Attributes.UpdatedBy EQ 0>
-	<cfset Request.Status.Errors = "You must specify search criteria before searching...">
-</cfif>
 
 <cfif Request.Status.Errors EQ "">
 	<cfif Attributes.Search NEQ "">		
@@ -58,8 +62,9 @@
 		<cfset ActivityPager.setBaseLink("#myself#Activity.Home?ActivityTypeID=#Attributes.ActivityTypeID#&GroupingID=#Attributes.GroupingID#&Title=#Attributes.Title#&StartDate=#Attributes.StartDate#&CategoryID=#Attributes.CategoryID#&CreatedBy=#Attributes.CreatedBy#&UpdatedBy=#Attributes.UpdatedBy#") />
 		<cfset ActivityPager.setItemsPerPage(50) />
 		<cfset ActivityPager.setUrlPageIndicator("page") />
+		<cfset ActivityPager.setMissingNumbersHTML("<span>...</span>")>
 		<cfset ActivityPager.setShowNumericLinks(true) />
-		<cfset ActivityPager.setClassName("green") />
+		<cfset ActivityPager.setClassName("") />
 		
 		<!--- PERSONALIZED CONTAINER LIST --->
 		<cfif Attributes.CategoryID GT 0>

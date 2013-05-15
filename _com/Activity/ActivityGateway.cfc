@@ -586,23 +586,24 @@
 		<cfquery name="qList" datasource="#application.settings.dsn#" result="QueryInfo">
 			SELECT <cfif Arguments.Limit NEQ "">TOP #Arguments.Limit#</cfif>
 				C.ActivityID, 
-                C.ParentActivityID, 
-                C.ActivityTypeID, 
-                CT.Name AS ActivityTypeName, 
-                C.GroupingID, 
-                G.Name AS GroupingName, 
-                C.Title, 
-                C.Description, 
-			  	C.StartDate, 
-                C.Created, 
-                C.CreatedBy, 
-                P1.firstname + ' ' + P1.lastname AS CreatedByName, 
-                C.Updated, 
-                C.UpdatedBy, 
-			  	P2.firstname + ' ' + P2.lastname AS UpdatedByName, 
-                C.Deleted, C.DeletedFlag, 
-                S.Name As StatusName, 
-                S.StatusID
+				C.ParentActivityID, 
+				C.ActivityTypeID, 
+				CT.Name AS ActivityTypeName, 
+				C.GroupingID, 
+				G.Name AS GroupingName, 
+				C.Title, 
+				C.Description, 
+				C.StartDate, 
+				C.EndDate, 
+				C.Created, 
+				C.CreatedBy, 
+				P1.firstname + ' ' + P1.lastname AS CreatedByName, 
+				C.Updated, 
+				C.UpdatedBy, 
+				P2.firstname + ' ' + P2.lastname AS UpdatedByName, 
+				C.Deleted, C.DeletedFlag, 
+				S.Name As StatusName, 
+				S.StatusID
 			FROM ce_Sys_Status AS S 
             RIGHT OUTER JOIN ce_Activity AS C ON S.StatusID = C.StatusID 
             LEFT OUTER JOIN ce_Sys_ActivityType AS CT ON C.ActivityTypeID = CT.ActivityTypeID 

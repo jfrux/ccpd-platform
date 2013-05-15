@@ -16,7 +16,7 @@
           <set name="request.page.action" value="#listLast(attributes.fuseaction,'.')#" />
           <set name="ActivityTitleShort" value="#midLimit(Attributes.ActivityTitle,50)# // #DateFormat(ActivityBean.getStartDate(),'mm/dd/yyyy')#" />
           <do action="mActivity.getActions" />
-          <set name="Request.MultiFormEditLink" value="#myself#Activity.Detail?ActivityID=#Attributes.ActivityID#" />
+          <set name="Request.editlink" value="#myself#Activity.Detail?ActivityID=#Attributes.ActivityID#" />
         </true>
       </if>
     </prefuseaction>
@@ -88,7 +88,8 @@
       <do action="mActivity.getOther" />
     </fuseaction>
 
-    <fuseaction name="Actions"><do action="mActivity.getAllActions" />
+    <fuseaction name="Actions">
+      <do action="mActivity.getAllActions" />
 
     </fuseaction>
 
@@ -135,7 +136,8 @@
     </fuseaction>
 
     <fuseaction name="Assessments">
-      <do action="mActivity.getAssessments" /><set name="Request.MultiFormTitle" value="Assessments" />
+      <do action="mActivity.getAssessments" />
+      <set name="title" value="Assessments" />
     </fuseaction>
 
     <fuseaction name="AssessmentsAHAH">
@@ -146,7 +148,8 @@
     <fuseaction name="AttendeeCDC">
       <do action="mPerson.getPerson" />
       <do action="mActivity.getAttendeeCDC" />
-      <do action="mActivity.saveAttendeeCDC" /><set name="Request.MultiFormTitle" value="Needs Assessment" />
+      <do action="mActivity.saveAttendeeCDC" />
+      <set name="title" value="Needs Assessment" />
       <do action="vActivity.AttendeeCDC" />
     </fuseaction>
 
@@ -159,8 +162,8 @@
     <fuseaction name="Attendees">
       <do action="mActivity.getAttendees" />
       <do action="mActivity.getCredits" />
-      <do action="mActivity.getAttendeeStatuses" />     value="Activities|Activity.Home,#ActivityTitleShort#|Activity.Detail?ActivityID=#Attributes.ActivityID#,Attendees|Activity.Attendees?ActivityID=#Attributes.ActivityID#" />
-      <set name="Request.MultiFormTitle" value="Needs Assessment" /> 
+      <do action="mActivity.getAttendeeStatuses" />
+      <set name="title" value="Needs Assessment" /> 
     </fuseaction>
 
     <fuseaction name="AttendeesAHAH">
@@ -173,7 +176,7 @@
       <do action="mActivity.getAttendees" />
       <do action="mActivity.getCredits" />
       <do action="mActivity.getAttendeeStatuses" />
-      <set name="Request.MultiFormTitle" value="Needs Assessment" />
+      <set name="title" value="Needs Assessment" />
     </fuseaction>
     
     <fuseaction name="Attendees2AHAH">
@@ -190,7 +193,7 @@
     <fuseaction name="Committee">
       <do action="mActivity.getRoles" />
       <do action="mActivity.getActivityCommittee" />
-      <set name="Request.MultiFormTitle" value="Planning Committee Members" />
+      <set name="title" value="Planning Committee Members" />
     </fuseaction>
     
     <fuseaction name="CommitteeAHAH">
@@ -209,7 +212,7 @@
       <do action="mActivity.saveCredits" />
       <do action="mActivity.getCredits" />
       
-      <set name="Request.MultiFormTitle" value="Credit &amp; Points" />
+      <set name="title" value="Credit &amp; Points" />
       
     </fuseaction>
     <fuseaction name="Detail">
@@ -218,10 +221,9 @@
     <fuseaction name="Docs">
       <do action="mActivity.getDocTypes" />
       <do action="mActivity.getDocs" />
-      
-      <set name="Request.MultiFormTitle" value="Documents &amp; Materials" />
-      
+      <set name="title" value="Documents &amp; Materials" />
     </fuseaction>
+
     <fuseaction name="DocsAHAH">
       <do action="mActivity.getDocs" />
       <do action="vActivity.DocsAHAH" contentvariable="request.page.body" />
@@ -245,40 +247,42 @@
       <do action="vActivity.emailCert" contentvariable="request.page.body" />
       <do action="vLayout.None" />
     </fuseaction>
+
     <fuseaction name="Faculty">
       <do action="mActivity.getRoles" />
-      
-      <set name="Request.MultiFormTitle" value="Faculty" />
-      
+      <set name="title" value="Faculty" />
     </fuseaction>
+
     <fuseaction name="FacultyAHAH">
       <do action="mActivity.getActivityFaculty" />
       <do action="vActivity.FacultyAHAH" contentvariable="request.page.body" />
     </fuseaction>
+
     <fuseaction name="FileUpload">
       <do action="mActivity.getDocTypes" />
       <do action="mActivity.FileUpload" />
       <do action="vActivity.FileUpload" />
     </fuseaction>
+
     <fuseaction name="Finances">
       <do action="mActivity.getFinOverview" />
-      
-      <set name="Request.MultiFormTitle" value="Finances" />
-      
+      <set name="title" value="Finances" />
     </fuseaction>
     <fuseaction name="FinBudget">
       <do action="mActivity.saveFinBudget" />
       
-      <set name="Request.MultiFormTitle" value="Finances" />
+      <set name="title" value="Finances" />
       
     </fuseaction>
+
     <fuseaction name="FinBudgetAHAH">
       <do action="mActivity.getEntryTypes" />
       <do action="mActivity.getFinBudgets" />
       <do action="vActivity.FinBudgetAHAH" contentvariable="request.page.body" />
     </fuseaction>
 
-    <fuseaction name="FinFees"><set name="Request.MultiFormTitle" value="Finances" />
+    <fuseaction name="FinFees">
+      <set name="title" value="Finances" />
     </fuseaction>
 
     <fuseaction name="FinFeesAHAH">
@@ -286,58 +290,54 @@
       <do action="mActivity.getFinFee" />
       <do action="vActivity.FinFeesAHAH" contentvariable="request.page.body" />
     </fuseaction>
-    <fuseaction name="FinLedger"><set name="Request.MultiFormTitle" value="Finances" />
+    <fuseaction name="FinLedger"><set name="title" value="Finances" />
       
     </fuseaction>
+
     <fuseaction name="FinLedgerAHAH">
       <do action="mActivity.getEntryTypes" />
       <do action="mActivity.getFinLedgers" />
       <do action="vActivity.FinLedgerAHAH" contentvariable="request.page.body" />
     </fuseaction>
+
     <fuseaction name="FinSupport">
       <do action="mActivity.getFinSupporters" />
       <do action="mActivity.getSupporters" />
-      <do action="mActivity.getSupportTypes" /><set name="Request.MultiFormTitle" value="Finances" />
-      
+      <do action="mActivity.getSupportTypes" />
+      <set name="title" value="Finances" />
     </fuseaction>
+
     <fuseaction name="FinSupportAHAH">
       <do action="mActivity.getFinSupporters" />
       <do action="vActivity.FinSupportAHAH" contentvariable="request.page.body" />
     </fuseaction>
-    <fuseaction name="History"><set name="Request.MultiFormTitle" value="History" />
-      
+
+    <fuseaction name="History">
+      <set name="title" value="History" />
     </fuseaction>
-    <fuseaction name="home">
-      <do action="mActivity.getActivities" />
-      <do action="mActivity.getActivityTypes" />
-      <do action="mActivity.getLiveGroupings" />
-      <do action="mActivity.getEMGroupings" />
-      <do action="mMain.TabControl" />
-      <set name="Request.Page.Title" value="Activities" /><do action="vActivity.searchFilters" contentvariable="multiformright" />
-      <do action="vActivity.search" contentvariable="multiformcontent" />
-      <do action="vLayout.sub_user" contentvariable="request.page.body" />
-      
-    </fuseaction>
-    <fuseaction name="home2">
-      <set name="Request.Page.Title" value="Activities" /><do action="vActivity.Home" contentvariable="request.page.body" />
-      
-    </fuseaction>
-    <fuseaction name="Meals">
-    </fuseaction>
+
+    
     <fuseaction name="NoteCreate">
-      <do action="mActivity.saveNote" /><set name="Request.MultiFormTitle" value="Create A Activity Note" />
+      <do action="mActivity.saveNote" />
+      <set name="title" value="Create A Activity Note" />
       <do action="vLayout.Sub_MultiForm" contentvariable="request.page.body" />
       
     </fuseaction>
+
     <fuseaction name="NoteDelete">
       <do action="mActivity.deleteNote" />
     </fuseaction>
+
     <fuseaction name="Notes">
-      <do action="mActivity.getNotes" /><set name="Request.MultiFormTitle" value="Notes" />
+      <do action="mActivity.getNotes" />
+      <set name="title" value="Notes" />
       
     </fuseaction>
+
     <fuseaction name="Other">
+
     </fuseaction>
+
     <fuseaction name="Overview">
       <do action="mActivity.getActivityTypes" />
       <do action="mActivity.getDocTypes" />
@@ -395,7 +395,7 @@
     <fuseaction name="PubBuilder">
       <do action="mActivity.getComponents" />
     </fuseaction>
-    <fuseaction name="Reports"><set name="Request.MultiFormTitle" value="Needs Assessment" />
+    <fuseaction name="Reports"><set name="title" value="Needs Assessment" />
       
     </fuseaction>
     <fuseaction name="BuilderFileUploader">

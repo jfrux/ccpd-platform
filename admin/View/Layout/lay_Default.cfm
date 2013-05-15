@@ -28,12 +28,14 @@
             <a class="brand" href="/">CCPD</a>
             <div class="nav-collapse collapse">
               <ul class="nav">
-                <li><a href="#myself#main.welcome">News Feed</a></li>
-                <li><a href="#myself#activity.home">Activities</a></li>
-                <li><a href="#myself#person.home">People</a></li>
-                <li><a href="#myself#report.home">Reports</a></li>
+                <li<cfif params.event EQ "main-welcome"> class="active"</cfif>><a href="#myself#main.welcome"><i class="icon-bullhorn"></i> News Feed</a></li>
+                <li<cfif params.event EQ "main-activities"> class="active"</cfif>><a href="#myself#main.activities"><i class="icon-book"></i> Activities</a></li>
+                <li<cfif params.event EQ "main-people"> class="active"</cfif>><a href="#myself#main.people"><i class="icon-group"></i> People</a></li>
+                <li<cfif params.event EQ "main-reports"> class="active"</cfif>><a href="#myself#main.reports"><i class="icon-bar-chart"></i> Reports</a></li>
+              </ul>
+              <ul class="nav pull-right">
                 <li class="divider-vertical"></li>
-                <li><a href="#myself#person.detail?personid=#session.person.getPersonId()#">#session.person.getdisplayname()#</a></li>
+                <li><a href="#myself#person.detail?personid=#session.person.getPersonId()#"><i class="icon-user-profile" style="background-image:url(#imageUrl('default_photo/person_m_i.png')#);"></i>#session.person.getdisplayname()#</a></li>
                 <li><a href="#myself#Main.doLogout">Logout</a></li>
               </ul>
             </div>

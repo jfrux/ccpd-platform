@@ -24,7 +24,7 @@ class App.Components.Search
       return
 
     $tooltips.tooltip
-      placement: 'right'
+      placement: 'top'
       html: 'true'
       trigger: 'hover focus'
       title: (e)->

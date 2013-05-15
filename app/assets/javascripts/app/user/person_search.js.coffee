@@ -1,7 +1,7 @@
 ###!
 * PERSON > SEARCH
 ###
-App.module "Person.Search", (Self, App, Backbone, Marionette, $) ->
+App.module "User.PersonSearch", (Self, App, Backbone, Marionette, $) ->
   @startWithParent = false
   
   @on "before:start", ->

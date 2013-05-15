@@ -9,7 +9,7 @@ searchSettings.liveOptions = "<option value=\"0\">Any Grouping</option>" + <cflo
 searchSettings.emOptions = "<option value=\"0\">Any Grouping</option>" + <cfloop query="qEMGroupings">"<option value=\"#qEMGroupings.GroupingID#\"<cfif qEMGroupings.GroupingID EQ Attributes.GroupingID> SELECTED</cfif>>#qEMGroupings.Name#</option>"<cfif qEMGroupings.RecordCount NEQ qEMGroupings.CurrentRow> + </cfif></cfloop>;
 searchSettings.noOptions = "<option value=\"0\">Any Grouping</option>";
 </cfoutput>
-App.Activity.Search.start(searchSettings);
+App.User.ActivitySearch.start(searchSettings);
 </script>
 <cfif Attributes.Fuseaction EQ "Person.Finder">
   <!--- person finder specific styles --->
@@ -21,93 +21,73 @@ App.Activity.Search.start(searchSettings);
 
 <cfoutput>
 <div class="row-fluid">
-  <span>
-  <a href="#myself#activity.create" class="btn btn-small" style="position: absolute; z-index: 1; padding: 3px 13px; top: 90px; right: 0px;">New Activity</a>
-  </span>
-  <div class="search">
-    <div class="span24">
-      <div class="filters">
-        <h3><a class="js-filter" data-type="easy">Easy Search</a></h3>
-        <div class="box">
-          <div class="row-fluid">
-            <form name="frmSearch" class="js-search-easy form-inline" method="post" action="#myself#activity.search">
-              <input type="text" name="q" class="span24" placeholder="Type to search" data-tooltip-title="Start typing names, emails, birthdates, etc." value="#attributes.q#" />
-            </form>
-          </div>
-        </div>
-        <h3><a class="js-filter" data-type="advanced">Advanced Criteria</a></h3>
-        <div class="js-filter-form box">
-          <div class="row-fluid">
-            <form name="frmSearch" class="js-search-adv form-inline" method="post" action="#myself#activity.search">
-              <input type="text" name="Title" id="Title" class="input-medium" placeholder="Title of activity" value="#Attributes.Title#" />
-              <input type="text" name="StartDate" id="ReleaseDate" placeholder="Start Date" class="input-mini" value="#DateFormat(Attributes.StartDate,'MM/DD/YYYY')#" />
-              <select name="ActivityTypeID" id="ActivityTypeID" class="input-small">
-                <option value="0">Any Type</option>
-                <cfloop query="qActivityTypeList">
-                  <option value="#qActivityTypeList.ActivityTypeID#"<cfif Attributes.ActivityTypeID EQ qActivityTypeList.ActivityTypeID> Selected</cfif>>#qActivityTypeList.Name#</option>
-                </cfloop>
-              </select>
+  <div class="search span18">
+  <cfif isDefined("qActivities") AND qActivities.RecordCount GT 0>
+    <!--- SEARCH RESULTS --->
+    <!--- <cfif ActivityPager.getTotalNumberOfPages() GT 1>
+      <cfoutput>#ActivityPager.getRenderedHTML()#</cfoutput>
+    </cfif> --->
+    <div class="result-list">
+      <cfoutput query="qActivities" startrow="#ActivityPager.getStartRow()#" maxrows="#ActivityPager.getMaxRows()#"> 
+      <cfset statusIcon = statusIcons[qActivities.statusid] />
+      <div class="divider"><hr /></div>
+      <div class="activity-result result-item">
+        <div class="result-image" style="background-image:url(#imageUrl('default_photo/activity_i.png')#);"></div>
+        <div class="result-body">
+          #linkTo(controller="activity",action="detail",params="activityid=#activityid#",text=qActivities.Title,class="result-link")#
+          <div class="result-meta">
+            <span>
+            <i class="icon-circle status-#lcase(qActivities.StatusName)#"></i> #qActivities.StatusName#
+            </span>
+            <cfif _.isNumber(qActivities.CreatedBy)>
+              <span class="meta-middot">&middot;</span>
+              <span>
+              #linkTo(controller="person",action="detail",params="personid=#createdBy#",text='<i class="icon-user"></i> #CreatedByName#')#
+              </span>
+            </cfif>
 
-              <select name="GroupingID" id="Grouping" disabled="true" class="input-small">
-
-              </select>
+            <cfsavecontent variable="tags">
+              <span class="meta-middot">&middot;</span>
+              <span>
+              <cfif len(ActivityTypeName & " " & GroupingName) GT 15>
+                #left(ActivityTypeName & " " & GroupingName,'15')#... 
+              <cfelse>
+                  #ActivityTypeName & " " & GroupingName#
+              </cfif>
               
-              <input type="text" name="CategoryID" id="CategoryID" placeholder="Folder" class="js-typeahead-folder input-small" />
-              <button class="btn"><i class="icon-search"></i></button>
-              <input type="hidden" name="Search" value="1" />
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="span24">
-      <div class="content">
-      <cfif isDefined("qActivities") AND qActivities.RecordCount GT 0>
-          <!--- SEARCH RESULTS --->
-          <h3>Search Results (#qActivities.RecordCount#)</h3>
-          
-          <cfif ActivityPager.getTotalNumberOfPages() GT 1><div style="row-fluid"><cfoutput>#ActivityPager.getRenderedHTML()#</cfoutput></div></cfif>
-          <div class="result-list">
-            <cfoutput query="qActivities" startrow="#ActivityPager.getStartRow()#" maxrows="#ActivityPager.getMaxRows()#"> 
-            <div class="result-item">
-              <a href="#myself#person.detail?personid=#personid#" style="font-weight: normal; font-size: 12px; position: relative; line-height: 24px;">
-              #LastName#, #FirstName# #MiddleName# <span style="font-size:12px;color:##888;">(#DisplayName#)</span>
+              </span>
+            </cfsavecontent>
+            <cfsavecontent variable="addlInfo">
+              <cfif _.isDate(qActivities.Created)>
+                Created: #DateFormat(qActivities.Created,'M/DD/YYYY')#
+              </cfif>
+            </cfsavecontent>
+            <span class="meta-middot">&middot;</span>
+            <span>
+              <a href="##" data-tooltip-title="#dateRangeFormat(StartDate,EndDate,"long")#">
+                <i class="icon-calendar"></i>
               </a>
-              <cfif Email NEQ "">#Email#<cfelse>&nbsp;</cfif>
-              <cfif Birthdate NEQ "">#DateFormat(Birthdate,"mm/dd/yyyy")#</cfif>
-            </div>
-            </cfoutput>
-          </div>
-          <cfif ActivityPager.getTotalNumberOfPages() GT 1><div><cfoutput>#ActivityPager.getRenderedHTML()#</cfoutput></div></cfif>
-        <cfelse>
-          <!--- RECENTLY TOUCHED --->
-          <cfquery name="qList" datasource="#application.settings.dsn#">
-            /* MOST RECENTLY MODIFIED ACTIVITIES */
-            WITH CTE_MostRecent AS (
-            SELECT H.ToPersonID,MAX(H.Created) As MaxCreated
-            FROM ce_History H
-            WHERE H.FromPersonID=<cfqueryparam value="#session.personid#" cfsqltype="cf_sql_integer" /> AND isNull(H.ToPersonID,0) <> 0
-            GROUP BY H.ToPersonID
-            ) SELECT TOP 7 * FROM CTE_MostRecent M INNER JOIN ce_Person A  ON A.PersonID=M.ToPersonId
-            WHERE A.DeletedFlag='N'
-            ORDER BY M.MaxCreated DESC
-          </cfquery>
-          <cfoutput>
-
-          <div class="result-list">
-            <cfloop query="qList">
-            <div class="result-item">
-              <a href="#myself#person.detail?personid=#qList.personid#">
-              #LastName#, #FirstName# #MiddleName# <span>(#DisplayName#)</span>
-              </a>
-            </div>
-            </cfloop>
-          </div>
-          </cfoutput>
-      </cfif>
-      </div>
+            </span>
+            <span class="meta-middot">&middot;</span>
+            <span>
+              <cfif !_.isEmpty(addlInfo)>
+                <a href="##" data-tooltip-title="#addlInfo#"><i class="icon-info-sign"></i></a>
+              </cfif>
+            </span>
+            <cfif !_.isEmpty(tags)>
+              #tags#
+            </cfif>
+          </div><!-- // div.result-meta -->
+        </div><!-- // div.result-body -->
+      </div><!-- // div.result-item -->
+      </cfoutput>
     </div>
-    
+  </cfif>
+  </div>
+  <div class="span6">
+    <div class="SearchBar searchbar js-searchbar">
+      <cfinclude template="infobar/dsp_searchFilters.cfm" />
+    </div>
   </div>
 </div>
 </cfoutput>

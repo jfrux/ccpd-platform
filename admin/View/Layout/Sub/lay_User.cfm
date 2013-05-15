@@ -7,6 +7,9 @@
 <cfparam name="Request.MultiFormQS" default="">
 <cfparam name="Request.MultiFormEditLabel" default="">
 <cfparam name="Request.MultiFormEditLink" default="">
+<cfparam name="right" default="">
+<cfparam name="content" default="">
+<cfparam name="infobar" default="">
 <cfparam name="Attributes.UCID" default="">
 <cfoutput>
 <script>
@@ -20,8 +23,7 @@ App.User.start({
 </script>
 </cfoutput>
 <cfoutput>
-<div class="user profile">
-
+<div class="user profile infobar-inactive">
   <div class="profile-bg">
     <div class="profile-bg-inner"></div>
   </div>
@@ -30,12 +32,18 @@ App.User.start({
       <cfoutput>
       <div class="projectbar js-projectbar">
         <div class="box">
-          <div class="thumbnail">
-          <img src="http://placehold.it/182x113">
+          <div class="profile-userbox">
+            <div class="userbox-image" style="background-image:url(#imageUrl('default_photo/person_m_i.png')#);">
+
+            </div>
+            <div class="userbox-details">
+              <div class="userbox-link-profile">#linkTo(controller="person",action="detail",params="personid=#session.personid#",text="#session.person.getDisplayName()#")#</div>
+              <div class="userbox-link-editprofile">#linkTo(controller="person",action="detail",params="personid=#session.personid#",text="Edit Profile")#</div>
+            </div>
           </div>
         </div>
         <div class="box js-profile-menu">
-          <cf_ce_profilemenu type="user" typeid="#session.personid#" settings="#request.tabSettings#" current="#Attributes.Fuseaction#">
+          <cf_ce_profilemenu type="user" typeid="#session.personid#" settings="#request.tabSettings#" includekey=false current="#Attributes.Fuseaction#">
         </div>
       </div>
       </cfoutput>
@@ -45,7 +53,7 @@ App.User.start({
         <div class="row-fluid">
           <div class="span16">
             <div class="ContentTitle">
-              <span title="">User Pages</span>
+              <span title="">#request.tabSettings.tabs[lcase(attributes.fuseaction)].title#</span>
             </div>
           </div>
           <div class="span8">
@@ -60,7 +68,7 @@ App.User.start({
       <div class="content js-profile-content">
         <cfoutput>
         <div class="row-fluid">
-          <div class="span18 js-content-toggle">
+          <div class="span24 js-content-toggle">
             <div class="row-fluid">
               <div class="content-title">
                 <h3>#request.tabSettings.tabs[lcase(attributes.fuseaction)].title#</h3>
@@ -72,11 +80,6 @@ App.User.start({
                 #multiformcontent#
               </cfif>
               </div>
-            </div>
-          </div>
-          <div class="span6 js-infobar-outer">
-            <div class="InfoBar infobar js-infobar">
-
             </div>
           </div>
         </div>

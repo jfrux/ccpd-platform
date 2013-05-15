@@ -2,6 +2,7 @@
 <cfparam name="attributes.current" default="" />
 <cfparam name="attributes.type" default="" />
 <cfparam name="attributes.typeid" default="" />
+<cfparam name="attributes.includekey" default="true" />
 
 <cfoutput>
 <cffunction name="isActive" returntype="boolean">
@@ -20,9 +21,12 @@
     <cfloop from="1" to="#arrayLen(attributes.settings.tabsSort)#" index="i">
       <cfset key = attributes.settings.tabsSort[i] />
       <cfset tab = attributes.settings.tabs[key] />
-
+      <cfset link = "/admin/event/#tab.event#" />
+      <cfif attributes.includekey>
+        <cfset link &= "?#attributes.type#id=#attributes.typeid#" />
+      </cfif>
       <li class="<cfif isActive(attributes.current,tab)>active</cfif>">
-        <a href="/admin/event/#tab.event#?#attributes.type#id=#attributes.typeid#" 
+        <a href="#link#" 
           data-js-namespace="js-#replace(tab.event,'.','-')#" 
           data-pjax-container="##js-#replace(tab.event,'.','-')#" 
           data-pjax-title="#tab.title#" 
@@ -38,8 +42,12 @@
           <cfloop from="1" to="#arrayLen(tab.subEvents)#" index="e">
             <cfset subkey = tab.subEvents[e] />
             <cfset subtab = attributes.settings.tabs[subkey] />
+            <cfset sublink = "/admin/event/#subtab.event#" />
+            <cfif attributes.includekey>
+              <cfset sublink &= "?#attributes.type#id=#attributes.typeid#" />
+            </cfif>
             <li class="<cfif isActive(attributes.current,subtab)>active</cfif>">
-              <a href="/admin/event/#subtab.event#?#attributes.type#id=#attributes.typeid#" 
+              <a href="#sublink#" 
                   data-pjax-title="#subtab.title#" 
                   data-tooltip-title="#subtab.tooltip#"
                   data-js-namespace="js-#replace(subtab.event,'.','-')#" 

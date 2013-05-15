@@ -37,8 +37,8 @@ App.Person.start({
       <cfoutput>
       <div class="projectbar js-projectbar">
         <div class="box">
-          <div class="thumbnail">
-          <img src="http://placehold.it/182x113">
+          <div class="profile-picture" style="background-image:url(#imageUrl('default_photo/person_#lcase(PersonBean.getGender())#_p.png')#);">
+
           </div>
         </div>
         <div class="box js-profile-menu">

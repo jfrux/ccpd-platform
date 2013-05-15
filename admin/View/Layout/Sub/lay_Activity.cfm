@@ -1,6 +1,6 @@
 <cfparam name="Request.MultiFormTitle" default="">
-<cfparam name="Request.MultiFormContent" default="">
-<cfparam name="Request.MultiFormRight" default="">
+<cfparam name="Request.content" default="">
+<cfparam name="Request.right" default="">
 <cfparam name="Request.MultiFormLabels" default="">
 <cfparam name="Request.MultiFormFuseactions" default="">
 <cfparam name="Request.MultiSubTabFlag" default="N">
@@ -83,8 +83,8 @@ App.module('Activity').start({
       <cfoutput>
       <div class="projectbar js-projectbar">
         <div class="box">
-          <div class="thumbnail">
-          <img src="http://placehold.it/182x113">
+          <div class="profile-picture" style="background-image:url(#imageUrl('default_photo/activity_p.png')#);">
+
           </div>
         </div>
         <div class="box js-profile-menu">

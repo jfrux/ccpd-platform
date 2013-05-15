@@ -1,7 +1,7 @@
 ###
 * ACTIVITY > SEARCH
 ###
-App.module "Activity.Search", (Self, App, Backbone, Marionette, $) ->
+App.module "User.ActivitySearch", (Self, App, Backbone, Marionette, $) ->
   @startWithParent = false
   Self = @
   $base = null
@@ -15,20 +15,21 @@ App.module "Activity.Search", (Self, App, Backbone, Marionette, $) ->
   @on "before:start", ->
     App.logInfo "starting: Activity.#{Self.moduleName}"
     return
+
   @on "start", ->
     $(document).ready ->
       _init()
       App.logInfo "started: Activity.#{Self.moduleName}"
     return
+    
   @on "stop", ->
     App.logInfo "stopped: Activity.#{Self.moduleName}"
     return
   
-
   _init =  (settings) ->
     searchSettings = settings
     Self.search = new App.Components.Search({
-      el:"#js-activity-home"
+      el:"#js-main-activities"
     })
     $base = Self.search.$base
     $releaseDate = $base.find("#ReleaseDate")

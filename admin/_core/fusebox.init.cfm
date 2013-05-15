@@ -24,7 +24,6 @@
 <cfset request.self = myFusebox.getSelf() />
 <cfset request.myself = myself />
 <cfset request.isException = false />
-
 <cfset scriptExceptions = [
 	"statFixer.cfc",
 	"dailyStatusUpdater.cfc",
@@ -63,6 +62,12 @@
 WE ARE PREPARING FOR A MIGRATION.<br />
 The service should be back up shortly.<br />
 <cfabort>--->
+<cfinclude template="/lib/fusebox-addons/internal.cfm" />
+<cfset $initializeRequestScope() />
 <cfinclude template="/lib/fusebox-addons/helpers.cfm" />
+<cfinclude template="/lib/fusebox-addons/public.cfm" />
+<cfinclude template="/lib/fusebox-addons/cfml.cfm" />
+<cfinclude template="/lib/fusebox-addons/assets.cfm" />
+<cfinclude template="/lib/fusebox-addons/links.cfm" />
 <cfset params = $paramParser() />
 <cfinclude template="/admin/Model/Page/act_Access.cfm" />

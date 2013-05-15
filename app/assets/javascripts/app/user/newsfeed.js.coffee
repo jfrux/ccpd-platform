@@ -5,7 +5,7 @@ App.module "User.NewsFeed", (Self, App, Backbone, Marionette, $) ->
   @startWithParent = false
   Self = @
   getListAuto = null
-
+  repeater = null
   @on "before:start", ->
     App.logInfo "starting: User.#{Self.moduleName}"
     return
@@ -15,6 +15,8 @@ App.module "User.NewsFeed", (Self, App, Backbone, Marionette, $) ->
       App.logInfo "started: User.#{Self.moduleName}"
     return
   @on "stop", ->
+    clearInterval(repeater)
+    Self.feed = null
     App.logInfo "stopped: User.#{Self.moduleName}"
     return
 
@@ -36,5 +38,5 @@ App.module "User.NewsFeed", (Self, App, Backbone, Marionette, $) ->
       currTime = Math.round(new Date().getTime() / 1000)
       Self.feed.lister.getList(false,currTime,'prepend')
 
-    setInterval("App.User.NewsFeed.getListAuto()",5000);
+    repeater = setInterval("App.User.NewsFeed.getListAuto()",5000);
     return  

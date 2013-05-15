@@ -7,12 +7,9 @@
 <cfparam name="attributes.ucid" default="">
 <cfparam name="attributes.activityid" default="">
 <cfparam name="attributes.instance" default="">
-<cfparam name="attributes.search" default="">
+<cfparam name="attributes.search" default="0">
 <cfparam name="attributes.message" default="">
 
-<cfif attributes.search NEQ "" AND attributes.ssn EQ "" AND attributes.firstname EQ "" AND attributes.lastname EQ "" AND attributes.email EQ "" AND attributes.ucid EQ "" AND attributes.birthdate EQ "">
-	<cfset Request.Status.Errors = "You must specify search criteria before searching...">
-</cfif>
 
 <cfif Request.Status.Errors EQ "">
 	<cfif attributes.search NEQ "">

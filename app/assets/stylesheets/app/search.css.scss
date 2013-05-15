@@ -20,6 +20,80 @@ $borderColor: #d6d2d2 #dbd3d3 #d6d2d2 #dbd3d3;
   position:relative;
   @include clearfix();
 
+  .pagination {
+    @include clearfix();
+  }
+  .result-list {
+    padding:0 5px;
+
+    .divider {
+      hr {
+        margin:8px 0;
+      }
+    }
+
+    .result-item {
+      @include clearfix();
+      
+      .result-image {
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+        background-size: cover;
+        float: left;
+        height: 50px;
+        width: 50px;
+      }
+
+      .result-body {
+        margin-left:62px;
+        padding-top:4px;
+
+        .result-link {
+          font-weight: bold;
+          line-height: 15px;
+          font-size:13px;
+        }
+
+        .result-meta {
+          font-size:11px;
+          color:#AAA;
+          cursor:default;
+          margin-top: 2px;
+          .label {
+            font-size:11px;
+            font-weight:normal;
+          }
+          i {
+            &.status-active {
+              color:#6CA52C;
+            }
+            &.status-ended {
+              color:gray;
+            }
+            &.status-cancelled {
+              color:#CD5152;
+            }
+            &.status-pending {
+              color:#F3E767;
+            }
+          }
+          span {
+            line-height:16px;
+            font-size:11px;
+          }
+          a {
+            color:#AAA;
+            text-decoration:none;
+
+            &:hover {
+              color:#333;
+            }
+          }
+        }
+      }
+      
+    }
+  }
   .titlebar {
     .ContentTitle {
       font-size: 18px;

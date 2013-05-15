@@ -2,8 +2,8 @@
 request.tabSettings = {
   "tabsSort":[
     "main.welcome",
-    "person.home",
-    "activity.home"
+    "main.people",
+    "main.activities"
   ],
   "tabs": {
     "main.welcome": {
@@ -15,21 +15,21 @@ request.tabSettings = {
       "hasToolbar":false,
       "subEvents":[]
     },
-      "person.home": {
+      "main.people": {
         "label":"People",
         "title":"People",
         "tooltip":"",
         "icon":"users",
-        "event":"person.home",
+        "event":"main.people",
         "hasToolbar":false,
         "subEvents":[]
       },
-      "activity.home": {
+      "main.activities": {
         "label":"Activities",
         "title":"Activities",
         "tooltip":"",
         "icon":"book",
-        "event":"activity.home",
+        "event":"main.activities",
         "hasToolbar":false,
         "subEvents":[]
       }

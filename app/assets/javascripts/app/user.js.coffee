@@ -14,6 +14,7 @@ App.module "User",
     $infoBarToggleSpan = null
     $statusChanger = null
     $statusIcon = null
+    $titlebar = null
     $statusBox = null
     $menuBar = null
     defaultFolders = null
@@ -51,6 +52,7 @@ App.module "User",
       Self.model = new App.Models.Person(settings.model)
       
       $profile = $(".profile")
+      $titlebar = $profile.find(".titlebar .ContentTitle span")
       $infoBar = $(".js-infobar")
       $projectBar = $(".js-projectbar")
       $menuBar = $(".js-profile-menu > div > div > ul")
@@ -72,7 +74,7 @@ App.module "User",
         $contentArea = $(xhr.target)
         $contentTitle = $contentArea.parents('.js-profile-content').find('.content-title > h3')
         $contentTitle.text($pageTitle)
-
+        $titlebar.text($pageTitle)
         $parent = $clickedLink.parent()
         $parent.find('.active').removeClass('active')
         $parent.siblings().removeClass('active')

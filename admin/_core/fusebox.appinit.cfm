@@ -19,79 +19,92 @@
 <cfset application['apiCache'] = {} />
 <cfset application.settings['bugLogServer'] = "http://bugs.swodev.com" />
 <cfset $_settings = application.settings />
+<cfset request.CGI = CGI />
+
+<cfinclude template="/lib/fusebox-addons/public.cfm" />
+<cfset set(environment = "development") />
+<cfinclude template="/lib/fusebox-addons/settings.cfm" />
+<cfset set(showErrorInformation=true) />
+<cfset set(showDebugInformation = false) />
+<cfset set(webPath='/admin') />
+<cfset set(assetPaths = {
+	'http':'localhost:8888/assets',
+	'https':'localhost:8888/assets'
+}) />
+<cfset set(imagePath = "") />
 <cfswitch expression="#CGI.SERVER_NAME#">
 	<!--- PRODUCTION --->
 	<cfcase value="ccpd.uc.edu">
-		<cfset $_settings['assetsUrl'] = "http://www.getmycme.com/assets">
-		<cfset $_settings['apiUrl'] = "http://www.getmycme.com">
-		<cfset $_settings['dsn'] = "CCPD_PROD">
-		<cfset $_settings['appName'] = "CCPD Admin 2.0" /> <!--- appears on Window Titles, etc. --->
-		<cfset $_settings['rootPath'] = "/admin" /> <!--- HTTP path for images, and links --->
-		<cfset $_settings['comPath'] = "/_com" /> <!--- Master CFC ColdFusion Mapping --->
-		<cfset $_settings['appPath'] = "/admin" /> <!--- ColdFusion Mapping --->
-		<cfset $_settings['com'] = "_com." />
-		<cfset $_settings['com2'] = "admin._com." />
-		<cfset $_settings['AdminEmails'] = "rountrjf@ucmail.uc.edu,slamkajs@ucmail.uc.edu" />
-		<cfset $_settings['WebURL'] = "https://ccpd.uc.edu/admin/" />
-		<cfset $_settings['LMSURL'] = "https://ccpd.uc.edu/" />
-		<cfset $_settings['CDCURL'] = "http://cme.uc.edu/stdptc" />
-		<cfset $_settings['javaloaderKey'] = "JAVALOADER-CCPD-PROD-15313">
+		<cfset set(assetsUrl = "http://www.getmycme.com/assets")>
+		<cfset set(apiUrl = "http://www.getmycme.com")>
+		<cfset set(dsn = "CCPD_PROD")>
+		<cfset set(appName = "CCPD Admin 2.0")>
+		<cfset set(rootPath = "/admin")>
+		<cfset set(comPath = "/_com")>
+		<cfset set(appPath = "/admin")>
+		<cfset set(com = "_com.")>
+		<cfset set(com2 = "admin._com.")>
+		<cfset set(AdminEmails = "rountrjf@ucmail.uc.edu,slamkajs@ucmail.uc.edu")>
+		<cfset set(WebURL = "https://ccpd.uc.edu/admin/")>
+		<cfset set(LMSURL = "https://ccpd.uc.edu/")>
+		<cfset set(CDCURL = "http://cme.uc.edu/stdptc")>
+		<cfset set(javaloaderKey = "JAVALOADER-CCPD-PROD-15313")>
 	</cfcase>
 	
 	<cfcase value="test.ccpd.uc.edu">
-		<cfset $_settings['assetsUrl'] = "http://localhost:3000/assets">
-		<cfset $_settings['apiUrl'] = "http://localhost:3000">
-		<cfset $_settings['dsn'] = "CCPD_RAILS">
-		<cfset $_settings['appName'] = "CCPD Admin 2.0" /> <!--- appears on Window Titles, etc. --->
-		<cfset $_settings['rootPath'] = "/admin" /> <!--- HTTP path for images, and links --->
-		<cfset $_settings['comPath'] = "/_com" /> <!--- Master CFC ColdFusion Mapping --->
-		<cfset $_settings['appPath'] = "/admin" /> <!--- ColdFusion Mapping --->
-		<cfset $_settings['Com'] = "_com." />
-		<cfset $_settings['Com2'] = "admin._com." />
-		<cfset $_settings['AdminEmails'] = "rountrjf@ucmail.uc.edu,slamkajs@ucmail.uc.edu" />
-		<cfset $_settings['WebURL'] = "https://test.uc.edu/admin/" />
-		<cfset $_settings['LMSURL'] = "https://test.uc.edu/" />
-		<cfset $_settings['CDCURL'] = "http://cme.uc.edu/stdptc" />
-		<cfset $_settings['javaloaderKey'] = "JAVALOADER-CCPD-PROD-15313">
+		<cfset set(assetsUrl = "http://localhost:3000/assets")>
+		<cfset set(apiUrl = "http://localhost:3000")>
+		<cfset set(dsn = "CCPD_RAILS")>
+		<cfset set(appName = "CCPD Admin 2.0")>
+		<cfset set(rootPath = "/admin")>
+		<cfset set(comPath = "/_com")>
+		<cfset set(appPath = "/admin")>
+		<cfset set(Com = "_com.")>
+		<cfset set(Com2 = "admin._com.")>
+		<cfset set(AdminEmails = "rountrjf@ucmail.uc.edu,slamkajs@ucmail.uc.edu")>
+		<cfset set(WebURL = "https://test.uc.edu/admin/")>
+		<cfset set(LMSURL = "https://test.uc.edu/")>
+		<cfset set(CDCURL = "http://cme.uc.edu/stdptc")>
+		<cfset set(javaloaderKey = "JAVALOADER-CCPD-PROD-15313")>
 	</cfcase>
 
 	<cfcase value="localhost">
-		<cfset $_settings['assetsUrl'] = "http://localhost:9292/">
-		<cfset $_settings['apiUrl'] = "http://localhost:3001">
-		<cfset $_settings['dsn'] = "CCPD_CLONE">
-		<cfset $_settings['appName'] = "CCPD Admin 2.0" /> <!--- appears on Window Titles, etc. --->
-		<cfset $_settings['rootPath'] = "/admin" /> <!--- HTTP path for images, and links --->
-		<cfset $_settings['comPath'] = "/_com" /> <!--- Master CFC ColdFusion Mapping --->
-		<cfset $_settings['appPath'] = "/admin" /> <!--- ColdFusion Mapping --->
-		<cfset $_settings['Com'] = "_com." />
-		<cfset $_settings['Com2'] = "admin._com." />
-		<cfset $_settings['AdminEmails'] = "rountrjf@ucmail.uc.edu,slamkajs@ucmail.uc.edu" />
-		<cfset $_settings['WebURL'] = "https://test.uc.edu/admin/" />
-		<cfset $_settings['LMSURL'] = "https://test.uc.edu/" />
-		<cfset $_settings['CDCURL'] = "http://cme.uc.edu/stdptc" />
-		<cfset $_settings['javaloaderKey'] = "JAVALOADER-CCPD-PROD-15313">
+		<cfset set(assetsUrl = "http://localhost:9292/")>
+		<cfset set(apiUrl = "http://localhost:3001")>
+		<cfset set(dsn = "CCPD_CLONE")>
+		<cfset set(appName = "CCPD Admin 2.0")>
+		<cfset set(rootPath = "/admin")>
+		<cfset set(comPath = "/_com")>
+		<cfset set(appPath = "/admin")>
+		<cfset set(Com = "_com.")>
+		<cfset set(Com2 = "admin._com.")>
+		<cfset set(AdminEmails = "rountrjf@ucmail.uc.edu,slamkajs@ucmail.uc.edu")>
+		<cfset set(WebURL = "https://test.uc.edu/admin/")>
+		<cfset set(LMSURL = "https://test.uc.edu/")>
+		<cfset set(CDCURL = "http://cme.uc.edu/stdptc")>
+		<cfset set(javaloaderKey = "JAVALOADER-CCPD-PROD-15313")>
 	</cfcase>
 
 	<cfcase value="v2.ccpd.uc.edu">
-		<cfset $_settings['assetsUrl'] = "http://localhost:3000/assets">
-		<cfset $_settings['apiUrl'] = "http://localhost:3000">
+		<cfset set(assetsUrl = "http://localhost:3000/assets")>
+		<cfset set(apiUrl = "http://localhost:3000")>
 		
-		<cfset $_settings['dsn'] = "CCPD_CLONE">
-		<cfset $_settings['appName'] = "CCPD Admin 2.0" /> <!--- appears on Window Titles, etc. --->
-		<cfset $_settings['rootPath'] = "/admin" /> <!--- HTTP path for images, and links --->
-		<cfset $_settings['comPath'] = "/_com" /> <!--- Master CFC ColdFusion Mapping --->
-		<cfset $_settings['appPath'] = "/admin" /> <!--- ColdFusion Mapping --->
-		<cfset $_settings['Com'] = "_com." />
-		<cfset $_settings['Com2'] = "admin._com." />
-		<cfset $_settings['AdminEmails'] = "rountrjf@ucmail.uc.edu,slamkajs@ucmail.uc.edu" />
-		<cfset $_settings['WebURL'] = "https://test.uc.edu/admin/" />
-		<cfset $_settings['LMSURL'] = "https://test.uc.edu/" />
-		<cfset $_settings['CDCURL'] = "http://cme.uc.edu/stdptc" />
-		<cfset $_settings['javaloaderKey'] = "JAVALOADER-CCPD-PROD-15313">
+		<cfset set(dsn = "CCPD_CLONE")>
+		<cfset set(appName = "CCPD Admin 2.0")>
+		<cfset set(rootPath = "/admin")>
+		<cfset set(comPath = "/_com")>
+		<cfset set(appPath = "/admin")>
+		<cfset set(Com = "_com.")>
+		<cfset set(Com2 = "admin._com.")>
+		<cfset set(AdminEmails = "rountrjf@ucmail.uc.edu,slamkajs@ucmail.uc.edu")>
+		<cfset set(WebURL = "https://test.uc.edu/admin/")>
+		<cfset set(LMSURL = "https://test.uc.edu/")>
+		<cfset set(CDCURL = "http://cme.uc.edu/stdptc")>
+		<cfset set(javaloaderKey = "JAVALOADER-CCPD-PROD-15313")>
 	</cfcase>
 </cfswitch>
 
-<cfset request.cgi = CGI />
+<cfset request.cgi = CGI>
 
 <cfset Application.BugLog = CreateObject("component","#Application.Settings.Com#bugLogService").init(
 bugLogListener="http://bugs.swodev.com/listeners/bugLogListenerREST.cfm",

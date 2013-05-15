@@ -1,3 +1,46 @@
+.navbar {
+  .container {
+    position:relative;
+  }
+  .brand {
+    @include gradient-vertical(#e11e27, #a21d20);
+    
+    border-color: #A91E24 #A71D24 #570C15;
+    border-radius: 0 0 2px 2px;
+    border-style: solid;
+    border-width: 0 1px 1px;
+    color: #FFFFFF;
+    font-size: 31px;
+    font-weight: bold;
+    left: 0;
+    line-height: 30px;
+    margin-left: 0;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 3px;
+    position: absolute;
+    text-shadow: 0 -1px #9A1720;
+    text-transform: lowercase;
+  }
+  .nav {
+    &:first-child {
+      margin-left:110px;
+    }
+    a {
+      font-size:12px;
+      i.icon-user-profile {
+        height:20px;
+        width:20px;
+        float:left;
+        margin:0 6px 0 0;
+        background-size:cover;
+        background-position:50% 50%;
+        background-repeat:no-repeat;
+      }
+    }
+  }
+}
+
 .footer {
   border-top:1px solid #CCC;
   margin:20px 0;

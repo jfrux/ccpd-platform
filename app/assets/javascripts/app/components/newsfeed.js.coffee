@@ -185,6 +185,8 @@ class App.Components.NewsFeed
         return
     return
 
+  stop: ->
+    
   renderItem: (row) ->
     Self = @
     re = /\%[A-Za-z]+\%/g
