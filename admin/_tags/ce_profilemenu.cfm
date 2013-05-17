@@ -26,17 +26,23 @@
         <cfset link &= "?#attributes.type#id=#attributes.typeid#" />
       </cfif>
       <li class="<cfif isActive(attributes.current,tab)>active</cfif>">
-        <a href="#link#" 
-          data-js-namespace="js-#replace(tab.event,'.','-')#" 
-          data-pjax-container="##js-#replace(tab.event,'.','-')#" 
-          data-pjax-title="#tab.title#" 
-          data-tooltip-title="#tab.tooltip#">
-          <i class="fg-#tab.icon#"></i> <span>#tab.label#</span>
+        <cfsavecontent variable="tabLinkText">
+          <i class="#tab.icon#"></i> <span>#tab.label#</span>
           <cfif structkeyExists(tab,'count')>
             <span class="navItemCount pull-right">#tab.count#</span>
           </cfif>
           <span class="menuArrow"></span>
-        </a>
+        </cfsavecontent>
+        <cfset tabLinkData = {
+          'js-namespace':"js-#replace(tab.event,'.','-')#",
+          'pjax-container':"##js-#replace(tab.event,'.','-')#",
+          'pjax-title':"#tab.title#" ,
+          'tooltip-title':"#tab.tooltip#",
+          'data-icon':"#tab.icon#"
+        } />
+
+        #linkTo(href="#link#",data=tabLinkData,text=tabLinkText)#
+
         <cfif arrayLen(tab.subEvents) GT 0>
         <ul class="nav subnav">
           <cfloop from="1" to="#arrayLen(tab.subEvents)#" index="e">
@@ -52,7 +58,7 @@
                   data-tooltip-title="#subtab.tooltip#"
                   data-js-namespace="js-#replace(subtab.event,'.','-')#" 
                   data-pjax-container="##js-#replace(subtab.event,'.','-')#">
-                <i class="fg-#subtab.icon#"></i> <span>#subtab.label#</span>
+                <i class="#subtab.icon#"></i> <span>#subtab.label#</span>
                 <cfif structkeyExists(subtab,'count')>
                   <span class="navItemCount pull-right">#subtab.count#</span>
                 </cfif>

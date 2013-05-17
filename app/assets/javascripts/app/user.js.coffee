@@ -61,7 +61,12 @@ App.module "User",
       $infoBarToggleSpan = $(".js-infobar-outer")
       $menuLinks = $menuBar.find('a')
 
+
+      #$menuLoader = $(spinner.el);
       $(document).on 'pjax:send',(xhr,options) ->
+        $clickedLink = $(xhr.relatedTarget)
+        $parent = $clickedLink.parent()
+        $parent.addClass('loading')
         return
       
       $(document).on 'pjax:timeout', (e) ->
@@ -72,14 +77,17 @@ App.module "User",
         $clickedLink = $(xhr.relatedTarget)
         $pageTitle = $clickedLink.data('pjax-title')
         $contentArea = $(xhr.target)
-        $contentTitle = $contentArea.parents('.js-profile-content').find('.content-title > h3')
+        $contentTitle = $contentArea.parents('.js-profile-content').find('.content-title > span')
         $contentTitle.text($pageTitle)
         $titlebar.text($pageTitle)
         $parent = $clickedLink.parent()
+        document.title = "#{$pageTitle}";
         $parent.find('.active').removeClass('active')
         $parent.siblings().removeClass('active')
         $clickedLink.children().removeClass('active')
         $parent.addClass('active')
+        $parent.removeClass('loading')
+        #$menuLoader.spin(false)
         return
 
       App.logInfo "InfoBar: #{cShowInfobar}"

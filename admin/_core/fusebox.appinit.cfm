@@ -38,7 +38,7 @@
 		<cfset set(assetsUrl = "http://www.getmycme.com/assets")>
 		<cfset set(apiUrl = "http://www.getmycme.com")>
 		<cfset set(dsn = "CCPD_PROD")>
-		<cfset set(appName = "CCPD Admin 2.0")>
+		<cfset set(appName = "CCPD")>
 		<cfset set(rootPath = "/admin")>
 		<cfset set(comPath = "/_com")>
 		<cfset set(appPath = "/admin")>
@@ -55,7 +55,7 @@
 		<cfset set(assetsUrl = "http://localhost:3000/assets")>
 		<cfset set(apiUrl = "http://localhost:3000")>
 		<cfset set(dsn = "CCPD_RAILS")>
-		<cfset set(appName = "CCPD Admin 2.0")>
+		<cfset set(appName = "CCPD")>
 		<cfset set(rootPath = "/admin")>
 		<cfset set(comPath = "/_com")>
 		<cfset set(appPath = "/admin")>
@@ -72,7 +72,7 @@
 		<cfset set(assetsUrl = "http://localhost:9292/")>
 		<cfset set(apiUrl = "http://localhost:3001")>
 		<cfset set(dsn = "CCPD_CLONE")>
-		<cfset set(appName = "CCPD Admin 2.0")>
+		<cfset set(appName = "CCPD")>
 		<cfset set(rootPath = "/admin")>
 		<cfset set(comPath = "/_com")>
 		<cfset set(appPath = "/admin")>
@@ -90,7 +90,7 @@
 		<cfset set(apiUrl = "http://localhost:3000")>
 		
 		<cfset set(dsn = "CCPD_CLONE")>
-		<cfset set(appName = "CCPD Admin 2.0")>
+		<cfset set(appName = "CCPD")>
 		<cfset set(rootPath = "/admin")>
 		<cfset set(comPath = "/_com")>
 		<cfset set(appPath = "/admin")>

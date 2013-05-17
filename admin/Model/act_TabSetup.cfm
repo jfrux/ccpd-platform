@@ -10,7 +10,7 @@ request.tabSettings = {
       "label":"News Feed",
       "title":"News Feed",
       "tooltip":"",
-      "icon":"newspaper",
+      "icon":"icon-article-alt",
       "event":"main.welcome",
       "hasToolbar":false,
       "subEvents":[]
@@ -19,7 +19,7 @@ request.tabSettings = {
         "label":"People",
         "title":"People",
         "tooltip":"",
-        "icon":"users",
+        "icon":"icon-users",
         "event":"main.people",
         "hasToolbar":false,
         "subEvents":[]
@@ -28,7 +28,7 @@ request.tabSettings = {
         "label":"Activities",
         "title":"Activities",
         "tooltip":"",
-        "icon":"book",
+        "icon":"icon-book-open",
         "event":"main.activities",
         "hasToolbar":false,
         "subEvents":[]

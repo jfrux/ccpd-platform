@@ -28,24 +28,6 @@ App.User.PersonSearch.start();
     <cfif Attributes.PersonID NEQ "">
       parent.setPerson<cfoutput>#Attributes.Instance#</cfoutput>(nPerson);
     </cfif>
-    
-    $("#PhotoUpload").dialog({ 
-      title:"Upload Photo",
-      modal: false, 
-      autoOpen: false,
-      height:120,
-      width:450,
-      resizable: false,
-      open:function() {
-        $("#PhotoUpload").show();
-      }
-    });
-    
-    $("img.PersonPhoto").click(function() {
-      var nCurrPerson = $.Replace(this.id,"Photo","","ALL");
-      $("#frmUpload").attr("src",sMyself + "Person.PhotoUpload?PersonID=" + nCurrPerson + "&ElementID=" + this.id);
-      $("#PhotoUpload").dialog("open");
-    });
   });
 </script>
 <cfif Attributes.Fuseaction EQ "Person.Finder">
@@ -58,34 +40,34 @@ App.User.PersonSearch.start();
 
 <cfoutput>
 <div class="row-fluid">
-  <div class="search<cfif attributes.fuseaction EQ 'Person.Finder'> finder</cfif> span18">
-    <cfif Attributes.Fuseaction NEQ "Person.Home">
-      <span>
-          <a href="#myself#Person.Create?Instance=#Attributes.Instance#&Mode=Insert&ActivityID=#Attributes.ActivityID#" class="btn btn-small" style="position: absolute; z-index: 1; padding: 3px 13px; top: 90px; right: 0px;">New Person</a>
-      </span>
-    </cfif>
+  <div class="search<cfif attributes.fuseaction EQ 'person.finder'> finder</cfif> span18">
     <cfif isDefined("qPeople") AND qPeople.RecordCount GT 0>
       <cfif PeoplePager.getTotalNumberOfPages() GT 1><div style="row-fluid"><cfoutput>#PeoplePager.getRenderedHTML()#</cfoutput></div></cfif>
-      <table class="ViewSectionGrid table table-condensed">
-        <tbody>
-          <cfoutput query="qPeople" startrow="#PeoplePager.getStartRow()#" maxrows="#PeoplePager.getMaxRows()#">
-            <tr>
-              <td class="span1"><a href="javascript:void(0);" class="js-person-add PersonAdder btn" id="#PersonID#|#LastName#, #FirstName# #MiddleName#"><i class="icon-plus"></i></a></td>
-              <td>
-                 <a href="#myself#person.detail?personid=#personid#" style="font-weight: normal; font-size: 12px; position: relative; line-height: 24px;">
-                #LastName#, #FirstName# #MiddleName# <span style="font-size:12px;color:##888;">(#DisplayName#)</span>
-                </a>
-                <cfif Email NEQ "">#Email#<cfelse>&nbsp;</cfif>
-                <cfif Birthdate NEQ "">#DateFormat(Birthdate,"mm/dd/yyyy")#</cfif>
-              </td>
-            </tr>
-          </cfoutput>
-        </tbody>
-      </table>
+      <div class="result-list">
+        <cfoutput query="qPeople" startrow="#PeoplePager.getStartRow()#" maxrows="#PeoplePager.getMaxRows()#">
+        <div class="divider"><hr /></div>
+        <div class="person-result result-item" data-key="#personid#">
+          <div class="result-image" style="background-image:url(#imageUrl('default_photo/person_m_i.png')#);"></div>
+          <div class="result-body">
+            #linkTo(controller="person",action="detail",params="personid=#personid#",text='#LastName#, #FirstName# #MiddleName# <span class="result-alias">#DisplayName#</span>',class="result-link")#
+            <div class="result-meta">
+              <a href="##"><i class="icon-user"></i>#qPeople.displayname#</a>
+              <cfif !_.isEmpty(Email)>
+                <span class="meta-middot">&middot;</span>
+                <i class="icon-mail-alt"></i>#Email#</cfif>
+              <cfif _.isDate(Birthdate)><span class="meta-middot">&middot;</span><i class="icon-calendar"></i>#DateFormat(Birthdate,"mm/dd/yyyy")#</cfif>
+            </div>
+          </div>
+          <div class="result-actions btn-group">
+            #linkTo(href="javascript:void(0);",id="#PersonID#|#LastName#, #FirstName# #MiddleName#",params="personid=#personid#",text='<i class="icon-plus"></i>',class="js-person-add PersonAdder btn btn-person-adder")#
+          </div>
+        </div>
+        </cfoutput>
+      </div>
       <cfif PeoplePager.getTotalNumberOfPages() GT 1><div><cfoutput>#PeoplePager.getRenderedHTML()#</cfoutput></div></cfif>
     <cfelse>
       <!--- RECENTLY USED PEOPLE --->
-      <cfquery name="qList" datasource="#application.settings.dsn#">
+      <cfquery name="qPeople" datasource="#application.settings.dsn#">
         /* MOST RECENTLY MODIFIED ACTIVITIES */
         WITH CTE_MostRecent AS (
         SELECT H.ToPersonID,MAX(H.Created) As MaxCreated
@@ -96,26 +78,28 @@ App.User.PersonSearch.start();
         WHERE A.DeletedFlag='N'
         ORDER BY M.MaxCreated DESC
       </cfquery>
-      <cfoutput>
-      <h3>Your Recent Persons</h3>
-      <table class="ViewSectionGrid table table-condensed">
-        <tbody>
-          <cfloop query="qList">
-            <tr>
-              <td class="span1"><a href="javascript:void(0);" class="js-person-add PersonAdder btn" id="#qList.PersonID#|#LastName#, #FirstName# #MiddleName#"><i class="icon-plus"></i></a></td>
-              <td>
-                 <a href="#myself#person.detail?personid=#qList.personid#" style="font-weight: normal; font-size: 12px; display: block; position: relative; line-height: 24px;">
-                #LastName#, #FirstName# #MiddleName# <span style="font-size:12px;color:##888;">(#DisplayName#)</span>
-                </a>
-              </td>
-            </tr>
-          </cfloop>
-        </tbody>
-      </table>
-      </cfoutput>
+      <div class="result-list">
+        <cfoutput query="qPeople">
+          <div class="divider"><hr /></div>
+          <div class="person-result result-item" data-key="#personid#">
+            <div class="result-image" style="background-image:url(#imageUrl('default_photo/person_m_i.png')#);"></div>
+            <div class="result-body">
+              #linkTo(controller="person",action="detail",params="personid=#personid#",text='#LastName#, #FirstName# #MiddleName# <span class="result-alias">#DisplayName#</span>',class="result-link")#
+              <div class="result-meta">
+                <a href="##"><i class="icon-user"></i>#qPeople.displayname#</a>
+                <cfif !_.isEmpty(Email)>
+                  <span class="meta-middot">&middot;</span>
+                  <i class="icon-mail-alt"></i>#Email#</cfif>
+                <cfif _.isDate(Birthdate)><span class="meta-middot">&middot;</span><i class="icon-calendar"></i>#DateFormat(Birthdate,"mm/dd/yyyy")#</cfif>
+              </div>
+            </div>
+            <div class="result-actions btn-group">
+              #linkTo(href="javascript:void(0);",id="#PersonID#|#LastName#, #FirstName# #MiddleName#",params="personid=#personid#",text='<i class="icon-plus"></i>',class="js-person-add PersonAdder btn btn-person-adder")#
+            </div>
+          </div>
+          </cfoutput>
+        </div>
     </cfif>
-      
-  
   </div>
   <div class="span6">
     <div class="SearchBar searchbar js-searchbar">

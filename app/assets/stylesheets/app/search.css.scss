@@ -19,7 +19,14 @@ $borderColor: #d6d2d2 #dbd3d3 #d6d2d2 #dbd3d3;
 .search {
   position:relative;
   @include clearfix();
-
+  .btn-person-adder {
+    display:none;
+  }
+  &.finder {
+    .btn-person-adder {
+      display:block;
+    }
+  }
   .pagination {
     @include clearfix();
   }
@@ -28,13 +35,22 @@ $borderColor: #d6d2d2 #dbd3d3 #d6d2d2 #dbd3d3;
 
     .divider {
       hr {
-        margin:8px 0;
+        margin:8px -8px 8px -15px;
+      }
+
+      &:first-child {
+        height:11px;
+        >hr {
+          display:none;  
+        }
+        
       }
     }
 
     .result-item {
       @include clearfix();
       
+
       .result-image {
         background-position: 50% 50%;
         background-repeat: no-repeat;
@@ -52,6 +68,12 @@ $borderColor: #d6d2d2 #dbd3d3 #d6d2d2 #dbd3d3;
           font-weight: bold;
           line-height: 15px;
           font-size:13px;
+          > span.result-alias {
+            color:#888;
+            font-style:italic;
+            font-weight:normal;
+            display:none;
+          }
         }
 
         .result-meta {
@@ -91,8 +113,9 @@ $borderColor: #d6d2d2 #dbd3d3 #d6d2d2 #dbd3d3;
           }
         }
       }
-      
     }
+
+
   }
   .titlebar {
     .ContentTitle {

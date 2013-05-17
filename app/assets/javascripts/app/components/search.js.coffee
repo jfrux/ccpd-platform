@@ -31,43 +31,43 @@ class App.Components.Search
         $(this).attr('data-tooltip-title')
       container: 'body'
 
-    @$formEasy.submit ->
-      $(this).ajaxSubmit
-        type: "post"
-        dataType: "json"
-        beforeSubmit: ->
-          #$saveButton.text(config.buttons.saving).removeClass('btn-primary').addClass('disabled').attr "disabled", true
-          return
-        success: (responseText, statusText) ->
-          if !responseText.STATUS
-            $.each responseText.ERRORS, (i, item) ->
-              addError item.MESSAGE, 250, 6000, 4000
+    #@$formEasy.submit ->
+      # $(this).ajaxSubmit
+      #   type: "post"
+      #   dataType: "json"
+      #   beforeSubmit: ->
+      #     #$saveButton.text(config.buttons.saving).removeClass('btn-primary').addClass('disabled').attr "disabled", true
+      #     return
+      #   success: (responseText, statusText) ->
+      #     if !responseText.STATUS
+      #       $.each responseText.ERRORS, (i, item) ->
+      #         addError item.MESSAGE, 250, 6000, 4000
 
-            # $saveButton.text(config.buttons.save).removeClass('disabled').attr "disabled", false
-            # IsSaved = false
-          else
-            Self.trigger('search')
-          return
+      #       # $saveButton.text(config.buttons.save).removeClass('disabled').attr "disabled", false
+      #       # IsSaved = false
+      #     else
+      #       Self.trigger('search')
+      #     return
       false
 
-    @$formAdv.submit ->
-      $(this).ajaxSubmit
-        type: "post"
-        dataType: "json"
-        beforeSubmit: ->
-          #$saveButton.text(config.buttons.saving).removeClass('btn-primary').addClass('disabled').attr "disabled", true
-          return
-        success: (responseText, statusText) ->
-          if !responseText.STATUS
-            $.each responseText.ERRORS, (i, item) ->
-              addError item.MESSAGE, 250, 6000, 4000
+    #@$formAdv.submit ->
+      # $(this).ajaxSubmit
+      #   type: "post"
+      #   dataType: "json"
+      #   beforeSubmit: ->
+      #     #$saveButton.text(config.buttons.saving).removeClass('btn-primary').addClass('disabled').attr "disabled", true
+      #     return
+      #   success: (responseText, statusText) ->
+      #     if !responseText.STATUS
+      #       $.each responseText.ERRORS, (i, item) ->
+      #         addError item.MESSAGE, 250, 6000, 4000
 
-            # $saveButton.text(config.buttons.save).removeClass('disabled').attr "disabled", false
-            # IsSaved = false
-          else
-            Self.trigger('search')
-          return
-      false
+      #       # $saveButton.text(config.buttons.save).removeClass('disabled').attr "disabled", false
+      #       # IsSaved = false
+      #     else
+      #       Self.trigger('search')
+      #     return
+      # false
 
     Self.trigger('ready')
 

@@ -14,7 +14,7 @@ request.tabSettings = {
       "label":"General Info",
       "title":"General Information",
       "tooltip":"",
-      "icon":"card-address",
+      "icon":"fg-card-address",
       "event":"person.detail",
       "hasToolbar":false,
       "subEvents":[]
@@ -23,7 +23,7 @@ request.tabSettings = {
       "label":"Emails",
       "title":"Emails",
       "tooltip":"",
-      "icon":"mail-at-sign",
+      "icon":"fg-mail-at-sign",
       "event":"person.email",
       "hasToolbar":true,
       "subEvents":[]
@@ -32,7 +32,7 @@ request.tabSettings = {
       "label":"Addresses",
       "title":"Addresses",
       "tooltip":"",
-      "icon":"address-book-blue",
+      "icon":"fg-address-book-blue",
       "event":"person.address",
       "hasToolbar":true,
       "subEvents":[]
@@ -41,7 +41,7 @@ request.tabSettings = {
       "label":"Preferences",
       "title":"Preferences",
       "tooltip":"",
-      "icon":"equalizer",
+      "icon":"fg-equalizer",
       "event":"person.preferences",
       "hasToolbar":false,
       "subEvents":[]
@@ -50,7 +50,7 @@ request.tabSettings = {
       "label":"Activities",
       "title":"Activities",
       "tooltip":"",
-      "icon":"book-open",
+      "icon":"fg-book-open",
       "event":"person.activities",
       "hasToolbar":true,
       "subEvents":[]
@@ -59,7 +59,7 @@ request.tabSettings = {
       "label":"Notes",
       "title":"Notes",
       "tooltip":"",
-      "icon":"sticky-note-pin",
+      "icon":"fg-sticky-note-pin",
       "event":"person.notes",
       "hasToolbar":false,
       "subEvents":[]
@@ -68,7 +68,7 @@ request.tabSettings = {
       "label":"History",
       "title":"History",
       "tooltip":"",
-      "icon":"newspaper",
+      "icon":"fg-newspaper",
       "event":"person.history",
       "hasToolbar":false,
       "subEvents":[]

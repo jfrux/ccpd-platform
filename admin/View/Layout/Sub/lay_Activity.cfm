@@ -88,7 +88,12 @@ App.module('Activity').start({
           </div>
         </div>
         <div class="box js-profile-menu">
-          <cf_ce_profilemenu type="activity" typeid="#attributes.activityid#" settings="#request.tabSettings#" current="#Attributes.Fuseaction#">
+          #profileMenu(
+            type="activity"
+           ,typeid="#attributes.activityid#"
+           ,settings="#request.tabSettings#"
+           ,current="#Attributes.Fuseaction#"
+          )#
         </div>
       </div>
       </cfoutput>

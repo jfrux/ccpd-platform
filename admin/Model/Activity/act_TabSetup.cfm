@@ -21,7 +21,7 @@
         "label":"General Info",
         "title":"General Information",
         "tooltip":"Start Date: #DateFormat(activityBean.getStartDate(),'mm/dd/yyyy')#<br />End Date: #DateFormat(activityBean.getEndDate(),'mm/dd/yyyy')#",
-        "icon":"card-address",
+        "icon":"fg-card-address",
         "event":"activity.detail",
         "hasToolbar":false,
         "subEvents":[]
@@ -29,7 +29,7 @@
       "activity.faculty": {
         "label":"Faculty",
         "title":"Faculty / Speakers",
-        "icon":"user-business",
+        "icon":"fg-user-business",
         "tooltip":"",
         "event":"activity.faculty",
         "hasToolbar":true,
@@ -38,7 +38,7 @@
       "activity.committee": {
         "label":"Committee Members",
         "title":"Planning Committee Members",
-        "icon":"user-female",
+        "icon":"fg-user-female",
         "tooltip":"",
         "event":"activity.committee",
         "hasToolbar":true,
@@ -48,7 +48,7 @@
         "label":"Finances",
         "title":"Finances",
         "tooltip":"",
-        "icon":"money",
+        "icon":"fg-money",
         "event":"activity.finances",
         "hasToolbar":false,
         "subEvents":["activity.finledger","activity.finbudget","activity.finfees","activity.finsupport"]
@@ -93,7 +93,7 @@
         "label":"Credits",
         "title":"Credits",
         "tooltip":"CME: #activityBean.getStatCMEHours()#",
-        "icon":"medal",
+        "icon":"fg-medal",
         "event":"activity.credits",
         "hasToolbar":true,
         "subEvents":[]
@@ -102,7 +102,7 @@
         "label":"Files &amp; Documents",
         "title":"Files &amp; Documents",
         "tooltip":"",
-        "icon":"documents",
+        "icon":"fg-documents",
         "event":"activity.docs",
         "hasToolbar":true,
         "subEvents":[]
@@ -111,7 +111,7 @@
         "label":"Participants",
         "title":"Participants",
         "tooltip":"Total Records: #ActivityBean.getStatAttendees()#<br />Physicians: #ActivityBean.getStatMD()#<br />Non-Physicians: #ActivityBean.getStatNonMD()#<br />Addl Participants: #ActivityBean.getStatAddlAttendees()#",
-        "icon":"users",
+        "icon":"fg-users",
         "event":"activity.attendees",
         "count":"#activityBean.getStatAttendees()#",
         "hasToolbar":true,
@@ -121,7 +121,7 @@
         "label":"Checklist",
         "title":"Application Checklist",
         "tooltip":"",
-        "icon":"flag-checker",
+        "icon":"fg-flag-checker",
         "event":"activity.application",
         "hasToolbar":true,
         "subEvents":[]
@@ -130,7 +130,7 @@
         "label":"Agenda",
         "title":"Agenda",
         "tooltip":"",
-        "icon":"calendar-blue",
+        "icon":"fg-calendar-blue",
         "event":"activity.agenda",
         "hasToolbar":true,
         "subEvents":[]
@@ -139,7 +139,7 @@
         "label":"Publish",
         "title":"Publishing Settings",
         "tooltip":"",
-        "icon":"globe-green",
+        "icon":"fg-globe-green",
         "event":"activity.pubgeneral",
         "hasToolbar":true,
         "subEvents":["activity.pubbuilder","activity.pubcategory","activity.pubspecialty"]
@@ -184,7 +184,7 @@
         "label":"ACCME",
         "title":"ACCME Details",
         "tooltip":"",
-        "icon":"sealing-wax",
+        "icon":"fg-sealing-wax",
         "event":"activity.accme",
         "hasToolbar":true,
         "subEvents":[]
@@ -193,7 +193,7 @@
         "label":"History",
         "title":"History",
         "tooltip":"",
-        "icon":"clock-history",
+        "icon":"fg-clock-history",
         "event":"activity.history",
         "hasToolbar":true,
         "subEvents":[]
@@ -202,7 +202,7 @@
         "label":"Notes",
         "title":"Notes",
         "tooltip":"",
-        "icon":"sticky-note-pin",
+        "icon":"fg-sticky-note-pin",
         "event":"activity.notes",
         "hasToolbar":true,
         "subEvents":[]
@@ -211,7 +211,7 @@
         "label":"Reporting &amp; Exports",
         "title":"Reporting &amp; Exports",
         "tooltip":"",
-        "icon":"chart",
+        "icon":"fg-chart",
         "event":"activity.reports",
         "hasToolbar":true,
         "subEvents":[]

@@ -69,5 +69,6 @@ The service should be back up shortly.<br />
 <cfinclude template="/lib/fusebox-addons/cfml.cfm" />
 <cfinclude template="/lib/fusebox-addons/assets.cfm" />
 <cfinclude template="/lib/fusebox-addons/links.cfm" />
+<cfinclude template="../View/Helpers/functions.cfm" />
 <cfset params = $paramParser() />
 <cfinclude template="/admin/Model/Page/act_Access.cfm" />

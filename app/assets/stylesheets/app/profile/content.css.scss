@@ -2,6 +2,19 @@
   .Loading {
     
   }
+  &.profile-wide {
+    .content {
+      padding-top: 4px;
+      .content-title {
+        color:#454545;
+        border-bottom: 1px solid #EEEEEE;
+        font-size: 16px;
+        font-weight: bold;
+        line-height: 25px;
+        padding: 5px 10px 8px;
+      }
+    }
+  }
   .content {
     position:relative;
     background-color:#FFF;
@@ -10,7 +23,7 @@
     border-color:$borderColor;
     @include border-radius(5px);
     .content-title {
-      >h3 {
+      > h3 {
         background-color: #f0eded;
         border-bottom: 1px solid #d9d7d7;
         font-size: 13px;

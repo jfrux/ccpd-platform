@@ -4,23 +4,42 @@
   }
   .brand {
     @include gradient-vertical(#e11e27, #a21d20);
-    
     border-color: #A91E24 #A71D24 #570C15;
     border-radius: 0 0 2px 2px;
     border-style: solid;
     border-width: 0 1px 1px;
     color: #FFFFFF;
+    font-family: modernaregular;
     font-size: 31px;
-    font-weight: bold;
     left: 0;
-    line-height: 30px;
     margin-left: 0;
-    padding-left: 15px;
-    padding-right: 15px;
-    padding-top: 3px;
+    padding: 7px 15px;
     position: absolute;
-    text-shadow: 0 -1px #9A1720;
+    text-shadow: 0 -1px 0px #570C15;
     text-transform: lowercase;
+    @include box-shadow(3px 0px 4px rgba(0, 0, 0, 0.64));
+    
+    &:hover {
+      color:#CCC;
+    }
+
+    div.cropper {
+      height: 30px;
+      line-height: 27px;
+      overflow: hidden;
+    }
+
+    div.logo3d {
+      border-bottom: 6px solid transparent;
+      border-left: 5px solid #A31D20;
+      border-top: 0 solid transparent;
+      bottom: -1px;
+      height: 0;
+      position: absolute;
+      right: -6px;
+      width: 0;
+      z-index: -1;
+    }
   }
   .nav {
     &:first-child {

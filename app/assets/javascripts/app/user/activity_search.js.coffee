@@ -36,6 +36,9 @@ App.module "User.ActivitySearch", (Self, App, Backbone, Marionette, $) ->
     $title = $base.find("#Title")
     $activityType = $base.find("#ActivityTypeID")
     $grouping = $base.find("#Grouping")
+    $category = $base.find("#CategoryID")
+
+    $category.combobox()
 
     $releaseDate.mask "99/99/9999"
     $title.unbind "keydown"

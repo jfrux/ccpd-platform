@@ -5,6 +5,7 @@
 #=require ./base
 #=require app/activity
 #=require app/components
+#=require app/components/combobox
 #=require app/components/prettydate
 #=require app/components/debug
 #=require app/components/search

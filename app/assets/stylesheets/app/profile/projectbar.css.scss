@@ -96,6 +96,7 @@
         &:first-child {
           margin-top:3px;
         }
+
         > a {
           border-color: #FFF;
           border-style: solid;
@@ -105,6 +106,7 @@
           margin-right: 0;
           padding: 0 6px 0 8px;
           position:relative;
+
           > span.menuArrow {
             background-image: url("profile_menu_arrow.png");
             display: none;
@@ -114,6 +116,22 @@
             top: 6px;
             width: 7px;
           }
+
+          > span.menuLoader {
+            color: #E00122;
+            font-size: 13px;
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            transform-origin: 54% 55% 0;
+            display:none;
+            -o-transform-origin:54% 55% 0;
+            -ms-transform-origin:54% 55% 0;
+            -moz-transform-origin:54% 55% 0;
+            -webkit-transform-origin:54% 55% 0;
+          }
+
+
           &:active,&:focus,&:hover {
             outline: 0;
           }
@@ -155,6 +173,14 @@
             //@include box-shadow(1px 1px 1px #000);
             span.menuArrow {
               display: block;
+            }
+          }
+        }
+        &.loading {
+          > a {
+            cursor:wait;
+            > span.menuLoader {
+              display:block;
             }
           }
         }

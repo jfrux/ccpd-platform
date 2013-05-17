@@ -28,8 +28,13 @@
 
 // Components: common
 //@import "sprites";
-$fontAwesomePath: "fontawesome/font/";
-@import "fontawesome/sass/font-awesome";
+//=require webfonts/icons
+//=require webfonts/icons-embedded
+//=require webfonts/icons-codes
+//=require webfonts/icons-ie7
+//=require webfonts/icons-ie7-codes
+// $fontAwesomePath: "fontawesome/font/";
+// @import "fontawesome/sass/font-awesome";
 @import "dropdowns";
 @import "wells";
 @import "component-animations";

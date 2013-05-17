@@ -11,6 +11,7 @@
 <cfparam name="content" default="">
 <cfparam name="infobar" default="">
 <cfparam name="Attributes.UCID" default="">
+<cfparam name="tabSettings" default="#request.tabSettings.tabs[lcase(attributes.fuseaction)]#" />
 <cfoutput>
 <script>
 App.User.start({
@@ -23,7 +24,7 @@ App.User.start({
 </script>
 </cfoutput>
 <cfoutput>
-<div class="user profile infobar-inactive">
+<div class="user profile profile-wide infobar-inactive">
   <div class="profile-bg">
     <div class="profile-bg-inner"></div>
   </div>
@@ -43,39 +44,27 @@ App.User.start({
           </div>
         </div>
         <div class="box js-profile-menu">
-          <cf_ce_profilemenu type="user" typeid="#session.personid#" settings="#request.tabSettings#" includekey=false current="#Attributes.Fuseaction#">
+          #profileMenu(
+            type="user",
+            typeid="#session.personid#",
+            settings="#request.tabSettings#",
+            includekey=false,
+            current="#Attributes.Fuseaction#"
+          )#
         </div>
       </div>
       </cfoutput>
     </div>
     <div class="span19">
-      <div class="titlebar">
-        <div class="row-fluid">
-          <div class="span16">
-            <div class="ContentTitle">
-              <span title="">#request.tabSettings.tabs[lcase(attributes.fuseaction)].title#</span>
-            </div>
-          </div>
-          <div class="span8">
-            <div class="action-buttons pull-right">
-
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="span19">
       <div class="content js-profile-content">
         <cfoutput>
+        <div class="content-title">
+          <i class="#tabSettings.icon#"></i> <span>#tabSettings.title#</span>
+        </div>
         <div class="row-fluid">
           <div class="span24 js-content-toggle">
-            <div class="row-fluid">
-              <div class="content-title">
-                <h3>#request.tabSettings.tabs[lcase(attributes.fuseaction)].title#</h3>
-              </div>
-            </div>
             <div class="MultiFormContent content-inner">
-              <div id="js-#replace(request.tabSettings.tabs[lcase(attributes.fuseaction)].event,'.','-')#">
+              <div id="js-#replace(lcase(tabSettings.event),'.','-','all')#">
               <cfif structKeyExists(variables,'multiformcontent')>
                 #multiformcontent#
               </cfif>

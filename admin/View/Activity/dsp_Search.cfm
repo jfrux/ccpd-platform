@@ -71,7 +71,7 @@ App.User.ActivitySearch.start(searchSettings);
             <span class="meta-middot">&middot;</span>
             <span>
               <cfif !_.isEmpty(addlInfo)>
-                <a href="##" data-tooltip-title="#addlInfo#"><i class="icon-info-sign"></i></a>
+                <a href="##" data-tooltip-title="#addlInfo#"><i class="icon-info-circle"></i></a>
               </cfif>
             </span>
             <cfif !_.isEmpty(tags)>

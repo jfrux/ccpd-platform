@@ -171,29 +171,55 @@
 				P.Email, 
 				P.Gender
 			FROM
-				ce_Person AS P 
-			WHERE	0=0
-		<cfif structKeyExists(arguments,"SSN") and len(arguments.SSN)>
-			AND	ssn = <cfqueryparam value="#arguments.ssn#" CFSQLType="cf_sql_varchar" />
-		</cfif>
-		<cfif structKeyExists(arguments,"Birthdate") and len(arguments.Birthdate)>
-			AND	birthdate BETWEEN '#DateFormat(Arguments.Birthdate,"mm/dd/yyyy")# 00:00:00' AND '#DateFormat(Arguments.Birthdate,"mm/dd/yyyy")# 23:59:59'
-		</cfif>
-		<cfif structKeyExists(arguments,"FirstName") and len(arguments.FirstName)>
-			AND	firstname LIKE <cfqueryparam value="%#arguments.firstname#%" CFSQLType="cf_sql_varchar" />
-		</cfif>
-		<cfif structKeyExists(arguments,"LastName") and len(arguments.LastName)>
-			AND	lastname LIKE <cfqueryparam value="%#arguments.lastname#%" CFSQLType="cf_sql_varchar" />
-		</cfif>
-		<cfif structKeyExists(arguments,"Email") and len(arguments.Email)>
-			AND	Email = <cfqueryparam value="#arguments.Email#" CFSQLType="cf_sql_varchar" />
-		</cfif>
-		<cfif structKeyExists(arguments,"DeletedFlag") and len(arguments.DeletedFlag)>
-			AND	DeletedFlag = <cfqueryparam value="#arguments.DeletedFlag#" CFSQLType="cf_sql_char" />
-		</cfif>
-		<cfif structKeyExists(arguments, "orderby") and len(arguments.orderBy)>
-			ORDER BY #arguments.orderby#
-		</cfif>
+				users AS P 
+			WHERE	
+			
+			(
+				0=0
+			<cfif structKeyExists(arguments,"SSN") and len(arguments.SSN)>
+				AND	ssn = <cfqueryparam value="#arguments.ssn#" CFSQLType="cf_sql_varchar" />
+			</cfif>
+			<cfif structKeyExists(arguments,"Birthdate") and len(arguments.Birthdate)>
+				AND	birthdate BETWEEN '#DateFormat(Arguments.Birthdate,"mm/dd/yyyy")# 00:00:00' AND '#DateFormat(Arguments.Birthdate,"mm/dd/yyyy")# 23:59:59'
+			</cfif>
+			<cfif structKeyExists(arguments,"FirstName") and len(arguments.FirstName)>
+				AND	firstname LIKE <cfqueryparam value="%#arguments.firstname#%" CFSQLType="cf_sql_varchar" />
+			</cfif>
+			<cfif structKeyExists(arguments,"LastName") and len(arguments.LastName)>
+				AND	lastname LIKE <cfqueryparam value="%#arguments.lastname#%" CFSQLType="cf_sql_varchar" />
+			</cfif>
+			<cfif structKeyExists(arguments,"email") and len(arguments.email)>
+				AND	email = <cfqueryparam value="#arguments.email#" CFSQLType="cf_sql_varchar" />
+			</cfif>
+			<cfif structKeyExists(arguments,"DeletedFlag") and len(arguments.DeletedFlag)>
+				AND	DeletedFlag = <cfqueryparam value="#arguments.DeletedFlag#" CFSQLType="cf_sql_char" />
+			</cfif>
+			) 
+			OR
+			(
+				0=0
+				<cfif structKeyExists(arguments,"SSN") and len(arguments.SSN)>
+					AND	ssn = <cfqueryparam value="#arguments.ssn#" CFSQLType="cf_sql_varchar" />
+				</cfif>
+				<cfif structKeyExists(arguments,"Birthdate") and len(arguments.Birthdate)>
+					AND	birthdate BETWEEN '#DateFormat(Arguments.Birthdate,"mm/dd/yyyy")# 00:00:00' AND '#DateFormat(Arguments.Birthdate,"mm/dd/yyyy")# 23:59:59'
+				</cfif>
+				<cfif structKeyExists(arguments,"FirstName") and len(arguments.FirstName)>
+					AND	firstname LIKE <cfqueryparam value="%#arguments.firstname#%" CFSQLType="cf_sql_varchar" />
+				</cfif>
+				<cfif structKeyExists(arguments,"LastName") and len(arguments.LastName)>
+					AND	lastname LIKE <cfqueryparam value="%#arguments.lastname#%" CFSQLType="cf_sql_varchar" />
+				</cfif>
+				<cfif structKeyExists(arguments,"email") and len(arguments.email)>
+					AND	<cfqueryparam value="#arguments.email#" cfsqltype="cf_sql_varchar" /> IN (SELECT email_address FROM user_emails WHERE personid = P.personid)
+				</cfif>
+				<cfif structKeyExists(arguments,"DeletedFlag") and len(arguments.DeletedFlag)>
+					AND	DeletedFlag = <cfqueryparam value="#arguments.DeletedFlag#" CFSQLType="cf_sql_char" />
+				</cfif>
+				)
+			<cfif structKeyExists(arguments, "orderby") and len(arguments.orderBy)>
+				ORDER BY #arguments.orderby#
+			</cfif>
 		</cfquery>
 		
 		<cfreturn qList />

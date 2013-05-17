@@ -9,6 +9,7 @@
 *=require jquery/jquery-ui
 *=require jquery/json2
 *=require underscore
+*=require spin
 *=require backbone
 *=require backbone.marionette
 *=require twitter/bootstrap/bootstrap-tooltip
@@ -25,6 +26,7 @@
 *=require twitter/bootstrap/bootstrap-transition
 *=require twitter/bootstrap/bootstrap-typeahead
 *=require jquery/plugins/jquery.zclip
+*=require jquery/plugins/jquery.spin
 *=require jquery/plugins/bootstrap-wysiwyg
 *=require jquery/plugins/jquery.maskedinput
 *=require jquery/plugins/jquery.hotkeys
