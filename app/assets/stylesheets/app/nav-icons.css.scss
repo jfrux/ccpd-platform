@@ -1,0 +1,34 @@
+$navIconImg: 'nav_sprites.png';
+[class^="nav-"],
+[class*=" nav-"] {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  vertical-align: text-top;
+  background-image: url(asset_path($navIconImg));
+  background-repeat: no-repeat;
+
+  //.ie7-restore-right-whitespace();
+}
+
+.nav-user-profile {     
+  background-image: none;
+  background-size: 20px auto;
+  background-position: 50% 50%; 
+}
+
+.nav-home { background-position:0 -26px; }
+.nav-activities { background-position:-25px -25px;  }
+.nav-people { background-position:-47px -25px; }
+.nav-reports { background-position:-71px -25px; }
+.nav-alerts { background-position:-96px -25px; }
+.nav-settings {  }
+
+.active,.open {
+  .nav-home { background-position:0 0; }
+  .nav-activities { background-position:-24px 0;  }
+  .nav-people { background-position:-47px 0; }
+  .nav-reports { background-position:-71px 0; }
+  .nav-alerts { background-position:-96px 0; }
+  .nav-settings {  }
+}

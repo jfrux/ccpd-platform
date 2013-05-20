@@ -45,7 +45,7 @@
           </cfloop>
         </select>
         <button class="btn"><i class="icon-search"></i></button>
-        <input type="hidden" name="Search" value="0" />
+        <input type="hidden" name="Search" value="1" />
       </form>
     </div>
   </div>

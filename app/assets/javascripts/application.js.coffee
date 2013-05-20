@@ -11,7 +11,6 @@
 #=require app/components/search
 #=require app/components/personfinder
 #=require app/components/formstate
-
 #=require app/collection
 #=require_tree "./app/collections/"
 #=require app/view

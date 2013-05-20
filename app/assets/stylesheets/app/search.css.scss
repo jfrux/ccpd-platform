@@ -50,7 +50,6 @@ $borderColor: #d6d2d2 #dbd3d3 #d6d2d2 #dbd3d3;
     .result-item {
       @include clearfix();
       
-
       .result-image {
         background-position: 50% 50%;
         background-repeat: no-repeat;
@@ -68,6 +67,7 @@ $borderColor: #d6d2d2 #dbd3d3 #d6d2d2 #dbd3d3;
           font-weight: bold;
           line-height: 15px;
           font-size:13px;
+          
           > span.result-alias {
             color:#888;
             font-style:italic;
@@ -81,10 +81,12 @@ $borderColor: #d6d2d2 #dbd3d3 #d6d2d2 #dbd3d3;
           color:#AAA;
           cursor:default;
           margin-top: 2px;
+          
           .label {
             font-size:11px;
             font-weight:normal;
           }
+
           i {
             &.status-active {
               color:#6CA52C;
@@ -99,10 +101,12 @@ $borderColor: #d6d2d2 #dbd3d3 #d6d2d2 #dbd3d3;
               color:#F3E767;
             }
           }
+
           span {
             line-height:16px;
             font-size:11px;
           }
+
           a {
             color:#AAA;
             text-decoration:none;

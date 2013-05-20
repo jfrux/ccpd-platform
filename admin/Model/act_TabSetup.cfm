@@ -2,8 +2,8 @@
 request.tabSettings = {
   "tabsSort":[
     "main.welcome",
-    "main.people",
-    "main.activities"
+    "main.activities",
+    "main.people"
   ],
   "tabs": {
     "main.welcome": {

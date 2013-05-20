@@ -42,7 +42,12 @@ App.Person.start({
           </div>
         </div>
         <div class="box js-profile-menu">
-          <cf_ce_profilemenu type="person" typeid="#attributes.personid#" settings="#request.tabSettings#" current="#Attributes.Fuseaction#">
+          #profileMenu(
+            type="person"
+           ,typeid="#attributes.personid#"
+           ,settings="#request.tabSettings#"
+           ,current="#Attributes.Fuseaction#"
+          )#
         </div>
       </div>
       </cfoutput>

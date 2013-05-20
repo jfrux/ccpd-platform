@@ -3,6 +3,7 @@
 *=require bootstrap_and_overrides
 *=require jquery/jquery.ui.base.css
 *=require jquery/jquery.ui.theme.css
+*=require app/chat/converse
 *=require base
 */
 

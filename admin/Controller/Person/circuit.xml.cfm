@@ -4,8 +4,8 @@
 <circuit access="public">
   <prefuseaction callsuper="true">
     <set name="Request.NavItem" value="2" />
-    
-    <if condition="structKeyExists(attributes,'personid')">
+    <set name="layout_exceptions" value="person.create" />
+    <if condition="structKeyExists(attributes,'personid') AND attributes.personid GT 0">
       <true>
         <set name="Request.MultiFormEditLabel" value="Edit this activity" />
         <do action="mPerson.getPerson" />
@@ -18,51 +18,55 @@
     </if>
   </prefuseaction>
   <postfuseaction>
-    <if condition="#structKeyExists(attributes,'personid')# AND attributes.personid GT 0">
-      <true>
-        <do action="mPerson.getPerson" />
-      </true>
-    </if>
-    <if condition="isPjax()">
+    <if condition="#NOT listFindNoCase(layout_exceptions,attributes.fuseaction)#">
       <true>
         <if condition="#structKeyExists(attributes,'personid')# AND attributes.personid GT 0">
           <true>
-            <if condition="#request.currentTab.hasToolbar#">
-              <true>
-                <invoke object="myFusebox" 
-                        methodcall="do('vPerson.#request.page.action#right','multiformright')" />
-              </true>
-            </if>
-            <invoke object="myFusebox" 
-                    methodcall="do('vPerson.#request.page.action#','multiformcontent')" />
+            <do action="mPerson.getPerson" />
           </true>
         </if>
-        <do action="vLayout.Blank" />
-      </true>
-       <false>
-          <if condition="isAjax()">
-            <true>
-              <do action="vLayout.Blank" />
-            </true>
-            <false>
-                <if condition="#structKeyExists(attributes,'personid')# AND attributes.personid GT 0">
+        <if condition="isPjax()">
+          <true>
+            <if condition="#structKeyExists(attributes,'personid')# AND attributes.personid GT 0">
+              <true>
+                <if condition="#request.currentTab.hasToolbar#">
                   <true>
-                    <if condition="#request.currentTab.hasToolbar#">
-                      <true>
-                        <invoke object="myFusebox" 
-                                methodcall="do('vPerson.#request.page.action#right','multiformright')" />
-                      </true>
-                    </if>
                     <invoke object="myFusebox" 
-                            methodcall="do('vPerson.#request.page.action#','multiformcontent')" />
-                    <do action="vLayout.Sub_Person" contentvariable="request.page.body" />
+                            methodcall="do('vPerson.#request.page.action#right','multiformright')" />
                   </true>
                 </if>
-               
-               <do action="vLayout.Default" />
-            </false>
-          </if>
-      </false>
+                <invoke object="myFusebox" 
+                        methodcall="do('vPerson.#request.page.action#','multiformcontent')" />
+              </true>
+            </if>
+            <do action="vLayout.Blank" />
+          </true>
+           <false>
+              <if condition="isAjax()">
+                <true>
+                  <do action="vLayout.Blank" />
+                </true>
+                <false>
+                    <if condition="#structKeyExists(attributes,'personid')# AND attributes.personid GT 0">
+                      <true>
+                        <if condition="#request.currentTab.hasToolbar#">
+                          <true>
+                            <invoke object="myFusebox" 
+                                    methodcall="do('vPerson.#request.page.action#right','multiformright')" />
+                          </true>
+                        </if>
+                        <invoke object="myFusebox" 
+                                methodcall="do('vPerson.#request.page.action#','multiformcontent')" />
+                        <do action="vLayout.Sub_Person" contentvariable="request.page.body" />
+                      </true>
+                    </if>
+                   
+                   <do action="vLayout.Default" />
+                </false>
+              </if>
+          </false>
+        </if>
+      </true>
     </if>
   </postfuseaction>
 
@@ -87,9 +91,9 @@
 
     <switch expression="#Attributes.Mode#">
       <case value="Default">
-        <do action="vPerson.CreateRight" contentvariable="Request.MultiFormRight" />
-        <do action="vPerson.CreatePerson" contentvariable="Request.MultiFormContent" />
-        <do action="vLayout.Sub_MultiForm" contentvariable="Request.Page.Body" />
+        <do action="vPerson.CreateRight" contentvariable="multiformright" />
+        <do action="vPerson.CreatePerson" contentvariable="multiformcontent" />
+        <do action="vLayout.Sub_MultiForm" contentvariable="request.page.body" />
         <do action="vLayout.Default" />
       </case>
       <case value="Insert">
