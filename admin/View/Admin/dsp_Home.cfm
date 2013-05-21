@@ -1,63 +1,49 @@
+<!--- <cffunction name="setCookie" access="public" returnType="void" output="false">
+    <cfargument name="name" type="string" required="true">
+    <cfargument name="value" type="string" required="false">
+    <cfargument name="expires" type="any" required="false">
+    <cfargument name="domain" type="string" required="false">
+    <cfargument name="httpOnly" type="boolean" required="false">
+    <cfargument name="path" type="string" required="false">
+    <cfargument name="secure" type="boolean" required="false">
+    <cfset var args = {}>
+    <cfset var arg = "">
+    <cfloop item="arg" collection="#arguments#">
+        <cfif not isNull(arguments[arg])>
+            <cfset args[arg] = arguments[arg]>
+        </cfif>
+    </cfloop>
+
+    <cfcookie attributecollection="#args#">
+</cffunction> --->
 <cfscript>
-/* create new http service */ 
-httpConn = new HTTP(); 
-/* set attributes using implicit setters */ 
-httpConn.setMethod("post"); 
-httpConn.setCharset("utf-8"); 
-httpConn.setUrl("http://ccpd.uc.edu:9090/plugins/userService/userservice"); 
-/* add httpConnparams using addParam() */
-httpConn.addParam(type="formfield",name="secret",value="zmogkdIp");
-httpConn.addParam(type="formfield",name="type",value="add");
-httpConn.addParam(type="formfield",name="username",value="#session.personid#"); 
-httpConn.addParam(type="formfield",name="password",value="#session.person.getPassword()#"); 
-httpConn.addParam(type="formfield",name="name",value="#session.person.getDisplayName()#"); 
-httpConn.addParam(type="formfield",name="email",value="#session.person.getEmail()#");  
-/* make the httpConn call to the URL using send() */ 
-result = httpConn.send().getPrefix(); 
-/* process the filecontent returned */ 
-content = xmlParse(result.filecontent);
+xmpp = createObject("component","admin._com.XMPPPrebind").init(
+      $jabberHost="ccpd.uc.edu", 
+      $boshUri="http://localhost:8888/http-bind/", 
+      $resource="ccpd-web");
+xmpp.connect('admin','cfr010408');
+// rid = randRange(100000000,1000000000);
+// libprefix = "org.jivesoftware.smack."
+// loader = application.javaloader;
 
-if(structKeyExists(content,'error')) {
-	error = content.error.xmlText;
-	if(error EQ "UserAlreadyExistsException") {
-		//update user
-	} else {
-		writeDump(error);
-	}
-} else {
-	writeDump(content);
-}
+// // xmpp = loader.create("edu.uc.ccpd.XMPP");
+// //writeDump(xmpp.connect('admin','cfr010408').getRegisterSASLMechanisms()[2].SASLDigestMD5Mechanism);
+// //create Bosh configuration
+// config = loader.create("#libPrefix#BOSHConfiguration").init("ccpd.uc.edu");
 
-httpConn = new HTTP();
-httpConn.setMethod("post"); 
-httpConn.setUrl('http://ccpd.uc.edu:7070/http-bind');
-bodyContent = {
-			from:'user@example.com',
-      hold:'1',
-      rid:'1573741820',
-      to:'example.com',
-      route:'xmpp:example.com:9999',
-      secure:'true',
-      wait:'60',
-      "xml:lang":'en',
-      'xmpp:version':'1.0',
-      xmlns:'http://jabber.org/protocol/httpbind',
-      'xmlns:xmpp':'urn:xmpp:xbosh'
-};
-httpConn.addParam(type="header",name="content-type", value="text/xml"); 
-httpConn.addParam(type="body",value="<body content='text/xml; charset=utf-8'
-      from='user@example.com'
-      hold='1'
-      rid='1573741820'
-      to='example.com'
-      route='xmpp:example.com:9999'
-      secure='true'
-      wait='60'
-      xml:lang='en'
-      xmpp:version='1.0'
-      xmlns='http://jabber.org/protocol/httpbind'
-      xmlns:xmpp='urn:xmpp:xbosh'/>");
+// //create a connection
+// connection = loader.create("#libPrefix#BOSHConnection").init(config);
+// connection.connect();
+// connection.login('admin', "cfr010408", "");
 
-result = httpConn.send().getPrefix();
-writeDump(result);
+// writeDump(connection);
+// setCookie('xmpp_sid',connection.getSessionID(),createTimeSpan(0,60,0,0),'localhost',false,'/admin/event/');
+// setCookie('xmpp_user','admin',createTimeSpan(0,60,0,0),'localhost',false,'/admin/event/');
 </cfscript>
+
+// <script>
+// // connection = new Strophe.Connection('http://localhost:8888/http-bind/');
+// // connection.attach('admin', connection.getSessionID(), rid, function() {
+// //       console.log(arguments);
+// // });
+// </script>

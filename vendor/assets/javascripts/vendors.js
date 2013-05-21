@@ -14,6 +14,8 @@
 *=require backbone.marionette
 *=require ijab_config
 *=require ijab_i18n_en
+*=require ijab/ijab.nocache
+*=require jsjac.uncompressed
 *=require twitter/bootstrap/bootstrap-tooltip
 *=require twitter/bootstrap/bootstrap-affix
 *=require twitter/bootstrap/bootstrap-alert

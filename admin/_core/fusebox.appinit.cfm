@@ -1,17 +1,17 @@
 <!---
-	fusebox.appinit.cfm is included by the framework when the application is
-	started, i.e., on the very first request (in production mode) or whenever
-	the framework is reloaded, either with development-full-load mode or when
-	fusebox.load=true or fusebox.loadclean=true is specified.
-	It is included within a cfsilent tag so it cannot generate output. It is
-	intended to be for per-application initialization that can not easily be
-	done in the appinit global fuseaction.
-	It is included inside a conditional lock, ensuring that only one request
-	can execute this file.
-	
-	For example, if you are sharing application variables between a Fusebox
-	application and a non-Fusebox application, you can initialize them here
-	and then cfinclude this file into your non-Fusebox application.
+  fusebox.appinit.cfm is included by the framework when the application is
+  started, i.e., on the very first request (in production mode) or whenever
+  the framework is reloaded, either with development-full-load mode or when
+  fusebox.load=true or fusebox.loadclean=true is specified.
+  It is included within a cfsilent tag so it cannot generate output. It is
+  intended to be for per-application initialization that can not easily be
+  done in the appinit global fuseaction.
+  It is included inside a conditional lock, ensuring that only one request
+  can execute this file.
+  
+  For example, if you are sharing application variables between a Fusebox
+  application and a non-Fusebox application, you can initialize them here
+  and then cfinclude this file into your non-Fusebox application.
 --->
 
 <!--- APP SETTINGS --->
@@ -28,80 +28,80 @@
 <cfset set(showDebugInformation = false) />
 <cfset set(webPath='/admin') />
 <cfset set(assetPaths = {
-	'http':'localhost:8888/assets',
-	'https':'localhost:8888/assets'
+  'http':'localhost:8888/assets',
+  'https':'localhost:8888/assets'
 }) />
 <cfset set(imagePath = "") />
 <cfswitch expression="#CGI.SERVER_NAME#">
-	<!--- PRODUCTION --->
-	<cfcase value="ccpd.uc.edu">
-		<cfset set(assetsUrl = "http://www.getmycme.com/assets")>
-		<cfset set(apiUrl = "http://www.getmycme.com")>
-		<cfset set(dsn = "CCPD_PROD")>
-		<cfset set(appName = "CCPD")>
-		<cfset set(rootPath = "/admin")>
-		<cfset set(comPath = "/_com")>
-		<cfset set(appPath = "/admin")>
-		<cfset set(com = "_com.")>
-		<cfset set(com2 = "admin._com.")>
-		<cfset set(AdminEmails = "rountrjf@ucmail.uc.edu,slamkajs@ucmail.uc.edu")>
-		<cfset set(WebURL = "https://ccpd.uc.edu/admin/")>
-		<cfset set(LMSURL = "https://ccpd.uc.edu/")>
-		<cfset set(CDCURL = "http://cme.uc.edu/stdptc")>
-		<cfset set(javaloaderKey = "JAVALOADER-CCPD-PROD-15313")>
-	</cfcase>
-	
-	<cfcase value="test.ccpd.uc.edu">
-		<cfset set(assetsUrl = "http://localhost:3000/assets")>
-		<cfset set(apiUrl = "http://localhost:3000")>
-		<cfset set(dsn = "CCPD_RAILS")>
-		<cfset set(appName = "CCPD")>
-		<cfset set(rootPath = "/admin")>
-		<cfset set(comPath = "/_com")>
-		<cfset set(appPath = "/admin")>
-		<cfset set(Com = "_com.")>
-		<cfset set(Com2 = "admin._com.")>
-		<cfset set(AdminEmails = "rountrjf@ucmail.uc.edu,slamkajs@ucmail.uc.edu")>
-		<cfset set(WebURL = "https://test.uc.edu/admin/")>
-		<cfset set(LMSURL = "https://test.uc.edu/")>
-		<cfset set(CDCURL = "http://cme.uc.edu/stdptc")>
-		<cfset set(javaloaderKey = "JAVALOADER-CCPD-PROD-15313")>
-	</cfcase>
+  <!--- PRODUCTION --->
+  <cfcase value="ccpd.uc.edu">
+    <cfset set(assetsUrl = "http://www.getmycme.com/assets")>
+    <cfset set(apiUrl = "http://www.getmycme.com")>
+    <cfset set(dsn = "CCPD_PROD")>
+    <cfset set(appName = "CCPD")>
+    <cfset set(rootPath = "/admin")>
+    <cfset set(comPath = "/_com")>
+    <cfset set(appPath = "/admin")>
+    <cfset set(com = "_com.")>
+    <cfset set(com2 = "admin._com.")>
+    <cfset set(AdminEmails = "rountrjf@ucmail.uc.edu,slamkajs@ucmail.uc.edu")>
+    <cfset set(WebURL = "https://ccpd.uc.edu/admin/")>
+    <cfset set(LMSURL = "https://ccpd.uc.edu/")>
+    <cfset set(CDCURL = "http://cme.uc.edu/stdptc")>
+    <cfset set(javaloaderKey = "JAVALOADER-CCPD-PROD-15313")>
+  </cfcase>
+  
+  <cfcase value="test.ccpd.uc.edu">
+    <cfset set(assetsUrl = "http://localhost:3000/assets")>
+    <cfset set(apiUrl = "http://localhost:3000")>
+    <cfset set(dsn = "CCPD_RAILS")>
+    <cfset set(appName = "CCPD")>
+    <cfset set(rootPath = "/admin")>
+    <cfset set(comPath = "/_com")>
+    <cfset set(appPath = "/admin")>
+    <cfset set(Com = "_com.")>
+    <cfset set(Com2 = "admin._com.")>
+    <cfset set(AdminEmails = "rountrjf@ucmail.uc.edu,slamkajs@ucmail.uc.edu")>
+    <cfset set(WebURL = "https://test.uc.edu/admin/")>
+    <cfset set(LMSURL = "https://test.uc.edu/")>
+    <cfset set(CDCURL = "http://cme.uc.edu/stdptc")>
+    <cfset set(javaloaderKey = "JAVALOADER-CCPD-PROD-15313")>
+  </cfcase>
 
-	<cfcase value="localhost">
-		<cfset set(assetsUrl = "http://localhost:9292/")>
-		<cfset set(apiUrl = "http://localhost:3001")>
-		<cfset set(dsn = "CCPD_CLONE")>
-		<cfset set(appName = "CCPD")>
-		<cfset set(rootPath = "/admin")>
-		<cfset set(comPath = "/_com")>
-		<cfset set(appPath = "/admin")>
-		<cfset set(Com = "_com.")>
-		<cfset set(Com2 = "admin._com.")>
-		<cfset set(AdminEmails = "rountrjf@ucmail.uc.edu,slamkajs@ucmail.uc.edu")>
-		<cfset set(WebURL = "https://test.uc.edu/admin/")>
-		<cfset set(LMSURL = "https://test.uc.edu/")>
-		<cfset set(CDCURL = "http://cme.uc.edu/stdptc")>
-		<cfset set(javaloaderKey = "JAVALOADER-CCPD-PROD-15313")>
-	</cfcase>
+  <cfcase value="localhost">
+    <cfset set(assetsUrl = "http://localhost:9292/")>
+    <cfset set(apiUrl = "http://localhost:3001")>
+    <cfset set(dsn = "CCPD_CLONE")>
+    <cfset set(appName = "CCPD")>
+    <cfset set(rootPath = "/admin")>
+    <cfset set(comPath = "/_com")>
+    <cfset set(appPath = "/admin")>
+    <cfset set(Com = "_com.")>
+    <cfset set(Com2 = "admin._com.")>
+    <cfset set(AdminEmails = "rountrjf@ucmail.uc.edu,slamkajs@ucmail.uc.edu")>
+    <cfset set(WebURL = "https://test.uc.edu/admin/")>
+    <cfset set(LMSURL = "https://test.uc.edu/")>
+    <cfset set(CDCURL = "http://cme.uc.edu/stdptc")>
+    <cfset set(javaloaderKey = "JAVALOADER-CCPD-PROD-15313")>
+  </cfcase>
 
-	<cfcase value="v2.ccpd.uc.edu">
-		<cfset set(assetsUrl = "http://localhost:3000/assets")>
-		<cfset set(apiUrl = "http://localhost:3000")>
-		
-		<cfset set(dsn = "CCPD_CLONE")>
-		<cfset set(appName = "CCPD")>
-		<cfset set(rootPath = "/admin")>
-		<cfset set(comPath = "/_com")>
-		<cfset set(appPath = "/admin")>
-		<cfset set(Com = "_com.")>
-		<cfset set(Com2 = "admin._com.")>
-		<cfset set(AdminEmails = "rountrjf@ucmail.uc.edu,slamkajs@ucmail.uc.edu")>
-		<cfset set(WebURL = "https://test.uc.edu/admin/")>
-		<cfset set(LMSURL = "https://test.uc.edu/")>
-		<cfset set(CDCURL = "http://cme.uc.edu/stdptc")>
-		<cfset set(javaloaderKey = "JAVALOADER-CCPD-PROD-15313")>
-	</cfcase>
+  <cfcase value="v2.ccpd.uc.edu">
+    <cfset set(assetsUrl = "http://localhost:3000/assets")>
+    <cfset set(apiUrl = "http://localhost:3000")>
+    
+    <cfset set(dsn = "CCPD_CLONE")>
+    <cfset set(appName = "CCPD")>
+    <cfset set(rootPath = "/admin")>
+    <cfset set(comPath = "/_com")>
+    <cfset set(appPath = "/admin")>
+    <cfset set(Com = "_com.")>
+    <cfset set(Com2 = "admin._com.")>
+    <cfset set(AdminEmails = "rountrjf@ucmail.uc.edu,slamkajs@ucmail.uc.edu")>
+    <cfset set(WebURL = "https://test.uc.edu/admin/")>
+    <cfset set(LMSURL = "https://test.uc.edu/")>
+    <cfset set(CDCURL = "http://cme.uc.edu/stdptc")>
+    <cfset set(javaloaderKey = "JAVALOADER-CCPD-PROD-15313")>
+  </cfcase>
 </cfswitch>
 
 <cfset request.cgi = CGI>
@@ -112,16 +112,20 @@ bugEmailRecipients="rountrjf@ucmail.uc.edu,slamkajs@ucmail.uc.edu",
 bugSenderEmail="rountrjf@ucmail.uc.edu")>
 <!---
 <cfset Application.unfuddle = CreateObject("component","#application.settings.com#unfuddle").init(
-							unfuddleUrl="http://ucccpd.unfuddle.com",
-							username="rountrjf",
-							password="05125586") />--->
+              unfuddleUrl="http://ucccpd.unfuddle.com",
+              username="rountrjf",
+              password="05125586") />--->
 
 <!--- JAVA PATHS / LOADER --->
-<!--- <cfset javaPaths = ["#expandPath("/_java/lingpipe-4.0.1.jar")#",
-"#expandPath("/_java/Supa.jar")#",
-"#expandPath("/_java/EncodingUtil.class")#"]> --->
- 
-<!--- <cfset application.javaloader = createObject("component", "_com.javaloader.JavaLoader").init(javaPaths)> --->
+<cfset javaPaths = [
+  "#expandPath('/lib/smack/smack.jar')#",
+  "#expandPath('/lib/smack/smack-bosh-3.2.2-jar-with-dependencies.jar')#",
+  "/Users/joshua/Projects/ccpd-xmpp/dist/ccpd-xmpp.jar"
+]>
+<cfset sourcePaths = [
+  
+] />
+<cfset application.javaloader = createObject("component", "_com.javaloader.JavaLoader").init(loadPaths=javaPaths,sourceDirectories=sourcePaths)>
 
 <cfset Application.Email = CreateObject("component","#Application.Settings.Com#email").Init()>
 <cfset application.search = createObject("component","_com.typeahead.search").init(application.settings.dsn) />
@@ -190,46 +194,46 @@ bugSenderEmail="rountrjf@ucmail.uc.edu")>
 <cfset Application.Com.CreditDAO = CreateObject("component","#Application.Settings.Com#System.CreditDAO").Init(Application.Settings.DSN)>
 <cfset Application.Com.CreditGateway = CreateObject("component","#Application.Settings.Com#System.CreditGateway").Init(Application.Settings.DSN)>
 
-	<!--- ACTIVITY --->
-	<cfset Application.Com.ActivityDAO = CreateObject("component","#Application.Settings.Com#Activity.ActivityDAO").Init(Application.Settings.DSN)>
-	<cfset Application.Com.ActivityGateway = CreateObject("component","#Application.Settings.Com#Activity.ActivityGateway").Init(Application.Settings.DSN)>
-	
-	<cfset Application.Com.ActivityCategoryDAO = CreateObject("component","#Application.Settings.Com#ActivityCategory.ActivityCategoryDAO").Init(Application.Settings.DSN)>
-	<cfset Application.Com.ActivityCategoryGateway = CreateObject("component","#Application.Settings.Com#ActivityCategory.ActivityCategoryGateway").Init(Application.Settings.DSN)>
-	
+  <!--- ACTIVITY --->
+  <cfset Application.Com.ActivityDAO = CreateObject("component","#Application.Settings.Com#Activity.ActivityDAO").Init(Application.Settings.DSN)>
+  <cfset Application.Com.ActivityGateway = CreateObject("component","#Application.Settings.Com#Activity.ActivityGateway").Init(Application.Settings.DSN)>
+  
+  <cfset Application.Com.ActivityCategoryDAO = CreateObject("component","#Application.Settings.Com#ActivityCategory.ActivityCategoryDAO").Init(Application.Settings.DSN)>
+  <cfset Application.Com.ActivityCategoryGateway = CreateObject("component","#Application.Settings.Com#ActivityCategory.ActivityCategoryGateway").Init(Application.Settings.DSN)>
+  
     <cfset Application.Com.ActivityApplicationDAO = CreateObject("component","#Application.Settings.Com#ActivityApplication.ActivityApplicationDAO").Init(Application.Settings.DSN)>
-	<cfset Application.Com.ActivityApplicationGateway = CreateObject("component","#Application.Settings.Com#ActivityApplication.ActivityApplicationGateway").Init(Application.Settings.DSN)>
+  <cfset Application.Com.ActivityApplicationGateway = CreateObject("component","#Application.Settings.Com#ActivityApplication.ActivityApplicationGateway").Init(Application.Settings.DSN)>
     
-	<cfset Application.Com.ActivityCommitteeDAO = CreateObject("component","#Application.Settings.Com#ActivityCommittee.ActivityCommitteeDAO").Init(Application.Settings.DSN)>
-	<cfset Application.Com.ActivityCommitteeGateway = CreateObject("component","#Application.Settings.Com#ActivityCommittee.ActivityCommitteeGateway").Init(Application.Settings.DSN)>
-	
-	<cfset Application.Com.ActivityPubGeneralDAO = CreateObject("component","#Application.Settings.Com#ActivityPubGeneral.ActivityPubGeneralDAO").Init(Application.Settings.DSN)>
-	<cfset Application.Com.ActivityPubGeneralGateway = CreateObject("component","#Application.Settings.Com#ActivityPubGeneral.ActivityPubGeneralGateway").Init(Application.Settings.DSN)>
-	
-	<cfset Application.Com.ActivityPubComponentDAO = CreateObject("component","#Application.Settings.Com#ActivityPubComponent.ActivityPubComponentDAO").Init(Application.Settings.DSN)>
-	<cfset Application.Com.ActivityPubComponentGateway = CreateObject("component","#Application.Settings.Com#ActivityPubComponent.ActivityPubComponentGateway").Init(Application.Settings.DSN)>
-	
-	<cfset Application.Com.ActivityFacultyDAO = CreateObject("component","#Application.Settings.Com#ActivityFaculty.ActivityFacultyDAO").Init(Application.Settings.DSN)>
-	<cfset Application.Com.ActivityFacultyGateway = CreateObject("component","#Application.Settings.Com#ActivityFaculty.ActivityFacultyGateway").Init(Application.Settings.DSN)>
-	
-	<cfset Application.Com.ActivityOtherDAO = CreateObject("component","#Application.Settings.Com#ActivityOther.ActivityOtherDAO").Init(Application.Settings.DSN)>
-	<cfset Application.Com.ActivityOtherGateway = CreateObject("component","#Application.Settings.Com#ActivityOther.ActivityOtherGateway").Init(Application.Settings.DSN)>
+  <cfset Application.Com.ActivityCommitteeDAO = CreateObject("component","#Application.Settings.Com#ActivityCommittee.ActivityCommitteeDAO").Init(Application.Settings.DSN)>
+  <cfset Application.Com.ActivityCommitteeGateway = CreateObject("component","#Application.Settings.Com#ActivityCommittee.ActivityCommitteeGateway").Init(Application.Settings.DSN)>
+  
+  <cfset Application.Com.ActivityPubGeneralDAO = CreateObject("component","#Application.Settings.Com#ActivityPubGeneral.ActivityPubGeneralDAO").Init(Application.Settings.DSN)>
+  <cfset Application.Com.ActivityPubGeneralGateway = CreateObject("component","#Application.Settings.Com#ActivityPubGeneral.ActivityPubGeneralGateway").Init(Application.Settings.DSN)>
+  
+  <cfset Application.Com.ActivityPubComponentDAO = CreateObject("component","#Application.Settings.Com#ActivityPubComponent.ActivityPubComponentDAO").Init(Application.Settings.DSN)>
+  <cfset Application.Com.ActivityPubComponentGateway = CreateObject("component","#Application.Settings.Com#ActivityPubComponent.ActivityPubComponentGateway").Init(Application.Settings.DSN)>
+  
+  <cfset Application.Com.ActivityFacultyDAO = CreateObject("component","#Application.Settings.Com#ActivityFaculty.ActivityFacultyDAO").Init(Application.Settings.DSN)>
+  <cfset Application.Com.ActivityFacultyGateway = CreateObject("component","#Application.Settings.Com#ActivityFaculty.ActivityFacultyGateway").Init(Application.Settings.DSN)>
+  
+  <cfset Application.Com.ActivityOtherDAO = CreateObject("component","#Application.Settings.Com#ActivityOther.ActivityOtherDAO").Init(Application.Settings.DSN)>
+  <cfset Application.Com.ActivityOtherGateway = CreateObject("component","#Application.Settings.Com#ActivityOther.ActivityOtherGateway").Init(Application.Settings.DSN)>
 
-		<!--- ACTIVITY FINANCES --->
-		<cfset Application.Com.ActivitySupportDAO = CreateObject("component","#Application.Settings.Com#ActivityFinance.SupportDAO").Init(Application.Settings.DSN)>
-		<cfset Application.Com.ActivitySupportGateway = CreateObject("component","#Application.Settings.Com#ActivityFinance.SupportGateway").Init(Application.Settings.DSN)>
-		
-		<cfset Application.Com.ActivityBudgetDAO = CreateObject("component","#Application.Settings.Com#ActivityFinance.BudgetDAO").Init(Application.Settings.DSN)>
-		<cfset Application.Com.ActivityBudgetGateway = CreateObject("component","#Application.Settings.Com#ActivityFinance.BudgetGateway").Init(Application.Settings.DSN)>
-		
-		<cfset Application.Com.ActivityLedgerDAO = CreateObject("component","#Application.Settings.Com#ActivityFinance.LedgerDAO").Init(Application.Settings.DSN)>
-		<cfset Application.Com.ActivityLedgerGateway = CreateObject("component","#Application.Settings.Com#ActivityFinance.LedgerGateway").Init(Application.Settings.DSN)>
-		
-		<cfset Application.Com.ActivityFeeDAO = CreateObject("component","#Application.Settings.Com#ActivityFinance.FeeDAO").Init(Application.Settings.DSN)>
-		<cfset Application.Com.ActivityFeeGateway = CreateObject("component","#Application.Settings.Com#ActivityFinance.FeeGateway").Init(Application.Settings.DSN)>
-		<!--- //ACTIVITY FINANCES --->
+    <!--- ACTIVITY FINANCES --->
+    <cfset Application.Com.ActivitySupportDAO = CreateObject("component","#Application.Settings.Com#ActivityFinance.SupportDAO").Init(Application.Settings.DSN)>
+    <cfset Application.Com.ActivitySupportGateway = CreateObject("component","#Application.Settings.Com#ActivityFinance.SupportGateway").Init(Application.Settings.DSN)>
+    
+    <cfset Application.Com.ActivityBudgetDAO = CreateObject("component","#Application.Settings.Com#ActivityFinance.BudgetDAO").Init(Application.Settings.DSN)>
+    <cfset Application.Com.ActivityBudgetGateway = CreateObject("component","#Application.Settings.Com#ActivityFinance.BudgetGateway").Init(Application.Settings.DSN)>
+    
+    <cfset Application.Com.ActivityLedgerDAO = CreateObject("component","#Application.Settings.Com#ActivityFinance.LedgerDAO").Init(Application.Settings.DSN)>
+    <cfset Application.Com.ActivityLedgerGateway = CreateObject("component","#Application.Settings.Com#ActivityFinance.LedgerGateway").Init(Application.Settings.DSN)>
+    
+    <cfset Application.Com.ActivityFeeDAO = CreateObject("component","#Application.Settings.Com#ActivityFinance.FeeDAO").Init(Application.Settings.DSN)>
+    <cfset Application.Com.ActivityFeeGateway = CreateObject("component","#Application.Settings.Com#ActivityFinance.FeeGateway").Init(Application.Settings.DSN)>
+    <!--- //ACTIVITY FINANCES --->
 
-	<cfset Application.Com.ActivityCreditDAO = CreateObject("component","#Application.Settings.Com#ActivityCredit.ActivityCreditDAO").Init(Application.Settings.DSN)>
+  <cfset Application.Com.ActivityCreditDAO = CreateObject("component","#Application.Settings.Com#ActivityCredit.ActivityCreditDAO").Init(Application.Settings.DSN)>
     <cfset Application.Com.ActivityCreditGateway = CreateObject("component","#Application.Settings.Com#ActivityCredit.ActivityCreditGateway").Init(Application.Settings.DSN)>
     
     <cfset Application.Com.ActivityNoteDAO = CreateObject("component","#Application.Settings.Com#ActivityNote.ActivityNoteDAO").Init(Application.Settings.DSN)>
@@ -240,11 +244,11 @@ bugSenderEmail="rountrjf@ucmail.uc.edu")>
     
     <cfset Application.Com.ActivityCategoryLMSDAO = CreateObject("component","#Application.Settings.Com#ActivityCategoryLMS.ActivityCategoryLMSDAO").Init(Application.Settings.DSN)>
     <cfset Application.Com.ActivityCategoryLMSGateway = CreateObject("component","#Application.Settings.Com#ActivityCategoryLMS.ActivityCategoryLMSGateway").Init(Application.Settings.DSN)>
-	
-	<cfset Application.Com.ActivityPrereqDAO = CreateObject("component","#Application.Settings.Com#ActivityPrereq.ActivityPrereqDAO").Init(Application.Settings.DSN)>
-	<cfset Application.Com.ActivityPrereqGateway = CreateObject("component","#Application.Settings.Com#ActivityPrereq.ActivityPrereqGateway").Init(Application.Settings.DSN)>
+  
+  <cfset Application.Com.ActivityPrereqDAO = CreateObject("component","#Application.Settings.Com#ActivityPrereq.ActivityPrereqDAO").Init(Application.Settings.DSN)>
+  <cfset Application.Com.ActivityPrereqGateway = CreateObject("component","#Application.Settings.Com#ActivityPrereq.ActivityPrereqGateway").Init(Application.Settings.DSN)>
 
-	<cfset Application.Com.ActivitySpecialtyDAO = CreateObject("component","#Application.Settings.Com#ActivitySpecialtyLMS.ActivitySpecialtyLMSDAO").Init(Application.Settings.DSN)>
+  <cfset Application.Com.ActivitySpecialtyDAO = CreateObject("component","#Application.Settings.Com#ActivitySpecialtyLMS.ActivitySpecialtyLMSDAO").Init(Application.Settings.DSN)>
     <cfset Application.Com.ActivitySpecialtyGateway = CreateObject("component","#Application.Settings.Com#ActivitySpecialtyLMS.ActivitySpecialtyLMSGateway").Init(Application.Settings.DSN)>
     
     <cfset Application.Com.ActivityTypeDAO = CreateObject("component","#Application.Settings.Com#System.ActivityTypeDAO").Init(Application.Settings.DSN)>
@@ -442,20 +446,20 @@ bugSenderEmail="rountrjf@ucmail.uc.edu")>
 <!--- if the javaLoader was not created yet --->
 <cfif NOT structKeyExists(server, application.settings.javaloaderKey)>
 
-	<!--- these are absolute paths to the POI jar files --->
-	<cfset arrayAppend( jarPaths, expandPath("./poi-3.7-20101029.jar")) >
-	<cfset arrayAppend( jarPaths, expandPath("./poi-examples-3.7-20101029.jar")) >
-	<cfset arrayAppend( jarPaths, expandPath("./poi-ooxml-3.7-20101029.jar")) >
-	<cfset arrayAppend( jarPaths, expandPath("./poi-ooxml-schemas-3.7-20101029.jar")) >
-	<cfset arrayAppend( jarPaths, expandPath("./poi-scratchpad-3.7-20101029.jar")) >
-	
-	<!---  re-verify it was not created yet --->
-	<cfif NOT structKeyExists(server, application.settings.javaloaderKey)>
-	   <cflock name="#Hash(application.settings.javaloaderKey)#" type="exclusive" timeout="10">
-		   <!---  create an instance of the JavaLoader and store it in the server scope --->
-		   <cfset server[application.settings.javaloaderKey] = createObject("component", "javaloader.JavaLoader").init( jarPaths )>
-	   </cflock>
-	</cfif>
+  <!--- these are absolute paths to the POI jar files --->
+  <cfset arrayAppend( jarPaths, expandPath("./poi-3.7-20101029.jar")) >
+  <cfset arrayAppend( jarPaths, expandPath("./poi-examples-3.7-20101029.jar")) >
+  <cfset arrayAppend( jarPaths, expandPath("./poi-ooxml-3.7-20101029.jar")) >
+  <cfset arrayAppend( jarPaths, expandPath("./poi-ooxml-schemas-3.7-20101029.jar")) >
+  <cfset arrayAppend( jarPaths, expandPath("./poi-scratchpad-3.7-20101029.jar")) >
+  
+  <!---  re-verify it was not created yet --->
+  <cfif NOT structKeyExists(server, application.settings.javaloaderKey)>
+     <cflock name="#Hash(application.settings.javaloaderKey)#" type="exclusive" timeout="10">
+       <!---  create an instance of the JavaLoader and store it in the server scope --->
+       <cfset server[application.settings.javaloaderKey] = createObject("component", "javaloader.JavaLoader").init( jarPaths )>
+     </cflock>
+  </cfif>
 </cfif>--->
 
 

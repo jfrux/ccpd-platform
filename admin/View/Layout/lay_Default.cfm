@@ -93,13 +93,9 @@
     </cfoutput>
     </div>
     <script>
-    App.Components.Status.start();
+  
     </script>
     <cfdump label="PARAMS" var="#params#" />
     <cfdump label="ATTRIBUTES" var="#attributes#" />
-    <script type="text/javascript" language="javascript" src="/assets/ijab/ijab.nocache.js"></script>
-
-
-
-  </body>
+</body>
 </html>
