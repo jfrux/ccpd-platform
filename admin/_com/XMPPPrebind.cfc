@@ -71,6 +71,7 @@ component displayname="XMPPPrebind" accessors="true" {
     this.password = $password;
 
     $response = this.sendInitialConnection();
+    
     $documentObj = XmlParse($response);
     this.sid = $documentObj.XmlRoot.XmlAttributes['sid'];
     this.debug(this.sid, 'sid');

@@ -92,8 +92,27 @@
       </div>
     </cfoutput>
     </div>
+    <div id="chatpanel">
+    <div id="collective-xmpp-chat-data"></div>
+    <div id="toggle-controlbox">
+        <a href="#" class="chat toggle-online-users">
+            <strong class="conn-feedback">Click here to chat</strong> <strong style="display: none" id="online-count">(0)</strong>
+        </a>
+    </div>
+</div>
     <script>
-  
+    $.ajax({
+      url: 'http://localhost:8888/admin/_com/ajax_chat.cfc',
+      type:'get',
+      dataType:'json',
+      data:{
+        method:'xmpp-auth'
+      },
+      success: function (data) {
+          connection = new Strophe.Connection('http://localhost:8888/http-bind');
+          connection.attach(data.jid, data.sid, data.rid, converse.onConnected);
+      }
+      });
     </script>
     <cfdump label="PARAMS" var="#params#" />
     <cfdump label="ATTRIBUTES" var="#attributes#" />

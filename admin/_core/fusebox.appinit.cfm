@@ -117,7 +117,7 @@ bugSenderEmail="rountrjf@ucmail.uc.edu")>
               password="05125586") />--->
 
 <!--- JAVA PATHS / LOADER --->
-<cfset javaPaths = [
+<!--- <cfset javaPaths = [
   "#expandPath('/lib/smack/smack.jar')#",
   "#expandPath('/lib/smack/smack-bosh-3.2.2-jar-with-dependencies.jar')#",
   "/Users/joshua/Projects/ccpd-xmpp/dist/ccpd-xmpp.jar"
@@ -126,7 +126,7 @@ bugSenderEmail="rountrjf@ucmail.uc.edu")>
   
 ] />
 <cfset application.javaloader = createObject("component", "_com.javaloader.JavaLoader").init(loadPaths=javaPaths,sourceDirectories=sourcePaths)>
-
+ --->
 <cfset Application.Email = CreateObject("component","#Application.Settings.Com#email").Init()>
 <cfset application.search = createObject("component","_com.typeahead.search").init(application.settings.dsn) />
 
