@@ -71,7 +71,7 @@ The service should be back up shortly.<br />
 <cfinclude template="/lib/fusebox-addons/links.cfm" />
 <cfinclude template="../View/Helpers/functions.cfm" />
 <cfscript>
-if(session.loggedIn) {
+if(structKeyExists(session,'loggedIn') AND session.loggedIn) {
 	if(NOT structKeyExists(session,'chat')) {
 		session.chat = {}
 	}
