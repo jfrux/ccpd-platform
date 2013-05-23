@@ -12,8 +12,6 @@
 *=require spin
 *=require backbone
 *=require backbone.marionette
-*=require strophe
-*=require converse
 *=require twitter/bootstrap/bootstrap-tooltip
 *=require twitter/bootstrap/bootstrap-affix
 *=require twitter/bootstrap/bootstrap-alert
@@ -47,6 +45,12 @@
 *=require jquery/plugins/jquery.maskedinput
 *=require jquery/plugins/jquery.scrollto
 *=require jquery/plugins/jquery.tipsy
+*=require jquery/plugins/jquery.ba-tinypubsub
+*=require jquery/plugins/jquery.textarea-autogrow
 *=require jquery/plugins/jquery.periodicalupdater
+*=require handlebars-1.0.rc.3
+*=require ember-1.0.0-rc.3
+*=require strophe
+*=require chat2
 *=require ckeditor/ckeditor
 */

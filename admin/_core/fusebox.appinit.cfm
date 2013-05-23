@@ -117,16 +117,15 @@ bugSenderEmail="rountrjf@ucmail.uc.edu")>
               password="05125586") />--->
 
 <!--- JAVA PATHS / LOADER --->
-<!--- <cfset javaPaths = [
-  "#expandPath('/lib/smack/smack.jar')#",
-  "#expandPath('/lib/smack/smack-bosh-3.2.2-jar-with-dependencies.jar')#",
-  "/Users/joshua/Projects/ccpd-xmpp/dist/ccpd-xmpp.jar"
+<cfset javaPaths = [
+  "#expandPath('/lib/systemcommand_old.jar')#"
 ]>
 <cfset sourcePaths = [
   
 ] />
 <cfset application.javaloader = createObject("component", "_com.javaloader.JavaLoader").init(loadPaths=javaPaths,sourceDirectories=sourcePaths)>
- --->
+<cfset application.ejabberd = createObject("component","lib.ejabberd").init(domain='localhost',ctlpath='/usr/local/Cellar/ejabberd/2.1.11/sbin',syscommand='javaloader',javaloader=application.javaloader) />
+
 <cfset Application.Email = CreateObject("component","#Application.Settings.Com#email").Init()>
 <cfset application.search = createObject("component","_com.typeahead.search").init(application.settings.dsn) />
 

@@ -151,7 +151,7 @@ class XmppPrebind {
 	 * @return bool
 	 */
 	public function auth() {
-		$auth = Auth_SASL::factory($this->encryption);
+		$auth = createObject("component","lib.auth_sasl.plain").init();
 
 		switch ($this->encryption) {
 			case self::ENCRYPTION_PLAIN:

@@ -1,11 +1,11 @@
 <cfsetting enablecfoutputonly="true" />
 <cfprocessingdirective pageencoding="utf-8" />
-<!--- circuit: Main --->
-<!--- fuseaction: Login --->
+<!--- circuit: main --->
+<!--- fuseaction: login --->
 <cftry>
 <cfset myFusebox.thisPhase = "preProcess">
-<cfset myFusebox.thisCircuit = "Main">
-<cfset myFusebox.thisFuseaction = "Login">
+<cfset myFusebox.thisCircuit = "main">
+<cfset myFusebox.thisFuseaction = "login">
 <cfset myFusebox.thisPlugin = "prePP"/>
 <cfoutput><cfinclude template="../plugins/Globals.cfm"/></cfoutput>
 <cfset myFusebox.thisPhase = "requestedFuseaction">
@@ -19,7 +19,7 @@
 <cfthrow type="fusebox.missingFuse" message="missing Fuse" detail="You tried to include a fuse act_tabSetup.cfm in circuit mMain which does not exist (from fuseaction mMain.TabControl).">
 <cfelse><cfrethrow></cfif></cfcatch></cftry>
 <cfset myFusebox.thisCircuit = "Main">
-<cfset myFusebox.thisFuseaction = "Login">
+<cfset myFusebox.thisFuseaction = "login">
 <cfset request.page.action = "#listLast(attributes.fuseaction,'.')#" />
 <cfset Request.Page.Title = "Login" />
 <cfset xfa.Authenticate = "Main.doLogin" />
@@ -41,7 +41,7 @@
 <cfthrow type="fusebox.missingFuse" message="missing Fuse" detail="You tried to include a fuse lay_None.cfm in circuit vLayout which does not exist (from fuseaction vLayout.None).">
 <cfelse><cfrethrow></cfif></cfcatch></cftry>
 <cfset myFusebox.thisCircuit = "Main">
-<cfset myFusebox.thisFuseaction = "Login">
+<cfset myFusebox.thisFuseaction = "login">
 <cfif isPjax()>
 <cfif #request.currentTab.hasToolbar#>
 <cfset myFusebox.do('vMain.#request.page.action#right','multiformright') >
@@ -56,7 +56,7 @@
 <cfthrow type="fusebox.missingFuse" message="missing Fuse" detail="You tried to include a fuse lay_Blank.cfm in circuit vLayout which does not exist (from fuseaction vLayout.Blank).">
 <cfelse><cfrethrow></cfif></cfcatch></cftry>
 <cfset myFusebox.thisCircuit = "Main">
-<cfset myFusebox.thisFuseaction = "Login">
+<cfset myFusebox.thisFuseaction = "login">
 <cfelse>
 <cfif isAjax()>
 <!--- do action="vLayout.Blank" --->
@@ -68,7 +68,7 @@
 <cfthrow type="fusebox.missingFuse" message="missing Fuse" detail="You tried to include a fuse lay_Blank.cfm in circuit vLayout which does not exist (from fuseaction vLayout.Blank).">
 <cfelse><cfrethrow></cfif></cfcatch></cftry>
 <cfset myFusebox.thisCircuit = "Main">
-<cfset myFusebox.thisFuseaction = "Login">
+<cfset myFusebox.thisFuseaction = "login">
 <cfelse>
 <cfif #request.currentTab.hasToolbar#>
 <cfset myFusebox.do('vMain.#request.page.action#right','multiformright') >
@@ -92,7 +92,7 @@
 <cfthrow type="fusebox.missingFuse" message="missing Fuse" detail="You tried to include a fuse lay_Default.cfm in circuit vLayout which does not exist (from fuseaction vLayout.Default).">
 <cfelse><cfrethrow></cfif></cfcatch></cftry>
 <cfset myFusebox.thisCircuit = "Main">
-<cfset myFusebox.thisFuseaction = "Login">
+<cfset myFusebox.thisFuseaction = "login">
 </cfif>
 </cfif>
 <cfcatch><cfrethrow></cfcatch>

@@ -70,5 +70,19 @@ The service should be back up shortly.<br />
 <cfinclude template="/lib/fusebox-addons/assets.cfm" />
 <cfinclude template="/lib/fusebox-addons/links.cfm" />
 <cfinclude template="../View/Helpers/functions.cfm" />
+<cfscript>
+if(session.loggedIn) {
+	if(NOT structKeyExists(session,'chat')) {
+		session.chat = {}
+	}
+  ejabbered = application.ejabberd;
+
+  chatregister = ejabbered.register(session.personid,session.person.getPassword());
+
+  if(chatregister.status OR chatregister.exit EQ 1) {
+  	session.chat.isRegistered = true;
+  }
+}
+</cfscript>
 <cfset params = $paramParser() />
 <cfinclude template="/admin/Model/Page/act_Access.cfm" />

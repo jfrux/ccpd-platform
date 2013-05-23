@@ -202,7 +202,10 @@
     </cffunction>
     
     <cffunction name="doLogout" access="Public" output="false">
-		<cfset StructClear(Session)>
+		<cfset structDelete(session,'person')>
+        <cfset structDelete(session,'account')>
+        <cfset session.personid = 0 />
+        <cfset session.loggedIn = false />
         <cfset StructDelete(client,"Login")>
     </cffunction>
     
