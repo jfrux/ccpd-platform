@@ -8,8 +8,9 @@
 
 component displayName="Auth_SASL_Common"
 {
+  variables.regx = createObject("component","vendor.jre-utils").init();
+    
   function init(){
-
     // Store the MAC class definition so that its static methods can be accessed quickly.
     variables.macClass = createObject( "java", "javax.crypto.Mac" );
 
@@ -86,7 +87,9 @@ component displayName="Auth_SASL_Common"
 // PRIVATE METHODS
 // ---
 
-
+function sprintf(format,argsArray) {
+  return createObject("java","java.lang.String").format(arguments.format, arguments.argsArray);
+}
 // I encode the byte array / binary value using the given encoding. The Hex-encoding is used
 // by default.
 function _encodeByteArray(
@@ -125,7 +128,37 @@ message = "The requested encoding method [#encoding#] is not yet supported."
 
 }
 
+function SubStr(buf, start) {
+    // third argument (optional)
+    var length = 0;
+    var sz = 0;
+        
+    sz = len(buf);
+    
+    if (arrayLen(arguments) EQ 2) {
 
+        if (start GT 0) {
+            length = sz;
+        } else if (start LT 0) {
+            length = sz + start;
+            start = 1;
+        }
+    
+    } else {
+    
+        length = Arguments[3];
+        if (start GT 0) {
+            if (length LT 0)   length = 1+sz+length-start;
+        } else if (start LT 0) {
+            if (length LT 0) length = length-start;
+            start = 1+sz+start;
+            
+        }
+    } 
+    
+    if (isNumeric(start) AND isNumeric(length) AND start GT 0 AND length GT 0) return mid(buf, start, length);
+    else return "";
+}
 // I return a MAC generator for the given key and algorithm.
 function _getMacInstance( String algorithm, String key ){
 
@@ -167,5 +200,19 @@ toBinary( toBase64( input ) )
 
 return( hashedBytes );
 
+}
+
+function isEmpty(any varName) {
+    if(isSimpleValue(varName)) {
+        if(not len(varName)) return true;
+    } else if(isArray(varName)) {
+        if(arrayIsEmpty(varName)) return true;
+    } else if(isStruct(varName)) {
+        if(structIsEmpty(varName)) return true;
+    } else if(isQuery(varName)) {
+        if(not varName.recordCount) return true;
+    }
+        
+    return false;
 }
 }

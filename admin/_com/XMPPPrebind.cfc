@@ -15,6 +15,7 @@ component displayname="XMPPPrebind" accessors="true" {
   property string ENCRYPTION_CRAM_MD5;
 
   property string SERVICE_NAME;
+  
   this.setXMLNS_BODY('http://jabber.org/protocol/httpbind');
   this.setXMLNS_BOSH('urn:xmpp:xbosh');
   this.setXMLNS_CLIENT('jabber:client');
@@ -28,6 +29,7 @@ component displayname="XMPPPrebind" accessors="true" {
   this.setENCRYPTION_DIGEST_MD5('DIGEST-MD5');
   this.setENCRYPTION_CRAM_MD5('CRAM-MD5');
   this.setSERVICE_NAME('xmpp');
+
   /**
    * Create a new XmppPrebind Object with the required params
    *
@@ -55,41 +57,53 @@ component displayname="XMPPPrebind" accessors="true" {
      */
 
      $this.rid = RandRange(1000000000, 10000000000);
+     $log('#chr(10)#==============================#chr(10)#init xmpp-prebind...');
     return $this;
   }
+
   private function debug($obj,$label) {
     writeDump(var=$obj,label=$label);
   }
+
+  private function $log(text) {
+    writeLog(arguments.text,"information", "no","xmpp-prebind")
+  }
+
   /**
    * connect to the jabber server with the supplied username & password
    *
    * @param string $username Username without jabber host
    * @param string $password Password
-   */
+  **/
   public function connect($username, $password) {
     this.jid      = $username & '@' & this.jabberHost & '/' & this.resource;
     this.password = $password;
-
+    $log('connect > connecting... #arguments.$username# [#this.jid#]');
     $response = this.sendInitialConnection();
+    $log('connect > response received.');
     
     $documentObj = XmlParse($response);
+    $log('connect > parsed response.');
     this.sid = $documentObj.XmlRoot.XmlAttributes['sid'];
+    $log('connect > sid detected: #this.sid#');
     this.debug(this.sid, 'sid');
-    //writeDump(var=$documentObj,abort=true);
-    // $mechanisms = $documentObj.XmlChildren[1].XmlChildren[1].XmlChildren[1];
-    // for ($value in $mechanisms.XmlChildren) {
-    //   this.mechanisms.add($value.XmlText);
-    // }
-    // if (arrayFindNoCase(this.mechanisms,this.getENCRYPTION_DIGEST_MD5())) {
-    //   this.encryption = "ENCRYPTION_DIGEST_MD5";
-    // } elseif (arrayFindNoCase(this.mechanisms,this.getENCRYPTION_CRAM_MD5())) {
-    //   this.encryption = "ENCRYPTION_CRAM_MD5";
-    // } elseif (arrayFindNoCase(this.mechanisms,this.getENCRYPTION_PLAIN())) {
-    //   this.encryption = "ENCRYPTION_PLAIN";
-    // } else {
-    //   throw "No encryption supported by the server is supported by this library.";
-    // }
-    this.encryption = "ENCRYPTION_PLAIN";
+    
+    $mechanisms = $documentObj.XmlChildren[1].XmlChildren[1].XmlChildren[1];
+    for ($value in $mechanisms.XmlChildren) {
+      this.mechanisms.add($value.XmlText);
+    }
+    if (arrayFindNoCase(this.mechanisms,this.getENCRYPTION_DIGEST_MD5())) {
+      this.encryption = this.getENCRYPTION_DIGEST_MD5();
+    } elseif (arrayFindNoCase(this.mechanisms,this.getENCRYPTION_CRAM_MD5())) {
+      this.encryption = this.getENCRYPTION_CRAM_MD5();
+    } elseif (arrayFindNoCase(this.mechanisms,this.getENCRYPTION_PLAIN())) {
+      this.encryption = this.getENCRYPTION_PLAIN();
+    } else {
+      throw "No encryption supported by the server is supported by this library.";
+    }
+    this.encryption = this.getENCRYPTION_DIGEST_MD5();
+    //this.encryption = "ENCRYPTION_PLAIN";
+    $log('connect > encryption set: #this.encryption#');
     //this.debug(this.encryption, 'encryption used');
   }
 
@@ -100,28 +114,40 @@ component displayname="XMPPPrebind" accessors="true" {
    * @return bool
    */
   public function auth() {
-    //TODO: NEEDS SASL IMPLEMENTATION (most likely JAVA based);
-    $auth = createObject("component","lib.auth_sasl.plain");
-    $authXml = this.buildPlainAuth($auth);
+    $auth = createObject("component","lib.auth_sasl.#lcase(replace(this.encryption,'-','','ALL'))#");
+    $log('auth > #this.encryption#');
     
-    // switch (this.encryption) {
-    //   case ENCRYPTION_PLAIN:
-        
-    //     break;
-    //   case ENCRYPTION_DIGEST_MD5:
-    //     $authXml = this.sendChallengeAndBuildDigestMd5Auth($auth);
-    //     break;
-    //   case ENCRYPTION_CRAM_MD5:
-    //     $authXml = this.sendChallengeAndBuildCramMd5Auth($auth);
-    //     break;
-    // }
+    switch (this.encryption) {
+      case ENCRYPTION_PLAIN:
+        $authXml = this.buildPlainAuth($auth);
+        $log('auth > #this.encryption# XML #$authXml#');
+    
+        break;
+      case ENCRYPTION_DIGEST_MD5:
+        $authXml = this.sendChallengeAndBuildDigestMd5Auth($auth);
+        $log('auth > #this.encryption# XML #$authXml#');
+    
+        break;
+      case ENCRYPTION_CRAM_MD5:
+        $authXml = this.sendChallengeAndBuildCramMd5Auth($auth);
+        $log('auth > #this.encryption# XML #$authXml#');
+    
+        break;
+    }
+    $log('auth > sending authXml to host...');
+    
     $response = this.send($authXml);
-    writeDump(var=$response,abort=true);
-    flush();
+
+    $log('auth > response received.');
     $body = getBodyFromXml($response);
 
-    if (!$body.hasChildNodes() || $body.firstChild.nodeName NEQ 'success') {
-      throw new XmppPrebindException("Invalid login");
+    $log('auth > body parsed from response.');
+    writeDump(var=$body);
+    if (arrayLen($body.XmlChildren) GT 0 || $body.XmlChildren[1].name NEQ 'success') {
+      $log('auth > authentication failed. invalid login.');
+    
+      throw "Invalid login";
+      abort;
     }
 
     this.sendRestart();
@@ -146,14 +172,15 @@ component displayname="XMPPPrebind" accessors="true" {
    * @return string Response
    */
   private function sendRestart() {
-    $domDocument = this.buildBody();
-    $body = $domDocument.body;
-    $body['xmlns'] = XmlElemNew($xml,"xmlns")
-    $body['to'] = XmlElemNew($domDocument, 'to', this.jabberHost);
-    $body['xmlns:xmpp'] = XmlElemNew($domDocument,'xmlns:xmpp', this.getXMLNS_BOSH());
-    $body['xmpp:restart'] = XmlElemNew($domDocument,'xmpp:restart', 'true');
+    var $domDocument = this.buildBody();
+    var $body = $domDocument.XmlRoot;
+    $log('sendRestart > built body dom document.');
+    
+    $body.XmlAttributes['to'] = this.jabberHost;
+    $body.XmlAttributes['xmlns:xmpp'] = this.getXMLNS_BOSH();
+    $body.XmlAttributes['xmpp:restart'] = true;
 
-    $restartResponse = this.send($domDocument.saveXML());
+    $restartResponse = this.send(ToString($domDocument));
 
     $restartBody = getBodyFromXml($restartResponse);
     for ($bodyChildNodes in $restartBody.childNodes) {
@@ -180,23 +207,19 @@ component displayname="XMPPPrebind" accessors="true" {
     if (this.doBind) {
       $domDocument = this.buildBody();
       $body = getBodyFromDomDocument($domDocument);
+      $iq = $body['iq'] = XmlElemNew($domDocument,'iq');
+      
+      $iq.XmlAttributes['xmlns'] = getXMLNS_CLIENT();
+      $iq.XmlAttributes['type'] = 'set';
+      $iq.XmlAttributes['id'] = 'bind_' & rand();
+      
+      $bind = $iq['bind'] = XmlElemNew($domDocument,'bind');
+      $bind.XmlAttributes['xmlns'] = getXMLNS_BIND();
 
-      $iq = $domDocument.createElement('iq');
-      $iq.appendChild(getNewTextAttribute($domDocument, 'xmlns', XMLNS_CLIENT));
-      $iq.appendChild(getNewTextAttribute($domDocument, 'type', 'set'));
-      $iq.appendChild(getNewTextAttribute($domDocument, 'id', 'bind_' & rand()));
+      $resource = $bind['resource'] = XmlElemNew($domDocument,'resource');
+      $resource.XmlText = this.resource;
 
-      $bind = $domDocument.createElement('bind');
-      $bind.appendChild(getNewTextAttribute($domDocument, 'xmlns', XMLNS_BIND));
-
-      $resource = $domDocument.createElement('resource');
-      $resource.appendChild($domDocument.createTextNode(this.resource));
-
-      $bind.appendChild($resource);
-      $iq.appendChild($bind);
-      $body.appendChild($iq);
-
-      return this.send($domDocument.saveXML());
+      return this.send(ToString($domDocument));
     }
     return false;
   }
@@ -209,19 +232,18 @@ component displayname="XMPPPrebind" accessors="true" {
       $domDocument = this.buildBody();
       $body = getBodyFromDomDocument($domDocument);
 
-      $iq = $domDocument.createElement('iq');
-      $iq.appendChild(getNewTextAttribute($domDocument, 'xmlns', XMLNS_CLIENT));
-      $iq.appendChild(getNewTextAttribute($domDocument, 'type', 'set'));
-      $iq.appendChild(getNewTextAttribute($domDocument, 'id', 'session_auth_' & rand()));
+      $body['iq'] = XmlElemNew($domDocument,'iq');
+      
+      $body['iq'].XmlAttributes['xmlns'] = getXMLNS_CLIENT();
+      $body['iq'].XmlAttributes['type'] = 'set';
+      $body['iq'].XmlAttributes['id'] = 'session_auth_' & rand();
+      
+      $session = $iq['session'] = XmlElemNew($domDocument,'session');
+      $session.XmlAttributes['xmlns'] = getXMLNS_SESSION();
 
-      $session = $domDocument.createElement('session');
-      $session.appendChild(getNewTextAttribute($domDocument, 'xmlns', XMLNS_SESSION));
-
-      $iq.appendChild($session);
-      $body.appendChild($iq);
-
-      return this.send($domDocument.saveXML());
+      return this.send(ToString($domDocument));
     }
+
     return false;
   }
 
@@ -238,7 +260,7 @@ component displayname="XMPPPrebind" accessors="true" {
     $domDocument.XmlRoot.XmlAttributes['hold'] = "1";
     $domDocument.XmlRoot.XmlAttributes['to'] = this.jabberHost;
     $domDocument.XmlRoot.XmlAttributes['xmlns:xmpp'] = this.getXMLNS_BOSH();
-    //$domDocument.XmlRoot.XmlAttributes['xmpp:version'] = '1.0';
+    $domDocument.XmlRoot.XmlAttributes['xmpp:version'] = '1.0';
     $domDocument.XmlRoot.XmlAttributes['wait'] = $waitTime;
 
     return this.send(ToString($domDocument));
@@ -252,16 +274,18 @@ component displayname="XMPPPrebind" accessors="true" {
   private function sendChallenge() {
     $domDocument = this.buildBody();
     $body = $domDocument.XmlRoot;
-
-    $auth = $body.XmlChildren['auth'] = XmlElemNew($domDocument,'auth');
+    $log('sendChallenge > sending challenge...');
+    $auth = $body['auth'] = XmlElemNew($domDocument,'auth');
     $auth.XmlAttributes['xmlns'] = this.getXMLNS_SASL();
     $auth.XmlAttributes['mechanism'] = this.encryption;
     
     $response = this.send(ToString($domDocument));
-
+    $log('sendChallenge > response RECV: #$response#');
     $body = XmlParse($response).XmlRoot;
+    
     $challenge = ToString(ToBinary($body.XmlChildren[1].XmlText));
-
+    $log('sendChallenge > decode challenge: #$challenge#');
+    
     return $challenge;
   }
 
@@ -271,7 +295,7 @@ component displayname="XMPPPrebind" accessors="true" {
    * @param Auth_SASL_Common $auth
    * @return string Auth XML to send
    */
-  private function buildPlainAuth(lib.auth_sasl.plain $auth) {
+  private function buildPlainAuth($auth) {
     $authString = $auth.getResponse(getNodeFromJid(this.jid), this.password, getBareJidFromJid(this.jid));
     $authString = toBase64($authString);
     this.debug($authString, 'PLAIN Auth String');
@@ -281,7 +305,7 @@ component displayname="XMPPPrebind" accessors="true" {
 
     $auth = $body['auth'] = XmlElemNew($domDocument,'auth');
     $auth.XmlAttributes['xmlns'] = this.getXMLNS_SASL();
-    $auth.XmlAttributes['mechanism'] = this.encryption;
+    $auth.XmlAttributes['mechanism'] = this.getENCRYPTION_PLAIN();
     $auth.XmlText = $authString;
     
     return ToString($domDocument);
@@ -293,27 +317,31 @@ component displayname="XMPPPrebind" accessors="true" {
    * @param Auth_SASL_Common $auth
    * @return string Auth XML to send
    */
-  private function sendChallengeAndBuildDigestMd5Auth(Auth_SASL_Common $auth) {
+  private function sendChallengeAndBuildDigestMd5Auth($auth) {
+    $log('buildDigestMD5Auth > sending challenge ##1');
+    
     $challenge = this.sendChallenge();
-
-    $authString = $auth.getResponse(getNodeFromJid(this.jid), this.password, $challenge, this.jabberHost, SERVICE_NAME, this.jid);
-    this.debug($authString, 'DIGEST-MD5 Auth String');
-
+    $log('buildDigestMD5Auth > challenge ##1 response: #$challenge#');
+    $authString = $auth.getResponse(getNodeFromJid(this.jid), this.password, $challenge, this.jabberHost, getSERVICE_NAME(), this.jid);
+    $log('buildDigestMD5Auth > authString: #$authString#');
     $authString = toBase64($authString);
-
+    $log('buildDigestMD5Auth > Converted to base64: #$authString#');
+    
     $domDocument = this.buildBody();
     $body = getBodyFromDomDocument($domDocument);
 
-    $response = $domDocument.createElement('response');
-    $response.appendChild(getNewTextAttribute($domDocument, 'xmlns', XMLNS_SASL));
-    $response.appendChild($domDocument.createTextNode($authString));
+    $response = $body['response'] = XmlElemNew($domDocument,'response');
+    $response.XmlAttributes['xmlns'] = getXMLNS_SASL();
+    $response.XmlText = $authString
+    $responseXml = ToString($domDocument);
+    $log('buildDigestMD5Auth > sending challenge ##2 - SEND: #$responseXml#');
+    $challengeResponse = this.send($responseXml);
+    $log('buildDigestMD5Auth > received challenge response ##2 - RECV: #$challengeResponse#');
 
-    $body.appendChild($response);
-
-
-    $challengeResponse = this.send($domDocument.saveXML());
-
-    return this.replyToChallengeResponse($challengeResponse);
+    $log('buildDigestMD5Auth > sending challenge ##3 - SEND: #$challengeResponse#')
+    $challengeResponse3 = this.replyToChallengeResponse($challengeResponse);
+    $log('buildDigestMD5Auth > received challenge response ##3 - SEND: #$challengeResponse3#')
+    return $challengeResponse3
   }
 
   /**
@@ -322,7 +350,7 @@ component displayname="XMPPPrebind" accessors="true" {
    * @param Auth_SASL_Common $auth
    * @return string Auth XML to send
    */
-  private function sendChallengeAndBuildCramMd5Auth(Auth_SASL_Common $auth) {
+  private function sendChallengeAndBuildCramMd5Auth($auth) {
     $challenge = this.sendChallenge();
 
     $authString = $auth.getResponse(getNodeFromJid(this.jid), this.password, $challenge);
@@ -333,13 +361,11 @@ component displayname="XMPPPrebind" accessors="true" {
     $domDocument = this.buildBody();
     $body = getBodyFromDomDocument($domDocument);
 
-    $response = $domDocument.createElement('response');
-    $response.appendChild(getNewTextAttribute($domDocument, 'xmlns', XMLNS_SASL));
-    $response.appendChild($domDocument.createTextNode($authString));
+    $response = $body['response'] = XmlElemNew($domDocument,'response');
+    $response.XmlAttributes['xmlns'] = getXMLNS_SASL();
+    $response.XmlText = $authString;
 
-    $body.appendChild($response);
-
-    $challengeResponse = this.send($domDocument.saveXML());
+    $challengeResponse = this.send(ToString($domDocument));
 
     return this.replyToChallengeResponse($challengeResponse);
   }
@@ -350,10 +376,11 @@ component displayname="XMPPPrebind" accessors="true" {
    */
   private function replyToChallengeResponse($challengeResponse) {
     $body = getBodyFromXml($challengeResponse);
-
-    $challenge = ToString(BinaryDecode($body.firstChild.nodeValue , "base64"));
+    $log('replyToChallengeResponse > decoding response: #$body.XmlChildren[1]#');
+    $challenge = ToString(BinaryDecode($body.XmlChildren[1], "base64"));
+    $log('replyToChallengeResponse > decoded response: #$challenge#');
     if (!findNoCase($challenge, 'rspauth')) {
-      throw new XmppPrebindConnectionException('Invalid challenge response received');
+      throw 'Invalid challenge response received';
     }
 
     $domDocument = this.buildBody();
@@ -373,50 +400,27 @@ component displayname="XMPPPrebind" accessors="true" {
    * @return string Response
    */
   private function send($xml) {
-    $ch = new HTTP();
+    var $ch = new HTTP();
+    var $response = {};
+    
     $ch.setUrl(this.boshUri);
     $ch.setMethod("POST");
     $ch.setRedirect(true);
-
+    
+    $log('send > new HTTP connection... #this.boshUri# [POST] redirects:true');
+    $xml = REReplace($xml, "<\?xml[^>]*>", "", "one" )
     $ch.addParam(type='body',value=$xml);
     $ch.addParam(type='header',name="content-type",value='text/xml');
-    $response = $ch.send().getPrefix(); 
     
-    writeDump(var=$xml,label='SENT:');
-    writeDump(var=$response.filecontent, label='RECV:');
+    $log('send > sending HTTP connecting...');
+    $log('send > SEND: #$xml#...');
+    
+    $response = $ch.send().getPrefix();
+    $log('send > response received...');
+    $log('send > RECV: #$response.filecontent#...');
 
     return $response.filecontent;
   }
-
-  /**
-   * Fix gzdecompress/gzinflate data error warning.
-   *
-   * @link http://www.mydigitallife.info/2010/01/17/workaround-to-fix-php-warning-gzuncompress-or-gzinflate-data-error-in-wordpress-http-php/
-   *
-   * @param string $gzData
-   * @return string|bool
-   */
-  // public static function compatibleGzInflate($gzData) {
-  //   if ( substr($gzData, 0, 3) == "\x1f\x8b\x08" ) {
-  //     $i = 10;
-  //     $flg = ord( substr($gzData, 3, 1) );
-  //     if ( $flg > 0 ) {
-  //       if ( $flg & 4 ) {
-  //         list($xlen) = unpack('v', substr($gzData, $i, 2) );
-  //         $i = $i + 2 + $xlen;
-  //       }
-  //       if ( $flg & 8 )
-  //       $i = strpos($gzData, "\0", $i) + 1;
-  //       if ( $flg & 16 )
-  //       $i = strpos($gzData, "\0", $i) + 1;
-  //       if ( $flg & 2 )
-  //       $i = $i + 2;
-  //     }
-  //     return gzinflate( substr($gzData, $i, -8) );
-  //   } else {
-  //     return false;
-  //   }
-  // }
 
   /**
    * Build DOMDocument with standard xmpp body child node.
@@ -462,21 +466,8 @@ component displayname="XMPPPrebind" accessors="true" {
    */
   public function getNodeFromJid($jid) {
     var $node = listFirst(arguments.$jid,'@');
+    $log('getNodeFromJid > parsed "#$node#"')
     return $node;
-  }
-
-  /**
-   * Append new attribute to existing DOMDocument.
-   *
-   * @param DOMDocument $domDocument
-   * @param string $attributeName
-   * @param string $value
-   * @return DOMNode
-   */
-  private function getNewTextAttribute($domDocument, $attributeName, $value) {
-    var $attribute = arguments.$domDocument.XmlRoot.XmlAttributes[arguments.$attributeName];
-
-    return $attribute;
   }
 
   /**
@@ -500,6 +491,17 @@ component displayname="XMPPPrebind" accessors="true" {
     var $domDocument = xmlParse(arguments.$xml);
 
     return $domDocument.XmlRoot;
+  }
+
+  private function NodeCount (xmlElement, nodeName)
+  {
+    nodesFound = 0;
+    for (i = 1; i LTE ArrayLen(xmlElement.XmlChildren); i = i+1)
+    {
+        if (xmlElement.XmlChildren[i].XmlName IS nodeName)
+            nodesFound = nodesFound + 1;
+    }
+    return nodesFound;
   }
 
   /**

@@ -3,10 +3,11 @@ require 'bundler'
 Bundler.require
 require 'sprite_factory'
 #require 'rake'
-require './app'
 require "fileutils"
-require 'sinatra/sprockets'
-require 'sinatra/sprockets/rake'
+require 'sinatra/asset_pipeline/task.rb'
+require './app'
+
+Sinatra::AssetPipeline::Task.define! MyApp
 
 # task :environment do
 #   Sinatra::Sprockets.environment = ENV['RACK_ENV']
@@ -46,8 +47,6 @@ namespace :guard do
     system "guard start -i"
   end
 end
-
-
 
 desc "Start everything."
 multitask :start => [ 'railo:start', 'assets:start' ]
