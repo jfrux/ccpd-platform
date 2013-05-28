@@ -243,17 +243,8 @@ $(document).ready(function() {
 <div style="display: none;" id="prototypes">
 	<div style="display: none;" id="action_menu">
 		<ul style="display: block;" class="round" id="menuActions-{personid}">
-        	<cfloop query="qActivityCredits">
-                <cfswitch expression="#qActivityCredits.CreditName#">
-                    <cfcase value="CME">
-                        <li class="pCMECert"><a href="Report.CMECert?ActivityID=#Attributes.ActivityID#&ReportID=5&SelectedMembers={personid}"><i/>CME Certificate</a></li>
-                    </cfcase>
-                    <cfcase value="CNE">
-                        <li class="CNECert"><a href="Report.CNECert?ActivityID=#Attributes.ActivityID#&ReportID=6&SelectedMembers={personid}"><i/>CNE Certificate</a></li>
-                    </cfcase>
-                </cfswitch>
-            </cfloop>
-            <li class="sendCertificate"><a href="javascript:void(0);"><i/>Send Certificate</a></li>
+      <li class="pCMECert"><a href="Report.CMECert?ActivityID=#Attributes.ActivityID#&ReportID=5&SelectedMembers={personid}"><i/> Download Certificate</a></li>
+      <li class="sendCertificate"><a href="javascript:void(0);"><i/>Send Certificate</a></li>
 			<li class="assess"><a href="#myself#Activity.AttendeeDetails?ActivityID={activityid}&PersonID={personid}"><i/>Assessments</a></li>
 			<li class="pifform"><a href="#myself#Activity.AttendeeCDC?ActivityID={activityid}&PersonID={personid}"><i/>PIF Form</a></li>
 			<li class="credits"><a href="#myself#Activity.AdjustCredits?ActivityID={activityid}&PersonID={personid}"><i/>Credits</a></li>

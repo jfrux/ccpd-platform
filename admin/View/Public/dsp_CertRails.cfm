@@ -1,5 +1,5 @@
-<cfset hashKey = hash('#attributes.activityId#_#attributes.personId#_#dateFormat(now(),"yymmddhhmmss")#','MD5') />
-<cfset fileName = "cme_#hashKey#.pdf">
+<cfset hashKey = hash('#attributes.personId#_#dateFormat(now(),"yymmddhhmmss")#','MD5') />
+<cfset fileName = "#attributes.activityId#_#hashKey#.pdf">
 <cfset filePath = expandPath('/lms/_dl/#fileName#') />
 <cfset fileUrl = "http://www.getmycme.com/activities/#qReportData.activityId#/certificates?attendees=#qReportData.attendeeid#" />
 
