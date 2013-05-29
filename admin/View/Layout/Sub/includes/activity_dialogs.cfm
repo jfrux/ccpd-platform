@@ -1,3 +1,4 @@
+<cfoutput>
 <cfif ParentBean.getSessionType() EQ "M">
   <div id="ActivityList" class="dialog">
     
@@ -7,7 +8,7 @@
   <div id="OverviewList" class="dialog">
   </div>
   <div id="MoveDialog" class="dialog">
-    <div style="padding:4px;">
+    <div>
       <cfquery name="qMultiSessions" datasource="#Application.Settings.DSN#">
         SELECT ActivityID,Title,ReleaseDate FROM ce_Activity WHERE SessionType='M' AND ParentActivityID IS NULL AND DeletedFlag='N'
         ORDER BY Title
@@ -32,26 +33,44 @@
     <iframe src="" width="840" height="500" frameborder="0" scrolling="auto" name="frameDetail" id="frameDetail"></iframe>
   </div>
   <div id="CopyDialog" class="dialog">
-    <div style="padding:4px;">
-        <input type="radio" name="CopyChoice" id="CopyChoice1" class="CopyChoice" value="1" checked="checked" /><label for="CopyChoice1"> Paste as new parent activity.</label><br />
-        <input type="radio" name="CopyChoice" id="CopyChoice2" class="CopyChoice"  value="2"<cfif ActivityBean.getSessionType() EQ "S"> disabled="disabled"</cfif> /><label for="CopyChoice2"> Paste as new session within this activity.</label><br />
-        <strong>Options</strong><br />
-        Title: <input type="text" name="NewActivityTitle" id="NewActivityTitle" style="width: 300px;" />
-        <div id="ParentActivityOptions">
-        Activity Type: 
+    <div>
+      <form class="form-horizontal">
+        <div class="control-group">
+          <label class="control-label">Method</label>
+          <div class="controls">
+            <label class="radio" for="CopyChoice1">
+              <input type="radio" name="CopyChoice" id="CopyChoice1" class="CopyChoice" value="1" checked="checked" /> Paste as new parent activity.
+            </label>
+            <label class="radio" for="CopyChoice2">
+              <input type="radio" name="CopyChoice" id="CopyChoice2" class="CopyChoice"  value="2"<cfif ActivityBean.getSessionType() EQ "S"> disabled="disabled"</cfif> /> Paste as new session within this activity.
+            </label>
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label">Title</label>
+          <div class="controls">
+            <input type="text" name="NewActivityTitle" id="NewActivityTitle" style="width: 300px;" />
+          </div>
+        </div>
+        <div id="ParentActivityOptions" class="control-group">
+          <label class="control-label">Type</label>
+          <div class="controls">
             <select name="NewActivityType" id="NewActivityType">
                 <option value="">Select one...</option>
                 <cfloop query="qActivityTypeList">
                     <option value="#qActivityTypeList.ActivityTypeID#">#qActivityTypeList.Name#</option>
                 </cfloop>
             </select>
-            <span id="NewGroupingSelect" style="display:none;">
-            <br />
-            Grouping: 
+          </div>
+        </div>
+        <div id="NewGroupingSelect" style="display:none;" class="control-group">
+          <label class="control-label">Sub Type</label>
+          <div class="controls">
             <select name="NewGrouping" id="NewGrouping">
             </select>
-            </span>
+          </div>
         </div>
+      </form>
     </div>
   </div>
   <div id="CreditsDialog" class="dialog"></div>
@@ -66,3 +85,4 @@
   <div id="DisableActivity" class="dialog">
   &nbsp;
   </div>
+  </cfoutput>

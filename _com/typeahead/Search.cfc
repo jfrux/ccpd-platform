@@ -127,7 +127,7 @@
           subtext2 = 
           isNull((CASE WHEN isNull(obj.birthdate,'') <> '' THEN 'DOB: ' + ISNULL(CONVERT(char(10), obj.birthdate, 101),'') END),'') + ' ' + 
           isNull((CASE WHEN isNull(obj.SSN,'') <> '' THEN 'PIN: ' + obj.SSN END),''),
-          image = '/static/images/no-photo/person_i.png',
+          image = 'person_i.png',
           fts.[rank],
           link = '/admin/index.cfm?event=person.detail&personId=' + CAST(obj.personId As nvarchar(12)),
           type = 'person'

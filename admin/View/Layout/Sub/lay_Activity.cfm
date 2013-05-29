@@ -110,7 +110,7 @@ App.module('Activity').start({
             <div class="action-buttons pull-right">
               <div class="btn-group">
                 <a href="javascript:void(0);" class="btn" title="Move Activity" id="MoveLink"><i class="icon-road"></i></a>
-                <a href="javascript:void(0);" class="btn" title="Copy Activity" id="CopyLink"><i class="icon-copy"></i></a>
+                <a href="javascript:void(0);" class="btn" title="Copy Activity" id="CopyLink"><i class="icon-doc"></i></a>
                 <a href="javascript:void(0);" class="btn" title="Delete Activity" id="DeleteActivityLink"><i class="icon-trash"></i></a>
               </div>
               <div class="btn-group">

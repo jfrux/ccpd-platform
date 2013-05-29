@@ -1,4 +1,11 @@
 @import "twitter/bootstrap/_mixins";
+
+.profile-wide {
+  .history-item {
+    margin:0 -10px;
+    padding:5px 20px;
+  }
+}
 .history-item {
   border-bottom: 1px solid #EEEEEE;
   clear: both;
@@ -106,10 +113,11 @@
 }
 
 .history-meta {
-  color: #777777;
-  font-size: 95%;
   padding: 1px 2px 0 0;
   text-align: right;
+  a {
+  color: #777;
+  }
 }
 
 .history-item.userphoto .history-meta {
@@ -119,7 +127,10 @@
 
 .history-filter {
   @include border-radius(3px);
-
+  position:absolute;
+  right:5px;
+  top:0;
+  margin-top:5px;
 
   ul {
     list-style:none;

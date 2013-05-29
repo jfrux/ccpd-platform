@@ -1,3 +1,15 @@
+PATH
+  remote: /Users/joshua/Projects/sinatra-asset-pipeline
+  specs:
+    sinatra-asset-pipeline (0.2.0)
+      coffee-script
+      rake
+      sass
+      sinatra
+      sprockets
+      sprockets-helpers
+      sprockets-sass
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -15,28 +27,21 @@ GEM
     eventmachine (1.0.3)
     execjs (1.4.0)
       multi_json (~> 1.0)
-    hike (1.2.1)
-    multi_json (1.7.2)
+    hike (1.2.2)
+    json (1.7.7)
+    multi_json (1.7.4)
     rack (1.5.2)
     rack-protection (1.5.0)
       rack
     rake (10.0.4)
     rmagick (2.13.2)
-    sass (3.2.7)
+    sass (3.2.9)
     sinatra (1.4.2)
       rack (~> 1.5, >= 1.5.2)
       rack-protection (~> 1.4)
       tilt (~> 1.3, >= 1.3.4)
-    sinatra-asset-pipeline (0.2.0)
-      coffee-script
-      rake
-      sass
-      sinatra
-      sprockets
-      sprockets-helpers
-      sprockets-sass
     sprite-factory (1.5.3)
-    sprockets (2.9.0)
+    sprockets (2.10.0)
       hike (~> 1.2)
       multi_json (~> 1.0)
       rack (~> 1.0)
@@ -50,7 +55,10 @@ GEM
       daemons (>= 1.0.9)
       eventmachine (>= 0.12.6)
       rack (>= 1.0.0)
-    tilt (1.3.6)
+    tilt (1.4.1)
+    uglifier (2.1.1)
+      execjs (>= 0.3.0)
+      multi_json (~> 1.0, >= 1.0.2)
 
 PLATFORMS
   ruby
@@ -59,12 +67,14 @@ DEPENDENCIES
   chunky_png
   coffee-script
   eco
+  json (~> 1.7.7)
   rmagick
   sass
   sinatra
-  sinatra-asset-pipeline
+  sinatra-asset-pipeline!
   sprite-factory
   sprockets
   sprockets-helpers
   sprockets-sass
   thin
+  uglifier

@@ -9,9 +9,9 @@ require './app'
 
 Sinatra::AssetPipeline::Task.define! MyApp
 
-# task :environment do
-#   Sinatra::Sprockets.environment = ENV['RACK_ENV']
-# end
+task :environment do
+  Sinatra::Sprockets.environment = ENV['RACK_ENV']
+end
 
 namespace :railo do
   desc "Start Railo for development"

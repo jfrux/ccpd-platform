@@ -62,7 +62,11 @@
     <do action="mMain.TabControl" />
     <set name="request.page.title" value="People" />
     <xfa name="FrmSubmit" value="person.home" />
+  </fuseaction>
+
+  <fuseaction name="reports">
     <do action="mMain.TabControl" />
+    <set name="request.page.title" value="Reports" />
   </fuseaction>
   
   <fuseaction name="Login">

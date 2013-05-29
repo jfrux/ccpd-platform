@@ -1,25 +1,27 @@
 <cfparam name="request.page.responsive" default="false" />
-<cffunction name="stylesheet_link_tag">
+<!--- <cffunction name="styleSheetLinkTag">
 	<cfargument name="source" type="string" required=true>
 	<cfhttp method="get" url="http://localhost:3000/stylesheet_tags?file=#arguments.source#" result="css_markup">
 		
 	</cfhttp>
 
 	<cfreturn css_markup.filecontent />
-</cffunction>
+</cffunction> --->
 
-<cffunction name="javascript_include_tag">
+<!--- <cffunction name="javascript_include_tag">
 	<cfargument name="source" type="string" required=true>
 	<cfhttp method="get" url="http://localhost:3000/javascript_tags?file=#arguments.source#" result="js_markup">
 		
 	</cfhttp>
 
 	<cfreturn js_markup.filecontent />
-</cffunction>
+</cffunction> --->
 <cfoutput>
-#stylesheet_link_tag("application")#
+#styleSheetLinkTag(sources="application")#
 <cfif request.page.responsive>
-#stylesheet_link_tag("responsive")#
+#styleSheetLinkTag(sources="responsive")#
+
+
 </cfif>
 </cfoutput>
 <!--- <!--[if lt IE 8]>
@@ -43,8 +45,8 @@
 </cfif>
 
 <cfoutput>
-#javascript_include_tag("vendors")#
-#javascript_include_tag("application")#
+#javascriptIncludeTag(source="vendors")#
+#javascriptIncludeTag(source="application")#
 </cfoutput>
 <cfinclude template="js_global.cfm" />
 

@@ -51,6 +51,19 @@
   <cfreturn loc.returnValue>
 </cffunction>
 
+<cffunction name="$loadAssetManifest" access="public">
+  <CFDIRECTORY NAME="manifests"
+    DIRECTORY="#expandPath('/public/assets')#" 
+    FILTER="manifest**.json"
+    SORT="DateLastModified DESC">
+
+  <cfset manifestFile = manifests.name[1] />
+
+  <cffile action="read" file="#expandPath('/public/assets/#manifestFile#')#" variable="manifestContent" />
+  <cfset manifestJson = deserializeJson(manifestContent) />
+  <cfreturn manifestJson />
+</cffunction>
+
 <cffunction name="URLFor" returntype="string" access="public" output="false" hint="Creates an internal URL based on supplied arguments."
   examples=
   '

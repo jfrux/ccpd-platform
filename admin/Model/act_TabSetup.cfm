@@ -3,7 +3,8 @@ request.tabSettings = {
   "tabsSort":[
     "main.welcome",
     "main.activities",
-    "main.people"
+    "main.people",
+    "main.reports"
   ],
   "tabs": {
     "main.welcome": {
@@ -15,24 +16,33 @@ request.tabSettings = {
       "hasToolbar":false,
       "subEvents":[]
     },
-      "main.people": {
-        "label":"People",
-        "title":"People",
-        "tooltip":"",
-        "icon":"icon-users",
-        "event":"main.people",
-        "hasToolbar":false,
-        "subEvents":[]
-      },
-      "main.activities": {
-        "label":"Activities",
-        "title":"Activities",
-        "tooltip":"",
-        "icon":"icon-book-open",
-        "event":"main.activities",
-        "hasToolbar":false,
-        "subEvents":[]
-      }
+    "main.people": {
+      "label":"People",
+      "title":"People",
+      "tooltip":"",
+      "icon":"icon-users",
+      "event":"main.people",
+      "hasToolbar":false,
+      "subEvents":[]
+    },
+    "main.activities": {
+      "label":"Activities",
+      "title":"Activities",
+      "tooltip":"",
+      "icon":"icon-book-open",
+      "event":"main.activities",
+      "hasToolbar":false,
+      "subEvents":[]
+    },
+    "main.reports": {
+      "label":"Reports",
+      "title":"Report Center",
+      "tooltip":"",
+      "icon":"icon-chart-bar",
+      "event":"main.reports",
+      "hasToolbar":false,
+      "subEvents":[]
+    }
   }
 };
 

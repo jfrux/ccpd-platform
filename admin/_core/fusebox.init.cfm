@@ -70,7 +70,7 @@ The service should be back up shortly.<br />
 <cfinclude template="/lib/fusebox-addons/assets.cfm" />
 <cfinclude template="/lib/fusebox-addons/links.cfm" />
 <cfinclude template="../View/Helpers/functions.cfm" />
-<cfscript>
+<!--- <cfscript>
 if(structKeyExists(session,'loggedIn') AND session.loggedIn) {
 	if(NOT structKeyExists(session,'chat')) {
 		session.chat = {}
@@ -83,6 +83,6 @@ if(structKeyExists(session,'loggedIn') AND session.loggedIn) {
   	session.chat.isRegistered = true;
   }
 }
-</cfscript>
+</cfscript> --->
 <cfset params = $paramParser() />
 <cfinclude template="/admin/Model/Page/act_Access.cfm" />

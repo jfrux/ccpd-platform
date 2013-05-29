@@ -119,7 +119,7 @@ App.module "Activity",
         hideInfobar()
 
       $(".ContentTitle span").tooltip
-        placement: 'bottom'
+        placement: 'center bottom'
         trigger:'hover focus'
         container: 'body'
       
@@ -127,11 +127,10 @@ App.module "Activity",
         $link = $(this)
         Self.trigger('linkbar.click',$link,e)
         return
-
+      
       $menuLinks.tooltip
-        placement: 'right'
-        html: 'true'
-        trigger: 'hover focus'
+        placement:'left right'
+        html:true
         title: (e)->
           $(this).attr('data-tooltip-title')
         container: 'body'
@@ -237,11 +236,11 @@ App.module "Activity",
       
       # COPY AND PASTE DIALOG 
       $("#CopyDialog").dialog
-        title: "Copy &amp; Paste Activity"
+        title: "Copy & Paste Activity"
         modal: true
         autoOpen: false
         overlay:
-          opacity: 0.5
+          opacity: 0.75
           background: "black"
 
         buttons:
@@ -252,8 +251,8 @@ App.module "Activity",
             cancelCopy()
             $("#CopyDialog").dialog "close"
 
-        height: 400
-        width: 400
+        height: 335
+        width: 485
         resizable: false
         draggable: false
         open: ->

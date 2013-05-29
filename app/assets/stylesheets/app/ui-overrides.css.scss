@@ -1,17 +1,120 @@
+$dialogTitleBG: #777;
+$dialogTrim: #555;
 .ui-dialog {
     background-clip: padding-box;
     background-color: #FFFFFF;
-    border: 1px solid rgba(0, 0, 0, 0.3);
+    border: 10px solid rgba(0, 0, 0, 0.4);
     border-radius: 6px 6px 6px 6px;
     box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
     left: 0 !important;
     margin: auto;
     outline: medium none;
     overflow: hidden;
-    padding: 0.2em;
+    padding: 0;
     position: absolute;
     right: 0 !important;
     top: 53px !important;
     width: 300px;
     z-index: 1050;
+}
+.ui-button-text-only .ui-button-text {
+    padding: 1px 3px;
+}
+.ui-dialog-buttonpane .ui-dialog-buttonset .ui-button {
+    background-color: #60B044;
+    background-image: linear-gradient(#8ADD6D, #60B044);
+    background-repeat: repeat-x;
+    border-color: #5CA941;
+    color: #FFFFFF;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+.ui-dialog-buttonset .ui-button:not(:first-child) {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #E6E6E6;
+    background-image: linear-gradient(white, white 25%, #E6E6E6);
+    background-repeat: no-repeat;
+    border-color: #CCCCCC #CCCCCC #BBBBBB;
+    border-image: none;
+    border-radius: 4px 4px 4px 4px;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 1px 2px rgba(0, 0, 0, 0.05);
+    color: #333333;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 13px;
+    line-height: normal;
+    overflow: visible;
+    padding: 5px 14px 6px;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+    transition: all 0.1s linear 0s;
+}
+
+.ui-dialog .ui-dialog-titlebar-close span {
+    display: block;
+    margin: -8px;
+    text-indent: 9999px;
+}
+
+.ui-dialog .ui-dialog-titlebar-close {
+    background: none repeat scroll 0 0 transparent;
+    border: medium none;
+    box-shadow: none;
+    font-size: 20px;
+    font-weight: bold;
+    height: 18px;
+    line-height: 13.5px;
+    margin: -9px 0 0;
+    opacity: 1;
+    padding: 1px;
+    position: absolute;
+    right: 0.3em;
+    text-shadow: 0 1px 0 #FFFFFF;
+    top: 50%;
+    width: 19px;
+}
+.ui-dialog .ui-dialog-content {
+    background: none repeat scroll 0 0 transparent;
+    border-width: 0px 1px 1px 1px;
+    border-color:$dialogTrim $dialogTrim #CCC #333;
+    border-style:solid;
+    overflow: auto;
+    padding: 0.5em 1em;
+    position: relative;
+}
+.ui-dialog .ui-dialog-titlebar {
+    background-color: $dialogTitleBG;
+    border-width:1px 1px 0px 1px;
+    color:#FFF;
+    @include border-radius(0);
+    border-color: $dialogTrim $dialogTrim -moz-use-text-color;
+    font-size: 15px;
+    padding: 0px 10px;
+    position: relative;
+    text-decoration: none;
+}
+.ui-dialog .ui-dialog-title {
+    color: #FFF;
+    float: left;
+    font-weight: bold;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    overflow: hidden;
+    padding: 5px;
+    text-overflow: ellipsis;
+}
+
+.ui-dialog .ui-dialog-buttonpane {
+    background-color: #F5F5F5;
+    background-image: none;
+    @include border-radius(0);
+    border-color: -moz-use-text-color $dialogTrim $dialogTrim;
+    border-width: 0px 1px 1px 1px;
+    box-shadow: 0 1px 0 #FFFFFF inset;
+    margin: 0 0 0;
+    padding: 5px 15px;
+    text-align: left;
 }

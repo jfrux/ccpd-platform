@@ -29,8 +29,8 @@ require './app'
 
 # end
 
-# map '/assets' do
-#   run Sinatra::Sprockets.environment
-# end
+map MyApp.assets_prefix do
+  run MyApp.sprockets
+end
  
 run MyApp

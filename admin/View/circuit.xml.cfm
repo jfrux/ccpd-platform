@@ -7,6 +7,10 @@
     <include template="dsp_Welcome" />
   </fuseaction>
   
+  <fuseaction name="reports">
+    <include template="./Report/dsp_Home" />
+  </fuseaction>
+
   <fuseaction name="activities">
     <include template="./Activity/dsp_Search" />
   </fuseaction>

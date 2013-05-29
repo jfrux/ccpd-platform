@@ -1,3 +1,40 @@
+<cffunction name="$combineArguments" returntype="void" access="public" output="false">
+  <cfargument name="args" type="struct" required="true">
+  <cfargument name="combine" type="string" required="true">
+  <cfargument name="required" type="boolean" required="false" default="false">
+  <cfargument name="extendedInfo" type="string" required="false" default="">
+  <cfscript>
+    var loc = {};
+    loc.first = ListGetAt(arguments.combine, 1);
+    loc.second = ListGetAt(arguments.combine, 2);
+    if (StructKeyExists(arguments.args, loc.second))
+    {
+      arguments.args[loc.first] = arguments.args[loc.second];
+      StructDelete(arguments.args, loc.second);
+    }
+    if (arguments.required && application.settings.showErrorInformation)
+    {
+      if (!StructKeyExists(arguments.args, loc.first) || !Len(arguments.args[loc.first]))
+      {
+        $throw(type="Wheels.IncorrectArguments", message="The `#loc.second#` or `#loc.first#` argument is required but was not passed in.", extendedInfo="#arguments.extendedInfo#");
+      }
+    }
+  </cfscript>
+</cffunction>
+<cffunction name="$listClean" returntype="any" access="public" output="false" hint="removes whitespace between list elements. optional argument to return the list as an array.">
+  <cfargument name="list" type="string" required="true">
+  <cfargument name="delim" type="string" required="false" default=",">
+  <cfargument name="returnAs" type="string" required="false" default="string">
+  <cfscript>
+    var loc = {};
+    loc.list = ListToArray(arguments.list, arguments.delim);
+    for (loc.i = 1; loc.i lte ArrayLen(loc.list); loc.i++)
+      loc.list[loc.i] = Trim(loc.list[loc.i]);
+    if (arguments.returnAs == "array")
+      return loc.list;
+  </cfscript>
+  <cfreturn ArrayToList(loc.list, arguments.delim)>
+</cffunction>
 <cffunction name="$initializeRequestScope" returntype="void" access="public" output="false">
   <cfscript>
     if (!StructKeyExists(request, "wheels"))

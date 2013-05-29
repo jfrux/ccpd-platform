@@ -93,6 +93,7 @@
     </cfoutput>
     </div>
 </div>
+<!---
 <script type="text/x-handlebars">{{view Chat.Views.Application}}</script>
 
 <cfoutput>
@@ -117,8 +118,9 @@
     
   </script>
 </cfoutput>
-    <cfdump label="SESSIONS" var="#session#" />
-    <cfdump label="PARAMS" var="#params#" />
-    <cfdump label="ATTRIBUTES" var="#attributes#" />
+---><!--- 
+<cfdump label="SESSIONS" var="#session#" />
+<cfdump label="PARAMS" var="#params#" />
+<cfdump label="ATTRIBUTES" var="#attributes#" /> --->
 </body>
 </html>
