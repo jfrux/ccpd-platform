@@ -88,8 +88,8 @@ $(document).ready(function(){
 
   });
   
-  $("#Title").autocomplete(sRootPath + '/_com/AJAX_Activity.cfc?method=AutoComplete&returnformat=plain');
-  $("#Sponsor").autocomplete(sRootPath + '/_com/AJAX_Activity.cfc?method=JointlyAutoComplete&returnformat=plain');
+  //$("#Title").autocomplete(sRootPath + '/_com/AJAX_Activity.cfc?method=AutoComplete&returnformat=plain');
+  //$("#Sponsor").autocomplete(sRootPath + '/_com/AJAX_Activity.cfc?method=JointlyAutoComplete&returnformat=plain');
   
   $("#ActivityType").bind("change", this, function() {
     setActivityType($(this).val());
@@ -250,5 +250,6 @@ $(document).ready(function(){
       <input type="text" name="ExternalID" id="ExternalID" value="#Attributes.ExternalID#"/>
     </div>
   </div>
+  <input type="submit" value="Save" />
 </form>
 </cfoutput>

@@ -1,12 +1,12 @@
-<cfparam name="Request.MultiFormTitle" default="">
-<cfparam name="Request.MultiFormContent" default="">
-<cfparam name="Request.MultiFormRight" default="">
-<cfparam name="Request.MultiFormLabels" default="">
-<cfparam name="Request.MultiFormFuseactions" default="">
-<cfparam name="Request.MultiSubTabFlag" default="N">
-<cfparam name="Request.MultiFormQS" default="">
-<cfparam name="Request.MultiFormEditLabel" default="">
-<cfparam name="Request.MultiFormEditLink" default="">
+<cfparam name="MultiFormTitle" default="">
+<cfparam name="MultiFormContent" default="">
+<cfparam name="MultiFormRight" default="">
+<cfparam name="MultiFormLabels" default="">
+<cfparam name="MultiFormFuseactions" default="">
+<cfparam name="MultiSubTabFlag" default="N">
+<cfparam name="MultiFormQS" default="">
+<cfparam name="MultiFormEditLabel" default="">
+<cfparam name="MultiFormEditLink" default="">
 
 <cfoutput>
 <script>
@@ -52,7 +52,7 @@ $(document).ready(function() {
 	
 	$('a.button').unbind("click");--->
 	
-	<cfif Request.MultiSubTabFlag EQ "Y">
+	<cfif MultiSubTabFlag EQ "Y">
 	$(".FormSection").hide();
 
 	$(".FormTabs a").addClass("FormTab").unbind("click");
@@ -76,16 +76,16 @@ $(document).ready(function() {
 });
 </script>
 <div class="ContentTitle">#Request.Page.Title#</div>
-<cfif Request.MultiFormFuseactions NEQ ""><div class="clear-fix"><cf_ceTabControl Instance="MultiForm" Labels="#Request.MultiFormLabels#" Fuseactions="#Request.MultiFormFuseactions#" QueryString="#Request.MultiFormQS#" Current="#Attributes.Fuseaction#"></div></cfif>
+<cfif MultiFormFuseactions NEQ ""><div class="clear-fix"><cf_ceTabControl Instance="MultiForm" Labels="#MultiFormLabels#" Fuseactions="#MultiFormFuseactions#" QueryString="#MultiFormQS#" Current="#Attributes.Fuseaction#"></div></cfif>
 <table cellspacing="0" border="0" cellpadding="0" class="MultiForm">
 	<tbody>
 		<tr>
-			<td class="MultiFormContent">#Request.MultiFormContent#</td>
-			<td class="MultiFormRight" valign="top" style="width:170px;" width="170">#Request.MultiFormRight#</td>
+			<td class="MultiFormContent">#MultiFormContent#</td>
+			<td class="MultiFormRight" valign="top" style="width:170px;" width="170">#MultiFormRight#</td>
 		</tr>
 	</tbody>
 </table>
-<cfif Request.MultiFormEditLabel NEQ "" AND Request.MultiFormEditLink NEQ "" AND Request.MultiFormEditLink DOES NOT CONTAIN Attributes.FuseAction>
-<div class="EditLink"><a href="#Request.MultiFormEditLink#"><img src="#Application.Settings.RootPath#/_images/pencil.gif" border="0" align="left" /> #Request.MultiFormEditLabel#</a></div>
+<cfif MultiFormEditLabel NEQ "" AND MultiFormEditLink NEQ "" AND MultiFormEditLink DOES NOT CONTAIN Attributes.FuseAction>
+<div class="EditLink"><a href="#MultiFormEditLink#"><img src="#Application.Settings.RootPath#/_images/pencil.gif" border="0" align="left" /> #MultiFormEditLabel#</a></div>
 </cfif>
 </cfoutput>

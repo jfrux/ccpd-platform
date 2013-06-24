@@ -52,6 +52,7 @@ App.module "Activity.Create", (Self, App, Backbone, Marionette, $) ->
     updateStateProvince parseInt($("#Country").val())
 
   _init = () ->
+    console.log('in');
     # $(".linkbar a").one "click",->
     #   Self.stop()
     #   return true

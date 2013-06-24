@@ -26,18 +26,18 @@
           <do action="mActivity.getActivity" />
         </true>
       </if>
+      <invoke object="myFusebox" 
+              methodcall="do('vActivity.#params.action#','multiformcontent')" />
+      <invoke object="myFusebox" 
+              methodcall="do('vActivity.#params.action#right','multiformright')" />
       <if condition="isPjax()">
         <true>
           <if condition="#structKeyExists(attributes,'activityid')# AND attributes.activityID GT 0">
             <true>
               <if condition="#request.currentTab.hasToolbar#">
                 <true>
-                  <invoke object="myFusebox" 
-                          methodcall="do('vActivity.#request.page.action#right','multiformright')" />
                 </true>
               </if>
-              <invoke object="myFusebox" 
-                      methodcall="do('vActivity.#request.page.action#','multiformcontent')" />
             </true>
           </if>
           <do action="vLayout.Blank" />
@@ -60,6 +60,13 @@
                               methodcall="do('vActivity.#request.page.action#','multiformcontent')" />
                       <do action="vLayout.Sub_Activity" contentvariable="request.page.body" />
                     </true>
+                    <false>
+                      <if condition="NOT structKeyExists(attributes,'activityid') OR (structKeyExists(attributes,'activityid') AND attributes.activityID LTE 0)">
+                        <true>
+                          <do action="vLayout.sub_multiform" contentvariable="request.page.body" />
+                        </true>
+                      </if>
+                    </false>
                   </if>
                  
                  <do action="vLayout.Default" />

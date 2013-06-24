@@ -1,5 +1,6 @@
-PATH
-  remote: /Users/joshua/Projects/sinatra-asset-pipeline
+GIT
+  remote: https://github.com/joshuairl/sinatra-asset-pipeline.git
+  revision: d41048ba5156157a13691e589b4265870fb2493c
   specs:
     sinatra-asset-pipeline (0.2.0)
       coffee-script
@@ -33,7 +34,7 @@ GEM
     rack (1.5.2)
     rack-protection (1.5.0)
       rack
-    rake (10.0.4)
+    rake (10.1.0)
     rmagick (2.13.2)
     sass (3.2.9)
     sinatra (1.4.2)

@@ -81,7 +81,7 @@
       <cfloop from="1" to="#arrayLen(arguments.settings.tabsSort)#" index="i">
         <cfset key = arguments.settings.tabsSort[i] />
         <cfset options['tab'] = arguments.settings.tabs[key] />
-        <cfset options.tab['link'] = "/admin/event/#tab.event#" />
+        <cfset options.tab['link'] = "/admin/event/#options.tab.event#" />
         <cfif arguments.includekey>
           <cfset options.tab.link &= "?#arguments.type#id=#arguments.typeid#" />
         </cfif>

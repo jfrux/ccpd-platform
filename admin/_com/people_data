@@ -1,0 +1,200 @@
+{"index":{"_index":"ccpd","_type":"people","_id":"1"}}
+{"certName":" System Admin ","middleName":"","email":"no-reply@uc.edu","prefix":"","personId":1,"ssn":"","birthDate":"","lastName":"Admin","firstName":"System","suffix":"","searchAll":" System  Admin System Admin   System Admin   System Admin  no-reply@uc.edu                 ","displayName":" System Admin "}
+{"index":{"_index":"ccpd","_type":"people","_id":"248"}}
+{"certName":"Judith  Bierschbach","middleName":"","email":"bierscjl@healthall.com","prefix":"Dr.","personId":248,"ssn":"","birthDate":"","lastName":"Bierschbach","firstName":"Judith","suffix":"","searchAll":"Dr. Judith  Bierschbach Judith Bierschbach  Judith  Bierschbach Judith  Bierschbach bierscjl@healthall.com                 ","displayName":"Judith  Bierschbach"}
+{"index":{"_index":"ccpd","_type":"people","_id":"249"}}
+{"certName":"Peggy  Miller","middleName":"","email":"millerp@healthall.com","prefix":"Ms.","personId":249,"ssn":"","birthDate":"","lastName":"Miller","firstName":"Peggy","suffix":"","searchAll":"Ms. Peggy  Miller Peggy Miller  Peggy  Miller Peggy  Miller millerp@healthall.com                 ","displayName":"Peggy  Miller"}
+{"index":{"_index":"ccpd","_type":"people","_id":"250"}}
+{"certName":"Mitzi  Leski","middleName":"","email":"","prefix":"Ms.","personId":250,"ssn":"","birthDate":"","lastName":"Leski","firstName":"Mitzi","suffix":"","searchAll":"Ms. Mitzi  Leski Mitzi Leski  Mitzi  Leski Mitzi  Leski                  ","displayName":"Mitzi  Leski"}
+{"index":{"_index":"ccpd","_type":"people","_id":"251"}}
+{"certName":"Jennifer  Haigis","middleName":"","email":"mccannjm@healthall.com","prefix":"Ms.","personId":251,"ssn":"","birthDate":"","lastName":"Haigis","firstName":"Jennifer","suffix":"","searchAll":"Ms. Jennifer  Haigis Jennifer Haigis  Jennifer  Haigis Jennifer  Haigis mccannjm@healthall.com                 ","displayName":"Jennifer  Haigis"}
+{"index":{"_index":"ccpd","_type":"people","_id":"252"}}
+{"certName":"Jennifer  Benton","middleName":"","email":"jennifer.benton@cchmc.org","prefix":"Ms.","personId":252,"ssn":"","birthDate":"","lastName":"Benton","firstName":"Jennifer","suffix":"","searchAll":"Ms. Jennifer  Benton Jennifer Benton  Jennifer  Benton Jennifer  Benton jennifer.benton@cchmc.org                 ","displayName":"Jennifer  Benton"}
+{"index":{"_index":"ccpd","_type":"people","_id":"253"}}
+{"certName":"Geniene E Ward","middleName":"E","email":"g-jward@prodigy.net","prefix":"Ms.","personId":253,"ssn":"","birthDate":"","lastName":"Ward","firstName":"Geniene","suffix":"","searchAll":"Ms. Geniene E Ward Geniene Ward  Geniene E Ward Geniene E Ward g-jward@prodigy.net                 ","displayName":"Geniene E Ward"}
+{"index":{"_index":"ccpd","_type":"people","_id":"254"}}
+{"certName":"Anne Lynn Grove","middleName":"Lynn","email":"agrove@columbus.rr.com","prefix":"Ms.","personId":254,"ssn":"","birthDate":"","lastName":"Grove","firstName":"Anne","suffix":"","searchAll":"Ms. Anne Lynn Grove Anne Grove  Anne Lynn Grove Anne Lynn Grove agrove@columbus.rr.com                 ","displayName":"Anne Lynn Grove"}
+{"index":{"_index":"ccpd","_type":"people","_id":"255"}}
+{"certName":"Mary S. Patnode","middleName":"S.","email":"","prefix":"Ms.","personId":255,"ssn":"","birthDate":"","lastName":"Patnode","firstName":"Mary","suffix":"","searchAll":"Ms. Mary S. Patnode Mary Patnode  Mary S. Patnode Mary S. Patnode                  ","displayName":"Mary S. Patnode"}
+{"index":{"_index":"ccpd","_type":"people","_id":"256"}}
+{"certName":"Julie  Beeching","middleName":"","email":"","prefix":"Ms.","personId":256,"ssn":"","birthDate":"","lastName":"Beeching","firstName":"Julie","suffix":"","searchAll":"Ms. Julie  Beeching Julie Beeching  Julie  Beeching Julie  Beeching                  ","displayName":"Julie  Beeching"}
+{"index":{"_index":"ccpd","_type":"people","_id":"257"}}
+{"certName":"Susan  Oosterwal","middleName":"","email":"","prefix":"Ms.","personId":257,"ssn":"","birthDate":"","lastName":"Oosterwal","firstName":"Susan","suffix":"","searchAll":"Ms. Susan  Oosterwal Susan Oosterwal  Susan  Oosterwal Susan  Oosterwal                  ","displayName":"Susan  Oosterwal"}
+{"index":{"_index":"ccpd","_type":"people","_id":"258"}}
+{"certName":"Rebecca  Sanders","middleName":"","email":"rasl022@200mnct.net","prefix":"Ms.","personId":258,"ssn":"","birthDate":"","lastName":"Sanders","firstName":"Rebecca","suffix":"","searchAll":"Ms. Rebecca  Sanders Rebecca Sanders  Rebecca  Sanders Rebecca  Sanders rasl022@200mnct.net                 ","displayName":"Rebecca  Sanders"}
+{"index":{"_index":"ccpd","_type":"people","_id":"259"}}
+{"certName":"Yvonne  Suggs","middleName":"","email":"suggs@bright.net","prefix":"Ms.","personId":259,"ssn":"9137","birthDate":"","lastName":"Suggs","firstName":"Yvonne","suffix":"","searchAll":"Ms. Yvonne  Suggs Yvonne Suggs  Yvonne  Suggs Yvonne  Suggs suggs@bright.net                 9137","displayName":"Yvonne  Suggs"}
+{"index":{"_index":"ccpd","_type":"people","_id":"260"}}
+{"certName":"Rita Karen Keagle","middleName":"Karen","email":"","prefix":"Ms.","personId":260,"ssn":"","birthDate":"","lastName":"Keagle","firstName":"Rita","suffix":"","searchAll":"Ms. Rita Karen Keagle Rita Keagle  Rita Karen Keagle Rita Karen Keagle                  ","displayName":"Rita Karen Keagle"}
+{"index":{"_index":"ccpd","_type":"people","_id":"261"}}
+{"certName":"Thomas  Koroscil, M.D.","middleName":"","email":"thomas.koroscil@wpafb.af.mil","prefix":"Dr.","personId":261,"ssn":"","birthDate":"March, 29 1954 00:00:00 -0500","lastName":"Koroscil","firstName":"Thomas","suffix":"","searchAll":"Dr. Thomas  Koroscil Thomas Koroscil  Thomas  Koroscil, M.D. Thomas  Koroscil, M.D. thomas.koroscil@wpafb.af.mil 03\/29\/1954  1954  03  ","displayName":"Thomas  Koroscil, M.D."}
+{"index":{"_index":"ccpd","_type":"people","_id":"262"}}
+{"certName":"Paul  Glowienka","middleName":"","email":"","prefix":"Dr.","personId":262,"ssn":"","birthDate":"","lastName":"Glowienka","firstName":"Paul","suffix":"","searchAll":"Dr. Paul  Glowienka Paul Glowienka  Paul  Glowienka Paul  Glowienka                  ","displayName":"Paul  Glowienka"}
+{"index":{"_index":"ccpd","_type":"people","_id":"263"}}
+{"certName":"Kristen  McLellan","middleName":"","email":"","prefix":"Ms.","personId":263,"ssn":"","birthDate":"","lastName":"McLellan","firstName":"Kristen","suffix":"","searchAll":"Ms. Kristen  McLellan Kristen McLellan  Kristen  McLellan Kristen  McLellan                  ","displayName":"Kristen  McLellan"}
+{"index":{"_index":"ccpd","_type":"people","_id":"264"}}
+{"certName":"John C. Winkelmann","middleName":"C.","email":"","prefix":"Dr.","personId":264,"ssn":"","birthDate":"","lastName":"Winkelmann","firstName":"John","suffix":"","searchAll":"Dr. John C. Winkelmann John Winkelmann  John C. Winkelmann John C. Winkelmann                  ","displayName":"John C. Winkelmann"}
+{"index":{"_index":"ccpd","_type":"people","_id":"265"}}
+{"certName":"David L. Steward, M.D.","middleName":"L.","email":"david.steward@uc.edu","prefix":"Dr.","personId":265,"ssn":"3899","birthDate":"December, 12 1966 00:00:00 -0500","lastName":"Steward","firstName":"David","suffix":"","searchAll":"Dr. David L. Steward David Steward  David L. Steward, M.D. David L. Steward, M.D. david.steward@uc.edu 12\/12\/1966  1966  12  3899","displayName":"David L. Steward, M.D."}
+{"index":{"_index":"ccpd","_type":"people","_id":"266"}}
+{"certName":"Pearl J. Compaan","middleName":"J.","email":"pjcompaan@mindspring.com","prefix":"Dr.","personId":266,"ssn":"","birthDate":"","lastName":"Compaan","firstName":"Pearl","suffix":"","searchAll":"Dr. Pearl J. Compaan Pearl Compaan  Pearl J. Compaan Pearl J. Compaan pjcompaan@mindspring.com                 ","displayName":"Pearl J. Compaan"}
+{"index":{"_index":"ccpd","_type":"people","_id":"267"}}
+{"certName":"Donna G. Nussdorfer","middleName":"G.","email":"nussdord@co.washtenaw.mi.us","prefix":"Ms.","personId":267,"ssn":"","birthDate":"","lastName":"Nussdorfer","firstName":"Donna","suffix":"","searchAll":"Ms. Donna G. Nussdorfer Donna Nussdorfer  Donna G. Nussdorfer Donna G. Nussdorfer nussdord@co.washtenaw.mi.us                 ","displayName":"Donna G. Nussdorfer"}
+{"index":{"_index":"ccpd","_type":"people","_id":"268"}}
+{"certName":"Opada  Alzohaili","middleName":"","email":"","prefix":"Dr.","personId":268,"ssn":"","birthDate":"","lastName":"Alzohaili","firstName":"Opada","suffix":"","searchAll":"Dr. Opada  Alzohaili Opada Alzohaili  Opada  Alzohaili Opada  Alzohaili                  ","displayName":"Opada  Alzohaili"}
+{"index":{"_index":"ccpd","_type":"people","_id":"269"}}
+{"certName":"Takeshi  Hara","middleName":"","email":"","prefix":"Dr.","personId":269,"ssn":"","birthDate":"","lastName":"Hara","firstName":"Takeshi","suffix":"","searchAll":"Dr. Takeshi  Hara Takeshi Hara  Takeshi  Hara Takeshi  Hara                  ","displayName":"Takeshi  Hara"}
+{"index":{"_index":"ccpd","_type":"people","_id":"270"}}
+{"certName":"Jeffrey J. Sussman, M.D.","middleName":"J.","email":"jeffrey.sussman@uc.edu","prefix":"Dr.","personId":270,"ssn":"5767","birthDate":"","lastName":"Sussman","firstName":"Jeffrey","suffix":"","searchAll":"Dr. Jeffrey J. Sussman Jeffrey Sussman  Jeffrey J. Sussman, M.D. Jeffrey J. Sussman, M.D. jeffrey.sussman@uc.edu                 5767","displayName":"Jeffrey J. Sussman, M.D."}
+{"index":{"_index":"ccpd","_type":"people","_id":"271"}}
+{"certName":"William L. Barrett, M.D.","middleName":"L.","email":"barretwl@ucmail.uc.edu","prefix":"Dr.","personId":271,"ssn":"9688","birthDate":"March, 18 1960 00:00:00 -0500","lastName":"Barrett","firstName":"William","suffix":"","searchAll":"Dr. William L. Barrett William Barrett  William L. Barrett, M.D. William L. Barrett, M.D. barretwl@ucmail.uc.edu 03\/18\/1960  1960  03  9688","displayName":"William L. Barrett, M.D."}
+{"index":{"_index":"ccpd","_type":"people","_id":"272"}}
+{"certName":"Patricia  Banerjee","middleName":"","email":"","prefix":"Dr.","personId":272,"ssn":"","birthDate":"","lastName":"Banerjee","firstName":"Patricia","suffix":"","searchAll":"Dr. Patricia  Banerjee Patricia Banerjee  Patricia  Banerjee Patricia  Banerjee                  ","displayName":"Patricia  Banerjee"}
+{"index":{"_index":"ccpd","_type":"people","_id":"273"}}
+{"certName":"Phillip  Allen","middleName":"","email":"","prefix":"Dr.","personId":273,"ssn":"","birthDate":"","lastName":"Allen","firstName":"Phillip","suffix":"","searchAll":"Dr. Phillip  Allen Phillip Allen  Phillip  Allen Phillip  Allen                  ","displayName":"Phillip  Allen"}
+{"index":{"_index":"ccpd","_type":"people","_id":"274"}}
+{"certName":"Stephen  McDonald, M.D.","middleName":"","email":"","prefix":"Dr.","personId":274,"ssn":"","birthDate":"May, 10 1945 00:00:00 -0400","lastName":"McDonald","firstName":"Stephen","suffix":"","searchAll":"Dr. Stephen  McDonald Stephen McDonald  Stephen  McDonald, M.D. Stephen  McDonald, M.D.  05\/10\/1945  1945  05  ","displayName":"Stephen  McDonald, M.D."}
+{"index":{"_index":"ccpd","_type":"people","_id":"275"}}
+{"certName":"Gwynne  Howell-Rohrs","middleName":"","email":"srohrs@columbus.rr.com","prefix":"Ms.","personId":275,"ssn":"","birthDate":"","lastName":"Howell-Rohrs","firstName":"Gwynne","suffix":"","searchAll":"Ms. Gwynne  Howell-Rohrs Gwynne Howell-Rohrs  Gwynne  Howell-Rohrs Gwynne  Howell-Rohrs srohrs@columbus.rr.com                 ","displayName":"Gwynne  Howell-Rohrs"}
+{"index":{"_index":"ccpd","_type":"people","_id":"276"}}
+{"certName":"Theresa  Marx-Armile","middleName":"","email":"","prefix":"Dr.","personId":276,"ssn":"","birthDate":"","lastName":"Marx-Armile","firstName":"Theresa","suffix":"","searchAll":"Dr. Theresa  Marx-Armile Theresa Marx-Armile  Theresa  Marx-Armile Theresa  Marx-Armile                  ","displayName":"Theresa  Marx-Armile"}
+{"index":{"_index":"ccpd","_type":"people","_id":"277"}}
+{"certName":"Falguni  Vasa","middleName":"","email":"","prefix":"Dr.","personId":277,"ssn":"","birthDate":"","lastName":"Vasa","firstName":"Falguni","suffix":"","searchAll":"Dr. Falguni  Vasa Falguni Vasa  Falguni  Vasa Falguni  Vasa                  ","displayName":"Falguni  Vasa"}
+{"index":{"_index":"ccpd","_type":"people","_id":"278"}}
+{"certName":"Michael  Clark","middleName":"","email":"","prefix":"Ms.","personId":278,"ssn":"","birthDate":"","lastName":"Clark","firstName":"Michael","suffix":"","searchAll":"Ms. Michael  Clark Michael Clark  Michael  Clark Michael  Clark                  ","displayName":"Michael  Clark"}
+{"index":{"_index":"ccpd","_type":"people","_id":"279"}}
+{"certName":"Steven  Waguespack","middleName":"","email":"","prefix":"Dr.","personId":279,"ssn":"","birthDate":"","lastName":"Waguespack","firstName":"Steven","suffix":"","searchAll":"Dr. Steven  Waguespack Steven Waguespack  Steven  Waguespack Steven  Waguespack                  ","displayName":"Steven  Waguespack"}
+{"index":{"_index":"ccpd","_type":"people","_id":"280"}}
+{"certName":"Mary Alice  Trapp","middleName":"","email":"","prefix":"Ms.","personId":280,"ssn":"","birthDate":"","lastName":"Trapp","firstName":"Mary Alice","suffix":"","searchAll":"Ms. Mary Alice  Trapp Mary Alice Trapp  Mary Alice  Trapp Mary Alice  Trapp                  ","displayName":"Mary Alice  Trapp"}
+{"index":{"_index":"ccpd","_type":"people","_id":"281"}}
+{"certName":"Angelita  Ramos-Gabatin","middleName":"","email":"","prefix":"Dr.","personId":281,"ssn":"","birthDate":"","lastName":"Ramos-Gabatin","firstName":"Angelita","suffix":"","searchAll":"Dr. Angelita  Ramos-Gabatin Angelita Ramos-Gabatin  Angelita  Ramos-Gabatin Angelita  Ramos-Gabatin                  ","displayName":"Angelita  Ramos-Gabatin"}
+{"index":{"_index":"ccpd","_type":"people","_id":"282"}}
+{"certName":"Raj  Shah","middleName":"","email":"","prefix":"Dr.","personId":282,"ssn":"","birthDate":"","lastName":"Shah","firstName":"Raj","suffix":"","searchAll":"Dr. Raj  Shah Raj Shah  Raj  Shah Raj  Shah                  ","displayName":"Raj  Shah"}
+{"index":{"_index":"ccpd","_type":"people","_id":"283"}}
+{"certName":"Robert  Ripper","middleName":"","email":"","prefix":"Mr.","personId":283,"ssn":"","birthDate":"","lastName":"Ripper","firstName":"Robert","suffix":"","searchAll":"Mr. Robert  Ripper Robert Ripper  Robert  Ripper Robert  Ripper                  ","displayName":"Robert  Ripper"}
+{"index":{"_index":"ccpd","_type":"people","_id":"284"}}
+{"certName":"Susan  Partin","middleName":"","email":"","prefix":"Ms.","personId":284,"ssn":"","birthDate":"","lastName":"Partin","firstName":"Susan","suffix":"","searchAll":"Ms. Susan  Partin Susan Partin  Susan  Partin Susan  Partin                  ","displayName":"Susan  Partin"}
+{"index":{"_index":"ccpd","_type":"people","_id":"285"}}
+{"certName":"Susan  Galbraith","middleName":"","email":"","prefix":"Dr.","personId":285,"ssn":"","birthDate":"","lastName":"Galbraith","firstName":"Susan","suffix":"","searchAll":"Dr. Susan  Galbraith Susan Galbraith  Susan  Galbraith Susan  Galbraith                  ","displayName":"Susan  Galbraith"}
+{"index":{"_index":"ccpd","_type":"people","_id":"286"}}
+{"certName":"Holly  Marcum","middleName":"","email":"","prefix":"Miss","personId":286,"ssn":"","birthDate":"","lastName":"Marcum","firstName":"Holly","suffix":"","searchAll":"Miss Holly  Marcum Holly Marcum  Holly  Marcum Holly  Marcum                  ","displayName":"Holly  Marcum"}
+{"index":{"_index":"ccpd","_type":"people","_id":"288"}}
+{"certName":"Brian  Burke","middleName":"","email":"","prefix":"Dr.","personId":288,"ssn":"","birthDate":"","lastName":"Burke","firstName":"Brian","suffix":"","searchAll":"Dr. Brian  Burke Brian Burke  Brian  Burke Brian  Burke                  ","displayName":"Brian  Burke"}
+{"index":{"_index":"ccpd","_type":"people","_id":"289"}}
+{"certName":"David J Klein","middleName":"J","email":"kleindj@ucmail.uc.edu","prefix":"Dr.","personId":289,"ssn":"","birthDate":"","lastName":"Klein","firstName":"David","suffix":"","searchAll":"Dr. David J Klein David Klein  David J Klein David J Klein kleindj@ucmail.uc.edu                 ","displayName":"David J Klein"}
+{"index":{"_index":"ccpd","_type":"people","_id":"290"}}
+{"certName":"Lisa  Hall","middleName":"","email":"lisa.hall@cchmc.org","prefix":"Ms.","personId":290,"ssn":"","birthDate":"","lastName":"Hall","firstName":"Lisa","suffix":"","searchAll":"Ms. Lisa  Hall Lisa Hall  Lisa  Hall Lisa  Hall lisa.hall@cchmc.org                 ","displayName":"Lisa  Hall"}
+{"index":{"_index":"ccpd","_type":"people","_id":"291"}}
+{"certName":"Anne  Lloyd","middleName":"","email":"","prefix":"Ms.","personId":291,"ssn":"","birthDate":"","lastName":"Lloyd","firstName":"Anne","suffix":"","searchAll":"Ms. Anne  Lloyd Anne Lloyd  Anne  Lloyd Anne  Lloyd                  ","displayName":"Anne  Lloyd"}
+{"index":{"_index":"ccpd","_type":"people","_id":"292"}}
+{"certName":"Susan  Hoppenworth","middleName":"","email":"","prefix":"Ms.","personId":292,"ssn":"","birthDate":"","lastName":"Hoppenworth","firstName":"Susan","suffix":"","searchAll":"Ms. Susan  Hoppenworth Susan Hoppenworth  Susan  Hoppenworth Susan  Hoppenworth                  ","displayName":"Susan  Hoppenworth"}
+{"index":{"_index":"ccpd","_type":"people","_id":"293"}}
+{"certName":"Bridget  Markoe","middleName":"","email":"","prefix":"Ms.","personId":293,"ssn":"","birthDate":"","lastName":"Markoe","firstName":"Bridget","suffix":"","searchAll":"Ms. Bridget  Markoe Bridget Markoe  Bridget  Markoe Bridget  Markoe                  ","displayName":"Bridget  Markoe"}
+{"index":{"_index":"ccpd","_type":"people","_id":"294"}}
+{"certName":"Jill M Shirokawa","middleName":"M","email":"shirokjm@mail.uc.edu","prefix":"Dr.","personId":294,"ssn":"","birthDate":"","lastName":"Shirokawa","firstName":"Jill","suffix":"","searchAll":"Dr. Jill M Shirokawa Jill Shirokawa  Jill M Shirokawa Jill M Shirokawa shirokjm@mail.uc.edu                 ","displayName":"Jill M Shirokawa"}
+{"index":{"_index":"ccpd","_type":"people","_id":"295"}}
+{"certName":"Marina  Kozlov","middleName":"","email":"","prefix":"Dr.","personId":295,"ssn":"","birthDate":"","lastName":"Kozlov","firstName":"Marina","suffix":"","searchAll":"Dr. Marina  Kozlov Marina Kozlov  Marina  Kozlov Marina  Kozlov                  ","displayName":"Marina  Kozlov"}
+{"index":{"_index":"ccpd","_type":"people","_id":"296"}}
+{"certName":"Meilan  Rutter, M.","middleName":"","email":"meilan.rutter@cchmc.org","prefix":"Dr.","personId":296,"ssn":"","birthDate":"","lastName":"Rutter","firstName":"Meilan","suffix":"","searchAll":"Dr. Meilan  Rutter Meilan Rutter  Meilan  Rutter, M.D. Meilan  Rutter, M. meilan.rutter@cchmc.org                 ","displayName":"Meilan  Rutter, M.D."}
+{"index":{"_index":"ccpd","_type":"people","_id":"297"}}
+{"certName":"Malcolm L. Steiner","middleName":"L.","email":"mark.steiner@cchmc.org","prefix":"Dr.","personId":297,"ssn":"","birthDate":"","lastName":"Steiner","firstName":"Malcolm","suffix":"","searchAll":"Dr. Malcolm L. Steiner Malcolm Steiner  Malcolm L. Steiner Malcolm L. Steiner mark.steiner@cchmc.org                 ","displayName":"Malcolm L. Steiner"}
+{"index":{"_index":"ccpd","_type":"people","_id":"298"}}
+{"certName":"Roger  Vithalani","middleName":"","email":"","prefix":"Dr.","personId":298,"ssn":"","birthDate":"","lastName":"Vithalani","firstName":"Roger","suffix":"","searchAll":"Dr. Roger  Vithalani Roger Vithalani  Roger  Vithalani Roger  Vithalani                  ","displayName":"Roger  Vithalani"}
+{"index":{"_index":"ccpd","_type":"people","_id":"299"}}
+{"certName":"Sorin  Herscovici","middleName":"","email":"","prefix":"Dr.","personId":299,"ssn":"","birthDate":"","lastName":"Herscovici","firstName":"Sorin","suffix":"","searchAll":"Dr. Sorin  Herscovici Sorin Herscovici  Sorin  Herscovici Sorin  Herscovici                  ","displayName":"Sorin  Herscovici"}
+{"index":{"_index":"ccpd","_type":"people","_id":"300"}}
+{"certName":"Herbert C Flessa","middleName":"C","email":"flessahc@ucmail.uc.edu","prefix":"Dr.","personId":300,"ssn":"","birthDate":"","lastName":"Flessa","firstName":"Herbert","suffix":"","searchAll":"Dr. Herbert C Flessa Herbert Flessa  Herbert C Flessa Herbert C Flessa flessahc@ucmail.uc.edu                 ","displayName":"Herbert C Flessa"}
+{"index":{"_index":"ccpd","_type":"people","_id":"301"}}
+{"certName":"Philippe F. Backeljauw","middleName":"F.","email":"backelpf@ucmail.uc.edu","prefix":"Dr.","personId":301,"ssn":"","birthDate":"","lastName":"Backeljauw","firstName":"Philippe","suffix":"","searchAll":"Dr. Philippe F. Backeljauw Philippe Backeljauw  Philippe F. Backeljauw Philippe F. Backeljauw backelpf@ucmail.uc.edu                 ","displayName":"Philippe F. Backeljauw"}
+{"index":{"_index":"ccpd","_type":"people","_id":"302"}}
+{"certName":"Zahida  Yasin","middleName":"","email":"","prefix":"Dr.","personId":302,"ssn":"","birthDate":"","lastName":"Yasin","firstName":"Zahida","suffix":"","searchAll":"Dr. Zahida  Yasin Zahida Yasin  Zahida  Yasin Zahida  Yasin                  ","displayName":"Zahida  Yasin"}
+{"index":{"_index":"ccpd","_type":"people","_id":"303"}}
+{"certName":"Jeerunda  Santiprabhob","middleName":"","email":"jeerunda.santiprabhob@cchmc.org","prefix":"Dr.","personId":303,"ssn":"","birthDate":"","lastName":"Santiprabhob","firstName":"Jeerunda","suffix":"","searchAll":"Dr. Jeerunda  Santiprabhob Jeerunda Santiprabhob  Jeerunda  Santiprabhob Jeerunda  Santiprabhob jeerunda.santiprabhob@cchmc.org                 ","displayName":"Jeerunda  Santiprabhob"}
+{"index":{"_index":"ccpd","_type":"people","_id":"304"}}
+{"certName":"Eric  Gyuricsko","middleName":"","email":"eric.gyuricsko@cchmc.org","prefix":"Dr.","personId":304,"ssn":"","birthDate":"","lastName":"Gyuricsko","firstName":"Eric","suffix":"","searchAll":"Dr. Eric  Gyuricsko Eric Gyuricsko  Eric  Gyuricsko Eric  Gyuricsko eric.gyuricsko@cchmc.org                 ","displayName":"Eric  Gyuricsko"}
+{"index":{"_index":"ccpd","_type":"people","_id":"305"}}
+{"certName":"M. Jennifer Abuzzahab","middleName":"Jennifer","email":"","prefix":"Dr.","personId":305,"ssn":"","birthDate":"","lastName":"Abuzzahab","firstName":"M.","suffix":"","searchAll":"Dr. M. Jennifer Abuzzahab M. Abuzzahab  M. Jennifer Abuzzahab M. Jennifer Abuzzahab                  ","displayName":"M. Jennifer Abuzzahab"}
+{"index":{"_index":"ccpd","_type":"people","_id":"306"}}
+{"certName":"Lawrence M Dolan","middleName":"M","email":"dolanlm@ucmail.uc.edu","prefix":"Dr.","personId":306,"ssn":"","birthDate":"","lastName":"Dolan","firstName":"Lawrence","suffix":"","searchAll":"Dr. Lawrence M Dolan Lawrence Dolan  Lawrence M Dolan Lawrence M Dolan dolanlm@ucmail.uc.edu                 ","displayName":"Lawrence M Dolan"}
+{"index":{"_index":"ccpd","_type":"people","_id":"307"}}
+{"certName":"Robert Hewitt Bower","middleName":"Hewitt","email":"","prefix":"Dr.","personId":307,"ssn":"","birthDate":"","lastName":"Bower","firstName":"Robert","suffix":"","searchAll":"Dr. Robert Hewitt Bower Robert Bower  Robert Hewitt Bower Robert Hewitt Bower                  ","displayName":"Robert Hewitt Bower"}
+{"index":{"_index":"ccpd","_type":"people","_id":"308"}}
+{"certName":"David R. Repaske","middleName":"R.","email":"david.repaske@cchmc.org","prefix":"Dr.","personId":308,"ssn":"","birthDate":"","lastName":"Repaske","firstName":"David","suffix":"","searchAll":"Dr. David R. Repaske David Repaske  David R. Repaske David R. Repaske david.repaske@cchmc.org                 ","displayName":"David R. Repaske"}
+{"index":{"_index":"ccpd","_type":"people","_id":"309"}}
+{"certName":"Joseph E. Palascak, M.D.","middleName":"E","email":"palascje@ucmail.uc.edu","prefix":"Dr.","personId":309,"ssn":"","birthDate":"","lastName":"Palascak","firstName":"Joseph","suffix":"","searchAll":"Dr. Joseph E Palascak Joseph Palascak  Joseph E. Palascak, M.D. Joseph E. Palascak, M.D. palascje@ucmail.uc.edu                 ","displayName":"Joseph E. Palascak, M.D."}
+{"index":{"_index":"ccpd","_type":"people","_id":"310"}}
+{"certName":"Margaret  Shank","middleName":"","email":"margaret.shank@med.va.gov","prefix":"Dr.","personId":310,"ssn":"","birthDate":"","lastName":"Shank","firstName":"Margaret","suffix":"","searchAll":"Dr. Margaret  Shank Margaret Shank  Margaret  Shank Margaret  Shank margaret.shank@med.va.gov                 ","displayName":"Margaret  Shank"}
+{"index":{"_index":"ccpd","_type":"people","_id":"311"}}
+{"certName":"Harold  Pretorius, M.D.","middleName":"","email":"","prefix":"Dr.","personId":311,"ssn":"9645","birthDate":"","lastName":"Pretorius","firstName":"Harold","suffix":"","searchAll":"Dr. Harold  Pretorius Harold Pretorius  Harold  Pretorius, M.D. Harold  Pretorius, M.D.                  9645","displayName":"Harold  Pretorius, M.D."}
+{"index":{"_index":"ccpd","_type":"people","_id":"312"}}
+{"certName":"Michael  Maeder","middleName":"","email":"","prefix":"Dr.","personId":312,"ssn":"","birthDate":"","lastName":"Maeder","firstName":"Michael","suffix":"","searchAll":"Dr. Michael  Maeder Michael Maeder  Michael  Maeder Michael  Maeder                  ","displayName":"Michael  Maeder"}
+{"index":{"_index":"ccpd","_type":"people","_id":"313"}}
+{"certName":"Charles Ralph Buncher","middleName":"Ralph","email":"bunchecr@ucmail.uc.edu","prefix":"Mr.","personId":313,"ssn":"","birthDate":"","lastName":"Buncher","firstName":"Charles","suffix":"","searchAll":"Mr. Charles Ralph Buncher Charles Buncher  Charles Ralph Buncher Charles Ralph Buncher bunchecr@ucmail.uc.edu                 ","displayName":"Charles Ralph Buncher"}
+{"index":{"_index":"ccpd","_type":"people","_id":"314"}}
+{"certName":"John A. Howington","middleName":"A.","email":"john.howington2@va.gov","prefix":"Dr.","personId":314,"ssn":"","birthDate":"","lastName":"Howington","firstName":"John","suffix":"","searchAll":"Dr. John A. Howington John Howington  John A. Howington John A. Howington john.howington2@va.gov                 ","displayName":"John A. Howington"}
+{"index":{"_index":"ccpd","_type":"people","_id":"315"}}
+{"certName":"H. N. Nagaraja","middleName":"N.","email":"","prefix":"Dr.","personId":315,"ssn":"","birthDate":"","lastName":"Nagaraja","firstName":"H.","suffix":"","searchAll":"Dr. H. N. Nagaraja H. Nagaraja  H. N. Nagaraja H. N. Nagaraja                  ","displayName":"H. N. Nagaraja"}
+{"index":{"_index":"ccpd","_type":"people","_id":"316"}}
+{"certName":"Gee Tha  Bhat","middleName":"","email":"","prefix":"Dr.","personId":316,"ssn":"","birthDate":"","lastName":"Bhat","firstName":"Gee Tha","suffix":"","searchAll":"Dr. Gee Tha  Bhat Gee Tha Bhat  Gee Tha  Bhat Gee Tha  Bhat                  ","displayName":"Gee Tha  Bhat"}
+{"index":{"_index":"ccpd","_type":"people","_id":"317"}}
+{"certName":"Padma  Mangu, M.D.","middleName":"","email":"","prefix":"Dr.","personId":317,"ssn":"","birthDate":"March, 19 1968 00:00:00 -0500","lastName":"Mangu","firstName":"Padma","suffix":"","searchAll":"Dr. Padma  Mangu Padma Mangu  Padma  Mangu, M.D. Padma  Mangu, M.D.  03\/19\/1968  1968  03  ","displayName":"Padma  Mangu, M.D."}
+{"index":{"_index":"ccpd","_type":"people","_id":"319"}}
+{"certName":"Davondra  Williams","middleName":"","email":"socialhealth@fuse.net","prefix":"Ms.","personId":319,"ssn":"","birthDate":"","lastName":"Williams","firstName":"Davondra","suffix":"","searchAll":"Ms. Davondra  Williams Davondra Williams  Davondra  Williams Davondra  Williams socialhealth@fuse.net                 ","displayName":"Davondra  Williams"}
+{"index":{"_index":"ccpd","_type":"people","_id":"320"}}
+{"certName":"Wallace S Ip","middleName":"S","email":"ipws@ucmail.uc.edu","prefix":"Dr.","personId":320,"ssn":"","birthDate":"","lastName":"Ip","firstName":"Wallace","suffix":"","searchAll":"Dr. Wallace S Ip Wallace Ip  Wallace S Ip Wallace S Ip ipws@ucmail.uc.edu                 ","displayName":"Wallace S Ip"}
+{"index":{"_index":"ccpd","_type":"people","_id":"321"}}
+{"certName":"Richard G. Azizkhan","middleName":"G.","email":"azizkhrg@ucmail.uc.edu","prefix":"Dr.","personId":321,"ssn":"","birthDate":"","lastName":"Azizkhan","firstName":"Richard","suffix":"","searchAll":"Dr. Richard G. Azizkhan Richard Azizkhan  Richard G. Azizkhan Richard G. Azizkhan azizkhrg@ucmail.uc.edu                 ","displayName":"Richard G. Azizkhan"}
+{"index":{"_index":"ccpd","_type":"people","_id":"322"}}
+{"certName":"Rawia  Yassin","middleName":"","email":"","prefix":"Dr.","personId":322,"ssn":"","birthDate":"","lastName":"Yassin","firstName":"Rawia","suffix":"","searchAll":"Dr. Rawia  Yassin Rawia Yassin  Rawia  Yassin Rawia  Yassin                  ","displayName":"Rawia  Yassin"}
+{"index":{"_index":"ccpd","_type":"people","_id":"323"}}
+{"certName":"Bobbi  Wigton","middleName":"","email":"wigclanb@aol.com","prefix":"Ms.","personId":323,"ssn":"","birthDate":"","lastName":"Wigton","firstName":"Bobbi","suffix":"","searchAll":"Ms. Bobbi  Wigton Bobbi Wigton  Bobbi  Wigton Bobbi  Wigton wigclanb@aol.com                 ","displayName":"Bobbi  Wigton"}
+{"index":{"_index":"ccpd","_type":"people","_id":"324"}}
+{"certName":"Dr. Lili  Miles","middleName":"","email":"milesli@ucmail.uc.edu","prefix":"Dr.","personId":324,"ssn":"","birthDate":"","lastName":"Miles","firstName":"Lili","suffix":"","searchAll":"Dr. Lili  Miles Lili Miles  Dr. Lili  Miles Dr. Lili  Miles milesli@ucmail.uc.edu                 ","displayName":"Dr. Lili  Miles"}
+{"index":{"_index":"ccpd","_type":"people","_id":"325"}}
+{"certName":"Hiroaki  Kuroda","middleName":"","email":"","prefix":"Dr.","personId":325,"ssn":"","birthDate":"","lastName":"Kuroda","firstName":"Hiroaki","suffix":"","searchAll":"Dr. Hiroaki  Kuroda Hiroaki Kuroda  Hiroaki  Kuroda Hiroaki  Kuroda                  ","displayName":"Hiroaki  Kuroda"}
+{"index":{"_index":"ccpd","_type":"people","_id":"326"}}
+{"certName":"Sudha  Khurana","middleName":"","email":"","prefix":"Dr.","personId":326,"ssn":"","birthDate":"","lastName":"Khurana","firstName":"Sudha","suffix":"","searchAll":"Dr. Sudha  Khurana Sudha Khurana  Sudha  Khurana Sudha  Khurana                  ","displayName":"Sudha  Khurana"}
+{"index":{"_index":"ccpd","_type":"people","_id":"327"}}
+{"certName":"Michelle  Napier","middleName":"","email":"","prefix":"Ms.","personId":327,"ssn":"","birthDate":"","lastName":"Napier","firstName":"Michelle","suffix":"","searchAll":"Ms. Michelle  Napier Michelle Napier  Michelle  Napier Michelle  Napier                  ","displayName":"Michelle  Napier"}
+{"index":{"_index":"ccpd","_type":"people","_id":"328"}}
+{"certName":"Michael  Stone","middleName":"","email":"","prefix":"Dr.","personId":328,"ssn":"","birthDate":"","lastName":"Stone","firstName":"Michael","suffix":"","searchAll":"Dr. Michael  Stone Michael Stone  Michael  Stone Michael  Stone                  ","displayName":"Michael  Stone"}
+{"index":{"_index":"ccpd","_type":"people","_id":"329"}}
+{"certName":"Eugene L Saenger","middleName":"L","email":"saengeel@ucmail.uc.edu","prefix":"Dr.","personId":329,"ssn":"","birthDate":"","lastName":"Saenger","firstName":"Eugene","suffix":"","searchAll":"Dr. Eugene L Saenger Eugene Saenger  Eugene L Saenger Eugene L Saenger saengeel@ucmail.uc.edu                 ","displayName":"Eugene L Saenger"}
+{"index":{"_index":"ccpd","_type":"people","_id":"330"}}
+{"certName":"Tracy  Huth","middleName":"","email":"hutht@healthall.com","prefix":"Ms.","personId":330,"ssn":"","birthDate":"","lastName":"Huth","firstName":"Tracy","suffix":"","searchAll":"Ms. Tracy  Huth Tracy Huth  Tracy  Huth Tracy  Huth hutht@healthall.com                 ","displayName":"Tracy  Huth"}
+{"index":{"_index":"ccpd","_type":"people","_id":"331"}}
+{"certName":"Karin  Neiheisel","middleName":"","email":"","prefix":"Ms.","personId":331,"ssn":"","birthDate":"","lastName":"Neiheisel","firstName":"Karin","suffix":"","searchAll":"Ms. Karin  Neiheisel Karin Neiheisel  Karin  Neiheisel Karin  Neiheisel                  ","displayName":"Karin  Neiheisel"}
+{"index":{"_index":"ccpd","_type":"people","_id":"332"}}
+{"certName":"Mary  Mulligan","middleName":"","email":"","prefix":"Ms.","personId":332,"ssn":"","birthDate":"","lastName":"Mulligan","firstName":"Mary","suffix":"","searchAll":"Ms. Mary  Mulligan Mary Mulligan  Mary  Mulligan Mary  Mulligan                  ","displayName":"Mary  Mulligan"}
+{"index":{"_index":"ccpd","_type":"people","_id":"333"}}
+{"certName":"Laura  Keuper","middleName":"","email":"keuperla@healthall.com","prefix":"Ms.","personId":333,"ssn":"","birthDate":"","lastName":"Keuper","firstName":"Laura","suffix":"","searchAll":"Ms. Laura  Keuper Laura Keuper  Laura  Keuper Laura  Keuper keuperla@healthall.com                 ","displayName":"Laura  Keuper"}
+{"index":{"_index":"ccpd","_type":"people","_id":"334"}}
+{"certName":"Joellyn  Faulk","middleName":"","email":"","prefix":"Ms.","personId":334,"ssn":"","birthDate":"","lastName":"Faulk","firstName":"Joellyn","suffix":"","searchAll":"Ms. Joellyn  Faulk Joellyn Faulk  Joellyn  Faulk Joellyn  Faulk                  ","displayName":"Joellyn  Faulk"}
+{"index":{"_index":"ccpd","_type":"people","_id":"336"}}
+{"certName":"Xiowlong  Liu","middleName":"","email":"","prefix":"Dr.","personId":336,"ssn":"","birthDate":"","lastName":"Liu","firstName":"Xiowlong","suffix":"","searchAll":"Dr. Xiowlong  Liu Xiowlong Liu  Xiowlong  Liu Xiowlong  Liu                  ","displayName":"Xiowlong  Liu"}
+{"index":{"_index":"ccpd","_type":"people","_id":"337"}}
+{"certName":"Karen  Blair","middleName":"","email":"","prefix":"Ms.","personId":337,"ssn":"","birthDate":"","lastName":"Blair","firstName":"Karen","suffix":"","searchAll":"Ms. Karen  Blair Karen Blair  Karen  Blair Karen  Blair                  ","displayName":"Karen  Blair"}
+{"index":{"_index":"ccpd","_type":"people","_id":"338"}}
+{"certName":"Simon  Hakim","middleName":"","email":"hakims@ucmail.uc.edu","prefix":"Dr.","personId":338,"ssn":"","birthDate":"","lastName":"Hakim","firstName":"Simon","suffix":"","searchAll":"Dr. Simon  Hakim Simon Hakim  Simon  Hakim Simon  Hakim hakims@ucmail.uc.edu                 ","displayName":"Simon  Hakim"}
+{"index":{"_index":"ccpd","_type":"people","_id":"339"}}
+{"certName":"Kanthi  Murali","middleName":"","email":"","prefix":"Ms.","personId":339,"ssn":"","birthDate":"","lastName":"Murali","firstName":"Kanthi","suffix":"","searchAll":"Ms. Kanthi  Murali Kanthi Murali  Kanthi  Murali Kanthi  Murali                  ","displayName":"Kanthi  Murali"}
+{"index":{"_index":"ccpd","_type":"people","_id":"341"}}
+{"certName":"Richard J Stevenson","middleName":"J","email":"stevenrj@ucmail.uc.edu","prefix":"Dr.","personId":341,"ssn":"","birthDate":"","lastName":"Stevenson","firstName":"Richard","suffix":"","searchAll":"Dr. Richard J Stevenson Richard Stevenson  Richard J Stevenson Richard J Stevenson stevenrj@ucmail.uc.edu                 ","displayName":"Richard J Stevenson"}
+{"index":{"_index":"ccpd","_type":"people","_id":"342"}}
+{"certName":"Rulong  Shen","middleName":"","email":"","prefix":"Dr.","personId":342,"ssn":"","birthDate":"","lastName":"Shen","firstName":"Rulong","suffix":"","searchAll":"Dr. Rulong  Shen Rulong Shen  Rulong  Shen Rulong  Shen                  ","displayName":"Rulong  Shen"}
+{"index":{"_index":"ccpd","_type":"people","_id":"343"}}
+{"certName":"Jeff  Grass","middleName":"","email":"","prefix":"Dr.","personId":343,"ssn":"","birthDate":"","lastName":"Grass","firstName":"Jeff","suffix":"","searchAll":"Dr. Jeff  Grass Jeff Grass  Jeff  Grass Jeff  Grass                  ","displayName":"Jeff  Grass"}
+{"index":{"_index":"ccpd","_type":"people","_id":"344"}}
+{"certName":"Matt  Dumstorf","middleName":"","email":"","prefix":"Dr.","personId":344,"ssn":"","birthDate":"","lastName":"Dumstorf","firstName":"Matt","suffix":"","searchAll":"Dr. Matt  Dumstorf Matt Dumstorf  Matt  Dumstorf Matt  Dumstorf                  ","displayName":"Matt  Dumstorf"}
+{"index":{"_index":"ccpd","_type":"people","_id":"345"}}
+{"certName":"Terri  Bott-Kothari","middleName":"","email":"","prefix":"Dr.","personId":345,"ssn":"","birthDate":"","lastName":"Bott-Kothari","firstName":"Terri","suffix":"","searchAll":"Dr. Terri  Bott-Kothari Terri Bott-Kothari  Terri  Bott-Kothari Terri  Bott-Kothari                  ","displayName":"Terri  Bott-Kothari"}
+{"index":{"_index":"ccpd","_type":"people","_id":"346"}}
+{"certName":"John  Martens","middleName":"","email":"martenjm@healthall.com","prefix":"Dr.","personId":346,"ssn":"","birthDate":"","lastName":"Martens","firstName":"John","suffix":"","searchAll":"Dr. John  Martens John Martens  John  Martens John  Martens martenjm@healthall.com                 ","displayName":"John  Martens"}
+{"index":{"_index":"ccpd","_type":"people","_id":"347"}}
+{"certName":"Susan E. Ingraham","middleName":"E.","email":"","prefix":"Dr.","personId":347,"ssn":"","birthDate":"","lastName":"Ingraham","firstName":"Susan","suffix":"","searchAll":"Dr. Susan E. Ingraham Susan Ingraham  Susan E. Ingraham Susan E. Ingraham                  ","displayName":"Susan E. Ingraham"}
+{"index":{"_index":"ccpd","_type":"people","_id":"348"}}
+{"certName":"Mark  Gustafson","middleName":"","email":"","prefix":"Dr.","personId":348,"ssn":"","birthDate":"","lastName":"Gustafson","firstName":"Mark","suffix":"","searchAll":"Dr. Mark  Gustafson Mark Gustafson  Mark  Gustafson Mark  Gustafson                  ","displayName":"Mark  Gustafson"}
+{"index":{"_index":"ccpd","_type":"people","_id":"349"}}
+{"certName":"Brad  Bobbitt","middleName":"","email":"bobbitdb@healthall.com","prefix":"Dr.","personId":349,"ssn":"","birthDate":"","lastName":"Bobbitt","firstName":"Brad","suffix":"","searchAll":"Dr. Brad  Bobbitt Brad Bobbitt  Brad  Bobbitt Brad  Bobbitt bobbitdb@healthall.com                 ","displayName":"Brad  Bobbitt"}
+{"index":{"_index":"ccpd","_type":"people","_id":"350"}}
+{"certName":"Sadanand  Patil","middleName":"","email":"","prefix":"Dr.","personId":350,"ssn":"","birthDate":"","lastName":"Patil","firstName":"Sadanand","suffix":"","searchAll":"Dr. Sadanand  Patil Sadanand Patil  Sadanand  Patil Sadanand  Patil                  ","displayName":"Sadanand  Patil"}
