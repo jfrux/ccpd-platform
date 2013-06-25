@@ -220,7 +220,7 @@
         	<cfset currEmail = application.person.emailConvert(currEmail)>
         </cfif>
         
-        <cfquery name="personInfo" datasource="#application.settings.dsn#">
+        <cfquery name="emailExists" datasource="#application.settings.dsn#">
         	DECLARE @Email nvarchar(255)
             
             SET @Email = <cfqueryparam value="#CurrEmail#" cfsqltype="cf_sql_varchar" />
@@ -230,8 +230,8 @@
                 	WHEN pe.person_ID IS NOT NULL THEN pe.person_id
                     WHEN p.personId IS NOT NULL THEN p.personId
                 END AS personId
-            FROM  ce_person AS p
-            LEFT JOIN ce_person_email AS pe ON pe.person_id = p.personId
+            FROM  ce_person_email AS pe
+            LEFT JOIN ce_person AS p ON p.personId = pe.person_id
             WHERE
             	dbo.cleanEmailDomain(p.email) = @Email
 				AND p.deletedFlag='N'
@@ -240,12 +240,8 @@
 				AND p.deletedFlag='N'
         </cfquery>
         
-        <cfif personInfo.recordCount GT 0>
-        	<cfif arguments.personId GT 0 AND personInfo.personId NEQ arguments.personId>
-        		<cfset Status = true>
-            <cfelseif arguments.personId EQ 0>
-        		<cfset Status = true>
-            </cfif>
+        <cfif emailExists.recordCount GT 0>
+        	<cfset status = true>
         </cfif>
         
         <cfreturn Status />

@@ -515,6 +515,11 @@
     
     <cfset status.setStatus(false)>
     <cfset status.setStatusMsg("Could not save address for unknown reasons.")>
+
+    <cfif arguments.Address1 EQ "" AND arguments.Phone1 EQ "">
+      <cfset status.setStatusmsg("You must enter an Address or Phone Number.")>
+      <cfreturn status />
+    </cfif>
     
     <!--- CREATE BEAN ---->
     <cfset PersonAddressBean = CreateObject("component","#Application.Settings.Com#PersonAddress.PersonAddress").Init(AddressID=AddressID)>

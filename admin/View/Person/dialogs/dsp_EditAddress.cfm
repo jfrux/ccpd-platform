@@ -57,7 +57,7 @@
     <div class="controls">
       <input id="editaddress-city" name="city" class="input-small" type="text" placeholder="City" value="#Attributes.City#" tabindex="5"  />
       <select id="editaddress-state" class="input-small unitedstates" name="stateid" tabindex="6">
-        <option value="">Select one...</option>
+        <option value="0">Select one...</option>
         <cfloop query="Application.List.States">
         <option value="#Application.List.States.stateid#"<cfif Attributes.stateid EQ Application.List.States.stateid> selected</cfif>>#Name#</option>
         </cfloop>

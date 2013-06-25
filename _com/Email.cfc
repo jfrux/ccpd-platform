@@ -44,11 +44,11 @@
       <cfset smtpTags = "ccpd_credit" />
     </cfif>
     
-        <cfif len(trim(arguments.fromEmail)) GT 0>
-          <cfset fromEmail = arguments.fromEmail>
-        <cfelse>
+    <cfif len(trim(arguments.fromEmail)) GT 0>
+      <cfset fromEmail = arguments.fromEmail>
+    <cfelse>
       <cfset FromEmail = "CCPD <notifications@ccpd.uc.edu>">
-        </cfif>
+    </cfif>
     <cfset EmailStyle = Application.Com.EmailStyleGateway.getByAttributes(EmailStyleID=Arguments.EmailStyleID)>
     <cfset EmailSubject = EmailStyle.Subject>
     <cfset EmailBody = EmailStyle.TemplateHTML>
@@ -148,10 +148,10 @@
       </cfif>
     </cfloop>
         
-        <!--- SET UP THE "TO" EMAIL ADDRESS --->
-        <cfif len(trim(arguments.toEmailAddress)) EQ 0>
-          <cfset arguments.toEmailAddress = ToPerson.Email>
-        </cfif>
+    <!--- SET UP THE "TO" EMAIL ADDRESS --->
+    <cfif len(trim(arguments.toEmailAddress)) EQ 0>
+      <cfset arguments.toEmailAddress = ToPerson.Email>
+    </cfif>
     
     <cfset EmailBody = Replace(EmailBody,"%","","ALL")>
     <cfset EmailBodyText = Replace(EmailBodyText,"%","","ALL")>
@@ -162,6 +162,10 @@
     </cfif>
     
     <cfset SMTPAPI['unique_args'] = smtpDatas />
+
+    <cfif isStruct(smtpTags) AND structIsEmpty(smtpTags)>
+      <cfset smtpTags = "" />
+    </cfif>
     
     <!--- SEND EMAIL --->
     <cfmail to="#arguments.toEmailAddress#" from="#FromEmail#" subject="#EmailSubject#" replyto="do-not-reply@uc.edu" failto="rountrjf@ucmail.uc.edu">

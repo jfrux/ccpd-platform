@@ -26,14 +26,14 @@
         <cfif emailList.allow_login>
           <i class="icon-lock"></i>
         <cfelse>
-          <i class="icon-unlock"></i>
+          <i class="icon-lock-open"></i>
         </cfif>
         </li>
         <li class="verified-icon">
         <cfif emailList.is_verified>
          <i class="icon-ok"></i>
         <cfelse>
-          <i class="icon-legal"></i>
+          <i class="icon-hammer"></i>
         </cfif>
         </li>
         <li>
@@ -46,19 +46,27 @@
         <cfif emailList.isPrimaryEmail>
           <a href="javascript://" class="primary-icon makeprimary-link active disabled btn" data-tooltip-title="Is currently the primary email." id="makeprimary-#emailList.email_id#"><i class="icon-star"></i></a>
         <cfelse>
+          <cfif emailList.is_verified>
           <a href="javascript://" class="primary-icon makeprimary-link btn" data-tooltip-title="Mark as Primary Email Address" id="makeprimary-#emailList.email_id#"><i class="icon-star"></i></a>
+          <cfelse>
+          <a href="javascript://" class="primary-icon disabled btn" data-tooltip-title="Mark as Primary Email Address" id="makeprimary-#emailList.email_id#"><i class="icon-star"></i></a>
+          </cfif>
         </cfif>
         
         <cfif emailList.allow_login>
           <a href="javascript://" class="allow-login-icon allowlogin-link active btn" data-button-action="disable" data-tooltip-title="Disable authentication with this email address." id="allowlogin-#emailList.email_id#"><i class="icon-lock"></i></a>
         <cfelse>
-          <a href="javascript://" class="allow-login-icon allowlogin-link btn" data-button-action="enable" data-tooltip-title="Enable authentication with this email address." id="allowlogin-#emailList.email_id#"><i class="icon-unlock"></i></a>
+          <cfif emailList.is_verified>
+            <a href="javascript://" class="allow-login-icon allowlogin-link btn" data-button-action="enable" data-tooltip-title="Enable authentication with this email address." id="allowlogin-#emailList.email_id#"><i class="icon-lock-open"></i></a>
+          <cfelse>
+            <a href="javascript://" class="allow-login-icon disabled btn" data-button-action="enable" data-tooltip-title="Enable authentication with this email address." id="allowlogin-#emailList.email_id#"><i class="icon-lock-open"></i></a>
+          </cfif>
         </cfif>
         
         <cfif emailList.is_verified>
-          <a href="javascript://" class="verified-icon isverified-link activated active disabled btn" data-tooltip-title="Email has been verified!" id="isverified-#emailList.email_id#"><i class="icon-ok"></i></a>
+          <a href="javascript://" class="verified-icon activated active disabled btn" data-tooltip-title="Email has been verified!" id="isverified-#emailList.email_id#"><i class="icon-ok"></i></a>
         <cfelse>
-          <a href="javascript://" class="verified-icon isverified-link btn" data-tooltip-title="Send Verification Request Email" id="isverified-#emailList.email_id#"><i class="icon-legal"></i></a>
+          <a href="javascript://" class="verified-icon isverified-link btn" data-tooltip-title="Send Verification Request Email" id="isverified-#emailList.email_id#"><i class="icon-hammer"></i></a>
         </cfif>
       </div>
       <div class="btn-group">

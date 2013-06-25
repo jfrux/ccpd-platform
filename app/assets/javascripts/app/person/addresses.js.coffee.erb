@@ -27,8 +27,8 @@ App.module "Person.Addresses", (Self, App, Backbone, Marionette, $) ->
     return
 
   @on "address:save",(response) ->
-    $editDialog.dialog("close")
     if response.STATUS
+      $editDialog.dialog("close")
       addMessage response.STATUSMSG, 250, 6000, 4000
       refresh()
     else

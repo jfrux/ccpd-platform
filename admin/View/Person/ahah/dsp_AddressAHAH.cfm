@@ -11,19 +11,21 @@
     <div class="address-row list-row js-list-row<cfif isPrimary> is-primary</cfif>" data-key="#addresslist.addressid#">
       <div class="address span16">
         <span class="label address-type">#trim(replace(AddressTypeName,'address',''))#</span>
-        #Address1#
-        <cfif Address2 NEQ "">#Address2#</cfif>
-
-        <cfif AddressList.country_iso NEQ "US" AND len(trim(AddressList.country_iso)) GT 0>
-          <cfif AddressList.City NEQ "" And AddressList.Province NEQ "">, </cfif><cfif AddressList.Province NEQ "">#Province#</cfif>
-          <span class="js-country-code">#country_iso#</span><cfif Zipcode NEQ ""> #Zipcode#</cfif>
-        <cfelseif AddressList.Province NEQ "">
-          <cfif City NEQ "">#City#, </cfif>#Province#
-          <span class="js-country-code">#country_iso#</span><br /><cfif Zipcode NEQ "">, #Zipcode#</cfif>
-        <cfelse>
-          <cfif City NEQ "">#City#, </cfif>#State#<cfif Zipcode NEQ "">, #Zipcode#</cfif> <span class="js-country-code">#country_iso#</span><br />
+        <cfif Address1 NEQ "">
+          #Address1#
+          <cfif Address2 NEQ "">#Address2#</cfif>
+            <cfif AddressList.country_iso NEQ "US" AND len(trim(AddressList.country_iso)) GT 0>
+                <cfif AddressList.City NEQ "" And AddressList.Province NEQ "">, </cfif><cfif AddressList.Province NEQ "">#Province#</cfif>
+                <span class="js-country-code">#country_iso#</span><cfif Zipcode NEQ ""> #Zipcode#</cfif>
+            <cfelseif AddressList.Province NEQ "">
+                <cfif City NEQ "">#City#, </cfif>#Province#
+                <span class="js-country-code">#country_iso#</span><cfif Zipcode NEQ "">,<br />#Zipcode#</cfif>
+            <cfelse>
+                #arrayToList(arrayFilter([City, (stateid NEQ "" ? application.List.States.code[stateid] : ""), Zipcode], function(elem) { if(elem NEQ "") { return true; } else { return false; } }), ", ")# <span class="js-country-code">#country_iso#</span><br />
+            </cfif>
+        <cfelseif Address1 EQ "" AND (Phone1 NEQ "" OR Phone3 NEQ "")>
+            #(Phone1 NEQ "" ? "Ph1: " & Phone1 : "Fax: " & Phone3)#
         </cfif>
-
         <!--- <cfloop from="1" to="3" index="i">
           #phoneOutput(evaluate("phone#i#"),evaluate("phone#i#ext"))#
         </cfloop> --->
