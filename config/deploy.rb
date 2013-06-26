@@ -20,7 +20,7 @@ set :deploy_via, :copy
 set :copy_exclude, [".git", ".DS_Store"]
  
 # set this to the deployment path on your server
-set :deploy_to, "/home/#{user}/public_html/#{application}"
+set :deploy_to, "/home/#{user}/public_html"
  
 set :keep_releases, 3
 set :git_shallow_clone, 1
