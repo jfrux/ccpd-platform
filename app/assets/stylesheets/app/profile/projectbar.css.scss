@@ -108,7 +108,7 @@
           position:relative;
 
           > span.menuArrow {
-            background-image: url("profile_menu_arrow.png");
+            background-image: asset-url("profile_menu_arrow.png");
             display: none;
             height: 14px;
             position: absolute;

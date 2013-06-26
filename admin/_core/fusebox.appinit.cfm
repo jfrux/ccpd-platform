@@ -89,7 +89,7 @@
   <cfcase value="test.ccpd.uc.edu">
     <cfset set(assetsUrl = "http://localhost:3000/assets")>
     <cfset set(apiUrl = "http://localhost:3000")>
-    <cfset set(dsn = "CCPD_RAILS")>
+    <cfset set(dsn = "CCPD_PROD")>
     <cfset set(appName = "CCPD")>
     <cfset set(rootPath = "/admin")>
     <cfset set(comPath = "/_com")>

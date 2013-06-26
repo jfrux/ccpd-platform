@@ -164,9 +164,15 @@
 <cffunction name="imageUrl" returntype="string" access="public" output="false">
 <cfargument name="source" type="string" required="true" hint="The file name of the image if it's availabe in the local file system (i.e. ColdFusion will be able to access it). Provide the full URL if the image is on a remote server.">
 <cfscript>
-  var returnValue = application.settings.assetWebPath & application.settings.imagePath & "/" & arguments.source;
-   // only append a query string if the file is local
-  returnValue = $assetDomain(returnValue) & $appendQueryString();
+  if(get('environment') EQ "development") {
+    var returnValue = application.settings.assetWebPath & application.settings.imagePath & "/" & arguments.source;
+     // only append a query string if the file is local
+    returnValue = $assetDomain(returnValue) & $appendQueryString();
+  } else if(get('environment') EQ "production") {
+    var returnValue = application.settings.assetWebPath & application.settings.imagePath & "/" & arguments.source;
+    returnValue = "/" & $digest_for(right(returnValue, len(returnValue)-1));
+    returnValue = $assetDomain(returnValue) & $appendQueryString();
+  }
 </cfscript>
 
   <cfreturn returnValue />
