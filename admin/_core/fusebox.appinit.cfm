@@ -87,7 +87,6 @@
   </cfcase>
   
   <cfcase value="test.ccpd.uc.edu">
-    <cfdump var="IN THIS ONE" abort>
     <cfset set(assetsUrl = "http://localhost:3000/assets")>
     <cfset set(apiUrl = "http://localhost:3000")>
     <cfset set(dsn = "CCPD_PROD")>
