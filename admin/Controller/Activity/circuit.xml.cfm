@@ -26,16 +26,16 @@
           <do action="mActivity.getActivity" />
         </true>
       </if>
-      <invoke object="myFusebox" 
-              methodcall="do('vActivity.#params.action#','multiformcontent')" />
-      <invoke object="myFusebox" 
-              methodcall="do('vActivity.#params.action#right','multiformright')" />
       <if condition="isPjax()">
         <true>
           <if condition="#structKeyExists(attributes,'activityid')# AND attributes.activityID GT 0">
             <true>
               <if condition="#request.currentTab.hasToolbar#">
                 <true>
+                  <invoke object="myFusebox" 
+                    methodcall="do('vActivity.#params.action#','multiformcontent')" />
+                  <invoke object="myFusebox" 
+                          methodcall="do('vActivity.#params.action#right','multiformright')" />
                 </true>
               </if>
             </true>

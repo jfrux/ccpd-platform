@@ -7,6 +7,7 @@ group :development do
   gem 'eco'
   gem 'thin'
   gem 'uglifier'
+  gem 'sinatra-contrib'
   gem 'sinatra-asset-pipeline', :git => 'https://github.com/joshuairl/sinatra-asset-pipeline.git'
   gem 'sprockets-helpers'
   gem 'sprockets-sass'

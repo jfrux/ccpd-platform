@@ -6,6 +6,7 @@ require 'uglifier'
 require 'sprockets-sass'
 require 'coffee_script'
 require 'sprockets-helpers'
+require 'sinatra/contrib/all'
 require 'sinatra/asset_pipeline'
 
 class MyApp < Sinatra::Base
@@ -17,7 +18,7 @@ class MyApp < Sinatra::Base
   set :assets_js_compressor, :uglifier # JavaScript minification
   set :static, true
   set :assets_digest, true
-  
+  register Sinatra::Contrib
   register Sinatra::AssetPipeline
   configure :production do
     set :assets_prefix, 'assets'
@@ -50,13 +51,13 @@ class MyApp < Sinatra::Base
 
   template :stylesheet_tags do
     %q{
-    <%= stylesheet_tag locals[:file],:expand => true %>
+    <%= stylesheet_tag locals[:file],:expand => locals[:debug] %>
     }
   end
 
   template :javascript_tags do
     %q{
-    <%= javascript_tag locals[:file],:expand => true %>
+    <%= javascript_tag locals[:file],:expand => locals[:debug] %>
     }
   end
 
@@ -70,15 +71,25 @@ class MyApp < Sinatra::Base
     # end
   end
 
+  before do
+    content_type 'text/plain'
+  end
+
   get '/' do
     erb :index
   end
 
   get '/javascript_tags' do
-    erb :javascript_tags, :locals => {:file => params[:file]}
+    renderedHtml = erb :javascript_tags, :locals => {:file => params[:file],:debug => params[:debug]}
+    respond_with :index, :name => 'example' do |f|
+      f.txt { renderedHtml }
+    end
   end
 
   get '/stylesheet_tags' do
-    erb :stylesheet_tags, :locals => {:file => params[:file]}
+    renderedHtml = erb :stylesheet_tags, :locals => {:file => params[:file],:debug => params[:debug]}
+    respond_with :index, :name => 'example' do |f|
+      f.txt { renderedHtml }
+    end
   end
 end

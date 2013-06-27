@@ -64,13 +64,13 @@
 <cfset myFusebox.do('vMain.#request.page.action#','multiformcontent') >
 <cfif listFindNoCase(layoutExceptions,request.page.action) GT 0>
 <cfset request.page.body = "#multiformcontent#" />
-<!--- do action="vLayout.Default" --->
+<!--- do action="vLayout.None" --->
 <cfset myFusebox.thisCircuit = "vLayout">
-<cfset myFusebox.thisFuseaction = "Default">
+<cfset myFusebox.thisFuseaction = "None">
 <cftry>
-<cfoutput><cfinclude template="../../View/Layout/lay_Default.cfm"></cfoutput>
-<cfcatch type="missingInclude"><cfif len(cfcatch.MissingFileName) gte 15 and right(cfcatch.MissingFileName,15) is "lay_Default.cfm">
-<cfthrow type="fusebox.missingFuse" message="missing Fuse" detail="You tried to include a fuse lay_Default.cfm in circuit vLayout which does not exist (from fuseaction vLayout.Default).">
+<cfoutput><cfinclude template="../../View/Layout/lay_None.cfm"></cfoutput>
+<cfcatch type="missingInclude"><cfif len(cfcatch.MissingFileName) gte 12 and right(cfcatch.MissingFileName,12) is "lay_None.cfm">
+<cfthrow type="fusebox.missingFuse" message="missing Fuse" detail="You tried to include a fuse lay_None.cfm in circuit vLayout which does not exist (from fuseaction vLayout.None).">
 <cfelse><cfrethrow></cfif></cfcatch></cftry>
 <cfset myFusebox.thisCircuit = "Main">
 <cfset myFusebox.thisFuseaction = "doLogin">

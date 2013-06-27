@@ -1,0 +1,16 @@
+@import "twitter/bootstrap/base";
+.auth-box {
+  color:#000;
+  background-color:#EEE;
+  border:1px solid #CCC;
+  bottom:0;
+  left:0;
+  margin:auto;
+  padding:10px;
+  position:absolute;
+  right:0;
+  top:0;
+  width:350px;
+  height:200px;
+  @include border-radius(10);
+}

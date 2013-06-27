@@ -18,56 +18,31 @@
 	  </cfif>
 	});
 </script>
-<style>
-.loginbox {
-color:#000;
-background-color:#EEE;
-border:1px solid #CCC;
-bottom:0;
-height:100px;
-left:0;
-margin:auto;
-padding:10px;
-position:absolute;
-right:0;
-top:0;
-width:350px;
--moz-border-radius:10px 10px 10px 10px; 
-}
-</style>
 <cfoutput>
 
-<div class="loginbox">
-<form name="formLogin" method="post" action="#myself##xfa.Authenticate#">
-<fieldset class="common-form">
-<table border="0" cellspacing="2" cellpadding="3">
-	<tbody>
-		<tr>
-			<td class="label">Email</td>
-			<td class="input">
-				<input type="text" name="Email" id="Email" value="#Attributes.Email#" tabindex="1" />
-			</td>
-			<td>&nbsp;</td>
-		</tr>
-		<tr>
-			<td class="label">Password</td>
-			<td class="input">
-				<input type="password" name="Password" id="Password" value="#Attributes.Password#" tabindex="2" />
-			</td>
-			<td class="button">
-				<input type="submit" name="button" id="button" value="Login" tabindex="4" class="btn" />
-			</td>
-		</tr>
-		<tr>
-			<td colspan="3">
-				
-				<input type="checkbox" name="RememberMe" id="RememberMe" value="Y" tabindex="3" />
-				<label for="RememberMe">Keep me logged in on this computer</label>
-			</td>
-		</tr>
-	</tbody>
-</table>
-</fieldset>
+<div class="auth-box">
+<form name="formLogin" class="form-horizontal" method="post" action="#myself##xfa.Authenticate#">
+
+	<div class="control-group">
+		<label class="control-label">Email</label>
+		<div class="controls">
+			<input type="text" name="Email" id="Email" value="#Attributes.Email#" tabindex="1" />
+		</div>
+	</div>
+	<div class="control-group">
+		<label class="control-label">Password</label>
+		<div class="controls">
+			<input type="password" name="Password" id="Password" value="#Attributes.Password#" tabindex="2" />
+		</div>
+	</div>
+		
+	<div class="control-group">
+		<div class="controls">
+			<input type="submit" name="button" id="button" value="Login" tabindex="4" class="btn" />
+		</div>
+	</div>
+	<input type="checkbox" name="RememberMe" id="RememberMe" value="Y" tabindex="3" />
+	<label for="RememberMe">Keep me logged in on this computer</label>
 </form>
 </div>
 </cfoutput>

@@ -1,7 +1,7 @@
 <cfcomponent displayname="" output="no">
   <cfset variables.searches = "activity,person" />
   <cfset variables.usrImagePath = "/_com/image.cfc?method=view&size=i&image=" />
-  <cfset variables.noPhotoImages = "/static/images/no-photo/" />
+  <cfset variables.noPhotoImages = "default_photos/" />
   
   <cffunction name="init" access="public" output="no" returntype="_com.typeAhead.search">
     <cfargument name="dsn" type="string" required="yes" default="CCPD_PROD" />
@@ -68,7 +68,7 @@
           subtext1 = 'Start Date: ' + isNull(CONVERT(char(10), obj.startdate, 101),''),
           subtext2 = isNull(obj.ActivityType,'') + ' / ' + isNull(obj.Grouping,''),
           image = CASE
-            WHEN isNull(actProf.primary_image_id,0) <= 0 THEN '/static/images/no-photo/activity_i.png'
+            WHEN isNull(actProf.primary_image_id,0) <= 0 THEN 'activity_i.png'
             ELSE '/_com/image.cfc?method=view&image=' + CAST(actProf.primary_image_id As nvarchar(10)) + '&size=i'
             END,
           fts.[rank],
@@ -179,7 +179,7 @@
         text = obj.name,
         subtext1 = '',
         subtext2 = '',
-        image = '/static/images/no-photo/folder_i.png',
+        image = 'folder_i.png',
         fts.[rank],
         link = '/admin/index.cfm?event=main.search&type=activity&folder=' + CAST(obj.categoryid As nvarchar(12)),
         type = 'folder'
@@ -229,7 +229,7 @@
         text = obj.name,
         subtext1 = '',
         subtext2 = '',
-        image = '/static/images/no-photo/folder_i.png',
+        image = 'folder_i.png',
         fts.[rank],
         link = '/admin/index.cfm?event=system.supporter&id=' + CAST(obj.contributorid As nvarchar(12)),
         type = 'folder'
@@ -273,7 +273,7 @@
         text = obj.name + isNull((CASE WHEN isNull(admin1_code,'') <> '' THEN ', ' + admin1_code END),'') + isNull((CASE WHEN isNull(country_code,'') <> '' THEN ', ' + country_code END),''),
         subtext1 = '',
         subtext2 = '',
-        image = '/static/images/no-photo/map_i.png',
+        image = 'map_i.png',
         fts.[rank],
         link = '',
         type = 'city'
@@ -320,7 +320,7 @@
         text = obj.name,
         subtext1 = '',
         subtext2 = '',
-        image = '/static/images/no-photo/map_i.png',
+        image = 'map_i.png',
         fts.[rank],
         link = '',
         type = 'country'
@@ -371,7 +371,7 @@
         text = obj.creditName,
         subtext1 = obj.bodyName,
         subtext2 = provider.name,
-        image = '/static/images/no-photo/none_i.png',
+        image = 'none_i.png',
         fts.[rank],
         link = '',
         type = 'credit',
@@ -420,7 +420,7 @@
         text = obj.abbrv,
         subtext1 = obj.name,
         subtext2 = '',
-        image = '/static/images/no-photo/degree_i.png',
+        image = 'degree_i.png',
         fts.[rank],
         link = '',
         type = 'degree'
@@ -525,7 +525,7 @@
         text = obj.name,
         subtext1 = '',
         subtext2 = '',
-        image = '/static/images/no-photo/folder_i.png',
+        image = 'folder_i.png',
         fts.[rank],
         link = '/admin/index.cfm?event=main.search&type=activity&folder=' + CAST(obj.categoryid As nvarchar(12)),
         type = 'folder'
@@ -573,7 +573,7 @@
         text = obj.name,
         subtext1 = '',
         subtext2 = '',
-        image = '/static/images/no-photo/occupation_i.png',
+        image = 'occupation_i.png',
         fts.[rank],
         link = '',
         type = 'occupation'
@@ -623,7 +623,7 @@
         text = obj.name,
         subtext1 = '',
         subtext2 = '',
-        image = '/static/images/no-photo/specialty_i.png',
+        image = 'specialty_i.png',
         fts.[rank],
         link = '',
         type = 'specialty'
@@ -669,7 +669,7 @@
         text = obj.name,
         subtext1 = '',
         subtext2 = '',
-        image = '/static/images/no-photo/map_i.png',
+        image = 'map_i.png',
         fts.[rank],
         link = '',
         type = 'state'
@@ -742,7 +742,7 @@
                 WHEN isNull(act_prof.primary_image_id,0) > 0 THEN
                   '/_com/image.cfc?method=view&size=i&image=' + CAST(act_prof.primary_image_id As nvarchar(25))
                 ELSE
-                  '/static/images/no-photo/activity_i.png'
+                  'activity_i.png'
               END)
       FROM 
         CTE_Grouped As CTE
@@ -789,7 +789,7 @@
       <cfset resultItem.text = item.title />
       <cfset resultItem.subtext1 = '' />
       <cfset resultItem.subtext2 = '' />
-      <cfset resultItem.image = '/static/images/no-photo/none_i.png' />
+      <cfset resultItem.image = 'none_i.png' />
       <cfset resultItem.rank = 0 />
       
       <cfset arrayAppend(aResult,resultItem) />

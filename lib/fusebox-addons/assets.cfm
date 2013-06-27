@@ -44,9 +44,9 @@
 
     arguments.sources = $listClean(list=arguments.sources, returnAs="array", delim=arguments.delim);
     loc.iEnd = ArrayLen(arguments.sources);
-    if(arguments.debug) {
+    if(get('environment') EQ "development") {
       assetService = new HTTP();
-      assetService.setUrl("http://localhost:3000/stylesheet_tags?file=#arguments.sources[1]#");
+      assetService.setUrl("http://localhost:3000/stylesheet_tags?file=#arguments.sources[1]#&debug=#arguments.debug#");
       assetService.setMethod('get');
       assetService.setResolveUrl(false);
       result = assetService.send().getPrefix();
@@ -117,9 +117,9 @@
     loc.returnValue = "";
     arguments.sources = $listClean(list=arguments.sources, returnAs="array", delim=arguments.delim);
     loc.iEnd = ArrayLen(arguments.sources);
-    if(arguments.debug) {
+    if(get('environment') EQ "development") {
       assetService = new HTTP();
-      assetService.setUrl("http://localhost:3000/javascript_tags?file=#arguments.sources[1]#");
+      assetService.setUrl("http://localhost:3000/javascript_tags?file=#arguments.sources[1]#&debug=#arguments.debug#");
       assetService.setMethod('get');
       assetService.setResolveUrl(false);
       result = assetService.send().getPrefix();

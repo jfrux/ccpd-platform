@@ -24,7 +24,7 @@
        <false>
         <if condition="isAjax()">
           <true>
-          <do action="vLayout.Blank" />
+            <do action="vLayout.Blank" />
           </true>
           <false>
             <if condition="#request.currentTab.hasToolbar#">
@@ -39,7 +39,7 @@
             <if condition="listFindNoCase(layoutExceptions,request.page.action) GT 0">
               <true>
                 <set name="request.page.body" value="#multiformcontent#" />
-                <do action="vLayout.Default" />
+                <do action="vLayout.None" />
               </true>
               <false>
                 <do action="vLayout.Sub_User" contentvariable="request.page.body" />
@@ -79,10 +79,8 @@
   </fuseaction>
   
   <fuseaction name="Login">
-  <set name="Request.Page.Title" value="Login" />
-  <xfa name="Authenticate" value="Main.doLogin" />
-  <do action="vMain.Login" contentvariable="Request.Page.Body" />
-  <do action="vLayout.None" />
+    <set name="Request.Page.Title" value="Login" />
+    <xfa name="Authenticate" value="Main.doLogin" />
   </fuseaction>
   
   <fuseaction name="doLogin">
