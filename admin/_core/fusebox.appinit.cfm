@@ -45,7 +45,7 @@
     <cfset set(digest_assets=true) />
     <cfset set(compile_assets=true) />
     <cfset set(debug_assets=false) />
-    <cfset set(asset_prefix='/assets') />
+    <cfset set(asset_prefix='/public/assets') />
     <cfset set(assetPaths = {
       'http': CGI.SERVER_NAME & '/public/assets',
       'https': CGI.SERVER_NAME & '/public/assets'
