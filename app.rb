@@ -11,7 +11,6 @@ require 'sinatra/asset_pipeline'
 class MyApp < Sinatra::Base
   # Include these files when precompiling assets
   set :assets_precompile, %w(application.js application.css responsive.css vendors.js *.png *.jpg *.svg *.eot *.ttf *.woff)
-  set :assets_prefix, '/assets' # Logical path to your assets
   set :asset_host, 'http://localhost:8888' # Use another host for serving assets
   set :assets_protocol, :http # Serve assets using this protocol
   set :assets_css_compressor, :sass # CSS minification
@@ -20,7 +19,9 @@ class MyApp < Sinatra::Base
   set :assets_digest, true
   
   register Sinatra::AssetPipeline
-
+  configure :production do
+    #set :assets_prefix, 'assets'
+  end
   # configure do
   #   #Setup Sprockets
   #   sprockets.append_path File.join(root, 'app', 'assets', 'stylesheets')

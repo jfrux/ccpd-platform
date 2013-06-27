@@ -5,6 +5,7 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteBase /
 RewriteRule http-bind/ http://localhost:7070/http-bind/ [P]
 
+RewriteRule ^assets/([^/]*)$ /public/assets/$1 [NC,QSA,L]
 #ADMIN
 #RewriteRule ^admin/index.cfm/event/([^/]*)$ /admin/index.cfm?event=$1 [NC,QSA,L]
 
