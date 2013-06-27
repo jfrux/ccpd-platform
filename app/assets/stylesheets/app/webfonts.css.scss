@@ -1,5 +1,5 @@
 //=require webfonts/animation
-//=require webfonts/icons
+//=require webfonts/icons.css
 //=require webfonts/icons-embedded
 //=require webfonts/icons-codes
 //=require webfonts/icons-ie7
@@ -211,11 +211,11 @@ ul.icons {
 // }
 @font-face {
   font-family: 'modernaregular';
-  src: url(asset_path('webfonts/moderna_-webfont.eot'));
-  src: url(asset_path('webfonts/moderna_-webfont.eot?#iefix')) format('embedded-opentype'),
-       url(asset_path('webfonts/moderna_-webfont.woff')) format('woff'),
-       url(asset_path('webfonts/moderna_-webfont.ttf')) format('truetype'),
-       url(asset_path('webfonts/moderna_-webfont.svg#modernaregular')) format('svg');
+  src: asset_url('webfonts/moderna_-webfont.eot');
+  src: asset_url('webfonts/moderna_-webfont.eot?#iefix') format('embedded-opentype'),
+       asset_url('webfonts/moderna_-webfont.woff') format('woff'),
+       asset_url('webfonts/moderna_-webfont.ttf') format('truetype'),
+       asset_url('webfonts/moderna_-webfont.svg#modernaregular') format('svg');
   font-weight: normal;
   font-style: normal;
 }
