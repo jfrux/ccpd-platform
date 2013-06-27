@@ -42,6 +42,7 @@
     <cfset set(showErrorInformation=true) />
     <cfset set(showDebugInformation = false) />
     <cfset set(webPath='/admin') />
+    <cfset set(assetWebPath='/public') />
     <cfset set(digest_assets=true) />
     <cfset set(compile_assets=true) />
     <cfset set(debug_assets=false) />
