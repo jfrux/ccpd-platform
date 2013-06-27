@@ -42,14 +42,13 @@
     <cfset set(showErrorInformation=true) />
     <cfset set(showDebugInformation = false) />
     <cfset set(webPath='/admin') />
-    <cfset set(assetWebPath='/public') />
     <cfset set(digest_assets=true) />
     <cfset set(compile_assets=true) />
     <cfset set(debug_assets=false) />
-    <cfset set(asset_prefix='/public/assets') />
+    <cfset set(asset_prefix='/assets') />
     <cfset set(assetPaths = {
-      'http': CGI.SERVER_NAME & '/public/assets',
-      'https': CGI.SERVER_NAME & '/public/assets'
+      'http': CGI.SERVER_NAME & '/assets',
+      'https': CGI.SERVER_NAME & '/assets'
     }) />
     <cfset set(imagePath = "") />
   </cfcase>
