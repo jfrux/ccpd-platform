@@ -171,7 +171,7 @@
   } else if(get('environment') EQ "production") {
     var returnValue = application.settings.imagePath & "/" & arguments.source;
     returnValue = "/" & $digest_for(right(returnValue, len(returnValue)-1));
-    returnValue = $assetDomain(returnValue) & application.settings.assetWebPath & $appendQueryString();
+    returnValue = $assetDomain(returnValue & application.settings.assetWebPath) & $appendQueryString();
   }
 </cfscript>
 
