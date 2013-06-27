@@ -20,6 +20,7 @@
 <cfelse><cfrethrow></cfif></cfcatch></cftry>
 <cfset myFusebox.thisCircuit = "Main">
 <cfset myFusebox.thisFuseaction = "Login">
+<cfset layoutExceptions = "login,logout" />
 <cfset request.page.action = "#listLast(attributes.fuseaction,'.')#" />
 <cfset Request.Page.Title = "Login" />
 <cfset xfa.Authenticate = "Main.doLogin" />
@@ -74,6 +75,19 @@
 <cfset myFusebox.do('vMain.#request.page.action#right','multiformright') >
 </cfif>
 <cfset myFusebox.do('vMain.#request.page.action#','multiformcontent') >
+<cfif listFindNoCase(layoutExceptions,request.page.action) GT 0>
+<cfset request.page.body = "#multiformcontent#" />
+<!--- do action="vLayout.Default" --->
+<cfset myFusebox.thisCircuit = "vLayout">
+<cfset myFusebox.thisFuseaction = "Default">
+<cftry>
+<cfoutput><cfinclude template="../../View/Layout/lay_Default.cfm"></cfoutput>
+<cfcatch type="missingInclude"><cfif len(cfcatch.MissingFileName) gte 15 and right(cfcatch.MissingFileName,15) is "lay_Default.cfm">
+<cfthrow type="fusebox.missingFuse" message="missing Fuse" detail="You tried to include a fuse lay_Default.cfm in circuit vLayout which does not exist (from fuseaction vLayout.Default).">
+<cfelse><cfrethrow></cfif></cfcatch></cftry>
+<cfset myFusebox.thisCircuit = "Main">
+<cfset myFusebox.thisFuseaction = "Login">
+<cfelse>
 <!--- do action="vLayout.Sub_User" --->
 <cfset myFusebox.thisCircuit = "vLayout">
 <cfset myFusebox.thisFuseaction = "Sub_User">
@@ -93,6 +107,7 @@
 <cfelse><cfrethrow></cfif></cfcatch></cftry>
 <cfset myFusebox.thisCircuit = "Main">
 <cfset myFusebox.thisFuseaction = "Login">
+</cfif>
 </cfif>
 </cfif>
 <cfcatch><cfrethrow></cfcatch>

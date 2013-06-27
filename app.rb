@@ -20,7 +20,10 @@ class MyApp < Sinatra::Base
   
   register Sinatra::AssetPipeline
   configure :production do
-    #set :assets_prefix, 'assets'
+    set :assets_prefix, 'assets'
+  end
+  configure :development do
+    set :assets_prefix, '/assets'
   end
   # configure do
   #   #Setup Sprockets

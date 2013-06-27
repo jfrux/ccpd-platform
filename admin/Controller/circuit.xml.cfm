@@ -5,6 +5,7 @@
   <prefuseaction callsuper="true">
     <set name="Request.NavItem" value="2" />
     <do action="mMain.TabControl" />
+    <set name="layoutExceptions" value="login,logout" />
     <set name="request.page.action" value="#listLast(attributes.fuseaction,'.')#" />
   </prefuseaction>
   <postfuseaction>
@@ -27,16 +28,24 @@
           </true>
           <false>
             <if condition="#request.currentTab.hasToolbar#">
-            <true>
-              <invoke object="myFusebox" 
+              <true>
+                <invoke object="myFusebox" 
                   methodcall="do('vMain.#request.page.action#right','multiformright')" />
-            </true>
+              </true>
             </if>
+            
             <invoke object="myFusebox" 
-                methodcall="do('vMain.#request.page.action#','multiformcontent')" />
-            <do action="vLayout.Sub_User" contentvariable="request.page.body" />
-
-           <do action="vLayout.Default" />
+              methodcall="do('vMain.#request.page.action#','multiformcontent')" />
+            <if condition="listFindNoCase(layoutExceptions,request.page.action) GT 0">
+              <true>
+                <set name="request.page.body" value="#multiformcontent#" />
+                <do action="vLayout.Default" />
+              </true>
+              <false>
+                <do action="vLayout.Sub_User" contentvariable="request.page.body" />
+                <do action="vLayout.Default" />
+              </false>
+            </if>
           </false>
         </if>
       </false>
