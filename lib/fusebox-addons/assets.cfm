@@ -169,9 +169,9 @@
      // only append a query string if the file is local
     returnValue = $assetDomain(returnValue) & $appendQueryString();
   } else if(get('environment') EQ "production") {
-    var returnValue = application.settings.assetWebPath & application.settings.imagePath & "/" & arguments.source;
+    var returnValue = application.settings.imagePath & "/" & arguments.source;
     returnValue = "/" & $digest_for(right(returnValue, len(returnValue)-1));
-    returnValue = $assetDomain(returnValue) & $appendQueryString();
+    returnValue = $assetDomain(returnValue) & application.settings.assetWebPath & $appendQueryString();
   }
 </cfscript>
 
