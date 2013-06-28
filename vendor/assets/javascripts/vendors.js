@@ -19,24 +19,16 @@
 *=require jquery/plugins/jquery.spin
 *=require jquery/plugins/jquery.maskedinput
 *=require jquery/plugins/jquery.hotkeys
-*=require jquery/plugins/jquery.blockui
 *=require jquery/plugins/jquery.selectboxes
 *=require jquery/plugins/jquery.autosize
 *=require jquery/plugins/jquery.cookie
-*=require jquery/plugins/jquery.tools
 *=require jquery/plugins/jquery.cfjs
 *=require jquery/plugins/jquery.pjax
-*=require jquery/plugins/jquery.event.drag
-*=require jquery/plugins/jquery.event.drop
 *=require jquery/plugins/jquery.form
 *=require jquery/plugins/jquery.jgrowl
 *=require jquery/plugins/jquery.jlog
-*=require jquery/plugins/jquery.maskedinput
 *=require jquery/plugins/jquery.scrollto
-*=require jquery/plugins/jquery.tipsy
-*=require jquery/plugins/jquery.ba-tinypubsub
 *=require jquery/plugins/jquery.textarea-autogrow
 *=require jquery/plugins/jquery.periodicalupdater
-*=require handlebars-1.0.rc.3
 *=require ckeditor/ckeditor
 */
