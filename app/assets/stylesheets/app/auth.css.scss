@@ -12,8 +12,8 @@
   top:0;
   width:350px;
   height:200px;
-  
   @include border-radius(10);
+  
   .form-horizontal {
     .control-group {
       .control-label {
