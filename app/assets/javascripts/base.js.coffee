@@ -3,7 +3,7 @@ root = this
 root.App = new Backbone.Marionette.Application()
 
 _init = () ->
-  Backbone.history.start({pushState: true, root: "/admin/event/"})
+  #Backbone.history.start({pushState: true, root: "/admin/event/"})
   #console.log "test"
 
 
