@@ -119,7 +119,7 @@
     loc.returnValue = "";
     arguments.sources = $listClean(list=arguments.sources, returnAs="array", delim=arguments.delim);
     loc.iEnd = ArrayLen(arguments.sources);
-    if(get('environment') EQ "development") {
+    if(arguments.debug) {
       assetService = new HTTP();
       assetService.setUrl("http://localhost:3000/javascript_tags?file=#arguments.sources[1]#&debug=#arguments.debug#");
       assetService.setMethod('get');
@@ -139,6 +139,7 @@
         } else {
           loc.item = arguments.sources[loc.i];
         }
+        writeLog(text=loc.item,file="assets");
         //loc.item = arguments.sources[loc.i];
         if (ReFindNoCase("^https?:\/\/", loc.item))
         {

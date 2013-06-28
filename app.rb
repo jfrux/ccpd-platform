@@ -52,13 +52,13 @@ class MyApp < Sinatra::Base
 
   template :stylesheet_tags do
     %q{
-    <%= stylesheet_tag locals[:file],:expand => locals[:debug] %>
+    <%= stylesheet_tag locals[:file],:expand => false %>
     }
   end
 
   template :javascript_tags do
     %q{
-    <%= javascript_tag locals[:file],:expand => locals[:debug] %>
+    <%= javascript_tag locals[:file],:expand => false %>
     }
   end
 
