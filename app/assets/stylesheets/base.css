@@ -1,4 +1,3 @@
-//=require twitter/bootstrap/bootstrap
 //=require app/loader
 //=require app/webfonts
 //=require app/variables
@@ -43,23 +42,3 @@
 //=require app/components/formstate
 //=require app/components/jquery.autocomplete
 //=require app/ui-overrides
-
-body {
-	font-size:12px;
-  background-color:#EDEBEB;
-  .body-inner {
-    background-color:#edebeb;
-  }
-
-  &.no-layout {
-    background-color:#FFF;
-    padding:0;
-  }
-}
-
-h1, h2, h3, h4, h5, h6 {
-	padding:0;
-	margin:0;
-	font-size:12px;
-	font-weight:normal;
-}

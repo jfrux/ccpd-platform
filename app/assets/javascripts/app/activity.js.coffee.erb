@@ -119,22 +119,23 @@ App.module "Activity",
         hideInfobar()
 
       $(".ContentTitle span").tooltip
-        placement: 'center bottom'
+        placement: 'bottom'
         trigger:'hover focus'
         container: 'body'
       
-      $menuLinks.on "click", (e) ->
-        $link = $(this)
-        Self.trigger('linkbar.click',$link,e)
-        return
-      
-      $menuLinks.tooltip
-        placement:'left right'
-        html:true
-        title: (e)->
-          $(this).attr('data-tooltip-title')
-        #container: 'body'
-      
+      $menuLinks.each ->
+        $this = $(this)
+        $this.on "click", (e) ->
+          $link = $(this)
+          Self.trigger('linkbar.click',$link,e)
+          return
+        $this.tooltip
+          placement:'right'
+          html:true
+          title: (e)->
+            $(this).attr('data-tooltip-title')
+          container: 'body'
+
       $(".action-buttons a.btn, .action-buttons button.btn").tooltip
         placement: 'bottom'
         trigger: 'hover focus'
