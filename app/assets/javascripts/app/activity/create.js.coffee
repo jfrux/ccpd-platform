@@ -3,9 +3,7 @@
 ###
 App.module "Activity.Create", (Self, App, Backbone, Marionette, $) ->
   @startWithParent = false
-
   FormState = null
-
   @on "before:start", ->
     App.logInfo "starting: #{Self.moduleName}"
     return

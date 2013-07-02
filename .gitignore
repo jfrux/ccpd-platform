@@ -10,5 +10,6 @@ node_modules
 rewrite_log.txt
 .sass-cache
 .DS_Store
+tmp/
 vendor/ruby
 admin/_reports/.DS_Store

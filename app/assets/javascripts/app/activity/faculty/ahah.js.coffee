@@ -1,6 +1,7 @@
 ###
 * ACTIVITY > FACULTY
 ###
+
 App.module "Activity.Faculty.Ahah", (Self, App, Backbone, Marionette, $) ->
   @startWithParent = false
   Parent = App.Activity.Faculty

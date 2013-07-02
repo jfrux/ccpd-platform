@@ -12,7 +12,6 @@
 #=require app/components/personfinder
 #=require app/components/formstate
 #=require app/collection
-*=require app/chat/prebind
 #=require_tree "./app/collections/"
 #=require app/view
 #=require_tree "./app/views/"
