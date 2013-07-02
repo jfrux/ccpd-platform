@@ -345,6 +345,10 @@ App.module "Activity",
       nNewActivityType = $("#NewActivityType").val()
       nNewGrouping = $("#NewGrouping").val()
       nCopyChoice = $(".CopyChoice:checked").val()
+      nCopyItems = []
+      $('.CopyItems:checkbox:checked').map( ->
+        nCopyItems.push @value
+      ).get()
       nError = 0
       if nNewActivityType is "" and nCopyChoice is 1
         addError "Please select an activity type.", 250, 6000, 4000
@@ -357,6 +361,7 @@ App.module "Activity",
       $.getJSON sRootPath + "/_com/AJAX_Activity.cfc",
         method: "CopyPaste"
         Mode: nCopyChoice
+        ItemsToCopy: nCopyItems.join()
         NewActivityTitle: sNewActivityTitle
         NewActivityTypeID: nNewActivityType
         NewGroupingID: nNewGrouping
