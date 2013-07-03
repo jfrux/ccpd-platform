@@ -16,8 +16,8 @@ class MyApp < Sinatra::Base
   set :assets_protocol, :http # Serve assets using this protocol
   set :assets_css_compressor, :sass # CSS minification
   set :assets_js_compressor, :uglifier # JavaScript minification
-  set :static, true
-  set :assets_digest, true
+  set :static, false
+  set :assets_digest, false
   register Sinatra::Contrib
   register Sinatra::AssetPipeline
   configure :production do
@@ -27,29 +27,7 @@ class MyApp < Sinatra::Base
   configure :development do
     set :assets_prefix, '/assets'
   end
-  # configure do
-  #   #Setup Sprockets
-  #   sprockets.append_path File.join(root, 'app', 'assets', 'stylesheets')
-  #   sprockets.append_path File.join(root, 'app', 'assets', 'javascripts')
-  #   sprockets.append_path File.join(root, 'app', 'assets', 'images')
-  #   sprockets.append_path File.join(root, 'vendor', 'assets', 'stylesheets')
-  #   sprockets.append_path File.join(root, 'vendor', 'assets', 'javascripts')
-  #   sprockets.append_path File.join(root, 'vendor', 'assets', 'images')
-  #   sprockets.css_compressor = :sass
-  #   sprockets.js_compressor = :uglifier
-  #   Sprockets::Helpers.configure do |config|
-  #     config.environment = sprockets
-  #     config.prefix      = assets_prefix
-  #     config.digest      = digest_assets
-  #     config.public_path = public_folder
-  #     config.manifest    = Sprockets::Manifest.new(sprockets, 'manifset.json')
-  #     # Force to debug mode in development mode
-  #     # Debug mode automatically sets
-  #     # expand = true, digest = false, manifest = false
-  #     #config.debug       = true if development?
-  #   end
-  #end
-
+  
   template :stylesheet_tags do
     %q{
     <%= stylesheet_tag locals[:file],:expand => locals[:debug] %>

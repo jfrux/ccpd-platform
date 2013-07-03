@@ -1,7 +1,7 @@
 <cfparam name="request.page.responsive" default="false" />
 
 <cfoutput>
-#styleSheetLinkTag(sources="application",debug=false)#
+#styleSheetLinkTag(sources="application",debug=true)#
 <cfif request.page.responsive>
 	#styleSheetLinkTag(sources="responsive",debug=false)#
 </cfif>
@@ -28,7 +28,7 @@
 
 <cfoutput>
 #javascriptIncludeTag(source="vendors",debug=false)#
-#javascriptIncludeTag(source="application",debug=false)#
+#javascriptIncludeTag(source="application",debug=true)#
 </cfoutput>
 <cfinclude template="js_global.cfm" />
 
