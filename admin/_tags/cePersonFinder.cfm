@@ -20,45 +20,49 @@ z-index:1002;
 </style>
 <cfoutput>
 <script type="text/javascript">
-function setPerson#Attributes.Instance#(sValue) {
-  $("###Attributes.Instance#Name").val($.ListGetAt(sValue,2,"|"));
-  $("###Attributes.Instance#ID").val($.ListGetAt(sValue,1,"|"));
-  #Attributes.AddPersonFunc#
-}
+// function setPerson#Attributes.Instance#(sValue) {
+//   $("###Attributes.Instance#Name").val($.ListGetAt(sValue,2,"|"));
+//   $("###Attributes.Instance#ID").val($.ListGetAt(sValue,1,"|"));
+//   #Attributes.AddPersonFunc#
+// }
 
 $(document).ready(function() {
-  var $dialog = $("##PersonWindow#Attributes.Instance#")
+  // var $dialog = $("##PersonWindow#Attributes.Instance#")
   var $link = $(".js-add-person-link")
-  var finderUrl = "#Request.myself#Person.Finder?Instance=#Attributes.Instance#&ActivityID=#Attributes.ActivityID#";
-  var $frame = $dialog.find('iframe')
-  $dialog.dialog({ 
-    title:"Add #Attributes.Instance#",
-    modal: false, 
-    overlay: { 
-      opacity: 0.5, 
-      background: "black" 
-    },
-    autoOpen: false,
-    height:450,
-    width:650,
-    dialogClass:'personFinder',
-    resizable: false,
-    draggable:false,
-    open:function() {
-      $frame.attr('src',finderUrl)
-      $dialog.show();
-    }
-  });
+  // var finderUrl = "#Request.myself#Person.Finder?Instance=#Attributes.Instance#&ActivityID=#Attributes.ActivityID#";
+  // var $frame = $dialog.find('iframe')
+  // $dialog.dialog({ 
+  //   title:"Add #Attributes.Instance#",
+  //   modal: false, 
+  //   overlay: { 
+  //     opacity: 0.5, 
+  //     background: "black" 
+  //   },
+  //   autoOpen: false,
+  //   height:450,
+  //   width:650,
+  //   dialogClass:'personFinder',
+  //   resizable: false,
+  //   draggable:false,
+  //   open:function() {
+
+  //     $frame.attr('src',finderUrl)
+  //     $dialog.show();
+  //   }
+  // });
   
-  <cfif Attributes.DefaultID NEQ "">
-  $.getJSON(sRootPath + "/_com/AJAX_Person.cfc", { method: "getNameByID", PersonID: #Attributes.DefaultID#, ReturnFormat: "plain" },
-    function(data){
-    setPerson#Attributes.Instance#("#Attributes.DefaultID#|" + data.DATASET.LASTNAME + ", " + data.DATASET.FIRSTNAME + " " + data.DATASET.MIDDLENAME);
-    });
-  </cfif>
+  // <cfif Attributes.DefaultID NEQ "">
+  // $.getJSON(sRootPath + "/_com/AJAX_Person.cfc", { method: "getNameByID", PersonID: #Attributes.DefaultID#, ReturnFormat: "plain" },
+  //   function(data){
+  //   setPerson#Attributes.Instance#("#Attributes.DefaultID#|" + data.DATASET.LASTNAME + ", " + data.DATASET.FIRSTNAME + " " + data.DATASET.MIDDLENAME);
+  //   });
+  // </cfif>
 
  $link.click(function() {
-    $dialog.dialog("open");
+    console.log('INININ');
+    App.Activity.Finder.start();
+    //$dialog.dialog("open");
+
   });
 });
 </script>

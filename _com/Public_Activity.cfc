@@ -11,20 +11,20 @@
   <cffunction name="refresh" access="public" output="no" returntype="void">
     <cfargument name="activityId" type="numeric" required="yes" />
     <cfquery name="qRefresh" datasource="#application.settings.dsn#">
-  			UPDATE ce_Activity
-  			SET refreshFlag=1
-  			WHERE activityId=<cfqueryparam value="#arguments.activityId#" cfsqltype="cf_sql_integer" />
-  		</cfquery>
+            UPDATE ce_Activity
+            SET refreshFlag=1
+            WHERE activityId=<cfqueryparam value="#arguments.activityId#" cfsqltype="cf_sql_integer" />
+        </cfquery>
   </cffunction>
   <cffunction name="AutoComplete" access="Public" output="no" returntype="string">
     <cfargument name="q" type="string" required="yes">
     <cfargument name="limit" type="string" required="yes">
     <cfset var ResultArray = "">
     <cfquery name="qList" datasource="#Application.Settings.DSN#">
-          	SELECT DISTINCT TOP #Arguments.Limit# Title 
+            SELECT DISTINCT TOP #Arguments.Limit# Title 
               FROM ce_Activity 
               WHERE Title LIKE <cfqueryparam value="#Arguments.q#%" cfsqltype="cf_sql_varchar" /> AND DeletedFlag='N'
-  		</cfquery>
+        </cfquery>
     <cfsavecontent variable="ResultArray">
     <cfoutput>
       <cfloop query="qList">
@@ -42,14 +42,14 @@
     <cfargument name="limit" type="string" required="yes">
     <cfset var ResultArray = "">
     <cfquery name="qList" datasource="#Application.Settings.DSN#">
-  			SELECT DISTINCT TOP #Arguments.Limit# C.Title 
-  			FROM ce_Sys_Status AS S 
+            SELECT DISTINCT TOP #Arguments.Limit# C.Title 
+            FROM ce_Sys_Status AS S 
               RIGHT OUTER JOIN ce_Activity AS C ON S.StatusID = C.StatusID 
               LEFT OUTER JOIN ce_Sys_ActivityType AS CT ON C.ActivityTypeID = CT.ActivityTypeID 
               LEFT OUTER JOIN ce_Sys_Grouping AS G ON C.GroupingID = G.GroupingID
               INNER JOIN ce_Activity_PubGeneral AS ACP ON ACP.ActivityID = C.ActivityID
-  			WHERE 
-              	(
+            WHERE 
+                (
                   C.Title LIKE <cfqueryparam value="%#Arguments.q#%" cfsqltype="cf_sql_varchar" /> AND 
                   C.DeletedFlag='N' AND
                   C.StatusID = 1 AND
@@ -58,7 +58,7 @@
                   ACP.RemoveDate IS NULL
                   )
               OR
-              	(
+                (
                   C.Title LIKE <cfqueryparam value="%#Arguments.q#%" cfsqltype="cf_sql_varchar" /> AND 
                   C.DeletedFlag='N' AND
                   C.StatusID = 1 AND
@@ -66,7 +66,7 @@
                   ACP.PublishDate <= GetDate() AND
                   ACP.RemoveDate > GetDate()
                   )
-  		</cfquery>
+        </cfquery>
     <cfsavecontent variable="ResultArray">
     <cfoutput>
       <cfloop query="qList">
@@ -92,204 +92,283 @@
     </cfif>
     <cfreturn Status />
   </cffunction>
+
   <cffunction name="CopyPaste" displayname="Copy and Paste Activity" access="Public" output="no" returntype="struct">
     <cfargument name="Mode" type="numeric" required="yes">
     <cfargument name="ActivityID" type="numeric" required="yes">
     <cfargument name="NewActivityTitle" type="string" required="yes">
     <cfargument name="NewActivityTypeID" type="numeric" required="yes">
     <cfargument name="NewGroupingID" type="numeric" required="yes">
+    <cfargument name="ItemsToCopy" type="string" required="yes">
+
     <cfset var status = createObject("component", "#Application.Settings.Com#returnData.buildStruct").init()>
     <cfset status.setStatus(false)>
     <cfset status.setStatusMsg("Cannot copy activity for unknown reasons.")>
     <cfset ActivityBean = CreateObject("component","#Application.Settings.Com#Activity.Activity").init(ActivityID=Arguments.ActivityID)>
     <cfset ActivityBean = Application.Com.ActivityDAO.read(ActivityBean)>
     <cfset qSessions = Application.Com.ActivityGateway.getByAttributes(ParentActivityID=ActivityBean.getActivityID())>
-    <cfset qFaculty = Application.Com.ActivityFacultyGateway.getByAttributes(ActivityID=ActivityBean.getActivityID(),deletedFlag='N')>
-    <cfset qCommittee = Application.Com.ActivityCommitteeGateway.getByAttributes(ActivityID=ActivityBean.getActivityID(),deletedFlag='N')>
-    <cfset qCredits = Application.Com.ActivityCreditGateway.getByAttributes(ActivityID=ActivityBean.getActivityID(),deletedFlag='N')>
-    <cfset qFiles = Application.Com.FileGateway.getByAttributes(ActivityID=ActivityBean.getActivityID(),deletedFlag='N')>
-    <cfset qOther = Application.Com.ActivityOtherGateway.getByAttributes(ActivityID=ActivityBean.getActivityID())>
-    <cfset qCats = Application.Com.ActivityCategoryGateway.getByAttributes(ActivityID=ActivityBean.getActivityID(),deletedFlag='N')>
-    <cfset qAgenda = Application.Com.AgendaGateway.getByAttributes(ActivityID=ActivityBean.getActivityID(),deletedFlag='N')>
+    
     <cfset NewActivity = CreateObject("component","#Application.Settings.Com#Activity.Activity").init(ActivityID=ActivityBean.getActivityID())>
     <cfset NewActivity = Application.Com.ActivityDAO.Read(NewActivity)>
+
     <cfswitch expression="#Arguments.Mode#">
       <cfcase value="1">
-      <cfset NewActivity.setTitle(Arguments.NewActivityTitle)>
-      <cfset NewActivity.setActivityID(0)>
-      <cfset NewActivity.setParentActivityID("")>
-      <cfset NewActivity.setCreatedBy(Session.Person.getPersonID())>
-      <cfset NewActivity.setStatAddlAttendees(0)>
-      <cfset NewActivity.setStatMaxRegistrants(0)>
-      <cfset NewActivity.setStatAttendees(0)>
-      <cfset NewActivity.setStatMD(0)>
-      <cfset NewActivity.setStatNonMD(0)>
-      <cfset NewActivity.setStatSupporters(0)>
-      <cfset NewActivity.setStatSuppAmount(0)>
-      <cfset NewActivity.setActivityTypeID(NewActivityTypeID)>
-      <cfif NewGroupingID NEQ 0>
-        <cfset NewActivity.setGroupingID(NewGroupingID)>
+        <cfset NewActivity.setTitle(Arguments.NewActivityTitle)>
+        <cfset NewActivity.setActivityID(0)>
+        <cfset NewActivity.setParentActivityID("")>
+        <cfset NewActivity.setCreatedBy(Session.Person.getPersonID())>
+        <cfset NewActivity.setStatAddlAttendees(0)>
+        <cfset NewActivity.setStatMaxRegistrants(0)>
+        <cfset NewActivity.setStatAttendees(0)>
+        <cfset NewActivity.setStatMD(0)>
+        <cfset NewActivity.setStatNonMD(0)>
+        <cfset NewActivity.setStatSupporters(0)>
+        <cfset NewActivity.setStatSuppAmount(0)>
+        <cfset NewActivity.setActivityTypeID(NewActivityTypeID)>
+
+        <cfif NewGroupingID NEQ 0>
+          <cfset NewActivity.setGroupingID(NewGroupingID)>
         <cfelse>
-        <cfset NewActivity.setGroupingID("")>
-      </cfif>
-      <cfset NewActivityID = Application.Com.ActivityDAO.Create(NewActivity)>
-      <cfset CopyItems(NewActivityID)>
-      <!--- ADD HISTORY ITEM --->
-      <cfset OutputVar = "Activity of origin: <a href=""%WebPath%Activity.Detail?ActivityID=" & ActivityBean.getActivityID() & ">" & ActivityBean.getTitle() & "</a>">
-      <cfset Application.History.Add(
-                              HistoryStyleID=22,
-                              FromPersonID=Session.PersonID,
-                              ToActivityID=NewActivityID,
-  							ToContent=OutputVar)>
-      <cfif ActivityBean.getSessionType() EQ "M">
-        <cfset NewActivity.setParentActivityID(NewActivityID)>
-        <cfif qSessions.RecordCount GT 0>
-          <cfloop query="qSessions">
-            <cfset SessionBean = CreateObject("component","#Application.Settings.Com#Activity.Activity").init(ActivityID=qSessions.ActivityID)>
-            <cfset SessionBean = Application.Com.ActivityDAO.read(SessionBean)>
-            <cfset OldSessionTitle = SessionBean.getTitle()>
-            <cfset SessionBean.setTitle("Copy of " & SessionBean.getTitle())>
-            <cfset SessionBean.setParentActivityID(NewActivityID)>
-            <cfset SessionBean.setCreatedBy(Session.Person.getPersonID())>
-            <cfset SessionBean.setStatAttendees(0)>
-            <cfset SessionBean.setStatMD(0)>
-            <cfset SessionBean.setStatNonMD(0)>
-            <cfset SessionBean.setStatSupporters(0)>
-            <cfset SessionBean.setStatSuppAmount(0)>
-            <cfset NewActivity.setActivityTypeID(NewActivityTypeID)>
-            <cfif NewGroupingID NEQ 0>
-              <cfset NewActivity.setGroupingID(NewGroupingID)>
-              <cfelse>
-              <cfset NewActivity.setGroupingID("")>
-            </cfif>
-            <cfset NewSessionID = Application.Com.ActivityDAO.Create(SessionBean)>
-            <!--- READ IN ALL OTHER DATA --->
-            <cfset qFaculty = Application.Com.ActivityFacultyGateway.getByAttributes(ActivityID=SessionBean.getActivityID())>
-            <cfset qCommittee = Application.Com.ActivityCommitteeGateway.getByAttributes(ActivityID=SessionBean.getActivityID())>
-            <cfset qCredits = Application.Com.ActivityCreditGateway.getByAttributes(ActivityID=SessionBean.getActivityID())>
-            <cfset qFiles = Application.Com.FileGateway.getByAttributes(ActivityID=SessionBean.getActivityID())>
-            <cfset qOther = Application.Com.ActivityOtherGateway.getByAttributes(ActivityID=SessionBean.getActivityID())>
-            <cfset qCats = Application.Com.ActivityCategoryGateway.getByAttributes(ActivityID=SessionBean.getActivityID())>
-            <cfset CopyItems(NewSessionID)>
-          </cfloop>
+          <cfset NewActivity.setGroupingID("")>
         </cfif>
-        <cfset Application.Com.ActivityDAO.Create(NewActivity)>
-      </cfif>
-      <cfset status.setStatus(true)>
-      <cfset status.setStatusMsg("Copy and Paste Successful!")>
-      <cfset aActivityInfo = [{
-  					activityid = NewActivityID
-  					}] />
-      <cfset status.setData(aActivityInfo)>
+
+        <cfset NewActivityID = Application.Com.ActivityDAO.Create(NewActivity)>
+
+        <cfset CopyItems(arguments.ActivityID, NewActivityID, arguments.ItemsToCopy)>
+
+        <!--- ADD HISTORY ITEM --->
+        <cfset OutputVar = "Activity of origin: <a href=""%WebPath%Activity.Detail?ActivityID=" & ActivityBean.getActivityID() & ">" & ActivityBean.getTitle() & "</a>">
+        <cfset Application.History.Add(
+            HistoryStyleID=22,
+            FromPersonID=Session.PersonID,
+            ToActivityID=NewActivityID,
+            ToContent=OutputVar
+          )>
+
+        <cfif ActivityBean.getSessionType() EQ "M">
+          <cfset NewActivity.setParentActivityID(NewActivityID)>
+
+          <cfif qSessions.RecordCount GT 0>
+            <cfloop query="qSessions">
+              <cfset SessionBean = CreateObject("component","#Application.Settings.Com#Activity.Activity").init(ActivityID=qSessions.ActivityID)>
+              <cfset SessionBean = Application.Com.ActivityDAO.read(SessionBean)>
+              <cfset OldSessionTitle = SessionBean.getTitle()>
+              <cfset SessionBean.setTitle("Copy of " & SessionBean.getTitle())>
+              <cfset SessionBean.setParentActivityID(NewActivityID)>
+              <cfset SessionBean.setCreatedBy(Session.Person.getPersonID())>
+              <cfset SessionBean.setStatAttendees(0)>
+              <cfset SessionBean.setStatMD(0)>
+              <cfset SessionBean.setStatNonMD(0)>
+              <cfset SessionBean.setStatSupporters(0)>
+              <cfset SessionBean.setStatSuppAmount(0)>
+              <cfset NewActivity.setActivityTypeID(NewActivityTypeID)>
+
+              <cfif NewGroupingID NEQ 0>
+                <cfset NewActivity.setGroupingID(NewGroupingID)>
+              <cfelse>
+                <cfset NewActivity.setGroupingID("")>
+              </cfif>
+
+              <cfset NewSessionID = Application.Com.ActivityDAO.Create(SessionBean)>
+
+              <!--- READ IN ALL OTHER DATA --->
+              <cfset qFaculty = Application.Com.ActivityFacultyGateway.getByAttributes(ActivityID=SessionBean.getActivityID())>
+              <cfset qCommittee = Application.Com.ActivityCommitteeGateway.getByAttributes(ActivityID=SessionBean.getActivityID())>
+              <cfset qCredits = Application.Com.ActivityCreditGateway.getByAttributes(ActivityID=SessionBean.getActivityID())>
+              <cfset qFiles = Application.Com.FileGateway.getByAttributes(ActivityID=SessionBean.getActivityID())>
+              <cfset qOther = Application.Com.ActivityOtherGateway.getByAttributes(ActivityID=SessionBean.getActivityID())>
+              <cfset qCats = Application.Com.ActivityCategoryGateway.getByAttributes(ActivityID=SessionBean.getActivityID())>
+              <cfset CopyItems(arguments.ActivityID, NewSessionID, arguments.ItemsToCopy)>
+            </cfloop>
+          </cfif>
+
+          <cfset Application.Com.ActivityDAO.Create(NewActivity)>
+        </cfif>
+
+        <cfset status.setStatus(true)>
+        <cfset status.setStatusMsg("Copy and Paste Successful!")>
+
+        <cfset aActivityInfo = [{
+            activityid = NewActivityID
+          }] />
+
+        <cfset status.setData(aActivityInfo)>
       </cfcase>
+
       <cfcase value="2">
-      <cfset NewActivity.setTitle(Arguments.NewActivityTitle)>
-      <cfif NewActivity.getParentActivityID() EQ "">
-        <cfset NewActivity.setParentActivityID(NewActivity.getActivityID())>
-      </cfif>
-      <cfset ParentActivity = CreateObject("component","#Application.Settings.Com#Activity.Activity").init(ActivityID=NewActivity.getParentActivityID())>
-      <cfset ParentActivity = Application.Com.ActivityDAO.Read(ParentActivity)>
-      <cfset NewActivity.setStatAttendees(0)>
-      <cfset NewActivity.setStatMD(0)>
-      <cfset NewActivity.setStatNonMD(0)>
-      <cfset NewActivity.setStatSupporters(0)>
-      <cfset NewActivity.setStatSuppAmount(0)>
-      <cfset NewActivity.setCreatedBy(Session.Person.getPersonID())>
-      <cfset NewActivityID = Application.Com.ActivityDAO.Create(NewActivity)>
-      <!--- ADD HISTORY ITEM --->
-      <cfset OutputVar = "Activity of origin: <a href=""%WebPath%Activity.Detail?ActivityID=" & ActivityBean.getActivityID() & ">" & ActivityBean.getTitle() & "</a>">
-      <cfset Application.History.Add(
-                              HistoryStyleID=22,
-                              FromPersonID=Session.PersonID,
-                              ToActivityID=NewActivityID,
-  							ToContent=OutputVar)>
-      <cfset CopyItems(NewActivityID)>
-      <cfset status.setStatus(true)>
-      <cfset status.setStatusMsg("Copy and Paste Successful!")>
-      <cfset aActivityInfo = [{
-  					activityid = NewActivityID
-  					}] />
-      <cfset status.setData(aActivityInfo)>
+        <cfset NewActivity.setTitle(Arguments.NewActivityTitle)>
+
+        <cfif NewActivity.getParentActivityID() EQ "">
+          <cfset NewActivity.setParentActivityID(NewActivity.getActivityID())>
+        </cfif>
+
+        <cfset ParentActivity = CreateObject("component","#Application.Settings.Com#Activity.Activity").init(ActivityID=NewActivity.getParentActivityID())>
+        <cfset ParentActivity = Application.Com.ActivityDAO.Read(ParentActivity)>
+
+        <cfset NewActivity.setStatAttendees(0)>
+        <cfset NewActivity.setStatMD(0)>
+        <cfset NewActivity.setStatNonMD(0)>
+        <cfset NewActivity.setStatSupporters(0)>
+        <cfset NewActivity.setStatSuppAmount(0)>
+        <cfset NewActivity.setCreatedBy(Session.Person.getPersonID())>
+        <cfset NewActivityID = Application.Com.ActivityDAO.Create(NewActivity)>
+
+        <!--- ADD HISTORY ITEM --->
+        <cfset OutputVar = "Activity of origin: <a href=""%WebPath%Activity.Detail?ActivityID=" & ActivityBean.getActivityID() & ">" & ActivityBean.getTitle() & "</a>">
+        <cfset Application.History.Add(
+            HistoryStyleID=22,
+            FromPersonID=Session.PersonID,
+            ToActivityID=NewActivityID,
+            ToContent=OutputVar
+          )>
+
+        <cfset CopyItems(arguments.ActivityID, NewActivityID, arguments.ItemsToCopy)>
+        <cfset status.setStatus(true)>
+        <cfset status.setStatusMsg("Copy and Paste Successful!")>
+        <cfset aActivityInfo = [{
+            activityid = NewActivityID
+          }] />
+
+        <cfset status.setData(aActivityInfo)>
       </cfcase>
+
       <cfdefaultcase>
-      <cfset status.setStatusMsg("Failed because of unknown reason.")>
+        <cfset status.setStatusMsg("You must select a method for copying.")>
       </cfdefaultcase>
     </cfswitch>
+
     <cfreturn status />
   </cffunction>
+
   <cffunction name="CopyItems" access="Public" output="false">
-    <cfargument name="ActivityID" required="yes" type="numeric" />
-    <cfif qFaculty.RecordCount GT 0>
-      <!---<cfloop query="qFaculty">
-  				<cfset FacultyBean = CreateObject("component","#Application.Settings.Com#ActivityFaculty.ActivityFaculty").init(ActivityID=qFaculty.ActivityID,PersonID=qFaculty.PersonID)>
-  				<cfset FacultyBean = Application.Com.ActivityFacultyDAO.read(FacultyBean)>
-  				<cfset FacultyBean.setActivityID(Arguments.ActivityID)>
-  				<cfset FacultyBean.setCreatedBy(Session.Person.getPersonID())>
-  				<cfset Application.Com.ActivityFacultyDAO.Create(FacultyBean)>
-  			</cfloop>--->
-    </cfif>
-    <cfif qCommittee.RecordCount GT 0>
-      <cfloop query="qCommittee">
-        <cfset CommitteeBean = CreateObject("component","#Application.Settings.Com#ActivityCommittee.ActivityCommittee").init(qCommittee.CommitteeID)>
-        <cfset CommitteeBean = Application.Com.ActivityCommitteeDAO.read(CommitteeBean)>
-        <cfset CommitteeBean.setActivityID(Arguments.ActivityID)>
-        <cfset Application.Com.ActivityCommitteeDAO.Create(CommitteeBean)>
-      </cfloop>
-    </cfif>
-    <cfif qCredits.RecordCount GT 0>
-      <cfloop query="qCredits">
-        <cfset CreditBean = CreateObject("component","#Application.Settings.Com#ActivityCredit.ActivityCredit").init(ActivityID=qCredits.ActivityID,CreditID=qCredits.CreditID)>
-        <cfset CreditBean = Application.Com.ActivityCreditDAO.read(CreditBean)>
-        <cfset CreditBean.setActivityID(Arguments.ActivityID)>
-        <cfset CreditBean.setCreatedBy(Session.Person.getPersonID())>
-        <cfset Application.Com.ActivityCreditDAO.Create(CreditBean)>
-      </cfloop>
-    </cfif>
-    <!--- <cfif qFiles.RecordCount GT 0>
-  			<cfloop query="qFiles">
-  				<cfset OldDirectory = ExpandPath("/_uploads/ActivityFiles/#qFiles.ActivityID#/")>
-  				<cfset NewDirectory = ExpandPath("/_uploads/ActivityFiles/#Arguments.ActivityID#/")>
-  				
-  				<cfif NOT DirectoryExists(NewDirectory)>
-  					<cfdirectory action="Create" directory="#NewDirectory#" />
-  				</cfif>
-  				<cfset FilePath = "#OldDirectory##qFiles.FileName#">
-  				<cfset NewFilePath = "#NewDirectory##qFiles.FileName#">
-  				
-  				<cfif FileExists(FilePath)>
-  					<cffile
-  						action="copy" source="#FilePath#"
-  						destination="#NewFilePath#"
-  						nameconflict="overwrite" />
-  				
-  					<cfset FileBean = CreateObject("component","#Application.Settings.Com#File.File").init(FileID=qFiles.FileID)>
-  					<cfset FileBean = Application.Com.FileDAO.read(FileBean)>
-  					<cfset FileBean.setActivityID(Arguments.ActivityID)>
-  					<cfset FileBean.setCreatedBy(Session.Person.getPersonID())>
-  					<cfset Application.Com.FileDAO.Create(FileBean)>
-  				</cfif>
-  			</cfloop>
-  		</cfif>
-  		 --->
-    <cfif qCats.RecordCount GT 0>
-      <cfloop query="qCats">
-        <cfset CatBean = CreateObject("component","#Application.Settings.Com#ActivityCategory.ActivityCategory").init(Activity_CategoryID=qCats.Activity_CategoryID)>
-        <cfset CatBean = Application.Com.ActivityCategoryDAO.read(CatBean)>
-        <cfset CatBean.setActivityID(Arguments.ActivityID)>
-        <cfset CatBean.setCreatedBy(Session.Person.getPersonID())>
-        <cfset Application.Com.ActivityCategoryDAO.Create(CatBean)>
-      </cfloop>
-    </cfif>
-    <cfif qAgenda.RecordCount GT 0>
-      <cfloop query="qAgenda">
-        <cfset AgendaBean = CreateObject("component","#Application.Settings.Com#Agenda.Agenda").Init(AgendaID=qAgenda.AgendaID)>
-        <cfset AgendaBean = Application.Com.AgendaDAO.Read(AgendaBean)>
-        <cfset AgendaBean.setActivityID(Arguments.ActivityID)>
-        <cfset AgendaBean.setCreatedBy(Session.Person.getPersonID())>
-        <cfset AgendaBean.setDeletedFlag("N")>
-        <cfset Application.Com.AgendaDAO.Create(AgendaBean)>
-      </cfloop>
-    </cfif>
+    <cfargument name="oldActivityID" required="yes" type="numeric" />
+    <cfargument name="newActivityID" required="yes" type="numeric" />
+    <cfargument name="ItemsToCopy" required="yes" type="string" />
+
+    <cfloop list="#arguments.ItemsToCopy#" index="item">
+      <cfswitch expression="#item#">
+        <cfcase value="agenda">
+          <cfset qAgenda = Application.Com.AgendaGateway.getByAttributes(ActivityID=arguments.oldActivityID,deletedFlag='N')>
+          <cfif qAgenda.RecordCount GT 0>
+            <cfloop query="qAgenda">
+              <cfset AgendaBean = CreateObject("component","#Application.Settings.Com#Agenda.Agenda").Init(AgendaID=qAgenda.AgendaID)>
+              <cfset AgendaBean = Application.Com.AgendaDAO.Read(AgendaBean)>
+              <cfset AgendaBean.setActivityID(Arguments.newActivityID)>
+              <cfset AgendaBean.setCreatedBy(Session.Person.getPersonID())>
+              <cfset AgendaBean.setDeletedFlag("N")>
+              <cfset Application.Com.AgendaDAO.Create(AgendaBean)>
+            </cfloop>
+          </cfif>
+        </cfcase>
+        <cfcase value="attendees">
+          <cfset qAttendees = Application.activityAttendee.getAttendees(ActivityID=arguments.oldActivityID,DeletedFlag="N")>
+          <cfif qAttendees.RecordCount GT 0>
+            <cfloop query="qAttendees">
+              <cfset AttendeeBean = CreateObject("component","#Application.Settings.Com#Attendee.Attendee").init(qAttendees.attendeeId)>
+              <cfset AttendeeBean = Application.Com.AttendeeDAO.Read(AttendeeBean)>
+              <cfset AttendeeBean.setActivityID(Arguments.newActivityID)>
+              <cfset Application.Com.AttendeeDAO.Create(AttendeeBean)>
+            </cfloop>
+          </cfif>
+        </cfcase>
+        <cfcase value="categories">
+          <cfset qCats = Application.Com.ActivityCategoryGateway.getByAttributes(ActivityID=arguments.oldActivityID,deletedFlag='N')>
+          <cfif qCats.RecordCount GT 0>
+            <cfloop query="qCats">
+              <cfset CatBean = CreateObject("component","#Application.Settings.Com#ActivityCategory.ActivityCategory").init(Activity_CategoryID=qCats.Activity_CategoryID)>
+              <cfset CatBean = Application.Com.ActivityCategoryDAO.read(CatBean)>
+              <cfset CatBean.setActivityID(Arguments.newActivityID)>
+              <cfset CatBean.setCreatedBy(Session.Person.getPersonID())>
+              <cfset Application.Com.ActivityCategoryDAO.Create(CatBean)>
+            </cfloop>
+          </cfif>
+        </cfcase>
+        <cfcase value="committee">
+          <cfset qCommittee = Application.Com.ActivityCommitteeGateway.getByAttributes(ActivityID=arguments.oldActivityID,deletedFlag='N')>
+          <cfif qCommittee.RecordCount GT 0>
+            <cfloop query="qCommittee">
+              <cfset CommitteeBean = CreateObject("component","#Application.Settings.Com#ActivityCommittee.ActivityCommittee").init(qCommittee.CommitteeID)>
+              <cfset CommitteeBean = Application.Com.ActivityCommitteeDAO.read(CommitteeBean)>
+              <cfset CommitteeBean.setActivityID(Arguments.newActivityID)>
+              <cfset Application.Com.ActivityCommitteeDAO.Create(CommitteeBean)>
+            </cfloop>
+          </cfif>
+        </cfcase>
+        <cfcase value="credits">
+          <cfset qCredits = Application.Com.ActivityCreditGateway.getByAttributes(ActivityID=arguments.oldActivityID,deletedFlag='N')>
+          <cfif qCredits.RecordCount GT 0>
+            <cfloop query="qCredits">
+              <cfset CreditBean = CreateObject("component","#Application.Settings.Com#ActivityCredit.ActivityCredit").init(ActivityID=qCredits.ActivityID,CreditID=qCredits.CreditID)>
+              <cfset CreditBean = Application.Com.ActivityCreditDAO.read(CreditBean)>
+              <cfset CreditBean.setActivityID(Arguments.newActivityID)>
+              <cfset CreditBean.setCreatedBy(Session.Person.getPersonID())>
+              <cfset Application.Com.ActivityCreditDAO.Create(CreditBean)>
+            </cfloop>
+          </cfif>
+        </cfcase>
+        <cfcase value="faculty">
+          <cfset qFaculty = Application.Com.ActivityFacultyGateway.getByAttributes(ActivityID=arguments.oldActivityID,deletedFlag='N')>
+          <cfif qFaculty.RecordCount GT 0>
+            <cfloop query="qFaculty">
+              <cfset FacultyBean = CreateObject("component","#Application.Settings.Com#ActivityFaculty.ActivityFaculty").init(ActivityID=qFaculty.ActivityID,PersonID=qFaculty.PersonID)>
+              <cfset FacultyBean = Application.Com.ActivityFacultyDAO.read(FacultyBean)>
+              <cfset FacultyBean.setActivityID(Arguments.newActivityID)>
+              <cfset FacultyBean.setCreatedBy(Session.Person.getPersonID())>
+              <cfset Application.Com.ActivityFacultyDAO.Create(FacultyBean)>
+            </cfloop>
+          </cfif>
+        </cfcase>
+        <cfcase value="files">
+          <cfset qFiles = Application.Com.FileGateway.getByAttributes(ActivityID=arguments.oldActivityID,deletedFlag='N')>
+          <cfif qFiles.RecordCount GT 0>
+            <cfloop query="qFiles">
+              <cfset OldDirectory = ExpandPath("/_uploads/ActivityFiles/#qFiles.ActivityID#/")>
+              <cfset NewDirectory = ExpandPath("/_uploads/ActivityFiles/#Arguments.newActivityID#/")>
+
+              <cfif NOT DirectoryExists(NewDirectory)>
+                <cfdirectory action="Create" directory="#NewDirectory#" />
+              </cfif>
+              <cfset FilePath = "#OldDirectory##qFiles.FileName#">
+              <cfset NewFilePath = "#NewDirectory##qFiles.FileName#">
+
+              <cfif FileExists(FilePath)>
+                <cffile
+                    action="copy" source="#FilePath#"
+                    destination="#NewFilePath#"
+                    nameconflict="overwrite" />
+
+                <cfset FileBean = CreateObject("component","#Application.Settings.Com#File.File").init(FileID=qFiles.FileID)>
+                <cfset FileBean = Application.Com.FileDAO.read(FileBean)>
+                <cfset FileBean.setActivityID(Arguments.newActivityID)>
+                <cfset FileBean.setCreatedBy(Session.Person.getPersonID())>
+                <cfset newFileId = Application.Com.FileDAO.Create(FileBean)>
+
+                <!--- DETERMINE IF THERE IS A PUBLISHED COMPONENT TIED TO THE FILE --->
+                <cfset ActivityComponentExists = Application.Builder.ComponentExists(ActivityID=qFiles.ActivityID,FileID=qFiles.FileID)>
+
+                <cfif isNumeric(ActivityComponentExists)>
+                  <cfset existingPubComponentBean = CreateObject("component","#Application.Settings.Com#ActivityPubComponent.ActivityPubComponent").Init(PubComponentID=ActivityComponentExists)>
+                  <cfset existingPubComponentBean = application.com.activityPubComponentDAO.read(existingPubComponentBean)>
+
+                  <cfset PubComponentBean = CreateObject("component","#Application.Settings.Com#ActivityPubComponent.ActivityPubComponent").Init(PubComponentID=0)>
+                  <cfset PubComponentBean.setActivityID(Arguments.newActivityID)>
+                  <cfset PubComponentBean.setFileID(newFileId)>
+                  <cfset PubComponentBean.setDisplayName(existingPubComponentBean.getDisplayName())>
+                  <cfset PubComponentBean.setComponentID(existingPubComponentBean.getComponentId())>
+                  <cfset PubComponentBean.setCreatedBy(Session.Person.getPersonID())>
+                  
+                  <Cfset PubComponentSaved = Application.Com.ActivityPubComponentDAO.Create(PubComponentBean)>
+                </cfif>
+              </cfif>
+            </cfloop>
+          </cfif>
+        </cfcase>
+        <!--- <cfcase value="finances">
+          <cfset qActivitySupportersList = Application.Com.ActivitySupportGateway.getByViewAttributes(ActivityID=arguments.oldActivityID,DeletedFlag='N')>
+          <cfdump var="#qActivitySupportersList#" abort>
+        </cfcase> --->
+      </cfswitch>
+    </cfloop>
   </cffunction>
   <cffunction name="createCategory" displayname="Create New Category" access="Public" returntype="struct">
     <cfargument name="Name" type="string" required="yes">
@@ -298,9 +377,9 @@
     <cfset status.setStatus(false)>
     <cfset status.setStatusMsg("Failed for unknown reason.")>
     <cfquery name="qCheck" datasource="#Application.Settings.DSN#">
-  			SELECT CategoryID FROM ce_Category
-  			WHERE Name='#Arguments.Name#'
-  		</cfquery>
+            SELECT CategoryID FROM ce_Category
+            WHERE Name='#Arguments.Name#'
+        </cfquery>
     <cfif qCheck.RecordCount EQ 0>
       <cfset CatBean = CreateObject("component","#Application.Settings.Com#Category.Category").init()>
       <cfset CatBean.setName(Arguments.Name)>
@@ -337,9 +416,9 @@
       <cfif ActivityDeleted>
         <cfset OutputContent = "<strong>Reason:</strong> " & Arguments.Reason>
         <cfset Application.History.Add(
-  							HistoryStyleID=105,
-  							FromPersonID=Session.PersonID,
-  							ToActivityID=Arguments.ActivityID,
+                            HistoryStyleID=105,
+                            FromPersonID=Session.PersonID,
+                            ToActivityID=Arguments.ActivityID,
                               ToContent=OutputContent)>
         <cfset status.setStatus(true)>
         <cfset status.setStatusMsg("Activity has been deleted.")>
@@ -361,9 +440,9 @@
               </cfquery>
       <!--- ACTION UPDATER --->
       <cfset Application.History.Add(
-  						HistoryStyleID=4,
-  						FromPersonID=Session.PersonID,
-  						ToActivityID=AgendaBean.getActivityID())>
+                        HistoryStyleID=4,
+                        FromPersonID=Session.PersonID,
+                        ToActivityID=AgendaBean.getActivityID())>
       <cfset status.setStatus(true)>
       <cfset status.setStatusMsg("Agenda item has been deleted.")>
       <cfelse>
@@ -385,11 +464,11 @@
     <cfset ActivityBean = Application.Com.ActivityDAO.read(ActivityBean)>
     <!--- Delete each record --->
     <cfquery name="qRemove" datasource="#Application.Settings.DSN#">
-  				UPDATE ce_Activity_Category
-  				SET DeletedFlag = <cfqueryparam value="Y" cfsqltype="cf_sql_char" />,Deleted=#CreateODBCDateTime(now())#,
-  					UpdatedBy = <cfqueryparam value="#Session.Person.getPersonID()#" cfsqltype="cf_sql_char" />
-  				WHERE CategoryID = <cfqueryparam value="#CategoryID#" CFSQLType="cf_sql_integer" /> AND ActivityID = <cfqueryparam value="#Arguments.ActivityID#" CFSQLType="cf_sql_integer" />
-  			</cfquery>
+                UPDATE ce_Activity_Category
+                SET DeletedFlag = <cfqueryparam value="Y" cfsqltype="cf_sql_char" />,Deleted=#CreateODBCDateTime(now())#,
+                    UpdatedBy = <cfqueryparam value="#Session.Person.getPersonID()#" cfsqltype="cf_sql_char" />
+                WHERE CategoryID = <cfqueryparam value="#CategoryID#" CFSQLType="cf_sql_integer" /> AND ActivityID = <cfqueryparam value="#Arguments.ActivityID#" CFSQLType="cf_sql_integer" />
+            </cfquery>
     <!--- ADD HISTORY ITEM --->
     <cfset Application.History.Add(
                           HistoryStyleID=23,
@@ -446,7 +525,7 @@
     <cfset activityBean = application.com.activityDAO.read(activityBean)>
     <cfset personBean = application.com.personDAO.read(personBean)>
     <cfquery name="qReportDataPre" datasource="#Application.Settings.DSN#">
-              SELECT 	TOP 1 a.MDFlag,
+              SELECT    TOP 1 a.MDFlag,
                       a.CheckIn,
                       a.CompleteDate,
                       act.StartDate AS CertificateDate,
@@ -499,7 +578,7 @@
                   act.DeletedFlag = <cfqueryparam value="N" cfsqltype="cf_sql_char" />
           </cfquery>
     <cfmail
-          	to="#personBean.getEmail()#"
+            to="#personBean.getEmail()#"
               from="no-reply@uc.edu"
               subject="#arguments.subject#">
   #arguments.body# This is a test for the certificate mailer.
@@ -515,108 +594,108 @@
     <cfset status.setStatus(false)>
     <cfset status.setStatusMsg("Cannot fix activity stats for unknown reasons.")>
     <cfquery name="qSelector" datasource="#Application.Settings.DSN#">
-  			SELECT
-  			A.ActivityID,
-  			A.StartDate,
-  			EndDate = DATEADD(n, 1439, A.EndDate),
-  			StatHrs =
-  			(CASE A.SessionType
-  				WHEN 'M' THEN 
-  					isNull((SELECT SUM(AC.Amount) AS TotalHours
-  							FROM ce_Activity_Credit AS AC 
-  							INNER JOIN ce_Activity AS A4 ON AC.ActivityID = A4.ActivityID
-  							WHERE (AC.CreditID = 1) AND (A4.ParentActivityID = A.ActivityID) AND AC.DeletedFlag='N' AND (A4.StatusID IN (1,2,3))),0)
-  				WHEN 'S' THEN 
-  					isNull((SELECT SUM(AC.Amount) AS TotalHours
-  							FROM ce_Activity_Credit AS AC 
-  							INNER JOIN ce_Activity AS A4 ON AC.ActivityID = A4.ActivityID
-  							WHERE (AC.CreditID = 1) AND (A4.ActivityID = A.ActivityID) AND AC.DeletedFlag='N' AND (A4.StatusID IN (1,2,3))),0)
-  			END),
-  			StatAttendees = 
-  				(CASE A.SessionType
-  					WHEN 'M' THEN 
-  						CASE
-  							WHEN isNull(A.ParentActivityID,0) = 0 THEN
-  								(SELECT Count(Att.AttendeeID)
-  								 FROM ce_Attendee AS Att 
-  								 INNER JOIN ce_Activity AS A2 ON Att.ActivityID = A2.ActivityID
-  								 WHERE 
-  									(Att.StatusID = 1) AND (A2.ParentActivityID = A.ActivityID) AND (A2.StatusID IN (1,2,3)) AND (Att.CompleteDate BETWEEN A2.StartDate AND DATEADD(n, 1439, A2.EndDate)) AND (Att.DeletedFlag='N'))
-  							ELSE
-  								(SELECT Count(Att.AttendeeID)
-  								 FROM ce_Attendee AS Att 
-  								 INNER JOIN ce_Activity AS A2 ON Att.ActivityID = A2.ActivityID
-  								 WHERE 
-  									(Att.StatusID = 1) AND (A2.ActivityID = A.ActivityID) AND (A2.StatusID IN (1,2,3)) AND (Att.CompleteDate BETWEEN A2.StartDate AND DATEADD(n, 1439, A2.EndDate)) AND (Att.DeletedFlag='N'))
-  						END
-  					WHEN 'S' THEN
-  						(SELECT Count(Att.AttendeeID)
-  						 FROM ce_Attendee AS Att 
-  						 INNER JOIN ce_Activity AS A2 ON Att.ActivityID = A2.ActivityID
-  						 WHERE 
-  							(Att.StatusID = 1) AND (Att.ActivityID = a.ActivityID) AND (A2.StatusID IN (1,2,3)) AND (Att.CompleteDate BETWEEN A2.StartDate AND DATEADD(n, 1439, A2.EndDate)) AND (Att.DeletedFlag='N'))
-  				END),
-  				StatMD = 
-  				(CASE A.SessionType
-  					WHEN 'M' THEN 
-  						CASE
-  							WHEN isNull(A.ParentActivityID,0) = 0 THEN
-  								(SELECT Count(Att.AttendeeID)
-  								 FROM ce_Attendee AS Att 
-  								 INNER JOIN ce_Activity AS A2 ON Att.ActivityID = A2.ActivityID
-  								 WHERE 
-  									(Att.StatusID = 1) AND (A2.ParentActivityID = A.ActivityID) AND (Att.MDflag = 'Y') AND (A2.StatusID IN (1,2,3)) AND (Att.CompleteDate BETWEEN A2.StartDate AND DATEADD(n, 1439, A2.EndDate)) AND (Att.DeletedFlag='N'))
-  							ELSE
-  								(SELECT Count(Att.AttendeeID)
-  								 FROM ce_Attendee AS Att 
-  								 INNER JOIN ce_Activity AS A2 ON Att.ActivityID = A2.ActivityID
-  								 WHERE 
-  									(Att.StatusID = 1) AND (A2.ActivityID = A.ActivityID) AND (Att.MDflag = 'Y') AND (A2.StatusID IN (1,2,3)) AND (Att.CompleteDate BETWEEN A2.StartDate AND DATEADD(n, 1439, A2.EndDate)) AND (Att.DeletedFlag='N'))
-  						END
-  					WHEN 'S' THEN
-  						(SELECT Count(Att.AttendeeID)
-  						 FROM ce_Attendee AS Att 
-  						 INNER JOIN ce_Activity AS A2 ON Att.ActivityID = A2.ActivityID
-  						 WHERE 
-  							(Att.StatusID = 1) AND (Att.ActivityID = a.ActivityID) AND (Att.MDflag = 'Y') AND (A2.StatusID IN (1,2,3)) AND (Att.CompleteDate BETWEEN A2.StartDate AND DATEADD(n, 1439, A2.EndDate)) AND (Att.DeletedFlag='N'))
-  				END),
-  				StatNonMD = 
-  				(CASE A.SessionType
-  					WHEN 'M' THEN 
-  						CASE
-  							WHEN isNull(A.ParentActivityID,0) = 0 THEN
-  								(SELECT Count(Att.AttendeeID)
-  								 FROM ce_Attendee AS Att 
-  								 INNER JOIN ce_Activity AS A2 ON Att.ActivityID = A2.ActivityID
-  								 WHERE 
-  									(Att.StatusID = 1) AND (A2.ParentActivityID = A.ActivityID) AND (Att.MDflag = 'N') AND (A2.StatusID IN (1,2,3)) AND (Att.CompleteDate BETWEEN A2.StartDate AND DATEADD(n, 1439, A2.EndDate)) AND (Att.DeletedFlag='N'))
-  							ELSE
-  								(SELECT Count(Att.AttendeeID)
-  								 FROM ce_Attendee AS Att 
-  								 INNER JOIN ce_Activity AS A2 ON Att.ActivityID = A2.ActivityID
-  								 WHERE 
-  									(Att.StatusID = 1) AND (A2.ActivityID = A.ActivityID) AND (Att.MDflag = 'N') AND (A2.StatusID IN (1,2,3)) AND (Att.CompleteDate BETWEEN A2.StartDate AND DATEADD(n, 1439, A2.EndDate)) AND (Att.DeletedFlag='N'))
-  						END
-  					WHEN 'S' THEN
-  						(SELECT Count(Att.AttendeeID)
-  						 FROM ce_Attendee AS Att 
-  						 INNER JOIN ce_Activity AS A2 ON Att.ActivityID = A2.ActivityID
-  						 WHERE 
-  							(Att.StatusID = 1) AND (Att.ActivityID = a.ActivityID) AND (Att.MDflag = 'N') AND (A2.StatusID IN (1,2,3)) AND (Att.CompleteDate BETWEEN A2.StartDate AND DATEADD(n, 1439, A2.EndDate)) AND (Att.DeletedFlag='N'))
-  				END)
-  		FROM 
-  			ce_Activity A
-  		WHERE
-  			(A.StatusID IN (1, 2, 3)) AND
-  			(A.DeletedFlag = 'N')
-  			<cfif Arguments.ActivityID GT 0>
-  			AND (A.ActivityID=<cfqueryparam value="#Arguments.ActivityID#" cfsqltype="cf_sql_integer" />)
-  			<cfelse>
-  				<cfif isDate(Arguments.RunDate)>
-  				AND (A.StartDate >= <cfqueryparam value="#Arguments.RunDate#" cfsqltype="cf_sql_datetime" />)
-  				</cfif>
-  			</cfif>
-  		</cfquery>
+            SELECT
+            A.ActivityID,
+            A.StartDate,
+            EndDate = DATEADD(n, 1439, A.EndDate),
+            StatHrs =
+            (CASE A.SessionType
+                WHEN 'M' THEN 
+                    isNull((SELECT SUM(AC.Amount) AS TotalHours
+                            FROM ce_Activity_Credit AS AC 
+                            INNER JOIN ce_Activity AS A4 ON AC.ActivityID = A4.ActivityID
+                            WHERE (AC.CreditID = 1) AND (A4.ParentActivityID = A.ActivityID) AND AC.DeletedFlag='N' AND (A4.StatusID IN (1,2,3))),0)
+                WHEN 'S' THEN 
+                    isNull((SELECT SUM(AC.Amount) AS TotalHours
+                            FROM ce_Activity_Credit AS AC 
+                            INNER JOIN ce_Activity AS A4 ON AC.ActivityID = A4.ActivityID
+                            WHERE (AC.CreditID = 1) AND (A4.ActivityID = A.ActivityID) AND AC.DeletedFlag='N' AND (A4.StatusID IN (1,2,3))),0)
+            END),
+            StatAttendees = 
+                (CASE A.SessionType
+                    WHEN 'M' THEN 
+                        CASE
+                            WHEN isNull(A.ParentActivityID,0) = 0 THEN
+                                (SELECT Count(Att.AttendeeID)
+                                 FROM ce_Attendee AS Att 
+                                 INNER JOIN ce_Activity AS A2 ON Att.ActivityID = A2.ActivityID
+                                 WHERE 
+                                    (Att.StatusID = 1) AND (A2.ParentActivityID = A.ActivityID) AND (A2.StatusID IN (1,2,3)) AND (Att.CompleteDate BETWEEN A2.StartDate AND DATEADD(n, 1439, A2.EndDate)) AND (Att.DeletedFlag='N'))
+                            ELSE
+                                (SELECT Count(Att.AttendeeID)
+                                 FROM ce_Attendee AS Att 
+                                 INNER JOIN ce_Activity AS A2 ON Att.ActivityID = A2.ActivityID
+                                 WHERE 
+                                    (Att.StatusID = 1) AND (A2.ActivityID = A.ActivityID) AND (A2.StatusID IN (1,2,3)) AND (Att.CompleteDate BETWEEN A2.StartDate AND DATEADD(n, 1439, A2.EndDate)) AND (Att.DeletedFlag='N'))
+                        END
+                    WHEN 'S' THEN
+                        (SELECT Count(Att.AttendeeID)
+                         FROM ce_Attendee AS Att 
+                         INNER JOIN ce_Activity AS A2 ON Att.ActivityID = A2.ActivityID
+                         WHERE 
+                            (Att.StatusID = 1) AND (Att.ActivityID = a.ActivityID) AND (A2.StatusID IN (1,2,3)) AND (Att.CompleteDate BETWEEN A2.StartDate AND DATEADD(n, 1439, A2.EndDate)) AND (Att.DeletedFlag='N'))
+                END),
+                StatMD = 
+                (CASE A.SessionType
+                    WHEN 'M' THEN 
+                        CASE
+                            WHEN isNull(A.ParentActivityID,0) = 0 THEN
+                                (SELECT Count(Att.AttendeeID)
+                                 FROM ce_Attendee AS Att 
+                                 INNER JOIN ce_Activity AS A2 ON Att.ActivityID = A2.ActivityID
+                                 WHERE 
+                                    (Att.StatusID = 1) AND (A2.ParentActivityID = A.ActivityID) AND (Att.MDflag = 'Y') AND (A2.StatusID IN (1,2,3)) AND (Att.CompleteDate BETWEEN A2.StartDate AND DATEADD(n, 1439, A2.EndDate)) AND (Att.DeletedFlag='N'))
+                            ELSE
+                                (SELECT Count(Att.AttendeeID)
+                                 FROM ce_Attendee AS Att 
+                                 INNER JOIN ce_Activity AS A2 ON Att.ActivityID = A2.ActivityID
+                                 WHERE 
+                                    (Att.StatusID = 1) AND (A2.ActivityID = A.ActivityID) AND (Att.MDflag = 'Y') AND (A2.StatusID IN (1,2,3)) AND (Att.CompleteDate BETWEEN A2.StartDate AND DATEADD(n, 1439, A2.EndDate)) AND (Att.DeletedFlag='N'))
+                        END
+                    WHEN 'S' THEN
+                        (SELECT Count(Att.AttendeeID)
+                         FROM ce_Attendee AS Att 
+                         INNER JOIN ce_Activity AS A2 ON Att.ActivityID = A2.ActivityID
+                         WHERE 
+                            (Att.StatusID = 1) AND (Att.ActivityID = a.ActivityID) AND (Att.MDflag = 'Y') AND (A2.StatusID IN (1,2,3)) AND (Att.CompleteDate BETWEEN A2.StartDate AND DATEADD(n, 1439, A2.EndDate)) AND (Att.DeletedFlag='N'))
+                END),
+                StatNonMD = 
+                (CASE A.SessionType
+                    WHEN 'M' THEN 
+                        CASE
+                            WHEN isNull(A.ParentActivityID,0) = 0 THEN
+                                (SELECT Count(Att.AttendeeID)
+                                 FROM ce_Attendee AS Att 
+                                 INNER JOIN ce_Activity AS A2 ON Att.ActivityID = A2.ActivityID
+                                 WHERE 
+                                    (Att.StatusID = 1) AND (A2.ParentActivityID = A.ActivityID) AND (Att.MDflag = 'N') AND (A2.StatusID IN (1,2,3)) AND (Att.CompleteDate BETWEEN A2.StartDate AND DATEADD(n, 1439, A2.EndDate)) AND (Att.DeletedFlag='N'))
+                            ELSE
+                                (SELECT Count(Att.AttendeeID)
+                                 FROM ce_Attendee AS Att 
+                                 INNER JOIN ce_Activity AS A2 ON Att.ActivityID = A2.ActivityID
+                                 WHERE 
+                                    (Att.StatusID = 1) AND (A2.ActivityID = A.ActivityID) AND (Att.MDflag = 'N') AND (A2.StatusID IN (1,2,3)) AND (Att.CompleteDate BETWEEN A2.StartDate AND DATEADD(n, 1439, A2.EndDate)) AND (Att.DeletedFlag='N'))
+                        END
+                    WHEN 'S' THEN
+                        (SELECT Count(Att.AttendeeID)
+                         FROM ce_Attendee AS Att 
+                         INNER JOIN ce_Activity AS A2 ON Att.ActivityID = A2.ActivityID
+                         WHERE 
+                            (Att.StatusID = 1) AND (Att.ActivityID = a.ActivityID) AND (Att.MDflag = 'N') AND (A2.StatusID IN (1,2,3)) AND (Att.CompleteDate BETWEEN A2.StartDate AND DATEADD(n, 1439, A2.EndDate)) AND (Att.DeletedFlag='N'))
+                END)
+        FROM 
+            ce_Activity A
+        WHERE
+            (A.StatusID IN (1, 2, 3)) AND
+            (A.DeletedFlag = 'N')
+            <cfif Arguments.ActivityID GT 0>
+            AND (A.ActivityID=<cfqueryparam value="#Arguments.ActivityID#" cfsqltype="cf_sql_integer" />)
+            <cfelse>
+                <cfif isDate(Arguments.RunDate)>
+                AND (A.StartDate >= <cfqueryparam value="#Arguments.RunDate#" cfsqltype="cf_sql_datetime" />)
+                </cfif>
+            </cfif>
+        </cfquery>
     <cfloop query="qSelector">
       <cfset stats = {} />
       <cfif NOT isNumeric(qSelector.StatHrs)>
@@ -640,14 +719,14 @@
         <cfset stats['nonmd'] = qSelector.StatNonMD />
       </cfif>
       <cfquery name="qUpdater" datasource="#Application.Settings.DSN#">
-  				UPDATE ce_Activity
-  				SET 
-  					StatCMEHours=#stats.hrs#,
-  					StatAttendees=#stats.attendees#,
-  					StatMD = #stats.md#,
-  					StatNonMD = #stats.nonmd#
-  				WHERE ActivityID=#qSelector.ActivityID#
-  			</cfquery>
+                UPDATE ce_Activity
+                SET 
+                    StatCMEHours=#stats.hrs#,
+                    StatAttendees=#stats.attendees#,
+                    StatMD = #stats.md#,
+                    StatNonMD = #stats.nonmd#
+                WHERE ActivityID=#qSelector.ActivityID#
+            </cfquery>
     </cfloop>
     <cfset status.setStatus(true)>
     <cfset status.setStatusMsg("Stats have been updated.")>
@@ -657,7 +736,7 @@
     <cfargument name="ActivityID" type="numeric" required="yes">
     <cfset var ActivitySpecialties = arrayNew(1)>
     <cfquery name="qActivitySpecialties" datasource="#Application.Settings.DSN#">
-          	SELECT SpecialtyID
+            SELECT SpecialtyID
               FROM ce_Activity_SpecialtyLMS
               WHERE ActivityID = <cfqueryparam value="#Arguments.ActivityID#" cfsqltype="cf_sql_integer" /> AND DeletedFlag = 'N'
           </cfquery>
@@ -670,12 +749,12 @@
     <cfargument name="ATID" type="numeric" required="yes">
     <cfset var JSONDataList = "">
     <cfquery name="GroupingList" datasource="#Application.Settings.DSN#">
-          	SELECT
-              	GroupingID, Name
+            SELECT
+                GroupingID, Name
               FROM 
-              	ce_Sys_Grouping
+                ce_Sys_Grouping
               WHERE 
-              	ActivityTypeID = <cfqueryparam value="#Arguments.ATID#" cfsqltype="cf_sql_integer" />
+                ActivityTypeID = <cfqueryparam value="#Arguments.ATID#" cfsqltype="cf_sql_integer" />
           </cfquery>
     <cfif GroupingList.RecordCount GT 0>
       <cfoutput>
@@ -700,7 +779,7 @@
   <cffunction name="getNoteCount" access="Public" output="no" returntype="numeric">
     <cfargument name="ActivityID" type="numeric" required="yes">
     <cfquery name="NoteInfo" datasource="#Application.Settings.DSN#">
-          	SELECT COUNT(NoteID) AS NoteCount
+            SELECT COUNT(NoteID) AS NoteCount
               FROM ce_Activity_Note
               WHERE ActivityID = <cfqueryparam value="#Arguments.ActivityID#" cfsqltype="cf_sql_integer" /> AND DeletedFlag = 'N'
           </cfquery>
@@ -710,11 +789,11 @@
     <cfargument name="ActivityID" type="numeric" required="yes">
     <cfset var status = false>
     <cfquery name="qActivityInfo" datasource="#Application.Settings.DSN#">
-          	SELECT COUNT(ActivityID) AS activityCount
+            SELECT COUNT(ActivityID) AS activityCount
               FROM ce_Activity_Category 
               WHERE 
-              	ActivityID = <cfqueryparam value="#arguments.ActivityID#" cfsqltype="cf_sql_integer" /> AND
-              	CategoryID IN(31,162,196)
+                ActivityID = <cfqueryparam value="#arguments.ActivityID#" cfsqltype="cf_sql_integer" /> AND
+                CategoryID IN(31,162,196)
           </cfquery>
     <cfif qActivityInfo.activityCount GT 0>
       <cfset status = true>
@@ -726,11 +805,11 @@
     <cfargument name="limit" type="string" required="yes">
     <cfset var ResultArray = "">
     <cfquery name="qList" datasource="#Application.Settings.DSN#">
-  			SELECT DISTINCT TOP #Arguments.Limit# Sponsor
-  			FROM ce_Activity
-  			WHERE Sponsor LIKE <cfqueryparam value="#Arguments.q#%" cfsqltype="cf_sql_varchar" />
-  			ORDER BY Sponsor
-  		</cfquery>
+            SELECT DISTINCT TOP #Arguments.Limit# Sponsor
+            FROM ce_Activity
+            WHERE Sponsor LIKE <cfqueryparam value="#Arguments.q#%" cfsqltype="cf_sql_varchar" />
+            ORDER BY Sponsor
+        </cfquery>
     <cfsavecontent variable="ResultArray">
     <cfoutput>
       <cfloop query="qList">
@@ -931,6 +1010,7 @@
       <cfset AgendaBean.setEndTime(Arguments.EndTime)>
       <cfset AgendaBean.setCreatedBy(Session.Person.getPersonID())>
       <cfset AgendaBean.setDeletedFlag("N")>
+
       <cfset Application.Com.AgendaDAO.Save(AgendaBean)>
       <!--- ACTIVITY DETAIL --->
       <cfset ActivityBean = CreateObject("component","#Application.Settings.Com#Activity.Activity").init(ActivityID=Arguments.ActivityID)>
@@ -942,10 +1022,10 @@
       </cfsavecontent>
       <!--- ACTION UPDATER --->
       <cfset Application.History.Add(
-  						HistoryStyleID=3,
-  						FromPersonID=Session.PersonID,
-  						ToActivityID=Arguments.ActivityID,
-  						ToContent=OutputVar)>
+                        HistoryStyleID=3,
+                        FromPersonID=Session.PersonID,
+                        ToActivityID=Arguments.ActivityID,
+                        ToContent=OutputVar)>
       <cfset Status = "Success|Agenda Item successfully saved.">
     </cfif>
     <cfreturn Status />
@@ -965,25 +1045,25 @@
     <cfset ActivityBean = Application.Com.ActivityDAO.read(ActivityBean)>
     <cfif Status EQ "">
       <cfquery name="qFindCategory" datasource="#Application.Settings.DSN#">
-  					SELECT DeletedFlag
-  					FROM ce_Activity_Category
-  					WHERE CategoryID = <cfqueryparam value="#Arguments.CategoryID#" CFSQLType="cf_sql_integer" /> AND ActivityID = <cfqueryparam value="#Arguments.ActivityID#" CFSQLType="cf_sql_integer" />
-  				</cfquery>
+                    SELECT DeletedFlag
+                    FROM ce_Activity_Category
+                    WHERE CategoryID = <cfqueryparam value="#Arguments.CategoryID#" CFSQLType="cf_sql_integer" /> AND ActivityID = <cfqueryparam value="#Arguments.ActivityID#" CFSQLType="cf_sql_integer" />
+                </cfquery>
       <cfif qFindCategory.RecordCount LTE 0>
         <cfquery name="addCategory" datasource="#Application.Settings.DSN#">
-  						INSERT INTO ce_Activity_Category
-  							(
-  							ActivityID,
-  							CategoryID,
-  							CreatedBy
-  							)
-  							VALUES
-  							(
-  							<cfqueryparam value="#Arguments.ActivityID#" CFSQLType="cf_sql_integer" />,
-  							<cfqueryparam value="#Arguments.CategoryID#" CFSQLType="cf_sql_integer" />,
-  							<cfqueryparam value="#Session.Person.getPersonID()#" CFSQLType="cf_sql_integer" />
-  							)
-  					</cfquery>
+                        INSERT INTO ce_Activity_Category
+                            (
+                            ActivityID,
+                            CategoryID,
+                            CreatedBy
+                            )
+                            VALUES
+                            (
+                            <cfqueryparam value="#Arguments.ActivityID#" CFSQLType="cf_sql_integer" />,
+                            <cfqueryparam value="#Arguments.CategoryID#" CFSQLType="cf_sql_integer" />,
+                            <cfqueryparam value="#Session.Person.getPersonID()#" CFSQLType="cf_sql_integer" />
+                            )
+                    </cfquery>
         <!--- PERSONALIZED CONTAINER LIST --->
         <cfif Arguments.CategoryID GT 0>
           <cfif NOT ListFind(Cookie.USER_Containers,Arguments.CategoryID,",")>
@@ -995,7 +1075,7 @@
                                   HistoryStyleID=13,
                                   FromPersonID=Session.PersonID,
                                   ToActivityID=Arguments.ActivityID,
-  								ToContainerID=Arguments.CategoryID)>
+                                ToContainerID=Arguments.CategoryID)>
         <!--- UPDATE CAT STATS --->
         <cfset CatBean.setActivityCount(CatBean.getActivityCount()+1)>
         <cfset Application.Com.CategoryDAO.Update(CatBean)>
@@ -1005,11 +1085,11 @@
         <cfif qFindCategory.RecordCount EQ 1 AND qFindCategory.DeletedFlag EQ 'Y'>
           <!--- If a record exists but DeletedFlag EQ Y then it is updated to N --->
           <cfquery name="qUpdateDeletedFlag" datasource="#Application.Settings.DSN#">
-  							UPDATE ce_Activity_Category
-  							SET DeletedFlag = <cfqueryparam value="N" cfsqltype="cf_sql_char" />,
-  								UpdatedBy = <cfqueryparam value="#Session.Person.getPersonID()#" cfsqltype="cf_sql_integer" />
-  							WHERE CategoryID = <cfqueryparam value="#CategoryID#" CFSQLType="cf_sql_integer" /> AND ActivityID = <cfqueryparam value="#Arguments.ActivityID#" CFSQLType="cf_sql_integer" />
-  						</cfquery>
+                            UPDATE ce_Activity_Category
+                            SET DeletedFlag = <cfqueryparam value="N" cfsqltype="cf_sql_char" />,
+                                UpdatedBy = <cfqueryparam value="#Session.Person.getPersonID()#" cfsqltype="cf_sql_integer" />
+                            WHERE CategoryID = <cfqueryparam value="#CategoryID#" CFSQLType="cf_sql_integer" /> AND ActivityID = <cfqueryparam value="#Arguments.ActivityID#" CFSQLType="cf_sql_integer" />
+                        </cfquery>
           <!--- ADD HISTORY ITEM --->
           <cfset Application.History.Add(
                                       HistoryStyleID=13,
@@ -1191,20 +1271,20 @@
         <cfif Arguments.Mode EQ "Payment">
           <!--- PROCESS PAYMENT --->
           <cfset PayStatus = createobject("component","#Application.Settings.Com#Payment").ProcessPayment(
-  																								ActivityID=Arguments.ActivityID,
-  																								AttendeeID=AttendeeBean.getAttendeeID(),
-  																								Phone=Arguments.BillPhone,
-  																								Address1=Arguments.BillAddr1,
-  																								Address2=Arguments.BillAddr2,
-  																								City=Arguments.BillCity,
-  																								State=Arguments.BillState,
-  																								ZipCode=Arguments.BillZipCode,
-  																								CardName=Arguments.CardName,
-  																								CardNumber=Arguments.CardNumber,
-  																								CardType=Arguments.CardType,
-  																								CardExpireMonth=Arguments.CardExpireMonth,
-  																								CardExpireYear=Arguments.CardExpireYear
-  																								)>
+                                                                                                ActivityID=Arguments.ActivityID,
+                                                                                                AttendeeID=AttendeeBean.getAttendeeID(),
+                                                                                                Phone=Arguments.BillPhone,
+                                                                                                Address1=Arguments.BillAddr1,
+                                                                                                Address2=Arguments.BillAddr2,
+                                                                                                City=Arguments.BillCity,
+                                                                                                State=Arguments.BillState,
+                                                                                                ZipCode=Arguments.BillZipCode,
+                                                                                                CardName=Arguments.CardName,
+                                                                                                CardNumber=Arguments.CardNumber,
+                                                                                                CardType=Arguments.CardType,
+                                                                                                CardExpireMonth=Arguments.CardExpireMonth,
+                                                                                                CardExpireYear=Arguments.CardExpireYear
+                                                                                                )>
           <cfif PayStatus>
             <!--- SUCCESS PAYMENT --->
             <cfset AttendeeBean.setPaymentFlag('Y')>
@@ -1231,9 +1311,9 @@
           <cfset Status = "Success|You have registered for this activity.">
           <!--- ADD HISTORY ITEM --->
           <cfset Application.History.Add(
-  								HistoryStyleID=20,
-  								FromPersonID=Arguments.PersonID,
-  								ToActivityID=Arguments.ActivityID)>
+                                HistoryStyleID=20,
+                                FromPersonID=Arguments.PersonID,
+                                ToActivityID=Arguments.ActivityID)>
           <!--- CREATE ATTENDEE CREDIT RECORD // ONLY SAVES WHEN THERE IS NO RECORD --->
           <cfset AttendeeCreditCreated = Application.ActivityAttendee.setAttendeeCredit(ActivityID=Arguments.ActivityID,AttendeeID=CurrAttendeeID,PersonID=Arguments.PersonID)>
         </cfif>
@@ -1250,11 +1330,11 @@
     <cfset var Status = false>
     <cfset var MDFlag = false>
     <!---
-  		ARGUMENTS.TYPE DETERMINES IF THE ATTENDEE IS BEING ADDED OR REMOVED
-  		NOTE: THE TWO TYPES THAT CAN BE USED ARE:
-  		1. ADD
-  		2. REMOVE
-  		--->
+        ARGUMENTS.TYPE DETERMINES IF THE ATTENDEE IS BEING ADDED OR REMOVED
+        NOTE: THE TWO TYPES THAT CAN BE USED ARE:
+        1. ADD
+        2. REMOVE
+        --->
     <cfif Arguments.Type EQ "Add">
       <!--- GET ACTIVITY INFO --->
       <cfset ActivityBean = CreateObject("component","#Application.Settings.Com#Activity.Activity").Init(ActivityID=Arguments.ActivityID)>
@@ -1363,7 +1443,7 @@
                           HistoryStyleID=92,
                           FromPersonID=Session.PersonID,
                           ToActivityID=Arguments.ActivityID,
-  						ToContent="Additional Attendees:" & Arguments.AddlAttendees)>
+                        ToContent="Additional Attendees:" & Arguments.AddlAttendees)>
     </cfif>
     <cfreturn Status />
   </cffunction>
@@ -1384,26 +1464,26 @@
       <cfset ActivityBean = Application.Com.ActivityDAO.read(ActivityBean)>
       <cfif Arguments.Flag EQ "Y">
         <cfquery name="qSet" datasource="#Application.Settings.DSN#">
-  						UPDATE ce_Activity_Application
-  						SET #Arguments.Field#Flag='Y',
-  							#Arguments.Field#Date=<cfqueryparam value="#Arguments.AppDate#" cfsqltype="cf_sql_date" />
-  						WHERE ActivityID=<cfqueryparam value="#Arguments.ActivityID#" cfsqltype="cf_sql_integer" />
-  					</cfquery>
+                        UPDATE ce_Activity_Application
+                        SET #Arguments.Field#Flag='Y',
+                            #Arguments.Field#Date=<cfqueryparam value="#Arguments.AppDate#" cfsqltype="cf_sql_date" />
+                        WHERE ActivityID=<cfqueryparam value="#Arguments.ActivityID#" cfsqltype="cf_sql_integer" />
+                    </cfquery>
         <cfset Application.History.Add(
-  								HistoryStyleID=5,
-  								FromPersonID=Session.PersonID,
-  								ToActivityID=Arguments.ActivityID)>
+                                HistoryStyleID=5,
+                                FromPersonID=Session.PersonID,
+                                ToActivityID=Arguments.ActivityID)>
         <cfelse>
         <cfquery name="qSet" datasource="#Application.Settings.DSN#">
-  						UPDATE ce_Activity_Application
-  						SET #Arguments.Field#Flag='N',
-  							#Arguments.Field#Date=<cfqueryparam null />
-  						WHERE ActivityID=<cfqueryparam value="#Arguments.ActivityID#" cfsqltype="cf_sql_integer" />
-  					</cfquery>
+                        UPDATE ce_Activity_Application
+                        SET #Arguments.Field#Flag='N',
+                            #Arguments.Field#Date=<cfqueryparam null />
+                        WHERE ActivityID=<cfqueryparam value="#Arguments.ActivityID#" cfsqltype="cf_sql_integer" />
+                    </cfquery>
         <cfset Application.History.Add(
-  								HistoryStyleID=5,
-  								FromPersonID=Session.PersonID,
-  								ToActivityID=Arguments.ActivityID)>
+                                HistoryStyleID=5,
+                                FromPersonID=Session.PersonID,
+                                ToActivityID=Arguments.ActivityID)>
       </cfif>
     </cfif>
     <cfreturn Status />
@@ -1431,7 +1511,7 @@
                           HistoryStyleID=94,
                           FromPersonID=Session.PersonID,
                           ToActivityID=Arguments.ActivityID,
-  						ToContent="Additional Attendees:" & Arguments.AddlAttendees)>
+                        ToContent="Additional Attendees:" & Arguments.AddlAttendees)>
     </cfif>
     <cfreturn Status />
   </cffunction>

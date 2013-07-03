@@ -133,10 +133,10 @@
         <cfargument name="NewActivityTitle" type="string" required="yes">
         <cfargument name="NewActivityTypeID" type="numeric" required="yes">
         <cfargument name="NewGroupingID" type="numeric" required="yes">
+        <cfargument name="ItemsToCopy" type="string" required="yes">
         
         <cfset var status = createObject("component", "#Application.Settings.Com#returnData.buildStruct").init()>
         
-        <cfcontent type="text/javascript" />
         
         <cfset status.setStatus(false)>
         <cfset status.setStatusMsg("Cannot access activity copy functionality.")>
@@ -146,7 +146,8 @@
 							Arguments.ActivityID,
 							Arguments.NewActivityTitle,
 							Arguments.NewActivityTypeID,
-							Arguments.NewGroupingID)>
+                            Arguments.NewGroupingID,
+                            Arguments.ItemsToCopy)>
         
         <cfreturn status.getJSON() />
     </cffunction>

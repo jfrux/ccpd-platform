@@ -70,6 +70,35 @@
             </select>
           </div>
         </div>
+        <div id="ItemsToCopy" class="control-group">
+          <label class="control-label">Items To Copy</label>
+          <div class="controls">
+            <label class="checkbox" for="copy_agenda">
+              <input type="checkbox" name="copy_agenda" id="copy_agenda" class="CopyItems"  value="agenda" checked="checked" /> Agenda
+            </label>
+            <label class="checkbox" for="copy_committee">
+              <input type="checkbox" name="copy_committee" id="copy_committee" class="CopyItems"  value="committee" checked="checked" /> Committee Members
+            </label>
+            <label class="checkbox" for="copy_credits">
+              <input type="checkbox" name="copy_credits" id="copy_credits" class="CopyItems"  value="credits" checked="checked" /> Credits
+            </label>
+            <label class="checkbox" for="copy_faculty">
+              <input type="checkbox" name="copy_faculty" id="copy_faculty" class="CopyItems"  value="faculty" /> Faculty
+            </label>
+            <label class="checkbox" for="copy_files">
+              <input type="checkbox" name="copy_files" id="copy_files" class="CopyItems"  value="files" /> Files &amp; Documents
+            </label>
+            <label class="checkbox" for="copy_categories">
+              <input type="checkbox" name="copy_categories" id="copy_categories" class="CopyItems"  value="categories" checked="checked" /> Folders
+            </label>
+            <label class="checkbox" for="copy_attendees">
+              <input type="checkbox" name="copy_attendees" id="copy_attendees" class="CopyItems"  value="attendees" /> Participants
+            </label>
+            <label class="checkbox" for="copy_finances">
+              <input type="checkbox" name="copy_finances" id="copy_finances" class="CopyItems"  value="finances" /> Supporters
+            </label>
+          </div>
+        </div>
       </form>
     </div>
   </div>
