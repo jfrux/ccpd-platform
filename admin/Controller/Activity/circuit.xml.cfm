@@ -63,7 +63,9 @@
                     <false>
                       <if condition="NOT structKeyExists(attributes,'activityid') OR (structKeyExists(attributes,'activityid') AND attributes.activityID LTE 0)">
                         <true>
-                          <do action="vLayout.sub_multiform" contentvariable="request.page.body" />
+                          <invoke object="myFusebox" 
+                            methodcall="do('vActivity.#params.action#','multiformcontent')" />
+                          <do action="vLayout.sub_slim" contentvariable="request.page.body" />
                         </true>
                       </if>
                     </false>

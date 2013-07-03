@@ -30,7 +30,10 @@
 	<fuseaction name="Sub_Activity">
 		<include template="Sub\lay_Activity" />
 	</fuseaction>
-	
+	<fuseaction name="Sub_Slim">
+		<include template="Sub\lay_Slim" />
+	</fuseaction>
+
 	<fuseaction name="Sub_Person">
 		<include template="Sub\lay_Person" />
 	</fuseaction>

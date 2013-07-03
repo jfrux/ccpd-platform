@@ -18,8 +18,6 @@
 <cfparam name="Attributes.SessionType" default="S">
 <cfparam name="Attributes.ExternalID" default="">
 <cfparam name="Attributes.ReleaseDate" default="#DateFormat(Now(),"MM/DD/YYYY")#">
-<div class="ViewSection">
-<h3>General Information</h3>
 <script>
 <cfoutput>
 var sSessionType = "#Attributes.SessionType#";
@@ -128,7 +126,7 @@ $(document).ready(function(){
 });
 </script>
 <cfoutput>
-<form action="#myself#activity.create" method="post" name="frmCreate">
+<form action="#myself#activity.create" class="mtl form-horizontal" method="post" name="frmCreate">
   <input type="hidden" name="submitted" value="1" />
   <div class="control-group">
     <label class="control-label">Title</label>
@@ -137,7 +135,7 @@ $(document).ready(function(){
     </div>
   </div>
   <div class="control-group">
-    <label class="control-label">Activity Type</label>
+    <label class="control-label">Type</label>
     <div class="controls">
       <select name="ActivityType" id="ActivityType">
         <cfloop query="qActivityTypeList">
@@ -186,31 +184,31 @@ $(document).ready(function(){
       <input type="text" name="EndDate" id="date3" value="#Attributes.EndDate#"/>
     </div>
   </div>
-  <div class="control-group" class="Location">
+  <div class="control-group Location">
     <label class="control-label" for="Location">Location</label>
     <div class="controls">
       <input type="text" name="Location" id="Location" value="#Attributes.Location#" />
     </div>
   </div>
-  <div class="control-group" class="Location">
+  <div class="control-group Location">
     <label class="control-label" for="Address1">Address 1</label>
     <div class="controls">
       <input type="text" name="Address1" id="Address1" value="#Attributes.Address1#" />
     </div>
   </div>
-  <div class="control-group" class="Location">
+  <div class="control-group Location">
     <label class="control-label" for="Address2">Address 2</label>
     <div class="controls">
       <input type="text" name="Address2" id="Address2" value="#Attributes.Address2#" />
     </div>
   </div>
-  <div class="control-group" class="Location">
+  <div class="Location control-group">
     <label class="control-label" for="City">City</label>
     <div class="controls">
       <input type="text" name="City" id="City" value="#Attributes.City#" />
     </div>
   </div>
-  <div class="control-group" class="Location stateField">
+  <div class="control-group Location stateField">
     <label class="control-label" for="State">State</label>
     <div class="controls">
       <select id="State" name="State">
@@ -238,7 +236,7 @@ $(document).ready(function(){
       </select>
     </div>
   </div>
-  <div class="control-group" class="Location">
+  <div class="Location control-group">
     <label class="control-label" for="PostalCode">Postal Code</label>
     <div class="controls">
       <input type="text" name="PostalCode" id="PostalCode" value="#Attributes.PostalCode#" />
@@ -250,6 +248,12 @@ $(document).ready(function(){
       <input type="text" name="ExternalID" id="ExternalID" value="#Attributes.ExternalID#"/>
     </div>
   </div>
-  <input type="submit" value="Save" />
+  <div class="control-group">
+    <div class="controls">
+      <input type="submit" class="btn btn-success" value="Save Activity" />
+      <a href="javascript:history.back();" class="btn">Cancel</a>
+    </div>
+  </div>
+  
 </form>
 </cfoutput>
