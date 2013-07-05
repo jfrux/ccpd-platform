@@ -1,6 +1,4 @@
 <cfparam name="Attributes.TotalAmount" default="0">
-<link href="#Application.Settings.RootPath#/_styles/Activity.css" rel="stylesheet" type="text/css" />
-
 <cfoutput>
 <!--- GENERAL INFORMATION --->
 <div class="ViewSection" style="float:left; width:50%;">

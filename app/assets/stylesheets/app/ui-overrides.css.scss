@@ -15,7 +15,7 @@ $dialogTrim: #555;
     position: absolute;
     right: 0 !important;
     top: 53px !important;
-    width: 300px;
+    //width: 300px;
     z-index: 1050;
 }
 .ui-button-text-only .ui-button-text {
@@ -38,19 +38,22 @@ $dialogTrim: #555;
     background-image: linear-gradient(white, white 25%, #E6E6E6);
     background-repeat: no-repeat;
     border-color: #CCCCCC #CCCCCC #BBBBBB;
+    color: #333333;
+    margin-left:5px;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+}
+.ui-dialog-buttonset .ui-button {
     border-image: none;
     border-radius: 4px 4px 4px 4px;
     border-style: solid;
     border-width: 1px;
     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 1px 2px rgba(0, 0, 0, 0.05);
-    color: #333333;
     cursor: pointer;
     display: inline-block;
     font-size: 13px;
     line-height: normal;
     overflow: visible;
     padding: 5px 14px 6px;
-    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
     transition: all 0.1s linear 0s;
 }
 
@@ -82,7 +85,6 @@ $dialogTrim: #555;
     border-width: 0px 1px 1px 1px;
     border-color:$dialogTrim $dialogTrim #CCC #333;
     border-style:solid;
-    overflow: auto;
     padding: 0.5em 1em;
     position: relative;
 }
@@ -90,16 +92,18 @@ $dialogTrim: #555;
     background-color: $dialogTitleBG;
     border-width:1px 1px 0px 1px;
     color:#FFF;
+    border-style:solid;
     @include border-radius(0);
-    border-color: $dialogTrim $dialogTrim -moz-use-text-color;
+    border-color: darken($dialogTrim,25%);
     font-size: 15px;
     padding: 0px 10px;
     position: relative;
     text-decoration: none;
+    display:block;
+    line-height: 31px;
 }
 .ui-dialog .ui-dialog-title {
     color: #FFF;
-    float: left;
     font-weight: bold;
     margin-bottom: 5px;
     margin-top: 5px;
@@ -112,7 +116,8 @@ $dialogTrim: #555;
     background-color: #F5F5F5;
     background-image: none;
     @include border-radius(0);
-    border-color: -moz-use-text-color $dialogTrim $dialogTrim;
+    border-style:solid;
+    border-color: $dialogTrim $dialogTrim;
     border-width: 0px 1px 1px 1px;
     box-shadow: 0 1px 0 #FFFFFF inset;
     margin: 0 0 0;

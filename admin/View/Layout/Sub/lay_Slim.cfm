@@ -23,38 +23,9 @@ App.User.start({
 </script>
 </cfoutput>
 <cfoutput>
-<div class="user profile profile-wide infobar-inactive">
-  <div class="profile-bg">
-    <div class="profile-bg-inner"></div>
-  </div>
+<div class="slim">
   <div class="row">
-    <div class="span5">
-      <cfoutput>
-      <div class="projectbar js-projectbar">
-        <div class="box">
-          <div class="profile-userbox">
-            <div class="userbox-image" style="background-image:url(#imageUrl('default_photo/person_m_i.png')#);">
-
-            </div>
-            <div class="userbox-details">
-              <div class="userbox-link-profile">#linkTo(controller="person",action="detail",params="personid=#session.personid#",text="#session.person.getDisplayName()#")#</div>
-              <div class="userbox-link-editprofile">#linkTo(controller="person",action="detail",params="personid=#session.personid#",text="Edit Profile")#</div>
-            </div>
-          </div>
-        </div>
-        <!--- <div class="box js-profile-menu">
-          #profileMenu(
-            type="user",
-            typeid="#session.personid#",
-            settings="#request.tabSettings#",
-            includekey=false,
-            current="#Attributes.Fuseaction#"
-          )#
-        </div> --->
-      </div>
-      </cfoutput>
-    </div>
-    <div class="span19">
+    <div class="span24">
       <div class="content js-profile-content">
         <cfoutput>
         <div class="content-title">
