@@ -33,7 +33,7 @@
     <iframe src="" width="840" height="500" frameborder="0" scrolling="auto" name="frameDetail" id="frameDetail"></iframe>
   </div>
   <div id="CopyDialog" class="dialog">
-    <div>
+    <div style="height:300px;">
       <form class="form-horizontal">
         <div class="control-group">
           <label class="control-label">Method</label>

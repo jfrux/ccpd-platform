@@ -1,6 +1,7 @@
 <cfparam name="request.page.responsive" default="false" />
 
 <cfoutput>
+#styleSheetLinkTag(sources="vendors",debug=true)#
 #styleSheetLinkTag(sources="application",debug=true)#
 <cfif request.page.responsive>
 	#styleSheetLinkTag(sources="responsive",debug=false)#

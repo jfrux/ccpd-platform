@@ -231,8 +231,6 @@ App.module "Activity",
 
       $("#MoveLink").click ->
         $("#MoveDialog").dialog "open"
-
-      
       # // END MOVE DIALOG 
       
       # COPY AND PASTE DIALOG 
@@ -240,25 +238,16 @@ App.module "Activity",
         title: "Copy & Paste Activity"
         modal: true
         autoOpen: false
-        overlay:
-          opacity: 0.75
-          background: "black"
-
-        buttons:
-          Continue: ->
-            continueCopy()
-
-          Cancel: ->
-            cancelCopy()
-            $("#CopyDialog").dialog "close"
-
-        height: 335
+        height: 535
         width: 485
         resizable: false
         draggable: false
-        open: ->
-          $("#CopyDialog").show()
-
+        buttons:
+          Continue: ->
+            continueCopy()
+          Cancel: ->
+            cancelCopy()
+            $("#CopyDialog").dialog "close"
         close: ->
           cancelCopy()
 

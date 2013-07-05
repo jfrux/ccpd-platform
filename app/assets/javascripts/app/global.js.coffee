@@ -42,14 +42,13 @@ defibrillator = ""
 
 # READY FUNCTION 
 $ ->
-  $.extend $.ui.dialog.prototype.options,
-    modal: true
-    resizable: false
-    draggable: false
-    open: (event,ui) ->
-      log "test"
-      $(this).wrapInner('<div class="ui-dialog-inner"></div>')
-      return
+  # $.extend $.ui.dialog.prototype.options,
+  #   modal: true
+  #   resizable: false
+  #   draggable: false
+  #   open: (event,ui) ->
+  #     log "test"
+  #     $(this).wrapInner('<div class="ui-dialog-inner"></div>')
   $("input").keydown (e) ->
     if e.keyCode is 13
       $(this).parents("form").submit()
