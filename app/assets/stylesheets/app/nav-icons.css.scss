@@ -1,6 +1,6 @@
 $navIconImg: 'nav_sprites.png';
-[class^="nav-"],
-[class*=" nav-"] {
+[class^="nav-icon-"],
+[class*=" nav-icon-"] {
   display: inline-block;
   width: 24px;
   height: 24px;
@@ -11,24 +11,24 @@ $navIconImg: 'nav_sprites.png';
   //.ie7-restore-right-whitespace();
 }
 
-.nav-user-profile {     
+.nav-icon-user-profile {     
   background-image: none;
   background-size: 20px auto;
   background-position: 50% 50%; 
 }
 
-.nav-home { background-position:0 -26px; }
-.nav-activities { background-position:-25px -25px;  }
-.nav-people { background-position:-47px -25px; }
-.nav-reports { background-position:-71px -25px; }
-.nav-alerts { background-position:-96px -25px; }
-.nav-settings {  }
+.nav-icon-home { background-position:0 -26px; }
+.nav-icon-activities { background-position:-25px -25px;  }
+.nav-icon-people { background-position:-47px -25px; }
+.nav-icon-reports { background-position:-71px -25px; }
+.nav-icon-alerts { background-position:-96px -25px; }
+.nav-icon-settings {  }
 
 .active,.open {
-  .nav-home { background-position:0 0; }
-  .nav-activities { background-position:-24px 0;  }
-  .nav-people { background-position:-47px 0; }
-  .nav-reports { background-position:-71px 0; }
-  .nav-alerts { background-position:-96px 0; }
-  .nav-settings {  }
+  .nav-icon-home { background-position:0 0; }
+  .nav-icon-activities { background-position:-24px 0;  }
+  .nav-icon-people { background-position:-47px 0; }
+  .nav-icon-reports { background-position:-71px 0; }
+  .nav-icon-alerts { background-position:-96px 0; }
+  .nav-icon-settings {  }
 }

@@ -1,12 +1,6 @@
 <cfparam name="Attributes.Page" type="numeric" default="1" />
-<cf_cePersonFinder 
-  Instance="Attendee" 
-  DefaultName="Add Registrant" 
-  DefaultID="" 
-  AddPersonFunc="App.Activity.Participants.saveAttendee();" 
-  ActivityID="#Attributes.ActivityID#">
-
 <script>
+  var CurrPersonID = 0;
   <cfoutput>
   var nId = #Attributes.Page#;
   var nStatus = #attributes.status#;
@@ -20,14 +14,21 @@
 
   var TotalAttendeeCount = #qAttendees.RecordCount#;
   var TotalAttendeeList = '#TotalAttendeeList#';
+
   </cfoutput>
-  
   App.Activity.Participants.start();
 </script>
+<cf_cePersonFinder 
+  Instance="Attendee" 
+  DefaultName="Add Registrant" 
+  DefaultID="" 
+  AddPersonFunc="App.Activity.Participants.save();" 
+  ActivityID="#Attributes.ActivityID#">
+
 
 <div class="ViewSection">
-  <div id="RegistrantsContainer"></div>
-  <div id="RegistrantsLoading" class="Loading"><img src="/admin/_images/ajax-loader.gif" />
+  <div id="ParticipantsContainer"></div>
+  <div id="ParticipantsLoading" class="Loading"><img src="/admin/_images/ajax-loader.gif" />
   <div>Please Wait</div></div>
 </div>
 <cfoutput>

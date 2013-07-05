@@ -16,7 +16,7 @@
   <cfset PeoplePager.setQueryToPaginate(qPeople)>
   <cfset PeoplePager.setMissingNumbersHTML("<span>...</span>")>
   <cfset PeoplePager.setBaseLink("#myself##xfa.searchSubmit#?instance=#attributes.instance#&search=1&ssn=#attributes.ssn#&birthdate=#attributes.birthdate#&firstname=#attributes.firstname#&lastname=#attributes.lastname#&ucid=#attributes.ucid#&email=#attributes.email#&activityid=#attributes.activityid#") />
-  <cfset PeoplePager.setItemsPerPage(7) />
+  <cfset PeoplePager.setItemsPerPage(4) />
   <cfset PeoplePager.setUrlPageIndicator("page") />
   <cfset PeoplePager.setShowNumericLinks(true) />
   <cfset PeoplePager.setClassName("green span24") />

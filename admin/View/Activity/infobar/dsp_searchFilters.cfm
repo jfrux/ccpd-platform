@@ -11,7 +11,9 @@
       </form>
     </div>
   </div> --->
-  <h3><a class="js-filter" data-type="advanced">Search Criteria</a></h3>
+  <h3>
+    <a class="js-filter" data-type="advanced">Search Criteria</a>
+  </h3>
   <div class="js-filter-form box">
     <div class="row-fluid">
       <form name="frmSearch" class="js-search-adv form-search-filters" method="get" action="#myself#main.activities">

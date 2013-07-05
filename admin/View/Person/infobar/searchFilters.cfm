@@ -1,3 +1,5 @@
+<cfparam name="attributes.activityid" default="0" />
+<cfparam name="attributes.instance" default="" />
 <cfoutput>
 <span>
   <a href="#myself#Person.Create?Instance=#Attributes.Instance#&Mode=Insert&ActivityID=#Attributes.ActivityID#" class="btn btn-create"><i class="icon-edit icon-large"></i> Create Person</a>
@@ -14,7 +16,7 @@
   <h3><a class="js-filter" data-type="advanced">Search Criteria</a></h3>
   <div class="js-filter-form box">
     <div class="row-fluid">
-      <form name="frmSearch" class="form-search-filters" method="get" action="#myself#main.people">
+      <form name="frmSearch" class="form-search-filters" method="get" action="#myself##attributes.fuseaction#<cfif attributes.instance NEQ "">&instance=#params.instance#</cfif><cfif attributes.activityid GT 0>&activityid=#attributes.activityid#</cfif>">
         <input type="text" name="LastName" id="LastName" class="input-block-level" placeholder="Last Name" value="#Attributes.LastName#" />
         <input type="text" name="FirstName" id="FirstName" class="input-block-level" placeholder="First Name" value="#Attributes.FirstName#" />
         <input type="text" name="Birthdate" id="Birthdate" class="input-block-level" placeholder="Date of Birth" value="#Attributes.Birthdate#" />

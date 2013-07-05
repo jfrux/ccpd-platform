@@ -4,7 +4,12 @@
   App.Activity.Committee.start();
 </script>
 <cfoutput>
-<cf_cePersonFinder Instance="Committee" DefaultName="Add Committee Member" DefaultID="" AddPersonFunc="App.Activity.Committee.save();" ActivityID="#Attributes.ActivityID#">
+<cf_cePersonFinder 
+  Instance="Committee" 
+  DefaultName="Add Committee Member" 
+  DefaultID="" 
+  AddPersonFunc="App.Activity.Committee.save();" 
+  ActivityID="#Attributes.ActivityID#">
  
 <div class="ViewSection">
   <div id="CommitteeContainer"></div>

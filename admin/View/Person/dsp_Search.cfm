@@ -2,33 +2,33 @@
 <cfparam name="Attributes.PersonID" default="">
 
 <script>
-App.User.PersonSearch.start();
-  $(document).ready(function() {
-    <cfif Attributes.PersonID NEQ "">
-    <cfoutput>
-    var nPerson = #Attributes.PersonID#;
-    </cfoutput>
-    </cfif>
-    $("input").unbind("keyup");
-    $("select").unbind("change");
-    $("#LastName").focus();
-    
-    $(".PersonAdder").click(function() {
-      parent.setPerson<cfoutput>#Attributes.Instance#</cfoutput>(this.id);
-    });
-    
-    $("#KeepOpen").click(function() {
-      if($("#KeepOpen").attr('checked')) {
-        $.post(sRootPath + "/_com/UserSettings.cfc?method=setPersonFinderOpen&KeepOpen=true");
-      } else {
-        $.post(sRootPath + "/_com/UserSettings.cfc?method=setPersonFinderOpen&KeepOpen=false");
-      }
-    });
-    
-    <cfif Attributes.PersonID NEQ "">
-      parent.setPerson<cfoutput>#Attributes.Instance#</cfoutput>(nPerson);
-    </cfif>
+//App.User.PersonSearch.start();
+$(document).ready(function() {
+  <cfif Attributes.PersonID NEQ "">
+  <cfoutput>
+  var nPerson = #Attributes.PersonID#;
+  </cfoutput>
+  </cfif>
+  $("input").unbind("keyup");
+  $("select").unbind("change");
+  $("#LastName").focus();
+  
+  $(".PersonAdder").click(function() {
+    parent.setPerson<cfoutput>#Attributes.Instance#</cfoutput>(this.id);
   });
+  
+  $("#KeepOpen").click(function() {
+    if($("#KeepOpen").attr('checked')) {
+      $.post(sRootPath + "/_com/UserSettings.cfc?method=setPersonFinderOpen&KeepOpen=true");
+    } else {
+      $.post(sRootPath + "/_com/UserSettings.cfc?method=setPersonFinderOpen&KeepOpen=false");
+    }
+  });
+  
+  <cfif Attributes.PersonID NEQ "">
+    parent.setPerson<cfoutput>#Attributes.Instance#</cfoutput>(nPerson);
+  </cfif>
+});
 </script>
 <cfif Attributes.Fuseaction EQ "Person.Finder">
 <!--- person finder specific styles --->
@@ -74,7 +74,7 @@ App.User.PersonSearch.start();
         FROM ce_History H
         WHERE H.FromPersonID=<cfqueryparam value="#session.personid#" cfsqltype="cf_sql_integer" /> AND isNull(H.ToPersonID,0) <> 0
         GROUP BY H.ToPersonID
-        ) SELECT TOP 7 * FROM CTE_MostRecent M INNER JOIN ce_Person A  ON A.PersonID=M.ToPersonId
+        ) SELECT TOP 5 * FROM CTE_MostRecent M INNER JOIN ce_Person A  ON A.PersonID=M.ToPersonId
         WHERE A.DeletedFlag='N'
         ORDER BY M.MaxCreated DESC
       </cfquery>
@@ -101,8 +101,8 @@ App.User.PersonSearch.start();
         </div>
     </cfif>
   </div>
-  <div class="span6">
-    <div class="SearchBar searchbar js-searchbar">
+  <div class="searchbar span6">
+    <div class="SearchBar js-searchbar">
       <cfinclude template="infobar/searchFilters.cfm" />
     </div>
   </div>

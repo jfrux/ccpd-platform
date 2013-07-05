@@ -14,8 +14,8 @@ $break-large: 1024px;
   }
 }
 
-
 $borderColor: #d6d2d2 #dbd3d3 #d6d2d2 #dbd3d3;
+
 .search {
   position:relative;
   @include clearfix();
@@ -361,6 +361,59 @@ $borderColor: #d6d2d2 #dbd3d3 #d6d2d2 #dbd3d3;
             }
           }
         }
+      }
+    }
+  }
+}
+
+.no-layout {
+  .searchbar {
+    background-color:#EEE;
+    position:absolute;
+    left:0;
+    top:0;
+    padding:10px;
+    display:block;
+    width:100%!important;
+    .btn-create {
+      position:absolute;
+      right:10px;
+    }
+    h3 {
+      display:none;
+    }
+    form {
+      > * {
+        float: left;
+        margin-bottom: 0;
+        margin-left: 2px;
+        width: 100px;
+        &.btn {
+          width:45px;
+          height:30px;
+        }
+      }
+
+    }
+  }
+  .search {
+    margin-top: 47px;
+    padding: 10px;
+    width: 100% !important;
+    .person-result {
+      position:relative;
+      .result-image {
+        width:35px;
+        height:35px;
+      }
+      .result-body {
+        margin-left: 40px;
+        padding-top: 4px;
+      }
+      .result-actions {
+        position:absolute;
+        right:0;
+        top:0;
       }
     }
   }

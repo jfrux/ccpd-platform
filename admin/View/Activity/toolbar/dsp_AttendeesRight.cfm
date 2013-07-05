@@ -1,9 +1,9 @@
 <cfoutput>
   
 <div class="btn-toolbar">
-  <div class="btn-group pull-left js-partic-actions">
-    <a class="btn btn-mini dropdown-toggle disabled" data-toggle="dropdown" href="##">SELECTED: <span id="label-status-selected" class="js-attendee-status-selected-count">0</span></a>
-    <a class="btn btn-mini btn-selected-actions dropdown-toggle disabled" data-toggle="dropdown" href="##">
+  <div class="btn-group pull-left js-selected-actions">
+    <a class="btn btn-mini dropdown-toggle disabled" data-toggle="dropdown" href="##">SELECTED: <span id="label-status-selected" class="js-status-selected-count">0</span></a>
+    <a class="btn btn-mini dropdown-toggle disabled" data-toggle="dropdown" href="##">
       Actions
       <span class="caret"></span>
     </a>

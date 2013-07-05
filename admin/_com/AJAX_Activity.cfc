@@ -556,7 +556,7 @@
         <cfreturn status.getJSON() />
     </cffunction>
 	
-	<cffunction name="removeCheckedAttendees" access="Remote" output="false" returntype="string">
+	<cffunction name="removeCheckedAttendees" access="Remote" output="false" returntype="string" returnformat="plain">
 		<cfargument name="AttendeeList" required="false" type="string" default="">
 		<cfargument name="ActivityID" required="true" type="numeric">
         

@@ -61,7 +61,15 @@
                       </true>
                     </if>
                    
-                   <do action="vLayout.Default" />
+                   <if condition="len(trim(layout)) GT 0">
+                      <true>
+                        <invoke object="myFusebox" 
+                          methodcall="do('vLayout.#layout#')" />
+                      </true>
+                      <false>
+                        <do action="vLayout.Default" />
+                      </false>
+                    </if>
                 </false>
               </if>
           </false>
@@ -139,11 +147,11 @@
   </fuseaction>
   
   <fuseaction name="Finder">
+    <set name="layout" value="none" />
     <xfa name="SearchSubmit" value="Person.Finder" />
     <do action="mPerson.Search" />
     <set name="request.page.title" value="Search People" /><xfa name="FrmSubmit" value="Person.Home" />
     <do action="vPerson.Search" contentvariable="Request.Page.Body" />
-    <do action="vLayout.None" />
   </fuseaction>
   
   <fuseaction name="Notes">
@@ -153,7 +161,6 @@
   <fuseaction name="PhotoUpload">
     <do action="mPerson.PhotoUpload" />
     <do action="vPerson.PhotoUpload" contentvariable="Request.Page.Body" />
-    <do action="vLayout.None" />
   </fuseaction>
   
   <fuseaction name="Preferences">

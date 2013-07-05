@@ -1,12 +1,7 @@
 <cfparam name="Attributes.Page" default="0">
 
-<script type="text/javascript">
-<cfoutput>
-var nId = #Attributes.Page#;
-var dtStatusMask = '#DateFormat(Now(), "MM/DD/YYYY")# #TimeFormat(Now(), "hh:mmTT")#';
-</cfoutput>
-
-App.Activity.Participants.bind()
+<script>
+App.Activity.Committee.Ahah.start();
 </script>
 
 <cfoutput>
@@ -14,17 +9,17 @@ App.Activity.Participants.bind()
 <div style="display: none;" id="prototypes">
 	<div style="display: none;" id="action_menu">
 		<ul style="display: block;" class="round" id="menuActions-{personid}">
-        	<cfloop query="qActivityCredits">
-                <cfswitch expression="#qActivityCredits.CreditName#">
-                    <cfcase value="CME">
-                        <li class="pCMECert"><a href="Report.CMECert?ActivityID=#Attributes.ActivityID#&ReportID=5&SelectedMembers={personid}"><i/>CME Certificate</a></li>
-                    </cfcase>
-                    <cfcase value="CNE">
-                        <li class="CNECert"><a href="Report.CNECert?ActivityID=#Attributes.ActivityID#&ReportID=6&SelectedMembers={personid}"><i/>CNE Certificate</a></li>
-                    </cfcase>
-                </cfswitch>
-            </cfloop>
-            <li class="sendCertificate"><a href="javascript:void(0);"><i/>Send Certificate</a></li>
+    	<cfloop query="qActivityCredits">
+            <cfswitch expression="#qActivityCredits.CreditName#">
+                <cfcase value="CME">
+                    <li class="pCMECert"><a href="Report.CMECert?ActivityID=#Attributes.ActivityID#&ReportID=5&SelectedMembers={personid}"><i/>CME Certificate</a></li>
+                </cfcase>
+                <cfcase value="CNE">
+                    <li class="CNECert"><a href="Report.CNECert?ActivityID=#Attributes.ActivityID#&ReportID=6&SelectedMembers={personid}"><i/>CNE Certificate</a></li>
+                </cfcase>
+            </cfswitch>
+        </cfloop>
+      <li class="sendCertificate"><a href="javascript:void(0);"><i/>Send Certificate</a></li>
 			<li class="assess"><a href="#myself#Activity.AttendeeDetails?ActivityID={activityid}&PersonID={personid}"><i/>Assessments</a></li>
 			<li class="pifform"><a href="#myself#Activity.AttendeeCDC?ActivityID={activityid}&PersonID={personid}"><i/>PIF Form</a></li>
 			<li class="credits"><a href="#myself#Activity.AdjustCredits?ActivityID={activityid}&PersonID={personid}"><i/>Credits</a></li>
@@ -44,7 +39,7 @@ App.Activity.Participants.bind()
     <table class="ViewSectionGrid profile-grid span24 table table-bordered table-condensed">
       <thead>
         <tr>
-          <th class="span1"><input type="checkbox" name="CheckAll" id="CheckAll" /></th>
+          <th class="span1"><input type="checkbox" name="CheckAll" id="CheckAll" class="js-select-all" /></th>
           <th class="span7">Name</th>
           <th class="span5">Status</th>
           <th class="span3">Is MD?</th>
@@ -53,9 +48,9 @@ App.Activity.Participants.bind()
       </thead>
       <tbody>
         <cfoutput query="qAttendees" startrow="#AttendeePager.getStartRow()#" maxrows="#AttendeePager.getMaxRows()#">
-          <tr id="attendeeRow-#qAttendees.attendeeId#" class="personRow AllAttendees<cfif qAttendees.personDeleted> personDeleted</cfif>" rel="##PersonOptions#PersonID#">
-                    <td valign="top">
-						<input type="checkbox" name="Checked" class="MemberCheckbox" id="Checked-#attendeeId#" value="#attendeeId#" />
+          <tr id="attendeeRow-#qAttendees.attendeeId#" class="<cfif personId GT 0>personRow</cfif> js-row js-select-all-rows AllRows AllAttendees<cfif qAttendees.personDeleted> personDeleted</cfif>" data-key="#attendeeid#" data-personkey="#personid#" data-name="#LastName#, #FirstName#" class="js-row js-select-all-rows AllRows" rel="##PersonOptions#PersonID#">
+            <td valign="top">
+						<input type="checkbox" name="Checked" class="MemberCheckbox js-select-one" id="Checked#PersonID#" value="#PersonID#" />
 						<input type="hidden" class="attendeeId" value="#attendeeId#" />
 						<input type="hidden" class="personId" value="#qAttendees.personId#" />
 					</td>
