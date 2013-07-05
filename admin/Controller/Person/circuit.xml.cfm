@@ -106,6 +106,7 @@
       </case>
       <case value="Insert">
         <do action="vPerson.CreatePerson" contentvariable="Request.Page.Body" />
+          <do action="vLayout.None" />
       </case>
     </switch>
   </fuseaction>

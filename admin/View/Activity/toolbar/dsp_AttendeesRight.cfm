@@ -11,10 +11,10 @@
       <li><a href="javascript:void(0);" id="RemoveChecked" title="Remove selected registrants"><img src="#Application.Settings.RootPath#/_images/icons/application_form_delete.png" align="absmiddle" style="padding-right:4px;" />Remove</a></li>
       <li class="divider"></li>
       <li class="nav-header">CHANGE STATUSES</li>
-      <li><a href="##" class="js-change-status" id="change-status-1">Complete</a></li>
-      <li><a href="##" class="js-change-status" id="change-status-4">Failed</a></li>
-      <li><a href="##" class="js-change-status" id="change-status-2">In Progress</a></li>
-      <li><a href="##" class="js-change-status" id="change-status-3">Registered</a></li>
+      <li><a href="##" class="js-change-status" id="change-status-1" data-key="1">Complete</a></li>
+      <li><a href="##" class="js-change-status" id="change-status-4" data-key="4">Failed</a></li>
+      <li><a href="##" class="js-change-status" id="change-status-2" data-key="2">In Progress</a></li>
+      <li><a href="##" class="js-change-status" id="change-status-3" data-key="3">Registered</a></li>
       <li class="divider"></li>
       <li class="nav-header">CERTIFICATES</li>
       <cfloop query="qActivityCredits">
