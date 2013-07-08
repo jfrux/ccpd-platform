@@ -100,7 +100,7 @@ $(document).ready(function() {
     </cfif>
   </div>
   <div class="searchbar span6">
-    <div class="SearchBar js-searchbar">
+    <div class="SearchBar searchbar-inner js-searchbar">
       <cfinclude template="infobar/searchFilters.cfm" />
     </div>
   </div>

@@ -5,6 +5,7 @@
 #=require ./base
 #=require app/activity
 #=require app/components
+#=require app/components/ckeditor-config
 #=require app/components/actionmenu
 #=require app/components/combobox
 #=require app/components/prettydate

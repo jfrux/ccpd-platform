@@ -30,10 +30,10 @@
         <true>
           <if condition="#structKeyExists(attributes,'activityid')# AND attributes.activityID GT 0">
             <true>
+              <invoke object="myFusebox" 
+                    methodcall="do('vActivity.#params.action#','multiformcontent')" />
               <if condition="#request.currentTab.hasToolbar#">
                 <true>
-                  <invoke object="myFusebox" 
-                    methodcall="do('vActivity.#params.action#','multiformcontent')" />
                   <invoke object="myFusebox" 
                           methodcall="do('vActivity.#params.action#right','multiformright')" />
                 </true>
@@ -224,9 +224,11 @@
       <set name="title" value="Credit &amp; Points" />
       
     </fuseaction>
+
     <fuseaction name="Detail">
       
     </fuseaction>
+
     <fuseaction name="Docs">
       <do action="mActivity.getDocTypes" />
       <do action="mActivity.getDocs" />

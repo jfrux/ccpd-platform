@@ -70,8 +70,8 @@ Progress
 </ul>
 </div>
 <div class="btn-group">
-  <a class="btn btn-mini" id="PublishActivity" data-tooltip-title="Publish Activity"><i class="icon-globe"></i></a>
-  <a class="btn btn-mini" id="UnpublishActivity" data-tooltip-title="Unpublish Activity"><i class="icon-remove"></i></a>
+<a class="btn btn-mini" id="PublishActivity" data-tooltip-title="Publish Activity"><i class="icon-globe"></i></a>
+<a class="btn btn-mini" id="UnpublishActivity" data-tooltip-title="Unpublish Activity"><i class="icon-cancel"></i></a>
 </div>
 </div>
 </cfoutput>
