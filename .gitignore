@@ -1,6 +1,7 @@
 WEB-INF/railo
 WEB-INF/flex
 WEB-INF/.htaccess
+vendor/bundle
 parsed
 _uploads
 *.xlsx

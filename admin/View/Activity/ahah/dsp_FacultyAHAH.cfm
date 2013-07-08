@@ -30,19 +30,23 @@ App.Activity.Faculty.Ahah.start();
               <div class="DislosureBox js-disclosure-box span12" id="DislosureBox#PersonID#">
                 <div class="btn-group">
                 <cfif qActivityFacultyList.DisclosureFileID NEQ "">
-                  <cfif qActivityFacultyList.DisclosureApproveFlag EQ "N">
-                    <cfset DisclosureFileApproval = "Approve">
-                  <cfelse>
-                    <cfset DisclosureFileApproval = "Unapprove">
-                  </cfif>
                   
                   <a href="#Myself#File.Download?Mode=Person&ModeID=#qActivityFacultyList.PersonID#&ID=#qActivityFacultyList.DisclosureFileID#" class="btn js-disclosure-btn" title="Download Disclosure">
                     <i class="icon-download"></i>
                   </a>
-                  <a id="Approve|Disclosure|#qActivityFacultyList.PersonID#" class="btn<cfif qActivityFacultyList.DisclosureApproveFlag EQ 'Y'> disabled<cfelse> approveFile</cfif> js-disclosure-btn" href="javascript:void(0);" data-tooltip-title="<cfif qActivityFacultyList.DisclosureApproveFlag EQ 'Y'>Approved #DateFormat(qActivityFacultyList.DisclosureCreatedDate,"MM/DD/YYYY")#<cfelse>Mark Approved</cfif>"><i class="icon-check"></i></a>
-                  <a href="javascript:void(0);" id="Unapprove|Disclosure|#qActivityFacultyList.PersonID#" class="btn js-disclosure-btn<cfif qActivityFacultyList.DisclosureApproveFlag NEQ 'Y'> disabled<cfelse> approveFile</cfif>" data-tooltip-title="Revoke Approval"><i class="icon-remove"></i></a>
+                  <cfif qActivityFacultyList.DisclosureApproveFlag EQ "N">
+                    <a id="Approve|Disclosure|#qActivityFacultyList.PersonID#" class="btn<cfif qActivityFacultyList.DisclosureApproveFlag EQ 'Y'> disabled<cfelse> approveFile</cfif> js-disclosure-btn" href="javascript:void(0);" data-tooltip-title="<cfif qActivityFacultyList.DisclosureApproveFlag EQ 'Y'>Approved #DateFormat(qActivityFacultyList.DisclosureCreatedDate,"MM/DD/YYYY")#<cfelse>Mark Approved</cfif>">
+                      <i class="icon-check"></i>
+                    </a>
+                  <cfelse>
+                    <a href="javascript:void(0);" id="Unapprove|Disclosure|#qActivityFacultyList.PersonID#" class="btn js-disclosure-btn<cfif qActivityFacultyList.DisclosureApproveFlag NEQ 'Y'> disabled<cfelse> approveFile</cfif>" data-tooltip-title="Revoke Approval">
+                      <i class="icon-remove"></i>
+                    </a>
+                  </cfif>
                 </cfif>
-                <a href="javascript:void(0);" class="UploadFile js-disclosure-btn btn" id="File|#qActivityFacultyList.PersonID#" data-tooltip-title="Upload New Disclosure"><i class="icon-upload-alt"></i></a>
+                <a href="javascript:void(0);" class="UploadFile js-disclosure-btn btn" id="File|#qActivityFacultyList.PersonID#" data-tooltip-title="Upload New Disclosure">
+                  <i class="icon-upload"></i>
+                </a>
                 </div>
               </div>
             </div>
@@ -52,17 +56,23 @@ App.Activity.Faculty.Ahah.start();
             <div class="CVBox js-cv-box span12" id="CVBox#PersonID#">
               <div class="btn-group">
               <cfif qActivityFacultyList.CVFileID NEQ "">
-                <cfif qActivityFacultyList.CVApproveFlag EQ "N">
-                  <cfset CVFileApproval = "Approved">
-                <cfelse>
-                  <cfset CVFileApproval = "Unapprove">
-                </cfif>
                   
-                <a class="btn js-cv-btn" href="#Myself#File.Download?Mode=Person&ModeID=#qActivityFacultyList.PersonID#&ID=#qActivityFacultyList.CVFileID#" title="Download CV"><i class="icon-download"></i></a>
-                <a class="btn js-cv-btn<cfif qActivityFacultyList.CVApproveFlag EQ 'Y'> disabled<cfelse> approveFile</cfif>" href="javascript:void(0);" id="Approve|CV|#qActivityFacultyList.PersonID#"   data-tooltip-title="<cfif qActivityFacultyList.CVApproveFlag EQ 'Y'>Approved #DateFormat(qActivityFacultyList.CVCreatedDate,"MM/DD/YYYY")#<cfelse>Mark Approved</cfif>"><i class="icon-check"></i></a>
-                <a class="btn js-cv-btn<cfif qActivityFacultyList.CVApproveFlag NEQ 'Y'> disabled<cfelse> approveFile</cfif>" id="Unapprove|CV|#qActivityFacultyList.PersonID#" href="javascript:void(0);" data-tooltip-title="Revoke Approval"><i class="icon-remove"></i></a>
+                <a class="btn js-cv-btn" href="#Myself#File.Download?Mode=Person&ModeID=#qActivityFacultyList.PersonID#&ID=#qActivityFacultyList.CVFileID#" title="Download CV">
+                  <i class="icon-download"></i>
+                </a>
+                <cfif qActivityFacultyList.CVApproveFlag EQ "N">
+                  <a class="btn js-cv-btn<cfif qActivityFacultyList.CVApproveFlag EQ 'Y'> disabled<cfelse> approveFile</cfif>" href="javascript:void(0);" id="Approve|CV|#qActivityFacultyList.PersonID#"   data-tooltip-title="<cfif qActivityFacultyList.CVApproveFlag EQ 'Y'>Approved #DateFormat(qActivityFacultyList.CVCreatedDate,"MM/DD/YYYY")#<cfelse>Mark Approved</cfif>">
+                    <i class="icon-check"></i>
+                  </a>
+                <cfelse>
+                  <a class="btn js-cv-btn<cfif qActivityFacultyList.CVApproveFlag NEQ 'Y'> disabled<cfelse> approveFile</cfif>" id="Unapprove|CV|#qActivityFacultyList.PersonID#" href="javascript:void(0);" data-tooltip-title="Revoke Approval">
+                    <i class="icon-remove"></i>
+                  </a>
+                </cfif>
               </cfif>
-              <a class="UploadFile btn js-cv-btn" href="javascript:void(0);" id="File|#qActivityFacultyList.PersonID#" data-tooltip-title="Upload New CV"><i class="icon-upload-alt"></i></a>
+              <a class="UploadFile btn js-cv-btn" href="javascript:void(0);" id="File|#qActivityFacultyList.PersonID#" data-tooltip-title="Upload New CV">
+                <i class="icon-upload"></i>
+              </a>
               </div>
             </div>
           </td>
