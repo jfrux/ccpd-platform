@@ -31,7 +31,7 @@ Progress
 <cfloop from="1" to="#arrayLen(PublishElementList)#" index="i">
 <cfset elem = PublishElementList[i] />
 <cfif elem.Show>
-<li><a href="#elem.Link#"><i <cfif elem.image EQ 'tick'>style="color:green;"<cfelse>style="color:red;"</cfif>class="<cfif elem.image EQ 'tick'>icon-ok-circle<cfelse>icon-exclamation-sign</cfif>"></i> #elem.Field#</a></li>
+<li><a href="#elem.Link#"><i <cfif elem.image EQ 'tick'>style="color:green;"<cfelse>style="color:red;"</cfif>class="<cfif elem.image EQ 'tick'>icon-ok-circle<cfelse>icon-attention-circle</cfif>"></i> #elem.Field#</a></li>
 </cfif>
 </cfloop>
 </ul>

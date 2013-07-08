@@ -75,7 +75,7 @@ App.module "Activity.Files.Ahah", (Self, App, Backbone, Marionette, $) ->
           $row.find('td').css "background-color", "#FFF"
         return
       
-      console.log $copyLink
+     # console.log $copyLink
     
     $selectAll.on "click", ->
       App.logDebug "selectAll Clicked"
@@ -128,25 +128,32 @@ App.module "Activity.Files.Ahah", (Self, App, Backbone, Marionette, $) ->
       nFile = $.ListGetAt(@id, 3, "-")
       nComponent = $.ListGetAt(@id, 2, "-")
       sFileName = prompt("What is the display name of this component?")
-      $.ajax
-        url: sRootPath + "/_com/AJAX_Activity.cfc"
-        type:'post'
-        dataType:'json'
-        data:
-          method: "publishFile"
-          ActivityID: nActivity
-          FileID: nFile
-          FileName: sFileName
-          ComponentID: nComponent
-          returnFormat: "plain"
-        success: (data) ->
-          if data.STATUS
-            addMessage data.STATUSMSG, 250, 6000, 4000
-            Parent.refresh()
-          else
-            addError data.STATUSMSG, 250, 6000, 4000
+
+      # DETERMINE IF THE USER CANCELLED THE ACTION
+      unless sFileName == null
+        # DETERMINE IF THE USER PROVIDED A COMPONENT NAME
+        unless sFileName == ''
+          $.ajax
+            url: sRootPath + "/_com/AJAX_Activity.cfc"
+            type:'post'
+            dataType:'json'
+            data:
+              method: "publishFile"
+              ActivityID: nActivity
+              FileID: nFile
+              FileName: sFileName
+              ComponentID: nComponent
+              returnFormat: "plain"
+            success: (data) ->
+              if data.STATUS
+                addMessage data.STATUSMSG, 250, 6000, 4000
+                Parent.refresh()
+              else
+                addError data.STATUSMSG, 250, 6000, 4000
+              return
           return
-      return
+        else
+          addError 'You must provide a display name for the component.'
 
 
     $(".UnpublishLink").on "click", ->
@@ -161,14 +168,11 @@ App.module "Activity.Files.Ahah", (Self, App, Backbone, Marionette, $) ->
           FileID: nFile
           returnFormat: "plain"
         success: (data) ->
-          cleanData = $.Trim(data)
-          status = $.ListGetAt(cleanData, 1, "|")
-          statusMsg = $.ListGetAt(cleanData, 2, "|")
-          if status is "Success"
-            addMessage statusMsg, 250, 6000, 4000
+          if data.STATUS
+            addMessage data.STATUSMSG, 250, 6000, 4000
             Parent.refresh()
           else
-            addError statusMsg, 250, 6000, 4000
+            addError data.STATUSMSG, 250, 6000, 4000
           return
 
 

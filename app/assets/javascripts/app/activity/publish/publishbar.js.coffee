@@ -32,6 +32,8 @@ App.module "Activity.Publish.Bar", (Self, App, Backbone, Marionette, $) ->
     else
       $('.js-unpublishactivity-btn').hide()
 
+    $('.js-publishactivity-btn, js-unpublishactivity-btn').attr 'disabled', 'disabled' unless data.nFillPercent is 100
+
     # ACTIVITY PUBLISH FUNCTIONALITY
     publishActivity = (published) ->
       $.ajax(
@@ -68,9 +70,15 @@ App.module "Activity.Publish.Bar", (Self, App, Backbone, Marionette, $) ->
       container: 'body'
 
     # PUBLISH ACTIVITY
-    $(".js-publishactivity-btn").on "click", ->
-      publishActivity true
+      $(".js-publishactivity-btn").on "click", ->
+        unless $(".js-publishactivity-btn").attr("disabled")
+          publishActivity true
+        else
+          addError 'More progress is required.  See Progress dropdown for more information.'
 
     # UNPUBLISH ACTIVITY
-    $(".js-unpublishactivity-btn").on "click", ->
-      publishActivity false
+      $(".js-unpublishactivity-btn").on "click", ->
+        unless $(".js-unpublishactivity-btn").attr("disabled")
+          publishActivity false
+        else
+          addError 'More progress is required.  See Progress dropdown for more information.'

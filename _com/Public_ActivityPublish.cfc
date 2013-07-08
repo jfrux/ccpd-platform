@@ -565,9 +565,14 @@
 		<cfreturn status />
 	</cffunction>
     
-    <cffunction name="UnpublishFile" hint="Unpublishes provided file." access="Public" output="false" returntype="string">
+    <cffunction name="UnpublishFile" hint="Unpublishes provided file." access="Public" output="false" returntype="struct">
     	<cfargument name="ActivityID" type="numeric" required="yes">
         <cfargument name="FileID" type="numeric" required="yes">
+        
+        <cfset var Status = createObject("component","#Application.Settings.Com#returnData.buildStruct").init()>
+        
+        <cfset status.setStatus(false)>
+        <cfset status.setStatusMsg("Cannot unpublish current file due to unknown reasons.")>
         
         <cfquery name="UpdateComponent" datasource="#Application.Settings.DSN#">
         	UPDATE 
@@ -579,8 +584,9 @@
                 FileID = <cfqueryparam value="#Arguments.FileID#" cfsqltype="cf_sql_integer" />
         </cfquery>
         
-        <cfset Status = "Success|File has been unpublished.">
+        <cfset status.setStatus(true)>
+        <cfset status.setStatusMsg("File has been unpublished.")>
         
-        <cfreturn Status />
+        <cfreturn status />
     </cffunction>
 </cfcomponent>

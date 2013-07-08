@@ -440,6 +440,7 @@
         
         <cfset var status = createObject("component", "#Application.Settings.Com#returnData.buildStruct").init()>
         
+        <cfcontent type="text/javascript" />
         
         <cfset status.setStatus(false)>
         <cfset status.setStatusMsg("Cannot access publish function for activities.")>
@@ -1180,11 +1181,16 @@
     	<cfargument name="ActivityID" type="numeric" required="yes">
         <cfargument name="FileID" type="numeric" required="yes">
         
-        <cfset Status = "Fail|Cannot access the unpublish function for activity documents.">
+        <cfset var Status = createObject("component","#Application.Settings.Com#returnData.buildStruct").init()>
+
+        <cfcontent type="text/javascript" />
         
-        <cfset Status = Application.ActivityPublish.UnpublishFile(Arguments.ActivityID,Arguments.FileID)>
+        <cfset status.setStatus(false)>
+        <cfset status.setStatusMsg("Cannot access the unpublish function for activity documents.")>
         
-        <cfreturn Status />
+        <cfset status = Application.ActivityPublish.UnpublishFile(Arguments.ActivityID,Arguments.FileID)>
+        
+        <cfreturn status.getJSON() />
     </cffunction>
 	
 	<cffunction name="updateActivityStatus" access="Remote" output="no" displayname="Set Activity Status">

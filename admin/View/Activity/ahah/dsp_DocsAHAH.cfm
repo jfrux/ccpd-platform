@@ -43,7 +43,7 @@ function FileType(path)
         </td>
         <td>
           <div class="btn-group btn-group-vertical">
-            <a href="#Myself#File.Download?Mode=Activity&ModeID=#Attributes.ActivityID#&ID=#qFileList.FileID#" title="Download Document" class="btn js-download-file-link" data-tooltip-title="Download File"><i class="icon-download-alt"></i></a>
+            <a href="#Myself#File.Download?Mode=Activity&ModeID=#Attributes.ActivityID#&ID=#qFileList.FileID#" title="Download Document" class="btn js-download-file-link" data-tooltip-title="Download File"><i class="icon-download"></i></a>
             <a href="#Myself#File.Edit&Mode=Activity&ModeID=#Attributes.ActivityID#&ID=#qFileList.FileID#" title="Edit Details" class="btn js-edit-file-link" data-tooltip-title="Edit File Details"><i class="icon-pencil"></i></a>
             <a href="##" title="Copy File Link" class="btn js-copy-file-link" data-clipboard-text="http://ccpd.uc.edu/download/Activity/#Attributes.ActivityID#/#qFileList.FileID#" data-tooltip-title="Copy Public Link"><i class="icon-link"></i></a>
           </div>
