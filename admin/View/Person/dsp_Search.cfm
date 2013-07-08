@@ -1,12 +1,10 @@
 <cfparam name="Attributes.ActivityID" default="">
-<cfparam name="Attributes.PersonID" default="">
+<cfparam name="Attributes.new_personid" default="0">
 <cfparam name="attributes.instance" default="" />
 <script>
 <cfoutput>
 var sInstance = '#attributes.instance#';
-<cfif Attributes.new_personid NEQ "">
 var nPerson = #Attributes.new_personid#;
-</cfif>
 </cfoutput>
 $(document).ready(function() {
   $("input").unbind("keyup");

@@ -30,22 +30,16 @@
         <cfset qCategories = Application.Com.CategoryGateway.getByAttributes(OrderBy="Name")>
         <cfset qPersonalCats = Application.Com.CategoryGateway.getByCookie(TheList=Cookie.USER_Containers,OrderBy="Name")>
 
-        <select name="CategoryID" id="CategoryID" class="input-block-level">
-          <option value="0">Any Container</option>
-          <cfif qPersonalCats.RecordCount GT 0>
-          <option value="0">---- Your Containers ----</option>
-            <cfloop query="qPersonalCats">
-            <option value="#qPersonalCats.CategoryID#"<cfif Attributes.CategoryID EQ qPersonalCats.CategoryID> Selected</cfif>>#qPersonalCats.Name#</option>
+        <div class="category-combobox">
+          <select name="CategoryID" id="CategoryID" class="input-block-level">
+            <option value="0"></option>
+            <cfloop query="qCategories">
+              <cfif NOT ListFind(Cookie.USER_Containers,qCategories.CategoryID,",")>
+              <option value="#qCategories.CategoryID#"<cfif Attributes.CategoryID EQ qCategories.CategoryID> Selected</cfif>>#qCategories.Name#</option>
+              </cfif>
             </cfloop>
-          <option value="0">--- All Other Containers ----</option>
-          </cfif>
-          
-          <cfloop query="qCategories">
-            <cfif NOT ListFind(Cookie.USER_Containers,qCategories.CategoryID,",")>
-            <option value="#qCategories.CategoryID#"<cfif Attributes.CategoryID EQ qCategories.CategoryID> Selected</cfif>>#qCategories.Name#</option>
-            </cfif>
-          </cfloop>
-        </select>
+          </select>
+        </div>
         <button class="btn"><i class="icon-search"></i></button>
         <input type="hidden" name="Search" value="1" />
       </form>

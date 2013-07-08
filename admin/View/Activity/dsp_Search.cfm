@@ -84,8 +84,8 @@ App.User.ActivitySearch.start(searchSettings);
     </div>
   </cfif>
   </div>
-  <div class="span6">
-    <div class="SearchBar searchbar js-searchbar">
+  <div class="searchbar span6">
+    <div class="SearchBar js-searchbar">
       <cfinclude template="infobar/dsp_searchFilters.cfm" />
     </div>
   </div>
