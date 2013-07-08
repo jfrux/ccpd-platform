@@ -69,7 +69,7 @@ App.module "Activity.Participants.Ahah", (Self, App, Backbone, Marionette, $) ->
       $row = $(this)
       row_id = $row.data('key')
       person_id = $row.data('personkey')
-
+      $row.isPerson()
       if(person_id > 0)
         $personLink = $row.find('.PersonLink')
       else
