@@ -122,7 +122,11 @@
         
         <!--- GET PUB GEN INFO --->
         <cfset PubGeneralBean = CreateObject("component","#Application.Settings.Com#ActivityPubGeneral.ActivityPubGeneral").Init(ActivityID=Arguments.ActivityID)>
-        <cfset PubGeneralBean = Application.Com.ActivityPubGeneralDAO.Read(PubGeneralBean)>
+        <cfset pubGeneralExists = Application.Com.ActivityPubGeneralDAO.exists(PubGeneralBean)>
+
+        <cfif pubGeneralExists>
+            <cfset PubGeneralBean = Application.Com.ActivityPubGeneralDAO.Read(PubGeneralBean)>
+        </cfif>
         
         <!--- SET PUBLISH FLAG --->
         <cfif PubGeneralBean.getPublishFlag() EQ "N">
@@ -133,7 +137,7 @@
         <cfset PubGeneralBean.setUpdated("#DateFormat(Now(), 'MM/DD/YYYY')# #TimeFormat(Now(), 'hh:mm:ssTT')#")>
         
         <!--- SAVE PUBGENBEAN --->
-        <cfset PubGeneralSave = Application.Com.ActivityPubGeneralDAO.Update(PubGeneralBean)>
+        <cfset PubGeneralSave = Application.Com.ActivityPubGeneralDAO.save(PubGeneralBean)>
 		
         <cfif PubGeneralSave>
 			<cfset status.setStatus(true)>

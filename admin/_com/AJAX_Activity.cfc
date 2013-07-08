@@ -440,7 +440,6 @@
         
         <cfset var status = createObject("component", "#Application.Settings.Com#returnData.buildStruct").init()>
         
-        <cfcontent type="text/javascript" />
         
         <cfset status.setStatus(false)>
         <cfset status.setStatusMsg("Cannot access publish function for activities.")>
