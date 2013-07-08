@@ -3,9 +3,9 @@
 <cfoutput>
 #styleSheetLinkTag(sources="vendors",debug=true)#
 #styleSheetLinkTag(sources="application",debug=true)#
-<cfif request.page.responsive>
+<!--- <cfif request.page.responsive>
 	#styleSheetLinkTag(sources="responsive",debug=false)#
-</cfif>
+</cfif> --->
 </cfoutput>
 <!--- <!--[if lt IE 8]>
   <link href="/stylesheets/ie.css" media="screen, projection" rel="stylesheet" type="text/css" />

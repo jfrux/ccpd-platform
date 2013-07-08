@@ -8,8 +8,9 @@
     padding: 15px;
     position: relative;
 }
-.ui-dialog-content,.modal-body {
-  form {
+.ui-dialog-content,.modal-body,.no-layout {
+  .form-horizontal {
+    padding:10px;
     .control-group-heading {
       span.text {
           font-size:13px;

@@ -8,6 +8,7 @@ App.module "Activity.Participants", (Self, App, Backbone, Marionette, $) ->
   $loading = Self.el.$loading = null
   selectedCount = 0
   selected = ""
+  addlAttendeesUnsaved = false
   @on "before:start", ->
     App.logInfo "starting: #{Self.moduleName}"
     return
@@ -198,17 +199,20 @@ App.module "Activity.Participants", (Self, App, Backbone, Marionette, $) ->
     Self.el.$loading = $loading = $("#ParticipantsLoading")
     #refresh()
     $("#ParticipantList").ajaxForm()
+    
     $addlAttendeesMenu = $container.find(".js-addl-attendees-menu")
     
     $addlAttendeesMenu.find('form').on "click",(e) ->
       e.stopPropagation();
       return
     #App.logInfo CookieAttendeeStatus
+    
     if parseInt(CookieAttendeeStatus) > 0
       statusText = $("#attendees-" + CookieAttendeeStatus).text()
       #App.logInfo statusText
       $(".js-attendee-filter-button").find("span:first").text statusText
-    # CHANGE ATTENDEE STATAUS START
+    
+    # CHANGE ATTENDEE STATUS START
     $('.toolbar .dropdown-menu').find('form').click (e)->
       e.stopPropagation()
       return
@@ -254,6 +258,7 @@ App.module "Activity.Participants", (Self, App, Backbone, Marionette, $) ->
         refresh parseInt(CookieAttendeePage), parseInt(nStatus)
     else
       refresh nId, nStatus
+    
     # MaxRegistrants = $("#MaxRegistrants").val()
     # AddlAttendees = $("#AddlAttendees").val()
     # NoChange = 0
@@ -333,7 +338,7 @@ App.module "Activity.Participants", (Self, App, Backbone, Marionette, $) ->
             #updateStats()
             refresh nId, nStatus
 
-  # REMOVE ALL PEOPLE FROM Activity 
+    # REMOVE ALL PEOPLE FROM Activity 
     $("#RemoveAll").bind "click", ->
       if confirm("WARNING!\nYou are about to remove ALL attendees from this Activity!\nAre you sure you wish to continue?")
         cleanData = ""

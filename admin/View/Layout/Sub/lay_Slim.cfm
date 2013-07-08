@@ -23,13 +23,13 @@ App.User.start({
 </script>
 </cfoutput>
 <cfoutput>
-<div class="slim">
+<div class="slim profile">
   <div class="row">
     <div class="span24">
       <div class="content js-profile-content">
         <cfoutput>
         <div class="content-title">
-          <i class=""></i> <span>#request.page.title#</span>
+          <h3><i class=""></i> <span>#request.page.title#</span></h3>
         </div>
         <div class="row-fluid">
           <div class="span24 js-content-toggle">

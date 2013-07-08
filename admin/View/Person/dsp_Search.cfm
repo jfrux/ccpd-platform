@@ -1,20 +1,20 @@
 <cfparam name="Attributes.ActivityID" default="">
 <cfparam name="Attributes.PersonID" default="">
-
+<cfparam name="attributes.instance" default="" />
 <script>
-//App.User.PersonSearch.start();
+<cfoutput>
+var sInstance = '#attributes.instance#';
+<cfif Attributes.new_personid NEQ "">
+var nPerson = #Attributes.new_personid#;
+</cfif>
+</cfoutput>
 $(document).ready(function() {
-  <cfif Attributes.PersonID NEQ "">
-  <cfoutput>
-  var nPerson = #Attributes.PersonID#;
-  </cfoutput>
-  </cfif>
   $("input").unbind("keyup");
   $("select").unbind("change");
   $("#LastName").focus();
   
   $(".PersonAdder").click(function() {
-    parent.setPerson<cfoutput>#Attributes.Instance#</cfoutput>(this.id);
+    eval('parent.setPerson' + sInstance + '(this.id)');
   });
   
   $("#KeepOpen").click(function() {
@@ -25,9 +25,9 @@ $(document).ready(function() {
     }
   });
   
-  <cfif Attributes.PersonID NEQ "">
-    parent.setPerson<cfoutput>#Attributes.Instance#</cfoutput>(nPerson);
-  </cfif>
+  if (nPerson) {
+    eval('parent.setPerson' + sInstance + '(nPerson)');
+  }
 });
 </script>
 <cfif Attributes.Fuseaction EQ "Person.Finder">

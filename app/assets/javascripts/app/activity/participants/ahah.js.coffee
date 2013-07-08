@@ -65,8 +65,6 @@ App.module "Activity.Participants.Ahah", (Self, App, Backbone, Marionette, $) ->
         $("#PersonRow" + nPersonID).find('td').css "background-color", "#FFF"
       return
 
-    
-
     $(".js-row").each ->
       $row = $(this)
       row_id = $row.data('key')
@@ -74,28 +72,6 @@ App.module "Activity.Participants.Ahah", (Self, App, Backbone, Marionette, $) ->
 
       if(person_id > 0)
         $personLink = $row.find('.PersonLink')
-      
-        $personLink.on "click", (e) ->
-          id = $row.data('key')
-          name = $row.data('name')
-          $("#PersonDetail").dialog "open",
-          e.preventDefault()
-          return false
-        $("#PersonDetail").dialog
-          title: "Person Detail"
-          modal: true
-          autoOpen: false
-          height: 550
-          width: 855
-          resizable: false
-          dragStop: (ev, ui) ->
-
-          open: ->
-            $(this).find('iframe').attr "src", sMyself + "Person.Detail?PersonID=" + nPersonID + "&Mini=1"
-            return
-          close: ->
-            return
-          resizeStop: (ev, ui) ->
       else
         $deleteLink = $row.find(".deleteLink")
         $deleteLink.one "click", ->
@@ -120,17 +96,4 @@ App.module "Activity.Participants.Ahah", (Self, App, Backbone, Marionette, $) ->
     
     # UPDATED SELECTED MEMBER COUNT
     $(".js-status-selected-count").text(SelectedCount)
-    
-    $("#PersonDetail").dialog
-      title: "Person Detail"
-      modal: true
-      autoOpen: false
-      height: 550
-      width: 855
-      position: [100, 100]
-      resizable: false
-      dragStop: (ev, ui) ->
-
-      open: ->
-        $("#frameDetail").attr "src", sMyself + "Person.Detail?PersonID=" + nPersonID + "&Mini=1"
     return

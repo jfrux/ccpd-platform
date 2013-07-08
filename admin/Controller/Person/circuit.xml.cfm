@@ -61,7 +61,7 @@
                       </true>
                     </if>
                    
-                   <if condition="len(trim(layout)) GT 0">
+                   <if condition="structKeyExists(variables,'layout') AND len(trim(layout)) GT 0">
                       <true>
                         <invoke object="myFusebox" 
                           methodcall="do('vLayout.#layout#')" />
@@ -101,7 +101,7 @@
       <case value="Default">
         <do action="vPerson.CreateRight" contentvariable="multiformright" />
         <do action="vPerson.CreatePerson" contentvariable="multiformcontent" />
-        <do action="vLayout.Sub_MultiForm" contentvariable="request.page.body" />
+        <do action="vLayout.sub_slim" contentvariable="request.page.body" />
         <do action="vLayout.Default" />
       </case>
       <case value="Insert">
@@ -151,7 +151,8 @@
     <set name="layout" value="none" />
     <xfa name="SearchSubmit" value="Person.Finder" />
     <do action="mPerson.Search" />
-    <set name="request.page.title" value="Search People" /><xfa name="FrmSubmit" value="Person.Home" />
+    <set name="request.page.title" value="Search People" />
+    <xfa name="FrmSubmit" value="Person.Home" />
     <do action="vPerson.Search" contentvariable="Request.Page.Body" />
   </fuseaction>
   

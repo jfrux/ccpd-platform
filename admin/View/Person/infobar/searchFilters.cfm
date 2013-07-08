@@ -1,8 +1,14 @@
 <cfparam name="attributes.activityid" default="0" />
 <cfparam name="attributes.instance" default="" />
+<cfparam name="attributes.mode" default="" />
+<cfif attributes.instance NEQ "">
+  <cfset attributes.mode = "insert">
+<cfelse>
+  <cfset attributes.mode = "default">
+</cfif>
 <cfoutput>
 <span>
-  <a href="#myself#Person.Create?Instance=#Attributes.Instance#&Mode=Insert&ActivityID=#Attributes.ActivityID#" class="btn btn-create"><i class="icon-edit icon-large"></i> Create Person</a>
+  <a href="#myself#Person.Create?Instance=#Attributes.Instance#&Mode=#attributes.mode#&ActivityID=#Attributes.ActivityID#" class="btn btn-create"><i class="icon-edit icon-large"></i> Create Person</a>
 </span>
 <div class="filters">
   <!--- <h3><a class="js-filter" data-type="easy">Easy Search</a></h3>

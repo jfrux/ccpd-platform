@@ -19,12 +19,14 @@
     
     <!--- Check Person DB table for LIKE last names --->
     <cfquery name="DuplicateCheck" datasource="#Application.Settings.DSN#">
-      SELECT  P.PersonID, 
-          P.FirstName, 
-          P.MiddleName, 
-          P.LastName, 
-          CONVERT(varchar, P.Birthdate, 101) AS Birthdate,
-          PE.Email
+      SELECT
+        TOP 1 
+        P.PersonID,
+        P.FirstName,
+        P.MiddleName,
+        P.LastName, 
+        CONVERT(varchar, P.Birthdate, 101) AS Birthdate,
+        PE.email_address
       FROM ce_Person AS P 
       INNER JOIN ce_Person_Email AS PE ON PE.Person_Id = P.PersonID
       WHERE 0 = 0
@@ -38,7 +40,7 @@
       </cfif>
       
       <cfif len(Arguments.Email)>
-        AND PE.Email_Address LIKE '#Arguments.Email#%'
+        AND PE.email_address LIKE '#Arguments.Email#%'
       </cfif>
       
       <cfif len(Arguments.BirthDate)>
@@ -945,24 +947,12 @@
       <!--- DETERMINE IF THIS IS A NEW PERSON RECORD AND DUPLICATES NEED CHECKED --->
       <cfelseif Arguments.PersonID EQ 0 AND Arguments.SkipDuplicates EQ "N">
         <!--- DETERMINE IF EMAIL IS BLANK --->
-        <cfif arguments.Email EQ "">
-          <cfset checkDuplicates = this.checkDuplicates(Arguments.FirstName,Arguments.LastName,Arguments.Birthdate,Arguments.Email)>
-          
-          <!--- DETERMINE IF DUPLICATES OF THIS PERSON EXIST --->
-          <cfif arrayLen(checkDuplicates) GT 0>
-            <cfset status.setData(checkDuplicates)>
-            <cfset status.setStatusMsg("Duplicates exist.")>
-            <cfreturn status />
-            <cfabort>
-          </cfif>
-        <cfelse>
-          <cfset emailExists = application.auth.emailExists(arguments.email)>
-          
-          <!--- DETERMINE IF EMAIL ALREADY EXISTS --->
-          <cfif emailExists>
-            <cfset status.addError("Email","Email already exists in database.")>
-            <cfreturn status />
-          </cfif>
+        <cfset emailExists = application.auth.emailExists(arguments.email)>
+        
+        <!--- DETERMINE IF EMAIL ALREADY EXISTS --->
+        <cfif emailExists>
+          <cfset status.addError("Email","Email already exists in database.")>
+          <cfreturn status />
         </cfif>
       </cfif>
     </cfif>
@@ -972,27 +962,7 @@
       <!--- CHECK TO SEE IF EMAIL NEEDS GENERATED --->
       <cfif Arguments.Email EQ "">
         <cfset EmailNeeded = "Y">
-        
-        <cfif Arguments.SSN EQ "" OR NOT isNumeric(Arguments.SSN)>
-          <cfset status.addError("SSN", "You must provide the last 4 of SSN.")>
-        </cfif>
-        
-        <cfif NOT isDate(Arguments.BirthDate)>
-          <cfset status.addError("date1", "You must provide a valid Birthdate.")>
-        </cfif>
-        
-        <cfif Request.Status.Errors EQ "">
-          <cfset TempEmail = Left(Arguments.FirstName, 2) & Left(Arguments.Lastname, 2)>
-          
-          <cfif Arguments.SSN NEQ "">
-            <cfset TempEmail = TempEmail & Arguments.SSN>
-          </cfif>
-          
-          <cfset TempEmail = TempEmail & DateFormat(Arguments.BirthDate, "MM") & DateFormat(Arguments.BirthDate, "DD")>
-          <cfset TempEmail = TempEmail & "@ccpd.admin">
-        
-          <cfset Arguments.Email = TempEmail>
-        </cfif>
+        <cfset status.addError("email","Email is required to create a new account.") />
       <cfelseif isEmail(Arguments.Email) EQ "NO">
         <cfset status.addError("Email", "You must provide a valid Email Address.")>
       </cfif>
@@ -1036,9 +1006,9 @@
     
     <!--- Validate Bean --->
     <cfset aErrors = PersonBean.Validate()>
-    <cfif arrayLen(aErrors) GT 0>
+<!---     <cfif arrayLen(aErrors) GT 0>
         <cfdump var="#aErrors#"><cfabort>
-    </cfif>
+    </cfif> --->
     
     <!--- Fill Request.Status.Errors --->
     <cfloop from="1" to="#ArrayLen(aErrors)#" index="i">

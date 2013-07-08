@@ -39,7 +39,7 @@ $(document).ready(function() {
       background: "black" 
     },
     autoOpen: false,
-    height:450,
+    height:500,
     width:650,
     dialogClass:'personFinder',
     resizable: false,
@@ -66,6 +66,6 @@ $(document).ready(function() {
 <input type="hidden" name="#Attributes.Instance#Name" id="#Attributes.Instance#Name" class="field text" value="#Attributes.DefaultName#" readonly="readonly" style="cursor:default;" />
 <input type="hidden" name="#Attributes.Instance#ID" id="#Attributes.Instance#ID" value="#Attributes.DefaultID#" />
 <div id="PersonWindow#Attributes.Instance#" style="display:none;">
-  <iframe src="" id="PersonFrame#Attributes.Instance#" frameborder="0" width="100%" height="396" scrolling="no"></iframe>
+  <iframe src="" id="PersonFrame#Attributes.Instance#" frameborder="0" width="100%" height="425" scrolling="no"></iframe>
 </div>
 </cfoutput>

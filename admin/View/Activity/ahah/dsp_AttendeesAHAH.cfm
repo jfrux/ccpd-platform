@@ -56,7 +56,7 @@ App.Activity.Committee.Ahah.start();
 					</td>
            <td valign="top" nowrap="nowrap">
 						<cfif personId GT 0>
-							<a href="#myself#Person.Detail?PersonID=#PersonID#" class="PersonLink" id="PERSON|#PersonID#|#LastName#, #FirstName#">#UCase(qAttendees.FullName)#</a>
+							<a href="#myself#person.detail?personID=#PersonID#" id="PERSON|#PersonID#|#LastName#, #FirstName#">#UCase(qAttendees.FullName)#</a>
 						<cfelse>
 							#UCase(qAttendees.FullName)#
 						</cfif>
