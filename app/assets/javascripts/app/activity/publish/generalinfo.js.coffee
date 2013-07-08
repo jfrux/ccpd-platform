@@ -9,7 +9,6 @@ App.module "Activity.Publish.General", (Self, App, Backbone, Marionette, $) ->
     App.logInfo "starting: Publish.#{Self.moduleName}"
     return
   @on "start", ->
-    console.log @
     $(document).ready ->
       _init()
       App.logInfo "started: Publish.#{Self.moduleName}"
@@ -26,9 +25,3 @@ App.module "Activity.Publish.General", (Self, App, Backbone, Marionette, $) ->
     FormState = new App.Components.FormState
       el:'.js-form-publish'
       saved: true
-
-    console.log(defaults);
-  $(".js-progress-info-bar").css("width", nFillPercent + "%");
-  $(".js-progress-info-bar").css("background-color", "#" + sFillColor);
-
-
