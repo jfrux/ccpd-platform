@@ -479,7 +479,9 @@ $(document).ready(function() {
 
 <cfoutput>
 <div class="ViewSection">
-	<div class="ViewSectionButtons btn-group"><a href="javascript://" class="btn" id="btnAdd" data-tooltip-title="Add Component"><i class="icon-plus"></i></a><a href="javascript://"  id="btnPreview" class="btn" data-tooltip-title="Preview Page"><i class="icon-eye-open"></i></a></div>
+	<div class="ViewSectionButtons btn-group">
+		<a href="javascript://" class="btn" id="btnAdd" data-tooltip-title="Add Component"><i class="icon-plus"></i></a>
+		<a href="javascript://"  id="btnPreview" class="btn" data-tooltip-title="Preview Page"><i class="icon-eye"></i></a></div>
 	<div id="BuildContainer"></div>
 	<div id="BuildLoading" class="Loading"><img src="/admin/_images/ajax-loader.gif" />
 	<div>Please Wait</div></div>

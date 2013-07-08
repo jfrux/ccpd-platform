@@ -32,5 +32,4 @@
 *=require jquery/plugins/jquery.scrollto
 *=require jquery/plugins/jquery.textarea-autogrow
 *=require jquery/plugins/jquery.periodicalupdater
-*=require ckeditor/ckeditor
 */

@@ -150,7 +150,7 @@ $(document).ready(function() {
 <div class="ViewSectionBlock" id="SortablesMATERIALS">
 <cfloop query="qCompSortableMATERIALS">
 	<div class="Component #qCompSortableMATERIALS.ComponentType#" id="Comp_#qCompSortableMATERIALS.PubComponentID#">
-		<div class="ComponentHandle"><a href="javascript://" class="btn btn-small"><i class="icon-reorder"></i></a></div>
+		<div class="ComponentHandle"><a href="javascript://" class="btn btn-small"><i class="icon-move"></i></a></div>
 		<div class="ComponentDisplayName">&quot;#MidLimit(qCompSortableMATERIALS.DisplayName,50)#&quot;</div>
 		<div class="ComponentOptions btn-group pull-right">
 		<a href="javascript:void(0);" class="ComponentEditLink btn btn-small" id="Edit|#qCompSortableMATERIALS.PubComponentID#|#Trim(qCompSortableMATERIALS.ComponentType)#" style="text-decoration:none;"><i class="icon-pencil"></i></a>
@@ -166,7 +166,7 @@ $(document).ready(function() {
 <div class="ViewSectionBlock" id="SortablesASSESS">
 <cfloop query="qCompSortableASSESS">
 	<div class="Component #qCompSortableASSESS.ComponentType#" id="Comp_#qCompSortableASSESS.PubComponentID#">
-		<div class="ComponentHandle"><a href="javascript://" class="btn btn-small"><i class="icon-reorder"></i></a></div>
+		<div class="ComponentHandle"><a href="javascript://" class="btn btn-small"><i class="icon-move"></i></a></div>
 		<div class="ComponentDisplayName">&quot;#MidLimit(qCompSortableASSESS.DisplayName,50)#&quot;</div>
 		<div class="ComponentOptions btn-group pull-right">
 		<a href="javascript:void(0);" class="ComponentEditLink btn btn-small" id="Edit|#qCompSortableMATERIALS.PubComponentID#|#Trim(qCompSortableASSESS.ComponentType)#" style="text-decoration:none;"><i class="icon-pencil"></i></a>
