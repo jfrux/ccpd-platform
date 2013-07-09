@@ -1,0 +1,1295 @@
+.activity.profile.type-1.grouping-1.parent_activity
+  .profile-bg
+    .profile-bg-inner
+  .row
+    .span5
+      .projectbar.js-projectbar
+        .box
+          .profile-picture{:style => "background-image:url(http://localhost:8888/assets/default_photo/activity_p.png);"}
+        .box.js-profile-menu
+          #Tabs.TabControl.linkbar
+            .linkbar-inner
+              %ul.nav
+                %li.active
+                  %a{"data-data-icon" => "fg-card-address", "data-js-namespace" => "js-activity-detail", "data-pjax-container" => "#js-activity-detail", "data-pjax-title" => "General Information", "data-tooltip-title" => "Start Date: 09/28/2013<br />End Date: 09/28/2013", :href => "/admin/event/activity.detail?activityid=15088"}
+                    %i.fg-card-address
+                    %span General Info
+                    %span.menuLoader.icon-spin2.icon-spin
+                    %span.menuArrow
+                %li
+                  %a{"data-data-icon" => "fg-medal", "data-js-namespace" => "js-activity-credits", "data-pjax-container" => "#js-activity-credits", "data-pjax-title" => "Credits", "data-tooltip-title" => "CME: 1", :href => "/admin/event/activity.credits?activityid=15088"}
+                    %i.fg-medal
+                    %span Credits
+                    %span.menuLoader.icon-spin2.icon-spin
+                    %span.menuArrow
+                %li
+                  %a{"data-data-icon" => "fg-users", "data-js-namespace" => "js-activity-attendees", "data-pjax-container" => "#js-activity-attendees", "data-pjax-title" => "Participants", "data-tooltip-title" => "Total Records: 0<br />Physicians: 0<br />Non-Physicians: 0<br />Addl Participants: 0", :href => "/admin/event/activity.attendees?activityid=15088"}
+                    %i.fg-users
+                    %span Participants
+                    %span.navItemCount.pull-right 0
+                    %span.menuLoader.icon-spin2.icon-spin
+                    %span.menuArrow
+                %li
+                  %a{"data-data-icon" => "fg-user-business", "data-js-namespace" => "js-activity-faculty", "data-pjax-container" => "#js-activity-faculty", "data-pjax-title" => "Faculty / Speakers", "data-tooltip-title" => "", :href => "/admin/event/activity.faculty?activityid=15088"}
+                    %i.fg-user-business
+                    %span Faculty
+                    %span.menuLoader.icon-spin2.icon-spin
+                    %span.menuArrow
+                %li
+                  %a{"data-data-icon" => "fg-user-female", "data-js-namespace" => "js-activity-committee", "data-pjax-container" => "#js-activity-committee", "data-pjax-title" => "Planning Committee Members", "data-tooltip-title" => "", :href => "/admin/event/activity.committee?activityid=15088"}
+                    %i.fg-user-female
+                    %span Committee Members
+                    %span.menuLoader.icon-spin2.icon-spin
+                    %span.menuArrow
+                %li
+                  %a{"data-data-icon" => "fg-documents", "data-js-namespace" => "js-activity-docs", "data-pjax-container" => "#js-activity-docs", "data-pjax-title" => "Files & Documents", "data-tooltip-title" => "", :href => "/admin/event/activity.docs?activityid=15088"}
+                    %i.fg-documents
+                    %span Files & Documents
+                    %span.menuLoader.icon-spin2.icon-spin
+                    %span.menuArrow
+                %li
+                  %a{"data-data-icon" => "fg-flag-checker", "data-js-namespace" => "js-activity-application", "data-pjax-container" => "#js-activity-application", "data-pjax-title" => "Application Checklist", "data-tooltip-title" => "", :href => "/admin/event/activity.application?activityid=15088"}
+                    %i.fg-flag-checker
+                    %span Checklist
+                    %span.menuLoader.icon-spin2.icon-spin
+                    %span.menuArrow
+                %li
+                  %a{"data-data-icon" => "fg-calendar-blue", "data-js-namespace" => "js-activity-agenda", "data-pjax-container" => "#js-activity-agenda", "data-pjax-title" => "Agenda", "data-tooltip-title" => "", :href => "/admin/event/activity.agenda?activityid=15088"}
+                    %i.fg-calendar-blue
+                    %span Agenda
+                    %span.menuLoader.icon-spin2.icon-spin
+                    %span.menuArrow
+                %li
+                  %a{"data-data-icon" => "fg-money", "data-js-namespace" => "js-activity-finances", "data-pjax-container" => "#js-activity-finances", "data-pjax-title" => "Finances", "data-tooltip-title" => "", :href => "/admin/event/activity.finances?activityid=15088"}
+                    %i.fg-money
+                    %span Finances
+                    %span.menuLoader.icon-spin2.icon-spin
+                    %span.menuArrow
+                  %ul.nav.subnav
+                    %li
+                      %a{"data-data-icon" => "", "data-js-namespace" => "js-activity-finledger", "data-pjax-container" => "#js-activity-finledger", "data-pjax-title" => "General Ledger", "data-tooltip-title" => "", :href => "/admin/event/activity.finledger?activityid=15088"}
+                        %i
+                        %span General Ledger
+                        %span.menuLoader.icon-spin2.icon-spin
+                        %span.menuArrow
+                    %li
+                      %a{"data-data-icon" => "", "data-js-namespace" => "js-activity-finbudget", "data-pjax-container" => "#js-activity-finbudget", "data-pjax-title" => "Budget", "data-tooltip-title" => "", :href => "/admin/event/activity.finbudget?activityid=15088"}
+                        %i
+                        %span Budget
+                        %span.menuLoader.icon-spin2.icon-spin
+                        %span.menuArrow
+                    %li
+                      %a{"data-data-icon" => "", "data-js-namespace" => "js-activity-finfees", "data-pjax-container" => "#js-activity-finfees", "data-pjax-title" => "Fee Schedule", "data-tooltip-title" => "", :href => "/admin/event/activity.finfees?activityid=15088"}
+                        %i
+                        %span Fee Schedule
+                        %span.menuLoader.icon-spin2.icon-spin
+                        %span.menuArrow
+                    %li
+                      %a{"data-data-icon" => "", "data-js-namespace" => "js-activity-finsupport", "data-pjax-container" => "#js-activity-finsupport", "data-pjax-title" => "Commercial Support", "data-tooltip-title" => "Total Supporters: 0<br />Total Dollars: $0.00", :href => "/admin/event/activity.finsupport?activityid=15088"}
+                        %i
+                        %span Commercial Support
+                        %span.menuLoader.icon-spin2.icon-spin
+                        %span.menuArrow
+                %li
+                  %a{"data-data-icon" => "fg-sealing-wax", "data-js-namespace" => "js-activity-accme", "data-pjax-container" => "#js-activity-accme", "data-pjax-title" => "ACCME Details", "data-tooltip-title" => "", :href => "/admin/event/activity.accme?activityid=15088"}
+                    %i.fg-sealing-wax
+                    %span ACCME
+                    %span.menuLoader.icon-spin2.icon-spin
+                    %span.menuArrow
+                %li
+                  %a{"data-data-icon" => "fg-globe-green", "data-js-namespace" => "js-activity-pubgeneral", "data-pjax-container" => "#js-activity-pubgeneral", "data-pjax-title" => "Publishing Settings", "data-tooltip-title" => "", :href => "/admin/event/activity.pubgeneral?activityid=15088"}
+                    %i.fg-globe-green
+                    %span Publish
+                    %span.menuLoader.icon-spin2.icon-spin
+                    %span.menuArrow
+                  %ul.nav.subnav
+                    %li
+                      %a{"data-data-icon" => "", "data-js-namespace" => "js-activity-pubbuilder", "data-pjax-container" => "#js-activity-pubbuilder", "data-pjax-title" => "Builder Components", "data-tooltip-title" => "", :href => "/admin/event/activity.pubbuilder?activityid=15088"}
+                        %i
+                        %span Builder
+                        %span.menuLoader.icon-spin2.icon-spin
+                        %span.menuArrow
+                    %li
+                      %a{"data-data-icon" => "", "data-js-namespace" => "js-activity-pubcategory", "data-pjax-container" => "#js-activity-pubcategory", "data-pjax-title" => "Categories", "data-tooltip-title" => "", :href => "/admin/event/activity.pubcategory?activityid=15088"}
+                        %i
+                        %span Categories
+                        %span.menuLoader.icon-spin2.icon-spin
+                        %span.menuArrow
+                    %li
+                      %a{"data-data-icon" => "", "data-js-namespace" => "js-activity-pubspecialty", "data-pjax-container" => "#js-activity-pubspecialty", "data-pjax-title" => "Specialty Areas", "data-tooltip-title" => "", :href => "/admin/event/activity.pubspecialty?activityid=15088"}
+                        %i
+                        %span Specialities
+                        %span.menuLoader.icon-spin2.icon-spin
+                        %span.menuArrow
+                %li
+                  %a{"data-data-icon" => "fg-sticky-note-pin", "data-js-namespace" => "js-activity-notes", "data-pjax-container" => "#js-activity-notes", "data-pjax-title" => "Notes", "data-tooltip-title" => "", :href => "/admin/event/activity.notes?activityid=15088"}
+                    %i.fg-sticky-note-pin
+                    %span Notes
+                    %span.menuLoader.icon-spin2.icon-spin
+                    %span.menuArrow
+                %li
+                  %a{"data-data-icon" => "fg-chart", "data-js-namespace" => "js-activity-reports", "data-pjax-container" => "#js-activity-reports", "data-pjax-title" => "Reporting & Exports", "data-tooltip-title" => "", :href => "/admin/event/activity.reports?activityid=15088"}
+                    %i.fg-chart
+                    %span Reporting & Exports
+                    %span.menuLoader.icon-spin2.icon-spin
+                    %span.menuArrow
+                %li
+                  %a{"data-data-icon" => "fg-clock-history", "data-js-namespace" => "js-activity-history", "data-pjax-container" => "#js-activity-history", "data-pjax-title" => "History", "data-tooltip-title" => "", :href => "/admin/event/activity.history?activityid=15088"}
+                    %i.fg-clock-history
+                    %span History
+                    %span.menuLoader.icon-spin2.icon-spin
+                    %span.menuArrow
+    .span19
+      .titlebar
+        .row-fluid
+          .span16
+            .ContentTitle
+              %span{:title => "Optimizing Treatment of Familial Hypercholesterolemia:  Current and Emerging Therapies"} Optimizing Treatment of ... and Emerging Therapies
+          .span8
+            .action-buttons.pull-right
+              .btn-group
+                %a#MoveLink.btn{:href => "javascript:void(0);", :title => "Move Activity"}
+                  %i.icon-road
+                %a#CopyLink.btn{:href => "javascript:void(0);", :title => "Copy Activity"}
+                  %i.icon-doc
+                %a#DeleteActivityLink.btn{:href => "javascript:void(0);", :title => "Delete Activity"}
+                  %i.icon-trash
+              .btn-group
+                %a.btn.js-toggle-infobar{:title => "Toggle Infobar"}
+                  %i.icon-info
+    .span19
+      .content.js-profile-content
+        .row-fluid
+          .span18.js-content-toggle
+            .row-fluid
+              .content-title
+                %h3 General Information
+            .MultiFormContent.content-inner
+              #js-activity-detail
+                :javascript
+                  var lastSavedDate = " at 12:29 PM";
+                  var IsSaved = false;
+                  
+                  
+                  IsSaved = true;
+                  
+                :javascript
+                  var LiveOptions = "<option value=\"1\">Course</option>" + "<option value=\"2\">Regularly Scheduled Series</option>" + "<option value=\"3\">Internet Live Course</option>" + "<option value=\"4\">Manuscript review</option>" + "<option value=\"5\">Teaching</option>";
+                  var EMOptions = "<option value=\"6\">Internet Activity Enduring Material</option>" + "<option value=\"7\">Print</option>" + "<option value=\"8\">CD</option>" + "<option value=\"9\">Audio</option>" + "<option value=\"10\">Video</option>";
+                  var nActivityType = 1;
+                  var nGrouping = 1;
+                  var sSessionType = "S";
+                  var nCountryId = 230
+                  
+                  
+                  
+                  App.module("Activity.GeneralInfo").start();
+                .ViewContainer
+                  .ViewSection
+                    %form.form-horizontal.formstate.js-formstate.js-form-generalinfo{:action => "/admin/_com/AJAX_Activity.cfc", :method => "post", :name => "frmEditActivity"}
+                      %input{:name => "Method", :type => "hidden", :value => "saveActivity"}/
+                      %input{:name => "returnFormat", :type => "hidden", :value => "plain"}/
+                      %input{:name => "ActivityID", :type => "hidden", :value => "15088"}/
+                      %input{:name => "SessionType", :type => "hidden", :value => "S"}/
+                      .control-group
+                        %label.control-label{:for => "Title"} Title
+                        .controls
+                          %textarea#Title.span23{:name => "Title", :rows => "2", :style => "height:46px;"} Optimizing Treatment of Familial Hypercholesterolemia:  Current and Emerging Therapies
+                      .control-group
+                        %label.control-label{:for => "ActivityType"} Type
+                        .controls
+                          %select#ActivityType{:disabled => "disabled", :name => "ActivityTypeID"}
+                            %option{:selected => "", :value => "1"} Live
+                            %option{:value => "2"} Enduring Material
+                            %option{:value => "3"} Journal
+                            %option{:value => "6"} Performance Improvement
+                            %option{:value => "7"} Point of Care
+                            %option{:value => "8"} Learning From Teaching
+                      #Groupings.control-group
+                        %label.control-label{:for => "Grouping"} Sub Type
+                        .controls
+                          %select#Grouping{:disabled => "disabled", :name => "Grouping"}
+                      .control-group
+                        %label.control-label{:for => "SessionType"} Session Type
+                        .controls
+                          %select#SessionType{:disabled => "disabled", :name => "SessionType"}
+                            %option{:selected => "", :value => "S"} Stand-alone
+                            %option{:value => "M"} Multi-session
+                      .control-group{:style => "display:none;"}
+                        %label.control-label{:for => "ReleaseDate"} Release Date
+                        .controls
+                          %input#ReleaseDate.DatePicker{:name => "ReleaseDate", :type => "text", :value => "02/18/2013"}/
+                      .divider
+                        %hr/
+                      .control-group
+                        %label.control-label{:for => "Sponsorship"} Sponsorship
+                        .controls
+                          .btn-group{"data-toggle" => "buttons-radio"}
+                            %a.btn.js-sponsorship-toggle.js-sponsorship-D Directly
+                            %a.btn.js-sponsorship-toggle.js-sponsorship-J Jointly
+                          %span#JointlyTextFld.hide.mls
+                            %input#Sponsor{:name => "Sponsor", :type => "text", :value => "Horizon CME"}/
+                          %input#Sponsorship.Sponsorship.hide{:name => "Sponsorship", :type => "text", :value => "J"}/
+                      .divider
+                        %hr/
+                      .control-group
+                        %label.control-label{:for => "StartDate"} Start Date
+                        .controls
+                          %input#StartDate.DatePicker.span5.text-center{:name => "StartDate", :type => "text", :value => "09/28/2013"}/
+                      .control-group
+                        %label.control-label{:for => "EndDate"} End Date
+                        .controls
+                          %input#EndDate.DatePicker.span5.text-center{:name => "EndDate", :type => "text", :value => "09/28/2013"}/
+                      .divider
+                        %hr/
+                      .control-group.Location
+                        %label.control-label{:for => "Location"} Location
+                        .controls
+                          %input#Location{:name => "Location", :type => "text", :value => " "}/
+                      .control-group.Location
+                        %label.control-label{:for => "Address1"} Address 1
+                        .controls
+                          %input#Address1{:name => "Address1", :type => "text", :value => ""}/
+                      .control-group.Location
+                        %label.control-label{:for => "Address2"} Address 2
+                        .controls
+                          %input#Address2{:name => "Address2", :type => "text", :value => ""}/
+                      .control-group.Location
+                        %label.control-label{:for => "City"} City
+                        .controls
+                          %input#City{:name => "City", :type => "text", :value => ""}/
+                      .control-group.Location.stateField
+                        %label.control-label{:for => "State"} State
+                        .controls
+                          %select#State{:name => "State"}
+                            %option{:value => "0"} Select one...
+                            %option{:value => "1"} Alabama
+                            %option{:value => "2"} Alaska
+                            %option{:value => "3"} Arizona
+                            %option{:value => "4"} Arkansas
+                            %option{:value => "5"} California
+                            %option{:value => "6"} Colorado
+                            %option{:value => "7"} Connecticut
+                            %option{:value => "8"} Delaware
+                            %option{:value => "9"} District of Columbia
+                            %option{:value => "10"} Florida
+                            %option{:value => "11"} Georgia
+                            %option{:value => "12"} Hawaii
+                            %option{:value => "13"} Idaho
+                            %option{:value => "14"} Illinois
+                            %option{:value => "15"} Indiana
+                            %option{:value => "16"} Iowa
+                            %option{:value => "17"} Kansas
+                            %option{:value => "18"} Kentucky
+                            %option{:value => "19"} Louisiana
+                            %option{:value => "20"} Maine
+                            %option{:value => "21"} Maryland
+                            %option{:value => "22"} Massachusetts
+                            %option{:value => "23"} Michigan
+                            %option{:value => "24"} Minnesota
+                            %option{:value => "25"} Mississippi
+                            %option{:value => "26"} Missouri
+                            %option{:value => "27"} Montana
+                            %option{:value => "28"} Nebraska
+                            %option{:value => "29"} Nevada
+                            %option{:value => "30"} New Hampshire
+                            %option{:value => "31"} New Jersey
+                            %option{:value => "32"} New Mexico
+                            %option{:value => "33"} New York
+                            %option{:value => "34"} North Carolina
+                            %option{:value => "35"} North Dakota
+                            %option{:value => "36"} Ohio
+                            %option{:value => "37"} Oklahoma
+                            %option{:value => "38"} Oregon
+                            %option{:value => "39"} Pennsylvania
+                            %option{:value => "40"} Rhode Island
+                            %option{:value => "41"} South Carolina
+                            %option{:value => "42"} South Dakota
+                            %option{:value => "43"} Tennessee
+                            %option{:value => "44"} Texas
+                            %option{:value => "45"} Utah
+                            %option{:value => "46"} Vermont
+                            %option{:value => "47"} Virginia
+                            %option{:value => "48"} Washington
+                            %option{:value => "49"} West Virginia
+                            %option{:value => "50"} Wisconsin
+                            %option{:value => "51"} Wyoming
+                      .control-group.Location.provinceField
+                        %label.control-label{:for => "Province"} State / Province
+                        .controls
+                          %input#Province{:name => "Province", :type => "text", :value => ""}/
+                      .control-group.Location
+                        %label.control-label{:for => "Country"} Country
+                        .controls
+                          %select#Country{:name => "Country"}
+                            %option{:value => "0"} Select one...
+                            %option{:value => "1"} Afghanistan
+                            %option{:value => "2"} Aland Islands
+                            %option{:value => "3"} Albania
+                            %option{:value => "4"} Algeria
+                            %option{:value => "5"} American Samoa
+                            %option{:value => "6"} Andorra
+                            %option{:value => "7"} Angola
+                            %option{:value => "8"} Anguilla
+                            %option{:value => "9"} Antarctica
+                            %option{:value => "10"} Antigua And Barbuda
+                            %option{:value => "11"} Argentina
+                            %option{:value => "12"} Armenia
+                            %option{:value => "13"} Aruba
+                            %option{:value => "14"} Australia
+                            %option{:value => "15"} Austria
+                            %option{:value => "16"} Azerbaijan
+                            %option{:value => "17"} Bahamas
+                            %option{:value => "18"} Bahrain
+                            %option{:value => "19"} Bangladesh
+                            %option{:value => "20"} Barbados
+                            %option{:value => "21"} Belarus
+                            %option{:value => "22"} Belgium
+                            %option{:value => "23"} Belize
+                            %option{:value => "24"} Benin
+                            %option{:value => "25"} Bermuda
+                            %option{:value => "26"} Bhutan
+                            %option{:value => "27"} Bolivia
+                            %option{:value => "252"} Bonaire, Saint Eustatius and Saba
+                            %option{:value => "28"} Bosnia And Herzegovina
+                            %option{:value => "29"} Botswana
+                            %option{:value => "30"} Bouvet Island
+                            %option{:value => "31"} Brazil
+                            %option{:value => "32"} British Indian Ocean Territory
+                            %option{:value => "33"} Brunei Darussalam
+                            %option{:value => "34"} Bulgaria
+                            %option{:value => "35"} Burkina Faso
+                            %option{:value => "36"} Burundi
+                            %option{:value => "37"} Cambodia
+                            %option{:value => "38"} Cameroon
+                            %option{:value => "39"} Canada
+                            %option{:value => "40"} Cape Verde
+                            %option{:value => "41"} Cayman Islands
+                            %option{:value => "42"} Central African Republic
+                            %option{:value => "43"} Chad
+                            %option{:value => "44"} Chile
+                            %option{:value => "45"} China
+                            %option{:value => "46"} Christmas Island
+                            %option{:value => "47"} Cocos (Keeling) Islands
+                            %option{:value => "48"} Colombia
+                            %option{:value => "49"} Comoros
+                            %option{:value => "50"} Congo
+                            %option{:value => "51"} Congo, The Democratic Republic Of The
+                            %option{:value => "52"} Cook Islands
+                            %option{:value => "53"} Costa Rica
+                            %option{:value => "54"} Cote D'Ivoire
+                            %option{:value => "55"} Croatia
+                            %option{:value => "56"} Cuba
+                            %option{:value => "251"} Curacao
+                            %option{:value => "57"} Cyprus
+                            %option{:value => "58"} Czech Republic
+                            %option{:value => "59"} Denmark
+                            %option{:value => "60"} Djibouti
+                            %option{:value => "61"} Dominica
+                            %option{:value => "62"} Dominican Republic
+                            %option{:value => "63"} Ecuador
+                            %option{:value => "64"} Egypt
+                            %option{:value => "65"} El Salvador
+                            %option{:value => "66"} Equatorial Guinea
+                            %option{:value => "67"} Eritrea
+                            %option{:value => "68"} Estonia
+                            %option{:value => "69"} Ethiopia
+                            %option{:value => "70"} Falkland Islands (Malvinas)
+                            %option{:value => "71"} Faroe Islands
+                            %option{:value => "72"} Fiji
+                            %option{:value => "73"} Finland
+                            %option{:value => "74"} France
+                            %option{:value => "75"} French Guiana
+                            %option{:value => "76"} French Polynesia
+                            %option{:value => "77"} French Southern Territories
+                            %option{:value => "78"} Gabon
+                            %option{:value => "79"} Gambia
+                            %option{:value => "80"} Georgia
+                            %option{:value => "81"} Germany
+                            %option{:value => "82"} Ghana
+                            %option{:value => "83"} Gibraltar
+                            %option{:value => "84"} Greece
+                            %option{:value => "85"} Greenland
+                            %option{:value => "86"} Grenada
+                            %option{:value => "87"} Guadeloupe
+                            %option{:value => "88"} Guam
+                            %option{:value => "89"} Guatemala
+                            %option{:value => "245"} Guernsey
+                            %option{:value => "91"} Guinea
+                            %option{:value => "92"} Guinea-Bissau
+                            %option{:value => "93"} Guyana
+                            %option{:value => "94"} Haiti
+                            %option{:value => "95"} Heard Island And Mcdonald Islands
+                            %option{:value => "96"} Holy See (Vatican City State)
+                            %option{:value => "97"} Honduras
+                            %option{:value => "98"} Hong Kong
+                            %option{:value => "99"} Hungary
+                            %option{:value => "100"} Iceland
+                            %option{:value => "101"} India
+                            %option{:value => "102"} Indonesia
+                            %option{:value => "103"} Iran, Islamic Republic Of
+                            %option{:value => "104"} Iraq
+                            %option{:value => "105"} Ireland
+                            %option{:value => "106"} Isle Of Man
+                            %option{:value => "107"} Israel
+                            %option{:value => "108"} Italy
+                            %option{:value => "109"} Jamaica
+                            %option{:value => "110"} Japan
+                            %option{:value => "111"} Jersey
+                            %option{:value => "112"} Jordan
+                            %option{:value => "113"} Kazakhstan
+                            %option{:value => "114"} Kenya
+                            %option{:value => "115"} Kiribati
+                            %option{:value => "116"} Korea, Democratic People'S Republic Of
+                            %option{:value => "117"} Korea, Republic Of
+                            %option{:value => "244"} Kosovo
+                            %option{:value => "118"} Kuwait
+                            %option{:value => "119"} Kyrgyzstan
+                            %option{:value => "120"} Lao People'S Democratic Republic
+                            %option{:value => "121"} Latvia
+                            %option{:value => "122"} Lebanon
+                            %option{:value => "123"} Lesotho
+                            %option{:value => "124"} Liberia
+                            %option{:value => "125"} Libyan Arab Jamahiriya
+                            %option{:value => "126"} Liechtenstein
+                            %option{:value => "127"} Lithuania
+                            %option{:value => "128"} Luxembourg
+                            %option{:value => "129"} Macao
+                            %option{:value => "130"} Macedonia, The Former Yugoslav Republic Of
+                            %option{:value => "131"} Madagascar
+                            %option{:value => "132"} Malawi
+                            %option{:value => "133"} Malaysia
+                            %option{:value => "134"} Maldives
+                            %option{:value => "135"} Mali
+                            %option{:value => "136"} Malta
+                            %option{:value => "137"} Marshall Islands
+                            %option{:value => "138"} Martinique
+                            %option{:value => "139"} Mauritania
+                            %option{:value => "140"} Mauritius
+                            %option{:value => "141"} Mayotte
+                            %option{:value => "142"} Mexico
+                            %option{:value => "143"} Micronesia, Federated States Of
+                            %option{:value => "144"} Moldova, Republic Of
+                            %option{:value => "145"} Monaco
+                            %option{:value => "146"} Mongolia
+                            %option{:value => "246"} Montenegro
+                            %option{:value => "147"} Montserrat
+                            %option{:value => "148"} Morocco
+                            %option{:value => "149"} Mozambique
+                            %option{:value => "150"} Myanmar
+                            %option{:value => "151"} Namibia
+                            %option{:value => "152"} Nauru
+                            %option{:value => "153"} Nepal
+                            %option{:value => "154"} Netherlands
+                            %option{:value => "155"} Netherlands Antilles
+                            %option{:value => "156"} New Caledonia
+                            %option{:value => "157"} New Zealand
+                            %option{:value => "158"} Nicaragua
+                            %option{:value => "159"} Niger
+                            %option{:value => "160"} Nigeria
+                            %option{:value => "161"} Niue
+                            %option{:value => "162"} Norfolk Island
+                            %option{:value => "163"} Northern Mariana Islands
+                            %option{:value => "164"} Norway
+                            %option{:value => "165"} Oman
+                            %option{:value => "166"} Pakistan
+                            %option{:value => "167"} Palau
+                            %option{:value => "168"} Palestinian Territory, Occupied
+                            %option{:value => "169"} Panama
+                            %option{:value => "170"} Papua New Guinea
+                            %option{:value => "171"} Paraguay
+                            %option{:value => "172"} Peru
+                            %option{:value => "173"} Philippines
+                            %option{:value => "174"} Pitcairn
+                            %option{:value => "175"} Poland
+                            %option{:value => "176"} Portugal
+                            %option{:value => "177"} Puerto Rico
+                            %option{:value => "178"} Qatar
+                            %option{:value => "179"} Reunion
+                            %option{:value => "180"} Romania
+                            %option{:value => "181"} Russian Federation
+                            %option{:value => "182"} Rwanda
+                            %option{:value => "248"} Saint Barthélemy
+                            %option{:value => "183"} Saint Helena
+                            %option{:value => "184"} Saint Kitts And Nevis
+                            %option{:value => "185"} Saint Lucia
+                            %option{:value => "247"} Saint Martin
+                            %option{:value => "186"} Saint Pierre And Miquelon
+                            %option{:value => "187"} Saint Vincent And The Grenadines
+                            %option{:value => "188"} Samoa
+                            %option{:value => "189"} San Marino
+                            %option{:value => "190"} Sao Tome And Principe
+                            %option{:value => "191"} Saudi Arabia
+                            %option{:value => "192"} Senegal
+                            %option{:value => "249"} Serbia
+                            %option{:value => "193"} Serbia And Montenegro
+                            %option{:value => "194"} Seychelles
+                            %option{:value => "195"} Sierra Leone
+                            %option{:value => "196"} Singapore
+                            %option{:value => "250"} Sint Maarten
+                            %option{:value => "197"} Slovakia
+                            %option{:value => "198"} Slovenia
+                            %option{:value => "199"} Solomon Islands
+                            %option{:value => "200"} Somalia
+                            %option{:value => "201"} South Africa
+                            %option{:value => "202"} South Georgia And The South Sandwich Islands
+                            %option{:value => "203"} Spain
+                            %option{:value => "204"} Sri Lanka
+                            %option{:value => "205"} Sudan
+                            %option{:value => "206"} Suriname
+                            %option{:value => "207"} Svalbard And Jan Mayen
+                            %option{:value => "208"} Swaziland
+                            %option{:value => "209"} Sweden
+                            %option{:value => "210"} Switzerland
+                            %option{:value => "211"} Syrian Arab Republic
+                            %option{:value => "212"} Taiwan, Province Of China
+                            %option{:value => "213"} Tajikistan
+                            %option{:value => "214"} Tanzania, United Republic Of
+                            %option{:value => "215"} Thailand
+                            %option{:value => "216"} Timor-Leste
+                            %option{:value => "217"} Togo
+                            %option{:value => "218"} Tokelau
+                            %option{:value => "219"} Tonga
+                            %option{:value => "220"} Trinidad And Tobago
+                            %option{:value => "221"} Tunisia
+                            %option{:value => "222"} Turkey
+                            %option{:value => "223"} Turkmenistan
+                            %option{:value => "224"} Turks And Caicos Islands
+                            %option{:value => "225"} Tuvalu
+                            %option{:value => "226"} Uganda
+                            %option{:value => "227"} Ukraine
+                            %option{:value => "228"} United Arab Emirates
+                            %option{:value => "229"} United Kingdom
+                            %option{:value => "231"} United States Minor Outlying Islands
+                            %option{:selected => "", :value => "230"} United States of America
+                            %option{:value => "232"} Uruguay
+                            %option{:value => "233"} Uzbekistan
+                            %option{:value => "234"} Vanuatu
+                            %option{:value => "235"} Venezuela
+                            %option{:value => "236"} Viet Nam
+                            %option{:value => "237"} Virgin Islands, British
+                            %option{:value => "238"} Virgin Islands, U.S.
+                            %option{:value => "239"} Wallis And Futuna
+                            %option{:value => "240"} Western Sahara
+                            %option{:value => "241"} Yemen
+                            %option{:value => "242"} Zambia
+                            %option{:value => "243"} Zimbabwe
+                      .control-group.Location
+                        %label.control-label{:for => "PostalCode"} Postal Code
+                        .controls
+                          %input#PostalCode{:name => "PostalCode", :type => "text", :value => ""}/
+                      .control-group
+                        %label.control-label{:for => "ExternalID"} External ID
+                        .controls
+                          %input#ExternalID{:name => "ExternalID", :type => "text", :value => ""}/
+                      .control-group.hide
+                        Created By
+                        %a{:href => "/admin/event/Person.Detail?PersonID=14887"} M. Gallo
+                        (02/18/2013 03:27PM)
+                      .control-group.hide
+                        Updated By
+                        %a{:href => "/admin/event/Person.Detail?PersonID=169841"} J. Rountree
+                        (07/08/2013 12:29PM)
+                      .divider
+                        %hr/
+          .span6.js-infobar-outer
+            .InfoBar.infobar.js-infobar
+              #Status
+                %h3
+                  %i.fg.fg-fruit
+                  Activity Health
+                .box
+                  .project-status.activity-status.js-activity-status
+                    %select#StatusChanger.span24{:name => "StatusChanger"}
+                      %option{:value => ""} No Status
+                      %option{:selected => "", :value => "1"} Active
+                      %option{:value => "4"} Cancelled
+                      %option{:value => "3"} Ended
+                      %option{:value => "2"} Pending
+                  .overview-buttons
+                    .row-fluid
+                      .btn-group.span24
+                        %a#OverviewDialogLink.btn.span12{:href => "javascript:void(0);"} Overview
+                        %a#ActivityDialogLink.btn.span12.disabled{:href => "javascript:void(0);"} Related
+                  #ActivityStats
+              #Containers
+  #OverviewList.dialog
+  #MoveDialog.dialog
+    %div
+      %strong Are you sure you want to move this activity?
+      %br/
+      Select from the list below which Multi-Session Parent Activity you wish to move it to.
+      %div{:style => "padding:5px;"}
+        %strong From:
+        Optimizing Treatment of Familial Hypercholesterolemia:  Current and Emerging Therapies
+      %div{:style => "padding:5px;"}
+        %strong To:
+        %select#ToActivity{:name => "ToActivity", :style => "width:350px;"}
+          %option{:value => ""} Select Activity
+          %option{:value => "7282"} "Nonpharmaceutical Intervention Stategies for Pandemic Influenza Mitigation [03/22/2007]
+          %option{:value => "6790"} "Presenteeism":  The Newest Element in the Productivity Equation [03/17/2006]
+          %option{:value => "13450"} _test RSS activity for data integrity [06/01/2011]
+          %option{:value => "4786"} 10th Annual Resident/Alumni Research Forum/Resident Teaching Day [06/01/2002]
+          %option{:value => "6474"} 2004 Fall Health Commissioner's Conference [01/01/1970]
+          %option{:value => "6398"} 2005 Annual Meeting of the Society of Hospital Medicine: Action and Reaction: Venous Thromboembolism [04/28/2005]
+          %option{:value => "5487"} 3rd Annual Greater Cincinnati Prostate Cancer Forum [06/21/2003]
+          %option{:value => "1762"} 5th Monday Obstetrics & Perinatal Journal Club 2002 [09/30/2002]
+          %option{:value => "7051"} 7th Annual Pilot Research Project Symposium [10/12/2006]
+          %option{:value => "7571"} 8th Annual Pilot Research Project Symposium [10/11/2007]
+          %option{:value => "9681"} A Behavioral Approach to difficult patients [08/28/2009]
+          %option{:value => "12101"} A New Category of Treatment-Responsive Encephalitis with Psychiatric Manifestations [02/09/2010]
+          %option{:value => "5187"} A New Era in the Treatment of PAD:  Practical Tools for the Primary Care Physician [10/04/2002]
+          %option{:value => "5543"} A Symposium on Mold Exposures: From Sick Buildings to Sick People [01/01/1970]
+          %option{:value => "13758"} Accountable Care Transformation (ACT) Learning Session [10/03/2011]
+          %option{:value => "24"} Anesthesia 2000 [01/12/2000]
+          %option{:value => "584"} Anesthesia 2001 [01/10/2001]
+          %option{:value => "1243"} Anesthesia 2002 [01/02/2002]
+          %option{:value => "1958"} Anesthesia 2003 [01/15/2003]
+          %option{:value => "2698"} Anesthesia 2004 [01/14/2004]
+          %option{:value => "3500"} Anesthesia 2005 [01/12/2005]
+          %option{:value => "5494"} Anesthesia 2006 [01/11/2006]
+          %option{:value => "6867"} Anesthesia 2007 [01/10/2007]
+          %option{:value => "8309"} Anesthesia 2008 [01/09/2008]
+          %option{:value => "9068"} Anesthesia 2009 [01/14/2009]
+          %option{:value => "9118"} Anesthesia 2009 [02/04/2009]
+          %option{:value => "11938"} Anesthesia 2010 [01/11/2010]
+          %option{:value => "12991"} Anesthesiology 2011 [01/19/2011]
+          %option{:value => "14036"} Anesthesiology 2012 [01/10/2012]
+          %option{:value => "14848"} Anesthesiology 2013 [12/10/2012]
+          %option{:value => "6146"} Ann Approach to the Dizzy Patient [01/01/1970]
+          %option{:value => "5565"} ASCI/AAP 2003 Joint Meeting [04/25/2003]
+          %option{:value => "5591"} Audio Conference - Incident to Billing, Practical Strategies to Stay in Compliance [01/01/1970]
+          %option{:value => "6175"} Aurgical Advances in the Treatment of Malignant Melanoma [01/01/1970]
+          %option{:value => "5623"} Basic MEDLINE: OhioLINK [08/08/2003]
+          %option{:value => "3218"} Cancer Center 2004 [09/03/2004]
+          %option{:value => "3479"} Cancer Center 2005 [01/07/2005]
+          %option{:value => "5467"} Cancer Center 2006 [01/06/2006]
+          %option{:value => "6956"} Cancer Center 2007 [02/02/2007]
+          %option{:value => "8387"} Cancer Center 2008 [02/01/2008]
+          %option{:value => "9408"} Cancer Center Seminar Series 2009 [04/03/2009]
+          %option{:value => "5934"} CardioGuide [01/01/1970]
+          %option{:value => "3264"} Cardiology 2004 [09/24/2004]
+          %option{:value => "3613"} Cardiology 2005 [02/17/2005]
+          %option{:value => "3031"} Cardiothoracic Surgery 2004 [05/13/2004]
+          %option{:value => "6757"} Cardiovascular Disease 2006 [12/05/2006]
+          %option{:value => "6828"} Cardiovascular Disease 2007 [01/02/2007]
+          %option{:value => "8301"} Cardiovascular Disease 2008 [01/08/2008]
+          %option{:value => "9116"} Cardiovascular Disease 2009 [02/02/2009]
+          %option{:value => "11975"} Cardiovascular Diseases 2010 [01/25/2010]
+          %option{:value => "9737"} CCTST/CTSA/Family Medicine 2009 [09/25/2009]
+          %option{:value => "12124"} CCTST/CTSA/Family Medicine 2010 [02/19/2010]
+          %option{:value => "12998"} CCTST/CTSA/Family Medicine 2011 [01/19/2011]
+          %option{:value => "14033"} CCTST/CTSA/Family Medicine 2012 [01/10/2012]
+          %option{:value => "14916"} CCTST/CTSA/Family Medicine 2013 [12/26/2012]
+          %option{:value => "1547"} Center for Competency Development and Assessment 2002 [05/14/2002]
+          %option{:value => "7132"} Center for Executive Education 2007 [03/15/2007]
+          %option{:value => "15129"} CeTREAD Journal Club [03/13/2013]
+          %option{:value => "12296"} Child Psychiatry Council of Cincinnati and Dayton [04/05/2010]
+          %option{:value => "13439"} Child Psychiatry Council of Cincinnati and Dayton 2011 [05/31/2011]
+          %option{:value => "2955"} Cincinnati Allergy & Asthma Society 2004 [04/15/2004]
+          %option{:value => "1020"} Cincinnati Critical Care Society 2001 [09/04/2001]
+          %option{:value => "1377"} Cincinnati Critical Care Society 2002 [02/20/2002]
+          %option{:value => "2362"} Cincinnati Critical Care Society 2003 [08/12/2003]
+          %option{:value => "8460"} Cincinnati Dermatologic Society 2008 [03/05/2008]
+          %option{:value => "9120"} Cincinnati Dermatologic Society 2009 [02/04/2009]
+          %option{:value => "15194"} Cincinnati Dermatological Society [03/28/2013]
+          %option{:value => "12109"} Cincinnati Dermatological Society 2010 [02/10/2010]
+          %option{:value => "13155"} Cincinnati Dermatological Society 2011 [02/24/2011]
+          %option{:value => "14058"} Cincinnati Dermatological Society 2012 [01/18/2012]
+          %option{:value => "6151"} Cincinnati Health Department 2006 [06/06/2006]
+          %option{:value => "1980"} Cincinnati Prostate Cancer Forum 2003 [01/22/2003]
+          %option{:value => "2736"} Cincinnati Prostate Cancer Forum 2004 [01/22/2004]
+          %option{:value => "394"} Cincinnati Psychiatric Society 2000 [09/20/2000]
+          %option{:value => "674"} Cincinnati Psychiatric Society 2001 [02/21/2001]
+          %option{:value => "1379"} Cincinnati Psychiatric Society 2002 [02/20/2002]
+          %option{:value => "1960"} Cincinnati Psychiatric Society 2003 [01/15/2003]
+          %option{:value => "2716"} Cincinnati Psychiatric Society 2004 [01/21/2004]
+          %option{:value => "3521"} Cincinnati Psychiatric Society 2005 [01/19/2005]
+          %option{:value => "5654"} Cincinnati Psychiatric Society 2006 [02/15/2006]
+          %option{:value => "8492"} Cincinnati Psychiatric Society 2008 [03/18/2008]
+          %option{:value => "9101"} Cincinnati Psychiatric Society 2009 [01/26/2009]
+          %option{:value => "11955"} Cincinnati Psychiatric Society 2010 [01/26/2010]
+          %option{:value => "13055"} Cincinnati Psychiatric Society 2011 [02/02/2011]
+          %option{:value => "14234"} Cincinnati Psychiatric Society 2012 [03/21/2012]
+          %option{:value => "701"} Cincinnati Radiologic Society 2001 [03/05/2001]
+          %option{:value => "1535"} Cincinnati Radiologic Society 2002 [05/06/2002]
+          %option{:value => "2087"} Cincinnati Radiologic Society 2003 [03/10/2003]
+          %option{:value => "2819"} Cincinnati Radiologic Society 2004 [02/23/2004]
+          %option{:value => "3950"} Cincinnati Radiologic Society 2005 [04/07/2005]
+          %option{:value => "637"} Cincinnati Society of Internal Medicine 2001 [02/05/2001]
+          %option{:value => "1341"} Cincinnati Society of Internal Medicine 2002 [02/04/2002]
+          %option{:value => "2015"} Cincinnati Society of Internal Medicine 2003 [02/03/2003]
+          %option{:value => "2765"} Cincinnati Society of Internal Medicine 2004 [02/02/2004]
+          %option{:value => "376"} Cincinnati Society of Ophthalmology 2000 [09/13/2000]
+          %option{:value => "655"} Cincinnati Society of Ophthalmology 2001 [02/14/2001]
+          %option{:value => "1363"} Cincinnati Society of Ophthalmology 2002 [02/13/2002]
+          %option{:value => "2030"} Cincinnati Society of Ophthalmology 2003 [02/12/2003]
+          %option{:value => "2783"} Cincinnati Society of Ophthalmology 2004 [02/11/2004]
+          %option{:value => "3584"} Cincinnati Society of Ophthalmology 2005 [02/09/2005]
+          %option{:value => "5627"} Cincinnati Society of Ophthalmology 2006 [02/08/2006]
+          %option{:value => "7121"} Cincinnati Society of Ophthalmology 2007 [03/14/2007]
+          %option{:value => "8414"} Cincinnati Society of Ophthalmology 2008 [02/13/2008]
+          %option{:value => "9070"} Cincinnati Society of Ophthalmology 2009 [01/14/2009]
+          %option{:value => "15053"} Cincinnati Society of Ophthalmology/UC Evening Meeting Series [02/07/2013]
+          %option{:value => "1509"} Cincinnati Surgical Society 2002 [04/24/2002]
+          %option{:value => "2151"} Cincinnati Surgical Society 2003 [04/09/2003]
+          %option{:value => "2965"} Cincinnati Surgical Society 2004 [04/21/2004]
+          %option{:value => "3560"} Cincinnati Surgical Society 2005 [02/02/2005]
+          %option{:value => "5600"} Cincinnati Surgical Society 2006 [02/01/2006]
+          %option{:value => "6974"} Cincinnati Surgical Society 2007 [02/07/2007]
+          %option{:value => "8397"} Cincinnati Surgical Society 2008 [02/06/2008]
+          %option{:value => "9122"} Cincinnati Surgical Society 2009 [02/04/2009]
+          %option{:value => "5985"} Citywide Sleep Medicine Series 2006 [04/26/2006]
+          %option{:value => "13463"} Clinical Documentation for Severity of Illness [06/10/2011]
+          %option{:value => "6788"} Clinical Trials [01/01/1970]
+          %option{:value => "7955"} College of Law 2007 [10/11/2007]
+          %option{:value => "7413"} Complimentary and Alternative Medicine in Parkinson's Disease [01/01/1970]
+          %option{:value => "9674"} COPD [08/13/2009]
+          %option{:value => "391"} Council of Child & Adolescent Psychiatry 2000 [09/19/2000]
+          %option{:value => "926"} Council of Child & Adolescent Psychiatry 2001 [06/26/2001]
+          %option{:value => "1303"} Council of Child & Adolescent Psychiatry 2002 [01/22/2002]
+          %option{:value => "5068"} Council of Child & Adolescent Psychiatry 2005 [10/11/2005]
+          %option{:value => "5904"} Council of Child & Adolescent Psychiatry 2006 [04/05/2006]
+          %option{:value => "7012"} Council of Child & Adolescent Psychiatry 2007 [02/20/2007]
+          %option{:value => "8558"} Council of Child & Adolescent Psychiatry 2008 [04/15/2008]
+          %option{:value => "4760"} Council of Deans Meeting [04/19/2002]
+          %option{:value => "2939"} Dearborn County Hospital 2004 [04/08/2004]
+          %option{:value => "4072"} Dearborn County Hospital 2005 [04/14/2005]
+          %option{:value => "5671"} Dearborn County Hospital 2006 [02/16/2006]
+          %option{:value => "7318"} Dearborn County Hospital 2007 [04/19/2007]
+          %option{:value => "8454"} Dearborn County Hospital 2008 [02/28/2008]
+          %option{:value => "9473"} Dearborn County Hospital 2009 [05/29/2009]
+          %option{:value => "12270"} Dearborn County Hospital 2010 [03/23/2010]
+          %option{:value => "13318"} Dearborn County Hospital 2011 [03/23/2010]
+          %option{:value => "14374"} Dearborn County Hospital 2012 [05/21/2012]
+          %option{:value => "2984"} Dearborn County Hospital ACLS 2004 [04/26/2004]
+          %option{:value => "8811"} Dearborn County Hospital ACLS 2008 [08/21/2008]
+          %option{:value => "9098"} Dermatology 2009 [01/22/2009]
+          %option{:value => "11740"} Dermatology 2010 [01/01/2010]
+          %option{:value => "12909"} Dermatology 2011 [01/04/2011]
+          %option{:value => "13977"} Dermatology 2012 [12/21/2011]
+          %option{:value => "14918"} Dermatology 2013 [12/26/2012]
+          %option{:value => "8291"} Dermatology Clinical Conference 2008 [01/03/2008]
+          %option{:value => "309"} Disease of the Month Update 2000 [07/11/2000]
+          %option{:value => "982"} Disease of the Month Update 2001 [08/07/2001]
+          %option{:value => "1916"} Disease of the Month Update 2002 [12/17/2002]
+          %option{:value => "2384"} Disease of the Month Update 2003 [08/26/2003]
+          %option{:value => "2746"} Disease of the Month Update 2004 [01/27/2004]
+          %option{:value => "3542"} Disease of the Month Update 2005 [01/25/2005]
+          %option{:value => "8522"} Division of Plastic, Reconstructive & Hand Surgery 2008 [04/02/2008]
+          %option{:value => "9454"} Division of Plastic, Reconstructive & Hand Surgery 2009 [03/25/2009]
+          %option{:value => "12075"} Division of Plastic, Reconstructive, and Hand Surgery 2010 [01/27/2010]
+          %option{:value => "13593"} Division of Plastic, Reconstructive, and Hand Surgery 2011 [08/02/2011]
+          %option{:value => "13988"} Division of Plastic, Reconstructive, and Hand Surgery 2012 [08/02/2011]
+          %option{:value => "14975"} Division of Plastic, Reconstructive, Hand and Burn Surgery 2013 [01/08/2013]
+          %option{:value => "326"} Drake Center 2000 [08/01/2000]
+          %option{:value => "811"} Drake Center 2001 [04/25/2001]
+          %option{:value => "1324"} Drake Center 2002 [01/30/2002]
+          %option{:value => "2064"} Drake Center 2003 [02/26/2003]
+          %option{:value => "2827"} Drake Center 2004 [02/25/2004]
+          %option{:value => "3523"} Drake Center 2005 [01/19/2005]
+          %option{:value => "5958"} Drake Center 2006 [04/19/2006]
+          %option{:value => "6136"} Effective Written and Oral Communications Between Providers and Their Patients [11/15/2004]
+          %option{:value => "12099"} Effort, Malingering, and Somatization [02/09/2010]
+          %option{:value => "7565"} Eighth Annual Pilot Research Project Symposium [01/01/1970]
+          %option{:value => "7563"} Eighth Annual Pilot Reserch Project Symposium [01/01/1970]
+          %option{:value => "8843"} Emergency Medicine - Cardiology 2008 [09/10/2008]
+          %option{:value => "9223"} Emergency Medicine - Cardiology 2009 [04/29/2009]
+          %option{:value => "8829"} Emergency Medicine - Critical Care 2008 [09/03/2008]
+          %option{:value => "9231"} Emergency Medicine - Critical Care 2009 [05/06/2009]
+          %option{:value => "8747"} Emergency Medicine - M&M 2008 [07/16/2008]
+          %option{:value => "9104"} Emergency Medicine - M&M 2009 [01/28/2009]
+          %option{:value => "9627"}
+            Emergency Medicine - M&M
+            (July 2009 to June 2010) [07/29/2009]
+          %option{:value => "8972"} Emergency Medicine - Neurology 2008 [11/12/2008]
+          %option{:value => "26"} Emergency Medicine 2000 [01/12/2000]
+          %option{:value => "952"} Emergency Medicine 2001 [07/18/2001]
+          %option{:value => "1326"} Emergency Medicine 2002 [01/30/2002]
+          %option{:value => "1982"} Emergency Medicine 2003 [01/22/2003]
+          %option{:value => "2718"} Emergency Medicine 2004 [01/21/2004]
+          %option{:value => "3545"} Emergency Medicine 2005 [01/26/2005]
+          %option{:value => "5557"} Emergency Medicine 2006 [01/25/2006]
+          %option{:value => "6833"} Emergency Medicine 2007 [01/03/2007]
+          %option{:value => "8377"} Emergency Medicine 2008 [01/30/2008]
+          %option{:value => "12546"} Emergency Medicine 2011 [07/19/2010]
+          %option{:value => "13954"} Emergency Medicine 2012 [12/20/2011]
+          %option{:value => "14870"} Emergency Medicine 2013 [12/17/2012]
+          %option{:value => "12539"} Emergency Medicine Jul - Dec 2010 [07/19/2010]
+          %option{:value => "4828"} Emergent Pediatric Burn Care: Treatment Priorities & Medical Advancements [03/30/2002]
+          %option{:value => "736"} ENT Society 2001 [03/20/2001]
+          %option{:value => "1284"} ENT Society 2002 [01/16/2002]
+          %option{:value => "1962"} ENT Society 2003 [01/15/2003]
+          %option{:value => "2720"} ENT Society 2004 [01/21/2004]
+          %option{:value => "3525"} ENT Society 2005 [01/19/2005]
+          %option{:value => "5657"} ENT Society 2006 [02/15/2006]
+          %option{:value => "7123"} ENT Society 2007 [03/14/2007]
+          %option{:value => "8342"} ENT Society 2008 [01/16/2008]
+          %option{:value => "9087"} ENT Society 2009 [01/20/2009]
+          %option{:value => "12618"} ENT Society 2010 [09/01/2010]
+          %option{:value => "12700"} ENT Society 2011 [10/14/2010]
+          %option{:value => "13985"} ENT Society 2012 [12/22/2011]
+          %option{:value => "14877"} ENT Society 2013 [12/17/2012]
+          %option{:value => "1321"} Environmental Health 2002 [01/29/2002]
+          %option{:value => "2119"} Environmental Health 2003 [03/21/2003]
+          %option{:value => "14243"} Epilepsy Surgery Conference [03/23/2012]
+          %option{:value => "14852"} Epilepsy Surgery Conference 2013 [12/11/2012]
+          %option{:value => "5202"} Essential STD Exam Skills [01/01/1970]
+          %option{:value => "580"} Ethics in Research 2001 [01/08/2001]
+          %option{:value => "12107"} Experiences of the Haiti Earthquake [02/09/2010]
+          %option{:value => "3427"} Family Medicine Cross Cultural Education Series 2004 [12/07/2004]
+          %option{:value => "5138"} Federation of American Societies for Experimental Biology [06/29/2002]
+          %option{:value => "2371"} Fetal Therapeutics 2003 [08/14/2003]
+          %option{:value => "43"} General Internal Medicine 2000 [01/19/2000]
+          %option{:value => "574"} General Internal Medicine 2001 [01/05/2001]
+          %option{:value => "3683"} General Internal Medicine 2005 [03/16/2005]
+          %option{:value => "8563"} General Internal Medicine 2008 [04/16/2008]
+          %option{:value => "386"} General Medicine-Clinical Conference 2000 [09/15/2000]
+          %option{:value => "954"} General Medicine-Clinical Conference 2001 [07/18/2001]
+          %option{:value => "1286"} General Medicine-Clinical Conference 2002 [01/16/2002]
+          %option{:value => "1964"} General Medicine-Clinical Conference 2003 [01/15/2003]
+          %option{:value => "2722"} General Medicine-Clinical Conference 2004 [01/21/2004]
+          %option{:value => "3527"} General Medicine-Clinical Conference 2005 [01/19/2005]
+          %option{:value => "5519"} General Medicine-Clinical Conference 2006 [01/18/2006]
+          %option{:value => "6890"} General Medicine-Clinical Conference 2007 [01/17/2007]
+          %option{:value => "8431"} General Medicine-Clinical Conference 2008 [02/20/2008]
+          %option{:value => "754"} General Medicine-Evidence Based 2001 [03/28/2001]
+          %option{:value => "1328"} General Medicine-Evidence Based 2002 [01/30/2002]
+          %option{:value => "2000"} General Medicine-Evidence Based 2003 [01/29/2003]
+          %option{:value => "2880"} Geriatric Medicine 2004 [03/17/2004]
+          %option{:value => "3669"} Geriatric Medicine 2005 [03/10/2005]
+          %option{:value => "5714"} Geriatric Medicine 2006 [02/24/2006]
+          %option{:value => "7082"} Geriatric Medicine 2007 [03/06/2007]
+          %option{:value => "5298"} Good Clinical Practices for the Research Professional: Conducting a Clinical Research Study [01/01/1970]
+          %option{:value => "2546"} Graduate Medical Education 2003 [10/31/2003]
+          %option{:value => "2593"} Greater Cincinnati Anesthesiology Society 2003 [11/19/2003]
+          %option{:value => "2724"} Greater Cincinnati Anesthesiology Society 2004 [01/21/2004]
+          %option{:value => "3621"} Greater Cincinnati Anesthesiology Society 2005 [02/23/2005]
+          %option{:value => "5780"} Greater Cincinnati Anesthesiology Society 2006 [03/08/2006]
+          %option{:value => "7180"} Greater Cincinnati Anesthesiology Society 2007 [03/27/2007]
+          %option{:value => "8357"} Greater Cincinnati Anesthesiology Society 2008 [01/22/2008]
+          %option{:value => "9587"} Greater Cincinnati Anesthesiology Society 2009 [04/07/2009]
+          %option{:value => "1563"} Greater Cincinnati Bone Club 2002 [05/21/2002]
+          %option{:value => "1724"} Greater Cincinnati Pain Society 2002 [09/17/2002]
+          %option{:value => "1997"} Greater Cincinnati Pain Society 2003 [01/28/2003]
+          %option{:value => "2801"} Greater Cincinnati Pain Society 2004 [02/17/2004]
+          %option{:value => "3516"} Greater Cincinnati Pain Society 2005 [01/17/2005]
+          %option{:value => "5549"} Greater Cincinnati Pain Society 2006 [01/23/2006]
+          %option{:value => "9481"} Greater Cincinnati Radiologic Society [05/20/2009]
+          %option{:value => "12268"} Greater Cincinnati Radiologic Society 2010 [03/23/2010]
+          %option{:value => "15014"} Greater Cincinnati Society of Anesthesiologists [01/31/2013]
+          %option{:value => "12121"} Greater Cincinnati Society of Anesthesiologists 2010 [02/19/2010]
+          %option{:value => "12989"} Greater Cincinnati Society of Anesthesiologists 2011 [01/19/2011]
+          %option{:value => "14146"} Greater Cincinnati Society of Anesthesiologists 2012 [02/23/2012]
+          %option{:value => "2551"} Harold Schwinger Lecture Series 2003 [11/03/2003]
+          %option{:value => "3283"} Health Care for the Homeless 2004 [10/01/2004]
+          %option{:value => "3481"} Health Care for the Homeless 2005 [01/07/2005]
+          %option{:value => "2438"} Hebrew Union College-Ethics Center 2003 [09/19/2003]
+          %option{:value => "14007"} Hematology Oncology 2012 [01/04/2012]
+          %option{:value => "5"} Hematology-Oncology 2000 [01/05/2000]
+          %option{:value => "596"} Hematology-Oncology 2001 [01/12/2001]
+          %option{:value => "1257"} Hematology-Oncology 2002 [01/04/2002]
+          %option{:value => "1936"} Hematology-Oncology 2003 [01/03/2003]
+          %option{:value => "2710"} Hematology-Oncology 2004 [01/16/2004]
+          %option{:value => "3483"} Hematology-Oncology 2005 [01/07/2005]
+          %option{:value => "5471"} Hematology-Oncology 2006 [01/06/2006]
+          %option{:value => "6857"} Hematology-Oncology 2007 [01/05/2007]
+          %option{:value => "8293"} Hematology-Oncology 2008 [01/04/2008]
+          %option{:value => "9084"} Hematology-Oncology 2009 [01/16/2009]
+          %option{:value => "9062"} Hematology-Oncology 2009 [01/09/2009]
+          %option{:value => "11860"} Hematology-Oncology 2010 [01/04/2010]
+          %option{:value => "12916"} Hematology-Oncology 2011 [01/05/2011]
+          %option{:value => "14954"} Hematology-Oncology 2013 [01/03/2013]
+          %option{:value => "12103"} Hemispheric Disconnection as a Mechanism for Schneiderian Delusions in Schizophrenia [02/09/2010]
+          %option{:value => "2206"} Highland District Hospital 2003 [05/02/2003]
+          %option{:value => "2853"} Highland District Hospital 2004 [03/05/2004]
+          %option{:value => "15162"} HMGIM Education Conference [03/18/2013]
+          %option{:value => "5137"} Hospice 2005 [10/18/2005]
+          %option{:value => "6533"} Hospice 2006 [10/08/2006]
+          %option{:value => "7045"} Hospice 2007 [02/27/2007]
+          %option{:value => "4558"} Hot Topics:  Exempt/Expedited IRB Review [03/14/2002]
+          %option{:value => "8007"} Human Subject Protection:  Still Challenging After All These Years [09/26/2008]
+          %option{:value => "493"} Infectious Diseases 2000 [11/11/2000]
+          %option{:value => "5391"} Information of Biomarkers in Pediatric OCD and Depression [01/01/1970]
+          %option{:value => "5326"} Insights into Regulation of Epithelial Secretion [01/01/1970]
+          %option{:value => "501"} Integrative Medicine 2000 [11/15/2000]
+          %option{:value => "5556"} Intermediate Access XP: Tables [08/11/2003]
+          %option{:value => "14432"} Internal Medicine - Attending Meeting [06/21/2012]
+          %option{:value => "14978"} Internal Medicine - Attending Meeting 2013 [01/14/2013]
+          %option{:value => "13101"} Internal Medicine - Current Controversies in Clinical Medicine 2011 [02/14/2011]
+          %option{:value => "14023"} Internal Medicine - Current Controversies in Clinical Medicine 2012 [01/09/2012]
+          %option{:value => "14797"} Internal Medicine - Current Controversies in Clinical Medicine 2013 [12/04/2012]
+          %option{:value => "12876"} Internal Medicine - Molecule to Bedside 2011 [12/17/2010]
+          %option{:value => "13949"} Internal Medicine - Molecule to Bedside 2012 [12/20/2011]
+          %option{:value => "14962"} Internal Medicine - Molecule to Bedside 2013 [01/07/2013]
+          %option{:value => "29"} Internal Medicine 2000 [01/12/2000]
+          %option{:value => "562"} Internal Medicine 2001 [01/03/2001]
+          %option{:value => "1245"} Internal Medicine 2002 [01/02/2002]
+          %option{:value => "1938"} Internal Medicine 2003 [01/08/2003]
+          %option{:value => "2676"} Internal Medicine 2004 [01/07/2004]
+          %option{:value => "3465"} Internal Medicine 2005 [01/05/2005]
+          %option{:value => "5447"} Internal Medicine 2006 [01/04/2006]
+          %option{:value => "6837"} Internal Medicine 2007 [01/03/2007]
+          %option{:value => "8276"} Internal Medicine 2008 [01/02/2008]
+          %option{:value => "9048"} Internal Medicine 2009 [01/07/2009]
+          %option{:value => "11865"} Internal Medicine 2010 [01/06/2010]
+          %option{:value => "12852"} Internal Medicine 2011 [12/06/2010]
+          %option{:value => "13945"} Internal Medicine 2012 [12/19/2011]
+          %option{:value => "14794"} Internal Medicine 2013 [12/03/2012]
+          %option{:value => "5525"} Introductory STD Distance Learning [01/01/1970]
+          %option{:value => "1952"} IRB 2003 [01/13/2003]
+          %option{:value => "2741"} IRB 2004 [01/26/2004]
+          %option{:value => "3503"} IRB 2005 [01/12/2005]
+          %option{:value => "5581"} IRB 2006 [01/26/2006]
+          %option{:value => "9374"} ISCD Bone Densitometry 2008 [02/01/2008]
+          %option{:value => "8390"} ISCD Vertebral Fracture Assessment 2008 [02/01/2008]
+          %option{:value => "4455"} Laparoscopic Herniorrhaphy: A Laparoscopic Approach to Abdominal Wall Defects [11/09/2001]
+          %option{:value => "13205"} Lindner Center of HOPE - Journal Club 2011 [03/04/2011]
+          %option{:value => "9524"} Lindner Center of HOPE 2009 *LINDNER CENTER STAFF ONLY* [07/07/2009]
+          %option{:value => "11709"} Lindner Center of HOPE 2010 [11/25/2009]
+          %option{:value => "12857"} Lindner Center of HOPE 2011 [12/06/2010]
+          %option{:value => "14011"} Lindner Center of HOPE 2012 [01/04/2012]
+          %option{:value => "14800"} Lindner Center of HOPE 2013 [12/04/2012]
+          %option{:value => "12251"} Lindner Center of HOPE Journal Club 2010 [03/09/2010]
+          %option{:value => "7835"} Malcolm Adcock Memorial Lecture Series: "Pandemic Influenza: A Harbinger of Things to Come" [05/08/2008]
+          %option{:value => "2193"} Master Series in Otolaryngology 2003 [04/29/2003]
+          %option{:value => "12337"} Medical Education - Faculty Teaching Skills Development Seminar Series [04/30/2010]
+          %option{:value => "13066"} Medical Education 2011 [02/03/2011]
+          %option{:value => "14132"} Medical Education 2012 [02/22/2012]
+          %option{:value => "12105"} Medical Missions and Systems Applications [02/09/2010]
+          %option{:value => "3486"} MFM Core Curriculum Lecutre Series 2005 [01/07/2005]
+          %option{:value => "5474"} MFM Core Curriculum Lecutre Series 2006 [01/06/2006]
+          %option{:value => "6859"} MFM Core Curriculum Lecutre Series 2007 [01/05/2007]
+          %option{:value => "8333"} MFM Core Curriculum Lecutre Series 2008 [01/14/2008]
+          %option{:value => "819"} MFM Ultrasound Journal Club 2001 [04/26/2001]
+          %option{:value => "1393"} MFM Ultrasound Journal Club 2002 [02/25/2002]
+          %option{:value => "1994"} MFM Ultrasound Journal Club 2003 [01/27/2003]
+          %option{:value => "2743"} MFM Ultrasound Journal Club 2004 [01/26/2004]
+          %option{:value => "12508"} Multidisciplinary Solid Tumor Board (Sarcoma Conference) [01/25/2010]
+          %option{:value => "337"} Multidisciplinary Solid Tumor Board 2000 [08/09/2000]
+          %option{:value => "564"} Multidisciplinary Solid Tumor Board 2001 [01/03/2001]
+          %option{:value => "1247"} Multidisciplinary Solid Tumor Board 2002 [01/02/2002]
+          %option{:value => "1940"} Multidisciplinary Solid Tumor Board 2003 [01/08/2003]
+          %option{:value => "2690"} Multidisciplinary Solid Tumor Board 2004 [01/08/2004]
+          %option{:value => "3488"} Multidisciplinary Solid Tumor Board 2005 [01/07/2005]
+          %option{:value => "5497"} Multidisciplinary Solid Tumor Board 2006 [01/11/2006]
+          %option{:value => "6841"} Multidisciplinary Solid Tumor Board 2007 [01/03/2007]
+          %option{:value => "8278"} Multidisciplinary Solid Tumor Board 2008 [01/02/2008]
+          %option{:value => "9050"} Multidisciplinary Solid Tumor Board 2009 [01/07/2009]
+          %option{:value => "9052"} Multidisciplinary Solid Tumor Board 2009 2009 [01/07/2009]
+          %option{:value => "11983"} Multidisciplinary Solid Tumor Board 2010 [01/25/2010]
+          %option{:value => "12892"} Multidisciplinary Solid Tumor Boards 2011 [01/04/2011]
+          %option{:value => "13965"} Multidisciplinary Tumor Boards 2012 [12/21/2011]
+          %option{:value => "14925"} Multidisciplinary Tumor Boards 2013 [12/27/2012]
+          %option{:value => "709"} Nephrology 2001 [03/07/2001]
+          %option{:value => "330"} Neuro/Oncology Tumor Board 2000 [08/02/2000]
+          %option{:value => "588"} Neuro/Oncology Tumor Board 2001 [01/10/2001]
+          %option{:value => "1249"} Neuro/Oncology Tumor Board 2002 [01/02/2002]
+          %option{:value => "1934"} Neuro/Oncology Tumor Board 2003 [01/02/2003]
+          %option{:value => "2678"} Neuro/Oncology Tumor Board 2004 [01/07/2004]
+          %option{:value => "3467"} Neuro/Oncology Tumor Board 2005 [01/05/2005]
+          %option{:value => "5449"} Neuro/Oncology Tumor Board 2006 [01/04/2006]
+          %option{:value => "6843"} Neuro/Oncology Tumor Board 2007 [01/03/2007]
+          %option{:value => "8281"} Neuro/Oncology Tumor Board 2008 [01/02/2008]
+          %option{:value => "9178"} Neuro/Oncology Tumor Board 2009 [03/04/2009]
+          %option{:value => "9054"} Neuro/Oncology Tumor Boards 2009 [01/07/2009]
+          %option{:value => "7"} Neurology 2000 [01/05/2000]
+          %option{:value => "566"} Neurology 2001 [01/03/2001]
+          %option{:value => "1251"} Neurology 2002 [01/02/2002]
+          %option{:value => "1943"} Neurology 2003 [01/08/2003]
+          %option{:value => "2680"} Neurology 2004 [01/07/2004]
+          %option{:value => "3469"} Neurology 2005 [01/05/2005]
+          %option{:value => "5451"} Neurology 2006 [01/04/2006]
+          %option{:value => "6845"} Neurology 2007 [01/03/2007]
+          %option{:value => "8315"} Neurology 2008 [01/09/2008]
+          %option{:value => "9140"} Neurology 2009 [02/11/2009]
+          %option{:value => "9075"} Neurology 2009 [01/14/2009]
+          %option{:value => "11922"} Neurology 2010 [01/07/2010]
+          %option{:value => "12870"} Neurology 2011 [12/17/2010]
+          %option{:value => "14017"} Neurology 2012 [01/04/2012]
+          %option{:value => "14803"} Neurology 2013 [12/04/2012]
+          %option{:value => "14942"} Neurology and Rehabilitation Medicine 2013 [12/31/2012]
+          %option{:value => "12628"} Neuromuscular Conditions and Management in Diabetes [01/20/2010]
+          %option{:value => "3438"} Neuromuscular Conference 2004 [12/09/2004]
+          %option{:value => "3490"} Neuromuscular Conference 2005 [01/07/2005]
+          %option{:value => "5535"} Neuromuscular Conference 2006 [01/19/2006]
+          %option{:value => "6906"} Neuromuscular Conference 2007 [01/18/2007]
+          %option{:value => "11793"} Neuro-Oncology Tumor Board aka UC Brain Tumor Center 2010 [01/01/2010]
+          %option{:value => "8162"} Ninth Annual Pilot Research Project Symposium [10/02/2008]
+          %option{:value => "100"} OB/GYN 2000 [02/17/2000]
+          %option{:value => "609"} OB/GYN 2001 [01/18/2001]
+          %option{:value => "1299"} OB/GYN 2002 [01/17/2002]
+          %option{:value => "1975"} OB/GYN 2003 [01/16/2003]
+          %option{:value => "2708"} OB/GYN 2004 [01/15/2004]
+          %option{:value => "3507"} OB/GYN 2005 [01/12/2005]
+          %option{:value => "5501"} OB/GYN 2006 [01/11/2006]
+          %option{:value => "6874"} OB/GYN 2007 [01/10/2007]
+          %option{:value => "8365"} OB/GYN 2008 [01/23/2008]
+          %option{:value => "9148"} OB/GYN 2009 [02/13/2009]
+          %option{:value => "844"} OB/GYN Perinatal Journal Club 2001 [05/10/2001]
+          %option{:value => "1358"} OB/GYN Perinatal Journal Club 2002 [02/11/2002]
+          %option{:value => "1954"} OB/GYN Perinatal Journal Club 2003 [01/13/2003]
+          %option{:value => "2694"} OB/GYN Perinatal Journal Club 2004 [01/12/2004]
+          %option{:value => "1309"} OB/GYN Society of Cincinnati 2002 [01/23/2002]
+          %option{:value => "1987"} OB/GYN Society of Cincinnati 2003 [01/22/2003]
+          %option{:value => "2730"} OB/GYN Society of Cincinnati 2004 [01/21/2004]
+          %option{:value => "3498"} OB/GYN Society of Cincinnati 2005 [01/11/2005]
+          %option{:value => "5624"} OB/GYN Society of Cincinnati 2006 [02/07/2006]
+          %option{:value => "12756"} Obstetrics and Gynecology 2010 [11/02/2010]
+          %option{:value => "13052"} Obstetrics and Gynecology 2011 [02/01/2011]
+          %option{:value => "14081"} Obstetrics and Gynecology 2012 [01/31/2012]
+          %option{:value => "15215"} Obstetrics and Gynecology 2013 [04/03/2013]
+          %option{:value => "4410"} Ohio Medication Algorithm Project Physician Training [11/19/2001]
+          %option{:value => "36"} Ophthalmology 2000 [01/15/2000]
+          %option{:value => "568"} Ophthalmology 2001 [01/03/2001]
+          %option{:value => "1292"} Ophthalmology 2002 [01/16/2002]
+          %option{:value => "1970"} Ophthalmology 2003 [01/15/2003]
+          %option{:value => "2682"} Ophthalmology 2004 [01/07/2004]
+          %option{:value => "3471"} Ophthalmology 2005 [01/05/2005]
+          %option{:value => "5453"} Ophthalmology 2006 [01/04/2006]
+          %option{:value => "6847"} Ophthalmology 2007 [01/03/2007]
+          %option{:value => "8285"} Ophthalmology 2008 [01/02/2008]
+          %option{:value => "9077"} Ophthalmology 2009 [01/14/2009]
+          %option{:value => "9056"} Ophthalmology 2009 [01/01/2009]
+          %option{:value => "11916"} Ophthalmology 2010 [01/05/2010]
+          %option{:value => "12762"} Ophthalmology 2011 [11/02/2010]
+          %option{:value => "13926"} Ophthalmology 2012 [12/19/2011]
+          %option{:value => "14885"} Ophthalmology 2013 [12/18/2012]
+          %option{:value => "17"} Orthopaedic Surgery 2000 [01/08/2000]
+          %option{:value => "578"} Orthopaedic Surgery 2001 [01/06/2001]
+          %option{:value => "1263"} Orthopaedic Surgery 2002 [01/05/2002]
+          %option{:value => "2402"} Orthopaedic Surgery 2003 [09/03/2003]
+          %option{:value => "2847"} Orthopaedic Surgery 2004 [03/03/2004]
+          %option{:value => "4333"} Orthopaedic Surgery 2005 [05/07/2005]
+          %option{:value => "2147"} Osteoporosis 2003 [04/05/2003]
+          %option{:value => "2748"} Osteoporosis 2004 [01/27/2004]
+          %option{:value => "3576"} Osteoporosis 2005 [02/04/2005]
+          %option{:value => "5598"} Osteoporosis 2006 [01/31/2006]
+          %option{:value => "7035"} Osteoporosis 2007 [02/22/2007]
+          %option{:value => "9"} Otolaryngology 2000 [01/05/2000]
+          %option{:value => "570"} Otolaryngology 2001 [01/03/2001]
+          %option{:value => "1253"} Otolaryngology 2002 [01/02/2002]
+          %option{:value => "1945"} Otolaryngology 2003 [01/08/2003]
+          %option{:value => "2684"} Otolaryngology 2004 [01/07/2004]
+          %option{:value => "3473"} Otolaryngology 2005 [01/05/2005]
+          %option{:value => "5457"} Otolaryngology 2006 [01/04/2006]
+          %option{:value => "6851"} Otolaryngology 2007 [01/03/2007]
+          %option{:value => "8287"} Otolaryngology 2008 [01/02/2008]
+          %option{:value => "9058"} Otolaryngology 2009 [01/07/2009]
+          %option{:value => "9129"} Otolaryngology 2009 [02/04/2009]
+          %option{:value => "11796"} Otolaryngology 2010 [12/18/2009]
+          %option{:value => "12798"} Otolaryngology 2011 [11/12/2010]
+          %option{:value => "13951"} Otolaryngology 2012 [12/20/2011]
+          %option{:value => "14867"} Otolaryngology 2013 [12/14/2012]
+          %option{:value => "671"} Outcomes Research 2001 [02/20/2001]
+          %option{:value => "1259"} Outcomes Research 2002 [01/04/2002]
+          %option{:value => "2011"} Outcomes Research 2003 [01/31/2003]
+          %option{:value => "2712"} Outcomes Research 2004 [01/16/2004]
+          %option{:value => "3492"} Outcomes Research 2005 [01/07/2005]
+          %option{:value => "5866"} Outcomes Research 2006 [03/24/2006]
+          %option{:value => "6911"} Outcomes Research 2007 [01/19/2007]
+          %option{:value => "8355"} Outcomes Research 2008 [01/18/2008]
+          %option{:value => "9064"} Outcomes Research 2009 [01/09/2009]
+          %option{:value => "5857"} Pain Management 2006 [03/22/2006]
+          %option{:value => "3"} Pathology 2000 [01/04/2000]
+          %option{:value => "582"} Pathology 2001 [01/08/2001]
+          %option{:value => "1265"} Pathology 2002 [01/07/2002]
+          %option{:value => "1956"} Pathology 2003 [01/13/2003]
+          %option{:value => "2672"} Pathology 2004 [01/05/2004]
+          %option{:value => "3463"} Pathology 2005 [01/03/2005]
+          %option{:value => "5488"} Pathology 2006 [01/09/2006]
+          %option{:value => "6936"} Pathology 2007 [01/29/2007]
+          %option{:value => "5926"} Pathology AP/CP Meeting - Introductory Remarks on HIPAA [05/13/2003]
+          %option{:value => "4739"} Pathology Autopsy Conference 2005 [08/15/2005]
+          %option{:value => "5490"} Pathology Autopsy Conference 2006 [01/10/2006]
+          %option{:value => "6887"} Pathology Autopsy Conference 2007 [01/16/2007]
+          %option{:value => "6142"} Pathology of Epilepsy and Its Management [01/01/1970]
+          %option{:value => "1"} Pediatrics 2000 [01/03/2000]
+          %option{:value => "705"} Pediatrics 2001 [03/05/2001]
+          %option{:value => "1267"} Pediatrics 2002 [01/07/2002]
+          %option{:value => "3518"} Pharmacy Statin Series 2005 [01/17/2005]
+          %option{:value => "15"} Physical Medicine 2000 [01/07/2000]
+          %option{:value => "576"} Physical Medicine 2001 [01/05/2001]
+          %option{:value => "1261"} Physical Medicine 2002 [01/04/2002]
+          %option{:value => "2013"} Physical Medicine 2003 [01/31/2003]
+          %option{:value => "2692"} Physical Medicine 2004 [01/09/2004]
+          %option{:value => "3494"} Physical Medicine 2005 [01/07/2005]
+          %option{:value => "5476"} Physical Medicine 2006 [01/06/2006]
+          %option{:value => "6861"} Physical Medicine 2007 [01/05/2007]
+          %option{:value => "8295"} Physical Medicine 2008 [01/04/2008]
+          %option{:value => "9066"} Physical Medicine 2009 [01/09/2009]
+          %option{:value => "9134"} Physical Medicine 2009 [02/06/2009]
+          %option{:value => "11787"} Physical Medicine and Rehabilitation 2010 [12/16/2009]
+          %option{:value => "12912"} Physical Medicine and Rehabilitation 2011 [01/04/2011]
+          %option{:value => "13897"} Physical Medicine and Rehabilitation 2012 [11/30/2011]
+          %option{:value => "4967"} Physician Leadership Program 2005 [09/21/2005]
+          %option{:value => "5506"} Physician Leadership Program 2006 [01/11/2006]
+          %option{:value => "7895"} Physician Leadership Program 2007 [09/19/2007]
+          %option{:value => "9444"} Physician Leadership Program 2008-2009 [10/01/2008]
+          %option{:value => "11626"} Physician Leadership Program 2009-2010 [10/01/2008]
+          %option{:value => "13736"} Physician Leadership Program 2011-2012 [09/28/2011]
+          %option{:value => "5987"} Physician Training for the Depression, Schizophrenia & Bipolar Medication Algorithms [01/01/1970]
+          %option{:value => "7932"} Plastic, Reconstructive & Hand Surgery 2007 [10/03/2007]
+          %option{:value => "8289"} Plastic, Reconstructive & Hand Surgery 2008 [01/02/2008]
+          %option{:value => "9575"} Psychiatry – Journal Club 2009 [07/09/2009]
+          %option{:value => "11951"} Psychiatry - Journal Club 2010 [01/13/2010]
+          %option{:value => "12974"} Psychiatry - Journal Club 2011 [01/13/2010]
+          %option{:value => "11"} Psychiatry 2000 [01/05/2000]
+          %option{:value => "593"} Psychiatry 2001 [01/10/2001]
+          %option{:value => "1275"} Psychiatry 2002 [01/09/2002]
+          %option{:value => "1947"} Psychiatry 2003 [01/08/2003]
+          %option{:value => "2686"} Psychiatry 2004 [01/07/2004]
+          %option{:value => "3475"} Psychiatry 2005 [01/05/2005]
+          %option{:value => "5459"} Psychiatry 2006 [01/04/2006]
+          %option{:value => "6853"} Psychiatry 2007 [01/03/2007]
+          %option{:value => "8321"} Psychiatry 2008 [01/09/2008]
+          %option{:value => "9499"}
+            Psychiatry 2008-2009
+            (July 1, 2008 to June 30, 2009) [07/01/2008]
+          %option{:value => "9081"} Psychiatry 2009 [01/14/2009]
+          %option{:value => "9608"}
+            Psychiatry 2009-2010
+            [07/01/2009]
+          %option{:value => "12937"} Psychiatry 2011 [07/01/2009]
+          %option{:value => "14044"} Psychiatry 2012 [01/11/2012]
+          %option{:value => "15071"} Psychiatry 2013 [02/12/2013]
+          %option{:value => "14048"} Psychiatry Journal Club 2012 [01/11/2012]
+          %option{:value => "13087"} Public Health Sciences [02/09/2011]
+          %option{:value => "287"} Pulmonary 2000 [06/19/2000]
+          %option{:value => "9414"} Pulmonary and Critical Care [03/16/2009]
+          %option{:value => "7080"} Pulmonary and Critical Care 2007 [03/05/2007]
+          %option{:value => "8392"} Pulmonary and Critical Care 2008 [02/04/2008]
+          %option{:value => "3379"} Quarterly Mtg. of Council of Child & Adoles. Psych 2004 [11/10/2004]
+          %option{:value => "4056"} Quarterly Mtg. of Council of Child & Adoles. Psych 2005 [04/13/2005]
+          %option{:value => "21"} Radiology 2000 [01/10/2000]
+          %option{:value => "890"} Radiology 2001 [06/01/2001]
+          %option{:value => "1864"} Radiology 2002 [11/18/2002]
+          %option{:value => "3867"} Radiology 2005 [04/02/2005]
+          %option{:value => "3270"} Recovery Month Open House 2004 [09/28/2004]
+          %option{:value => "1061"} Renal Pathology 2001 [09/21/2001]
+          %option{:value => "1451"} Renal Pathology 2002 [03/22/2002]
+          %option{:value => "2102"} Renal Pathology 2003 [03/14/2003]
+          %option{:value => "5514"} Reproductive Health 2003 [03/31/2003]
+          %option{:value => "2891"} Research Study 2004 [03/18/2004]
+          %option{:value => "3699"} Research Study 2005 [03/18/2005]
+          %option{:value => "7028"} Rural Health Collaborative 2007 [02/21/2007]
+          %option{:value => "12630"}
+            SAVE THE DATE:  11th Annual MISS 2011
+            Minimally Invasive Surgery Symposium - February 21-26, 2011 - Salt Lake City, UT
+            [09/08/2010]
+          %option{:value => "6595"} Sixth Annual Pilot Research Project Symposium [10/20/2005]
+          %option{:value => "6596"} Sixth Annual Pilot Research Project Symposium [01/01/1970]
+          %option{:value => "748"} Spirometry 2001 [03/21/2001]
+          %option{:value => "6532"} Spirometry Workshop for the Health Care Professional [09/23/2005]
+          %option{:value => "5387"} Strategies for Inactivation of the RET Proto-Oncogene in Multiple Endocrine Neoplasis, Type 2 [01/01/1970]
+          %option{:value => "13"} Surgery 2000 [01/05/2000]
+          %option{:value => "572"} Surgery 2001 [01/03/2001]
+          %option{:value => "1255"} Surgery 2002 [01/02/2002]
+          %option{:value => "1949"} Surgery 2003 [01/08/2003]
+          %option{:value => "2688"} Surgery 2004 [01/07/2004]
+          %option{:value => "3477"} Surgery 2005 [01/05/2005]
+          %option{:value => "5461"} Surgery 2006 [01/04/2006]
+          %option{:value => "6855"} Surgery 2007 [01/03/2007]
+          %option{:value => "8323"} Surgery 2008 [01/09/2008]
+          %option{:value => "9060"} Surgery 2009 [01/07/2009]
+          %option{:value => "9131"} Surgery 2009 [02/04/2009]
+          %option{:value => "11929"} Surgery 2010 [01/07/2010]
+          %option{:value => "12906"} Surgery 2011 [01/04/2011]
+          %option{:value => "14013"} Surgery 2012 [01/04/2012]
+          %option{:value => "14907"} Surgery 2013 [12/18/2012]
+          %option{:value => "9690"} Technical and Anatomical Considerations of the First Human Face and Maxilla Transplant [08/28/2009]
+          %option{:value => "6762"} The Center on Closing the Health Gap [01/01/1970]
+          %option{:value => "7301"} The Conference and Expo on Closing the Health Gap [04/13/2007]
+          %option{:value => "4821"} The Wellness Lecture Series: Creating a New Balance Between Health Care & the Wellness Industry [06/20/2002]
+          %option{:value => "9688"} The X-Files: Interesting Retina Cases and Novel Treatment [08/28/2009]
+          %option{:value => "4420"} Town Meeting/ Hot Topics on Human Subjects Research [12/05/2001]
+          %option{:value => "8394"} Tri-State Area Pulmonary and Critical Care 2008 [02/04/2008]
+          %option{:value => "13110"} UC Brain Tumor Center [02/21/2011]
+          %option{:value => "14028"} UC Brain Tumor Center 2012 [01/09/2012]
+          %option{:value => "14879"} UC Brain Tumor Center 2013 [12/17/2012]
+          %option{:value => "15233"} UC Health Quarterly Leadership Retreats  [04/17/2013]
+          %option{:value => "7443"} UC Neurology Movement Disorders 2007 [05/17/2007]
+          %option{:value => "8786"} UC Neurology Movement Disorders 2008 [08/06/2008]
+          %option{:value => "9214"} UC Neurology Movement Disorders 2009 [04/15/2009]
+          %option{:value => "9651"}
+            UC Neurology Movement Disorders 2009/2010
+            (August 1, 2009 to June 30, 2010) [07/16/2009]
+          %option{:value => "12579"} UC Neurology Movement Disorders Video Rounds - Jul thru Dec 2010 [08/05/2010]
+          %option{:value => "12922"} UC Neurology Movement Disorders Video Rounds 2011 [01/05/2011]
+          %option{:value => "14056"} UC Neurology Movement Disorders Video Rounds 2012 [01/18/2012]
+          %option{:value => "14983"} UC Neurology Movement Disorders Video Rounds 2013 [01/14/2013]
+          %option{:value => "12390"} University Hospital - Clinical Documentation for Severity of Illness [06/03/2010]
+          %option{:value => "9685"} Update on Heart Failure [08/28/2009]
+          %option{:value => "2480"} Updates in Allergic Diseases Series 2003 [10/07/2003]
+          %option{:value => "2674"} Updates in Allergic Diseases Series 2004 [01/05/2004]
+          %option{:value => "15112"} VAMC Cincinnati [02/27/2013]
+          %option{:value => "14646"} VAMC Cincinnati [09/26/2012]
+          %option{:value => "3442"} Vascular Series Update 2004 [12/14/2004]
+          %option{:value => "9683"} Workplace Diversity: Benefits, Challenges and Solutions [08/28/2009]
+          %option{:value => "5330"} yofascial Pain [01/01/1970]
+  #PersonDetail.dialog
+    %iframe#frameDetail{:frameborder => "0", :height => "500", :name => "frameDetail", :scrolling => "auto", :src => "", :width => "840"}
+  #CopyDialog.dialog
+    %div{:style => "height:300px;"}
+      %form.form-horizontal
+        .control-group
+          %label.control-label Method
+          .controls
+            %label.radio{:for => "CopyChoice1"}
+              %input#CopyChoice1.CopyChoice{:checked => "checked", :name => "CopyChoice", :type => "radio", :value => "1"}/
+              Paste as new parent activity.
+            %label.radio{:for => "CopyChoice2"}
+              %input#CopyChoice2.CopyChoice{:disabled => "disabled", :name => "CopyChoice", :type => "radio", :value => "2"}/
+              Paste as new session within this activity.
+        .control-group
+          %label.control-label Title
+          .controls
+            %input#NewActivityTitle{:name => "NewActivityTitle", :style => "width: 300px;", :type => "text"}/
+        #ParentActivityOptions.control-group
+          %label.control-label Type
+          .controls
+            %select#NewActivityType{:name => "NewActivityType"}
+              %option{:value => ""} Select one...
+              %option{:value => "1"} Live
+              %option{:value => "2"} Enduring Material
+              %option{:value => "3"} Journal
+              %option{:value => "6"} Performance Improvement
+              %option{:value => "7"} Point of Care
+              %option{:value => "8"} Learning From Teaching
+        #NewGroupingSelect.control-group{:style => "display:none;"}
+          %label.control-label Sub Type
+          .controls
+            %select#NewGrouping{:name => "NewGrouping"}
+        #ItemsToCopy.control-group
+          %label.control-label Items To Copy
+          .controls
+            %label.checkbox{:for => "copy_agenda"}
+              %input#copy_agenda.CopyItems{:checked => "checked", :name => "copy_agenda", :type => "checkbox", :value => "agenda"}/
+              Agenda
+            %label.checkbox{:for => "copy_committee"}
+              %input#copy_committee.CopyItems{:checked => "checked", :name => "copy_committee", :type => "checkbox", :value => "committee"}/
+              Committee Members
+            %label.checkbox{:for => "copy_credits"}
+              %input#copy_credits.CopyItems{:checked => "checked", :name => "copy_credits", :type => "checkbox", :value => "credits"}/
+              Credits
+            %label.checkbox{:for => "copy_faculty"}
+              %input#copy_faculty.CopyItems{:name => "copy_faculty", :type => "checkbox", :value => "faculty"}/
+              Faculty
+            %label.checkbox{:for => "copy_files"}
+              %input#copy_files.CopyItems{:name => "copy_files", :type => "checkbox", :value => "files"}/
+              Files & Documents
+            %label.checkbox{:for => "copy_categories"}
+              %input#copy_categories.CopyItems{:checked => "checked", :name => "copy_categories", :type => "checkbox", :value => "categories"}/
+              Folders
+            %label.checkbox{:for => "copy_attendees"}
+              %input#copy_attendees.CopyItems{:name => "copy_attendees", :type => "checkbox", :value => "attendees"}/
+              Participants
+            %label.checkbox{:for => "copy_finances"}
+              %input#copy_finances.CopyItems{:name => "copy_finances", :type => "checkbox", :value => "finances"}/
+              Supporters
+  #CreditsDialog.dialog
+  #email-cert-dialog.dialog
+  #PhotoUpload.dialog
+    %iframe#frmUpload{:frameborder => "0", :height => "110", :scrolling => "no", :src => "", :width => "440"}
+  #DisableActivity.dialog
+    \ 

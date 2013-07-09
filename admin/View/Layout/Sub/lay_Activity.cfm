@@ -67,8 +67,6 @@ App.module('Activity').start({
     <cfset isParent = false />
   </cfif>
 </cfif>
-
-<cfoutput>
 <!--- <link href="#Application.Settings.RootPath#/_styles/Activity.css" rel="stylesheet" type="text/css" /> --->
 <div class="activity profile type-#activitybean.getActivityTypeID()# grouping-#activitybean.getGroupingID()# <cfif activitybean.getParentActivityId() EQ "">parent_activity<cfelse>child_activity</cfif>">
 
@@ -192,6 +190,4 @@ App.module('Activity').start({
     <cfinclude template="includes/activity_dialogs.cfm" />
   </cfif>
 </div>
-
-</cfoutput>
 </cfoutput>

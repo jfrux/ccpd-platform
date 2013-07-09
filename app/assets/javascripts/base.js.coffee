@@ -1,3 +1,7 @@
+Backbone.Marionette.Renderer.render = (template, data) ->
+  throw "Template '" + template + "' not found!"  unless JST[template]
+  JST[template] data
+
 root = this
 
 root.App = new Backbone.Marionette.Application()

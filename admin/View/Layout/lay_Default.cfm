@@ -9,9 +9,10 @@
     'title':""
   } />
 </cfif>
-<cfoutput>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
+<cfoutput>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <title><cfif structKeyExists(tabSettings,'title') AND len(trim(tabSettings.title)) GT 0>
@@ -20,7 +21,6 @@
   <script>
   sMyself = "#Myself#";
   sRootPath = "#Application.Settings.RootPath#";
-  
   </script>
 </head>
 
@@ -37,37 +37,7 @@
         </div>
       </div>
     </div>
-    </cfoutput>
   </div>
-</div>
-<!---
-<script type="text/x-handlebars">{{view Chat.Views.Application}}</script>
-
-<cfoutput>
-    <script>
-    $.ajax({
-      url:'/admin/_com/ajax_chat.cfc',
-      type:'get',
-      dataType:'json',
-      data:{
-        'method':'xmpp-auth'
-      }
-      ,
-      success: function(data) {
-        Chat.connect({
-          jid: data.jid,
-          sid: data.sid,
-          rid: data.rid,
-          debug: true
-        });
-      }
-    })
-    
-  </script>
-</cfoutput>
----><!--- 
-<cfdump label="SESSIONS" var="#session#" />
-<cfdump label="PARAMS" var="#params#" />
-<cfdump label="ATTRIBUTES" var="#attributes#" /> --->
 </body>
+</cfoutput>
 </html>

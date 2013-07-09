@@ -2,6 +2,7 @@
 * CCPD Vendor Bundle
 * 
 *=require_self
+*=hamlcoffee
 *=require date
 *=require buglog/bugLogClient
 *=require jquery/jquery
