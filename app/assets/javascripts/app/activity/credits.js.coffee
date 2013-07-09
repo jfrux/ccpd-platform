@@ -31,18 +31,13 @@ App.module "Activity.Credits", (Self, App, Backbone, Marionette, $) ->
     $form.submit ->
       $(this).ajaxSubmit
         type: "get"
+        dataType: 'json'
         beforeSubmit: ->
           $saveButton.text("Saving...").attr "disabled", true
           return
         success: (responseText, statusText) ->
           d = new Date()
-          if responseText.STATUS is "false"
-            $.each responseText.ERRORS, (i, item) ->
-              addError item.MESSAGE, 250, 6000, 4000
-
-            $saveButton.text("Save Now").attr "disabled", false
-            #IsSaved = false
-          else
+          if responseText.STATUS
             $saveButton.text("Save Credits").attr "disabled", false
             addMessage "Saved credits successfully.", 250, 2000, 2000
             #$discardButton.hide()
@@ -51,6 +46,12 @@ App.module "Activity.Credits", (Self, App, Backbone, Marionette, $) ->
             #updateAll()
             #ClearChanges()
             #IsSaved = true
+          else
+            $.each responseText.ERRORS, (i, item) ->
+              addError item.MESSAGE, 250, 6000, 4000
+
+            $saveButton.text("Save Now").attr "disabled", false
+            #IsSaved = false
           return
       false
 
