@@ -24,8 +24,9 @@
 		<circuit alias="mAssessment" path="../Model/Assessment/" parent="" />
 		<circuit alias="mAdmin" path="../Model/Admin/" parent="" />
 		<circuit alias="mActivity" path="../Model/Activity/" parent="" />
-        <circuit alias="mPage" path="../Model/Page/" parent="" />
-        <circuit alias="mPerson" path="../Model/Person/" parent="" />
+    <circuit alias="mEntity" path="../Model/Entity/" parent="" />
+    <circuit alias="mPage" path="../Model/Page/" parent="" />
+    <circuit alias="mPerson" path="../Model/Person/" parent="" />
 		<circuit alias="mProcess" path="../Model/Process/" parent="" />
 		<circuit alias="mPublic" path="../Model/Public/" parent="" />
 		<circuit alias="mReport" path="../Model/Report/" parent="" />
@@ -33,24 +34,23 @@
 		
 		<!-- View -->
 		<circuit alias="vAuth" path="../View/Auth/" parent="" />
-		
 		<circuit alias="vFile" path="../View/File/" parent="" />
 		<circuit alias="vImage" path="../View/Image/" parent="" />
 		<circuit alias="vMain" path="../View/" parent="" />
 		<circuit alias="vAssessment" path="../View/Assessment/" parent="" />
 		<circuit alias="vAjax" path="../View/Ajax/" parent="" />
-        <circuit alias="vAdmin" path="../View/Admin/" parent="" />
-        <circuit alias="vActivity" path="../View/Activity/" parent="" />
+		<circuit alias="vAdmin" path="../View/Admin/" parent="" />
+		<circuit alias="vActivity" path="../View/Activity/" parent="" />
+		<circuit alias="vEntity" path="../View/Entity/" parent="" />
 		<circuit alias="vLayout" path="../View/Layout/" parent="" />
-        <circuit alias="vPerson" path="../View/Person/" parent="" />
+		<circuit alias="vPerson" path="../View/Person/" parent="" />
 		<circuit alias="vProcess" path="../View/Process/" parent="" />
 		<circuit alias="vPublic" path="../View/Public/" parent="" />
 		<circuit alias="vReport" path="../View/Report/" parent="" />
-        <circuit alias="vSupport" path="../View/Support/" parent="" />
-		
+		<circuit alias="vSupport" path="../View/Support/" parent="" />
+
 		<!-- Controller -->
 		<circuit alias="Auth" path="../Controller/Auth/" relative="true" />
-		
 		<circuit alias="File" path="../Controller/File/" relative="true" />
 		<circuit alias="Image" path="../Controller/Image/" relative="true" />
 		<circuit alias="Main" path="../Controller/" relative="true" />
@@ -58,19 +58,14 @@
 		<circuit alias="Ajax" path="../Controller/Ajax/" relative="true" />
 		<circuit alias="Admin" path="../Controller/Admin/" relative="true" />
 		<circuit alias="Activity" path="../Controller/Activity/" relative="true" />
+		<circuit alias="Entity" path="../Controller/Entity/" relative="true" />
 		<circuit alias="Person" path="../Controller/Person/" relative="true" />
 		<circuit alias="Process" path="../Controller/Process/" relative="true" />
 		<circuit alias="Public" path="../Controller/Public/" relative="true" />
 		<circuit alias="Report" path="../Controller/Report/" relative="true" />
 		<circuit alias="Support" path="../Controller/Support/" relative="true" />
 	</circuits>
-
-	<!--
-	<classes>
-		<class alias="MyClass" type="component" classpath="path.to.SomeCFC" constructor="init" />
-	</classes>
-	-->
-
+	
 	<parameters>
 		<parameter name="defaultFuseaction" value="Main.Welcome" />
 		<!-- you may want to change this to development-full-load mode: -->
@@ -86,7 +81,7 @@
 		<parameter name="queryStringEqual" value="/" />
 		<parameter name="fuseactionVariable" value="event" />
 		<!--These are all default values that can be overridden:
-        <parameter name="precedenceFormOrUrl" value="form" />
+		<parameter name="precedenceFormOrUrl" value="form" />
 		<parameter name="scriptFileDelimiter" value="cfm" />
 		<parameter name="maskedFileDelimiters" value="htm,cfm,cfml,php,php4,asp,aspx" />
 		<parameter name="characterEncoding" value="utf-8" />
@@ -99,8 +94,6 @@
 		<!--<appinit>
 			<fuseaction action="mMain.coldSpringSetup" />
 		</appinit>
-		
-        
 		<preprocess>
 			<fuseaction action="time.preprocess"/>
 		</preprocess>
