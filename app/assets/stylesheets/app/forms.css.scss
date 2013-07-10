@@ -1,4 +1,4 @@
-@import "twitter/bootstrap/base";
+@import "base_bootstrap";
 form {
   .btn [class^="icon-"], .btn [class*=" icon-"], .nav [class^="icon-"], .nav [class*=" icon-"] {
       display: inline;
@@ -21,7 +21,7 @@ form {
       $suggestBorder: darken($suggestBG,20%);
       $suggestBorderHover: darken($suggestBG,35%);
       $suggestText: $gray;
-      $suggestTextHover: $white;
+      $suggestTextHover: #FFF;
 
       > .item {
         line-height:30px;

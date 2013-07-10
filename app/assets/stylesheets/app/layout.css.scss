@@ -1,4 +1,4 @@
-@import "twitter/bootstrap/base";
+@import "base_bootstrap";
 @import "./variables";
 body {
   font-size:12px;
@@ -19,18 +19,19 @@ h1, h2, h3, h4, h5, h6 {
   font-size:12px;
   font-weight:normal;
 }
-.global-nav {
+.navbar {
+  height:40px;
   .global-nav-inner {
     background-image:url(asset_path('bgs.png'));
   }
   .container {
     position:relative;
   }
-  .nav-home, .nav-activities, .nav-people, .nav-me, .nav-reports {
+  .nav-icon-home, .nav-icon-activities, .nav-icon-people, .nav-icon-me, .nav-icon-reports {
     height: 22px;
   }
 
-  .brand {
+  .navbar-brand {
     @include gradient-vertical(#e11e27, #a21d20);
     @include box-shadow(3px 0px 4px rgba(0, 0, 0, 0.64));
     border-color: #A91E24 #A71D24 #570C15;
@@ -90,7 +91,7 @@ h1, h2, h3, h4, h5, h6 {
           font-weight: bold;
           height: 12px;
           line-height: 15px;
-          padding: 13px 13px 15px;
+          padding: 13px 13px 27px;
           text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.75);
 
           > i {
@@ -153,7 +154,7 @@ h1, h2, h3, h4, h5, h6 {
         }
 
         > a {
-          padding:13px 5px 15px;
+          padding:13px 5px 27px;
 
           > i {
             margin: -4px 0 0 0;

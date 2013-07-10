@@ -1,4 +1,4 @@
-@import "twitter/bootstrap/base";
+@import "base_bootstrap";
 @import "./variables";
 .profile {
   .Loading {
@@ -18,7 +18,11 @@
       }
     }
   }
+  .hub-body {
+    @include make-column(19);
+  }
   .content {
+    @include make-row();
     min-height: 500px;
     position:relative;
     background-color:#FFF;
@@ -67,7 +71,7 @@
       }
     }
     .content-inner {
-      margin: 0 10px;
+      margin: 0;
     }
 
     .content-inner {
