@@ -30,7 +30,7 @@ App.Activity.Committee.Ahah.start();
 <cfelse>
   <div class="alert alert-info">
     You have not added any committee members.<br />
-    Click <a class="btn btn-small js-add-person-link" href="javascript:void(0);"><i class="icon-plus"></i></a> above to add someone.
+    Click <a class="btn btn-default btn-small js-add-person-link" href="javascript:void(0);"><i class="icon-plus"></i></a> above to add someone.
   </div>
 </cfif>
 </cfoutput>

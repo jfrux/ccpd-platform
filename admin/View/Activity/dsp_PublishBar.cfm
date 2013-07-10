@@ -17,7 +17,7 @@ $(document).ready(function() {
 <cfoutput>
 <div class="btn-toolbar clearfix">
 <div class="btn-group">
-<a class="btn btn-mini btn-publish-progress dropdown-toggle" data-toggle="dropdown" href="##">
+<a class="btn btn-default btn-mini btn-publish-progress dropdown-toggle" data-toggle="dropdown" href="##">
 Progress
 <span class="caret"></span>
 </a>
@@ -37,8 +37,8 @@ Progress
 </ul>
 </div>
 <div class="btn-group">
-<a class="btn btn-mini js-publishactivity-btn" id="PublishActivity" data-tooltip-title="Publish Activity"><i class="icon-globe"></i></a>
-<a class="btn btn-mini js-unpublishactivity-btn" id="UnpublishActivity" data-tooltip-title="Unpublish Activity"><i class="icon-cancel"></i></a>
+<a class="btn btn-default btn-mini js-publishactivity-btn" id="PublishActivity" data-tooltip-title="Publish Activity"><i class="icon-globe"></i></a>
+<a class="btn btn-default btn-mini js-unpublishactivity-btn" id="UnpublishActivity" data-tooltip-title="Unpublish Activity"><i class="icon-cancel"></i></a>
 </div>
 </div>
 </cfoutput>

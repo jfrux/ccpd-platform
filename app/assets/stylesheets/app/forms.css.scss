@@ -1,4 +1,21 @@
 @import "base_bootstrap";
+.form-horizontal {
+  .control-group {
+    @include make-row();
+
+    .control-label {
+      @include make-column(5);
+    }
+
+    .controls {
+      @include make-column(19);
+
+      .DatePicker {
+        @include make-column(5);
+      }
+    }
+  }
+}
 form {
   .btn [class^="icon-"], .btn [class*=" icon-"], .nav [class^="icon-"], .nav [class*=" icon-"] {
       display: inline;
