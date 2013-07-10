@@ -34,6 +34,8 @@ h1, h2, h3, h4, h5, h6 {
   .navbar-brand {
     @include gradient-vertical(#e11e27, #a21d20);
     @include box-shadow(3px 0px 4px rgba(0, 0, 0, 0.64));
+    background-color: #A21D20;
+    position:relative;
     border-color: #A91E24 #A71D24 #570C15;
     border-radius: 0 0 2px 2px;
     border-style: solid;
@@ -41,13 +43,10 @@ h1, h2, h3, h4, h5, h6 {
     color: #FFFFFF;
     font-family: modernaregular;
     font-size: 31px;
-    left: 0;
-    margin-left: 0;
     padding: 7px 15px;
-    position: absolute;
-    text-shadow: 0 -1px 0px #570C15;
+    text-shadow: 0 -1px 0 #570C15;
     text-transform: lowercase;
-    
+    max-width:122px;
     &:hover {
       color:#CCC;
     }
@@ -74,7 +73,7 @@ h1, h2, h3, h4, h5, h6 {
   .nav {
     &.global-nav-links {
       &:first-child {
-        margin-left:191px;
+        margin-left:91px;
       }
       
       > li {
