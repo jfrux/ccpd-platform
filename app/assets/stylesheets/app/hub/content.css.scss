@@ -37,7 +37,7 @@
         font-size: 13px;
         @include border-radius(5px 0 0 0);
         font-weight: bold;
-        margin: 0 -4.5px 5px -4px;
+        margin: 0 -4.5px 0 -4px;
         display: block;
         line-height: 24px;
         padding: 2px 0 0 14px;
@@ -109,14 +109,5 @@
   }
 
 
-  &.infobar-inactive {
-    .content {
-      .content-title {
-        >h3 {
-          border-radius: 5px 5px 0 0;
-          margin: 0 0 5px 0;
-        }
-      }
-    }
-  }
+  
 }

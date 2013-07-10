@@ -24,7 +24,7 @@ App.module "Components.Status", (Self, App, Backbone, Marionette, $) ->
     $.jGrowl message,
       life: fadeto
       openDuration: fadein
-      closeDuration: fadeout
+      closeDuration: 100
       themeState: 'normal'
     return
 
@@ -34,7 +34,7 @@ App.module "Components.Status", (Self, App, Backbone, Marionette, $) ->
       header: 'ERROR!'
       life: fadeto
       openDuration: fadein
-      closeDuration: fadeout
+      closeDuration: 100
       themeState: 'error'
     return
   return

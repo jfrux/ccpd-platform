@@ -9,9 +9,7 @@
   </div> --->
   <div class="hub-bar projectbar js-projectbar">
     <div class="box">
-      <div class="profile-picture" style="background-image:url(#imageUrl('default_photo/activity_p.png')#);">
-
-      </div>
+      <div class="profile-picture" style="background-image:url(#imageUrl('default_photo/activity_p.png')#);"></div>
     </div>
     <div class="box js-profile-menu">
       #profileMenu(
@@ -37,10 +35,8 @@
     </div>
     <div class="content js-profile-content">
       <div class="hub-content content-inner js-content-toggle">
-        <div class="row-fluid">
-          <div class="content-title">
-            <h3>#request.tabSettings.tabs[lcase(attributes.fuseaction)].title#</h3>
-          </div>
+        <div class="content-title">
+          <h3>#request.tabSettings.tabs[lcase(attributes.fuseaction)].title#</h3>
         </div>
         <div class="MultiFormContent content-inner">
           <div id="js-#replace(request.tabSettings.tabs[lcase(attributes.fuseaction)].event,'.','-')#">
@@ -56,6 +52,7 @@
         </div>
       </div>
       <div class="hub-infobar js-infobar-outer">
+        <div class="infobar-point"></div>
         <div class="InfoBar infobar js-infobar">
           <cfinclude template="includes/#params.controller#/infobar.cfm" />
         </div>

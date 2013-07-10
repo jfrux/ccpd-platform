@@ -13,7 +13,6 @@
       </select>
     </div>
 
-
     <div class="overview-buttons">
       <div class="btn-group">
         <a href="javascript:void(0);" id="OverviewDialogLink" class="btn btn-default">Overview</a>

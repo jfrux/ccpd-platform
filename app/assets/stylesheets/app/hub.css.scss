@@ -34,9 +34,12 @@
     @include make-row();
     .title-text {
       @include make-column(16);
+      overflow:hidden;
+      white-space:nowrap;
     }
     .title-actions {
       @include make-column(8);
+      white-space:nowrap;
     }
     .ContentTitle {
       font-size: 18px;

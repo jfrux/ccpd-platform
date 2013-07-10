@@ -149,7 +149,7 @@
     ).addClass("inputtext textInput").click(->
       if $(this).val().length > 0 and $hiddenInput.val().length is 0
         $input.autocomplete("widget").show()
-    ).width(origWidth).blur(->
+    ).blur(->
     ).keydown((event) ->
       previous_token = undefined
       next_token = undefined
@@ -162,7 +162,6 @@
     )
     $typeahead = $("<div/>").addClass("uiTypeahead")
                             .addClass(settings.typeaheadClass)
-                            .width(origWidth)
     $wrap = $("<div/>").addClass("wrap").appendTo($typeahead)
     if settings.clearable
       $typeahead.addClass "uiClearableTypeahead"

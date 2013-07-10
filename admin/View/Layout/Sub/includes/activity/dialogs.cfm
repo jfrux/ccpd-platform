@@ -15,18 +15,25 @@
       </cfquery>
       <strong>Are you sure you want to move this activity?</strong><br />
       Select from the list below which Multi-Session Parent Activity you wish to move it to.
-      <div style="padding:5px;">
-      <strong>From:</strong> #ActivityBean.getTitle()#
-      </div>
-      <div style="padding:5px;">
-      <strong>To:</strong>
-      <select name="ToActivity" id="ToActivity" style="width:350px;">
-      <option value="">Select Activity</option>
-      <cfloop query="qMultiSessions">
-        <option value="#qMultiSessions.ActivityID#">#qMultiSessions.Title# [#DateFormat(qMultiSessions.ReleaseDate,"mm/dd/yyyy")#]</option>
-      </cfloop>
-      </select>
-      </div>
+      <form class="form-horizontal">
+        <div class="control-group">
+          <label class="control-label">From</label>
+          <div class="controls">
+            <div class="mtl">#ActivityBean.getTitle()#</div>
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label">To</label>
+          <div class="controls">
+            <select name="ToActivity" id="ToActivity">
+              <option value="">Select Activity</option>
+              <cfloop query="qMultiSessions">
+                <option value="#qMultiSessions.ActivityID#">#qMultiSessions.Title# [#DateFormat(qMultiSessions.ReleaseDate,"mm/dd/yyyy")#]</option>
+              </cfloop>
+            </select>
+          </div>
+        </div>
+      </form>
     </div>
   </div>
   <div id="PersonDetail" class="dialog">
@@ -49,7 +56,7 @@
         <div class="control-group">
           <label class="control-label">Title</label>
           <div class="controls">
-            <input type="text" name="NewActivityTitle" id="NewActivityTitle" style="width: 300px;" />
+            <input type="text" name="NewActivityTitle" id="NewActivityTitle" />
           </div>
         </div>
         <div id="ParentActivityOptions" class="control-group">

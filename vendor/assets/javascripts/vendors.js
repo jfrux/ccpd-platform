@@ -13,10 +13,10 @@
 *=require backbone
 *=require backbone.marionette
 *=require jquery/jquery-ui.1.10.3
-*=require twitter/bootstrap/bootstrap-tooltip
-*=require twitter/bootstrap/bootstrap-dropdown
-*=require twitter/bootstrap/bootstrap-modal
-*=require twitter/bootstrap/bootstrap-popover
+*=require twitter/bootstrap/tooltip
+*=require twitter/bootstrap/dropdown
+*=require twitter/bootstrap/modal
+*=require twitter/bootstrap/popover
 *=require jquery/plugins/jquery.zclip
 *=require jquery/plugins/jquery.spin
 *=require jquery/plugins/jquery.maskedinput
