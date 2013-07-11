@@ -8,6 +8,7 @@
 *=require jquery/jquery
 *=require jquery/jquery-migrate
 *=require jquery/json2
+*=require respond
 *=require underscore
 *=require spin
 *=require backbone
@@ -17,20 +18,5 @@
 *=require twitter/bootstrap/dropdown
 *=require twitter/bootstrap/modal
 *=require twitter/bootstrap/popover
-*=require jquery/plugins/jquery.zclip
-*=require jquery/plugins/jquery.spin
-*=require jquery/plugins/jquery.maskedinput
-*=require jquery/plugins/jquery.hotkeys
-*=require jquery/plugins/jquery.selectboxes
-*=require jquery/plugins/jquery.autosize
-*=require jquery/plugins/jquery.cookie
-*=require jquery/plugins/jquery.blockui
-*=require jquery/plugins/jquery.cfjs
-*=require jquery/plugins/jquery.pjax
-*=require jquery/plugins/jquery.form
-*=require jquery/plugins/jquery.jgrowl
-*=require jquery/plugins/jquery.jlog
-*=require jquery/plugins/jquery.scrollto
-*=require jquery/plugins/jquery.textarea-autogrow
-*=require jquery/plugins/jquery.periodicalupdater
+*=require_directory ./jquery/plugins
 */

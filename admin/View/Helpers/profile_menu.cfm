@@ -26,7 +26,7 @@
   <cfoutput>
     <li class="<cfif $isTabActive(arguments.current,loc.tab)>active</cfif>">
     <cfsavecontent variable="loc.tabLinkText">
-      <i class="#loc.tab.icon#"></i> <span>#loc.tab.label#</span>
+      <i class="#loc.tab.icon#"></i> <div class="text">#loc.tab.label#</div>
       <cfif structkeyExists(loc.tab,'count')>
         <span class="navItemCount pull-right">#loc.tab.count#</span>
       </cfif>

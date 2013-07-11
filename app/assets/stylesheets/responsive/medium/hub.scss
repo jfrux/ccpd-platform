@@ -1,3 +1,111 @@
-.profile {
-  
+@import "base_bootstrap";
+.hub {
+  .hub-body {
+    .titlebar {
+      position:absolute;
+      top:-175px;
+      z-index:2;
+      .title-text {
+        @include clearfix();
+      }
+
+      .title-actions {
+        @include clearfix();
+      }
+    }
+    .hub-infobar {
+      margin:auto;
+      left:0;
+      right:0;
+      .infobar-point {
+        display:none;
+      }
+      top: -106px;
+    }
+  }
+  .hub-bar {
+    .box {
+      background-color:transparent;
+      border-radius: 0;
+      border-style: solid;
+      border-width: 0 0 1px 0;
+      margin-top: 0;
+      margin-left: -10px;
+      margin-right: -10px;
+
+      &:first-child {
+        margin-top:-3px;
+        margin-left: -10px;
+        margin-right: -10px;
+      }
+
+      > .linkbar {
+        overflow:hidden;
+        width:100%;
+        height:70px;
+        ul.nav {
+          height:70px;
+          width:1500px;
+          overflow:hidden;
+          > li {
+            &.active {
+              background-color:transparent;
+            }
+            margin-top:0;
+            display: inline-block;
+
+            > a {
+              background-color: #EEEEEE;
+              border-radius:3px;
+              border: 1px solid #CCCCCC;
+              float: left;
+              height: 59px;
+              margin: 5px 6px;
+              padding: 0;
+              text-align: center;
+              width: 92px;
+              .navItemCount {
+                background-color:rgba(#FFF,.5);
+                left:0;
+                margin:auto;
+                position:absolute;
+                padding: 0 7px;
+                text-align:center;
+                width:30px;
+                top: 3px;
+                color:#555;
+                right:0;
+                border-radius:3px;
+              }
+              > div.text {
+                color: #7f848b;
+                font-size: 12px;
+                font-weight: bold;
+                overflow: hidden;
+                padding: 5px 0;
+                white-space:nowrap;
+                margin:0 8px;
+                text-overflow: ellipsis;
+              }
+              
+              > i {
+                position:relative;
+                top:6px;
+              }
+
+              > span.menuArrow {
+                display: none;
+              }
+            }
+          }
+        }
+      }
+      
+      .profile-picture {
+        background-size: cover;
+        padding:0;
+        margin:0;
+      }
+    }
+  }
 }
