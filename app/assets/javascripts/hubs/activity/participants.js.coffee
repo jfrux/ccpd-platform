@@ -423,7 +423,7 @@ App.module "Activity.Participants", (Self, App, Backbone, Marionette, $) ->
       modal: false
       autoOpen: false
       height: 200
-      width: 500
+      maxWidth: 500
       buttons:
         Done: ->
           refresh()
@@ -435,7 +435,7 @@ App.module "Activity.Participants", (Self, App, Backbone, Marionette, $) ->
       modal: false
       autoOpen: false
       height: 550
-      width: 670
+      maxWidth: 670
       buttons:
         Done: ->
           refresh()

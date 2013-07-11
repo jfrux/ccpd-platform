@@ -8,6 +8,7 @@
 *=require jquery/jquery
 *=require jquery/jquery-migrate
 *=require jquery/json2
+*=require jRespond
 *=require respond
 *=require underscore
 *=require spin

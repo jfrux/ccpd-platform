@@ -94,6 +94,9 @@
             &:hover {
               background-color:#F7F7F7;
             }
+            > div.text {
+              float:left;
+            }
             border:0;
             margin:0 5px;
           }
@@ -123,7 +126,9 @@
             top: 6px;
             width: 7px;
           }
-
+          > div.text {
+            display:inline-block;
+          }
           > span.menuLoader {
             color: #E00122;
             font-size: 13px;

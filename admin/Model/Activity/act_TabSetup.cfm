@@ -193,7 +193,7 @@
         "label":"History",
         "title":"History",
         "tooltip":"",
-        "icon":"fg-clock-history",
+        "icon":"icon-back-in-time",
         "event":"activity.history",
         "hasToolbar":true,
         "subEvents":[]
@@ -202,7 +202,7 @@
         "label":"Notes",
         "title":"Notes",
         "tooltip":"",
-        "icon":"fg-sticky-note-pin",
+        "icon":"icon-pin",
         "event":"activity.notes",
         "hasToolbar":true,
         "subEvents":[]
@@ -211,7 +211,7 @@
         "label":"Reporting &amp; Exports",
         "title":"Reporting &amp; Exports",
         "tooltip":"",
-        "icon":"fg-chart",
+        "icon":"icon-chart-bar",
         "event":"activity.reports",
         "hasToolbar":true,
         "subEvents":[]

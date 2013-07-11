@@ -1,7 +1,11 @@
 @import "base_bootstrap";
 .hub {
   .hub-body {
+    margin:0;
+    padding:0;
+
     .titlebar {
+      @include make-column(24);
       position:absolute;
       top:-175px;
       z-index:2;
@@ -10,9 +14,29 @@
       }
 
       .title-actions {
+        @include make-column(24);
         @include clearfix();
       }
     }
+
+    .content {
+      border:0;
+      border-radius:0;
+      margin-left:-5px;
+      margin-right:-5px;
+      .content-inner {
+        .content-title {
+          h3 {
+            border-radius: 0;
+            margin: 0 -4px;
+          }
+        }
+        .btn-toolbar {
+          margin:1px 0px 4px 0px;
+        }
+      }
+    }
+
     .hub-infobar {
       margin:auto;
       left:0;
@@ -42,11 +66,13 @@
       > .linkbar {
         overflow:hidden;
         width:100%;
-        height:70px;
+        height:87px;
         ul.nav {
-          height:70px;
-          width:1500px;
-          overflow:hidden;
+          height: 80px;
+          margin-left: 5px;
+          margin-top: 4px;
+          overflow: hidden;
+          width: 1500px;
           > li {
             &.active {
               background-color:transparent;
@@ -55,42 +81,59 @@
             display: inline-block;
 
             > a {
-              background-color: #EEEEEE;
-              border-radius:3px;
-              border: 1px solid #CCCCCC;
+              $linkbarItemBg:lighten($ucRed,52%);
+              @include box-shadow(0px 1px 2px rgba(#000,.15));
+              background-color: $linkbarItemBg;
+              border-radius:1px;
+              border: 1px solid #d9adaf;
               float: left;
-              height: 59px;
+              height: 55px;
               margin: 5px 6px;
               padding: 0;
               text-align: center;
               width: 92px;
+              
               .navItemCount {
-                background-color:rgba(#FFF,.5);
-                left:0;
-                margin:auto;
-                position:absolute;
-                padding: 0 7px;
-                text-align:center;
-                width:30px;
-                top: 3px;
-                color:#555;
-                right:0;
-                border-radius:3px;
+                background-color: $ucRed;
+                border-radius: 3px 3px 3px 3px;
+                color: #FFF;
+                font-size: 13px;
+                left: inherit;
+                margin: auto;
+                padding: 0px 6px;
+                position: absolute;
+                right: -4px;
+                text-align: center;
+                top: inherit;
+                bottom:-4px;
               }
+
               > div.text {
                 color: #7f848b;
                 font-size: 12px;
                 font-weight: bold;
                 overflow: hidden;
-                padding: 5px 0;
+                padding: 0px 0;
                 white-space:nowrap;
-                margin:0 8px;
+                margin:0;
                 text-overflow: ellipsis;
+                display: block;
+                position:absolute;
+                bottom:-23px;
+                width:100%;
               }
               
               > i {
-                position:relative;
-                top:6px;
+                font-size: 30px;
+                left: 0;
+                margin: auto;
+                position: absolute;
+                right: 0;
+                top: 11px;
+                width: 50px;
+                color:rgba(#d9adaf,.80);
+                text-shadow:0 0px 1px $linkbarItemBg, 0 0 0 rgba(#000,.80), 0 0px 1px #FFF;
+                
               }
 
               > span.menuArrow {

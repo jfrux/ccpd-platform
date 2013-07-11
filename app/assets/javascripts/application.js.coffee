@@ -3,6 +3,7 @@
 #=require_self
 
 #=require ./base
+#=require_tree ./config/initializers
 #=require components
 #=require components/ckeditor-config
 #=require components/actionmenu

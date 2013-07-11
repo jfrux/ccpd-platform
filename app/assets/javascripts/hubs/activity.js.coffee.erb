@@ -165,6 +165,7 @@ App.module "Activity",
         autoOpen: cActListOpen
         height: cActListHeight
         width: cActListWidth
+        fluid:true
         position: [cActListPosX, cActListPosY]
         resizable: true
         dragStop: (ev, ui) ->
@@ -221,7 +222,8 @@ App.module "Activity",
             $("#MoveDialog").dialog "close"
 
         height: 400
-        width: 450
+        width: "auto"
+        fluid:true
         resizable: false
         draggable: false
         open: ->
@@ -239,7 +241,9 @@ App.module "Activity",
         modal: true
         autoOpen: false
         height: 535
-        width: 485
+        width: "auto"
+        maxWidth: 485
+        fluid:true
         resizable: false
         draggable: false
         buttons:
@@ -284,7 +288,9 @@ App.module "Activity",
         modal: false
         autoOpen: false
         height: 550
-        width: 740
+        width: "auto"
+        maxWidth: 740
+        fluid:true
         resizable: false
         open: ->
           $.post sMyself + "Activity.Overview",

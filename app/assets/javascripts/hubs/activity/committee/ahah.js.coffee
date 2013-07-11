@@ -70,7 +70,7 @@ App.module "Activity.Committee.Ahah", (Self, App, Backbone, Marionette, $) ->
       modal: true
       autoOpen: false
       height: 550
-      width: 855
+      maxWidth: 855
       resizable: false
       dragStop: (ev, ui) ->
 

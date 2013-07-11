@@ -28,7 +28,7 @@
         </div>
       </div>
       <div class="title-actions">
-        <div class="action-buttons pull-right">
+        <div class="action-buttons">
           <cfinclude template="includes/#params.controller#/action_buttons.cfm" />
         </div>
       </div>
