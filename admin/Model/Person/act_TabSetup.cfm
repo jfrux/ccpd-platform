@@ -6,6 +6,7 @@ request.tabSettings = {
     "person.address",
     "person.preferences",
     "person.activities",
+    "person.photoupload",
     "person.notes",
     "person.history"
   ],
@@ -53,6 +54,15 @@ request.tabSettings = {
       "icon":"fg-book-open",
       "event":"person.activities",
       "hasToolbar":true,
+      "subEvents":[]
+    },
+    "person.photoupload": {
+      "label":"Upload photo",
+      "title":"Upload photo",
+      "tooltip":"",
+      "icon":"fg-image",
+      "event":"person.photoupload",
+      "hasToolbar":false,
       "subEvents":[]
     },
     "person.notes": {

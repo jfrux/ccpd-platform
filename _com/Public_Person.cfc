@@ -1006,7 +1006,7 @@
     
     <!--- Validate Bean --->
     <cfset aErrors = PersonBean.Validate()>
-<!---     <cfif arrayLen(aErrors) GT 0>
+    <!---     <cfif arrayLen(aErrors) GT 0>
         <cfdump var="#aErrors#"><cfabort>
     </cfif> --->
     
@@ -1080,6 +1080,32 @@
     </cfif>
     
     <cfreturn Status />
+  </cffunction>
+
+  <cffunction name="savePrimaryPhoto" access="Public" output="false" returntype="struct">
+    <cfargument name="PersonID" type="numeric" required="yes">
+    <cfargument name="photoName" type="string" required="yes">
+    
+    <cfset var status = createObject("component","#Application.Settings.Com#returnData.buildStruct").init()>
+
+    <cfset status.setStatus(false)>
+    <cfset status.setStatusMsg('Cannot save primary photo for unknown reasons.')>
+
+    <!--- Create Person Bean --->
+    <cfset personBean = CreateObject("component","#Application.Settings.Com#Person.Person").Init(PersonID=arguments.personId)>
+
+    <cfset personExists = Application.Com.PersonDAO.Exists(personBean)>
+    
+    <!--- DETERMINE IF PERSON EXISTS --->
+    <cfif personExists>
+      <cfset personBean = Application.Com.PersonDAO.Read(personBean)>
+      <cfset personBean.setPrimary_Photo(arguments.photoName)>
+      <cfset personSaved = Application.Com.PersonDAO.Save(personBean)>
+
+      <cfdump var="#personSaved#" abort>
+    </cfif>
+
+    <cfreturn status />
   </cffunction>
   
   <cffunction name="saveSpecialties" access="public" output="false" returntype="struct">
