@@ -2,6 +2,9 @@
 <!DOCTYPE circuit>
 <!-- vLayout -->
 <circuit access="internal">
+	<fuseaction name="Application">
+		<include template="application_layout" />
+	</fuseaction>
 	
 	<fuseaction name="Default">
 		<include template="lay_Default" />
@@ -26,7 +29,9 @@
 	<fuseaction name="iPhone">
 		<include template="lay_iPhone" />
 	</fuseaction>
-	
+	<fuseaction name="Hub">
+		<include template="Sub\lay_Hub" />
+	</fuseaction>
 	<fuseaction name="Sub_Activity">
 		<include template="Sub\lay_Activity" />
 	</fuseaction>

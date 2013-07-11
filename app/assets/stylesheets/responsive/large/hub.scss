@@ -1,0 +1,51 @@
+@import "base_bootstrap";
+.hub {
+  .hub-bar {
+    .box {
+      .profile-picture {
+        background-size: cover;
+      }
+    }
+    @include make-column(5);
+  }
+
+  .hub-body {
+    @include make-column(19);
+
+    .hub-content {
+      @include make-column(24);
+    }
+    
+    .hub-infobar {
+      @include make-column(8);
+      position:absolute;
+      right:8px;
+      top:-10px;
+
+      .infobar-point {
+        border-bottom: 10px solid #888;
+        border-left: 9px solid transparent;
+        border-right: 9px solid transparent;
+        display: block;
+        height: 0;
+        position: absolute;
+        right: 14px;
+        top: -1px;
+        width: 0;
+        z-index: 1;
+      }
+
+      .infobar {
+        background-color: rgba(#FFFFFF,.95);
+        border: 2px solid #888;
+        box-shadow: 0px 4px 4px rgba(#000,.5);
+        margin-right: -4px;
+        padding-bottom: 10px;
+        margin-top:7px;
+        &.hide {
+          display:block;
+        }
+      }
+    }
+  }
+}

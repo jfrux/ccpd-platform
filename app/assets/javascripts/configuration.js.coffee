@@ -1,4 +1,4 @@
-class App.Models.Config extends App.Model
+class App.Models.Config extends Backbone.Model
   constructor: ->
     App.logInfo "App.config > loaded!"
     super

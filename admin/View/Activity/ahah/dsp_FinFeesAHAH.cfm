@@ -142,7 +142,7 @@
                 <a href="javascript://" id="SubmitFee" class="SubmitFee btn btn-small"><i class="icon-ok-circle"></i></a>
                 <a href="javascript://" id="CancelEdit" class="CancelEdit btn btn-small"><i class="icon-remove-circle"></i></a>
               <cfelse>
-                <a href="javascript://" class="btn btn-small" id="SubmitFee" class="SubmitFee"><i class="icon-plus"></i></a>
+                <a href="javascript://" class="btn btn-default btn-small" id="SubmitFee" class="SubmitFee"><i class="icon-plus"></i></a>
               </cfif>
               </div>
             </td>
@@ -163,10 +163,10 @@
             <td class="finance-table-row-amount">#LSCurrencyFormat(qFinFeeList.Amount)#</td>
             <td>
               <div class="btn-group">
-                <a class="btn btn-small EditFee" data-tooltip-title="Edit">
+                <a class="btn btn-default btn-small EditFee" data-tooltip-title="Edit">
                   <i class="icon-pencil"></i>
                 </a>
-                <a class="btn btn-small DeleteFee" data-tooltip-title="Delete">
+                <a class="btn btn-default btn-small DeleteFee" data-tooltip-title="Delete">
                   <i class="icon-trash"></i>
                 </a>
               </div>

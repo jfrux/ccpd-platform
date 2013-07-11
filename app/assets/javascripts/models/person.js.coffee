@@ -1,4 +1,3 @@
-class App.Models.Person extends App.Model
-  constructor:(defaults) ->
-    super
-  url: '/api/person/getPerson'
+App.module "Models",(Models,App,Backbone,Marionette) ->
+  class Models.Person extends Backbone.Model
+    url: '/api/person/getPerson'

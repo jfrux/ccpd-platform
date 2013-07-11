@@ -1,4 +1,69 @@
-@import "twitter/bootstrap/base";
+@import "base_bootstrap";
+$inputHeight:30px;
+.form-horizontal {
+  .control-group {
+    @include make-row();
+
+    .control-label {
+      @include make-column(5);
+    }
+
+    .controls {
+      @include make-column(19);
+      label.radio {
+        &:first-child {
+          margin-top:5px;
+        }
+        font-weight:normal;
+      }
+
+      label.checkbox {
+        font-weight:normal;
+      }
+
+      select:focus, textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="date"]:focus, input[type="month"]:focus, input[type="time"]:focus, input[type="week"]:focus, input[type="number"]:focus, input[type="email"]:focus, input[type="url"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="color"]:focus {
+        border-color: rgba($ucRed, 0.8);
+        box-shadow: 0 1px 1px rgba($ucRed, 0.075) inset, 0 0 8px rgba($ucRed, 0.6);
+        outline: 0 none;
+      }
+
+      select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"] {
+        border: 1px solid #CCCCCC;
+        border-radius:3px;
+        color: #555555;
+        font-size: 12px;
+        min-height: $inputHeight;
+        padding: 5px 12px;
+        transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+        vertical-align: middle;
+      }
+
+      select, input[type="file"] {
+        height: $inputHeight;
+        line-height: 20px;
+      }
+      
+      .DatePicker {
+        @include make-column(5);
+      }
+      
+      .btn {
+        border: 1px solid #888;
+        border-radius: 3px;
+        cursor: pointer;
+        display: inline-block;
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 1.42857;
+        margin-bottom: 0;
+        padding: 5px 12px;
+        text-align: center;
+        vertical-align: middle;
+        white-space: nowrap;
+      }
+    }
+  }
+}
 form {
   .btn [class^="icon-"], .btn [class*=" icon-"], .nav [class^="icon-"], .nav [class*=" icon-"] {
       display: inline;
@@ -21,7 +86,7 @@ form {
       $suggestBorder: darken($suggestBG,20%);
       $suggestBorderHover: darken($suggestBG,35%);
       $suggestText: $gray;
-      $suggestTextHover: $white;
+      $suggestTextHover: #FFF;
 
       > .item {
         line-height:30px;

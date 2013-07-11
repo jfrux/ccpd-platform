@@ -1,8 +1,8 @@
 <cfoutput>
 <div class="btn-toolbar">
   <div class="btn-group pull-left js-selected-actions">
-    <a class="btn btn-mini dropdown-toggle disabled" data-toggle="dropdown" href="##">SELECTED: <span id="label-status-selected" class="js-status-selected-count">0</span></a>
-    <a class="btn btn-mini dropdown-toggle disabled" data-toggle="dropdown" href="##">
+    <a class="btn btn-default btn-mini dropdown-toggle disabled" data-toggle="dropdown" href="##">SELECTED: <span id="label-status-selected" class="js-status-selected-count">0</span></a>
+    <a class="btn btn-default btn-mini dropdown-toggle disabled" data-toggle="dropdown" href="##">
       Actions
       <span class="caret"></span>
     </a>
@@ -11,8 +11,8 @@
     </ul>
   </div>
   <div class="btn-group">
-    <a title="Upload Document" class="btn btn-mini UploadLink" href="javascript:void(0);" data-tooltip-title="Upload File"><i class="icon-plus"></i></a>
-    <a class="btn btn-mini" href="#Myself#Activity.PubBuilder?ActivityID=#Attributes.ActivityID#"><img src="#Application.Settings.RootPath#/_images/file_icons/html.png" align="absmiddle" style="padding-right:4px;" />View Published Files</a>
+    <a title="Upload Document" class="btn btn-default btn-mini UploadLink" href="javascript:void(0);" data-tooltip-title="Upload File"><i class="icon-plus"></i></a>
+    <a class="btn btn-default btn-mini" href="#Myself#Activity.PubBuilder?ActivityID=#Attributes.ActivityID#"><img src="#Application.Settings.RootPath#/_images/file_icons/html.png" align="absmiddle" style="padding-right:4px;" />View Published Files</a>
   </div>
 </div>
 </cfoutput>

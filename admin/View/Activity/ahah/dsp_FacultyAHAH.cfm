@@ -31,7 +31,7 @@ App.Activity.Faculty.Ahah.start();
                 <div class="btn-group">
                 <cfif qActivityFacultyList.DisclosureFileID NEQ "">
                   
-                  <a href="#Myself#File.Download?Mode=Person&ModeID=#qActivityFacultyList.PersonID#&ID=#qActivityFacultyList.DisclosureFileID#" class="btn js-disclosure-btn" title="Download Disclosure">
+                  <a href="#Myself#File.Download?Mode=Person&ModeID=#qActivityFacultyList.PersonID#&ID=#qActivityFacultyList.DisclosureFileID#" class="btn btn-default js-disclosure-btn" title="Download Disclosure">
                     <i class="icon-download"></i>
                   </a>
                   <cfif qActivityFacultyList.DisclosureApproveFlag EQ "N">
@@ -39,7 +39,7 @@ App.Activity.Faculty.Ahah.start();
                       <i class="icon-check"></i>
                     </a>
                   <cfelse>
-                    <a href="javascript:void(0);" id="Unapprove|Disclosure|#qActivityFacultyList.PersonID#" class="btn js-disclosure-btn<cfif qActivityFacultyList.DisclosureApproveFlag NEQ 'Y'> disabled<cfelse> approveFile</cfif>" data-tooltip-title="Revoke Approval">
+                    <a href="javascript:void(0);" id="Unapprove|Disclosure|#qActivityFacultyList.PersonID#" class="btn btn-default js-disclosure-btn<cfif qActivityFacultyList.DisclosureApproveFlag NEQ 'Y'> disabled<cfelse> approveFile</cfif>" data-tooltip-title="Revoke Approval">
                       <i class="icon-remove"></i>
                     </a>
                   </cfif>
@@ -57,15 +57,15 @@ App.Activity.Faculty.Ahah.start();
               <div class="btn-group">
               <cfif qActivityFacultyList.CVFileID NEQ "">
                   
-                <a class="btn js-cv-btn" href="#Myself#File.Download?Mode=Person&ModeID=#qActivityFacultyList.PersonID#&ID=#qActivityFacultyList.CVFileID#" title="Download CV">
+                <a class="btn btn-default js-cv-btn" href="#Myself#File.Download?Mode=Person&ModeID=#qActivityFacultyList.PersonID#&ID=#qActivityFacultyList.CVFileID#" title="Download CV">
                   <i class="icon-download"></i>
                 </a>
                 <cfif qActivityFacultyList.CVApproveFlag EQ "N">
-                  <a class="btn js-cv-btn<cfif qActivityFacultyList.CVApproveFlag EQ 'Y'> disabled<cfelse> approveFile</cfif>" href="javascript:void(0);" id="Approve|CV|#qActivityFacultyList.PersonID#"   data-tooltip-title="<cfif qActivityFacultyList.CVApproveFlag EQ 'Y'>Approved #DateFormat(qActivityFacultyList.CVCreatedDate,"MM/DD/YYYY")#<cfelse>Mark Approved</cfif>">
+                  <a class="btn btn-default js-cv-btn<cfif qActivityFacultyList.CVApproveFlag EQ 'Y'> disabled<cfelse> approveFile</cfif>" href="javascript:void(0);" id="Approve|CV|#qActivityFacultyList.PersonID#"   data-tooltip-title="<cfif qActivityFacultyList.CVApproveFlag EQ 'Y'>Approved #DateFormat(qActivityFacultyList.CVCreatedDate,"MM/DD/YYYY")#<cfelse>Mark Approved</cfif>">
                     <i class="icon-check"></i>
                   </a>
                 <cfelse>
-                  <a class="btn js-cv-btn<cfif qActivityFacultyList.CVApproveFlag NEQ 'Y'> disabled<cfelse> approveFile</cfif>" id="Unapprove|CV|#qActivityFacultyList.PersonID#" href="javascript:void(0);" data-tooltip-title="Revoke Approval">
+                  <a class="btn btn-default js-cv-btn<cfif qActivityFacultyList.CVApproveFlag NEQ 'Y'> disabled<cfelse> approveFile</cfif>" id="Unapprove|CV|#qActivityFacultyList.PersonID#" href="javascript:void(0);" data-tooltip-title="Revoke Approval">
                     <i class="icon-remove"></i>
                   </a>
                 </cfif>
@@ -84,7 +84,7 @@ App.Activity.Faculty.Ahah.start();
 <cfelse>
   <div class="alert alert-info">
     You have not added any faculty members.<br />
-    Click <a class="btn btn-small js-add-person-link" href="javascript:void(0);"><i class="icon-plus"></i></a> above to add someone.
+    Click <a class="btn btn-default btn-small js-add-person-link" href="javascript:void(0);"><i class="icon-plus"></i></a> above to add someone.
   </div>
 </cfif>
 </cfoutput>

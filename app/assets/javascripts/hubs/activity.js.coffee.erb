@@ -391,12 +391,9 @@ App.module "Activity",
       $spanDiv = $infoBar.parent()
       $.cookie 'USER_ACTSHOWINFOBAR', 'true',
         path: '/'
-      $infoBarToggler.find('i').attr('class','fg-application-sidebar-expand')
+      #$infoBarToggler.find('i').attr('class','fg-application-sidebar-expand')
       $infoBarToggler.addClass('active')
-      $infoBar.removeClass('hide')
       $profile.removeClass('infobar-inactive').addClass('infobar-active')
-      $contentToggleSpan.removeClass('span24').addClass('span18')
-      $infoBarToggleSpan.addClass('span6')
       return
 
     hideInfobar = ->    
@@ -404,11 +401,8 @@ App.module "Activity",
       $.cookie 'USER_ACTSHOWINFOBAR', 'false',
         path: '/'
       $spanDiv = $infoBar.parent()    
-      $infoBarToggler.find('i').attr('class','fg-application-sidebar-collapse')
+      #$infoBarToggler.find('i').attr('class','fg-application-sidebar-collapse')
       $profile.removeClass('infobar-active').addClass('infobar-inactive')
-      $contentToggleSpan.removeClass('span18').addClass('span24')
-      $infoBar.addClass('hide')
-      $infoBarToggleSpan.removeClass('span6')
       return
 
 

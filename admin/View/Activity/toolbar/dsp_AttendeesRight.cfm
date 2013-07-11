@@ -2,8 +2,8 @@
   
 <div class="btn-toolbar">
   <div class="btn-group pull-left js-selected-actions">
-    <a class="btn btn-mini dropdown-toggle disabled" data-toggle="dropdown" href="##">SELECTED: <span id="label-status-selected" class="js-status-selected-count">0</span></a>
-    <a class="btn btn-mini dropdown-toggle disabled" data-toggle="dropdown" href="##">
+    <a class="btn btn-default btn-mini dropdown-toggle disabled" data-toggle="dropdown" href="##">SELECTED: <span id="label-status-selected" class="js-status-selected-count">0</span></a>
+    <a class="btn btn-default btn-mini dropdown-toggle disabled" data-toggle="dropdown" href="##">
       Actions
       <span class="caret"></span>
     </a>
@@ -30,7 +30,7 @@
     </ul>
   </div>
   <div class="btn-group">
-    <a class="btn btn-mini dropdown-toggle js-attendee-filter-button attendee-filter-btn" data-toggle="dropdown" href="javascript:void(0);">
+    <a class="btn btn-default btn-mini dropdown-toggle js-attendee-filter-button attendee-filter-btn" data-toggle="dropdown" href="javascript:void(0);">
       <span>Filter by Status</span>
       <span class="caret"></span>
     </a>
@@ -43,11 +43,11 @@
     </ul>
   </div>
   <div class="btn-group">
-    <a title="Add Individual Participant(s)" class="btn btn-mini js-add-person-link" id="AttendeeLink" href="javascript:void(0);"><i class="icon-plus"></i></a>
-    <a title="Batch Import Participants" class="btn btn-mini batchLink" href="javascript:;"><i class="icon-upload"></i></a>
+    <a title="Add Individual Participant(s)" class="btn btn-default btn-mini js-add-person-link" id="AttendeeLink" href="javascript:void(0);"><i class="icon-plus"></i></a>
+    <a title="Batch Import Participants" class="btn btn-default btn-mini batchLink" href="javascript:;"><i class="icon-upload"></i></a>
   </div>
   <div class="btn-group">
-    <a class="btn btn-mini dropdown-toggle js-addl-attendees-menu" href="##" data-toggle="dropdown"><i class="icon-cog"></i> <strong class="caret"></strong></a>
+    <a class="btn btn-default btn-mini dropdown-toggle js-addl-attendees-menu" href="##" data-toggle="dropdown"><i class="icon-cog"></i> <strong class="caret"></strong></a>
     <div class="dropdown-menu " style="padding: 15px; padding-bottom: 0px;">
       <form class="form-horizontal">
         <div class="control-group">

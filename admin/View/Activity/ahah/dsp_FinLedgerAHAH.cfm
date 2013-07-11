@@ -167,7 +167,7 @@ $(document).ready(function() {
               <i class="icon-circle" id="AmountImg"></i>
             </td>
             <td>
-              <a href="javascript://" class="btn btn-small" id="SaveLedger">
+              <a href="javascript://" class="btn btn-default btn-small" id="SaveLedger">
                 <i class="icon-plus"></i>
               </a>
             </td>

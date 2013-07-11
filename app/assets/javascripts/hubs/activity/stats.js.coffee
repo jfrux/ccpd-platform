@@ -86,7 +86,7 @@ App.module "Activity.Stats", (Self, App, Backbone, Marionette, $) ->
     $statsLoading = $("#stats-loading")
     $icon = $('<i class="icon-arrows-cw"></i>')
     $refreshLink = $("<a></a>")
-      .addClass('btn stats-refresher js-stats-refresher')
+      .addClass('btn btn-default stats-refresher js-stats-refresher')
       .html($icon)
     
     

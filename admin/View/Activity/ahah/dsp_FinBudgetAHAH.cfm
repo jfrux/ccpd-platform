@@ -138,7 +138,7 @@
             </select>
           </td>
           <td><input type="text" name="Amount" id="Amount" class="finance-input-amount" value="#Attributes.Amount#"></td>
-          <td><a href="javascript://" class="btn btn-small" id="SaveBudget">
+          <td><a href="javascript://" class="btn btn-default btn-small" id="SaveBudget">
                 <i class="icon-plus"></i>
               </a></td>
         </tr>

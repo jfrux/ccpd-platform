@@ -1,0 +1,66 @@
+@import "base_bootstrap";
+@import "./variables";
+.profile {
+  .content {
+    &.show-searchbar {
+      .info-bar {
+        display:block;
+      }
+    }
+
+    .searchbar-inner {
+      background-color: #FFFFFF;
+      border-bottom: 0 none;
+      margin: 0px -10px 0 0;
+      min-height: 500px;
+      padding-bottom: 10px;
+      .btn-create {
+        border-radius: 2px 2px 2px 2px;
+        font-size: 13px;
+        font-weight: bold;
+        padding: 4px 10px 4px 7px;
+        position: absolute;
+        right: 6px;
+        top: 6px;
+
+      }
+      @include box-shadow(-4px 0 0px #e7dddd);
+      
+      .form-search-filters {
+        select, textarea, input.ui-autocomplete-input, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
+          font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
+          border-radius: 4px 4px 4px 4px;
+          color: #555555;
+          display: inline-block;
+          font-size: 14px;
+          height: 20px;
+          line-height: 20px;
+          margin-bottom: 10px;
+          padding: 4px 6px;
+          vertical-align: middle;
+        }
+      }
+
+      .box {
+        position:relative;
+        padding:3px 7px 0 7px;
+      }
+
+      h3 {
+        &:first-child {
+          border-top:0;
+          @include border-radius(0 2px 0 0);
+        }
+        background-color: #f8f6f6;
+        border-bottom: 1px solid #E9EAED;
+        border-top: 1px solid #E5E5E5;
+        font-size: 13px;
+        font-weight: bold;
+        line-height: 24px;
+        margin: 0 -0.5px 5px 0;
+        padding: 1px 6px;
+        color:#807878;
+      }
+    }
+  }
+}

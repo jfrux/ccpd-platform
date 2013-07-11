@@ -1,6 +1,5 @@
-@import "twitter/bootstrap/base";
+@import "base_bootstrap";
 .activity {
-  
 	.personFinder {
     display:block;
     height:auto;
@@ -23,6 +22,27 @@
       }
     }
   }
+  
+  .sponsorship-fields {
+    .controls {
+      > .btn-group {
+        @include make-column(12);
+        float:left;
+        .btn {
+          &:first-child {
+            @include make-column(12);
+          }
+          &:last-child {
+            @include make-column(12);
+          }
+        }
+      }
+      #JointlyTextFld > input {
+        @include make-column(12);
+      }
+    }
+  }
+
 
   #ActivityStats {
     .stats-refresher {
@@ -35,7 +55,7 @@
     }
   }
   .attendee-filter-btn {
-    width:103px;
+    width:135px;
   }
 
   .sponsor-radios {
@@ -43,8 +63,33 @@
   }
   
   .stats-refresher {
+    height: 157px;
     position: absolute;
-    right: 9px;
-    top: 79px;
+    right: 8px;
+    i {
+      color: #000000;
+      left: 10px;
+      margin-left: -9px;
+      margin-top: -16px;
+      position: absolute;
+      top: 21px;
+    }
+    top: 85px;
+    width: 158px;
+    @include opacity(.7);
+  }
+
+  .overview-buttons {
+    margin-top:4px;
+    margin-bottom:4px;
+    
+    .btn-group {
+      @include make-row();
+      width:100%;
+
+      .btn {
+        @include make-column(12);
+      }
+    }
   }
 }

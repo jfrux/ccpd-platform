@@ -140,7 +140,7 @@ App.Activity.Reports.start();
           <input type="hidden" name="ActivityID" value="#Attributes.activityID#" />
 
           <div class="control-group">
-            <input type="submit" name="submit" value="Download" class="btn mll" />
+            <input type="submit" name="submit" value="Download" class="btn btn-default mll" />
           </div>
         </form>
       </div>

@@ -21,7 +21,7 @@
         "label":"General Info",
         "title":"General Information",
         "tooltip":"Start Date: #DateFormat(activityBean.getStartDate(),'mm/dd/yyyy')#<br />End Date: #DateFormat(activityBean.getEndDate(),'mm/dd/yyyy')#",
-        "icon":"fg-card-address",
+        "icon":"icon-book-open",
         "event":"activity.detail",
         "hasToolbar":false,
         "subEvents":[]
@@ -29,7 +29,7 @@
       "activity.faculty": {
         "label":"Faculty",
         "title":"Faculty / Speakers",
-        "icon":"fg-user-business",
+        "icon":"icon-user-md",
         "tooltip":"",
         "event":"activity.faculty",
         "hasToolbar":true,
@@ -38,7 +38,7 @@
       "activity.committee": {
         "label":"Committee Members",
         "title":"Planning Committee Members",
-        "icon":"fg-user-female",
+        "icon":"icon-users",
         "tooltip":"",
         "event":"activity.committee",
         "hasToolbar":true,
@@ -48,7 +48,7 @@
         "label":"Finances",
         "title":"Finances",
         "tooltip":"",
-        "icon":"fg-money",
+        "icon":"icon-money",
         "event":"activity.finances",
         "hasToolbar":false,
         "subEvents":["activity.finledger","activity.finbudget","activity.finfees","activity.finsupport"]
@@ -93,7 +93,7 @@
         "label":"Credits",
         "title":"Credits",
         "tooltip":"CME: #activityBean.getStatCMEHours()#",
-        "icon":"fg-medal",
+        "icon":"icon-award",
         "event":"activity.credits",
         "hasToolbar":true,
         "subEvents":[]
@@ -102,7 +102,7 @@
         "label":"Files &amp; Documents",
         "title":"Files &amp; Documents",
         "tooltip":"",
-        "icon":"fg-documents",
+        "icon":"icon-docs",
         "event":"activity.docs",
         "hasToolbar":true,
         "subEvents":[]
@@ -111,7 +111,7 @@
         "label":"Participants",
         "title":"Participants",
         "tooltip":"Total Records: #ActivityBean.getStatAttendees()#<br />Physicians: #ActivityBean.getStatMD()#<br />Non-Physicians: #ActivityBean.getStatNonMD()#<br />Addl Participants: #ActivityBean.getStatAddlAttendees()#",
-        "icon":"fg-users",
+        "icon":"icon-users",
         "event":"activity.attendees",
         "count":"#activityBean.getStatAttendees()#",
         "hasToolbar":true,
@@ -121,7 +121,7 @@
         "label":"Checklist",
         "title":"Application Checklist",
         "tooltip":"",
-        "icon":"fg-flag-checker",
+        "icon":"icon-flag-checkered",
         "event":"activity.application",
         "hasToolbar":true,
         "subEvents":[]
@@ -130,7 +130,7 @@
         "label":"Agenda",
         "title":"Agenda",
         "tooltip":"",
-        "icon":"fg-calendar-blue",
+        "icon":"icon-calendar",
         "event":"activity.agenda",
         "hasToolbar":true,
         "subEvents":[]
@@ -139,7 +139,7 @@
         "label":"Publish",
         "title":"Publishing Settings",
         "tooltip":"",
-        "icon":"fg-globe-green",
+        "icon":"icon-globe",
         "event":"activity.pubgeneral",
         "hasToolbar":true,
         "subEvents":["activity.pubbuilder","activity.pubcategory","activity.pubspecialty"]
@@ -184,7 +184,7 @@
         "label":"ACCME",
         "title":"ACCME Details",
         "tooltip":"",
-        "icon":"fg-sealing-wax",
+        "icon":"icon-certificate",
         "event":"activity.accme",
         "hasToolbar":true,
         "subEvents":[]

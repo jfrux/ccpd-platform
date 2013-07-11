@@ -99,12 +99,12 @@ App.module("Activity.GeneralInfo").start();
 				</div>
 			</div>
 			<div class="divider"><hr></div>
-			<div class="control-group">
+			<div class="control-group sponsorship-fields">
 				<label class="control-label" for="Sponsorship">Sponsorship</label>
 				<div class="controls">
 					<div data-toggle="buttons-radio" class="btn-group">
-						<a class="btn js-sponsorship-toggle js-sponsorship-D">Directly</a>
-						<a class="btn js-sponsorship-toggle js-sponsorship-J">Jointly</a>
+						<a class="btn btn-default js-sponsorship-toggle js-sponsorship-D">Directly</a>
+						<a class="btn btn-default js-sponsorship-toggle js-sponsorship-J">Jointly</a>
 					</div>
 					<span class="hide mls" id="JointlyTextFld">
 						<input type="text" value="#Attributes.Sponsor#" id="Sponsor" name="Sponsor">

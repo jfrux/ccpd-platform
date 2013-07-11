@@ -27,7 +27,7 @@
       </cfif>
       <li class="<cfif isActive(attributes.current,tab)>active</cfif>">
         <cfsavecontent variable="tabLinkText">
-          <i class="#tab.icon#"></i> <span>#tab.label#</span>
+          <i class="#tab.icon#"></i> <span class="text">#tab.label#</span>
           <cfif structkeyExists(tab,'count')>
             <span class="navItemCount pull-right">#tab.count#</span>
           </cfif>
@@ -58,7 +58,7 @@
                   data-tooltip-title="#subtab.tooltip#"
                   data-js-namespace="js-#replace(subtab.event,'.','-')#" 
                   data-pjax-container="##js-#replace(subtab.event,'.','-')#">
-                <i class="#subtab.icon#"></i> <span>#subtab.label#</span>
+                <i class="#subtab.icon#"></i> <span class="text">#subtab.label#</span>
                 <cfif structkeyExists(subtab,'count')>
                   <span class="navItemCount pull-right">#subtab.count#</span>
                 </cfif>

@@ -190,7 +190,7 @@ $(document).ready(function() {
       <th class="finance-support-col-name">Name</th>
       <th class="finance-support-col-startdate">Type</th>
       <th class="finance-support-col-enddate">Amount</th>
-      <th class="finance-support-col-options"><a href="javascript:void(0);" id="SupporterDialog" class="btn btn-small js-add-support" data-tooltip-title="Add Support"><i class="icon-plus"></i></a></th>
+      <th class="finance-support-col-options"><a href="javascript:void(0);" id="SupporterDialog" class="btn btn-default btn-small js-add-support" data-tooltip-title="Add Support"><i class="icon-plus"></i></a></th>
     </tr>
   </thead>
   <tbody>
@@ -206,8 +206,8 @@ $(document).ready(function() {
         #LSCurrencyFormat(qActivitySupportersList.Amount)#</td>
       <td>
         <div class="btn-group">
-          <a class="btn btn-small EditCurrSupport" data-tooltip-title="Edit"><i class="icon-pencil"></i></a>
-          <a class="btn btn-small DeleteSupport" data-tooltip-title="Delete"><i class="icon-trash"></i></a>
+          <a class="btn btn-default btn-small EditCurrSupport" data-tooltip-title="Edit"><i class="icon-pencil"></i></a>
+          <a class="btn btn-default btn-small DeleteSupport" data-tooltip-title="Delete"><i class="icon-trash"></i></a>
         </div>
       </td>
     </tr>

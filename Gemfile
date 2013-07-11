@@ -9,6 +9,7 @@ group :assets do
   gem 'uglifier'
   gem "haml-rails"
   gem 'haml_coffee_assets'
+  gem 'bootstrap-sass', :git => 'https://github.com/thomas-mcdonald/bootstrap-sass.git', :branch => '3'
   gem 'sinatra-contrib'
   #gem 'sinatra-asset-pipeline', :path => '~/Projects/sinatra-asset-pipeline'
   gem 'sinatra-asset-pipeline', :git => 'https://github.com/joshuairl/sinatra-asset-pipeline.git'

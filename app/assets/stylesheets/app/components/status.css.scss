@@ -74,11 +74,11 @@ body > div.jGrowl {
 
 div.jGrowl-notification {
   &.ui-state-normal {
-    @include gradientBar(#444, #222, #fff, 0 -1px 0 rgba(0,0,0,1));
+    @include gradient-horizontal(#444, #222);
   }
   &.ui-state-error {
     $darkColor:darken(#FF0000,50%);
-    @include gradientBar(#FF0000,$darkColor, #fff, 0 -1px 0 rgba(0,0,0,1));
+    @include gradient-horizontal(#FF0000,$darkColor);
   }
 }
 

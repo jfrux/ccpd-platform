@@ -58,7 +58,7 @@
                       </if>
                       <invoke object="myFusebox" 
                               methodcall="do('vActivity.#request.page.action#','multiformcontent')" />
-                      <do action="vLayout.Sub_Activity" contentvariable="request.page.body" />
+                      <do action="vLayout.Hub" contentvariable="request.page.body" />
                     </true>
                     <false>
                       <if condition="NOT structKeyExists(attributes,'activityid') OR (structKeyExists(attributes,'activityid') AND attributes.activityID LTE 0)">
@@ -71,7 +71,7 @@
                     </false>
                   </if>
                  
-                 <do action="vLayout.Default" />
+                 <do action="vLayout.Application" />
               </false>
             </if>
         </false>

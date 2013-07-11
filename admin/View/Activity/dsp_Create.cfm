@@ -250,7 +250,7 @@ $(document).ready(function(){
   </div>
   <div class="control-group">
     <div class="controls">
-      <input type="submit" class="btn btn-success" value="Save Activity" />
+      <input type="submit" class="btn btn-default btn-success" value="Save Activity" />
       <a href="javascript:history.back();" class="btn">Cancel</a>
     </div>
   </div>

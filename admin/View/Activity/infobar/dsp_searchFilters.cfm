@@ -1,6 +1,6 @@
 <cfoutput>
 <span>
-  <a class="btn btn-create" href="/admin/event/activity.create"><i class="icon-edit icon-large"></i> Create Activity</a>
+  <a class="btn btn-default btn-create" href="/admin/event/activity.create"><i class="icon-edit icon-large"></i> Create Activity</a>
 </span>
 <div class="filters">
   <!--- <h3><a class="js-filter" data-type="easy">Easy Search</a></h3>

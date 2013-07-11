@@ -1,8 +1,10 @@
 <cfparam name="request.page.responsive" default="false" />
 
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
 <cfoutput>
 #styleSheetLinkTag(sources="vendors",debug=true)#
 #styleSheetLinkTag(sources="application",debug=true)#
+#styleSheetLinkTag(sources="responsive",debug=true)#
 <!--- <cfif request.page.responsive>
 	#styleSheetLinkTag(sources="responsive",debug=false)#
 </cfif> --->

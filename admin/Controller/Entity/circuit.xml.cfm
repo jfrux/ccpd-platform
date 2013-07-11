@@ -2,6 +2,6 @@
 <!DOCTYPE circuit>
 <circuit access="public">
   <fuseaction name="detail">
-    <do action="vLayout.Default" />
+    <do action="vLayout.Application" />
   </fuseaction>
 </circuit>

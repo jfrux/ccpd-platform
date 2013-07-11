@@ -1,0 +1,82 @@
+@import "base_bootstrap";
+
+.profile {
+  position:relative;
+  margin-top:14px;
+  
+  .profile-bg {
+    border-left: 1px solid #D9D9D9;
+    border-right: 1px solid #D9D9D9;
+    bottom: 0;
+    left: 149px;
+    margin: auto;
+    position: absolute;
+    top: -19px;
+    width: 799.5px;
+    z-index: -1;
+    
+    .profile-bg-inner {
+      background-color: #FFF;
+      border-top: 1px solid #B3B3B3;
+      bottom: 0;
+      position: absolute;
+      top: 60px;
+      width: 799.5px;
+    }
+  }
+  .hub-content {
+    @include make-column(18);
+  }
+  .hub-infobar {
+    @include make-column(6);
+  }
+  .titlebar {
+    @include make-row();
+    .title-text {
+      @include make-column(16);
+      overflow:hidden;
+      white-space:nowrap;
+    }
+    .title-actions {
+      @include make-column(8);
+      white-space:nowrap;
+    }
+    .ContentTitle {
+      font-size: 18px;
+      font-weight: bold;
+      line-height: 18px;
+      margin-bottom: 9px;
+      margin-top: 11px;
+    }
+    .action-buttons {
+      margin-bottom: 9px;
+      margin-right: 5px;
+      margin-top: 6px;
+      
+      a.btn {
+        
+        font-size: 12px;
+        height: 33px;
+        line-height: 16px;
+        outline: 0 none;
+        i {
+          font-size:15px;
+          font-weight:400;
+          line-height:17px;
+          font-style:normal;
+        }
+      }
+          
+    }
+  }
+
+  &.slim {
+    .content {
+      .content-title {
+        > h3 {
+          margin: 0 0 5px 0;
+        }
+      }
+    }
+  }
+}
