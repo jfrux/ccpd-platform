@@ -21,6 +21,7 @@
 		<cfargument name="Email" type="string" required="false" default="" />
 		<cfargument name="Password" type="string" required="false" default="" />
 		<cfargument name="PrimaryAddressID" type="string" required="false" default="" />
+		<cfargument name="Primary_Photo" type="string" required="false" default="" />
 		<cfargument name="Birthdate" type="string" required="false" default="" />
 		<cfargument name="SSN" type="string" required="false" default="" />
 		<cfargument name="Gender" type="string" required="false" default="" />
@@ -47,6 +48,7 @@
 		<cfset setEmail(arguments.Email) />
 		<cfset setPassword(arguments.Password) />
 		<cfset setPrimaryAddressID(arguments.PrimaryAddressID) />
+		<cfset setPrimary_Photo(arguments.Primary_Photo) />
 		<cfset setBirthdate(arguments.Birthdate) />
 		<cfset setSSN(arguments.SSN) />
 		<cfset setGender(arguments.Gender) />
@@ -245,6 +247,14 @@
 			<cfset thisError.field = "PrimaryAddressID" />
 			<cfset thisError.type = "invalidType" />
 			<cfset thisError.message = "PrimaryAddressID is not numeric" />
+			<cfset arrayAppend(errors,duplicate(thisError)) />
+		</cfif>
+		
+		<!--- PRIMARY_PHOTO --->
+		<cfif (len(trim(getPrimary_Photo())) AND NOT IsSimpleValue(trim(getPrimary_Photo())))>
+			<cfset thisError.field = "Primary_Photo" />
+			<cfset thisError.type = "invalidType" />
+			<cfset thisError.message = "Primary Photo is not a string" />
 			<cfset arrayAppend(errors,duplicate(thisError)) />
 		</cfif>
 		
@@ -462,6 +472,14 @@
 	</cffunction>
 	<cffunction name="getPrimaryAddressID" access="public" returntype="string" output="false">
 		<cfreturn variables.instance.PrimaryAddressID />
+	</cffunction>
+
+	<cffunction name="setPrimary_Photo" access="public" returntype="void" output="false">
+		<cfargument name="Primary_Photo" type="string" required="true" />
+		<cfset variables.instance.Primary_Photo = arguments.Primary_Photo />
+	</cffunction>
+	<cffunction name="getPrimary_Photo" access="public" returntype="string" output="false">
+		<cfreturn variables.instance.Primary_Photo />
 	</cffunction>
 
 	<cffunction name="setBirthdate" access="public" returntype="void" output="false">

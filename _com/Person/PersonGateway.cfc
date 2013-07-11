@@ -20,6 +20,7 @@
 		<cfargument name="Email" type="string" required="false" />
 		<cfargument name="Password" type="string" required="false" />
 		<cfargument name="PrimaryAddressID" type="numeric" required="false" />
+		<cfargument name="Primary_Photo" type="string" required="false" />
 		<cfargument name="Birthdate" type="date" required="false" />
 		<cfargument name="SSN" type="numeric" required="false" />
 		<cfargument name="Gender" type="string" required="false" />
@@ -49,6 +50,7 @@
 				Email,
 				Password,
 				PrimaryAddressID,
+				Primary_Photo,
 				Birthdate,
 				SSN,
 				Gender,
@@ -101,6 +103,9 @@
 		</cfif>
 		<cfif structKeyExists(arguments,"PrimaryAddressID") and len(arguments.PrimaryAddressID)>
 			AND	PrimaryAddressID = <cfqueryparam value="#arguments.PrimaryAddressID#" CFSQLType="cf_sql_integer" />
+		</cfif>
+		<cfif structKeyExists(arguments,"Primary_Photo") and len(arguments.Primary_Photo)>
+			AND	Primary_Photo = <cfqueryparam value="#arguments.Primary_Photo#" CFSQLType="cf_sql_varchar" />
 		</cfif>
 		<cfif structKeyExists(arguments,"Birthdate") and len(arguments.Birthdate)>
 			AND	Birthdate = <cfqueryparam value="#arguments.Birthdate#" CFSQLType="cf_sql_timestamp" />
@@ -165,6 +170,7 @@
 				P.Suffix, 
 				P.certname,
 				P.displayname,
+				P.primary_photo
                 (Select TOP 1 SD.Name
                  FROM ce_Person_Degree PD
                  INNER JOIN ce_Sys_Degree SD ON SD.DegreeID = PD.DegreeID AND PD.PersonID = P.PersonID AND PD.DeletedFlag = 'N') AS DisplayDegree,

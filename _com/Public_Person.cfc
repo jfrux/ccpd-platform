@@ -1102,7 +1102,11 @@
       <cfset personBean.setPrimary_Photo(arguments.photoName)>
       <cfset personSaved = Application.Com.PersonDAO.Save(personBean)>
 
-      <cfdump var="#personSaved#" abort>
+      <!--- DETERMINE IF PERSON RECORD UPDATED --->
+      <cfif personSaved>
+        <cfset status.setStatus(true)>
+        <cfset status.setStatusMsg('Primary photo has been updated.')>
+      </cfif>
     </cfif>
 
     <cfreturn status />
