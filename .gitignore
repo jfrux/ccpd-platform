@@ -14,3 +14,4 @@ rewrite_log.txt
 tmp/
 vendor/ruby
 admin/_reports/.DS_Store
+public/system/photos/*.jpg
