@@ -301,6 +301,20 @@
     
     <cfreturn status.getJSON() />
   </cffunction>
+
+  <cffunction name="savePrimaryPhoto" access="remote" output="false" returntype="string" returnFormat="plain">
+    
+    <cfset var status = createObject("component","#Application.Settings.Com#returnData.buildStruct").init()>
+    
+    <cfcontent type="text/javascript">
+
+    <cfset status.setStatus(false)>
+    <cfset status.setStatusMsg("Cannot access upload function for person.")>
+    
+    <cfset status = Application.Person.savePrimaryPhoto(personId=arguments.personId, photo=arguments.photoFile)>
+    
+    <cfreturn status.getJSON() />
+  </cffunction>
   
 
   <cffunction name="setPrimaryAddress" access="Remote" output="false" returnformat="plain">
@@ -318,6 +332,7 @@
     
     <cfreturn Status.getJSON() />
   </cffunction>
+
   <cffunction name="savePersonSpecialties" access="remote" output="false" description="Saves specialties for provided person." returnFormat="plain">
     <cfargument name="PersonID" type="numeric" required="yes">
     <cfargument name="Specialties" type="string" required="yes">
