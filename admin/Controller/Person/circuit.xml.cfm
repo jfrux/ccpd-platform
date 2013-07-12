@@ -57,7 +57,7 @@
                         </if>
                         <invoke object="myFusebox" 
                                 methodcall="do('vPerson.#request.page.action#','multiformcontent')" />
-                        <do action="vLayout.Sub_Person" contentvariable="request.page.body" />
+                        <do action="vLayout.Hub" contentvariable="request.page.body" />
                       </true>
                     </if>
                    
@@ -67,7 +67,7 @@
                           methodcall="do('vLayout.#layout#')" />
                       </true>
                       <false>
-                        <do action="vLayout.Default" />
+                        <do action="vLayout.Application" />
                       </false>
                     </if>
                 </false>
@@ -161,7 +161,7 @@
   </fuseaction>
   
   <fuseaction name="PhotoUpload">
-    <do action="vPerson.PhotoUpload" contentvariable="Request.Page.Body" />
+    
   </fuseaction>
   
   <fuseaction name="Preferences">

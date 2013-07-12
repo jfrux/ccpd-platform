@@ -268,7 +268,6 @@ App.module "Person",
       App.setCookie('prefInfoBar','on')
       App.logInfo "InfoBar: On (#{App.getCookie('prefInfoBar')})"
       cShowInfobar = true
-      $infoBarToggler.find('i').attr('class','fg-application-sidebar-expand')
       $infoBarToggler.addClass('active')
       $infoBar.removeClass('hide')
       $profile.removeClass('infobar-inactive').addClass('infobar-active')
@@ -282,7 +281,6 @@ App.module "Person",
       App.logInfo "InfoBar: Off (#{App.getCookie('prefInfoBar')})"
       cShowInfobar = false
       $spanDiv = $infoBar.parent()    
-      $infoBarToggler.find('i').attr('class','fg-application-sidebar-collapse')
       $profile.removeClass('infobar-active').addClass('infobar-inactive')
       $contentToggleSpan.removeClass('span18').addClass('span24')
       $infoBar.addClass('hide')

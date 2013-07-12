@@ -10,3 +10,5 @@
 
 <cfset hub_classes = "" />
 <cfset params.id = attributes.entityid />
+<cfset params.title = EntityBean.getTitle() />
+<cfset params.primary_photo = EntityBean.getPrimary_photo() />

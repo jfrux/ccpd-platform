@@ -1,15 +1,19 @@
 <cfparam name="hub_classes" default="" />
 <cfparam name="params.id" default="0" />
+<cfparam name="params.title" default="0" />
 <cfparam name="params.controller" default="" />
+<cfparam name="params.primary_photo" default="" />
 <cfinclude template="includes/#params.controller#/pre.cfm" />
 <cfoutput>
 <div class="hub profile #lcase(params.controller)# #hub_classes#">
-  <!--- <div class="hub-bg profile-bg">
-    <div class="hub-bg-inner profile-bg-inner"></div>
-  </div> --->
   <div class="hub-bar projectbar js-projectbar">
     <div class="box">
-      <div class="profile-picture" style="background-image:url(#imageUrl('default_photo/activity_p.png')#);"></div>
+      <cfif len(trim(params.profile_picture)) GT 0>
+        <cfset profile_picture_url = pictureUrl(params.profile_picture,"p") />
+      <cfelse>
+        <cfset profile_picture_url = imageUrl('default_photo/#lcase(params.controller)#_p.png') />
+      </cfif>
+      <div class="profile-picture" style="background-image:url(#profile_picture_url#);"></div>
     </div>
     <div class="box js-profile-menu">
       #profileMenu(
@@ -24,12 +28,12 @@
     <div class="titlebar">
       <div class="title-text">
         <div class="ContentTitle">
-          <span title="#HTMLSafe(ActivityBean.getTitle())#">#ActivityBean.getTitle()#</span>
+          <span title="#HTMLSafe(params.title)#">#params.title#</span>
         </div>
       </div>
       <div class="title-actions">
         <div class="action-buttons">
-          <cfinclude template="includes/#params.controller#/action_buttons.cfm" />
+          <cfinclude template="includes/#lcase(params.controller)#/action_buttons.cfm" />
         </div>
       </div>
     </div>

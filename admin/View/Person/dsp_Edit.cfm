@@ -22,7 +22,7 @@ App.Person.GeneralInfo.start();
     <div class="groupset-title">
       Personal Information
     </div>
-    <div class="control-group">
+    <div class="control-group full-name">
       <label class="control-label" for="user-firstname">Full Name</label>
       <div class="controls">
         <input name="firstname" id="user-firstname" placeholder="First Name" class="input-small js-suggest-input" type="text" value="#Attributes.firstname#" tabindex="1" />

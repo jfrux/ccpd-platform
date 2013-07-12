@@ -9,3 +9,6 @@
 <cfparam name="Request.MultiFormEditLink" default="">
 
 <cfset hub_classes = "" />
+<cfset params.id = 0 />
+<cfset params.title = "Main" />
+<cfset params.primary_photo = "" />

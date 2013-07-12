@@ -19,10 +19,10 @@
     ],
     "tabs": {
       "activity.detail": {
-        "label":"General Info",
-        "title":"General Information",
+        "label":"About",
+        "title":"About",
         "tooltip":"Start Date: #DateFormat(activityBean.getStartDate(),'mm/dd/yyyy')#<br />End Date: #DateFormat(activityBean.getEndDate(),'mm/dd/yyyy')#",
-        "icon":"icon-book-open",
+        "icon":"icon-info-circle",
         "event":"activity.detail",
         "hasToolbar":false,
         "subEvents":[]

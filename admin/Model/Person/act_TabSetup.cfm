@@ -4,18 +4,18 @@ request.tabSettings = {
     "person.detail",
     "person.email",
     "person.address",
-    "person.preferences",
     "person.activities",
     "person.photoupload",
+    "person.preferences",
     "person.notes",
     "person.history"
   ],
   "tabs": {
     "person.detail": {
-      "label":"General Info",
-      "title":"General Information",
+      "label":"About",
+      "title":"About",
       "tooltip":"",
-      "icon":"fg-card-address",
+      "icon":"icon-info-circle",
       "event":"person.detail",
       "hasToolbar":false,
       "subEvents":[]
@@ -24,7 +24,7 @@ request.tabSettings = {
       "label":"Emails",
       "title":"Emails",
       "tooltip":"",
-      "icon":"fg-mail-at-sign",
+      "icon":"icon-mail",
       "event":"person.email",
       "hasToolbar":true,
       "subEvents":[]
@@ -33,7 +33,7 @@ request.tabSettings = {
       "label":"Addresses",
       "title":"Addresses",
       "tooltip":"",
-      "icon":"fg-address-book-blue",
+      "icon":"icon-location",
       "event":"person.address",
       "hasToolbar":true,
       "subEvents":[]
@@ -42,7 +42,7 @@ request.tabSettings = {
       "label":"Preferences",
       "title":"Preferences",
       "tooltip":"",
-      "icon":"fg-equalizer",
+      "icon":"icon-cog",
       "event":"person.preferences",
       "hasToolbar":false,
       "subEvents":[]
@@ -51,16 +51,16 @@ request.tabSettings = {
       "label":"Activities",
       "title":"Activities",
       "tooltip":"",
-      "icon":"fg-book-open",
+      "icon":"icon-book-open",
       "event":"person.activities",
       "hasToolbar":true,
       "subEvents":[]
     },
     "person.photoupload": {
-      "label":"Upload photo",
-      "title":"Upload photo",
+      "label":"Change Picture",
+      "title":"Change Picture",
       "tooltip":"",
-      "icon":"fg-image",
+      "icon":"icon-picture",
       "event":"person.photoupload",
       "hasToolbar":false,
       "subEvents":[]
@@ -69,7 +69,7 @@ request.tabSettings = {
       "label":"Notes",
       "title":"Notes",
       "tooltip":"",
-      "icon":"fg-sticky-note-pin",
+      "icon":"icon-pin",
       "event":"person.notes",
       "hasToolbar":false,
       "subEvents":[]
@@ -78,7 +78,7 @@ request.tabSettings = {
       "label":"History",
       "title":"History",
       "tooltip":"",
-      "icon":"fg-newspaper",
+      "icon":"icon-back-in-time",
       "event":"person.history",
       "hasToolbar":false,
       "subEvents":[]
