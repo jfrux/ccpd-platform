@@ -11,11 +11,17 @@
       z-index:2;
       .title-text {
         @include clearfix();
+        text-align:center;
       }
 
       .title-actions {
+        text-align:center;
         @include make-column(24);
         @include clearfix();
+
+        .btn-group {
+          float:none;
+        }
       }
     }
 
@@ -24,16 +30,17 @@
       border-radius:0;
       margin-left:-5px;
       margin-right:-5px;
+      .content-title {
+        > h3 {
+          border-radius: 0;
+          margin: 0 -4px;
+        }
+      }
+      .btn-toolbar {
+        margin:1px 0px 4px 0px;
+      }
       .content-inner {
-        .content-title {
-          h3 {
-            border-radius: 0;
-            margin: 0 -4px;
-          }
-        }
-        .btn-toolbar {
-          margin:1px 0px 4px 0px;
-        }
+        
       }
     }
 

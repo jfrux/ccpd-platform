@@ -24,7 +24,7 @@
     <div class="titlebar">
       <div class="title-text">
         <div class="ContentTitle">
-          <span title="#HTMLSafe(ActivityBean.getTitle())#">#midLimit(ActivityBean.getTitle(),50)#</span>
+          <span title="#HTMLSafe(ActivityBean.getTitle())#">#ActivityBean.getTitle()#</span>
         </div>
       </div>
       <div class="title-actions">
@@ -34,7 +34,7 @@
       </div>
     </div>
     <div class="content js-profile-content">
-      <div class="hub-content content-inner js-content-toggle">
+      <div class="hub-content js-content-toggle">
         <div class="content-title">
           <h3>#request.tabSettings.tabs[lcase(attributes.fuseaction)].title#</h3>
         </div>
