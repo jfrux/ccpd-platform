@@ -1,19 +1,4 @@
-@media (max-width: 991px) {
-  @import "responsive/large/hub";
-  @import "responsive/large/bootstrap_overrides";
-}
-
-@media (max-width: 767px) {
-  @import "responsive/medium/hub";
-  @import "responsive/medium/bootstrap_overrides";
-}
-
-@media (max-width: 360px) {
-  @import "responsive/small/hub";
-  @import "responsive/small/bootstrap_overrides";
-}
-
-@media (max-width: 300px) {
-  @import "responsive/tiny/hub";
-  @import "responsive/tiny/bootstrap_overrides";
-}
+//=require responsive/large/responsive_large
+//=require responsive/medium/responsive_medium
+//=require responsive/small/responsive_small
+//=require responsive/tiny/responsive_tiny

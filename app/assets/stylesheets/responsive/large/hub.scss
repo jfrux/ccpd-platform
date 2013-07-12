@@ -1,3 +1,6 @@
+/*
+* RESPONSIVE > LARGE > HUB
+*/
 @import "base_bootstrap";
 .hub {
   .hub-bar {
@@ -19,8 +22,8 @@
     .hub-infobar {
       @include make-column(8);
       position:absolute;
-      right:8px;
-      top:-10px;
+      right:3px;
+      top:-6px;
 
       .infobar-point {
         border-bottom: 10px solid #888;
@@ -29,7 +32,7 @@
         display: block;
         height: 0;
         position: absolute;
-        right: 14px;
+        right: 10px;
         top: -1px;
         width: 0;
         z-index: 1;

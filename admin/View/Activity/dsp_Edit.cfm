@@ -106,48 +106,38 @@ App.module("Activity.GeneralInfo").start();
 						<a class="btn btn-default js-sponsorship-toggle js-sponsorship-D">Directly</a>
 						<a class="btn btn-default js-sponsorship-toggle js-sponsorship-J">Jointly</a>
 					</div>
-					<span class="hide mls" id="JointlyTextFld">
+					<span class="hide" id="JointlyTextFld">
 						<input type="text" value="#Attributes.Sponsor#" id="Sponsor" name="Sponsor">
 					</span>
 					<input type="text" name="Sponsorship" class="Sponsorship hide" id="Sponsorship" value="#attributes.sponsorship#" />
 				</div>
 			</div>
 			<div class="divider"><hr></div>
-			<div class="control-group">
-				<label class="control-label" for="StartDate">Start Date</label>
+			<div class="control-group date-range">
+				<label class="control-label" for="StartDate">Event Dates</label>
 				<div class="controls">
-					<input type="text" value="#Attributes.StartDate#"  id="StartDate" name="StartDate" class="DatePicker span5 text-center">
-				</div>
-			</div>
-			<div class="control-group">
-				<label class="control-label" for="EndDate">End Date</label>
-				<div class="controls">
-					<input type="text" name="EndDate" id="EndDate" value="#Attributes.EndDate#" class="DatePicker span5 text-center" />
+					<input type="text" value="#Attributes.StartDate#" placeholder="Start Date"  id="StartDate" name="StartDate" class="DatePicker span5 text-center">
+					<input type="text" name="EndDate" id="EndDate" placeholder="End Date" value="#Attributes.EndDate#" class="DatePicker span5 text-center" />
 				</div>
 			</div>
 			<div class="divider"><hr></div>
 			<div class="control-group Location">
 				<label class="control-label" for="Location">Location</label>
 				<div class="controls">
-					<input type="text" name="Location" id="Location" value="#Attributes.Location#" />
+					<input type="text" name="Location" id="Location" placeholder="Example Hotel" value="#Attributes.Location#" />
 				</div>
 			</div>
 			<div class="control-group Location">
-				<label class="control-label" for="Address1">Address 1</label>
+				<label class="control-label" for="Address1">Mailing Address</label>
 				<div class="controls">
-					<input type="text" name="Address1" id="Address1" value="#Attributes.Address1#" />
-				</div>
-			</div>
-			<div class="control-group Location">
-				<label class="control-label" for="Address2">Address 2</label>
-				<div class="controls">
-					<input type="text" name="Address2" id="Address2" value="#Attributes.Address2#" />
+					<input type="text" name="Address1" id="Address1" placeholder="1234 Example Blvd." value="#Attributes.Address1#" />
+					<input type="text" name="Address2" id="Address2" placeholder="Street Line 2" value="#Attributes.Address2#" />
 				</div>
 			</div>
 			<div class="control-group Location">
 				<label class="control-label" for="City">City</label>
 				<div class="controls">
-					<input type="text" name="City" id="City" value="#Attributes.City#" />
+					<input type="text" name="City" id="City" placeholder="City" value="#Attributes.City#" />
 				</div>
 			</div>
 			<div class="control-group Location stateField">

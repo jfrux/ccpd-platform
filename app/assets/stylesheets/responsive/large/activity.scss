@@ -1,0 +1,30 @@
+.hub {
+  &.activity {
+    .hub-body {
+      .hub-content {
+        
+      }
+      .hub-infobar {
+        .overview-buttons {
+          .btn-group {
+            .btn {
+              
+            }
+          }
+        }
+
+        #stats-container {
+          table {
+            tr {
+              td {
+                &:first-child {
+                  width:45%;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

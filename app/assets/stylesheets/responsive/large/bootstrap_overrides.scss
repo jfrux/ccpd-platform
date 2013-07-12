@@ -2,3 +2,43 @@
   max-width:100%;
   margin:0 5px;
 }
+
+.ui-datepicker {
+  td {
+    .ui-state-hover {
+      @include gradient-vertical($ucRed, darken($ucRed,18%));
+      border-color: rgba(#000, 0.1) rgba(#000, 0.1) rgba(#000, 0.25);
+      border-radius: 4px 4px 4px 4px;
+      color: #FFFFFF;
+      text-shadow: 0 -1px 0 rgba(#000, 0.25);
+    }
+  }
+  .ui-datepicker-next,.ui-datepicker-prev {
+    @include opacity(0.5);
+    top:6px;
+  }
+  select.ui-datepicker-month, 
+  select.ui-datepicker-year {
+    float: left;
+    font-size: 12px;
+    height: 14px;
+    min-height: 25px;
+    padding: 3px;
+    width: 49%;
+  }
+  select.ui-datepicker-month {
+    border-top-right-radius:0;
+    border-bottom-right-radius:0;
+  }
+  select.ui-datepicker-year {
+    margin-left:-1px;
+    border-top-left-radius:0;
+    border-bottom-left-radius:0;
+  }
+}
+
+.ui-datepicker-trigger {
+  position:relative;
+  left:-5px;
+  z-index:1;
+}

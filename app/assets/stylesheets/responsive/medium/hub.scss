@@ -1,9 +1,18 @@
+/*
+* RESPONSIVE > MEDIUM > HUB
+*/
 @import "base_bootstrap";
-.hub {
+.hub {    
+  width: 100%;
   margin-top:0;
   .hub-body {
-    margin:0;
-    padding:0;
+    position:relative;
+    left:0;
+    right:0;
+    margin:auto;
+    padding-left:inherit;
+    padding-right:inherit;
+    width:inherit;
 
     .titlebar {
       @include make-column(24);
@@ -39,13 +48,43 @@
 
     .content {
       border:0;
+      margin: 0 -4.5px;
       border-radius:0;
-      margin-left:-5px;
-      margin-right:-5px;
+      .hub-content {
+        float: left;
+        min-height: 1px;
+        padding-left: inherit;
+        padding-right: inherit;
+        position: inherit;
+        width: 100%;
+
+        .content-inner {
+          padding:0 5px;
+        }
+
+        .toolbar {
+          @include gradient-vertical(#FFF,#F7F7F7);
+          margin-left:-5.5px;
+          margin-right:-5.5px;
+          margin-bottom:0;
+          position:relative;
+          padding-left:10px;
+          .SaveInfo {
+            font-size:11px;
+            color:#AAA;
+            position:absolute;
+            right:5px;
+            top:-22px;
+          }
+        }
+        .form-horizontal {
+          margin-top:0;
+        }
+      }
       .content-title {
         > h3 {
-          border-radius: 0;
-          margin: 0 -4px;
+          border-radius: 0 0 0 0;
+          margin: 0;
         }
       }
       .btn-toolbar {
@@ -58,12 +97,27 @@
 
     .hub-infobar {
       margin:auto;
+      max-width:300px;
       left:0;
       right:0;
-      .infobar-point {
-        display:none;
+      top: -104px;
+      
+      .infobar {
+        h3 {
+          background-color: #F8F6F6;
+          border-bottom: 1px solid #E9EAED;
+          border-top: 1px solid #E5E5E5;
+          color: #807878;
+          font-size: 13px;
+          font-weight: bold;
+          line-height: 24px;
+          margin: 0;
+          padding: 1px 6px;
+        }
       }
-      top: -106px;
+      .infobar-point {
+        right:70px;
+      }
     }
   }
   .hub-bar {

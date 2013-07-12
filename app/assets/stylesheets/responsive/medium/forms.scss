@@ -1,0 +1,39 @@
+@import "base_bootstrap";
+$inputHeight:40px;
+$inputFontSize:14px;
+.form-horizontal {
+  .control-group {
+    .controls {
+      select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"] {
+        border: 1px solid #CCCCCC;
+        border-radius:3px;
+        color: #555555;
+        font-size: $inputFontSize;
+        min-height: $inputHeight;
+        padding: 6px 7px;
+        line-height:15px;
+        vertical-align: middle;
+      }
+      .btn {
+        border: 1px solid #888888;
+        border-radius: 3px 3px 3px 3px;
+        cursor: pointer;
+        display: inline-block;
+        font-size: $inputFontSize;
+        font-weight: 500;
+        line-height: 1.42857;
+        margin-bottom: 0;
+        padding: 9px 9px;
+        text-align: center;
+        vertical-align: middle;
+        white-space: nowrap;
+      }
+
+      select, input[type="file"] {
+        height: $inputHeight;
+        padding: 9px 5px;
+        line-height: 40px;
+      }
+    }
+  }
+}

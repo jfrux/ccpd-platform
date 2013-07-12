@@ -30,14 +30,14 @@
         float:left;
         .btn {
           &:first-child {
-            @include make-column(12);
+            width:50%;
           }
           &:last-child {
-            @include make-column(12);
+            width:50%;
           }
         }
       }
-      #JointlyTextFld > input {
+      #JointlyTextFld {
         @include make-column(12);
       }
     }

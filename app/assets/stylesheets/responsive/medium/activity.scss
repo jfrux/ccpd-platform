@@ -1,0 +1,48 @@
+.hub {
+  &.activity {
+    .hub-body {
+      .hub-content {
+        .DatePicker {
+          width:120px;
+        }
+        .sponsorship-fields {
+          .btn-group {
+            padding-left:0;
+            padding-right:inherit;
+            width:50%;
+            
+            .btn {
+              width:50%;
+            }
+          }
+          #JointlyTextFld {
+            width:50%;
+            margin-left:0;
+            float:left;
+          }
+        }
+      }
+      .hub-infobar {
+        .overview-buttons {
+          .btn-group {
+            .btn {
+              width:50%;
+            }
+          }
+        }
+
+        #stats-container {
+          table {
+            tr {
+              td {
+                &:first-child {
+                  width:45%;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
