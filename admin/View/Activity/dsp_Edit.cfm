@@ -122,16 +122,16 @@ App.module("Activity.GeneralInfo").start();
 			</div>
 			<div class="divider"><hr></div>
 			<div class="control-group Location">
-				<label class="control-label" for="Location">Location</label>
+				<label class="control-label" for="Location">Event Location</label>
 				<div class="controls">
 					<input type="text" name="Location" id="Location" placeholder="Example Hotel" value="#Attributes.Location#" />
 				</div>
 			</div>
-			<div class="control-group Location">
-				<label class="control-label" for="Address1">Mailing Address</label>
+			<div class="control-group address-street Location">
+				<label class="control-label" for="Address1">Event Address</label>
 				<div class="controls">
 					<input type="text" name="Address1" id="Address1" placeholder="1234 Example Blvd." value="#Attributes.Address1#" />
-					<input type="text" name="Address2" id="Address2" placeholder="Street Line 2" value="#Attributes.Address2#" />
+					<input type="text" name="Address2" id="Address2" placeholder="Suite, Apt, Room, etc." value="#Attributes.Address2#" />
 				</div>
 			</div>
 			<div class="control-group Location">

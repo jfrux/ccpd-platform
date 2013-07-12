@@ -2,7 +2,35 @@
 $inputHeight:40px;
 $inputFontSize:14px;
 .form-horizontal {
+  > div.divider {
+    > hr {
+      margin: 4px -6px 4px -6px;
+    }
+  }
   .control-group {
+    &.address-street {
+      .controls {
+        input {
+          &:first-child {
+            border-bottom-left-radius:0;
+            border-bottom-right-radius:0;
+            margin-bottom:0;
+          }
+          &:last-child {
+            margin-top:-1px;
+            border-top-left-radius:0;
+            border-top-right-radius:0;
+          }
+        }
+      }
+    }
+    .control-label {
+      padding-left: 4.5px;
+      padding-right: 10px;
+      padding-top: 2px;
+      padding-bottom:0px;
+      margin-bottom:2px;
+    }
     .controls {
       select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"] {
         border: 1px solid #CCCCCC;

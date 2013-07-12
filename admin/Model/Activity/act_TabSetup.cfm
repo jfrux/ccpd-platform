@@ -200,10 +200,10 @@
         "subEvents":[]
       },
       "activity.photoupload": {
-        "label":"Upload photo",
-        "title":"Upload photo",
+        "label":"Change Picture",
+        "title":"Change Picture",
         "tooltip":"",
-        "icon":"fg-image",
+        "icon":"icon-picture",
         "event":"activity.photoupload",
         "hasToolbar":false,
         "subEvents":[]
