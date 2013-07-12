@@ -1,0 +1,22 @@
+.hub {
+  &.main {
+    .hub-bar {
+      > .box {
+        &:first-child {
+          display:none;
+        }
+        &:nth-child(2) {
+          display:none;
+        }
+      }
+    }
+    .hub-body {
+      .hub-content {
+        
+      }
+      .hub-infobar {
+        display:none;
+      }
+    }
+  }
+}

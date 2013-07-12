@@ -30,6 +30,7 @@ App.module "Activity",
       App.logInfo "starting: #{Self.moduleName}"
       return
     Self.on "start", (options) ->
+
       $(document).ready ->
         Self._init(options)
         App.logInfo "started: #{Self.moduleName}"
@@ -67,6 +68,17 @@ App.module "Activity",
     
     Self._init = (settings) ->
       Self.model = new App.Models.Activity(settings.model)
+      Self.linkbarCollection = new App.Collections.LinkbarCollection(settings.linkbar);
+      Self.linkbarView = new App.Views.HubLinkbarView
+        collection: Self.linkbarCollection
+
+      Self.infobarView = new App.Views.HubInfobarView
+
+      Self.view = new App.Views.ActivityView
+        model:Self.model
+        linkbar: Self.linkbarView
+        infobar: Self.infobarView
+
       Self.data = settings
       $profile = $(".profile")
       $infoBar = $(".js-infobar")
@@ -118,28 +130,31 @@ App.module "Activity",
       else
         hideInfobar()
 
-      $(".ContentTitle span").tooltip
-        placement: 'bottom'
-        trigger:'hover focus'
-        container: 'body'
-      
+      if !Modernizr.touch
+        $(".ContentTitle span").tooltip
+          placement: 'bottom'
+          trigger:'hover focus'
+          container: 'body'
+        
       $menuLinks.each ->
         $this = $(this)
         $this.on "click", (e) ->
           $link = $(this)
           Self.trigger('linkbar.click',$link,e)
           return
-        $this.tooltip
-          placement:'right'
-          html:true
-          title: (e)->
-            $(this).attr('data-tooltip-title')
-          container: 'body'
 
-      $(".action-buttons a.btn, .action-buttons button.btn").tooltip
-        placement: 'bottom'
-        trigger: 'hover focus'
-        container: 'body'
+        if !Modernizr.touch
+          $this.tooltip
+            placement:'right'
+            html:true
+            title: (e)->
+              $(this).attr('data-tooltip-title')
+            container: 'body'
+      if !Modernizr.touch
+        $(".action-buttons a.btn, .action-buttons button.btn").tooltip
+          placement: 'bottom'
+          trigger: 'hover focus'
+          container: 'body'
       
 
       # STATUS CHANGER 

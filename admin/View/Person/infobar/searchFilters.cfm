@@ -8,7 +8,7 @@
 </cfif>
 <cfoutput>
 <span>
-  <a href="#myself#Person.Create?Instance=#Attributes.Instance#&Mode=#attributes.mode#&ActivityID=#Attributes.ActivityID#" class="btn btn-create"><i class="icon-edit icon-large"></i> Create Person</a>
+  <a href="#myself#Person.Create?Instance=#Attributes.Instance#&Mode=#attributes.mode#&ActivityID=#Attributes.ActivityID#" class="btn btn-default btn-create"><i class="icon-edit icon-large"></i> Create Person</a>
 </span>
 <div class="filters">
   <!--- <h3><a class="js-filter" data-type="easy">Easy Search</a></h3>

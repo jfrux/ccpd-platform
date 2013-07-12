@@ -21,9 +21,10 @@
     
     .hub-infobar {
       @include make-column(8);
-      position:absolute;
-      right:3px;
-      top:-6px;
+      float: left;
+      position: absolute;
+      right: -1px;
+      top: -12px;
 
       .infobar-point {
         border-bottom: 10px solid #888;

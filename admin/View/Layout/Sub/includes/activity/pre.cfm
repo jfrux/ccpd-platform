@@ -11,6 +11,7 @@
 <cfoutput>
 <cfset params.id = attributes.activityid />
 <cfset params.title = ActivityBean.getTitle() />
+<cfset params.includekey = true />
 <cfset params.profile_picture = ActivityBean.getPrimary_photo() />
 <cfinclude template="/_com/_UDF/isActivityEditable.cfm" />
 <cfset qActCats = Application.Com.ActivityCategoryGateway.getByViewAttributes(ActivityID=Attributes.ActivityID,DeletedFlag='N')>

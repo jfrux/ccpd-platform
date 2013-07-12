@@ -1,10 +1,20 @@
 @import "base_bootstrap";
 $inputHeight:40px;
 $inputFontSize:14px;
-.form-horizontal {
+form.form-horizontal {
   > div.divider {
     > hr {
       margin: 4px -6px 4px -6px;
+    }
+  }
+  > .control-groupset {
+    > .groupset-title {
+      background-color: transparent;
+      font-size: 13px;
+      font-weight: bold;
+      line-height: 26px;
+      margin: 0 -4px 8px;
+      padding: 0 9px;
     }
   }
   .control-group {

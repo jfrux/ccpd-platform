@@ -1,8 +1,9 @@
 <cfparam name="hub_classes" default="" />
 <cfparam name="params.id" default="0" />
-<cfparam name="params.title" default="0" />
+<cfparam name="params.title" default="" />
 <cfparam name="params.controller" default="" />
-<cfparam name="params.primary_photo" default="" />
+<cfparam name="params.profile_picture" default="" />
+<cfparam name="params.has_infobar" type="boolean" default=true />
 <cfinclude template="includes/#params.controller#/pre.cfm" />
 <cfoutput>
 <div class="hub profile #lcase(params.controller)# #hub_classes#">
@@ -19,6 +20,7 @@
       #profileMenu(
         type=params.controller
        ,typeid=params.id
+       ,includekey=#params.includekey#
        ,settings="#request.tabSettings#"
        ,current="#Attributes.Fuseaction#"
       )#
@@ -27,9 +29,7 @@
   <div class="hub-body project-body">
     <div class="titlebar">
       <div class="title-text">
-        <div class="ContentTitle">
-          <span title="#HTMLSafe(params.title)#">#params.title#</span>
-        </div>
+          #params.title#
       </div>
       <div class="title-actions">
         <div class="action-buttons">
@@ -55,12 +55,14 @@
           </div>
         </div>
       </div>
-      <div class="hub-infobar js-infobar-outer">
-        <div class="infobar-point"></div>
-        <div class="InfoBar infobar js-infobar">
-          <cfinclude template="includes/#params.controller#/infobar.cfm" />
+      <cfif params.has_infobar>
+        <div class="hub-infobar js-infobar-outer">
+          <div class="infobar-point"></div>
+          <div class="InfoBar infobar js-infobar">
+            <cfinclude template="includes/#params.controller#/infobar.cfm" />
+          </div>
         </div>
-      </div>
+      </cfif>
     </div>
   </div>
  

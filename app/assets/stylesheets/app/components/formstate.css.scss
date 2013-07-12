@@ -94,17 +94,16 @@
 }
 
 form.formstate {
-  margin:6px 0 20px;
+  margin:0 0 20px;
 
   .control-groupset {
     margin: 0 0 5px 0;
     > .groupset-title {
-      background-color: #F7F7F7;
-      border-top: 1px solid #EEEEEE;
-      font-size: 14px;
+      border-bottom: 1px solid #EEEEEE;
+      font-size: 13px;
       font-weight: bold;
       line-height: 26px;
-      margin: 0 0 8px;
+      margin: 0 -4px 8px;
       padding: 0 9px;
     }
 

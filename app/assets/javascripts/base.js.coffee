@@ -18,7 +18,10 @@ App.on "start", ->
   console.info "started: Application"
 
 App.addRegions
-  navbar: ".navbar:first"
+  header: "#header"
+  navbar: "#header > .navbar"
+  content: "#content > .container > .content-inner"
+  footer: "#footer"
   mainContent: "#Content"
 
 App.start()
