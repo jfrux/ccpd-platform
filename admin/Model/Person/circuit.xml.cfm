@@ -63,10 +63,6 @@
 		<include template="act_Search" />
 	</fuseaction>
 	
-	<fuseaction name="PhotoUpload">
-		<include template="act_PhotoUpload" />
-	</fuseaction>
-	
 	<fuseaction name="TabControl">
 		<include template="act_TabSetup" />
 	</fuseaction>

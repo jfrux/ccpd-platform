@@ -43,6 +43,7 @@
 					Sponsorship,
 					Sponsor,
 					ExternalID,
+					Primary_Photo,
 					CreatedBy
 					)
 				VALUES
@@ -76,6 +77,7 @@
 					<cfqueryparam value="#arguments.Activity.getSponsorship()#" CFSQLType="cf_sql_char" null="#not len(arguments.Activity.getSponsorship())#" />,
 					<cfqueryparam value="#arguments.Activity.getSponsor()#" CFSQLType="cf_sql_varchar" null="#not len(arguments.Activity.getSponsor())#" />,
 					<cfqueryparam value="#arguments.Activity.getExternalID()#" CFSQLType="cf_sql_varchar" null="#not len(arguments.Activity.getExternalID())#" />,
+					<cfqueryparam value="#arguments.Activity.getPrimary_Photo()#" CFSQLType="cf_sql_varchar" null="#not len(arguments.Activity.getPrimary_Photo())#" />,
 					<cfqueryparam value="#arguments.Activity.getCreatedBy()#" CFSQLType="cf_sql_integer" null="#not len(arguments.Activity.getCreatedBy())#" />
 					)
 			</cfquery>
@@ -122,6 +124,7 @@
 					Sponsorship,
 					Sponsor,
 					ExternalID,
+					Primary_Photo,
 					Created,
 					CreatedBy,
 					Updated,
@@ -176,6 +179,7 @@
 					Sponsorship = <cfqueryparam value="#arguments.Activity.getSponsorship()#" CFSQLType="cf_sql_char" null="#not len(arguments.Activity.getSponsorship())#" />,
 					Sponsor = <cfqueryparam value="#arguments.Activity.getSponsor()#" CFSQLType="cf_sql_varchar" null="#not len(arguments.Activity.getSponsor())#" />,
 					ExternalID = <cfqueryparam value="#arguments.Activity.getExternalID()#" CFSQLType="cf_sql_varchar" null="#not len(arguments.Activity.getExternalID())#" />,
+					Primary_Photo = <cfqueryparam value="#arguments.Activity.getPrimary_Photo()#" CFSQLType="cf_sql_varchar" null="#not len(arguments.Activity.getPrimary_Photo())#" />,
 					Created = <cfqueryparam value="#arguments.Activity.getCreated()#" CFSQLType="cf_sql_timestamp" null="#not len(arguments.Activity.getCreated())#" />,
 					CreatedBy = <cfqueryparam value="#arguments.Activity.getCreatedBy()#" CFSQLType="cf_sql_integer" null="#not len(arguments.Activity.getCreatedBy())#" />,
 					Updated = <cfqueryparam value="#arguments.Activity.getUpdated()#" CFSQLType="cf_sql_timestamp" null="#not len(arguments.Activity.getUpdated())#" />,

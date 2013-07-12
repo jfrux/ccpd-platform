@@ -364,6 +364,11 @@
       <do action="mActivity.getAttendees" />
       <do action="vActivity.Overview" />
     </fuseaction>
+  
+    <fuseaction name="PhotoUpload">
+      <do action="vActivity.PhotoUpload" contentvariable="Request.Page.Body" />
+    </fuseaction>
+
     <fuseaction name="PubPrereqs">
     </fuseaction>
     <fuseaction name="PubPrereqsAHAH">

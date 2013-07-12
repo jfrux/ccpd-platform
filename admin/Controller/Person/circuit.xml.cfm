@@ -161,7 +161,6 @@
   </fuseaction>
   
   <fuseaction name="PhotoUpload">
-    <do action="mPerson.PhotoUpload" />
     <do action="vPerson.PhotoUpload" contentvariable="Request.Page.Body" />
   </fuseaction>
   

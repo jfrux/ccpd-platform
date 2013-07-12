@@ -39,6 +39,7 @@
 		<cfargument name="Sponsorship" type="string" required="false" default="" />
 		<cfargument name="Sponsor" type="string" required="false" default="" />
 		<cfargument name="ExternalID" type="string" required="false" default="" />
+		<cfargument name="Primary_Photo" type="string" required="false" default="" />
 		<cfargument name="Created" type="string" required="false" default="" />
 		<cfargument name="CreatedBy" type="string" required="false" default="" />
 		<cfargument name="Updated" type="string" required="false" default="" />
@@ -77,6 +78,7 @@
 		<cfset setSponsorship(arguments.Sponsorship) />
 		<cfset setSponsor(arguments.Sponsor) />
 		<cfset setExternalID(arguments.ExternalID) />
+		<cfset setPrimary_Photo(arguments.Primary_Photo) />
 		<cfset setCreated(arguments.Created) />
 		<cfset setCreatedBy(arguments.CreatedBy) />
 		<cfset setUpdated(arguments.Updated) />
@@ -418,6 +420,14 @@
 			<cfset arrayAppend(errors,duplicate(thisError)) />
 		</cfif>
 		
+		<!--- ExternalID --->
+		<cfif (len(trim(getPrimary_Photo())) AND NOT IsSimpleValue(trim(getPrimary_Photo())))>
+			<cfset thisError.field = "Primary_Photo" />
+			<cfset thisError.type = "invalidType" />
+			<cfset thisError.message = "Primary Photo is not a string" />
+			<cfset arrayAppend(errors,duplicate(thisError)) />
+		</cfif>
+		
 		<!--- Created --->
 		<cfif (len(trim(getCreated())) AND NOT isDate(trim(getCreated())))>
 			<cfset thisError.field = "Created" />
@@ -716,6 +726,14 @@
 	</cffunction>
 	<cffunction name="getExternalID" access="public" returntype="string" output="false">
 		<cfreturn variables.instance.ExternalID />
+	</cffunction>
+
+	<cffunction name="setPrimary_Photo" access="public" returntype="void" output="false">
+		<cfargument name="Primary_Photo" type="string" required="true" />
+		<cfset variables.instance.Primary_Photo = arguments.Primary_Photo />
+	</cffunction>
+	<cffunction name="getPrimary_Photo" access="public" returntype="string" output="false">
+		<cfreturn variables.instance.Primary_Photo />
 	</cffunction>
 
 	<cffunction name="setCreated" access="public" returntype="void" output="false">

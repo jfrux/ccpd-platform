@@ -1056,6 +1056,20 @@
         
         <cfreturn status.getJSON() />
     </cffunction>
+
+  <cffunction name="savePrimaryPhoto" access="remote" output="false" returntype="string" returnFormat="plain">
+    
+    <cfset var status = createObject("component","#Application.Settings.Com#returnData.buildStruct").init()>
+    
+    <cfcontent type="text/javascript">
+
+    <cfset status.setStatus(false)>
+    <cfset status.setStatusMsg("Cannot access upload function for person.")>
+    
+    <cfset status = Application.Activity.savePrimaryPhoto(activityId=arguments.activityId, photo=arguments.photoFile)>
+    
+    <cfreturn status.getJSON() />
+  </cffunction>
     
 	<cffunction name="savePubGeneral" displayname="Save Form" access="Remote" output="no">
 		<cfargument name="ActivityID" type="string" required="yes" />

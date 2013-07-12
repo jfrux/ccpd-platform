@@ -36,6 +36,7 @@
 		<cfargument name="Sponsorship" type="string" required="false" />
 		<cfargument name="Sponsor" type="string" required="false" />
 		<cfargument name="ExternalID" type="string" required="false" />
+		<cfargument name="Primary_Photo" type="string" required="false" />
 		<cfargument name="Created" type="date" required="false" />
 		<cfargument name="CreatedBy" type="numeric" required="false" />
 		<cfargument name="Updated" type="date" required="false" />
@@ -76,6 +77,7 @@
 				Sponsorship,
 				Sponsor,
 				ExternalID,
+				Primary_Photo,
 				Created,
 				CreatedBy,
 				Updated,
@@ -172,6 +174,9 @@
 		<cfif structKeyExists(arguments,"ExternalID") and len(arguments.ExternalID)>
 			AND	ExternalID = <cfqueryparam value="#arguments.ExternalID#" CFSQLType="cf_sql_varchar" />
 		</cfif>
+		<cfif structKeyExists(arguments,"Primary_Photo") and len(arguments.Primary_Photo)>
+			AND	ExternalID = <cfqueryparam value="#arguments.Primary_Photo#" CFSQLType="cf_sql_varchar" />
+		</cfif>
 		<cfif structKeyExists(arguments,"Created") and len(arguments.Created)>
 			AND	Created = <cfqueryparam value="#arguments.Created#" CFSQLType="cf_sql_timestamp" />
 		</cfif>
@@ -228,6 +233,7 @@
 		<cfargument name="Sponsorship" type="string" required="false" />
 		<cfargument name="Sponsor" type="string" required="false" />
 		<cfargument name="ExternalID" type="string" required="false" />
+		<cfargument name="Primary_Photo" type="string" required="false" />
 		<cfargument name="Created" type="date" required="false" />
 		<cfargument name="CreatedBy" type="numeric" required="false" />
 		<cfargument name="Updated" type="date" required="false" />
@@ -252,6 +258,7 @@
 				a.Sponsorship,
 				a.Sponsor,
 				a.ExternalID,
+				a.Primary_Photo,
 				a.Deleted,
 				a.DeletedFlag
 			FROM	ce_Activity a
@@ -340,6 +347,7 @@
 		<cfargument name="Sponsorship" type="string" required="false" />
 		<cfargument name="Sponsor" type="string" required="false" />
 		<cfargument name="ExternalID" type="string" required="false" />
+		<cfargument name="Primary_Photo" type="string" required="false" />
 		<cfargument name="Created" type="date" required="false" />
 		<cfargument name="CreatedBy" type="numeric" required="false" />
 		<cfargument name="Updated" type="date" required="false" />
@@ -365,6 +373,7 @@
 				a.Sponsorship,
 				a.Sponsor,
 				a.ExternalID,
+				a.Primary_Photo,
 				a.Deleted,
 				a.DeletedFlag
 			FROM	ce_Activity a
@@ -430,6 +439,7 @@
 		<cfargument name="StatNonMD" type="numeric" required="false" />
 		<cfargument name="StatSupporters" type="numeric" required="false" />
 		<cfargument name="StatSuppAmount" type="numeric" required="false" />
+		<cfargument name="Primary_Photo" type="string" required="false" />
 		<cfargument name="Created" type="date" required="false" />
 		<cfargument name="CreatedBy" type="numeric" required="false" />
 		<cfargument name="Updated" type="date" required="false" />
@@ -467,6 +477,7 @@
 				a.StatNonMD,
 				a.StatSupporters,
 				a.StatSuppAmount,
+				a.Primary_Photo,
 				a.Created,
 				a.Updated,
 				a.Deleted,
@@ -595,6 +606,7 @@
 				C.Description, 
 				C.StartDate, 
 				C.EndDate, 
+				C.Primary_Photo,
 				C.Created, 
 				C.CreatedBy, 
 				P1.firstname + ' ' + P1.lastname AS CreatedByName, 
@@ -675,6 +687,7 @@
 					C.ReleaseDate, 
 					C.StartDate,
                     C.EndDate, 
+                    C.Primary_Photo,
                     C.Created, 
 					C.CreatedBy, 
                     C.Updated, 
@@ -855,6 +868,7 @@
 					C.ReleaseDate, 
 					C.StartDate,
                     C.EndDate, 
+                    C.Primary_Photo,
                     C.Created, 
 					C.CreatedBy, 
                     C.Updated, 

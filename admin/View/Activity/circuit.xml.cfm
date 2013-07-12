@@ -322,6 +322,9 @@
   <fuseaction name="Overview">
     <include template="dsp_Overview" />
   </fuseaction>
+  <fuseaction name="PhotoUpload">
+    <include template="dsp_PhotoUpload" />
+  </fuseaction>
   <fuseaction name="PubPrereqs">
     <include template="dsp_PubPrereqs" />
   </fuseaction>

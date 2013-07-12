@@ -12,6 +12,7 @@
       "activity.finances",
       "activity.accme",
       "activity.pubgeneral",
+      "activity.photoupload",
       "activity.notes",
       "activity.reports",
       "activity.history"
@@ -196,6 +197,15 @@
         "icon":"icon-back-in-time",
         "event":"activity.history",
         "hasToolbar":true,
+        "subEvents":[]
+      },
+      "activity.photoupload": {
+        "label":"Upload photo",
+        "title":"Upload photo",
+        "tooltip":"",
+        "icon":"fg-image",
+        "event":"activity.photoupload",
+        "hasToolbar":false,
         "subEvents":[]
       },
       "activity.notes": {
