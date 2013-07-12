@@ -1,6 +1,11 @@
+body {
+  padding:0;
+  margin:0;
+}
 .navbar {
+  margin-bottom:0;
   height: 51px;
-  
+  position:static;
   .navbar-brand {
     padding:10px 15px;
     box-shadow: none;
