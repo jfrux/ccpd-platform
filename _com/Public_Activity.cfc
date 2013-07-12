@@ -1178,52 +1178,26 @@
     <cfset status.setStatusMsg('Cannot save primary photo for unknown reasons.')>
 
     <!--- START UPLOAD --->
-
-    <cftry>
-        <cfif NOT DirectoryExists("#ExpandPath(path)#")>
-            <cfdirectory action="create" directory="#ExpandPath(path)#">
-          </cfif>
-          
-      <cffile
-        action="upload"
-        destination="#ExpandPath(path & arguments.activityId & '.jpg')#"
-        filefield="PhotoFile"
-        nameconflict="overwrite" accept="image/jpg,image/jpeg,image/pjpeg,image/pjpg" />
-      
-      <cfcatch>
-        <cfset status.setStatusMsg('Error Uploading File: ' & cfcatch.message)>
-        <cfreturn status />
-      </cfcatch>
-    </cftry>
-    
-    <cfset oImage = ImageRead(ExpandPath(path & arguments.activityId & ".jpg"))>
-    <cfset sImageInfo = ImageInfo(oImage)>
-    
-    <cfif sImageInfo.height GT 100 OR sImageInfo.width GT 100>
-    <cfset ImageScaleToFit(oImage, 100, 100, "highestQuality")>
-    </cfif>
-    <cfset newImgName = hash('activity_' & arguments.activityId & '_primary_' & dateFormat(now(), "yyyymmdd") & timeFormat(now(), 'HHmmss'), 'md5') & '.jpg'>
-    <cfset ImageWrite(oImage,ExpandPath(path & newImgName),1)>
-    <cfset fileDelete(ExpandPath(path & arguments.activityId & '.jpg'))>
-
+    <cfset status = application.upload.start(photo=photo, photo_type='primary', entity_type='activity', entity_id=arguments.activityId)>
     <!--- END UPLOAD --->
 
-    <!--- Create Person Bean --->
+    <cfset uploadData = status.getData()>
+
+    <!--- Create Activity Bean --->
     <cfset activityBean = CreateObject("component", Application.Settings.Com & "Activity.Activity").Init(activityId=arguments.activityId)>
 
     <cfset activityExists = Application.Com.ActivityDAO.Exists(activityBean)>
     
-    <!--- DETERMINE IF PERSON EXISTS --->
+    <!--- DETERMINE IF ACTIVITY EXISTS --->
     <cfif activityExists>
       <cfset activityBean = Application.Com.ActivityDAO.Read(activityBean)>
-      <cfset activityBean.setPrimary_Photo(newImgName)>
+      <cfset activityBean.setPrimary_Photo(uploadData['hash'])>
       <cfset activitySaved = Application.Com.ActivityDAO.Save(activityBean)>
 
-      <!--- DETERMINE IF PERSON RECORD UPDATED --->
+      <!--- DETERMINE IF ACTIVITY RECORD UPDATED --->
       <cfif activitySaved>
         <cfset status.setStatus(true)>
         <cfset status.setStatusMsg('Primary photo has been updated.')>
-        <cfset status.setData({ 'photo' : path & newImgName })>
       </cfif>
     </cfif>
 

@@ -1087,41 +1087,15 @@
     <cfargument name="photo" type="any" required="yes">
     
     <cfset var status = createObject("component","#Application.Settings.Com#returnData.buildStruct").init()>
-    <cfset var path = "\public\system\photos\" />
 
     <cfset status.setStatus(false)>
     <cfset status.setStatusMsg('Cannot save primary photo for unknown reasons.')>
 
     <!--- START UPLOAD --->
-
-    <cftry>
-        <cfif NOT DirectoryExists("#ExpandPath(path)#")>
-            <cfdirectory action="create" directory="#ExpandPath(path)#">
-          </cfif>
-          
-      <cffile
-        action="upload"
-        destination="#ExpandPath(path & arguments.personId & '.jpg')#"
-        filefield="PhotoFile"
-        nameconflict="overwrite" accept="image/jpg,image/jpeg,image/pjpeg,image/pjpg" />
-      
-      <cfcatch>
-        <cfset status.setStatusMsg('Error Uploading File: ' & cfcatch.message)>
-        <cfreturn status />
-      </cfcatch>
-    </cftry>
-    
-    <cfset oImage = ImageRead(ExpandPath(path & arguments.personId & ".jpg"))>
-    <cfset sImageInfo = ImageInfo(oImage)>
-    
-    <cfif sImageInfo.height GT 100 OR sImageInfo.width GT 100>
-    <cfset ImageScaleToFit(oImage, 100, 100, "highestQuality")>
-    </cfif>
-    <cfset newImgName = hash('person_' & arguments.personId & '_primary_' & dateFormat(now(), "yyyymmdd") & timeFormat(now(), 'HHmmss'), 'md5') & '.jpg'>
-    <cfset ImageWrite(oImage,ExpandPath(path & newImgName),1)>
-    <cfset fileDelete(ExpandPath(path & arguments.personId & '.jpg'))>
-
+    <cfset status = application.upload.start(photo=photo, photo_type='primary', entity_type='person', entity_id=arguments.personId)>
     <!--- END UPLOAD --->
+
+    <cfset uploadData = status.getData()>
 
     <!--- Create Person Bean --->
     <cfset personBean = CreateObject("component", Application.Settings.Com & "Person.Person").Init(PersonID=arguments.personId)>
@@ -1131,14 +1105,13 @@
     <!--- DETERMINE IF PERSON EXISTS --->
     <cfif personExists>
       <cfset personBean = Application.Com.PersonDAO.Read(personBean)>
-      <cfset personBean.setPrimary_Photo(newImgName)>
+      <cfset personBean.setPrimary_Photo(uploadData['hash'])>
       <cfset personSaved = Application.Com.PersonDAO.Save(personBean)>
 
       <!--- DETERMINE IF PERSON RECORD UPDATED --->
       <cfif personSaved>
         <cfset status.setStatus(true)>
         <cfset status.setStatusMsg('Primary photo has been updated.')>
-        <cfset status.setData({ 'photo' : path & newImgName })>
       </cfif>
     </cfif>
 

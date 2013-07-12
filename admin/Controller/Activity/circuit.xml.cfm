@@ -366,7 +366,6 @@
     </fuseaction>
   
     <fuseaction name="PhotoUpload">
-      <do action="vActivity.PhotoUpload" contentvariable="Request.Page.Body" />
     </fuseaction>
 
     <fuseaction name="PubPrereqs">

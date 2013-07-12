@@ -56,12 +56,9 @@ App.module "Person.PhotoUpload", (Self, App, Backbone, Marionette, $) ->
               # HIDE PROGRESS BAR
               #$uploadProgressContainer.addClass('visuallyhidden');
 
-
               if data.STATUS
-                imgPath = data.DATASET.photo.replace /\\/g, '/'
-
                 addMessage data.STATUSMSG, 250, 6000, 4000
-                $uploadObj.css 'background-image', 'url("' + imgPath + '")'
+                $uploadObj.css 'background-image', 'url("' + data.DATASET.path + data.DATASET.hash + '.jpg")'
             error: (data) ->
                 #$uploadProgressContainer.addClass('visuallyhidden');
 

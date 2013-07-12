@@ -299,6 +299,7 @@ bugSenderEmail="rountrjf@ucmail.uc.edu")>
 <!---<cfset Application.Search = CreateObject("component","#Application.Settings.Com#Search").init()>
 <cfset Application.SearchResult = CreateObject("component","#Application.Settings.Com#SearchResult").init()>--->
 <cfset Application.System = CreateObject("component","#Application.Settings.Com#Public_Sys").init()>
+<cfset Application.Upload = CreateObject("component","#Application.Settings.Com#upload").init()>
 
 <!--- SYSTEM LISTS --->
 <cfset Application.List.FunRC = Application.Com.FunRCGateway.getByAttributes(OrderBy='Name')>
