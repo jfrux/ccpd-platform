@@ -1,24 +1,13 @@
-@import "twitter/bootstrap/_mixins";
+@import "base_bootstrap";
 $break-small: 768px;
 $break-large: 1024px;
-
-@mixin respond-to($media) {
-  @if $media == handhelds {
-    @media only screen and (max-width: $break-small) { @content; }
-  }
-  @else if $media == medium-screens {
-    @media only screen and (max-width: $break-small) { @content; }
-  }
-  @else if $media == wide-screens {
-    @media only screen and (min-width: $break-large) { @content; }
-  }
-}
 
 $borderColor: #d6d2d2 #dbd3d3 #d6d2d2 #dbd3d3;
 
 .search {
   position:relative;
   @include clearfix();
+  @include make-column(18);
   .btn-person-adder {
     display:none;
   }
@@ -228,9 +217,6 @@ $borderColor: #d6d2d2 #dbd3d3 #d6d2d2 #dbd3d3;
     margin-top:0;
     position:relative;
 
-    @include respond-to(medium-screens) {     
-      margin-bottom:10px;
-    }
 
     > h3 {
       background-color: #F0EDED;
@@ -255,11 +241,7 @@ $borderColor: #d6d2d2 #dbd3d3 #d6d2d2 #dbd3d3;
         font-size:12px;
       }
       input[type="text"] {
-        @include respond-to(medium-screens) {     
-          float: left;
-          margin-right: 4px;
-          width: 20%; 
-        }
+
       }
       .controls {
       }
@@ -381,7 +363,9 @@ $borderColor: #d6d2d2 #dbd3d3 #d6d2d2 #dbd3d3;
     }
   }
 }
-
+.searchbar {
+  @include make-column(6);
+}
 .no-layout {
   .searchbar-inner {
     background-color:#EEE;

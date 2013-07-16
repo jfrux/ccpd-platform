@@ -30,9 +30,11 @@
       }
 
       .title-actions {
-        text-align:center;
-        @include make-column(24);
-        @include clearfix();
+        min-height: 40px;
+        position: absolute;
+        right: 0;
+        text-align: center;
+        top: 28px;
         .action-buttons {
           margin-bottom: 9px;
           margin-right: 0;
@@ -43,6 +45,23 @@
 
           .btn-group {
             float:none;
+            
+            a.btn {
+              $btnTrimOpacity:0.35;
+              border: 1px solid rgba(#000,$btnTrimOpacity);
+              font-size: 12px;
+              line-height: 15px;
+              outline: 0 none;
+              padding: 2px 0;
+              width: 38px;
+              background-color:rgba(#FFF,0.60);
+
+              i {
+                font-size:16px;
+                color:rgba(#000,0.6);
+                text-shadow:0 1px 1px rgba(#FFF,.60);
+              }
+            }
           }
         }
       }
@@ -98,11 +117,10 @@
     }
 
     .hub-infobar {
-      margin:auto;
-      max-width:300px;
-      left:0;
-      right:0;
-      top: -104px;
+      margin: inherit;
+      max-width: 300px;
+      right: 7px;
+      top: -95px;
       
       .infobar {
         h3 {
@@ -118,7 +136,7 @@
         }
       }
       .infobar-point {
-        right:70px;
+        right: 12px;
       }
     }
   }
@@ -129,13 +147,13 @@
       border-style: solid;
       border-width: 0 0 1px 0;
       margin-top: 0;
-      margin-left: -10px;
-      margin-right: -10px;
+      margin-left: -9.5px;
+      margin-right: -9.5px;
 
       &:first-child {
         margin-top:-3px;
-        margin-left: -10px;
-        margin-right: -10px;
+        margin-left: -9.5px;
+        margin-right: -9.5px;
       }
 
       > .linkbar {

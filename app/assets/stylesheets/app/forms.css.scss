@@ -23,6 +23,29 @@ $inputHeight:30px;
     margin-bottom: 0;
     padding-bottom: 5px;
 
+    &.full-name {
+      .controls {
+        input[type=text] {
+          width:25%;
+          float:left;
+          border-radius:0;
+          margin-left:-1px;
+          
+          &:first-child {
+            border-top-right-radius:0;
+            border-top-left-radius:3px;
+            border-bottom-right-radius:0;
+            border-bottom-left-radius:3px;
+          }
+          &:last-child {
+            border-top-right-radius:3px;
+            border-top-left-radius:0;
+            border-bottom-right-radius:3px;
+            border-bottom-left-radius:0;
+          }
+        }
+      }
+    }
     &.address-street {
       .controls {
         input {

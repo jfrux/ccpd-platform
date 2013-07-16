@@ -1,6 +1,8 @@
 @media (max-width: 767px) {
+  @import "responsive/medium/layout";
   @import "responsive/medium/hub";
   @import "responsive/medium/bootstrap_overrides";
-  @import "responsive/medium/activity";
+  @import "responsive/medium/hubs/activity";
+  @import "responsive/medium/hubs/main";
   @import "responsive/medium/forms";
 }

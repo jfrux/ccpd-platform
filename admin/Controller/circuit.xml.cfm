@@ -42,8 +42,8 @@
                 <do action="vLayout.None" />
               </true>
               <false>
-                <do action="vLayout.Sub_User" contentvariable="request.page.body" />
-                <do action="vLayout.Default" />
+                <do action="vLayout.Hub" contentvariable="request.page.body" />
+                <do action="vLayout.Application" />
               </false>
             </if>
           </false>

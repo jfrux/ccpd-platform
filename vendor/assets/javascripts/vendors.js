@@ -3,6 +3,7 @@
 * 
 *=require_self
 *=hamlcoffee
+*=require modernizr
 *=require date
 *=require buglog/bugLogClient
 *=require jquery/jquery

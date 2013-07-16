@@ -1,10 +1,12 @@
+<cfparam name="params.page_title" default="" />
+<cfparam name="params.title" default="" />
 <!DOCTYPE html>
 <html lang="en">
 <cfoutput>
 <head>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8"> 
   <meta charset="utf-8">
-  <title>PAGE TITLE</title>
+  <title>#params.title# - CCPD</title>
   <cfinclude template="dsp_HeadGlobal.cfm" />
   <script>
   sMyself = "#Myself#";

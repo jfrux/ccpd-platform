@@ -1,6 +1,8 @@
 @media (max-width: 360px) {
+  @import "responsive/small/layout";
   @import "responsive/small/hub";
   @import "responsive/small/bootstrap_overrides";
-  @import "responsive/small/activity";
+  @import "responsive/small/hubs/activity";
+  @import "responsive/small/hubs/main";
   @import "responsive/small/forms";
 }

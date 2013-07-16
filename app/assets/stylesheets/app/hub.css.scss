@@ -34,44 +34,48 @@
     @include make-row();
     .title-text {
       @include make-column(16);
-      overflow:hidden;
       white-space:nowrap;
+      font-size: 18px;
+      font-weight: bold;
+      line-height: 22px;
+      margin-bottom: 9px;
+      margin-top: 11px;
+      overflow:hidden;
+      display:inline-block;
+      width:100%;
+      text-overflow:ellipsis;
     }
     .title-actions {
       @include make-column(8);
       white-space:nowrap;
-    }
-    .ContentTitle {
-      font-size: 18px;
-      font-weight: bold;
-      line-height: 18px;
-      margin-bottom: 9px;
-      margin-top: 11px;
-    }
-    .action-buttons {
-      margin-bottom: 9px;
-      margin-right: 0;
-      margin-top: 0;
-      position: absolute;
-      right: 0;
-      top: 0;
-      .btn-group {
-        float:none;
-      }
-      a.btn {
-        
-        font-size: 12px;
-        height: 33px;
-        line-height: 16px;
-        outline: 0 none;
-        i {
-          font-size:15px;
-          font-weight:400;
-          line-height:17px;
-          font-style:normal;
+
+      .action-buttons {
+        margin-bottom: 0;
+        margin-right: 0;
+        margin-top: 0;
+        position: absolute;
+        right: 1px;
+        top:7px;
+
+        a.btn {
+          $btnTrimOpacity:0.35;
+          border: 1px solid rgba(#000,$btnTrimOpacity);
+          font-size: 12px;
+          line-height: 15px;
+          outline: 0 none;
+          padding: 2px 0;
+          width: 38px;
+          background-color:rgba(#FFF,0.60);
+          i {
+            font-size:16px;
+            color:rgba(#000,0.6);
+            text-shadow:0 1px 1px rgba(#FFF,.60);
+            font-weight:400;
+            line-height:17px;
+            font-style:normal;
+          }
         }
       }
-          
     }
   }
 

@@ -7,26 +7,26 @@
 <cfparam name="Request.MultiFormQS" default="">
 <cfparam name="Request.MultiFormEditLabel" default="">
 <cfparam name="Request.MultiFormEditLink" default="">
+<cfparam name="right" default="">
+<cfparam name="content" default="">
+<cfparam name="infobar" default="">
 <cfparam name="Attributes.UCID" default="">
+<cfparam name="tabSettings" default="#request.tabSettings.tabs[lcase(attributes.fuseaction)]#" />
 
 <cfset hub_classes = "" />
-<cfset params.id = attributes.personid />
-<cfset params.title = PersonBean.getCertName() />
-<cfset params.includekey = true />
-<cfset params.profile_picture = PersonBean.getPrimary_Photo() />
-
-<script>
+<cfset params.id = #session.personid# />
+<cfset params.title = request.page.title />
+<cfset params.profile_picture = "" />
+<cfset params.includekey = false />
+<cfset params.has_infobar = false />
 <cfoutput>
-nPerson = #Attributes.PersonID#;
-sPersonName = '#replace(Attributes.FirstName, "'", "\'", "ALL")# #replace(Attributes.LastName, "'", "\'", "ALL")#';
-nAccount = #Attributes.AccountID#;
-</cfoutput>
-
-App.Person.start({
+<script>
+App.User.start({
   model:{
-    'id':nPerson,
-    'account_id':nAccount,
-    'name':sPersonName
+    'id':#session.personid#,
+    'account_id':#session.account.getAccountId()#,
+    'name':'#session.person.getDisplayName()#'
   }
 });
 </script>
+</cfoutput>
