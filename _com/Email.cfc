@@ -162,6 +162,12 @@
     </cfif>
     
     <cfset SMTPAPI['unique_args'] = smtpDatas />
+
+    <cfif isStruct(smtpTags) AND structIsEmpty(smtpTags)>
+      <cfset smtpTags = "" />
+    <cfelseif isStruct(smtpTags) AND NOT structIsEmpty(smtpTags)>
+      <cfset smtpTags = serializeJSON(smtpTags) />
+    </cfif>
     
     <!--- SEND EMAIL --->
     <cfmail to="#arguments.toEmailAddress#" from="#FromEmail#" subject="#EmailSubject#" replyto="do-not-reply@uc.edu" failto="rountrjf@ucmail.uc.edu">

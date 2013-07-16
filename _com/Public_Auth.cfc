@@ -40,7 +40,7 @@
 					<cfset personBean = application.com.personDAO.read(personBean)>
                     
                     <!--- DETERMINE IF THE PROVIDED PERSON IS DELETED --->
-                    <cfif personBean.getDeletedFlag NEQ "Y">
+                    <cfif personBean.getDeletedFlag() NEQ "Y">
 						<!---- DETERMINE IF THE PASSWORD IS VALID --->
                         <cfif personBean.getPassword() EQ arguments.password>
                             <!--- CREDENTIALS ARE CONFIRMED --->
