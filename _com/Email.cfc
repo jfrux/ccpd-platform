@@ -165,6 +165,8 @@
 
     <cfif isStruct(smtpTags) AND structIsEmpty(smtpTags)>
       <cfset smtpTags = "" />
+    <cfelseif isStruct(smtpTags) AND NOT structIsEmpty(smtpTags)>
+      <cfset smtpTags = serializeJSON(smtpTags) />
     </cfif>
     
     <!--- SEND EMAIL --->
