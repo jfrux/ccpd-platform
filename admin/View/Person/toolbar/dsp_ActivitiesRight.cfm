@@ -21,10 +21,10 @@ var sFullName = sFirstName + ' ' + sLastName;
       <li class="nav-header">
         <form class="form-horizontal">
           <div class="control-group">
-            <input type="text" class="js-transcript-date span24" placeholder="start date" name="StartDate" />
+            <input type="text" class="js-transcript-date col col-lg-24" placeholder="start date" name="StartDate" />
           </div>
           <div class="control-group">
-            <input type="text" class="js-transcript-date span24" placeholder="end date" name="EndDate" />
+            <input type="text" class="js-transcript-date col col-lg-24" placeholder="end date" name="EndDate" />
           </div>
           <a href="javascript://" class="btn js-transcript-button"><i class="icon-refresh"></i> Generate</a>
         </form>

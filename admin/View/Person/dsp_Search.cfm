@@ -38,7 +38,7 @@ $(document).ready(function() {
 
 <cfoutput>
 <div class="row-fluid">
-  <div class="search<cfif attributes.fuseaction EQ 'person.finder'> finder</cfif> span18">
+  <div class="search<cfif attributes.fuseaction EQ 'person.finder'> finder</cfif> col col-lg-18">
     <cfif isDefined("qPeople") AND qPeople.RecordCount GT 0>
       <cfif PeoplePager.getTotalNumberOfPages() GT 1><div style="row-fluid"><cfoutput>#PeoplePager.getRenderedHTML()#</cfoutput></div></cfif>
       <div class="result-list">
@@ -57,7 +57,7 @@ $(document).ready(function() {
             </div>
           </div>
           <div class="result-actions btn-group">
-            #linkTo(href="javascript:void(0);",id="#PersonID#|#LastName#, #FirstName# #MiddleName#",params="personid=#personid#",text='<i class="icon-plus"></i>',class="js-person-add PersonAdder btn btn-person-adder")#
+            #linkTo(href="javascript:void(0);",id="#PersonID#|#LastName#, #FirstName# #MiddleName#",params="personid=#personid#",text='<i class="icon-plus"></i>',class="js-person-add PersonAdder btn btn-default btn-person-adder")#
           </div>
         </div>
         </cfoutput>
@@ -92,14 +92,14 @@ $(document).ready(function() {
               </div>
             </div>
             <div class="result-actions btn-group">
-              #linkTo(href="javascript:void(0);",id="#PersonID#|#LastName#, #FirstName# #MiddleName#",params="personid=#personid#",text='<i class="icon-plus"></i>',class="js-person-add PersonAdder btn btn-person-adder")#
+              #linkTo(href="javascript:void(0);",id="#PersonID#|#LastName#, #FirstName# #MiddleName#",params="personid=#personid#",text='<i class="icon-plus"></i>',class="js-person-add PersonAdder btn btn-default btn-person-adder")#
             </div>
           </div>
           </cfoutput>
         </div>
     </cfif>
   </div>
-  <div class="searchbar span6">
+  <div class="searchbar col col-lg-6">
     <div class="SearchBar searchbar-inner js-searchbar">
       <cfinclude template="infobar/searchFilters.cfm" />
     </div>

@@ -170,7 +170,7 @@
 				P.Suffix, 
 				P.certname,
 				P.displayname,
-				P.primary_photo
+				P.primary_photo,
                 (Select TOP 1 SD.Name
                  FROM ce_Person_Degree PD
                  INNER JOIN ce_Sys_Degree SD ON SD.DegreeID = PD.DegreeID AND PD.PersonID = P.PersonID AND PD.DeletedFlag = 'N') AS DisplayDegree,

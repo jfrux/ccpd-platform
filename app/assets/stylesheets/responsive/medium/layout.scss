@@ -60,3 +60,23 @@
     }
   }
 }
+
+#footer {
+    border-top: 1px solid #CCCCCC;
+    margin: 0 0;
+    padding: 10px 0 20px 0;
+}
+
+.ui-dialog {
+  &.is-mobile {
+    border:0;
+    border-radius:0;
+
+    .ui-dialog-content {
+      overflow:auto;
+      iframe {
+        width:100%;
+      }
+    }
+  }
+}

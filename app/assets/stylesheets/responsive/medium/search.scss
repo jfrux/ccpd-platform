@@ -6,16 +6,39 @@
     .searchbar {
       @include make-column(24);
       position:absolute;
+      left:0;
       top:0;
       padding:0;
       .searchbar-inner {
         min-height:inherit;
         @include box-shadow(none);
         margin:0;
+        h3 {
+          margin: 0 0 5px 0;
+          padding: 1px 6px;
+        }
+
+        .btn-create {
+          height: 36px;
+          padding: 8px 0;
+          right: 6px;
+          text-align: center;
+          top: 35px;
+          width: 10.555%;
+          z-index: 4;
+          border-radius:4px;
+          i {
+            margin:0;
+          }
+          span.text {
+            display:none;
+          }
+        }
       }
     }
   }
 }
+
 .form-search-filters {
   select,.category-combobox, textarea, input.ui-autocomplete-input, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
     float:left;
@@ -39,7 +62,6 @@
     border-top-right-radius:4px;
     border-bottom-right-radius:4px;
     margin-left:-1px;
-    border:1px solid #CCC;
   }
   .category-combobox {
     input.ui-autocomplete-input {
@@ -75,20 +97,26 @@
 body.main-activities {
   .form-search-filters {
     select,.category-combobox, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
-      width:16.6666667%;
+      width:26.5555%;
+    }
+    #ActivityTypeID {
+      display:none;
+    }
+    #Grouping {
+      display:none;
     }
     .btn {
-      width:16.6666667%;
+      width:10%;
     }
   }
 }
 body.main-people {
   .form-search-filters {
     select,.category-combobox, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
-      width:20%;
+      width:19.5%;
     }
     .btn {
-      width:20%;
+      width:10%;
     }
   }
 }

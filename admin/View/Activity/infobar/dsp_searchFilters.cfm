@@ -1,6 +1,6 @@
 <cfoutput>
 <span>
-  <a class="btn btn-default btn-create" href="/admin/event/activity.create"><i class="icon-edit icon-large"></i> Create Activity</a>
+  <a class="btn btn-default btn-create" href="/admin/event/activity.create"><i class="icon-edit icon-large"></i> <span class="text">Create Activity</span></a>
 </span>
 <div class="filters">
   <!--- <h3><a class="js-filter" data-type="easy">Easy Search</a></h3>
@@ -40,7 +40,7 @@
             </cfloop>
           </select>
         </div>
-        <button class="btn"><i class="icon-search"></i></button>
+        <button class="btn btn-primary"><i class="icon-search"></i></button>
         <input type="hidden" name="Search" value="1" />
       </form>
     </div>

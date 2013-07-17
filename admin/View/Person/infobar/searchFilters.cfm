@@ -15,7 +15,7 @@
   <div class="box">
     <div class="row-fluid">
       <form name="frmSearch" class="form-inline" method="post" action="#myself##xfa.SearchSubmit#">
-        <input type="text" name="q" class="span24" placeholder="Type to search" data-tooltip-title="Start typing names, emails, birthdates, etc." value="#attributes.q#" />
+        <input type="text" name="q" class="col col-lg-24" placeholder="Type to search" data-tooltip-title="Start typing names, emails, birthdates, etc." value="#attributes.q#" />
       </form>
     </div>
   </div> --->

@@ -35,7 +35,7 @@ App.Activity.Faculty.Ahah.start();
                     <i class="icon-download"></i>
                   </a>
                   <cfif qActivityFacultyList.DisclosureApproveFlag EQ "N">
-                    <a id="Approve|Disclosure|#qActivityFacultyList.PersonID#" class="btn<cfif qActivityFacultyList.DisclosureApproveFlag EQ 'Y'> disabled<cfelse> approveFile</cfif> js-disclosure-btn" href="javascript:void(0);" data-tooltip-title="<cfif qActivityFacultyList.DisclosureApproveFlag EQ 'Y'>Approved #DateFormat(qActivityFacultyList.DisclosureCreatedDate,"MM/DD/YYYY")#<cfelse>Mark Approved</cfif>">
+                    <a id="Approve|Disclosure|#qActivityFacultyList.PersonID#" class="btn btn-default<cfif qActivityFacultyList.DisclosureApproveFlag EQ 'Y'> disabled<cfelse> approveFile</cfif> js-disclosure-btn" href="javascript:void(0);" data-tooltip-title="<cfif qActivityFacultyList.DisclosureApproveFlag EQ 'Y'>Approved #DateFormat(qActivityFacultyList.DisclosureCreatedDate,"MM/DD/YYYY")#<cfelse>Mark Approved</cfif>">
                       <i class="icon-check"></i>
                     </a>
                   <cfelse>
@@ -44,7 +44,7 @@ App.Activity.Faculty.Ahah.start();
                     </a>
                   </cfif>
                 </cfif>
-                <a href="javascript:void(0);" class="UploadFile js-disclosure-btn btn" id="File|#qActivityFacultyList.PersonID#" data-tooltip-title="Upload New Disclosure">
+                <a href="javascript:void(0);" class="UploadFile js-disclosure-btn btn btn-default" id="File|#qActivityFacultyList.PersonID#" data-tooltip-title="Upload New Disclosure">
                   <i class="icon-upload"></i>
                 </a>
                 </div>
@@ -70,7 +70,7 @@ App.Activity.Faculty.Ahah.start();
                   </a>
                 </cfif>
               </cfif>
-              <a class="UploadFile btn js-cv-btn" href="javascript:void(0);" id="File|#qActivityFacultyList.PersonID#" data-tooltip-title="Upload New CV">
+              <a class="UploadFile btn btn-default js-cv-btn" href="javascript:void(0);" id="File|#qActivityFacultyList.PersonID#" data-tooltip-title="Upload New CV">
                 <i class="icon-upload"></i>
               </a>
               </div>

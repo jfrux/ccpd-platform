@@ -112,19 +112,19 @@ $(document).ready(function (){
             <table class="ViewSectionGrid table table-condensed table-bordered mbs">
                 <cfloop query="qItems">
                 <tr>
-                    <td width="120" style="vertical-align:middle; text-align:center;">#TimeFormat(qItems.StartTime,'h:mmTT')# - #TimeFormat(qItems.EndTime,'h:mmTT')#</td>
+                    <td width="30%" style="vertical-align:middle; text-align:center;">#TimeFormat(qItems.StartTime,'h:mmTT')# - #TimeFormat(qItems.EndTime,'h:mmTT')#</td>
                     <td style="vertical-align:middle;">#qItems.Description#</td>
-                    <td align="right" width="50">
-                    	<div class="btn-group">
-                    		<a href="javascript:void(0);" id="AgendaLink#qItems.AgendaID#" class="AgendaEditLink btn"><i class="icon-pencil"></i></a>
-                    		<a href="javascript:void(0);" id="AgendaDelete#qItems.AgendaID#" class="AgendaDeleteLink btn"><i class="icon-trash"></i></a>
+                    <td align="right" width="20%">
+                    	<div class="btn-group" style="width:100%;">
+                    		<a href="javascript:void(0);" id="AgendaLink#qItems.AgendaID#" class="AgendaEditLink btn btn-default btn-small" style="width:50%;"><i class="icon-pencil"></i></a>
+                    		<a href="javascript:void(0);" id="AgendaDelete#qItems.AgendaID#" class="AgendaDeleteLink btn btn-default btn-small" style="width:50%;"><i class="icon-trash"></i></a>
                     	</div>
                     </td>
                 </tr>
                 </cfloop>
             </table>
             </cfif>
-            <a href="javascript:void(0);" id="#DateFormat(i,'mm-dd-yyyy')#" class="AddItemLink btn btn-small"><i class="icon-plus"></i> Add Event Time</a>
+            <a href="javascript:void(0);" id="#DateFormat(i,'mm-dd-yyyy')#" class="AddItemLink btn btn-primary btn-small"><i class="icon-plus"></i> Add Event Time</a>
         </cfloop>
     </div>
 </div>

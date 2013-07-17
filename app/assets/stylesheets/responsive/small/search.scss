@@ -1,0 +1,32 @@
+body {
+  .form-search-filters {
+    select,.category-combobox, textarea, input.ui-autocomplete-input, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
+      float:left;
+      width:inherit;
+      border-radius:0;
+      margin-left:-1px;
+      display:none;
+
+      &:first-child {
+        width:83.33336%;
+        display:block;
+        border-top-left-radius:4px;
+        border-bottom-left-radius:4px;
+      }
+      
+    }
+  }
+}
+body.main-people {
+  .btn-create {
+    width:13%;
+  }
+  .form-search-filters {
+    select,.category-combobox, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
+      width:74%;
+    }
+    .btn {
+      width:13%;
+    }
+  }
+}

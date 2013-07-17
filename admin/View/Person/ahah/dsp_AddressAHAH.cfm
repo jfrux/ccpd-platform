@@ -9,7 +9,7 @@
     </cfif>
 
     <div class="address-row list-row js-list-row<cfif isPrimary> is-primary</cfif>" data-key="#addresslist.addressid#">
-      <div class="address span16">
+      <div class="address col col-lg-16">
         <span class="label address-type">#trim(replace(AddressTypeName,'address',''))#</span>
         <cfif Address1 NEQ "">
           #Address1#
@@ -30,7 +30,7 @@
           #phoneOutput(evaluate("phone#i#"),evaluate("phone#i#ext"))#
         </cfloop> --->
       </div>
-      <div class="row-status span8">
+      <div class="row-status col col-lg-8">
         <ul class="status-group">
           <li>
             <i></i>
@@ -43,13 +43,13 @@
           </li>
         </ul>
       </div>
-      <div class="row-actions span8">
+      <div class="row-actions col col-lg-8">
         <div class="btn-group">
-          <a href="javascript://" class="address-edit btn" data-tooltip-title="Edit Address"><i class="icon-pencil"></i></a>
-          <a href="javascript://" class="address-makeprimary<cfif isPrimary> disabled</cfif> btn" data-tooltip-title="<cfif isPrimary>This is the primary address.<cfelse>Mark address as primary</cfif>"><i class="icon-star"></i></a>
+          <a href="javascript://" class="address-edit btn btn-default" data-tooltip-title="Edit Address"><i class="icon-pencil"></i></a>
+          <a href="javascript://" class="address-makeprimary<cfif isPrimary> disabled</cfif> btn btn-default" data-tooltip-title="<cfif isPrimary>This is the primary address.<cfelse>Mark address as primary</cfif>"><i class="icon-star"></i></a>
         </div>
         <div class="btn-group">
-          <a href="javascript://" class="address-delete btn" data-tooltip-title="Delete Address"><i class="icon-trash"></i></a>
+          <a href="javascript://" class="address-delete btn btn-default" data-tooltip-title="Delete Address"><i class="icon-trash"></i></a>
         </div>
       </div>
     </div>

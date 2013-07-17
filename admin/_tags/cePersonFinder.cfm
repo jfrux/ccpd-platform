@@ -4,19 +4,7 @@
 <cfparam name="Attributes.AddPersonFunc" default="">
 <cfparam name="Attributes.ActivityID" default="">
 <style>
-.personFinder {
-  display:block;
-height:auto;
-left:0!important;
-margin:0 auto;
-outline:0 none;
-overflow:hidden;
-position:fixed!important;
-right:0!important;
-top:100px!important;
-width:650px!important;
-z-index:1002;
-}
+
 </style>
 <cfoutput>
 <script type="text/javascript">

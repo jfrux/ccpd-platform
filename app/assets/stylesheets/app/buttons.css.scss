@@ -1,12 +1,100 @@
 @import "base_bootstrap";
+.btn {
+  &.btn-default {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    -moz-user-select: none;
+    @include gradient-vertical(#FAFAFA, #EAEAEA);
+    border-color: #DDDDDD #DDDDDD #C5C5C5;
+    border-image: none;
+    border-radius: 3px 3px 3px 3px;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    color: #333333;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 13px;
+    font-weight: bold;
+    padding: 7px 15px;
+    position: relative;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.9);
+    vertical-align: middle;
+    white-space: nowrap;
+  }
+
+  &.btn-small {
+    border-radius: 3px 3px 3px 3px;
+    font-size: 12px;
+    line-height: 1.5;
+    padding: 3px 10px;
+  }
+  &:hover, 
+  &:active {
+      @include gradient-vertical(#EAEAEA, #DADADA);
+    border-color: #CCCCCC #CCCCCC #B5B5B5;
+    text-decoration: none;
+  }
+  &:active, 
+  &.selected,
+  &.active {
+    background-color: #DADADA;
+    background-image: none;
+    border-color: #B5B5B5;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.15) inset;
+  }
+  &:disabled, 
+  &:disabled:hover, 
+  &.disabled, 
+  &.disabled:hover {
+      background-color: #E5E5E5;
+      background-image: none;
+      border-color: #C5C5C5;
+      box-shadow: none;
+      color: #666666;
+      cursor: default;
+      opacity: 0.5;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.9);
+  }
+  &.btn-primary {
+      @include gradient-vertical(#8ADD6D, #60B044);
+      border-color: #5CA941;
+      color: #FFFFFF;
+      text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  }
+  &.btn-primary:hover {
+      @include gradient-vertical(#79D858, #569E3D);
+      border-color: #4A993E;
+      color: #FFFFFF;
+  }
+  &.btn-primary:active, 
+  &.btn-primary.selected {
+      background-color: #569E3D;
+      background-image: none;
+      border-color: #418737;
+  }
+  &.btn-primary:disabled, &.btn-primary:disabled:hover, 
+  .btn.btn-primary.disabled, 
+  .btn.btn-primary.disabled:hover, 
+  .minibutton.btn-primary:disabled, 
+  .minibutton.btn-primary:disabled:hover, 
+  .minibutton.btn-primary.disabled, 
+  .minibutton.btn-primary.disabled:hover {
+      @include gradient-vertical(#8ADD6D, #60B044);
+      border-color: #74BB5A #74BB5A #509338;
+      color: #FFFFFF;
+      text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  }
+}
 .btn-selected-actions {
   width:68px;
 }
 .btn-group {
   &.open {
     .btn {
-    background-color: #3072B3;
-    background-image: linear-gradient(#599BCD, #3072B3);
+    @include gradient-vertical(#599BCD, #3072B3);
     background-repeat: repeat-x;
     border-color: #2A65A0;
     color: #FFFFFF;
