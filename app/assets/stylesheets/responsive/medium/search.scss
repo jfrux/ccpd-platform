@@ -1,0 +1,148 @@
+.profile {
+  .content {
+    .search {
+      margin-top:44px;
+    }
+    .searchbar {
+      @include make-column(24);
+      position:absolute;
+      top:0;
+      padding:0;
+      .searchbar-inner {
+        min-height:inherit;
+        @include box-shadow(none);
+        margin:0;
+      }
+    }
+  }
+}
+.form-search-filters {
+  select,.category-combobox, textarea, input.ui-autocomplete-input, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
+    float:left;
+    width:inherit;
+    border-radius:0;
+    margin-left:-1px;
+
+    &:first-child {
+      border-top-left-radius:4px;
+      border-bottom-left-radius:4px;
+    }
+  }
+  select {
+    padding-top:7px;
+  }
+
+  .btn {
+    height:36px;
+    padding:0;
+    border-radius:0;
+    border-top-right-radius:4px;
+    border-bottom-right-radius:4px;
+    margin-left:-1px;
+    border:1px solid #CCC;
+  }
+  .category-combobox {
+    input.ui-autocomplete-input {
+      width:100%;
+      border-radius: 0;
+      color: #555555;
+      display: inline-block;
+      font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+      font-size: 14px;
+      height: 36px;
+      background-image:none;
+      background-color:#FFF;
+      line-height: 22px;
+      margin-bottom: 10px;
+      padding: 6px 6px;
+      vertical-align: middle;
+    }
+    .custom-combobox-toggle {
+      height: 36px;
+      margin: 0;
+      padding: 0 0 11px;
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 25px;
+      border-radius:0;
+      box-shadow:none;
+      background-image:none;
+      background-color:#EEE;
+    }
+  }
+}
+body.main-activities {
+  .form-search-filters {
+    select,.category-combobox, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
+      width:16.6666667%;
+    }
+    .btn {
+      width:16.6666667%;
+    }
+  }
+}
+body.main-people {
+  .form-search-filters {
+    select,.category-combobox, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
+      width:20%;
+    }
+    .btn {
+      width:20%;
+    }
+  }
+}
+.no-layout {
+  .form-search-filters {
+    select,.category-combobox, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
+      width:16.6666667%;
+    }
+    .btn {
+      width:16.6666667%;
+      border:inherit;
+    }
+  }
+  .searchbar-inner {
+    background-color:#EEE;
+    position:fixed;
+
+    left:0;
+    top:0;
+    padding:10px;
+    display:block;
+    width:100%!important;
+    .btn-create {
+      position:absolute;
+      right:10px;
+      height:36px;
+      width:16.666667%;
+      span.text {
+        display:none;
+      }
+    }
+    h3 {
+      display:none;
+    }
+  }
+  .search {
+    margin-top: 47px;
+    padding: 10px;
+    width: 100% !important;
+    .person-result {
+      position:relative;
+      .result-image {
+        width:35px;
+        height:35px;
+      }
+      .result-body {
+        margin-left: 40px;
+        padding-top: 4px;
+      }
+      .result-actions {
+        position:absolute;
+        right:0;
+        top:0;
+      }
+    }
+  }
+}
