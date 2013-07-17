@@ -11,3 +11,4 @@ node_modules
 .sass-cache
 vendor/ruby
 tmp/
+public/system/photos/*.jpg
