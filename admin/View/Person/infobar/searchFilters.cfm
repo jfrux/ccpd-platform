@@ -8,7 +8,7 @@
 </cfif>
 <cfoutput>
 <span>
-  <a href="#myself#Person.Create?Instance=#Attributes.Instance#&Mode=#attributes.mode#&ActivityID=#Attributes.ActivityID#" class="btn btn-default btn-create"><i class="icon-edit icon-large"></i> Create Person</a>
+  <a href="#myself#Person.Create?Instance=#Attributes.Instance#&Mode=#attributes.mode#&ActivityID=#Attributes.ActivityID#" class="btn btn-default btn-create"><i class="icon-edit icon-large"></i> <span class="text">Create Person</span></a>
 </span>
 <div class="filters">
   <!--- <h3><a class="js-filter" data-type="easy">Easy Search</a></h3>
@@ -28,7 +28,7 @@
         <input type="text" name="Birthdate" id="Birthdate" class="input-block-level" placeholder="Date of Birth" value="#Attributes.Birthdate#" />
         <input type="text" name="Email" id="Email" class="input-block-level" placeholder="Email Address" value="#Attributes.Email#" />
         <input type="hidden" name="ActivityID" value="#Attributes.ActivityID#" />
-        <button class="btn"><i class="icon-search"></i></button>
+        <button class="btn btn-primary"><i class="icon-search"></i></button>
         <input type="hidden" name="Search" value="1" />
         <input type="hidden" name="Instance" value="#Attributes.Instance#" />
       </form>

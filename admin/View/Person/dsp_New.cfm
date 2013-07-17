@@ -2,6 +2,7 @@
 <cfparam name="Attributes.FirstName" type="String" default="">
 <cfparam name="Attributes.MiddleName" type="String" default="">
 <cfparam name="Attributes.LastName" type="String" default="">
+<cfparam name="Attributes.suffix" type="String" default="">
 <cfparam name="Attributes.BirthDate" type="String" default="">
 <cfparam name="Attributes.Email" type="String" default="">
 <cfparam name="Attributes.SSN" type="String" default="">
@@ -46,12 +47,13 @@ $(document).ready(function() {
 </script>
 <cfoutput>
 <form class="form-horizontal js-create-form" method="post" action="/admin/_com/AJAX_Person.cfc">
-  <div class="control-group">
+  <div class="control-group full-name">
     <label class="control-label" for="FirstName">Full Name</label>
     <div class="controls">
-      <input id="FirstName" name="FirstName" type="text" placeholder="First Name" class="inputText" style="width:70px;" value="#Attributes.FirstName#" />
-      <input id="MiddleName" name="MiddleName" type="text" placeholder="Middle" class="inputText" style="width:70px;" value="#Attributes.MiddleName#" />
-      <input id="LastName" name="LastName" type="text" placeholder="Last Name" class="inputText" style="width:70px;" value="#Attributes.LastName#" />
+      <input id="FirstName" name="FirstName" type="text" placeholder="First Name" class="inputText" value="#Attributes.FirstName#" />
+      <input id="MiddleName" name="MiddleName" type="text" placeholder="Middle" class="inputText" value="#Attributes.MiddleName#" />
+      <input id="LastName" name="LastName" type="text" placeholder="Last Name" class="inputText" value="#Attributes.LastName#" />
+      <input name="suffix" id="user-suffix" placeholder="Suffix" class="input-mini js-suggest-input" type="text" value="#Attributes.suffix#" tabindex="4"  />
     </div>
   </div>
   <div class="control-group">
@@ -69,18 +71,13 @@ $(document).ready(function() {
   <div class="control-group">
     <label class="control-label" for="PersonID">Email</label>
     <div class="controls">
-      <input id="Email" name="Email" type="text" placeholder="john@example.org" class="inputText" value="#Attributes.Email#" style="width:150px;" />
+      <input id="Email" name="Email" type="text" placeholder="john@example.org" class="inputText" value="#Attributes.Email#" />
     </div>
   </div>
-  <div class="control-group">
+  <div class="control-group password-set">
     <label class="control-label" for="">Password</label>
     <div class="controls">
       <input id="password" name="password" type="text" placeholder="Password" class="inputText" value="" />
-    </div>
-  </div>
-  <div class="control-group">
-    <label class="control-label" for="confirmation"></label>
-    <div class="controls">
       <input id="passwordconfirmation" name="passwordconfirmation" placeholder="Re-type Password" type="text" class="inputText" value="" />
     </div>
   </div>
@@ -97,8 +94,8 @@ $(document).ready(function() {
   </div>
   <div class="control-group">
     <div class="controls">
-      <input type="submit" value="Continue" class="btn btn-success person-save" />
-      <a href="#myself#Person.Finder?instance=#attributes.instance#&activityId=#attributes.activityId#" class="btn">Cancel</a>
+      <input type="submit" value="Continue" class="btn btn-primary person-save" />
+      <a href="#myself#Person.Finder?instance=#attributes.instance#&activityId=#attributes.activityId#" class="btn btn-default">Cancel</a>
     </div>
   </div>
   <input type="hidden" name="returnFormat" value="plain" />

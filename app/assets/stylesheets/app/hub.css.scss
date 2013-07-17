@@ -4,6 +4,7 @@
   position:relative;
   margin-top:14px;
   
+
   .profile-bg {
     border-left: 1px solid #D9D9D9;
     border-right: 1px solid #D9D9D9;
@@ -25,8 +26,15 @@
     }
   }
   .hub-content {
-    @include make-column(18);
+    @include make-column(24);
   }
+  
+  &.infobar-active {
+    .hub-content {
+      @include make-column(18);
+    }
+  }
+
   .hub-infobar {
     @include make-column(6);
   }

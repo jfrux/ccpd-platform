@@ -20,24 +20,34 @@
         font-weight: bold;
         padding: 4px 10px 4px 7px;
         position: absolute;
-        right: 6px;
-        top: 6px;
-
+        right: -6px;
+        top: -63px;
       }
       @include box-shadow(-4px 0 0px #e7dddd);
       
       .form-search-filters {
         select, textarea, input.ui-autocomplete-input, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
-          font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
           border-radius: 4px 4px 4px 4px;
           color: #555555;
           display: inline-block;
+          font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
           font-size: 14px;
-          height: 20px;
+          height: 35px;
           line-height: 20px;
           margin-bottom: 10px;
           padding: 4px 6px;
           vertical-align: middle;
+        }
+        select {
+          padding-top:7px;
+        }
+        .btn {
+          height:36px;
+          padding:0;
+          width:100%;
+          border-radius:4px;
+          margin-left:-1px;
+          border:1px solid #CCC;
         }
       }
 

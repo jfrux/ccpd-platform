@@ -6,7 +6,7 @@
 <cfparam name="params.has_infobar" type="boolean" default=true />
 <cfinclude template="includes/#params.controller#/pre.cfm" />
 <cfoutput>
-<div class="hub profile #lcase(params.controller)# #hub_classes#">
+<div class="hub profile #lcase(params.controller)# #hub_classes#<cfif params.has_infobar> infobar-active</cfif>">
   <div class="hub-bar projectbar js-projectbar">
     <div class="box">
       <cfif len(trim(params.profile_picture)) GT 0>
