@@ -1,6 +1,6 @@
 App.respond = {
   mobile: false
-  large:window.matchMedia("(min-width: 768px)")
+  large:window.matchMedia("screen and (min-width: 768px)")
   medium:window.matchMedia("(max-width: 767px)")
   small:window.matchMedia("(max-width: 360px)")
   tiny:window.matchMedia("(max-width: 300px)")
