@@ -13,7 +13,7 @@ class App.Components.NewsFeed
     ###
     @$list = $('<div class="history-list"></div>')
 
-    class @Collection extends App.Collection
+    class @Collection extends Backbone.Collection
       parse: (response) ->
         return response.PAYLOAD
       url:"/admin/_com/ajax_history.cfc?method=list"
@@ -28,7 +28,7 @@ class App.Components.NewsFeed
     FILTER BUTTONS
     ###
     @$filters = $(filterHtml)
-    filterTemplate = _.template('<a href="" class="btn" data-mode="<%= filter%>"><%= label%></a>')
+    filterTemplate = _.template('<a href="" class="btn btn-default" data-mode="<%= filter%>"><%= label%></a>')
     console.log @settings.modes
     #LOOP OVER PROVIDED MODES AND GET CONFIG INFO FROM FILTERTYPES
     _.each @settings.modes,(mode,key) ->
@@ -56,7 +56,7 @@ class App.Components.NewsFeed
     ###
     PRIMARY LIST VIEW
     ###
-    class ListerView extends App.View
+    class ListerView extends Backbone.View
       constructor: (properties) ->
         # SET DEFAULT VALUES 
         self = this

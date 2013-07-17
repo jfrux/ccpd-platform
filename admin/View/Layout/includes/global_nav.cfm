@@ -16,7 +16,11 @@
         <li<cfif params.event EQ "main-activities" OR params.controller EQ "activity"> class="active"</cfif>><a href="#myself#main.activities"><i class="nav-icon-activities"></i><span class="text">Activities</span></a></li>
         <li<cfif params.event EQ "main-people" OR params.controller EQ "person"> class="active"</cfif>><a href="#myself#main.people"><i class="nav-icon-people"></i><span class="text">People</span></a></li>
         <li<cfif params.event EQ "main-reports"> class="active"</cfif>><a href="#myself#main.reports"><i class="nav-icon-reports"></i><span class="text">Reports</span></a></li>
-      </ul>
+      </ul><!--- <form class="navbar-search pull-right">
+        <input type="text" class="search-query span4" placeholder="Search">
+      </form> --->
+    </div>
+    <div class="global-panes">
       <ul class="nav navbar-nav global-nav-links global-nav-panes pull-right">
         <li class="divider-vertical"></li>
         <li class="dropdown">
@@ -44,11 +48,20 @@
           </div>
         </li>
       </ul>
+    </div>
+  </div>
+</div>
+
+<div class="jpanel-nav">
+  <ul class="nav nav-pills nav-stacked">
+    <li<cfif params.event EQ "main-welcome"> class="active"</cfif>><a href="#myself#main.welcome"><i class="nav-icon-home"></i><span class="text">Home</span></a></li>
+    <li<cfif params.event EQ "main-activities" OR params.controller EQ "activity"> class="active"</cfif>><a href="#myself#main.activities"><i class="nav-icon-activities"></i><span class="text">Activities</span></a></li>
+    <li<cfif params.event EQ "main-people" OR params.controller EQ "person"> class="active"</cfif>><a href="#myself#main.people"><i class="nav-icon-people"></i><span class="text">People</span></a></li>
+    <li<cfif params.event EQ "main-reports"> class="active"</cfif>><a href="#myself#main.reports"><i class="nav-icon-reports"></i><span class="text">Reports</span></a></li>
+  </ul>
 
       <!--- <form class="navbar-search pull-right">
         <input type="text" class="search-query span4" placeholder="Search">
       </form> --->
-    </div>
-  </div>
 </div>
 </cfoutput>

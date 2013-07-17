@@ -1,5 +1,26 @@
 @import "base_bootstrap";
 #header {
+  .jpanel-nav {
+    display:none;
+  }
+  .global-panes {
+    position:absolute;
+    right:0;
+    top:0;
+
+    .nav {
+      &.navbar-nav {
+        margin-top:0;
+        margin-bottom:0;
+      }
+      > li {
+        display:inline-block;
+        > a {
+          padding: 17px 8px 30px;
+        }
+      }
+    }
+  }
   .navbar {
     padding-left:0px;
     padding-right:0px;
