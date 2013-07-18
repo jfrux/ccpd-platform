@@ -11,7 +11,7 @@ require 'sinatra/asset_pipeline'
 
 class MyApp < Sinatra::Base
   # Include these files when precompiling assets
-  set :assets_precompile, %w(application.js application.css responsive.css vendors.js vendors.css *.png *.jpg *.svg *.eot *.ttf *.woff)
+  set :assets_precompile, %w(application.js application.css responsive.css vendors.js vendors.css ckeditor/ckeditor.js *.png *.jpg *.svg *.eot *.ttf *.woff)
   set :asset_host, 'http://localhost:3000' # Use another host for serving assets
   set :assets_protocol, :http # Serve assets using this protocol
   set :assets_css_compressor, :sass # CSS minification
