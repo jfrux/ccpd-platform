@@ -1,6 +1,13 @@
 GIT
-  remote: https://github.com/joshuairl/sinatra-asset-pipeline.git
-  revision: ae366e73a38683b0695a1ab98cf5338cc7cea984
+  remote: https://github.com/thomas-mcdonald/bootstrap-sass.git
+  revision: f27b4092e715711773edf660461cd4392cf3a43b
+  branch: 3
+  specs:
+    bootstrap-sass (2.3.1.0)
+      sass (~> 3.2)
+
+PATH
+  remote: ~/Projects/sinatra-asset-pipeline
   specs:
     sinatra-asset-pipeline (0.2.0)
       active_support
@@ -11,14 +18,6 @@ GIT
       sprockets
       sprockets-helpers
       sprockets-sass
-
-GIT
-  remote: https://github.com/thomas-mcdonald/bootstrap-sass.git
-  revision: f27b4092e715711773edf660461cd4392cf3a43b
-  branch: 3
-  specs:
-    bootstrap-sass (2.3.1.0)
-      sass (~> 3.2)
 
 GEM
   remote: https://rubygems.org/

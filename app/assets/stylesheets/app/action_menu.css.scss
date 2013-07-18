@@ -8,7 +8,7 @@ ul.user-actions {
 	float:none!important;
 }
 .AllAttendees .user-actions-outer i {
-	background-image:asset-url('sprite-icons.png');
+	background-image:asset_url('sprite-icons.png');
 	background-repeat:no-repeat;
 	display:inline-block;
 	height:13px;
@@ -34,7 +34,7 @@ background-position:-32px -64px;
 	-moz-border-radius-topleft:4px;
 	-moz-border-radius-topright:4px;
 	-x-system-font:none;
-	background:#DDDDDD asset-url('bg-btn.gif') repeat-x scroll 0 0;
+	background:#DDDDDD asset_url('bg-btn.gif') repeat-x scroll 0 0;
 	border-color:#DDDDDD #DDDDDD #CCCCCC;
 	border-style:solid;
 	border-width:1px;

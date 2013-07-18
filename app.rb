@@ -29,19 +29,19 @@ class MyApp < Sinatra::Base
     set :assets_prefix, '/assets'
   end
   
-  configure do
-    Sprockets::Helpers.configure do |config|
-      config.environment = sprockets
-      config.prefix      = assets_prefix
-      config.digest      = assets_digest
-      config.public_path = public_folder
+  # configure do
+  #   Sprockets::Helpers.configure do |config|
+  #     config.environment = sprockets
+  #     config.prefix      = assets_prefix
+  #     config.digest      = assets_digest
+  #     config.public_path = public_folder
 
-      # Force to debug mode in development mode
-      # Debug mode automatically sets
-      # expand = true, digest = false, manifest = false
-      config.debug       = true if development?
-    end
-  end
+  #     # Force to debug mode in development mode
+  #     # Debug mode automatically sets
+  #     # expand = true, digest = false, manifest = false
+  #     config.debug       = true if development?
+  #   end
+  # end
 
   
   template :stylesheet_tags do
@@ -56,15 +56,15 @@ class MyApp < Sinatra::Base
     }
   end
 
-  helpers do
-    include Sprockets::Helpers
+  # helpers do
+  #   include Sprockets::Helpers
 
-    # Alternative method for telling Sprockets::Helpers which
-    # Sprockets environment to use.
-    # def assets_environment
-    #   settings.sprockets
-    # end
-  end
+  #   # Alternative method for telling Sprockets::Helpers which
+  #   # Sprockets environment to use.
+  #   # def assets_environment
+  #   #   settings.sprockets
+  #   # end
+  # end
 
   before do
     content_type 'text/plain'
