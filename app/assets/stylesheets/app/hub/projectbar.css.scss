@@ -1,7 +1,7 @@
 @import "base_bootstrap";
 @import "./variables";
-.profile {
-  .projectbar {
+.profile,.hub {
+  .projectbar,.hub-bar {
     @include make-column(5);
     .box {
       background-color:#FFF;
@@ -13,9 +13,31 @@
 
       margin-top:10px;
       position:relative;
+
       &:first-child {
         margin-left: 0px;
         margin-top: 0px;
+        .user-profile-area {
+          display:none;
+          @include clearfix();
+          padding:8px;
+          .user-picture {
+            background-size:cover;
+            height:45px;
+            width:45px;
+            float:left;
+          }
+          .user-links {
+            margin-left:10px;
+            a {
+              &:first-child {
+                font-weight:bold;
+              }
+            }
+            width:50%;
+            float:left;
+          }
+        }
       }
 
       &:nth-child(2) {

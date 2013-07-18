@@ -23,7 +23,9 @@ ul.user-actions {
 background-position:-32px -64px;
 }
 
-.user-actions-outer .btn, .user-actions-outer input.btn[type="submit"], .user-actions-outer input.btn[type="button"] {
+.user-actions-outer .btn, 
+.user-actions-outer input.btn[type="submit"], 
+.user-actions-outer input.btn[type="button"] {
 	-moz-background-clip:border;
 	-moz-background-inline-policy:continuous;
 	-moz-background-origin:padding;
@@ -57,7 +59,12 @@ background-position:-32px -64px;
 	padding:0;
 }
 
-.user-actions-outer .btn:hover, .user-actions-outer .btn:focus, input.btn[type="submit"]:hover, .user-actions-outer input.btn[type="submit"]:focus, .user-actions-outer button.btn:hover, .user-actions-outer button.btn:focus {
+.user-actions-outer .btn:hover, 
+.user-actions-outer .btn:focus, 
+.user-actions-outer input.btn[type="submit"]:hover, 
+.user-actions-outer input.btn[type="submit"]:focus, 
+.user-actions-outer button.btn:hover, 
+.user-actions-outer button.btn:focus {
 background-position:0 -6px;
 border-color:#999999 #999999 #888888;
 color:#000000;

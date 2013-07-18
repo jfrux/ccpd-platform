@@ -1,41 +1,19 @@
 @import "base_bootstrap";
 #header {
-  .jpanel-nav {
-    display:none;
-  }
-  .global-panes {
-    position:absolute;
-    right:0;
-    top:0;
-
-    .nav {
-      &.navbar-nav {
-        margin-top:0;
-        margin-bottom:0;
-      }
-      > li {
-        display:inline-block;
-        > a {
-          padding: 17px 8px 30px;
-        }
-      }
-    }
-  }
   .navbar {
     padding-left:0px;
     padding-right:0px;
     height: 48px;
     margin-bottom: 0;
     position: relative;
-
     &.navbar-inverse {
       @include gradient-vertical(#E11E27,#A21D20);
       border-color: darken($ucRed,15%);
       border-style: solid;
       border-width: 0 0px 2px 0px;
       
-      .navbar-toggle {
-        border:0;
+      a.navbar-toggle {
+        border:1px solid transparent;
         border-radius: 0;
         left: 5px;
         padding: 8px 12px;
@@ -44,8 +22,21 @@
         right:inherit;
 
         &:hover {
-          background-color:rgba(#FFF,0.20);
+          outline:none;
+          background-color:rgba(#FFF,0.10);
+          border:1px solid rgba(#FFF,0.20);
+          border-radius:3px;
+        }
+        &:focus {
+          border:1px solid transparent;
+          outline:none;
+          background-color:rgba(#000,0.10);
+          > span.icon-bar {
+            background-color:rgba(#FFF,.1);
+            box-shadow:0 -1px 0 rgba(#000,.2);
+          }
           border-radius:4px;
+          @include box-shadow(0 1px 3px darken($ucRed,15%) inset);
         }
         .icon-bar {
           border-radius:0.75px;
@@ -58,11 +49,11 @@
         
       }
     }
-
     .navbar-brand {
       background-color: transparent;
       background-image: none;
       background-repeat: repeat-x;
+      @include box-shadow(none);
       border-width: 0;
       color:#FFF;
       font-family: modernaregular;
@@ -79,9 +70,36 @@
         overflow: hidden;
       }
     }
+    .global-panes {
+      position:absolute;
+      right:0;
+      top:0;
+    
+      .nav {
+        &.navbar-nav {
+          margin-top:0;
+          margin-bottom:0;
+        }
+        
+        > li {
+          display:inline-block;
+
+          &.pane-user-profile {
+            display:none;
+          }
+          > a {
+            padding: 17px 8px 30px;
+            i {
+              color:#FFF;
+              margin:-4px 2px 0 0;
+            }
+          }
+        }
+      }
+    }
   }
 }
-
+#content {}
 #footer {
     border-top: 1px solid #CCCCCC;
     margin: 0 0;

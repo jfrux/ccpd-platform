@@ -15,6 +15,9 @@
 //=require app/dialogs
 //=require app/search
 //=require app/hub
+//=require app/hub.activity
+//=require app/hub.person
+//=require app/hub.main
 //=require_tree ./app/hub
 //=require app/forms
 //=require app/action_menu
@@ -30,6 +33,7 @@
 //=require app/person/addresses
 //=require app/person/emails
 //=require app/layout
+//=require app/layout.jpanelnav
 //=require app/components/listinator
 //=require app/components/wysiwyg
 //=require app/components/status

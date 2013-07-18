@@ -11,24 +11,27 @@ $navIconImg: 'nav_sprites.png';
   //.ie7-restore-right-whitespace();
 }
 
-.nav-icon-user-profile {     
+.icon-user-profile {
+  height: 20px;
+  width:  20px;
   background-image: none;
   background-size: 20px auto;
   background-position: 50% 50%; 
+  background-repeat: no-repeat;
 }
 
-.nav-icon-home { background-position:0 -26px; }
-.nav-icon-activities { background-position:-25px -25px;  }
-.nav-icon-people { background-position:-47px -25px; }
-.nav-icon-reports { background-position:-71px -25px; }
-.nav-icon-alerts { background-position:-96px -25px; }
-.nav-icon-settings {  }
+// .nav-icon-home { background-position:0 -26px; }
+// .nav-icon-activities { background-position:-25px -25px;  }
+// .nav-icon-people { background-position:-47px -25px; }
+// .nav-icon-reports { background-position:-71px -25px; }
+// .nav-icon-alerts { background-position:-96px -25px; }
+// .nav-icon-settings {  }
 
-.active,.open {
-  .nav-icon-home { background-position:0 0; }
-  .nav-icon-activities { background-position:-24px 0;  }
-  .nav-icon-people { background-position:-47px 0; }
-  .nav-icon-reports { background-position:-71px 0; }
-  .nav-icon-alerts { background-position:-96px 0; }
-  .nav-icon-settings {  }
-}
+// .active,.open {
+//   .nav-icon-home { background-position:0 0; }
+//   .nav-icon-activities { background-position:-24px 0;  }
+//   .nav-icon-people { background-position:-47px 0; }
+//   .nav-icon-reports { background-position:-71px 0; }
+//   .nav-icon-alerts { background-position:-96px 0; }
+//   .nav-icon-settings {  }
+// }

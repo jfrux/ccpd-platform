@@ -15,6 +15,14 @@
         <cfset profile_picture_url = imageUrl('default_photo/#lcase(params.controller)#_p.png') />
       </cfif>
       <div class="profile-picture" style="background-image:url(#profile_picture_url#);"></div>
+      <div class="user-profile-area">
+        <div class="user-picture" style="background-image:url(#pictureUrl(session.person.getprimary_photo(),"i")#);"></div>
+        <div class="user-links">
+          #linkTo(controller="person",action="detail",params="personid=#session.person.getPersonId()#",text='#session.person.getCertName()#')#
+          <br />
+          #linkTo(controller="person",action="detail",params="personid=#session.person.getPersonId()#",text='Edit Profile')#
+        </div>
+      </div>
     </div>
     <div class="box js-profile-menu">
       #profileMenu(

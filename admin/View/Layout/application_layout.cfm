@@ -1,5 +1,6 @@
 <cfparam name="params.page_title" default="" />
 <cfparam name="params.title" default="" />
+<!--?xml version="1.0" encoding="utf-8"?-->
 <!DOCTYPE html>
 <html lang="en">
 <cfoutput>
@@ -14,7 +15,7 @@
   </script>
 </head>
 
-<body data-controller="#params.controller#" data-action="#params.action#" data-event="#params.event#" class="#params.controller# #params.action# #params.event# tabs tab#Request.NavItem#">
+<body data-controller="#params.controller#" data-action="#params.action#" data-event="#params.event#" class="#lcase(params.controller)# #lcase(params.action)# #lcase(params.event)# tabs tab#Request.NavItem#">
   <div id='app'>
     <div id='header'>
       <cfinclude template="includes/global_nav.cfm" />
@@ -28,7 +29,7 @@
     </div>
     <div class='footer' id='footer'>
       <div class='text-center'>
-        Copyright &copy;#year(now())# University of Cincinnati. All Rights Reserved.
+        Copyright &copy;#year(now())# University of Cincinnati
       </div>
     </div>
   </div>

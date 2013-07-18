@@ -1,29 +1,62 @@
 @import "base_bootstrap";
-.auth-box {
-  color:#000;
-  background-color:#EEE;
-  border:1px solid #CCC;
-  bottom:0;
-  left:0;
-  margin:auto;
-  padding:10px;
-  position:absolute;
-  right:0;
-  top:0;
-  width:350px;
-  height:200px;
-  @include border-radius(10);
-  
-  .form-horizontal {
-    .control-group {
-      .control-label {
-        width:80px;
-      }
-      .controls {
-        margin-left:95px;
-      }
+body {
+  height:100%;
+  &.login,&.register {
+    .hub {
+      .content {
+        .auth-links {
+          width:200px;
+          margin:20px auto;
+          border-top:0px solid #CCC;
+          ul {
+            li {
+              a {
+                font-size:10px;
+                white-space:nowrap;
+              }
+            }
+          }
+        }
+        .auth-box {
+          margin: auto auto auto 12%;
+          width: 70%;
+          @include border-radius(10);
 
+          .alert {
+            margin-bottom:0;
+          }
+        }
+        .form-horizontal {
+          .grouped-title {
+            color: #87898C;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 3px;
+            padding: 14px 0 0 2px;
+            text-shadow: 1px 1px 1px #FBFCFD;
+            white-space: nowrap;
+            &:first-child {
+              padding-top:6px;
+            }
+          }
+          .control-group {
+
+            .control-label {
+              
+            }
+            .controls {
+              
+            }
+          }
+          .btn {
+            font-weight:bold;
+          }
+          input.btn {
+            @include box-shadow(0 2px 1px rgba(#000,.1));
+            float:right;
+          }
+        }
+      }
     }
-    
   }
 }

@@ -19,175 +19,185 @@ h1, h2, h3, h4, h5, h6 {
   font-size:12px;
   font-weight:normal;
 }
-.navbar {
-  height:40px;
-  .global-nav-inner {
-    background-image:url(asset_path('bgs.png'));
-  }
-  .container {
-    position:relative;
-  }
-  .nav-icon-home, .nav-icon-activities, .nav-icon-people, .nav-icon-me, .nav-icon-reports {
-    height: 22px;
+#header {
+  .jpanel-nav {
+    display:none;
   }
 
-  .navbar-brand {
-    @include gradient-vertical(#e11e27, #a21d20);
-    @include box-shadow(3px 0px 4px rgba(0, 0, 0, 0.64));
-    background-color: #A21D20;
-    position:relative;
-    border-color: #A91E24 #A71D24 #570C15;
-    border-radius: 0 0 2px 2px;
-    border-style: solid;
-    border-width: 0 1px 1px;
-    color: #FFFFFF;
-    font-family: modernaregular;
-    font-size: 31px;
-    padding: 7px 15px;
-    text-shadow: 0 -1px 0 #570C15;
-    text-transform: lowercase;
-    max-width:122px;
-    &:hover {
-      color:#CCC;
+  .navbar {
+    height:40px;
+    .global-nav-inner {
+      background-image:url(asset_path('bgs.png'));
     }
+    .container {
+      position:relative;
+    }
+    // .nav-icon-home, .nav-icon-activities, .nav-icon-people, .nav-icon-me, .nav-icon-reports {
+    //   height: 22px;
+    // }
 
-    div.cropper {
-      height: 30px;
-      line-height: 27px;
-      overflow: hidden;
-    }
-
-    div.logo3d {
-      border-bottom: 6px solid transparent;
-      border-left: 5px solid #A31D20;
-      border-top: 0 solid transparent;
-      bottom: -1px;
-      height: 0;
-      position: absolute;
-      right: -6px;
-      width: 0;
-      z-index: -1;
-    }
-  }
-  
-  .nav {
-    &.global-nav-links {
-      &:first-child {
-        margin-left:91px;
-      }
+    .navbar-brand {
+      @include gradient-vertical(#e11e27, #a21d20);
+      @include box-shadow(3px 0px 4px rgba(0, 0, 0, 0.64));
+      //background-color: #A21D20;
+      position:relative;
+      border-color: #A91E24 #A71D24 #570C15;
+      border-radius: 0 0 2px 2px;
+      border-style: solid;
+      border-width: 0 1px 1px;
+      color: #FFFFFF;
+      font-family: modernaregular;
+      font-size: 31px;
+      padding: 7px 15px;
+      text-shadow: 0 -1px 0 #570C15;
+      text-transform: lowercase;
+      max-width:122px;
       
-      > li {
-        position: relative;
-        
-        &.divider-vertical {
-          border-left-color:#111;
-          border-right-color:#555;
-        }
-        > a {
-          color: #BBBBBB;
-          display: block;
-          font-size: 13px;
-          font-weight: bold;
-          height: 12px;
-          line-height: 15px;
-          padding: 13px 13px 27px;
-          text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.75);
-
-          > i {
-            font-size:17px;
-            float: left;
-            margin: -4px 5px 0 0;
-            position:relative;
-            font-weight:normal;
-          }
-        } 
-        
-        &.active {
-          > a {
-            background-color: transparent;
-            color: white;
-          }
-          background-color: rgba(0, 0, 0, 0.21);
-          @include box-shadow(0 5px 10px rgba(0, 0, 0, 0.5) inset);
-          color: #FFFFFF;
-          text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
-        }
+      &:hover {
+        color:#CCC;
       }
-    }
-    &.global-nav-panes {
-      > li {
-        > .dropdown-menu:before, 
-        > .dropdown-menu.pull-right:before {
-          left: auto;
-          right: 9px;
-        }
-        > .dropdown-menu:after, 
-        > .dropdown-menu.pull-right:after {
-            left: auto;
-            right: 9px;
-        }
-        .dropdown-menu > li > a:hover, 
-        .dropdown-menu > li > a:focus, 
-        .dropdown-submenu:hover > a, 
-        .dropdown-submenu:focus > a {
-          background-color:$ucRed!important;
-          @include gradient-vertical($ucRed,darken($ucRed,10%));
-        }
-        > div.dropdown-menu {
-          padding:0;
-          .dropdown-menu-header {
-            display: block;
-            margin: 0px 0 4px 0;
-            padding:0 10px;
-            line-height:29px;
-            border-bottom:1px solid #CCC;
-            @include clearfix();
 
-            > div.title {
-              font-weight:bold;
-            }
-          }
-          .dropdown-menu-body {
-            padding:0 10px;
-          }
-        }
+      div.cropper {
+        height: 30px;
+        line-height: 27px;
+        overflow: hidden;
+      }
 
-        > a {
-          padding:13px 5px 27px;
-
-          > i {
-            margin: -4px 0 0 0;
-          }
-        }
-        .alerts-menu {
-          width:300px;
-          min-height:250px;
-        }
-
-        &.dropdown {
-          &.open {
-            > a {
-              background-color: transparent;
-              color: white;
-            }
-            background-color: rgba(0, 0, 0, 0.21);
-            @include box-shadow(0 5px 10px rgba(0, 0, 0, 0.5) inset);
-            //color: #FFFFFF;
-            //text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
-          }
-        }
+      div.logo3d {
+        border-bottom: 6px solid transparent;
+        border-left: 5px solid #A31D20;
+        border-top: 0 solid transparent;
+        bottom: -1px;
+        height: 0;
+        position: absolute;
+        right: -6px;
+        width: 0;
+        z-index: -1;
       }
     }
     
+    .global-nav {
+      .nav {
+        margin-left:91px;
+      }
+    }
+    .nav {
+      &.global-nav-links {
+        > li {
+          position: relative;
+          
+          &.divider-vertical {
+            border-left-color:#111;
+            border-right-color:#555;
+          }
+          > a {
+            color: #BBBBBB;
+            display: block;
+            font-size: 13px;
+            font-weight: bold;
+            height: 12px;
+            line-height: 15px;
+            padding: 13px 13px 27px;
+            text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.75);
+
+            > i {
+              float: left;
+              font-size: 19px;
+              font-weight: normal;
+              margin: -2px 7px 0 0;
+              position: relative;
+            }
+          } 
+          
+          &.active {
+            > a {
+              background-color: transparent;
+              color: white;
+
+              i {
+                color:$ucRed;
+              }
+            }
+            background-color: rgba(0, 0, 0, 0.21);
+            @include box-shadow(0 5px 10px rgba(0, 0, 0, 0.5) inset);
+            color: #FFFFFF;
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+          }
+        }
+      }
+      &.global-nav-panes {
+        > li {
+          > .dropdown-menu:before, 
+          > .dropdown-menu.pull-right:before {
+            left: auto;
+            right: 9px;
+          }
+
+          > .dropdown-menu:after, 
+          > .dropdown-menu.pull-right:after {
+              left: auto;
+              right: 9px;
+          }
+          .dropdown-menu > li > a:hover, 
+          .dropdown-menu > li > a:focus, 
+          .dropdown-submenu:hover > a, 
+          .dropdown-submenu:focus > a {
+            background-color:$ucRed!important;
+            @include gradient-vertical($ucRed,darken($ucRed,10%));
+          }
+          > div.dropdown-menu {
+            padding:0;
+            .dropdown-menu-header {
+              display: block;
+              margin: 0px 0 4px 0;
+              padding:0 10px;
+              line-height:29px;
+              border-bottom:1px solid #CCC;
+              @include clearfix();
+
+              > div.title {
+                font-weight:bold;
+              }
+            }
+            .dropdown-menu-body {
+              padding:0 10px;
+            }
+          }
+
+          > a {
+            padding:13px 5px 27px;
+
+            > i {
+              margin: -2px 0 0;
+            }
+          }
+          .alerts-menu {
+            width:300px;
+            min-height:250px;
+          }
+
+          &.dropdown {
+            &.open {
+              > a {
+                background-color: transparent;
+                color: white;
+              }
+              background-color: rgba(0, 0, 0, 0.21);
+              @include box-shadow(0 5px 10px rgba(0, 0, 0, 0.5) inset);
+              //color: #FFFFFF;
+              //text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+            }
+          }
+        }
+      }
+      
+    }
   }
 }
 
-.footer {
-  border-top:1px solid #CCC;
+#footer {
   margin:20px 0;
   padding:5px 0;
-  .footer-inner {
-    color:#777;
-    text-align:center;
-  }
+  color:#999;
+  font-size:11px;
 }

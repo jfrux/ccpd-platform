@@ -39,7 +39,8 @@
             <if condition="listFindNoCase(layoutExceptions,request.page.action) GT 0">
               <true>
                 <set name="request.page.body" value="#multiformcontent#" />
-                <do action="vLayout.None" />
+                <do action="vLayout.Sub_Slim" contentvariable="request.page.body" />
+                <do action="vLayout.Application" />
               </true>
               <false>
                 <do action="vLayout.Hub" contentvariable="request.page.body" />
@@ -78,8 +79,8 @@
     <set name="request.page.title" value="Reports" />
   </fuseaction>
   
-  <fuseaction name="Login">
-    <set name="Request.Page.Title" value="Login" />
+  <fuseaction name="login">
+    <set name="Request.Page.Title" value="Sign In" />
     <xfa name="Authenticate" value="Main.doLogin" />
   </fuseaction>
   

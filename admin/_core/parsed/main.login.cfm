@@ -22,7 +22,7 @@
 <cfset myFusebox.thisFuseaction = "Login">
 <cfset layoutExceptions = "login,logout" />
 <cfset request.page.action = "#listLast(attributes.fuseaction,'.')#" />
-<cfset Request.Page.Title = "Login" />
+<cfset Request.Page.Title = "Sign In" />
 <cfset xfa.Authenticate = "Main.doLogin" />
 <cfif isPjax()>
 <cfif #request.currentTab.hasToolbar#>
@@ -58,13 +58,22 @@
 <cfset myFusebox.do('vMain.#request.page.action#','multiformcontent') >
 <cfif listFindNoCase(layoutExceptions,request.page.action) GT 0>
 <cfset request.page.body = "#multiformcontent#" />
-<!--- do action="vLayout.None" --->
+<!--- do action="vLayout.Sub_Slim" --->
 <cfset myFusebox.thisCircuit = "vLayout">
-<cfset myFusebox.thisFuseaction = "None">
+<cfset myFusebox.thisFuseaction = "Sub_Slim">
+<cfsavecontent variable="request.page.body">
 <cftry>
-<cfoutput><cfinclude template="../../View/Layout/lay_None.cfm"></cfoutput>
-<cfcatch type="missingInclude"><cfif len(cfcatch.MissingFileName) gte 12 and right(cfcatch.MissingFileName,12) is "lay_None.cfm">
-<cfthrow type="fusebox.missingFuse" message="missing Fuse" detail="You tried to include a fuse lay_None.cfm in circuit vLayout which does not exist (from fuseaction vLayout.None).">
+<cfoutput><cfinclude template="../../View/Layout/Sub\lay_Slim.cfm"></cfoutput>
+<cfcatch type="missingInclude"><cfif len(cfcatch.MissingFileName) gte 16 and right(cfcatch.MissingFileName,16) is "Sub\lay_Slim.cfm">
+<cfthrow type="fusebox.missingFuse" message="missing Fuse" detail="You tried to include a fuse Sub\lay_Slim.cfm in circuit vLayout which does not exist (from fuseaction vLayout.Sub_Slim).">
+<cfelse><cfrethrow></cfif></cfcatch></cftry>
+</cfsavecontent>
+<!--- do action="vLayout.Application" --->
+<cfset myFusebox.thisFuseaction = "Application">
+<cftry>
+<cfoutput><cfinclude template="../../View/Layout/application_layout.cfm"></cfoutput>
+<cfcatch type="missingInclude"><cfif len(cfcatch.MissingFileName) gte 22 and right(cfcatch.MissingFileName,22) is "application_layout.cfm">
+<cfthrow type="fusebox.missingFuse" message="missing Fuse" detail="You tried to include a fuse application_layout.cfm in circuit vLayout which does not exist (from fuseaction vLayout.Application).">
 <cfelse><cfrethrow></cfif></cfcatch></cftry>
 <cfset myFusebox.thisCircuit = "Main">
 <cfset myFusebox.thisFuseaction = "Login">

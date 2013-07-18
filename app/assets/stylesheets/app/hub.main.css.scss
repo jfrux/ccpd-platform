@@ -1,0 +1,18 @@
+@import "base_bootstrap";
+
+.profile,.hub {
+  &.main {
+    .hub-bar {
+      .box {
+        &:first-child {
+          .user-profile-area {
+            display:block;
+          }
+          .profile-picture {
+            display:none;
+          }
+        }
+      }
+    }
+  }
+}

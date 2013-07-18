@@ -1,0 +1,26 @@
+@import "base_bootstrap";
+#header {
+  .navbar {
+    .global-nav {
+      .nav {
+        margin-left:0;
+        position:relative;
+        margin-right:auto;
+        left:0;
+        right:0;
+        width:300px;
+
+        > li {
+          > a {
+            i {
+              margin: -2px 1px 0 0;
+            }
+            span.text {
+              display:none;
+            }
+          }
+        }
+      }
+    }
+  }
+}

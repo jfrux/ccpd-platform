@@ -1,0 +1,87 @@
+@import "base_bootstrap";
+#jPanelMenu-menu {
+  background-color:#393939;
+  ul.nav {
+    > li {
+      > a {
+        background-color: #434343;
+        border-radius: 0 0 0 0;
+        color: #CCCCCC;
+        font-size: 13px;
+        font-weight: bold;
+        text-shadow: 0 1px 0 rgba(0, 0, 0, 0.6);
+        margin-top:0;
+
+        border-width:1px 0 1px 0;
+        border-color:rgba(#FFF,.1) transparent rgba(#000,.4) transparent;
+        border-style:solid;
+
+        span.text {
+          font-size: 16px;
+          line-height: 20px;
+          position:relative;
+          top:-2px;
+          display:inline-block;
+        }
+
+        i {
+          display:inline-block;
+          font-size: 22px;
+          font-weight: normal;
+          margin: 0 11px 0 0;
+          text-shadow: 0 1px 0 rgba(0, 0, 0, 0.6);
+
+          &.icon-user-profile {
+            height:24px;
+            position:relative;
+            top:3px;
+            left:2px;
+            display:inline-block;
+            width:24px;
+            background-size:24px auto;
+          }
+        }
+      }
+      &.active {
+        > a {
+          color:#EEE;
+          background:#232323;
+          border: none;
+          margin-bottom: 0;
+          margin-top: 0;
+          position: relative;
+          z-index: 1;
+          i {
+            color:$ucRed;
+          }
+        }
+      }
+    }
+
+    li.nav-footer {
+      color:#888;
+      font-size:11px;
+      font-weight:bold;
+      margin-top:0;
+      text-align:center;
+      text-shadow:0 -1px 0px rgba(#000,.7);
+      border-width:1px 0 0px 0;
+      border-color:rgba(#FFF,.1) transparent rgba(#000,.4) transparent;
+      border-style:solid;
+      padding-top:10px;
+    }
+
+    li.nav-header {
+      margin-top:0;
+      @include gradient-vertical(#666,#555);
+      background-color:#888;
+      color:#AAA;
+      text-shadow:0px 1px 0 #000;
+      font-size: 10px;
+      line-height: 12px;
+      border-width:1px 0 1px 0;
+      border-color:rgba(#FFF,.2) transparent rgba(#000,.6) transparent;
+      border-style:solid;
+    }
+  }
+}
