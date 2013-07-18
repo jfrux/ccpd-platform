@@ -17,9 +17,24 @@ class MyApp < Sinatra::Base
   set :assets_css_compressor, :sass # CSS minification
   set :assets_js_compressor, :uglifier # JavaScript minification
   set :static, false
-  set :assets_digest, false
+  set :assets_digest, true
   register Sinatra::Contrib
   register Sinatra::AssetPipeline
+
+  configure do
+    Sprockets::Helpers.configure do |config|
+      config.environment = sprockets
+      config.prefix      = assets_prefix
+      config.digest      = assets_digest
+      config.public_path = public_folder
+
+      # Force to debug mode in development mode
+      # Debug mode automatically sets
+      # expand = true, digest = false, manifest = false
+      config.debug       = true if development?
+    end
+  end
+  
   configure :production do
     set :assets_prefix, 'assets'
   end
