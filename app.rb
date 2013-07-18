@@ -21,6 +21,14 @@ class MyApp < Sinatra::Base
   register Sinatra::Contrib
   register Sinatra::AssetPipeline
 
+  configure :production do
+    set :assets_prefix, '/assets'
+  end
+
+  configure :development do
+    set :assets_prefix, '/assets'
+  end
+  
   configure do
     Sprockets::Helpers.configure do |config|
       config.environment = sprockets
@@ -34,14 +42,7 @@ class MyApp < Sinatra::Base
       config.debug       = true if development?
     end
   end
-  
-  configure :production do
-    set :assets_prefix, 'assets'
-  end
 
-  configure :development do
-    set :assets_prefix, '/assets'
-  end
   
   template :stylesheet_tags do
     %q{
