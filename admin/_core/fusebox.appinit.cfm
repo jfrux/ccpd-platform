@@ -21,8 +21,7 @@
 <cfset $_settings = application.settings />
 <cfset request.CGI = CGI />
 <cfinclude template="/lib/fusebox-addons/public.cfm" />
-<!--- <cfset set(asset_manifest = $loadAssetManifest()) />
-<cfset set(asset_digests = get('asset_manifest').assets) ---> />
+
 <cfswitch expression="#CGI.SERVER_NAME#">
   <!--- PRODUCTION --->
   <cfcase value="ccpd.uc.edu">
@@ -30,6 +29,8 @@
   </cfcase>
   <cfcase value="test.ccpd.uc.edu">
     <cfset set(environment = "production") />
+    <cfset set(asset_manifest = $loadAssetManifest()) />
+    <cfset set(asset_digests = get('asset_manifest').assets) />
   </cfcase>
   <cfcase value="localhost">
     <cfset set(environment = "development") />
