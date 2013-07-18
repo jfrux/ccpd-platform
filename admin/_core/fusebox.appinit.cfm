@@ -26,6 +26,8 @@
   <!--- PRODUCTION --->
   <cfcase value="ccpd.uc.edu">
     <cfset set(environment = "production") />
+    <cfset set(asset_manifest = $loadAssetManifest()) />
+    <cfset set(asset_digests = get('asset_manifest').assets) />
   </cfcase>
   <cfcase value="test.ccpd.uc.edu">
     <cfset set(environment = "production") />
