@@ -35,9 +35,7 @@
     <cfset set(asset_digests = get('asset_manifest').assets) />
   </cfcase>
   <cfcase value="localhost">
-    <cfset set(environment = "production") />
-    <cfset set(asset_manifest = $loadAssetManifest()) />
-    <cfset set(asset_digests = get('asset_manifest').assets) />
+    <cfset set(environment = "development") />
   </cfcase>
 </cfswitch>
 <cfinclude template="/lib/fusebox-addons/settings.cfm" />
