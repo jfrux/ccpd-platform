@@ -35,7 +35,9 @@
     <cfset set(asset_digests = get('asset_manifest').assets) />
   </cfcase>
   <cfcase value="localhost">
-    <cfset set(environment = "development") />
+    <cfset set(environment = "production") />
+    <cfset set(asset_manifest = $loadAssetManifest()) />
+    <cfset set(asset_digests = get('asset_manifest').assets) />
   </cfcase>
 </cfswitch>
 <cfinclude template="/lib/fusebox-addons/settings.cfm" />
@@ -50,7 +52,7 @@
     <cfset set(debug_assets=false) />
     <cfset set(asset_prefix='/assets') />
     <cfset set(assetPaths = {
-      'http': CGI.SERVER_NAME & '/assets',
+      'http': CGI.SERVER_NAME & ":" & CGI.SERVER_PORT & '/assets',
       'https': CGI.SERVER_NAME & '/assets'
     }) />
     <cfset set(imagePath = "") />

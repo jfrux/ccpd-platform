@@ -138,6 +138,7 @@
           margin-right: 0;
           padding: 0 6px 0 8px;
           position: relative;
+          white-space: nowrap;
 
           > span.menuArrow {
             background-image: asset-url("profile_menu_arrow.png");

@@ -9,12 +9,14 @@
 <div class="hub profile #lcase(params.controller)# #hub_classes#<cfif params.has_infobar> infobar-active</cfif>">
   <div class="hub-bar projectbar js-projectbar">
     <div class="box">
-      <cfif len(trim(params.profile_picture)) GT 0>
-        <cfset profile_picture_url = pictureUrl(params.profile_picture,"p") />
-      <cfelse>
-        <cfset profile_picture_url = imageUrl('default_photo/#lcase(params.controller)#_p.png') />
-      </cfif>
+      <cfif params.controller NEQ "main">
+        <cfif len(trim(params.profile_picture)) GT 0>
+          <cfset profile_picture_url = pictureUrl(params.profile_picture,"p") />
+        <cfelse>
+          <cfset profile_picture_url = imageUrl('default_photo/#lcase(params.controller)#_p.png') />
+        </cfif>
       <div class="profile-picture" style="background-image:url(#profile_picture_url#);"></div>
+      </cfif>
       <div class="user-profile-area">
         <div class="user-picture" style="background-image:url(#pictureUrl(session.person.getprimary_photo(),"i")#);"></div>
         <div class="user-links">

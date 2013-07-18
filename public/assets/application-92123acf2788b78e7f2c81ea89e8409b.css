@@ -4138,8 +4138,8 @@ a.list-group-item.active > .badge,
 
 @font-face {
   font-family: 'icons';
-  src: url("/assets/fontello/font/icons.eot?3f23f23f23f");
-  src: url("/assets/fontello/font/icons.eot?3f23f23f23f#iefix") format("embedded-opentype"), url("/assets/fontello/font/icons.woff?3f23f23f23f") format("woff"), url("/assets/fontello/font/icons.ttf?3f23f23f23f") format("truetype"), url("/assets/fontello/font/icons.svg?3f23f23f23f#icons") format("svg");
+  src: url("/assets/fontello/font/icons.eot");
+  src: url("/assets/fontello/font/icons.eot#iefix") format("embedded-opentype"), url("/assets/fontello/font/icons.woff") format("woff"), url("/assets/fontello/font/icons.ttf") format("truetype"), url("/assets/fontello/font/icons.svg#icons") format("svg");
   font-weight: normal;
   font-style: normal; }
 
@@ -5795,475 +5795,480 @@ body {
   background-image: url("icons.png");
   background-position: 16px 16px;
   background-repeat: no-repeat; }
+.fg-address-book:plus {
+  width: 16px;
+  height: 16px;
+  background: url("icons.png") 0px 0px no-repeat; }
+
 .fg-address-book-blue {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") 0px 0px no-repeat; }
+  background: url("icons.png") -16px 0px no-repeat; }
 
 .fg-application-sidebar-collapse {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -16px 0px no-repeat; }
+  background: url("icons.png") -32px 0px no-repeat; }
 
 .fg-application-sidebar-expand {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -32px 0px no-repeat; }
+  background: url("icons.png") -48px 0px no-repeat; }
 
 .fg-arrow-circle-double-135 {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -48px 0px no-repeat; }
+  background: url("icons.png") -64px 0px no-repeat; }
 
 .fg-bell {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -64px 0px no-repeat; }
+  background: url("icons.png") -80px 0px no-repeat; }
 
 .fg-book {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -80px 0px no-repeat; }
+  background: url("icons.png") -96px 0px no-repeat; }
 
 .fg-book-brown {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -96px 0px no-repeat; }
+  background: url("icons.png") -112px 0px no-repeat; }
 
 .fg-book-open {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -112px 0px no-repeat; }
+  background: url("icons.png") -128px 0px no-repeat; }
 
 .fg-book-open-bookmark {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -128px 0px no-repeat; }
+  background: url("icons.png") -144px 0px no-repeat; }
 
 .fg-book-open-list {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -144px 0px no-repeat; }
+  background: url("icons.png") -160px 0px no-repeat; }
 
 .fg-book-open-next {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -160px 0px no-repeat; }
+  background: url("icons.png") -176px 0px no-repeat; }
 
 .fg-book-open-previous {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -176px 0px no-repeat; }
+  background: url("icons.png") -192px 0px no-repeat; }
 
 .fg-book-open-text {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -192px 0px no-repeat; }
+  background: url("icons.png") -208px 0px no-repeat; }
 
 .fg-book-open-text-image {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -208px 0px no-repeat; }
+  background: url("icons.png") -224px 0px no-repeat; }
 
 .fg-book-question {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -224px 0px no-repeat; }
+  background: url("icons.png") -240px 0px no-repeat; }
 
 .fg-books {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -240px 0px no-repeat; }
+  background: url("icons.png") -256px 0px no-repeat; }
 
 .fg-books-brown {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -256px 0px no-repeat; }
+  background: url("icons.png") -272px 0px no-repeat; }
 
 .fg-books-stack {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -272px 0px no-repeat; }
+  background: url("icons.png") -288px 0px no-repeat; }
 
 .fg-briefcase {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -288px 0px no-repeat; }
+  background: url("icons.png") -304px 0px no-repeat; }
 
 .fg-bug {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -304px 0px no-repeat; }
+  background: url("icons.png") -320px 0px no-repeat; }
 
 .fg-calendar-blue {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -320px 0px no-repeat; }
+  background: url("icons.png") -336px 0px no-repeat; }
 
 .fg-card-address {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -336px 0px no-repeat; }
+  background: url("icons.png") -352px 0px no-repeat; }
 
 .fg-certificate {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -352px 0px no-repeat; }
+  background: url("icons.png") -368px 0px no-repeat; }
 
 .fg-chair {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -368px 0px no-repeat; }
+  background: url("icons.png") -384px 0px no-repeat; }
 
 .fg-chalkboard {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -384px 0px no-repeat; }
+  background: url("icons.png") -400px 0px no-repeat; }
 
 .fg-chalkboard-text {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -400px 0px no-repeat; }
+  background: url("icons.png") -416px 0px no-repeat; }
 
 .fg-chart {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -416px 0px no-repeat; }
+  background: url("icons.png") -432px 0px no-repeat; }
 
 .fg-clipboard-task {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -432px 0px no-repeat; }
+  background: url("icons.png") -448px 0px no-repeat; }
 
 .fg-clock {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -448px 0px no-repeat; }
+  background: url("icons.png") -464px 0px no-repeat; }
 
 .fg-clock-history {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -464px 0px no-repeat; }
+  background: url("icons.png") -480px 0px no-repeat; }
 
 .fg-cross {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -480px 0px no-repeat; }
+  background: url("icons.png") -496px 0px no-repeat; }
 
 .fg-direction {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -496px 0px no-repeat; }
+  background: url("icons.png") -512px 0px no-repeat; }
 
 .fg-documents {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -512px 0px no-repeat; }
+  background: url("icons.png") -528px 0px no-repeat; }
 
 .fg-equalizer {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -528px 0px no-repeat; }
+  background: url("icons.png") -544px 0px no-repeat; }
 
 .fg-exclamation-circle {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -544px 0px no-repeat; }
+  background: url("icons.png") -560px 0px no-repeat; }
 
 .fg-flag-checker {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -560px 0px no-repeat; }
+  background: url("icons.png") -576px 0px no-repeat; }
 
 .fg-folder-horizontal {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -576px 0px no-repeat; }
+  background: url("icons.png") -592px 0px no-repeat; }
 
 .fg-fruit {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -592px 0px no-repeat; }
+  background: url("icons.png") -608px 0px no-repeat; }
 
 .fg-gear {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -608px 0px no-repeat; }
+  background: url("icons.png") -624px 0px no-repeat; }
 
 .fg-globe-green {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -624px 0px no-repeat; }
+  background: url("icons.png") -640px 0px no-repeat; }
 
 .fg-graduation-hat {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -640px 0px no-repeat; }
+  background: url("icons.png") -656px 0px no-repeat; }
 
 .fg-hourglass {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -656px 0px no-repeat; }
+  background: url("icons.png") -672px 0px no-repeat; }
 
 .fg-image {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -672px 0px no-repeat; }
+  background: url("icons.png") -688px 0px no-repeat; }
 
 .fg-image-sunset {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -688px 0px no-repeat; }
+  background: url("icons.png") -704px 0px no-repeat; }
 
 .fg-images {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -704px 0px no-repeat; }
+  background: url("icons.png") -720px 0px no-repeat; }
 
 .fg-images-stack {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -720px 0px no-repeat; }
+  background: url("icons.png") -736px 0px no-repeat; }
 
 .fg-leaf {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -736px 0px no-repeat; }
+  background: url("icons.png") -752px 0px no-repeat; }
 
 .fg-leaf-plant {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -752px 0px no-repeat; }
+  background: url("icons.png") -768px 0px no-repeat; }
 
 .fg-light-bulb {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -768px 0px no-repeat; }
+  background: url("icons.png") -784px 0px no-repeat; }
 
 .fg-light-bulb-off {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -784px 0px no-repeat; }
+  background: url("icons.png") -800px 0px no-repeat; }
 
 .fg-lock {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -800px 0px no-repeat; }
+  background: url("icons.png") -816px 0px no-repeat; }
 
 .fg-mail {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -816px 0px no-repeat; }
+  background: url("icons.png") -832px 0px no-repeat; }
 
 .fg-mail-air {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -832px 0px no-repeat; }
+  background: url("icons.png") -848px 0px no-repeat; }
 
 .fg-mail-at-sign {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -848px 0px no-repeat; }
+  background: url("icons.png") -864px 0px no-repeat; }
 
 .fg-marker {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -864px 0px no-repeat; }
+  background: url("icons.png") -880px 0px no-repeat; }
 
 .fg-medal {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -880px 0px no-repeat; }
+  background: url("icons.png") -896px 0px no-repeat; }
 
 .fg-megaphone {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -896px 0px no-repeat; }
+  background: url("icons.png") -912px 0px no-repeat; }
 
 .fg-microphone {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -912px 0px no-repeat; }
+  background: url("icons.png") -928px 0px no-repeat; }
 
 .fg-money {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -928px 0px no-repeat; }
+  background: url("icons.png") -944px 0px no-repeat; }
 
 .fg-money-coin {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -944px 0px no-repeat; }
+  background: url("icons.png") -960px 0px no-repeat; }
 
 .fg-newspaper {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -960px 0px no-repeat; }
+  background: url("icons.png") -976px 0px no-repeat; }
 
 .fg-paper-clip {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -976px 0px no-repeat; }
+  background: url("icons.png") -992px 0px no-repeat; }
 
 .fg-pencil {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -992px 0px no-repeat; }
+  background: url("icons.png") -1008px 0px no-repeat; }
 
 .fg-picture {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -1008px 0px no-repeat; }
+  background: url("icons.png") -1024px 0px no-repeat; }
 
 .fg-pin {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -1024px 0px no-repeat; }
+  background: url("icons.png") -1040px 0px no-repeat; }
 
 .fg-present {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -1040px 0px no-repeat; }
+  background: url("icons.png") -1056px 0px no-repeat; }
 
 .fg-price-tag {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -1056px 0px no-repeat; }
+  background: url("icons.png") -1072px 0px no-repeat; }
 
 .fg-price-tag-label {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -1072px 0px no-repeat; }
+  background: url("icons.png") -1088px 0px no-repeat; }
 
 .fg-printer {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -1088px 0px no-repeat; }
+  background: url("icons.png") -1104px 0px no-repeat; }
 
 .fg-projection-screen {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -1104px 0px no-repeat; }
+  background: url("icons.png") -1120px 0px no-repeat; }
 
 .fg-projection-screen-presentation {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -1120px 0px no-repeat; }
+  background: url("icons.png") -1136px 0px no-repeat; }
 
 .fg-road {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -1136px 0px no-repeat; }
+  background: url("icons.png") -1152px 0px no-repeat; }
 
 .fg-sealing-wax {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -1152px 0px no-repeat; }
+  background: url("icons.png") -1168px 0px no-repeat; }
 
 .fg-sofa {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -1168px 0px no-repeat; }
+  background: url("icons.png") -1184px 0px no-repeat; }
 
 .fg-status {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -1184px 0px no-repeat; }
+  background: url("icons.png") -1200px 0px no-repeat; }
 
 .fg-status-away {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -1200px 0px no-repeat; }
+  background: url("icons.png") -1216px 0px no-repeat; }
 
 .fg-status-busy {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -1216px 0px no-repeat; }
+  background: url("icons.png") -1232px 0px no-repeat; }
 
 .fg-status-offline {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -1232px 0px no-repeat; }
+  background: url("icons.png") -1248px 0px no-repeat; }
 
 .fg-sticky-note {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -1248px 0px no-repeat; }
+  background: url("icons.png") -1264px 0px no-repeat; }
 
 .fg-sticky-note-pin {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -1264px 0px no-repeat; }
+  background: url("icons.png") -1280px 0px no-repeat; }
 
 .fg-sticky-note-text {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -1280px 0px no-repeat; }
+  background: url("icons.png") -1296px 0px no-repeat; }
 
 .fg-sticky-notes-pin {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -1296px 0px no-repeat; }
+  background: url("icons.png") -1312px 0px no-repeat; }
 
 .fg-thumb {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -1312px 0px no-repeat; }
+  background: url("icons.png") -1328px 0px no-repeat; }
 
 .fg-thumb-small {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -1328px 0px no-repeat; }
+  background: url("icons.png") -1344px 0px no-repeat; }
 
 .fg-thumb-small-up {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -1344px 0px no-repeat; }
+  background: url("icons.png") -1360px 0px no-repeat; }
 
 .fg-thumb-up {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -1360px 0px no-repeat; }
+  background: url("icons.png") -1376px 0px no-repeat; }
 
 .fg-traffic-light {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -1376px 0px no-repeat; }
+  background: url("icons.png") -1392px 0px no-repeat; }
 
 .fg-tree {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -1392px 0px no-repeat; }
+  background: url("icons.png") -1408px 0px no-repeat; }
 
 .fg-trophy {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -1408px 0px no-repeat; }
+  background: url("icons.png") -1424px 0px no-repeat; }
 
 .fg-user-business {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -1424px 0px no-repeat; }
+  background: url("icons.png") -1440px 0px no-repeat; }
 
 .fg-user-female {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -1440px 0px no-repeat; }
+  background: url("icons.png") -1456px 0px no-repeat; }
 
 .fg-user-silhouette {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -1456px 0px no-repeat; }
+  background: url("icons.png") -1472px 0px no-repeat; }
 
 .fg-users {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -1472px 0px no-repeat; }
+  background: url("icons.png") -1488px 0px no-repeat; }
 
 .fg-wooden-box {
   width: 16px;
   height: 16px;
-  background: url("/assets/icons-d1a181818208986ae74912ea9240c43a.png") -1488px 0px no-repeat; }
+  background: url("icons.png") -1504px 0px no-repeat; }
 .header {
   background-color: #000; }
 .dialog {
@@ -6941,7 +6946,8 @@ body {
     line-height: 24px;
     margin-right: 0;
     padding: 0 6px 0 8px;
-    position: relative; }
+    position: relative;
+    white-space: nowrap; }
     .profile .projectbar ul.nav > li > a > span.menuArrow, .profile .hub-bar ul.nav > li > a > span.menuArrow, .hub .projectbar ul.nav > li > a > span.menuArrow, .hub .hub-bar ul.nav > li > a > span.menuArrow {
       background-image: url("/assets/profile_menu_arrow.png");
       display: none;
@@ -9448,7 +9454,6 @@ select:focus > option {
   margin: 0 0 0;
   padding: 2px 15px;
   text-align: left; }
-
 
 
 
