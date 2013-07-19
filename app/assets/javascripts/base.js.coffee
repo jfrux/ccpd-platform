@@ -5,6 +5,9 @@ Backbone.Marionette.Renderer.render = (template, data) ->
 root = this
 
 root.App = new Backbone.Marionette.Application()
+App.Views = {}
+App.Collections = {}
+App.Models = {}
 
 _init = () ->
   #Backbone.history.start({pushState: true, root: "/admin/event/"})

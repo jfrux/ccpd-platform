@@ -21,28 +21,13 @@ class MyApp < Sinatra::Base
   register Sinatra::Contrib
   register Sinatra::AssetPipeline
 
-  configure :production do
-    set :assets_prefix, '/assets'
-  end
-
-  configure :development do
-    set :assets_prefix, '/assets'
-  end
-  
-  # configure do
-  #   Sprockets::Helpers.configure do |config|
-  #     config.environment = sprockets
-  #     config.prefix      = assets_prefix
-  #     config.digest      = assets_digest
-  #     config.public_path = public_folder
-
-  #     # Force to debug mode in development mode
-  #     # Debug mode automatically sets
-  #     # expand = true, digest = false, manifest = false
-  #     config.debug       = true if development?
-  #   end
+  # configure :production do
+  #   set :assets_prefix, '/assets'
   # end
 
+  # configure :development do
+  #   set :assets_prefix, '/assets'
+  # end
   
   template :stylesheet_tags do
     %q{
@@ -55,16 +40,6 @@ class MyApp < Sinatra::Base
     <%= javascript_tag locals[:file],:expand => locals[:debug] %>
     }
   end
-
-  # helpers do
-  #   include Sprockets::Helpers
-
-  #   # Alternative method for telling Sprockets::Helpers which
-  #   # Sprockets environment to use.
-  #   # def assets_environment
-  #   #   settings.sprockets
-  #   # end
-  # end
 
   before do
     content_type 'text/plain'

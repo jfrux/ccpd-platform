@@ -228,6 +228,12 @@
       }
     }
   };
+  request.tabSettings['tabArray'] = [];
+  for (key in request.tabSettings.tabsSort) {
+    tab = request.tabSettings.tabs[key];
+
+    request.tabSettings.tabArray.add(tab);
+  }
   if (structKeyExists(request.tabSettings.tabs,lcase(attributes.fuseaction))) {
     request.currentTab = request.tabSettings.tabs[lcase(attributes.fuseaction)];
   } else {

@@ -1,0 +1,9 @@
+%a{href: "/admin/event/#{@event}", data: { 'js-namespace':"js-" + @event.replace('.','-'),'pjax-container':"#js-" + @event.replace('.','-'),'pjax-title':@title ,'tooltip-title':@tooltip,'data-icon':@icon}}
+  %i{ class: @icon}
+  .text= @label
+  - if @count
+    %span.navItemCount.pull-right= @count
+  %span.menuLoader.icon-spin2.icon-spin
+  %span.menuArrow
+  - if @subEvents.length
+    %ul.nav.subnav

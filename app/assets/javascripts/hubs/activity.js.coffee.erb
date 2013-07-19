@@ -1,12 +1,8 @@
 ###!
 * ACTIVITY
 ###
-App.module "Activity",
-  startWithParent: false
-  define: (Self, App, Backbone, Marionette, $) ->
-    App.addRegions
-      profileRegion: ".profile"
-    
+App.module "Activity",(Activity,App,Backbone,Marionette) ->
+    @startWithParent = false
     $profile = null
     $projectBar = null
     $contentArea = null
@@ -26,60 +22,59 @@ App.module "Activity",
       "3":"light-bulb-off"
       "4":"cross"
 
-    Self.on "before:start", ->
-      App.logInfo "starting: #{Self.moduleName}"
+    Activity.on "before:start", ->
+      App.logInfo "starting: #{Activity.moduleName}"
       return
-    Self.on "start", (options) ->
+    Activity.on "start", (options) ->
 
       $(document).ready ->
-        Self._init(options)
-        App.logInfo "started: #{Self.moduleName}"
+        Activity._init(options)
+        App.logInfo "started: #{Activity.moduleName}"
       return
-    Self.on "stop", ->
-      App.logInfo "stopped: #{Self.moduleName}"
+    Activity.on "stop", ->
+      App.logInfo "stopped: #{Activity.moduleName}"
       return
     
-    Self.on "linkbar.click", (link,e) ->
-      excludedModules = "Folders,Stats".split(',')
+    Activity.on "linkbar.click", (link,e) ->
       
-      $.each Self.submodules, (i,module) ->
-        if excludedModules.indexOf(i) == -1
-          module.stop()
-        return
-      App.logDebug link.data('pjax-container')
-      App.logDebug link
-      container = link.data('pjax-container')
-      App.logDebug container
-      $(".content-inner").wrapInner("<div id='#{container.replace('#','')}'></div>")
-      $.pjax.click(e, {container: container})
-      App.logDebug "clicked: #{link.attr('data-pjax-title')}"
       return
 
-    Self.on "status.changeStart", (status) ->
+    Activity.on "status.changeStart", (status) ->
       App.logDebug "statusChange Started!"
       $statusChanger.addClass('disabled')
 
-    Self.on "status.changeEnd", (status) ->
+    Activity.on "status.changeEnd", (status) ->
       App.logDebug "statusChange Ended!"
       $statusChanger.removeClass('disabled')
       addMessage "Status changed successfully!", 250, 6000, 4000
       $statusIcon.attr('class','').addClass('fg-' + statusIcons[status])
       $statusBox.addClass('activity-status-' + status)
     
-    Self._init = (settings) ->
-      Self.model = new App.Models.Activity(settings.model)
-      Self.linkbarCollection = new App.Collections.LinkbarCollection(settings.linkbar);
-      Self.linkbarView = new App.Views.HubLinkbarView
-        collection: Self.linkbarCollection
+    class Model extends Backbone.Model
+      url: '/api/activity/getActivity'
 
-      Self.infobarView = new App.Views.HubInfobarView
+    class InfobarView extends App.Views.HubInfobarView
 
-      Self.view = new App.Views.ActivityView
-        model:Self.model
-        linkbar: Self.linkbarView
-        infobar: Self.infobarView
+    class LinkbarView extends App.Views.HubLinkbarView
 
-      Self.data = settings
+    class ActivityView extends App.Views.HubView
+      el: ".hub .activity"
+      type:'activity'
+      InfobarView:InfobarView
+      LinkbarView:LinkbarView
+      initialize: ->
+        _.bindAll @
+        super
+
+    Activity._init = (settings) ->
+      model = new Model(settings.model)
+
+      @hubView = new ActivityView
+        model:model
+        linkbarCollection:new App.Collections.LinkbarCollection(settings.linkbarSettings.tabArray)
+        el:'.hub'
+
+      Activity.data = settings
       $profile = $(".profile")
       $infoBar = $(".js-infobar")
       $projectBar = $(".js-projectbar")
@@ -135,21 +130,7 @@ App.module "Activity",
           placement: 'bottom'
           trigger:'hover focus'
           container: 'body'
-        
-      $menuLinks.each ->
-        $this = $(this)
-        $this.on "click", (e) ->
-          $link = $(this)
-          Self.trigger('linkbar.click',$link,e)
-          return
-
-        if !Modernizr.touch
-          $this.tooltip
-            placement:'right'
-            html:true
-            title: (e)->
-              $(this).attr('data-tooltip-title')
-            container: 'body'
+      
       if !Modernizr.touch
         $(".action-buttons a.btn, .action-buttons button.btn").tooltip
           placement: 'bottom'
@@ -159,7 +140,7 @@ App.module "Activity",
 
       # STATUS CHANGER 
       $statusChanger.change ->
-        Self.trigger('status.changeStart')
+        Activity.trigger('status.changeStart')
         nStatus = $(this).val()
         if nStatus is ""
           addError "You must select a status.", 250, 6000, 4000
@@ -421,7 +402,7 @@ App.module "Activity",
       return
 
 
-    setStatus = Self.setStatus = (status) ->
+    setStatus = Activity.setStatus = (status) ->
       $.ajax
         url: sRootPath + "/_com/AJAX_Activity.cfc"
         type:'post'
@@ -434,25 +415,25 @@ App.module "Activity",
           cleanData = $.trim(data)
           #updateActions()
           #updatePublishState()  if $.ListFind("Activity.Publish,Activity.PubGeneral,Activity.PubSites,Activity.PubBuilder,Activity.PubCategory,Activity.PubSpecialty", fuseaction)
-          Self.trigger('status.changeEnd',status)
+          Activity.trigger('status.changeEnd',status)
           return
       return
-    updateAll = Self.updateAll = ->
-      Self.Stats.refresh ->
+    updateAll = Activity.updateAll = ->
+      Activity.Stats.refresh ->
       #updateActions();
-      Self.Folders.refresh ->
+      Activity.Folders.refresh ->
         
       updateActivityList()
       return
 
-    updateActivityList = Self.updateActivityList = ->
+    updateActivityList = Activity.updateActivityList = ->
       $.post sMyself + "Activity.ActivityList",
         ActivityID: nActivity
       , (data) ->
         $("#ActivityList").html data
       return
 
-    updateNoteCount = Self.updateNoteCount = ->
+    updateNoteCount = Activity.updateNoteCount = ->
       $.post sRootPath + "/_com/AJAX_Activity.cfc",
         method: "getNoteCount"
         ActivityID: nActivity

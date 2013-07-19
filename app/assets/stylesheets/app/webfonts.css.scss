@@ -207,11 +207,11 @@ ul.icons {
 // }
 @font-face {
   font-family: 'modernaregular';
-  src: font_url('moderna_webfont.eot');
-  src: font_url('moderna_webfont.eot?#iefix') format('embedded-opentype'),
-       font_url('moderna_webfont.woff') format('woff'),
-       font_url('moderna_webfont.ttf') format('truetype'),
-       font_url('moderna_webfont.svg#modernaregular') format('svg');
+  src: asset_url('moderna_webfont.eot');
+  src: asset_url('moderna_webfont.eot?#iefix') format('embedded-opentype'),
+       asset_url('moderna_webfont.woff') format('woff'),
+       asset_url('moderna_webfont.ttf') format('truetype'),
+       asset_url('moderna_webfont.svg#modernaregular') format('svg');
   font-weight: normal;
   font-style: normal;
 }

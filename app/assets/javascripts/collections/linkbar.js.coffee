@@ -1,0 +1,1 @@
+class App.Collections.LinkbarCollection extends Backbone.Collection

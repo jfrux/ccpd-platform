@@ -26,14 +26,21 @@
         </div>
       </div>
     </div>
-    <div class="box js-profile-menu">
-      #profileMenu(
+    <div class="box js-profile-menu js-hub-menu">
+      <div id="Tabs" class="TabControl linkbar">
+        <div class="linkbar-inner">
+          <ul class="nav">
+
+          </ul>
+         </div>
+      </div>
+      <!--- #profileMenu(
         type=params.controller
        ,typeid=params.id
        ,includekey=#params.includekey#
        ,settings="#request.tabSettings#"
        ,current="#Attributes.Fuseaction#"
-      )#
+      )# --->
     </div>
   </div>
   <div class="hub-body project-body">

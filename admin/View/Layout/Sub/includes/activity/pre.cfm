@@ -51,9 +51,10 @@ var cActListHeight = #GetToken(Cookie.USER_ActListSize,2,",")#;
 var cActListWidth = #GetToken(Cookie.USER_ActListSize,1,",")#;
 var cActShowInfobar = $.cookie("USER_ACTSHOWINFOBAR");
 
-App.module('Activity').start({
+App.Activity.start({
   'id':nActivity,
   'folders':defaultFolders,
+  'linkbarSettings':#serializeJson(request.tabSettings)#,
   'model':{
     id:nActivity,
     title:sActivityTitle,

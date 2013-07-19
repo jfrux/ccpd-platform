@@ -1,9 +1,9 @@
 ###!
 * PERSON
 ###
-App.module "Person",
-  startWithParent: false
-  define: (Self, App, Backbone, Marionette, $) ->
+App.module "Person",(Person,App,Backbone,Marionette) ->
+    @startWithParent = false
+
     cShowInfobar = null
     $profile = null
     $projectBar = null
@@ -24,48 +24,68 @@ App.module "Person",
       "3":"light-bulb-off"
       "4":"cross"
 
-    Self.on "before:start", ->
-      App.logInfo "starting: #{Self.moduleName}"
+    Person.on "before:start", ->
+      App.logInfo "starting: #{Person.moduleName}"
       return
 
-    Self.on "start", (options) ->
+    Person.on "start", (options) ->
       $(document).ready ->
         _init(options)
-        App.logInfo "started: #{Self.moduleName}"
+        App.logInfo "started: #{Person.moduleName}"
       return
 
-    Self.on "stop", ->
-      App.logInfo "stopped: #{Self.moduleName}"
+    Person.on "stop", ->
+      App.logInfo "stopped: #{Person.moduleName}"
       return
     
-    Self.on "linkbar.click", (link,e) ->
-      excludedModules = "Folders,Stats".split(',')
+    # Person.on "linkbar.click", (link,e) ->
+    #   excludedModules = "Folders,Stats".split(',')
       
-      $.each Self.submodules, (i,module) ->
-        if excludedModules.indexOf(i) == -1
-          module.stop()
-        return
+    #   $.each Person.submodules, (i,module) ->
+    #     if excludedModules.indexOf(i) == -1
+    #       module.stop()
+    #     return
 
-      container = link.data('pjax-container')
+    #   container = link.data('pjax-container')
 
-      $(".content-inner").wrapInner("<div id='#{container.replace('#','')}'></div>")
-      $.pjax.click(e, {container: container})
+    #   $(".content-inner").wrapInner("<div id='#{container.replace('#','')}'></div>")
+    #   $.pjax.click(e, {container: container})
       
-      return
+    #   return
 
-    Self.on "status.changeStart", (status) ->
+    Person.on "status.changeStart", (status) ->
       $statusChanger.addClass('disabled')
       return
 
-    Self.on "status.changeEnd", (status) ->
+    Person.on "status.changeEnd", (status) ->
       $statusChanger.removeClass('disabled')
       addMessage "Status changed successfully!", 250, 6000, 4000
       $statusIcon.attr('class','').addClass('fg-' + statusIcons[status])
       $statusBox.addClass('activity-status-' + status)
     
-    Self._init = _init = (settings) ->
-      Self.model = new App.Models.Person(settings.model)
-      
+    class Model extends Backbone.Model
+      url: '/api/person/getPerson'
+
+    class InfobarView extends App.Views.HubInfobarView
+
+    class LinkbarView extends App.Views.HubLinkbarView
+
+    class PersonView extends App.Views.HubView
+      el: ".hub .person"
+      InfobarView:InfobarView
+      LinkbarView:LinkbarView
+      type:'person'
+      initialize: ->
+        super
+
+    Person._init = _init = (settings) ->
+      Person.model = new Model(settings.model)
+
+      @hubView = new PersonView
+        model:Person.model
+        linkbarCollection:new App.Collections.LinkbarCollection(settings.linkbarSettings.tabArray)
+        el:'.hub'
+
       $profile = $(".profile")
       $infoBar = $(".js-infobar")
       $projectBar = $(".js-projectbar")
@@ -127,7 +147,7 @@ App.module "Person",
         
       $menuLinks.on "click", (e) ->
         $link = $(this)
-        Self.trigger('linkbar.click',$link,e)
+        Person.trigger('linkbar.click',$link,e)
         return
 
       if !Modernizr.touch
@@ -146,7 +166,7 @@ App.module "Person",
 
       # STATUS CHANGER 
       $statusChanger.change ->
-        Self.trigger('status.changeStart')
+        Person.trigger('status.changeStart')
         nStatus = $(this).val()
         if nStatus is ""
           addError "You must select a status.", 250, 6000, 4000
@@ -227,7 +247,7 @@ App.module "Person",
             $("#CredentialsContainer").html ""
 
         open: ->
-          $.post sMyself + "Person.Credentials",
+          $.post sMyPerson + "Person.Credentials",
             PersonID: nPerson
           , (data) ->
             $("#CredentialsContainer").html data
@@ -254,7 +274,7 @@ App.module "Person",
             returnFormat: "plain"
           , (data) ->
             if data.STATUS
-              window.location = sMyself + "Person.Home?Message=" + data.STATUSMSG
+              window.location = sMyPerson + "Person.Home?Message=" + data.STATUSMSG
             else
               addError data.STATUSMSG, 250, 6000, 4000
 
@@ -289,7 +309,7 @@ App.module "Person",
       return
 
 
-    setStatus = Self.setStatus = (status) ->
+    setStatus = Person.setStatus = (status) ->
       $.ajax
         url: sRootPath + "/_com/AJAX_Activity.cfc"
         type:'post'
@@ -300,7 +320,7 @@ App.module "Person",
           returnFormat: "plain"
         success: (data) ->
           cleanData = $.trim(data)
-          Self.trigger('status.changeEnd',status)
+          Person.trigger('status.changeEnd',status)
           return
       return
 

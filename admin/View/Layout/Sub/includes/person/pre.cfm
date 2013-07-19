@@ -20,13 +20,14 @@
 nPerson = #Attributes.PersonID#;
 sPersonName = '#replace(Attributes.FirstName, "'", "\'", "ALL")# #replace(Attributes.LastName, "'", "\'", "ALL")#';
 nAccount = #Attributes.AccountID#;
-</cfoutput>
 
 App.Person.start({
+  id:nPerson,
+  linkbarSettings:#serializeJson(request.tabSettings)#,
   model:{
     'id':nPerson,
     'account_id':nAccount,
     'name':sPersonName
   }
-});
+});</cfoutput>
 </script>

@@ -1,7 +1,7 @@
 ###
 * CCPD JS-ASSETS
 #=require_self
-
+#=require_tree ./templates
 #=require ./base
 #=require_tree ./config/initializers
 #=require components
@@ -14,7 +14,6 @@
 #=require components/personfinder
 #=require components/formstate
 #=require_tree "./collections/"
-#=require_tree "./models/"
 #=require_tree "./views/"
 
 #=require components/newsfeed

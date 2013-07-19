@@ -13,6 +13,7 @@
 *=require respond
 *=require underscore
 *=require spin
+*=require inflection
 *=require backbone
 *=require backbone.marionette
 *=require jquery/jquery-ui.1.10.3
