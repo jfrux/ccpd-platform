@@ -1,5 +1,7 @@
 <cfscript>
 request.tabSettings = {
+  "hub":"person",
+  "hasKey":true,
   "tabsSort":[
     "person.detail",
     "person.email",
@@ -85,12 +87,9 @@ request.tabSettings = {
     }
   }
 };
-request.tabSettings['tabArray'] = [];
-  for (key in request.tabSettings.tabsSort) {
-    tab = request.tabSettings.tabs[key];
 
-    request.tabSettings.tabArray.add(tab);
-  }
+request.tabSettings['tabArray'] = setup_menuArray(request.tabSettings);
+
 if (structKeyExists(request.tabSettings.tabs,lcase(attributes.fuseaction))) {
   request.currentTab = request.tabSettings.tabs[lcase(attributes.fuseaction)];
 } else {

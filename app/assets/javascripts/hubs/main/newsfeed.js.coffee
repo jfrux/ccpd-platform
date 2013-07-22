@@ -24,14 +24,14 @@ App.module "User.NewsFeed", (Self, App, Backbone, Marionette, $) ->
     Self.feed = new App.Components.NewsFeed
       el:'#js-main-welcome .js-newsfeed'
       defaultMode:'personTo'
-      hub:'user'
+      hub:'main'
       modes:[
         "personTo"
         "personFrom"
       ]
       queryParams:
-        personTo:App.User.model.get('id')
-        personFrom:App.User.model.get('id')
+        personTo:App.Main.model.get('id')
+        personFrom:App.Main.model.get('id')
 
     
     getListAuto = Self.getListAuto = () ->

@@ -21,7 +21,8 @@
 <cfset params.has_infobar = false />
 <cfoutput>
 <script>
-App.User.start({
+App.Main.start({
+  linkbarSettings:#serializeJson(request.tabSettings)#,
   model:{
     'id':#session.personid#,
     'account_id':#session.account.getAccountId()#,

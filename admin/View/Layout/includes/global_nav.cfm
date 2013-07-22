@@ -6,7 +6,7 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </a>
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="/admin">
       <div class="cropper">CCPD</div>
       <div class="logo3d"></div>
     </a>

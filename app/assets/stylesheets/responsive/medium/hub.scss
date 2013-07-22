@@ -155,24 +155,63 @@
         margin-left: -9.5px;
         margin-right: -9.5px;
       }
-
       > .linkbar {
         background-color: #FFFFFF;
         height: 87px;
         overflow: hidden;
         width: 100%;
+        .swipeContent {
+          width:92px;
+          height:80px;
+        }
+        .swipeThis {
+          overflow:hidden;
+        }
+        .swipeThis ul {
+          list-style:none;
+          position:relative;
+          margin:0px;
+          padding:0px;   
+        }
+        .swipeThis li {
+           display:block;
+           float:left;   
+        }
+        .swipeArea {
+          position:absolute;
+          z-index:30;
+          background-image:url('img/trans.png');
+          cursor:move;
+        }
+        
         ul.nav {
           height: 80px;
           margin-left: 5px;
           margin-top: 4px;
           overflow: hidden;
           width: 2000px;
+          
           > li {
-            &.active {
-              background-color:transparent;
-            }
+            height: 55px;
+            width: 92px;
             margin-top:0;
             display: inline-block;
+
+            &.active {
+              background-color:transparent;
+
+              > a {
+                background-color:$ucRed;
+                border: 1px solid darken($ucRed,15%);
+                > div.text {
+                  color:#000;
+                }
+                i {
+                  color:#FFF;
+                  text-shadow:0 -1px 0 rgba(#000,.15);
+                }
+              }
+            }
 
             > a {
               $linkbarItemBg:#DDDDDD;
@@ -227,11 +266,32 @@
                 width: 50px;
                 color:#666666;
                 text-shadow:1px 1px 1px #FBFCFD;
-                
               }
-
+              > span.menuLoader {
+                position:absolute;
+                top:20px;
+                left:0;
+                right:0;
+                margin:auto;
+              }
               > span.menuArrow {
                 display: none;
+              }
+            }
+
+            &.loading {
+              > a {
+                i {
+                  display:none;
+                }
+              }
+              > span.menuLoader {
+                display:block;
+                position:absolute;
+                margin:auto;
+                width:38px;
+                left:0;
+                right:0;
               }
             }
           }

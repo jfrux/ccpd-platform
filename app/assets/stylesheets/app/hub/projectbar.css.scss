@@ -154,16 +154,15 @@
           }
           > span.menuLoader {
             color: #E00122;
+            background-image: asset_url("tiny_loading.gif");
+            width:19px;
+            height:14px;
             font-size: 13px;
             position: absolute;
             right: 5px;
             top: 5px;
-            transform-origin: 54% 55% 0;
             display:none;
-            -o-transform-origin:54% 55% 0;
-            -ms-transform-origin:54% 55% 0;
-            -moz-transform-origin:54% 55% 0;
-            -webkit-transform-origin:54% 55% 0;
+            @include rotate(180);
           }
 
 
@@ -197,8 +196,23 @@
         }
         
         &.active {
-          > .subnav { display:block; }
+          > .subnav { 
+            display:block; 
+            > a {
+              > span.menuLoader {
+                color: #E00122;
+                background-image:asset_url('tiny_loading.gif');
+                font-size: 13px;
+                position: absolute;
+                right: 5px;
+                top: 5px;
+                @include rotate(180);
+                display:none;
+              }
+            }
+          }
           background-color:#EEE;
+          
           > a {
             cursor:default;
             border-color: #EEE;
@@ -210,6 +224,8 @@
             span.menuArrow {
               display: block;
             }
+            
+
           }
         }
         &.loading {

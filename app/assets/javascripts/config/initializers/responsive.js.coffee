@@ -83,13 +83,11 @@ mediumDo = () ->
     $(window).on "resize", dialogFixer
     $(window).on "orientationchange", dialogFixer
     dialogFixer()
-    App.jPanelMenu.on()
     $("body").addClass("mobile screen-medium");
   else
     $(window).off "resize", dialogFixer
     $(window).off "orientationchange", dialogFixer
     dialogFixer()
-    App.jPanelMenu.off()
     $("body").removeClass("mobile screen-medium");
 
 smallDo = () ->
@@ -111,6 +109,8 @@ App.respond.small.addListener smallDo
 App.respond.tiny.addListener tinyDo
 
 $(document).ready ->
-  App.respond.test.medium()
+  if App.respond.test.medium()
+    App.jPanelMenu.on()
+    
   App.respond.test.small()
   App.respond.test.tiny()

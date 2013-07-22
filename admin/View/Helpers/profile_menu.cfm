@@ -8,6 +8,31 @@
   </cfif>
 </cffunction>
 
+<cffunction name="setup_menuArray">
+  <cfargument name="tabSettings" required="true" />
+  <cfset var tabsArray = [] />
+  <cfscript>
+  for (key in tabSettings.tabsSort) {
+    tab = tabSettings.tabs[key];
+    tab['link'] = "/admin/event/#tab.event#"
+    if(arguments.tabSettings.hasKey) {
+      tab['link'] &= "?#arguments.tabSettings.hub#id=#attributes['#arguments.tabSettings.hub#id']#"
+    }
+    if(arrayLen(tab.subEvents) GT 0) {
+      subs = duplicate(tab.subEvents);
+      tab.subEvents = [];
+      for (sub in subs) {
+        subTab = tabSettings.tabs[sub]
+        tab.subEvents.add(subTab)
+      }
+    }
+
+    tabsArray.add(tab);
+  }
+  </cfscript>
+  <cfreturn tabsArray />
+</cffunction>
+
 <cffunction name="$profileMenu_renderItem" output="false">
   <cfargument name="tab" type="struct" required="true" />
   <cfargument name="settings" default="" />

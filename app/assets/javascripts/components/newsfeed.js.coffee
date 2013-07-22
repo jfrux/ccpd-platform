@@ -29,7 +29,7 @@ class App.Components.NewsFeed
     ###
     @$filters = $(filterHtml)
     filterTemplate = _.template('<a href="" class="btn btn-default" data-mode="<%= filter%>"><%= label%></a>')
-    console.log @settings.modes
+    #console.log @settings.modes
     #LOOP OVER PROVIDED MODES AND GET CONFIG INFO FROM FILTERTYPES
     _.each @settings.modes,(mode,key) ->
       console.log "#{mode},#{key}"
@@ -133,7 +133,7 @@ class App.Components.NewsFeed
       "activityAll":
         "label":'All'
         "filter":'activityTo'
-    user:
+    main:
       "personTo":
         "label":'To Me'
         "filter":'personTo'

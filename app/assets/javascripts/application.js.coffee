@@ -17,10 +17,10 @@
 #=require_tree "./views/"
 
 #=require components/newsfeed
-#=require ./hubs/user
+#=require ./hubs/main
 #=require ./hubs/activity
 #=require ./hubs/person
-#=require_tree ./hubs/user/
+#=require_tree ./hubs/main/
 #=require_tree ./hubs/activity/
 #=require_tree ./hubs/person/
 #=require cookie

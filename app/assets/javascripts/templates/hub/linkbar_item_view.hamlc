@@ -1,9 +1,17 @@
-%a{href: "/admin/event/#{@event}", data: { 'js-namespace':"js-" + @event.replace('.','-'),'pjax-container':"#js-" + @event.replace('.','-'),'pjax-title':@title ,'tooltip-title':@tooltip,'data-icon':@icon}}
+%a{href: @link, data: { 'js-namespace':"js-" + @event.replace('.','-'),'pjax-container':"#js-" + @event.replace('.','-'),'pjax-title':@title ,'tooltip-title':@tooltip,'data-icon':@icon}}
   %i{ class: @icon}
-  .text= @label
+  .text!= @label
   - if @count
     %span.navItemCount.pull-right= @count
-  %span.menuLoader.icon-spin2.icon-spin
+  %span.menuLoader
   %span.menuArrow
   - if @subEvents.length
     %ul.nav.subnav
+      - for sub in @subEvents
+        %a{href: sub.link, data: { 'js-namespace':"js-" + sub.event.replace('.','-'),'pjax-container':"#js-" + sub.event.replace('.','-'),'pjax-title':sub.title ,'tooltip-title':sub.tooltip,'data-icon':sub.icon}}
+          %i{ class: sub.icon}
+          .text!= sub.label
+          - if sub.count
+            %span.navItemCount.pull-right= sub.count
+          %span.menuLoader
+          %span.menuArrow

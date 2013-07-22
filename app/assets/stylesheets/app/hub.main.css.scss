@@ -2,6 +2,12 @@
 
 .profile,.hub {
   &.main {
+    .hub-infobar {
+      display:none;
+    }
+    .hub-content {
+      width: 100%;
+    }
     .hub-bar {
       .box {
         &:first-child {

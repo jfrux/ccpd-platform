@@ -1,5 +1,6 @@
-PATH
-  remote: ~/Projects/sinatra-asset-pipeline
+GIT
+  remote: https://github.com/joshuairl/sinatra-asset-pipeline.git
+  revision: 57a7ced5dc2cc75a980fe46979f2dda58bcd5553
   specs:
     sinatra-asset-pipeline (0.2.0)
       active_support

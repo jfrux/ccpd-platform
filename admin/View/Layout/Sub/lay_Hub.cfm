@@ -32,7 +32,7 @@
           <ul class="nav">
 
           </ul>
-         </div>
+        </div>
       </div>
       <!--- #profileMenu(
         type=params.controller

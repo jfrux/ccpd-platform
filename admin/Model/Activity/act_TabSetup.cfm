@@ -1,5 +1,7 @@
 <cfscript>
   request.tabSettings = {
+    "hub":"activity",
+    "hasKey":true,
     "tabsSort":[
       "activity.detail",
       "activity.credits",
@@ -228,12 +230,9 @@
       }
     }
   };
-  request.tabSettings['tabArray'] = [];
-  for (key in request.tabSettings.tabsSort) {
-    tab = request.tabSettings.tabs[key];
+  
+  request.tabSettings['tabArray'] = setup_menuArray(request.tabSettings);
 
-    request.tabSettings.tabArray.add(tab);
-  }
   if (structKeyExists(request.tabSettings.tabs,lcase(attributes.fuseaction))) {
     request.currentTab = request.tabSettings.tabs[lcase(attributes.fuseaction)];
   } else {

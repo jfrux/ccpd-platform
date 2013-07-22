@@ -49,7 +49,7 @@ var cActListPosY = #getToken(Cookie.USER_ActListPos,2,",")#;
 var cActListOpen = #Cookie.USER_ActListOpen#;
 var cActListHeight = #GetToken(Cookie.USER_ActListSize,2,",")#;
 var cActListWidth = #GetToken(Cookie.USER_ActListSize,1,",")#;
-var cActShowInfobar = $.cookie("USER_ACTSHOWINFOBAR");
+//var cActShowInfobar = $.cookie("USER_ACTSHOWINFOBAR");
 
 App.Activity.start({
   'id':nActivity,

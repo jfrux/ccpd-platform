@@ -38,21 +38,6 @@ App.module "Person",(Person,App,Backbone,Marionette) ->
       App.logInfo "stopped: #{Person.moduleName}"
       return
     
-    # Person.on "linkbar.click", (link,e) ->
-    #   excludedModules = "Folders,Stats".split(',')
-      
-    #   $.each Person.submodules, (i,module) ->
-    #     if excludedModules.indexOf(i) == -1
-    #       module.stop()
-    #     return
-
-    #   container = link.data('pjax-container')
-
-    #   $(".content-inner").wrapInner("<div id='#{container.replace('#','')}'></div>")
-    #   $.pjax.click(e, {container: container})
-      
-    #   return
-
     Person.on "status.changeStart", (status) ->
       $statusChanger.addClass('disabled')
       return
@@ -91,78 +76,12 @@ App.module "Person",(Person,App,Backbone,Marionette) ->
       $projectBar = $(".js-projectbar")
       $menuBar = $(".js-profile-menu > div > div > ul")
       $contentArea = $(".js-profile-content")
-      $infoBarToggler = $(".js-toggle-infobar")
       $contentToggleSpan = $(".js-content-toggle")
-      $infoBarToggleSpan = $(".js-infobar-outer")
       $menuLinks = $menuBar.find('a')
       $statusBox = $(".js-activity-status")
       $statusChanger = $statusBox.find('select')
       $statusIcon = $("<i></i>").addClass('fg-exclamation-circle')
       $statusBox.append($statusIcon)
-      $(document).on 'pjax:send',(xhr,options) ->
-        return
-      
-      $(document).on 'pjax:timeout', (e) ->
-        e.preventDefault()
-        return
-
-      $(document).on 'pjax:complete',(xhr, options, textStatus) ->
-        $clickedLink = $(xhr.relatedTarget)
-        $pageTitle = $clickedLink.data('pjax-title')
-        $contentArea = $(xhr.target)
-        $contentTitle = $contentArea.parents('.js-profile-content').find('.content-title > h3')
-        $contentTitle.text($pageTitle)
-
-        $parent = $clickedLink.parent()
-        $parent.find('.active').removeClass('active')
-        $parent.siblings().removeClass('active')
-        $clickedLink.children().removeClass('active')
-        $parent.addClass('active')
-        return
-
-      ###
-      INFOBAR / COOKIE
-      ###
-      infoBarState = App.getCookie('prefInfoBar') || 'on'
-      App.logInfo "InfoBar: #{cShowInfobar}"
-
-      $infoBarToggler.on "click",(e) ->
-        $btn = $(this)
-        if $btn.hasClass('active')
-          hideInfobar()
-        else
-          showInfobar()
-        return
-
-      if infoBarState is "on"
-        showInfobar()
-      else
-        hideInfobar()
-
-      if !Modernizr.touch
-        $(".ContentTitle span").tooltip
-          placement: 'bottom'
-          trigger:'hover focus'
-          container: 'body'
-        
-      $menuLinks.on "click", (e) ->
-        $link = $(this)
-        Person.trigger('linkbar.click',$link,e)
-        return
-
-      if !Modernizr.touch
-        $menuLinks.tooltip
-          placement: 'right'
-          html: 'true'
-          trigger: 'hover focus'
-          title: (e)->
-            $(this).attr('data-tooltip-title')
-          container: 'body'
-        $(".action-buttons a.btn, .action-buttons button.btn").tooltip
-          placement: 'bottom'
-          trigger: 'hover focus'
-          container: 'body'
-      
 
       # STATUS CHANGER 
       $statusChanger.change ->
@@ -283,31 +202,6 @@ App.module "Person",(Person,App,Backbone,Marionette) ->
         return
       # END DELETE PERSON 
       return
-
-    showInfobar = ->
-      $spanDiv = $infoBar.parent()
-      App.setCookie('prefInfoBar','on')
-      App.logInfo "InfoBar: On (#{App.getCookie('prefInfoBar')})"
-      cShowInfobar = true
-      $infoBarToggler.addClass('active')
-      $infoBar.removeClass('hide')
-      $profile.removeClass('infobar-inactive').addClass('infobar-active')
-      $contentToggleSpan.removeClass('span24').addClass('span18')
-      $infoBarToggleSpan.addClass('span6')
-      return
-
-    hideInfobar = ->
-      $infoBarToggler.removeClass('active')
-      App.setCookie('prefInfoBar','off')
-      App.logInfo "InfoBar: Off (#{App.getCookie('prefInfoBar')})"
-      cShowInfobar = false
-      $spanDiv = $infoBar.parent()    
-      $profile.removeClass('infobar-active').addClass('infobar-inactive')
-      $contentToggleSpan.removeClass('span18').addClass('span24')
-      $infoBar.addClass('hide')
-      $infoBarToggleSpan.removeClass('span6')
-      return
-
 
     setStatus = Person.setStatus = (status) ->
       $.ajax

@@ -1,5 +1,7 @@
 <cfscript>
 request.tabSettings = {
+  "hub":"main",
+  "hasKey":false,
   "tabsSort":[
     "main.welcome",
     "main.activities",
@@ -45,26 +47,21 @@ request.tabSettings = {
     }
   }
 };
-request.tabSettings['tabArray'] = [];
-  for (key in request.tabSettings.tabsSort) {
-    tab = request.tabSettings.tabs[key];
 
-    request.tabSettings.tabArray.add(tab);
-  }
+request.tabSettings['tabArray'] = setup_menuArray(request.tabSettings);
 if (structKeyExists(request.tabSettings.tabs,lcase(attributes.fuseaction))) {
-  request.currentTab = request.tabSettings.tabs[lcase(attributes.fuseaction)];
-} else {
-  request.currentTab = {
-    "label":"",
-    "title":"",
-    "tooltip":"",
-    "icon":"",
-    "event":"#attributes.fuseaction#",
-    "hasToolbar":false,
-    "subEvents":[]
+    request.currentTab = request.tabSettings.tabs[lcase(attributes.fuseaction)];
+  } else {
+    request.currentTab = {
+      "label":"",
+      "title":"",
+      "tooltip":"",
+      "icon":"",
+      "event":"#attributes.fuseaction#",
+      "hasToolbar":false,
+      "subEvents":[]
+    }
   }
-}
-
 Request.MultiFormQS = "";
 Request.MultiFormLabels = "News Feed";
 Request.MultiFormFuseactions = "main.welcome";
