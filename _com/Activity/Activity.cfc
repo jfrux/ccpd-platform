@@ -205,7 +205,7 @@
 			<cfset arrayAppend(errors,duplicate(thisError)) />
 		</cfif>
         
-			<cfif (len(trim(getEndDate())) AND isDate(trim(getEndDate())) AND trim(getEndDate()) LT trim(getStartDate()))>
+			<cfif (len(trim(getEndDate())) AND isDate(trim(getEndDate())) AND dateCompare(trim(getEndDate()), trim(getStartDate())) LT 0)>
                 <cfset thisError.field = "EndDate" />
                 <cfset thisError.type = "Erroneous Date" />
                 <cfset thisError.message = "End Date cannot happen before Start Date." />
