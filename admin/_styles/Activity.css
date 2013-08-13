@@ -8,7 +8,7 @@
  display:none;
 }
 .activity.grouping-2.child_activity .activity_finances {
- display:none;
+ display:block;
 }
 
 .activity.grouping-2.parent_activity .stat_addlattendees {
