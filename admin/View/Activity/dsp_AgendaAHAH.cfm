@@ -114,12 +114,12 @@ $(document).ready(function (){
                 <tr>
                     <td width="120">#TimeFormat(qItems.StartTime,'h:mmTT')# - #TimeFormat(qItems.EndTime,'h:mmTT')#</td>
                     <td>#qItems.Description#</td>
-                    <td align="right" width="50"><a href="javascript:void(0);" id="AgendaLink#qItems.AgendaID#" class="AgendaEditLink"><img src="#Application.Settings.RootPath#/_images/icons/Pencil.png" border="0" /></a> <a href="javascript:void(0);" id="AgendaDelete#qItems.AgendaID#" class="AgendaDeleteLink"><img src="#Application.Settings.RootPath#/_images/icons/Delete.png" border="0" /></a></td>
+                    <td align="right" width="50"><a href="javascript:void(0);" id="AgendaLink#qItems.AgendaID#" class="AgendaEditLink"><img src="#Application.Settings.RootPath#/_images/icons/pencil.png" border="0" /></a> <a href="javascript:void(0);" id="AgendaDelete#qItems.AgendaID#" class="AgendaDeleteLink"><img src="#Application.Settings.RootPath#/_images/icons/delete.png" border="0" /></a></td>
                 </tr>
                 </cfloop>
             </table>
             </cfif>
-			<div><a href="javascript:void(0);" id="#DateFormat(i,'mm-dd-yyyy')#" class="AddItemLink" style="text-decoration:none; font-size:15px;"><img src="#Application.Settings.RootPath#/_images/icons/Add.png" border="0" align="left" style="padding-right:4px;" />Add Items</a></div>
+			<div><a href="javascript:void(0);" id="#DateFormat(i,'mm-dd-yyyy')#" class="AddItemLink" style="text-decoration:none; font-size:15px;"><img src="#Application.Settings.RootPath#/_images/icons/add.png" border="0" align="left" style="padding-right:4px;" />Add Items</a></div>
         </cfloop>
     </div>
 </div>
