@@ -159,30 +159,30 @@ class App.Components.NewsFeed
     Self = @
     output = ""
     
-    @collection.fetch
-      data: params
-      success: (newsItems, response, options) ->
-        newsItems.each (itemModel) ->
-          item = itemModel.attributes
-          $historyitem = ""
-          rendered = Self.renderItem(item)
-          if inject is "append"
-            Self.$list.append rendered
-            $historyitem = $("#history-item-" + item.HISTORYID)
-            $historyitem.show()
-          else if inject is "prepend"
-            Self.$list.prepend Self.renderItem(item)
-            $historyitem = $("#history-item-" + item.HISTORYID)
-            $historyitem.fadeIn()
+    App.rt.on "feed",(data) ->
+      newsItems = new Self.Collection(data)
+      
+      newsItems.each (itemModel) ->
+        item = itemModel.attributes
+        $historyitem = ""
+        rendered = Self.renderItem(item)
+        if inject is "append"
+          Self.$list.append rendered
+          $historyitem = $("#history-item-" + item.HISTORYID)
+          $historyitem.show()
+        else if inject is "prepend"
+          Self.$list.prepend Self.renderItem(item)
+          $historyitem = $("#history-item-" + item.HISTORYID)
+          $historyitem.fadeIn()
+        $historyitem.find(".history-meta a").prettyDate()
+        $historyitem.find(".prettydate").prettyDate()
+        setInterval (->
           $historyitem.find(".history-meta a").prettyDate()
+        ), 5000
+        setInterval (->
           $historyitem.find(".prettydate").prettyDate()
-          setInterval (->
-            $historyitem.find(".history-meta a").prettyDate()
-          ), 5000
-          setInterval (->
-            $historyitem.find(".prettydate").prettyDate()
-          ), 5000
-        return
+        ), 5000
+      return
     return
 
   stop: ->

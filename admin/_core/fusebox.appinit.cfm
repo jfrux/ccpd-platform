@@ -21,7 +21,7 @@
 <cfset $_settings = application.settings />
 <cfset request.CGI = CGI />
 <cfinclude template="/lib/fusebox-addons/public.cfm" />
-
+<cfset devHost = "#CGI.LOCAL_ADDR#.xip.io" />
 <cfswitch expression="#CGI.SERVER_NAME#">
   <!--- PRODUCTION --->
   <cfcase value="ccpd.uc.edu">
@@ -34,7 +34,7 @@
     <cfset set(asset_manifest = $loadAssetManifest()) />
     <cfset set(asset_digests = get('asset_manifest').assets) />
   </cfcase>
-  <cfcase value="localhost">
+  <cfcase value="#devHost#">
     <cfset set(environment = "development") />
   </cfcase>
 </cfswitch>
@@ -42,6 +42,7 @@
 
 <cfswitch expression="#get('environment')#">
   <cfcase value="production">
+    <cfset set(realtimeUrl="http://ccpd.uc.edu:8081/") />
     <cfset set(showErrorInformation=true) />
     <cfset set(showDebugInformation = false) />
     <cfset set(webPath='/admin') />
@@ -56,6 +57,7 @@
     <cfset set(imagePath = "") />
   </cfcase>
   <cfcase value="development">
+    <cfset set(realtimeUrl="http://#devHost#:8081/") />
     <cfset set(showErrorInformation=true) />
     <cfset set(showDebugInformation = false) />
     <cfset set(webPath='/admin') />
@@ -64,8 +66,8 @@
     <cfset set(debug_assets=true) />
     <cfset set(asset_prefix='/assets') />
     <cfset set(assetPaths = {
-      'http':'localhost:8888/assets',
-      'https':'localhost:8888/assets'
+      'http':'/assets',
+      'https':'/assets'
     }) />
     <cfset set(imagePath = "") />
   </cfcase>
@@ -106,7 +108,7 @@
     <cfset set(javaloaderKey = "JAVALOADER-CCPD-PROD-15313")>
   </cfcase>
 
-  <cfcase value="localhost">
+  <cfcase value="#devHost#">
     <cfset set(assetsUrl = "http://localhost:9292/")>
     <cfset set(apiUrl = "http://localhost:3001")>
     <cfset set(dsn = "CCPD_CLONE")>

@@ -38,6 +38,7 @@
       <div class='modal-content'></div>
     </div>
   </div>
+  <cfinclude template="includes/global_js.cfm" />
 </body>
 </cfoutput>
 </html>

@@ -9,16 +9,22 @@ App.Views = {}
 App.Collections = {}
 App.Models = {}
 
-_init = () ->
-  #Backbone.history.start({pushState: true, root: "/admin/event/"})
-  #console.log "test"
-
-
 App.addInitializer (options)->
-  _init()
-
+  socketIOScript = App.config.get('realtimeUrl') + "socket.io/socket.io.js"
+  $.getScript socketIOScript,(script,textStatus,jqXHR) ->
+    App.rt = io.connect(App.config.get('realtimeUrl'));
+    currentUrl = $("<a></a>").attr('href',window.location.href)
+    console.log currentUrl
+    settings = 
+      channel: App.Main.model.get('id') + "_" + $.cookie("CFID") + "_" + $.cookie("CFTOKEN")
+    App.rt.on "ready",() ->
+      App.rt.emit('boot',settings);
+      
+  
+  
 App.on "start", ->
   console.info "started: Application"
+  
 
 App.addRegions
   header: "#header"
@@ -26,5 +32,3 @@ App.addRegions
   content: "#content > .container > .content-inner"
   footer: "#footer"
   mainContent: "#Content"
-
-App.start()

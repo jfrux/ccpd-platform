@@ -397,7 +397,7 @@
     {
       loc.position = loc.domainLen;
     }
-    loc.returnValue = loc.protocol & Trim(ListGetAt(loc.domainList, loc.position)) & arguments.pathToAsset;
+    loc.returnValue = Trim(ListGetAt(loc.domainList, loc.position)) & arguments.pathToAsset;
   </cfscript>
   <cfreturn loc.returnValue />
 </cffunction>

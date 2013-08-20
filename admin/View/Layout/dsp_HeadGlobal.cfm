@@ -33,6 +33,8 @@
 #javascriptIncludeTag(source="ckeditor/ckeditor",debug=false)#
 #javascriptIncludeTag(source="vendors",debug=false)#
 #javascriptIncludeTag(source="application",debug=true)#
+
+
 </cfoutput>
 <cfinclude template="js_global.cfm" />
 
