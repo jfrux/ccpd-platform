@@ -12,6 +12,7 @@ RewriteRule ^admin/event/([^/]+)$ /admin/index.cfm?event=$1 [NC,QSA,L]
 RewriteRule ^lms/event/([^/]*)$ /lms/index.cfm?event=$1  [NC,QSA,L]
 
 RewriteRule ^activity/([^/]*)$ /lms/index.cfm?event=activity\.detail&ActivityID=$1  [NC,QSA]
+RewriteRule ^lms/activity/([^/]*)$ /lms/index.cfm?event=activity\.detail&ActivityID=$1  [NC,QSA]
 
 RewriteRule ^lms/category/([^/]*)$ /lms/index.cfm?event=Activity.Browse?Category=$1&Submitted=1 [NC,QSA]
 RewriteRule ^lms/specialty/([^/]*)/([^/]*)$ /lms/index.cfm?event=Activity.Browse?Specialty=$1&Page=$2&Submitted=1  [NC,QSA]

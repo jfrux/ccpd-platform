@@ -351,7 +351,7 @@ function DownLoadTime56k(fileSize) {
 			<div class="Act-BoxContent">
 				<!--- THIS IS STUPID HOW I'M DOING THIS BUT I'M LEAVING IT FOR NOW... --->
 				<cfloop query="qStatements">
-				#Replace(Replace(qStatements.CreditStatement,'%ReferenceNumber%',Trim(qStatements.ReferenceNo),'ALL'),'%Credit%',qStatements.Amount,'ALL')#
+				#Replace(Replace(Replace(qStatements.CreditStatement,'%ReferenceNumber%',Trim(qStatements.ReferenceNo),'ALL'),'%Credit%',qStatements.Amount,'ALL'),'%jointSponsorship%',Attributes.jointStatement,'ALL')#
 				</cfloop>
 			</div>
 		</div>

@@ -104,6 +104,11 @@
 	<cfset Attributes.Created = DateFormat(ActivityBean.getCreated(), "MM/DD/YYYY")>
 	<cfset Attributes.CreatedBy = ActivityBean.getCreatedBy()>
 	<cfset Attributes.UpdatedBy = ActivityBean.getUpdatedBy()>
+	<cfif ActivityBean.getSponsorship() EQ 'j'>
+		<cfset Attributes.jointStatement = ' through the joint sponsorship of the University of Cincinnati and ' & ActivityBean.getSponsor()>
+	<cfelse>
+		<cfset Attributes.jointStatement = ''>
+	</cfif>
     
 	 <!--- CREATE PUBGENERALBEAN --->
 	<cfset PubGeneralBean = CreateObject("component","#Application.Settings.Com#ActivityPubGeneral.ActivityPubGeneral").Init(ActivityID=Attributes.ActivityID)>
