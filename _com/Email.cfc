@@ -148,14 +148,14 @@
       </cfif>
     </cfloop>
         
-        <!--- SET UP THE "TO" EMAIL ADDRESS --->
-        <cfif len(trim(arguments.toEmailAddress)) EQ 0>
-          <cfset arguments.toEmailAddress = ToPerson.Email>
-        </cfif>
+    <!--- SET UP THE "TO" EMAIL ADDRESS --->
+    <cfif len(trim(arguments.toEmailAddress)) EQ 0>
+      <cfset arguments.toEmailAddress = ToPerson.Email>
+    </cfif>
     
     <cfset EmailBody = Replace(EmailBody,"%","","ALL")>
     <cfset EmailBodyText = Replace(EmailBodyText,"%","","ALL")>
-        
+
     <cfset SMTPAPI = {} />
     <cfif arguments.emailstyleid EQ 5>
       <cfset SMTPAPI['category'] = "ccpd_credit_email" />
@@ -170,52 +170,57 @@
     </cfif>
     
     <!--- SEND EMAIL --->
-    <cfmail to="#arguments.toEmailAddress#" from="#FromEmail#" subject="#EmailSubject#" replyto="do-not-reply@uc.edu" failto="rountrjf@ucmail.uc.edu">
-      <cfmailparam name="X-MC-Metadata" value="#serializeJson(smtpDatas)#" />
-      <cfmailparam name="X-MC-Tags" value="#smtpTags#" />
-      
-      <cfmailpart type="html">
-        <body style="background-color:##f7f7f7;font-family:Arial, Helvetica, sans-serif;font-size:12px;">
-        <table cellspacing="0" cellpadding="0" border="0" width="620">
-          <tbody>
-            <tr>
-              <td style="background: none repeat scroll 0% 0% ##333; color: rgb(255, 255, 255); font-weight: bold;font-family:Arial, Helvetica, sans-serif; padding: 4px 8px; vertical-align: middle; font-size: 16px; letter-spacing: -0.03em; text-align: left;"><a target="_blank" href="https://ccpd.uc.edu/" style="color: rgb(255, 255, 255); text-decoration: none;"><span style="color: rgb(255, 255, 255);">CCPD</span></a></td>
-              <td style="background: none repeat scroll 0% 0% ##333; color: rgb(255, 255, 255); font-weight: bold;font-family:Arial, Helvetica, sans-serif; padding: 4px 8px; vertical-align: middle; font-size: 11px; text-align: right;"></td>
-            </tr>
-            <tr>
-              <td valign="top" style="background-color: rgb(255, 255, 255); border-bottom: 1px solid rgb(59, 89, 152); border-left: 1px solid rgb(204, 204, 204); border-right: 1px solid rgb(204, 204, 204); font-family: Arial, Helvetica, sans-serif; padding: 15px;" colspan="2">
-                #EmailBody#
-              </td>
-            </tr>
-            <tr>
-              <td style="color: rgb(153, 153, 153); padding: 10px; font-size: 11px; font-family: Arial, Helvetica, sans-serif;" colspan="2">The message was sent to <a target="_blank" href="mailto:#ToPerson.Email#" style="color: ##2769AB; text-decoration: none; font-weight: normal;">#ToPerson.Email#</a>. <br />
-              If you don't want to receive these emails from CCPD in the future, you can <a target="_blank" style="color: ##2769AB; text-decoration: none; font-weight: normal;" href="http://ccpd.uc.edu/lms/preferences">unsubscribe</a>. <br />
-              <font color="##888888">UC Center for Continuous  Professional Development. P.O. Box 670556, Cincinnati, OH 45267-0556</font></td>
-            </tr>
-          </tbody>
-        </table>
-        </body>
-      </cfmailpart>
-      <cfmailpart type="plain">
-      #EmailBodyText#
-      
-      =======================================
-      The message was sent to #ToPerson.Email#. If you don't want to receive these emails from CCPD in the future, please follow the link below to unsubscribe.
-      http://ccpd.uc.edu/lms/preferences
-      
-      UC Center for Continuous Professional Development. P.O. Box 670556, Cincinnati, OH 45267-0556
-      </cfmailpart>
-      <cfmailpart type="text">
-      #EmailBodyText#
-      
-      =======================================
-      The message was sent to #ToPerson.Email#. If you don't want to receive these emails from CCPD in the future, please follow the link below to unsubscribe.
-      http://ccpd.uc.edu/lms/preferences
-      
-      UC Center for Continuous Professional Development. P.O. Box 670556, Cincinnati, OH 45267-0556
-      </cfmailpart>
-    </cfmail>
-    
+    <cftry>
+      <cfmail to="#arguments.toEmailAddress#" from="#FromEmail#" subject="#EmailSubject#" replyto="do-not-reply@uc.edu" failto="rountrjf@ucmail.uc.edu">
+        <cfmailparam name="X-MC-Metadata" value="#serializeJson(smtpDatas)#" />
+        <cfmailparam name="X-MC-Tags" value="#smtpTags#" />
+        
+        <cfmailpart type="html">
+          <body style="background-color:##f7f7f7;font-family:Arial, Helvetica, sans-serif;font-size:12px;">
+          <table cellspacing="0" cellpadding="0" border="0" width="620">
+            <tbody>
+              <tr>
+                <td style="background: none repeat scroll 0% 0% ##333; color: rgb(255, 255, 255); font-weight: bold;font-family:Arial, Helvetica, sans-serif; padding: 4px 8px; vertical-align: middle; font-size: 16px; letter-spacing: -0.03em; text-align: left;"><a target="_blank" href="https://ccpd.uc.edu/" style="color: rgb(255, 255, 255); text-decoration: none;"><span style="color: rgb(255, 255, 255);">CCPD</span></a></td>
+                <td style="background: none repeat scroll 0% 0% ##333; color: rgb(255, 255, 255); font-weight: bold;font-family:Arial, Helvetica, sans-serif; padding: 4px 8px; vertical-align: middle; font-size: 11px; text-align: right;"></td>
+              </tr>
+              <tr>
+                <td valign="top" style="background-color: rgb(255, 255, 255); border-bottom: 1px solid rgb(59, 89, 152); border-left: 1px solid rgb(204, 204, 204); border-right: 1px solid rgb(204, 204, 204); font-family: Arial, Helvetica, sans-serif; padding: 15px;" colspan="2">
+                  #EmailBody#
+                </td>
+              </tr>
+              <tr>
+                <td style="color: rgb(153, 153, 153); padding: 10px; font-size: 11px; font-family: Arial, Helvetica, sans-serif;" colspan="2">The message was sent to <a target="_blank" href="mailto:#ToPerson.Email#" style="color: ##2769AB; text-decoration: none; font-weight: normal;">#ToPerson.Email#</a>. <br />
+                If you don't want to receive these emails from CCPD in the future, you can <a target="_blank" style="color: ##2769AB; text-decoration: none; font-weight: normal;" href="http://ccpd.uc.edu/lms/preferences">unsubscribe</a>. <br />
+                <font color="##888888">UC Center for Continuous  Professional Development. P.O. Box 670556, Cincinnati, OH 45267-0556</font></td>
+              </tr>
+            </tbody>
+          </table>
+          </body>
+        </cfmailpart>
+          <cfmailpart type="plain">
+          #EmailBodyText#
+          
+          =======================================
+          The message was sent to #ToPerson.Email#. If you don't want to receive these emails from CCPD in the future, please follow the link below to unsubscribe.
+          http://ccpd.uc.edu/lms/preferences
+          
+          UC Center for Continuous Professional Development. P.O. Box 670556, Cincinnati, OH 45267-0556
+          </cfmailpart>
+          <cfmailpart type="text">
+          #EmailBodyText#
+          
+          =======================================
+          The message was sent to #ToPerson.Email#. If you don't want to receive these emails from CCPD in the future, please follow the link below to unsubscribe.
+          http://ccpd.uc.edu/lms/preferences
+          
+          UC Center for Continuous Professional Development. P.O. Box 670556, Cincinnati, OH 45267-0556
+          </cfmailpart>
+        </cfmail>
+        
+      <cfcatch>
+
+      </cfcatch>
+    </cftry>
     <cfif arguments.emailStyleId EQ 5 AND arguments.toAttendeeId GT 0>
       <cflog text="EMAIL SEND ATTEMPT TO Attendee: #arguments.ToAttendeeId# (#ToPerson.Email#)" file="ccpd-attendee-emails" type="information">
       <cfquery name="qInsert" datasource="#application.settings.dsn#">
