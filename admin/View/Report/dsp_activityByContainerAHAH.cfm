@@ -1,6 +1,6 @@
 <cfparam name="reportId" default="7" />
 <cfinclude template="#Application.Settings.ComPath#/_UDF/ByteConvert.cfm" />
-<cfdirectory directory="#ExpandPath('#Application.Settings.RootPath#/_reports/#reportId#')#" action="list" name="qFileList" filter="*-#Session.AccountID#.XLSX" recurse="no">
+<cfdirectory directory="#ExpandPath('#Application.Settings.RootPath#/_reports/#reportId#')#" action="list" name="qFileList" filter="*-#Session.AccountID#.xlsx" recurse="no">
 <cfoutput>
 <h3>Last Generated</h3>
 <cfquery name="qMostRecent" dbtype="query">

@@ -17,7 +17,7 @@
 				</tr>
 			</thead>
 			<cfif Attributes.ReportID NEQ "">
-				<cfdirectory directory="#ExpandPath('#Application.Settings.RootPath#/_reports/#Attributes.ReportID#')#" action="list" name="qFileList" filter="*_#session.personId#.XLSX" recurse="no">
+				<cfdirectory directory="#ExpandPath('/admin/_reports/22')#" action="list" name="qFileList" filter="*_#session.personId#.xlsx" recurse="no">
 				
 				<cfquery name="qOrderedFileList" dbtype="query">
 					SELECT *

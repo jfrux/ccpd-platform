@@ -49,7 +49,7 @@
 				</tr>
 			</thead>
 			<cfif Attributes.ActReportID NEQ "">
-				<cfdirectory directory="#ExpandPath('#Application.Settings.RootPath#/_reports/#Attributes.ActReportID#')#" action="list" name="qFileList" filter="*.XLSX" recurse="no">
+				<cfdirectory directory="#ExpandPath('#Application.Settings.RootPath#/_reports/#Attributes.ActReportID#')#" action="list" name="qFileList" filter="*.xlsx" recurse="no">
 				
 				<cfquery name="qOrderedFileList" dbtype="query">
 					SELECT *
