@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/joshuairl/sinatra-asset-pipeline.git
-  revision: 40b84ec7dea82cf99f54b9c877b7099e084be84a
+  revision: d81b707f70eb2fe1e32ddbf1814ed8b624e9fdc0
   specs:
     sinatra-asset-pipeline (0.2.0)
       active_support
