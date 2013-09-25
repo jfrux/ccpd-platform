@@ -51,8 +51,8 @@
     <cfset set(debug_assets=false) />
     <cfset set(asset_prefix='/assets') />
     <cfset set(assetPaths = {
-      'http': CGI.SERVER_NAME & ":" & CGI.SERVER_PORT & '/assets',
-      'https': CGI.SERVER_NAME & '/assets'
+      'http': "http://" & CGI.SERVER_NAME & '/assets',
+      'https': "https://" & CGI.SERVER_NAME & '/assets'
     }) />
     <cfset set(imagePath = "") />
   </cfcase>
