@@ -2,9 +2,9 @@
 
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
 <cfoutput>
-#styleSheetLinkTag(sources="vendors",debug=false)#
-#styleSheetLinkTag(sources="application",debug=false)#
-#styleSheetLinkTag(sources="responsive",debug=false)#
+#styleSheetLinkTag(sources="vendors")#
+#styleSheetLinkTag(sources="application")#
+#styleSheetLinkTag(sources="responsive")#
 <!--- <cfif request.page.responsive>
 	#styleSheetLinkTag(sources="responsive",debug=false)#
 </cfif> --->
@@ -30,9 +30,9 @@
 </cfif>
 
 <cfoutput>
-#javascriptIncludeTag(source="ckeditor/ckeditor",debug=false)#
-#javascriptIncludeTag(source="vendors",debug=false)#
-#javascriptIncludeTag(source="application",debug=false)#
+#javascriptIncludeTag(source="ckeditor/ckeditor")#
+#javascriptIncludeTag(source="vendors")#
+#javascriptIncludeTag(source="application")#
 
 
 </cfoutput>

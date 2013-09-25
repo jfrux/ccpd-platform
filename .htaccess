@@ -4,6 +4,7 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteBase /
 RewriteRule ^assets/(.*)$ /public/assets/$1 [NC,QSA,L]
+
 #ADMIN
 #RewriteRule ^admin/index.cfm/event/([^/]*)$ /admin/index.cfm?event=$1 [NC,QSA,L]
 
