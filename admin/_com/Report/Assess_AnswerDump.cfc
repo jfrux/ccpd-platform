@@ -462,17 +462,16 @@
 						<poi:cell value="Attendee Status Date" style="vertical-align:bottom;" />
 						<poi:cell value="Assessment Status" style="vertical-align:bottom;" />
 						<cfloop query="Request.Questions">
-						<cfif request.questions.deletedFlag EQ "Y">
-							<cfset headercellstyle = "background-color:##d20000;vertical-align:bottom;" />
-						<cfelseif listFindNoCase('5,6,7',request.questions.questionTypeId)>
-							<cfset headercellstyle = "background-color:##EEEEEE;vertical-align:bottom;color:##555555;font-style:italic; border: 5px ##EEEEEE;" />
-						<cfelse>
-							<cfset headercellstyle = "vertical-align:bottom;" />
-						</cfif>
-						
-						<cfif (NOT request.questions.deletedFlag EQ "Y" AND NOT arguments.showDeleted)>
-						<poi:cell value="#Request.Questions.LabelText#" style="#headercellstyle#" />
-						</cfif>
+							<cfif request.questions.deletedFlag EQ "Y">
+								<cfset headercellstyle = "background-color:##d20000;vertical-align:bottom;" />
+							<cfelseif listFindNoCase('5,6,7',request.questions.questionTypeId)>
+								<cfset headercellstyle = "background-color:##EEEEEE;vertical-align:bottom;color:##555555;font-style:italic; border: 5px ##EEEEEE;" />
+							<cfelse>
+								<cfset headercellstyle = "vertical-align:bottom;" />
+							</cfif>
+							<cfif (request.questions.deletedFlag NEQ "Y")>
+							<poi:cell value="#Request.Questions.LabelText#" style="#headercellstyle#" />
+							</cfif>
 						</cfloop>
 					</poi:row>
 					
@@ -527,69 +526,69 @@
 							<cfset prepend = "">
 							<cfset append = "">
 							
-							<cfif (NOT request.questions.deletedFlag EQ "Y" AND NOT arguments.showDeleted)>
-							<cfswitch expression="#Request.Questions.QuestionTypeId#">
-								<cfcase value="1"> <!--- Multiple Choice (Single Answer) --->
-									<cfset cellStyle = "text-align:center;">
-								</cfcase>
-								<cfcase value="3"> <!--- Text (Single Line) --->
-									<cfset prepend = "'">
-									<cfset append = "'">
-									<cfset cellStyle = "text-align:center;color:GREY_50_PERCENT;font-style:italic;">
-								</cfcase>
-								<cfcase value="4"> <!--- Text (Multi Line) --->
-									<cfset prepend = "'">
-									<cfset append = "'">
-									<cfset cellStyle = "text-align:left;color:GREY_50_PERCENT;font-style:italic;">
-								</cfcase>
-								<cfcase value="9"> <!--- Rating (1-5,Agree/Disagree) --->
-									<cfset cellStyle = "text-align:center;">
-								</cfcase>
-								<cfcase value="11"> <!--- Rating (1-5,Effective/Not Effective) --->
-									<cfset cellStyle = "text-align:center;">
-								</cfcase>
-								<cfcase value="2"> <!--- Rating (1-5,Like/Dislike)--->
-									<cfset cellStyle = "text-align:center;">
-								</cfcase>
+							<cfif (request.questions.deletedFlag NEQ "Y")>
+								<cfswitch expression="#Request.Questions.QuestionTypeId#">
+									<cfcase value="1"> <!--- Multiple Choice (Single Answer) --->
+										<cfset cellStyle = "text-align:center;">
+									</cfcase>
+									<cfcase value="3"> <!--- Text (Single Line) --->
+										<cfset prepend = "'">
+										<cfset append = "'">
+										<cfset cellStyle = "text-align:center;color:GREY_50_PERCENT;font-style:italic;">
+									</cfcase>
+									<cfcase value="4"> <!--- Text (Multi Line) --->
+										<cfset prepend = "'">
+										<cfset append = "'">
+										<cfset cellStyle = "text-align:left;color:GREY_50_PERCENT;font-style:italic;">
+									</cfcase>
+									<cfcase value="9"> <!--- Rating (1-5,Agree/Disagree) --->
+										<cfset cellStyle = "text-align:center;">
+									</cfcase>
+									<cfcase value="11"> <!--- Rating (1-5,Effective/Not Effective) --->
+										<cfset cellStyle = "text-align:center;">
+									</cfcase>
+									<cfcase value="2"> <!--- Rating (1-5,Like/Dislike)--->
+										<cfset cellStyle = "text-align:center;">
+									</cfcase>
+									
+									<cfcase value="5"> <!--- Rating (1-5,Like/Dislike)--->
+										<cfset cellStyle = "text-align:center; background-color:##EEEEEE;">
+									</cfcase>
+									
+									<cfcase value="6"> <!--- Rating (1-5,Like/Dislike)--->
+										<cfset cellStyle = "text-align:center; background-color:##EEEEEE;">
+									</cfcase>
+									
+									<cfcase value="7"> <!--- Rating (1-5,Like/Dislike)--->
+										<cfset cellStyle = "text-align:center; background-color:##EEEEEE;">
+									</cfcase>
+									
+									<cfdefaultcase> <!--- all others --->
+										<cfset cellStyle = "text-align:center;">
+									</cfdefaultcase>
+								</cfswitch>
 								
-								<cfcase value="5"> <!--- Rating (1-5,Like/Dislike)--->
-									<cfset cellStyle = "text-align:center; background-color:##EEEEEE;">
-								</cfcase>
-								
-								<cfcase value="6"> <!--- Rating (1-5,Like/Dislike)--->
-									<cfset cellStyle = "text-align:center; background-color:##EEEEEE;">
-								</cfcase>
-								
-								<cfcase value="7"> <!--- Rating (1-5,Like/Dislike)--->
-									<cfset cellStyle = "text-align:center; background-color:##EEEEEE;">
-								</cfcase>
-								
-								<cfdefaultcase> <!--- all others --->
-									<cfset cellStyle = "text-align:center;">
-								</cfdefaultcase>
-							</cfswitch>
-							
-							<cfif request.questions.deletedFlag EQ "Y">
-								<cfset cellstyle = cellstyle & "background-color:##ffe2e2;" />
-							</cfif>
-							
-							<cfif NOT listFindNoCase('5,6,7',Request.Questions.QuestionTypeId)>
-								<cfquery name="Answer" dbtype="query">
-									SELECT VC1 FROM Answers WHERE QuestionID=<cfqueryparam value="#Request.Questions.QuestionID#" cfsqltype="cf_sql_integer" />
-								</cfquery>
-								
-								<cfif len(trim(Answer.VC1)) EQ 0>
-									<cfset prepend = "">
-									<cfset append = "">
+								<cfif request.questions.deletedFlag EQ "Y">
+									<cfset cellstyle = cellstyle & "background-color:##ffe2e2;" />
 								</cfif>
-								<cfif isNumeric(Answer.VC1)>
-								<poi:cell value="#Answer.VC1#" type="numeric" numberformat="0" style="#cellStyle#" />
+								
+								<cfif NOT listFindNoCase('5,6,7',Request.Questions.QuestionTypeId)>
+									<cfquery name="Answer" dbtype="query">
+										SELECT VC1 FROM Answers WHERE QuestionID=<cfqueryparam value="#Request.Questions.QuestionID#" cfsqltype="cf_sql_integer" />
+									</cfquery>
+									
+									<cfif len(trim(Answer.VC1)) EQ 0>
+										<cfset prepend = "">
+										<cfset append = "">
+									</cfif>
+									<cfif isNumeric(Answer.VC1)>
+										<poi:cell value="#Answer.VC1#" type="numeric" numberformat="0" style="#cellStyle#" />
+									<cfelse>
+										<poi:cell value="#prepend##Answer.VC1##append#" style="#cellStyle#" />
+									</cfif>
 								<cfelse>
-								<poi:cell value="#prepend##Answer.VC1##append#" style="#cellStyle#" />
+										<poi:cell value="" style="#cellStyle#" />
 								</cfif>
-							<cfelse>
-								<poi:cell value="" style="#cellStyle#" />
-							</cfif>
 							</cfif>
 						</cfloop>
 					</poi:row>
